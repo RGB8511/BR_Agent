@@ -1,0 +1,106 @@
+[
+  {
+    "id": "field-exploration.instrumentation.eq-001",
+    "title": "Vibrating Wire Piezometer — Pore Pressure",
+    "equation": "u = CF × (R₀ - R₁) + CT × (T₁ - T₀)",
+    "variables": {
+      "u": {"description": "Pore water pressure", "units": "kPa"},
+      "CF": {"description": "Calibration factor (from manufacturer calibration sheet)", "units": "kPa/digit"},
+      "R₀": {"description": "Initial (zero) reading", "units": "digits (frequency² units)"},
+      "R₁": {"description": "Current reading", "units": "digits"},
+      "CT": {"description": "Thermal correction factor", "units": "kPa/°C"},
+      "T₀, T₁": {"description": "Initial and current temperatures", "units": "°C"}
+    },
+    "applicability": "Digits = f² × 10⁻³ (some manufacturers use f² directly). CF and CT from calibration certificate. Thermal correction often small relative to pressure change for buried piezometers.",
+    "source": "Manufacturer calibration protocol — Geokon, RST, Slope Indicator"
+  },
+  {
+    "id": "field-exploration.instrumentation.eq-002",
+    "title": "Standpipe Piezometer Response Time",
+    "equation": "t₉₅ = F × (πd²/4) / (F_intake × k)",
+    "variables": {
+      "t₉₅": {"description": "Time to achieve 95% of equilibrium response", "units": "seconds"},
+      "d": {"description": "Internal diameter of standpipe", "units": "m"},
+      "F": {"description": "Time lag factor (depends on geometry; typically 10–50)", "units": "dimensionless"},
+      "F_intake": {"description": "Intake factor (shape factor of porous element)", "units": "m"},
+      "k": {"description": "Hydraulic conductivity of surrounding soil", "units": "m/s"}
+    },
+    "applicability": "For Casagrande-type piezometer with porous stone: F_intake ≈ 2.75D for L/D ≈ 5 (Hvorslev). In k = 10⁻⁹ m/s clay with 19 mm standpipe: t₉₅ can be weeks to months. VW piezometers have near-zero volume change → much faster response.",
+    "source": "Hvorslev (1951), Dunnicliff (1993)"
+  },
+  {
+    "id": "field-exploration.instrumentation.eq-003",
+    "title": "Inclinometer Lateral Displacement",
+    "equation": "δ_i = Σ(j=1 to i) [L_j × sin(θ_j)]",
+    "variables": {
+      "δ_i": {"description": "Cumulative lateral displacement at depth i, relative to bottom of casing", "units": "mm"},
+      "L_j": {"description": "Gauge length (reading interval, typically 0.5 m)", "units": "m"},
+      "θ_j": {"description": "Tilt angle at depth j from vertical", "units": "radians"}
+    },
+    "applicability": "Summation proceeds from the bottom anchor (assumed fixed) upward. Change in displacement = current profile minus initial (baseline) profile. Accuracy: ±2 mm per 25 m of casing for manual traverse. A+A' (0° and 180°) checksums should cancel — deviation indicates probe error.",
+    "source": "Dunnicliff (1993), Slope Indicator application guide"
+  },
+  {
+    "id": "field-exploration.instrumentation.eq-004",
+    "title": "Settlement from Hydraulic Settlement Gauge",
+    "equation": "S = (P_current - P_initial) / (ρ × g) + correction",
+    "variables": {
+      "S": {"description": "Settlement of embedded plate relative to readout elevation", "units": "m"},
+      "P_current": {"description": "Current liquid pressure at readout", "units": "kPa"},
+      "P_initial": {"description": "Initial (baseline) liquid pressure", "units": "kPa"},
+      "ρg": {"description": "Unit weight of gauge liquid", "units": "kN/m³"},
+      "correction": {"description": "Temperature and elevation corrections", "units": "m"}
+    },
+    "applicability": "Operating principle: liquid manometer. Settlement of the plate raises the liquid column, increasing pressure at the readout. Temperature affects liquid density — correct if large temperature changes occur.",
+    "source": "Dunnicliff (1993), manufacturer guidance"
+  },
+  {
+    "id": "field-exploration.instrumentation.eq-005",
+    "title": "Vibrating Wire Strain Gauge — Microstrain",
+    "equation": "με = GF × (R₁ - R₀) + CT_strain × (T₁ - T₀)",
+    "variables": {
+      "με": {"description": "Change in strain (microstrain, 10⁻⁶)", "units": "με"},
+      "GF": {"description": "Gauge factor (from calibration)", "units": "με/digit"},
+      "R₀, R₁": {"description": "Initial and current readings", "units": "digits"},
+      "CT_strain": {"description": "Thermal coefficient of strain gauge (accounts for differential thermal expansion)", "units": "με/°C"}
+    },
+    "applicability": "Stress = E × (με × 10⁻⁶). For concrete: E = 25–35 GPa. For steel: E = 200 GPa. Thermal correction is critical — steel gauge in concrete experiences apparent strain from differential thermal expansion (α_steel ≠ α_concrete).",
+    "source": "Geokon, RST manufacturer documentation"
+  },
+  {
+    "id": "field-exploration.instrumentation.eq-006",
+    "title": "MPBX — Relative Displacement Between Anchors",
+    "equation": "Δ_ij = (L_i - L_i₀) - (L_j - L_j₀)",
+    "variables": {
+      "Δ_ij": {"description": "Relative displacement between anchors i and j", "units": "mm"},
+      "L_i, L_j": {"description": "Current rod/wire lengths to anchors i and j", "units": "mm"},
+      "L_i₀, L_j₀": {"description": "Initial (baseline) rod/wire lengths", "units": "mm"}
+    },
+    "applicability": "Measures convergence or extension between anchor points. For tunnel monitoring: convergence = closure of the opening. Reference head movement must be accounted for — survey the head independently.",
+    "source": "Dunnicliff (1993)"
+  },
+  {
+    "id": "field-exploration.instrumentation.eq-007",
+    "title": "Total Pressure Cell — Effective Stress Check",
+    "equation": "σ' = σ_total - u",
+    "variables": {
+      "σ_total": {"description": "Total stress from earth pressure cell", "units": "kPa"},
+      "u": {"description": "Pore water pressure from adjacent piezometer", "units": "kPa"},
+      "σ'": {"description": "Effective stress (calculated, not measured directly)", "units": "kPa"}
+    },
+    "applicability": "Earth pressure cells measure total stress. Co-locate with piezometers to compute effective stress. Compare with theoretical overburden: σ_v = γ × z. Deviation indicates arching, stress concentration, or instrument error.",
+    "source": "Terzaghi effective stress principle"
+  },
+  {
+    "id": "field-exploration.instrumentation.eq-008",
+    "title": "Survey Monument — 3D Displacement from Coordinates",
+    "equation": "d = √[(x₁-x₀)² + (y₁-y₀)² + (z₁-z₀)²]",
+    "variables": {
+      "d": {"description": "Total 3D displacement since baseline", "units": "mm"},
+      "x₀,y₀,z₀": {"description": "Baseline coordinates", "units": "m"},
+      "x₁,y₁,z₁": {"description": "Current coordinates", "units": "m"}
+    },
+    "applicability": "Vector components provide direction of movement. Vertical (settlement) = z₁-z₀. Horizontal = √[(x₁-x₀)²+(y₁-y₀)²]. Plot time-displacement to identify trends, acceleration. Precision: ±1 mm (precise leveling), ±2–3 mm (total station), ±5–10 mm (RTK GPS).",
+    "source": "Standard surveying practice"
+  }
+]

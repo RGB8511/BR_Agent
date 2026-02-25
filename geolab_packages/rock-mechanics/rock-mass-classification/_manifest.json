@@ -1,0 +1,23 @@
+{
+  "id": "geotechnical.rock-mechanics.rock-mass-classification",
+  "name": "Rock Mass Classification Systems (RMR & Q)",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.rock-mechanics",
+  "dependencies": ["geotechnical.foundations.rock-classification"],
+  "tags": ["RMR", "Bieniawski", "Q-system", "Barton", "tunneling", "support-design", "stand-up-time", "ESR"],
+  "standards": ["D5878"],
+  "key_references": [
+    "Bieniawski (1989) Engineering Rock Mass Classifications",
+    "Barton, Lien & Lunde (1974) Engineering Classification of Rock Masses",
+    "Barton (2002) Some New Q-value Correlations"
+  ],
+  "equation_count": 8,
+  "concept_count": 18,
+  "table_count": 7,
+  "content_files": ["theory.md", "equations.json", "tables.json"],
+  "textbook_level": "graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

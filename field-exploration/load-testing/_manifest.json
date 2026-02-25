@@ -1,0 +1,28 @@
+{
+  "id": "field-exploration.load-testing",
+  "name": "Field Load Testing — Piles, Anchors, Plates & Proof Tests",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.construction-verification",
+  "dependencies": [
+    "geotechnical.foundations.deep-foundations",
+    "geotechnical.foundations.shallow-foundations"
+  ],
+  "tags": ["pile-load-test", "static-load-test", "Statnamic", "PDA", "CAPWAP", "Osterberg-cell", "O-cell", "anchor-test", "tieback", "proof-test", "performance-test", "creep-test", "plate-load-test", "PLT", "modulus-of-subgrade-reaction", "CBR-field", "Davisson", "Chin-Kondner", "ultimate-capacity", "integrity-test", "CSL", "PIT"],
+  "standards": ["ASTM-D1143", "ASTM-D3689", "ASTM-D3966", "ASTM-D4945", "ASTM-D1196", "ASTM-D4394", "PTI-DC35"],
+  "key_references": [
+    "FHWA NHI-16-009 GEC-12 — Design and Construction of Driven Pile Foundations",
+    "FHWA-IF-99-025 — Drilled Shafts",
+    "PTI DC35.1 — Recommendations for Prestressed Rock and Soil Anchors",
+    "FHWA-SA-99-015 — Ground Anchors and Anchored Systems",
+    "Fellenius (2020) Basics of Foundation Design"
+  ],
+  "equation_count": 10,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

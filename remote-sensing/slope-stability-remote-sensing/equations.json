@@ -1,0 +1,104 @@
+[
+  {
+    "id": "remote-sensing.slope-stability.eq-001",
+    "title": "Topographic Wetness Index (TWI)",
+    "equation": "TWI = ln(a / tan(β))",
+    "variables": {
+      "TWI": {"description": "Topographic wetness index (higher = wetter, more landslide-prone)", "units": "dimensionless"},
+      "a": {"description": "Specific contributing area (upslope drainage area per unit contour width)", "units": "m²/m"},
+      "β": {"description": "Local slope angle", "units": "radians"}
+    },
+    "applicability": "Computed from LiDAR DEM. High TWI zones (convergent topography, gentle slopes below steep catchments) correlate with elevated pore pressures and increased landslide susceptibility. Used in shallow landslide susceptibility models (e.g., SHALSTAB, SINMAP).",
+    "source": "Beven & Kirkby (1979)"
+  },
+  {
+    "id": "remote-sensing.slope-stability.eq-002",
+    "title": "Infinite Slope Stability — LiDAR-Derived Inputs",
+    "equation": "FS = (c' + (γ×z×cos²β - u) × tanφ') / (γ × z × sinβ × cosβ)",
+    "variables": {
+      "FS": {"description": "Factor of safety against sliding", "units": "dimensionless"},
+      "c'": {"description": "Effective cohesion", "units": "kPa"},
+      "γ": {"description": "Unit weight of soil", "units": "kN/m³"},
+      "z": {"description": "Depth to failure plane (from soil thickness model or field data)", "units": "m"},
+      "β": {"description": "Slope angle (from LiDAR DEM, cell-by-cell)", "units": "degrees"},
+      "u": {"description": "Pore water pressure at failure plane (from TWI-based or hydrologic model)", "units": "kPa"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"}
+    },
+    "applicability": "Pixel-by-pixel FS calculation using LiDAR DEM for slope angle. Pore pressure modeled from TWI, rainfall, and soil properties. Shallow translational slides (depth << length). Basis for SHALSTAB, SINMAP, TRIGRS models.",
+    "source": "Skempton & DeLory (1957), adapted for GIS-based analysis"
+  },
+  {
+    "id": "remote-sensing.slope-stability.eq-003",
+    "title": "Inverse Velocity Failure Prediction",
+    "equation": "1/v(t) = A - B×t  →  t_failure = A/B",
+    "variables": {
+      "v(t)": {"description": "Displacement velocity at time t", "units": "mm/day or mm/hr"},
+      "A, B": {"description": "Linear regression coefficients", "units": "various"},
+      "t_failure": {"description": "Predicted failure time (1/v → 0)", "units": "same as t"}
+    },
+    "applicability": "From Fukuzono (1985). Plot 1/v vs time from multi-epoch remote sensing (InSAR, GB-InSAR, TLS). Linear trend suggests ductile failure. Concave-up (decelerating 1/v decrease) suggests earlier failure than linear. Requires at least 3 points showing consistent acceleration.",
+    "source": "Fukuzono (1985), Carlà et al. (2017)"
+  },
+  {
+    "id": "remote-sensing.slope-stability.eq-004",
+    "title": "Rockfall Volume from Point Cloud Comparison",
+    "equation": "V_rockfall = Σᵢ |ΔZ(i)| × A_cell  for all cells in detachment zone where ΔZ < -LOD",
+    "variables": {
+      "V_rockfall": {"description": "Volume of rock detached from source zone", "units": "m³"},
+      "ΔZ(i)": {"description": "Surface change at cell i (negative = loss)", "units": "m"},
+      "A_cell": {"description": "Cell area", "units": "m²"},
+      "LOD": {"description": "Level of detection threshold", "units": "m"}
+    },
+    "applicability": "From M3C2 or DoD comparison of pre/post-event point clouds. Volume of source zone should approximately equal deposit volume (minus fragmentation bulking factor 1.2–1.5). Applicable to individual events or cumulative rockfall inventory over time.",
+    "source": "Abellán et al. (2014), Lague et al. (2013)"
+  },
+  {
+    "id": "remote-sensing.slope-stability.eq-005",
+    "title": "Landslide Susceptibility Index (LSI) — Logistic Regression",
+    "equation": "P(landslide) = 1 / (1 + e^-(β₀ + β₁×slope + β₂×TWI + β₃×curvature + β₄×lithology + ...))",
+    "variables": {
+      "P": {"description": "Probability of landslide occurrence in a given cell", "units": "0–1"},
+      "β₀...βₙ": {"description": "Regression coefficients (calibrated from landslide inventory)", "units": "various"},
+      "slope, TWI, curvature": {"description": "Terrain parameters from LiDAR DEM", "units": "various"},
+      "lithology": {"description": "Categorical geological unit (encoded)", "units": "categorical"}
+    },
+    "applicability": "Statistical susceptibility model trained on known landslide inventory (from LiDAR mapping). LiDAR-derived terrain attributes are the primary predictors. Validated by split-sample or cross-validation. AUC > 0.80 indicates good model performance.",
+    "source": "Dai & Lee (2002), van Westen et al. (2006)"
+  },
+  {
+    "id": "remote-sensing.slope-stability.eq-006",
+    "title": "GB-InSAR Atmospheric Phase Correction",
+    "equation": "φ_corrected = φ_measured - φ_atm  where φ_atm estimated from stable reference areas",
+    "variables": {
+      "φ_corrected": {"description": "Atmospherically corrected phase", "units": "radians"},
+      "φ_measured": {"description": "Raw measured phase", "units": "radians"},
+      "φ_atm": {"description": "Estimated atmospheric phase delay (from stable reflectors)", "units": "radians"}
+    },
+    "applicability": "Atmospheric effects are the dominant error in GB-InSAR (path through several km of troposphere). Correction methods: use stable reference reflectors on opposite side of scene; model atmosphere from meteorological data (temperature, humidity, pressure); statistical filtering of spatially correlated signal. Residual error after correction: 0.1–0.5 mm.",
+    "source": "Monserrat et al. (2014), Iglesias et al. (2014)"
+  },
+  {
+    "id": "remote-sensing.slope-stability.eq-007",
+    "title": "Slope Angle from DEM",
+    "equation": "β = arctan(√((∂z/∂x)² + (∂z/∂y)²))",
+    "variables": {
+      "β": {"description": "Slope angle at cell", "units": "degrees"},
+      "∂z/∂x, ∂z/∂y": {"description": "Partial derivatives of elevation (estimated from 3×3 neighborhood)", "units": "m/m"}
+    },
+    "applicability": "Computed cell-by-cell from DEM using algorithms (Horn, Zevenbergen-Thorne). DEM resolution affects slope calculation — coarser DEMs underestimate steep slopes. LiDAR DEMs (0.5–1 m) provide slope accurate to ±1–2° for smooth terrain, ±3–5° for rough terrain.",
+    "source": "Horn (1981), general GIS"
+  },
+  {
+    "id": "remote-sensing.slope-stability.eq-008",
+    "title": "Empirical Landslide Runout — Volume-Dependent Travel Angle",
+    "equation": "tan(α) = H/L ≈ 0.16 × V^(-0.15)  (for rock avalanches)",
+    "variables": {
+      "α": {"description": "Travel angle (fahrböschung) from head scarp to toe of deposit", "units": "degrees"},
+      "H": {"description": "Vertical drop from head scarp to distal deposit", "units": "m"},
+      "L": {"description": "Horizontal travel distance", "units": "m"},
+      "V": {"description": "Landslide volume", "units": "m³"}
+    },
+    "applicability": "Empirical relationship for rapid landslides and rock avalanches. Larger volume = lower travel angle = longer runout. Volume estimated from LiDAR change detection. Different relationships exist for debris flows (Rickenmann), rock avalanches (Scheidegger), and earth slides. Used for hazard zonation.",
+    "source": "Scheidegger (1973), Li (1983), Corominas (1996)"
+  }
+]

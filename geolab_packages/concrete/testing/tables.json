@@ -1,0 +1,90 @@
+[
+  {
+    "id": "concrete.testing.tbl-001",
+    "title": "Key Concrete Test Methods Summary",
+    "type": "reference",
+    "data": {
+      "headers": ["Test", "ASTM", "Specimen", "Measures", "Typical Use"],
+      "rows": [
+        ["Compressive strength", "C39", "150×300 or 100×200 mm cylinder", "f'c (MPa)", "Acceptance testing, QC"],
+        ["Split tensile", "C496", "Standard cylinder, loaded diametrally", "f_t (MPa)", "Tension design, pavement"],
+        ["Flexural strength", "C78/C293", "150×150×500 mm beam", "f_r (MPa)", "Pavement design, airfield"],
+        ["Modulus of elasticity", "C469", "Cylinder with compressometer", "E_c, ν", "Structural analysis input"],
+        ["Core testing", "C42", "Drilled cores, various L/D", "In-situ f'c", "Investigating low results"],
+        ["Rebound hammer", "C805", "In-place surface", "Rebound number R", "Uniformity surveys"],
+        ["UPV", "C597", "In-place, through-transmission", "Velocity (m/s)", "Quality/uniformity, voids"],
+        ["Maturity", "C1074", "Embedded temperature sensor", "Maturity M or t_e", "Form stripping, cold weather"],
+        ["Air content (pressure)", "C231", "Fresh concrete", "Air %", "QC — freeze-thaw protection"],
+        ["Slump", "C143", "Fresh concrete", "mm", "Workability QC"],
+        ["Unit weight", "C138", "Fresh concrete", "kg/m³", "Yield verification"]
+      ]
+    }
+  },
+  {
+    "id": "concrete.testing.tbl-002",
+    "title": "UPV Quality Classification",
+    "type": "classification",
+    "data": {
+      "headers": ["UPV (m/s)", "Quality Rating", "Condition"],
+      "rows": [
+        ["> 4500", "Excellent", "Dense, well-cured concrete"],
+        ["3500–4500", "Good", "Normal quality concrete"],
+        ["3000–3500", "Questionable", "Moderate quality, possible issues"],
+        ["2000–3000", "Poor", "Significant defects or deterioration"],
+        ["< 2000", "Very poor", "Severely deteriorated or major voids"]
+      ]
+    },
+    "source": "Leslie & Cheesman (1949), Whitehurst (1951)"
+  },
+  {
+    "id": "concrete.testing.tbl-003",
+    "title": "Strength Relationships (Normal Weight Concrete)",
+    "type": "reference",
+    "data": {
+      "headers": ["f'c (MPa)", "f_t split (MPa)", "f_r MOR (MPa)", "E_c (GPa)", "f_t/f'c (%)"],
+      "rows": [
+        ["20", "2.0–2.5", "2.5–3.0", "21", "10–13"],
+        ["25", "2.3–2.8", "2.8–3.5", "24", "9–11"],
+        ["30", "2.5–3.2", "3.1–3.8", "26", "8–11"],
+        ["35", "2.8–3.5", "3.4–4.1", "28", "8–10"],
+        ["40", "3.0–3.8", "3.6–4.4", "30", "8–10"],
+        ["50", "3.4–4.2", "4.0–5.0", "33", "7–8"],
+        ["60", "3.8–4.6", "4.4–5.5", "37", "6–8"]
+      ]
+    },
+    "source": "ACI 318 formulas and general practice. Ranges reflect variability in aggregate, mix, and testing."
+  },
+  {
+    "id": "concrete.testing.tbl-004",
+    "title": "Core Test L/D Correction Factors (ASTM C42)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["L/D Ratio", "Correction Factor"],
+      "rows": [
+        ["2.00", "1.00"],
+        ["1.75", "0.98"],
+        ["1.50", "0.96"],
+        ["1.25", "0.93"],
+        ["1.00", "0.87"]
+      ]
+    },
+    "source": "ASTM C42 Table 1. Interpolate for intermediate values."
+  },
+  {
+    "id": "concrete.testing.tbl-005",
+    "title": "Cylinder Failure Patterns (ASTM C39 Figure 2)",
+    "type": "classification",
+    "data": {
+      "headers": ["Type", "Pattern", "Description", "Significance"],
+      "rows": [
+        ["1", "Cone", "Well-formed cones on both ends", "Ideal — proper failure"],
+        ["2", "Cone + split", "Cone on one end + vertical crack", "Acceptable"],
+        ["3", "Columnar", "Vertical cracks through both caps", "May indicate platen restraint issues"],
+        ["4", "Diagonal", "Fracture on diagonal with no cone", "Check loading alignment"],
+        ["5", "Side fracture", "Fracture through side, cone at one end", "Specimen defect, eccentric loading"],
+        ["6", "Similar to 5", "Similar to 5 but with pointed end", "Specimen defect"]
+      ]
+    },
+    "source": "ASTM C39 Figure 2"
+  }
+]

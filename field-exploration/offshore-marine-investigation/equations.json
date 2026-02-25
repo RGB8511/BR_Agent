@@ -1,0 +1,102 @@
+[
+  {
+    "id": "field-exploration.offshore-marine.eq-001",
+    "title": "Sub-Bottom Profiler Vertical Resolution",
+    "equation": "R_v = V_s / (2 × f)",
+    "variables": {
+      "R_v": {"description": "Vertical resolution (minimum layer thickness detectable)", "units": "m"},
+      "V_s": {"description": "Acoustic velocity in sediment (1500–1800 m/s typical)", "units": "m/s"},
+      "f": {"description": "Source frequency", "units": "Hz"}
+    },
+    "applicability": "Higher frequency = better resolution but less penetration. Chirp (2–16 kHz): 0.05–0.5 m resolution, 10–50 m penetration. Boomer (0.5–5 kHz): 0.5–1 m resolution, 50–100 m penetration. Sparker (0.1–1 kHz): 1–2 m resolution, 100+ m penetration.",
+    "source": "Sheriff & Geldart (1995), general marine geophysics"
+  },
+  {
+    "id": "field-exploration.offshore-marine.eq-002",
+    "title": "Side-Scan Sonar Range and Resolution",
+    "equation": "Swath width = 2 × Range;  Along-track resolution ≈ R × λ / L",
+    "variables": {
+      "Range": {"description": "Maximum slant range per side", "units": "m"},
+      "R": {"description": "Slant range to target", "units": "m"},
+      "λ": {"description": "Acoustic wavelength in water", "units": "m"},
+      "L": {"description": "Transducer length", "units": "m"}
+    },
+    "applicability": "100 kHz: 300–600 m range, ~1 m resolution. 400 kHz: 75–150 m range, ~0.2 m resolution. Tow altitude typically 10–20% of range setting. Speed typically 3–5 knots for survey quality.",
+    "source": "Blondel & Murton (1997), manufacturer guidance"
+  },
+  {
+    "id": "field-exploration.offshore-marine.eq-003",
+    "title": "Multibeam Echo Sounder Depth Accuracy",
+    "equation": "σ_z = √(σ_d² + (d × tan(θ) × σ_θ)² + σ_heave² + σ_tide²)",
+    "variables": {
+      "σ_z": {"description": "Total vertical uncertainty", "units": "m"},
+      "σ_d": {"description": "Sounder measurement uncertainty", "units": "m"},
+      "d": {"description": "Water depth", "units": "m"},
+      "θ": {"description": "Beam angle from vertical", "units": "radians"},
+      "σ_θ": {"description": "Angular uncertainty from motion sensor", "units": "radians"},
+      "σ_heave": {"description": "Heave measurement uncertainty", "units": "m"},
+      "σ_tide": {"description": "Tidal correction uncertainty", "units": "m"}
+    },
+    "applicability": "IHO S-44 Order 1a: THU = 2m + 1% depth, TVU = √(0.25² + (0.0075×d)²). Outer beams have lower accuracy than nadir. RTK-GPS positioning eliminates tide uncertainty.",
+    "source": "IHO S-44, Lurton (2010)"
+  },
+  {
+    "id": "field-exploration.offshore-marine.eq-004",
+    "title": "Vibrocore Penetration — Empirical",
+    "equation": "L_core ≈ L_barrel × (0.6 to 0.9)  depending on soil type",
+    "variables": {
+      "L_core": {"description": "Actual core recovery length", "units": "m"},
+      "L_barrel": {"description": "Core barrel length (typically 3–6 m, max ~12 m)", "units": "m"}
+    },
+    "applicability": "Vibrocore effective in soft sediments (clay, silt, loose sand). Recovery ratio typically 60–90% in soft soils, decreasing in dense sand/gravel. Core shortening (compression) common in soft clays. Maximum practical depth ~12 m below seabed.",
+    "source": "General practice, ASTM D4823"
+  },
+  {
+    "id": "field-exploration.offshore-marine.eq-005",
+    "title": "Wave-Induced Vessel Heave — Significant Height",
+    "equation": "RAO_heave = z_vessel / H_wave  (Response Amplitude Operator)",
+    "variables": {
+      "RAO_heave": {"description": "Heave response amplitude operator (frequency-dependent)", "units": "dimensionless"},
+      "z_vessel": {"description": "Vessel heave amplitude", "units": "m"},
+      "H_wave": {"description": "Wave height", "units": "m"}
+    },
+    "applicability": "Drilling operability limited by vessel motion. Typical limits: jack-up barge: unlimited (fixed). DP vessel: Hs < 2.0–3.0 m for CPT/drilling. Anchored barge: Hs < 1.0–1.5 m. Heave compensation required for deepwater sampling.",
+    "source": "DNV-RP-C205, general marine engineering"
+  },
+  {
+    "id": "field-exploration.offshore-marine.eq-006",
+    "title": "Seabed CPT Correction for Water Depth",
+    "equation": "σ_v0 = γ_sub × z_seabed  (effective stress below mudline only)",
+    "variables": {
+      "σ_v0": {"description": "Effective vertical stress for CPT interpretation", "units": "kPa"},
+      "γ_sub": {"description": "Submerged unit weight of seabed soil", "units": "kN/m³"},
+      "z_seabed": {"description": "Depth below mudline (not below water surface)", "units": "m"}
+    },
+    "applicability": "Water column pressure acts equally on cone and soil — does not affect qt, fs, or u2 interpretation. All CPT correlations use depth below mudline. Pore pressure sensor: u2 offset must account for hydrostatic water column pressure (calibrated before deployment).",
+    "source": "Lunne et al. (1997), ISO 19901-8"
+  },
+  {
+    "id": "field-exploration.offshore-marine.eq-007",
+    "title": "Grab Sampler Penetration (Van Veen / Smith-McIntyre)",
+    "equation": "Penetration ≈ 0.05–0.20 m  (surficial sample only)",
+    "variables": {
+      "Penetration": {"description": "Depth of seabed material recovered", "units": "m"}
+    },
+    "applicability": "Grab samplers collect disturbed surficial material for classification, contamination assessment, and benthic studies. Not suitable for geotechnical strength parameters. Volume typically 5–30 L depending on grab size and soil type.",
+    "source": "General practice"
+  },
+  {
+    "id": "field-exploration.offshore-marine.eq-008",
+    "title": "Acoustic Impedance Contrast (Reflection Coefficient)",
+    "equation": "R = (Z₂ - Z₁) / (Z₂ + Z₁)  where Z = ρ × V",
+    "variables": {
+      "R": {"description": "Reflection coefficient (amplitude ratio)", "units": "dimensionless"},
+      "Z₁": {"description": "Acoustic impedance of upper layer", "units": "kg/(m²·s)"},
+      "Z₂": {"description": "Acoustic impedance of lower layer", "units": "kg/(m²·s)"},
+      "ρ": {"description": "Material density", "units": "kg/m³"},
+      "V": {"description": "Acoustic (P-wave) velocity", "units": "m/s"}
+    },
+    "applicability": "Governs strength of reflections in sub-bottom profiler data. Strong contrasts (soft clay over rock: R ≈ 0.5–0.8) produce bright reflectors. Weak contrasts (clay over silt: R ≈ 0.05–0.10) may not be resolved. Water-seabed interface typically R ≈ 0.1–0.4.",
+    "source": "Sheriff & Geldart (1995)"
+  }
+]

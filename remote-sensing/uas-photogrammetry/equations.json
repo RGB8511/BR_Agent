@@ -1,0 +1,125 @@
+[
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-001",
+    "title": "Ground Sample Distance (GSD)",
+    "equation": "GSD = (H × s_pixel) / f",
+    "variables": {
+      "GSD": {"description": "Ground sample distance — ground dimension per pixel", "units": "m/px"},
+      "H": {"description": "Flying height above ground level", "units": "m"},
+      "s_pixel": {"description": "Physical pixel size on sensor", "units": "m"},
+      "f": {"description": "Camera focal length", "units": "m"}
+    },
+    "applicability": "Example: H=100m, pixel=3.3μm (1-inch sensor), f=8.8mm → GSD = 3.75 cm/px. For target GSD, solve for H: H = GSD×f/s_pixel.",
+    "source": "Fundamental photogrammetry"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-002",
+    "title": "Image Footprint on Ground",
+    "equation": "W_ground = GSD × n_pixels_width;  L_ground = GSD × n_pixels_height",
+    "variables": {
+      "W_ground": {"description": "Ground coverage width per image", "units": "m"},
+      "L_ground": {"description": "Ground coverage length per image", "units": "m"},
+      "n_pixels": {"description": "Image dimensions in pixels", "units": "pixels"}
+    },
+    "applicability": "DJI Phantom 4 RTK: 5472×3648 px at 2.4cm GSD → 131 × 88 m per image. Used to calculate flight line spacing and trigger interval.",
+    "source": "General photogrammetry"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-003",
+    "title": "Flight Line Spacing (for desired sidelap)",
+    "equation": "d_lines = W_ground × (1 - sidelap/100)",
+    "variables": {
+      "d_lines": {"description": "Distance between adjacent flight lines", "units": "m"},
+      "W_ground": {"description": "Image ground width (cross-track)", "units": "m"},
+      "sidelap": {"description": "Desired side overlap percentage", "units": "%"}
+    },
+    "applicability": "70% sidelap, 131 m width → 39 m line spacing. Similarly, trigger spacing along track: d_trigger = L_ground × (1 - endlap/100).",
+    "source": "General flight planning"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-004",
+    "title": "Photo Scale (vertical photography)",
+    "equation": "S = f / H",
+    "variables": {
+      "S": {"description": "Photo scale (as fraction)", "units": "dimensionless"},
+      "f": {"description": "Focal length", "units": "m"},
+      "H": {"description": "Flying height AGL", "units": "m"}
+    },
+    "applicability": "f=35mm, H=100m → S=1:2857. Scale varies across image with terrain relief: S_point = f/(H-h) where h = terrain elevation above reference.",
+    "source": "Fundamental photogrammetry"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-005",
+    "title": "Base-to-Height Ratio (Stereo Geometry)",
+    "equation": "B/H = (1 - endlap/100) × L_ground / H",
+    "variables": {
+      "B": {"description": "Baseline — distance between camera positions", "units": "m"},
+      "H": {"description": "Flying height AGL", "units": "m"},
+      "endlap": {"description": "Forward overlap", "units": "%"}
+    },
+    "applicability": "B/H controls vertical precision. B/H = 0.3–0.6 is optimal for dense matching. Too low (B/H < 0.1): poor depth resolution. Too high (B/H > 1.0): matching failures. 80% overlap typically gives B/H ≈ 0.2–0.4 depending on geometry.",
+    "source": "Kraus (2007), general photogrammetry"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-006",
+    "title": "Vertical Accuracy from Stereo — Theoretical",
+    "equation": "σ_z = H² × σ_parallax / (f × B)",
+    "variables": {
+      "σ_z": {"description": "Vertical measurement precision", "units": "m"},
+      "H": {"description": "Flying height", "units": "m"},
+      "σ_parallax": {"description": "Parallax measurement precision (typically 0.3–1.0 pixel)", "units": "m (sensor units)"},
+      "f": {"description": "Focal length", "units": "m"},
+      "B": {"description": "Baseline (stereo base)", "units": "m"}
+    },
+    "applicability": "Theoretical best-case. Practical accuracy 1.5–3× GSD with GCPs. Vertical accuracy always worse than horizontal due to stereo geometry. Convergent imaging improves vertical precision.",
+    "source": "Kraus (2007)"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-007",
+    "title": "Reprojection Error (Bundle Adjustment Quality)",
+    "equation": "RMSE_reproj = √((1/n) × Σ(||x_measured - x_projected||²))",
+    "variables": {
+      "RMSE_reproj": {"description": "Root mean square reprojection error", "units": "pixels"},
+      "x_measured": {"description": "Detected keypoint location in image", "units": "pixels"},
+      "x_projected": {"description": "3D point reprojected through estimated camera model", "units": "pixels"},
+      "n": {"description": "Total number of observations", "units": "—"}
+    },
+    "applicability": "RMSE < 0.5 px: excellent. 0.5–1.0: good. 1.0–2.0: acceptable. > 2.0: investigate issues (poor calibration, few matches, bad images). High reprojection error indicates geometric inconsistency in the solution.",
+    "source": "Agisoft, Pix4D documentation"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-008",
+    "title": "GCP RMSE — Accuracy Assessment",
+    "equation": "RMSE_total = √(RMSE_x² + RMSE_y² + RMSE_z²)",
+    "variables": {
+      "RMSE_x,y,z": {"description": "Component RMSE at check points (independent of control)", "units": "m"}
+    },
+    "applicability": "Compute on CHECK points (not used as GCPs in adjustment). Minimum 5 check points recommended (20+ for statistical rigor). Report separately for horizontal and vertical per ASPRS standards.",
+    "source": "ASPRS Positional Accuracy Standards"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-009",
+    "title": "Image Blur Threshold — Maximum Shutter Speed",
+    "equation": "t_shutter ≤ GSD / v_ground",
+    "variables": {
+      "t_shutter": {"description": "Maximum exposure time to limit blur to 1 pixel", "units": "seconds"},
+      "GSD": {"description": "Ground sample distance", "units": "m"},
+      "v_ground": {"description": "Ground speed of UAS", "units": "m/s"}
+    },
+    "applicability": "GSD=2cm, speed=10 m/s → max shutter 1/500s. Mechanical shutter preferred over rolling shutter (which causes wobble distortion). Many mapping cameras now have global shutter or fast mechanical shutter.",
+    "source": "General imaging, Pix4D guidance"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.eq-010",
+    "title": "Volume Calculation Error Estimate",
+    "equation": "σ_vol = A × σ_z × √(1 + 1/n_pts_per_cell)",
+    "variables": {
+      "σ_vol": {"description": "Volume measurement uncertainty", "units": "m³"},
+      "A": {"description": "Planimetric area of feature", "units": "m²"},
+      "σ_z": {"description": "Elevation accuracy (RMSE_z)", "units": "m"},
+      "n_pts_per_cell": {"description": "Number of points per DEM cell", "units": "—"}
+    },
+    "applicability": "Simplified estimate. For stockpile volume: ±5–10% typical with 2–3 cm GSD and GCPs. Error proportional to surface area × height uncertainty. Systematic errors (datum offset) can dominate for cut/fill calculations — use check points on stable surfaces.",
+    "source": "General practice, adapted from DEM error propagation"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "id": "field-exploration.instrumentation",
+  "name": "Geotechnical Instrumentation & Monitoring",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.monitoring",
+  "dependencies": [
+    "field-exploration.groundwater-monitoring",
+    "field-exploration.drilling-methods"
+  ],
+  "tags": ["piezometer", "vibrating-wire", "standpipe", "pneumatic", "inclinometer", "settlement", "extensometer", "load-cell", "earth-pressure-cell", "tiltmeter", "crack-gauge", "survey-monument", "MPBX", "TDR", "SAA", "AMTS", "real-time", "dam-monitoring", "embankment"],
+  "standards": ["USACE-EM-1110-2-1908", "USBR-DS-13-Ch11", "ASTM-D6230", "ASTM-D7299"],
+  "key_references": [
+    "Dunnicliff (1993) Geotechnical Instrumentation for Monitoring Field Performance",
+    "USACE EM 1110-2-1908 Instrumentation of Embankment Dams and Levees",
+    "USBR DS-13 Ch11 — Instrumentation",
+    "Slope Indicator Co. — Application Guides",
+    "FHWA NHI-15-005 Geotechnical Instrumentation Reference Manual"
+  ],
+  "equation_count": 8,
+  "concept_count": 25,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

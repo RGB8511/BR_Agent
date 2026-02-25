@@ -1,0 +1,76 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.compaction.eq-001",
+    "title": "Dry Unit Weight from Field Measurement",
+    "equation": "γ_d = γ / (1 + w)",
+    "variables": {
+      "γ_d": {"description": "Dry unit weight", "units": "kN/m³ or lb/ft³"},
+      "γ": {"description": "Total (wet) unit weight", "units": "kN/m³"},
+      "w": {"description": "Moisture content", "units": "decimal"}
+    },
+    "source": "Fundamental phase relationship"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.compaction.eq-002",
+    "title": "Zero Air Voids Dry Unit Weight",
+    "equation": "γ_zav = G_s × γ_w / (1 + w × G_s)",
+    "variables": {
+      "γ_zav": {"description": "Zero air voids dry unit weight (S = 100%)", "units": "kN/m³"},
+      "G_s": {"description": "Specific gravity of solids", "units": "dimensionless"},
+      "γ_w": {"description": "Unit weight of water (9.81 kN/m³)", "units": "kN/m³"},
+      "w": {"description": "Moisture content", "units": "decimal"}
+    },
+    "applicability": "Theoretical upper bound. Plot ZAV line on compaction chart using G_s for the soil.",
+    "source": "Derived from phase relationships with S = 1"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.compaction.eq-003",
+    "title": "Relative Compaction",
+    "equation": "RC = (γ_d(field) / γ_d,max) × 100%",
+    "variables": {
+      "RC": {"description": "Relative compaction", "units": "%"},
+      "γ_d(field)": {"description": "Field dry unit weight", "units": "kN/m³"},
+      "γ_d,max": {"description": "Maximum dry unit weight from Proctor test", "units": "kN/m³"}
+    },
+    "source": "Standard specification practice"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.compaction.eq-004",
+    "title": "Degree of Saturation at Compaction",
+    "equation": "S = w × G_s / e = w × G_s × γ_d / (G_s × γ_w - γ_d)",
+    "variables": {
+      "S": {"description": "Degree of saturation", "units": "decimal"},
+      "w": {"description": "Moisture content", "units": "decimal"},
+      "G_s": {"description": "Specific gravity", "units": "dimensionless"},
+      "γ_d": {"description": "Dry unit weight", "units": "kN/m³"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"}
+    },
+    "applicability": "Compute S for any point on compaction curve. At ZAV: S = 1.0.",
+    "source": "Phase relationship Se = wGs"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.compaction.eq-005",
+    "title": "Compactive Effort (Proctor Test)",
+    "equation": "CE = (N_b × N_L × W_h × h_d) / V_m",
+    "variables": {
+      "CE": {"description": "Compactive effort (energy per unit volume)", "units": "ft·lb/ft³ or kN·m/m³"},
+      "N_b": {"description": "Number of blows per layer", "units": "count"},
+      "N_L": {"description": "Number of layers", "units": "count"},
+      "W_h": {"description": "Weight of hammer", "units": "lb or kN"},
+      "h_d": {"description": "Height of drop", "units": "ft or m"},
+      "V_m": {"description": "Volume of mold", "units": "ft³ or m³"}
+    },
+    "source": "ASTM D698, D1557"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.compaction.eq-006",
+    "title": "RC from Relative Density (Approximate)",
+    "equation": "RC ≈ 80 + 0.2 × D_r",
+    "variables": {
+      "RC": {"description": "Relative compaction (%)", "units": "%"},
+      "D_r": {"description": "Relative density (%)", "units": "%"}
+    },
+    "applicability": "Approximate for cohesionless soils. RC(%) based on Modified Proctor. D_r from D4253/D4254.",
+    "source": "Lee & Singh (1971)"
+  }
+]

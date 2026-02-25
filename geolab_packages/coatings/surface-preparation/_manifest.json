@@ -1,0 +1,18 @@
+{
+  "id": "coatings.protection.surface-preparation",
+  "name": "Surface Preparation",
+  "level": 1,
+  "discipline": "coatings",
+  "parent": "coatings.protection",
+  "dependencies": ["coatings.foundations.corrosion"],
+  "tags": ["abrasive-blasting", "profile", "cleanliness", "soluble-salts", "rust-grade", "mill-scale", "containment", "dust-test", "anchor-pattern"],
+  "standards": ["SSPC-SP1", "SSPC-SP5", "SSPC-SP10", "SSPC-VIS1", "ISO-8501", "ASTM-D4417"],
+  "equation_count": 4,
+  "concept_count": 16,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practitioner",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

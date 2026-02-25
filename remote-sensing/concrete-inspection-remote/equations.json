@@ -1,0 +1,103 @@
+[
+  {
+    "id": "remote-sensing.concrete-inspection.eq-001",
+    "title": "Ground Sample Distance (GSD) for Crack Detection",
+    "equation": "GSD = (pixel_size × distance) / focal_length",
+    "variables": {
+      "GSD": {"description": "Ground sample distance — physical size of one pixel on the surface", "units": "mm/pixel"},
+      "pixel_size": {"description": "Camera sensor pixel pitch", "units": "μm"},
+      "distance": {"description": "Camera-to-surface standoff distance", "units": "m"},
+      "focal_length": {"description": "Lens focal length", "units": "mm"}
+    },
+    "applicability": "For crack detection: GSD ≤ 0.5 mm/pixel recommended. Example: 6 μm pixel, 35 mm lens, 3 m distance → GSD = (0.006 × 3000)/35 = 0.51 mm/pixel. Minimum detectable crack width ≈ 2–3 × GSD (conservative) or ~1 × GSD with sub-pixel enhancement.",
+    "source": "FHWA (2019), general photogrammetry"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.eq-002",
+    "title": "Crack Width from Calibrated Imagery",
+    "equation": "w_crack = N_pixels × GSD × cos(α)",
+    "variables": {
+      "w_crack": {"description": "True crack width", "units": "mm"},
+      "N_pixels": {"description": "Number of pixels spanning the crack width (perpendicular to crack)", "units": "count"},
+      "GSD": {"description": "Ground sample distance at the crack location", "units": "mm/pixel"},
+      "α": {"description": "Angle between image plane and crack surface (0° = perpendicular viewing)", "units": "degrees"}
+    },
+    "applicability": "Perpendicular viewing (α ≈ 0°) eliminates geometric correction. Oblique viewing introduces error — orthorectification corrects for this. Sub-pixel crack width estimation possible using brightness profile fitting (crack appears as a dark Gaussian-shaped dip in brightness across its width).",
+    "source": "Prasanna et al. (2016), general practice"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.eq-003",
+    "title": "Thermal Contrast for Delamination Detection",
+    "equation": "ΔT_delam = T_delam - T_sound ≥ ΔT_min",
+    "variables": {
+      "ΔT_delam": {"description": "Temperature difference between delaminated and sound areas", "units": "°C"},
+      "T_delam": {"description": "Surface temperature over delamination", "units": "°C"},
+      "T_sound": {"description": "Surface temperature over sound concrete", "units": "°C"},
+      "ΔT_min": {"description": "Minimum detectable temperature differential (typically 0.3–0.5°C)", "units": "°C"}
+    },
+    "applicability": "ΔT depends on: delamination depth (shallower = stronger contrast), time of day (solar heating phase vs. cooling), wind speed, cloud cover. Typical ΔT for bridge deck delaminations: 1–5°C during optimal conditions. Deeper delaminations (> 75 mm) produce weaker and delayed thermal signatures.",
+    "source": "ASTM D4788, FHWA guidelines"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.eq-004",
+    "title": "GPR Rebar Cover Depth",
+    "equation": "d = (t × v) / 2",
+    "variables": {
+      "d": {"description": "Depth to rebar from concrete surface", "units": "m"},
+      "t": {"description": "Two-way travel time to rebar reflection", "units": "ns"},
+      "v": {"description": "Electromagnetic wave velocity in concrete (0.09–0.12 m/ns)", "units": "m/ns"}
+    },
+    "applicability": "Velocity depends on moisture content and mix design. Dry concrete: v ≈ 0.12 m/ns. Saturated concrete: v ≈ 0.09 m/ns. Calibration: known cover depth at one location or hyperbola migration velocity analysis. Accuracy: ±5–10 mm with good calibration.",
+    "source": "ASTM D6087, ACI 228.2R"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.eq-005",
+    "title": "Spalling Volume from 3D Point Cloud Comparison",
+    "equation": "V_spall = Σ(Δz_i × A_cell)  for all cells where Δz > threshold",
+    "variables": {
+      "V_spall": {"description": "Total volume of concrete lost to spalling", "units": "m³"},
+      "Δz_i": {"description": "Difference between reference surface (design or previous survey) and current surface at cell i", "units": "m"},
+      "A_cell": {"description": "Area of each grid cell in the DEM comparison", "units": "m²"},
+      "threshold": {"description": "Minimum depth to count as spalling (typically 5–10 mm to exclude noise)", "units": "m"}
+    },
+    "applicability": "Requires: (1) reference surface (design model, earlier survey, or extrapolated intact surface), and (2) current survey point cloud or DEM. Grid resolution should match point cloud density. Method also applies to erosion quantification on spillways and stilling basins.",
+    "source": "General practice, CloudCompare C2C method"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.eq-006",
+    "title": "Crack Density Index",
+    "equation": "CDI = ΣL_crack / A_panel",
+    "variables": {
+      "CDI": {"description": "Crack density index — total crack length per unit area", "units": "m/m²"},
+      "ΣL_crack": {"description": "Sum of all crack lengths in the analysis area", "units": "m"},
+      "A_panel": {"description": "Area of the analysis panel/zone", "units": "m²"}
+    },
+    "applicability": "Quantitative metric for comparing deterioration severity between panels, structures, or inspection periods. Typical values: CDI < 0.5 m/m² = light cracking; 0.5–2.0 = moderate; > 2.0 = severe. Can be automated from crack detection output. Track over time for deterioration rate assessment.",
+    "source": "General practice, bridge inspection methodology"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.eq-007",
+    "title": "Semantic Segmentation Performance Metrics",
+    "equation": "IoU = TP / (TP + FP + FN);  Precision = TP / (TP + FP);  Recall = TP / (TP + FN)",
+    "variables": {
+      "IoU": {"description": "Intersection over Union (Jaccard index) — primary metric for crack segmentation", "units": "dimensionless"},
+      "TP": {"description": "True positive pixels (crack correctly identified)", "units": "count"},
+      "FP": {"description": "False positive pixels (non-crack identified as crack)", "units": "count"},
+      "FN": {"description": "False negative pixels (crack missed)", "units": "count"}
+    },
+    "applicability": "IoU > 0.5: acceptable. > 0.7: good. > 0.8: excellent. State-of-art deep learning achieves IoU 0.6–0.8 for concrete cracks depending on dataset and conditions. F1 = 2×Precision×Recall/(Precision+Recall). Models should be validated on site-specific test data, not just published benchmarks.",
+    "source": "Prasanna et al. (2016), general deep learning metrics"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.eq-008",
+    "title": "Thermal Diffusivity — Delamination Detection Timing",
+    "equation": "t_opt ≈ d² / (π × α)",
+    "variables": {
+      "t_opt": {"description": "Approximate optimal observation time after start of heating/cooling", "units": "seconds"},
+      "d": {"description": "Delamination depth below surface", "units": "m"},
+      "α": {"description": "Thermal diffusivity of concrete (typically 0.5–1.0 × 10⁻⁶ m²/s)", "units": "m²/s"}
+    },
+    "applicability": "Shallow delaminations (25 mm): detectable within ~10–20 min of heating. Deep delaminations (75 mm): may take 1–2 hours. Very deep defects (> 100 mm) produce weak, delayed signals that may be below detection threshold. Solar heating provides natural thermal excitation for passive thermography.",
+    "source": "Maldague (2001) Theory and Practice of Infrared Technology for NDT"
+  }
+]

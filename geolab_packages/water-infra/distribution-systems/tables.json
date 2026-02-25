@@ -1,0 +1,90 @@
+[
+  {
+    "id": "water-infra.distribution-systems.tbl-001",
+    "title": "Demand Peaking Factors by System Size",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["System Population", "MDD/ADD", "PHD/ADD", "PHD/MDD", "Notes"],
+      "rows": [
+        ["< 1,000", "2.0–3.0", "4.0–6.0", "1.5–2.5", "Small systems have highest variability"],
+        ["1,000–10,000", "1.8–2.5", "3.0–5.0", "1.5–2.0", ""],
+        ["10,000–100,000", "1.5–2.0", "2.5–4.0", "1.5–2.0", ""],
+        ["> 100,000", "1.3–1.8", "2.0–3.0", "1.5–2.0", "Large systems — demand averaging"],
+        ["10 States default", "2.0", "—", "—", "Use if no local data available"]
+      ]
+    },
+    "source": "AWWA, 10 States Standards, general practice"
+  },
+  {
+    "id": "water-infra.distribution-systems.tbl-002",
+    "title": "Minimum Pipe Sizes and Pressure Criteria",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Criterion", "Source"],
+      "rows": [
+        ["Minimum main size (with fire hydrants)", "150 mm (6 in), prefer 200 mm (8 in)", "10 States Standards"],
+        ["Minimum main size (no fire hydrants)", "75–100 mm (3–4 in)", "Local codes"],
+        ["Transmission main minimum", "300 mm (12 in) typical", "Design standard"],
+        ["Maximum velocity (normal)", "1.5 m/s (5 ft/s)", "AWWA guideline"],
+        ["Maximum velocity (fire flow)", "3.0 m/s (10 ft/s)", "Acceptable for short duration"],
+        ["Minimum pressure at peak hour", "275 kPa (40 psi) at meter", "10 States Standards"],
+        ["Minimum pressure at fire flow", "140 kPa (20 psi) at hydrant", "10 States / NFPA"],
+        ["Maximum static pressure", "550 kPa (80 psi)", "Above this: PRVs on services"],
+        ["Dead-end main maximum length", "Minimize; < 60 m (200 ft) preferred", "Water quality concerns"]
+      ]
+    },
+    "source": "10 States Standards, AWWA, NFPA"
+  },
+  {
+    "id": "water-infra.distribution-systems.tbl-003",
+    "title": "ISO Fire Flow Requirements (Needed Fire Flow — Simplified)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Building Construction Class", "Area (m²)", "Needed Fire Flow (L/s)", "Needed Fire Flow (gpm)", "Duration (hr)"],
+      "rows": [
+        ["Fire-resistive (Class 1)", "500", "30–60", "500–1000", "2"],
+        ["Fire-resistive (Class 1)", "2000", "60–130", "1000–2000", "2–3"],
+        ["Non-combustible (Class 2)", "500", "50–80", "750–1250", "2"],
+        ["Non-combustible (Class 2)", "2000", "95–190", "1500–3000", "3"],
+        ["Ordinary (Class 3)", "500", "60–95", "1000–1500", "2"],
+        ["Ordinary (Class 3)", "2000", "130–220", "2000–3500", "3–4"],
+        ["Frame (Class 5)", "500", "80–130", "1250–2000", "2–3"],
+        ["Frame (Class 5)", "2000", "190–250+", "3000–4000+", "3–4"],
+        ["1&2 Family dwelling", "—", "30–60", "500–1000", "2"]
+      ]
+    },
+    "source": "ISO — Guide for Determination of Needed Fire Flow (simplified). Actual NFF depends on occupancy, exposure, sprinklers, communications."
+  },
+  {
+    "id": "water-infra.distribution-systems.tbl-004",
+    "title": "Water Age Targets and Impact on Quality",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Water Age", "Quality Status", "Typical Cl₂ Residual", "Actions"],
+      "rows": [
+        ["< 1 day", "Excellent", "> 1.0 mg/L", "No concerns"],
+        ["1–3 days", "Good", "0.5–1.0 mg/L", "Acceptable for most systems"],
+        ["3–5 days", "Marginal", "0.2–0.5 mg/L", "Monitor closely; consider flushing or boosting"],
+        ["5–7 days", "Poor", "< 0.2 mg/L", "Increase turnover; boosting stations; active flushing"],
+        ["> 7 days", "Unacceptable", "Near 0 mg/L", "Significant water quality risk; redesign or operational changes required"]
+      ]
+    },
+    "source": "EPA guidance, AWWA, general practice. Chloramine systems tolerate longer ages but risk nitrification."
+  },
+  {
+    "id": "water-infra.distribution-systems.tbl-005",
+    "title": "Infrastructure Leakage Index (ILI) Performance Categories",
+    "type": "classification",
+    "data": {
+      "headers": ["ILI Range", "Performance Category", "Description", "Action"],
+      "rows": [
+        ["1.0–2.0", "A — Excellent", "Very low losses; near technical minimum", "Maintain current program"],
+        ["2.0–4.0", "B — Good", "Well-managed system; room for marginal improvement", "Cost-effective to maintain or slightly improve"],
+        ["4.0–8.0", "C — Fair", "Potential for significant improvement", "Active leak detection and repair program justified"],
+        ["8.0–16.0", "D — Poor", "High losses; inefficient system", "Intensive loss reduction program; pressure management"],
+        ["> 16.0", "—", "Very high losses", "Comprehensive rehabilitation; may indicate infrastructure failure"]
+      ]
+    },
+    "source": "IWA Water Loss Task Force, World Bank benchmarks (developing/developed country contexts)"
+  }
+]

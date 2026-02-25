@@ -1,0 +1,92 @@
+[
+  {
+    "id": "field-exploration.test-pits-trenches.tbl-001",
+    "title": "OSHA Soil Classification and Excavation Requirements",
+    "type": "classification",
+    "data": {
+      "headers": ["Soil Type", "Unconfined Compressive Strength", "Examples", "Max Simple Slope", "Max Depth (Simple Slope)"],
+      "rows": [
+        ["Type A", "≥ 144 kPa (1.5 tsf)", "Intact clay, silty clay, cemented soils, hardpan", "0.75H:1V (53°)", "6 m (20 ft)"],
+        ["Type B", "48–144 kPa (0.5–1.5 tsf)", "Silt, sandy loam, medium clay; fissured Type A; previously disturbed", "1H:1V (45°)", "6 m (20 ft)"],
+        ["Type C", "< 48 kPa (0.5 tsf)", "Gravel, sand, loamy sand; submerged soil; freely seeping soils", "1.5H:1V (34°)", "6 m (20 ft)"],
+        ["Layered", "Varies", "Different soil types in layers", "Use least stable type present or design by registered PE", "6 m (20 ft)"],
+        ["Rock", "Stable, non-fissured", "Massive, intact rock with no fractures dipping into excavation", "Vertical permitted", "No limit (if competent)"]
+      ]
+    },
+    "source": "OSHA 29 CFR 1926 Subpart P, Appendix A & B"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.tbl-002",
+    "title": "Test Pit Applications by Project Type",
+    "type": "classification",
+    "data": {
+      "headers": ["Application", "Typical Depth (m)", "Typical Spacing", "Key Information Sought"],
+      "rows": [
+        ["Shallow foundation investigation", "1–3", "1 per footing or 15–30 m grid", "Bearing stratum verification, fill thickness, groundwater"],
+        ["Borrow source evaluation", "2–5", "30–60 m grid", "Material type, volume, moisture, gradation, suitability for fill"],
+        ["Pavement subgrade", "1–2", "30–100 m along alignment", "Subgrade classification, CBR, moisture, frost susceptibility"],
+        ["Landslide investigation", "2–6", "Along and across slide mass", "Failure surface, clay seams, water, shear zone character"],
+        ["Fault investigation (paleoseismic)", "3–5", "Across fault trace, 10–50 m segments", "Fault offset, recurrence, event dating, displacement per event"],
+        ["Dam foundation mapping", "2–8", "Along dam axis, abutments", "Rock quality, weathering profile, overburden thickness, seepage"],
+        ["Environmental investigation", "1–3", "Per investigation plan", "Contamination extent, fill characterization, UST location"],
+        ["Retaining wall backcut", "Varies", "Along wall alignment", "In-situ soil conditions behind wall, groundwater, utilities"],
+        ["Septic/infiltration", "1.5–3", "Per health department code", "Soil permeability, seasonal high water table, restrictive layers"]
+      ]
+    },
+    "source": "General practice, FHWA GEC-5"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.tbl-003",
+    "title": "Sampling Methods in Test Pits",
+    "type": "reference",
+    "data": {
+      "headers": ["Sample Type", "Method", "Volume/Size", "Quality", "Tests Supported"],
+      "rows": [
+        ["Bulk bag (disturbed)", "Backhoe bucket or shovel from specific horizon", "20–100 kg", "Disturbed — classification only", "Grain size, Atterberg, Proctor, moisture, specific gravity"],
+        ["Block sample (undisturbed)", "Hand-carved from pit face/floor, wax-sealed", "200–300 mm cube", "Highest quality achievable", "Triaxial, consolidation, direct shear, permeability"],
+        ["Ring/drive sample", "Drive thin-walled ring into pit floor/bench", "63–100 mm dia × 25–50 mm", "Good — minimal disturbance", "Density, moisture, unconfined compression"],
+        ["Grab sample (environmental)", "Stainless steel trowel/spoon into sample container", "100–500 g", "Representative of horizon", "Chemical analysis, contaminant screening"],
+        ["Large bulk (rip-rap/aggregate)", "Backhoe or loader, full bucket", "500–2000 kg", "Disturbed", "LA abrasion, soundness, gradation, specific gravity"]
+      ]
+    },
+    "source": "ASTM D1452, D4220, general practice"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.tbl-004",
+    "title": "Equipment Selection for Shallow Exploration",
+    "type": "reference",
+    "data": {
+      "headers": ["Equipment", "Max Depth (m)", "Production Rate", "Access Requirements", "Best For"],
+      "rows": [
+        ["Rubber-tired backhoe (JD 310, CAT 420)", "3–4.5", "4–8 pits/day", "Road access; flat to moderate terrain", "Most common; general investigation"],
+        ["Tracked excavator (CAT 320, Komatsu PC200)", "5–8", "3–6 pits/day", "Off-road capable; steep terrain", "Deep pits, large bulk samples, difficult access"],
+        ["Mini-excavator (< 5 ton)", "2–3", "6–10 pits/day", "Tight access; through gates; inside buildings", "Urban sites, confined spaces, sensitive areas"],
+        ["Bucket auger drill (Calweld, Watson)", "15–30+", "1–2 holes/day", "Drill rig access pad", "Large-diameter boring for deep inspection/sampling"],
+        ["Hand auger (Iwan, Dutch, post-hole)", "1–3", "3–6 holes/day", "Foot access only", "Reconnaissance, remote sites, wetlands, archaeological"],
+        ["Dozer/scraper (cut method)", "2–5", "Large area per day", "Open site", "Borrow source stripping, large-area exposure"]
+      ]
+    },
+    "source": "General practice"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.tbl-005",
+    "title": "Logging Standards for Test Pit Faces",
+    "type": "reference",
+    "data": {
+      "headers": ["Element", "Documentation Method", "Standard/Reference"],
+      "rows": [
+        ["Soil classification", "USCS with visual-manual procedure", "ASTM D2488 (field), D2487 (lab)"],
+        ["Color", "Munsell Soil Color Chart", "Standard Munsell notation (e.g., 10YR 5/3)"],
+        ["Moisture condition", "Dry, moist, wet, saturated", "ASTM D2488"],
+        ["Consistency (cohesive)", "Very soft, soft, medium, stiff, very stiff, hard", "ASTM D2488 — thumb penetration/indentation"],
+        ["Density (granular)", "Very loose, loose, medium dense, dense, very dense", "ASTM D2488 — based on ease of excavation"],
+        ["Structure", "Intact, fissured, slickensided, blocky, laminated, lensed", "ASTM D2488"],
+        ["Contact type", "Sharp, gradational, erosional, irregular, interfingering", "General geological mapping practice"],
+        ["Discontinuities", "Orientation (dip/dip direction), spacing, persistence, aperture, infilling, roughness", "ISRM (1978) suggested methods"],
+        ["Photographs", "Face overview + details; scale bar, north arrow, pit ID, date visible", "Project-specific QA/QC requirements"],
+        ["Plan/section sketches", "Scaled sketches of all logged faces with grid reference", "General geotechnical practice"]
+      ]
+    },
+    "source": "ASTM D2488, ISRM, USACE EM 1110-1-1804, general practice"
+  }
+]

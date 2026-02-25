@@ -1,0 +1,91 @@
+[
+  {
+    "id": "water-infra.diversion-works.tbl-001",
+    "title": "Diversion Flood Frequency Selection",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Dam Type / Consequence", "Diversion Flood Return Period", "Risk Tolerance", "Basis"],
+      "rows": [
+        ["Large concrete dam, high consequence", "25–50 year", "Low (2–12% per year)", "USBR, high-hazard dams"],
+        ["Large embankment dam, high consequence", "50–100 year", "Very low (1–6%)", "Embankments vulnerable to overtopping — higher standard"],
+        ["Medium dam, significant consequence", "10–25 year", "Moderate (12–26%)", "Balance cost vs. risk"],
+        ["Small dam, low consequence", "5–10 year", "Higher acceptable (26–41%)", "Lower consequences of overtopping"],
+        ["Cofferdam protects permanent work in progress", "25–50 year", "Low", "Damage to partially completed structure very costly"],
+        ["Cofferdam protects equipment only", "5–10 year", "Higher acceptable", "Equipment can be moved; lower consequence"]
+      ]
+    },
+    "source": "USBR, USACE EM 1110-2-2607, FERC guidelines"
+  },
+  {
+    "id": "water-infra.diversion-works.tbl-002",
+    "title": "Cofferdam Types — Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Cofferdam Type", "Height Range (m)", "Foundation Condition", "Seepage Control", "Relative Cost", "Best Application"],
+      "rows": [
+        ["Earth/rockfill", "3–30+", "Any (with treatment)", "Impervious core, cutoff, grouting", "Low-Medium", "Wide valleys, available borrow material"],
+        ["Sheet pile (single wall)", "3–10", "Soft to medium soils", "Sheet pile interlocks + pumping", "Medium", "Narrow sites, limited space"],
+        ["Sheet pile (double wall, filled)", "5–15", "Soft to medium soils", "Fill + sheet piles + pumping", "Medium-High", "Moderate heights, limited footprint"],
+        ["Cellular sheet pile", "10–25+", "Rock or firm soil", "Self-weight + fill, pump seepage", "High", "Deep water, firm foundation"],
+        ["Concrete gravity", "5–20", "Rock", "Minimal seepage through concrete", "High", "Rock foundations, incorporated into permanent"],
+        ["Overtopping-resistant (RCC armored)", "5–15", "Any", "Armored crest survives overtopping", "Medium-High", "Where overtopping risk is accepted"]
+      ]
+    },
+    "source": "USACE EM 1110-2-2607, general construction practice"
+  },
+  {
+    "id": "water-infra.diversion-works.tbl-003",
+    "title": "Diversion Tunnel / Conduit Design Parameters",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Typical Range", "Notes"],
+      "rows": [
+        ["Tunnel diameter", "3–15 m", "Sized for diversion flood at acceptable headwater"],
+        ["Tunnel slope", "0.5–5%", "Steeper = more capacity; limited by downstream conditions"],
+        ["Manning's n (concrete-lined)", "0.012–0.016", "Smooth finish, no obstructions"],
+        ["Manning's n (unlined rock)", "0.025–0.040", "Depends on excavation quality and rock type"],
+        ["Maximum velocity (concrete)", "10–12 m/s", "Higher velocities cause erosion, cavitation at irregularities"],
+        ["Maximum velocity (unlined rock)", "3–6 m/s", "Erosion of rock depends on hardness and jointing"],
+        ["Design headwater above invert", "Function of cofferdam", "Higher headwater = more capacity for given tunnel size"],
+        ["Air demand (free-surface flow)", "β = 0.02–0.10", "Provide air vents; avoid tunnel sealing (pressurization)"],
+        ["Closure plugs", "Concrete, 2–5 m thick", "Placed after dam is above diversion level"]
+      ]
+    },
+    "source": "USBR, USACE, general tunnel engineering"
+  },
+  {
+    "id": "water-infra.diversion-works.tbl-004",
+    "title": "River Closure Methods",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Velocity Range (m/s)", "Rock Size Needed", "Best Application"],
+      "rows": [
+        ["Progressive end-dumping", "< 3", "0.3–1.0 m", "Standard method, moderate currents"],
+        ["End-dumping with large rock", "3–5", "1.0–3.0 m", "Stronger currents, heavy equipment available"],
+        ["Upstream tipping (multiple points)", "3–6", "0.5–2.0 m", "Reduces peak gap velocity"],
+        ["Pre-placed rock + simultaneous closure", "< 4", "Varies", "Very wide rivers, staged approach"],
+        ["Concrete block or tetrahedra placement", "4–7", "Custom", "Very high velocity, controlled placement"],
+        ["Sinking barges / caissons", "Any", "N/A", "Deep water, very large rivers"],
+        ["Low-flow season closure", "< 2", "Minimal", "Preferred — close during dry season"]
+      ]
+    },
+    "source": "USACE, USBR construction experience"
+  },
+  {
+    "id": "water-infra.diversion-works.tbl-005",
+    "title": "Diversion During Construction — Key Schedule Considerations",
+    "type": "reference",
+    "data": {
+      "headers": ["Phase", "Activity", "Diversion Requirement", "Critical Risk"],
+      "rows": [
+        ["Phase 1: Site preparation", "Access roads, staging, initial excavation", "Work above flood level or temporary protection", "Flash floods, equipment damage"],
+        ["Phase 2: River closure", "Cofferdam construction, channel closure", "Partial flow maintained during closure", "Overtopping during closure, rock availability"],
+        ["Phase 3: Foundation work", "Excavation, foundation treatment, grouting", "Full diversion through tunnel/conduit", "Cofferdam overtopping, foundation dewatering"],
+        ["Phase 4: Dam construction", "Place concrete or embankment fill", "Diversion continues until dam above river", "Extended construction season, schedule delays"],
+        ["Phase 5: Tunnel closure", "Plug diversion tunnel, begin reservoir filling", "Outlet works operational, spillway ready", "Tunnel gate closure, first filling monitoring"],
+        ["Phase 6: First filling", "Controlled reservoir filling", "Outlet works for downstream releases", "Dam safety monitoring, seepage, settlement"]
+      ]
+    },
+    "source": "USBR, USACE, general dam construction practice"
+  }
+]

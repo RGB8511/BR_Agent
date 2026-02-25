@@ -1,0 +1,24 @@
+{
+  "id": "coatings.foundations.corrosion",
+  "name": "Corrosion Fundamentals",
+  "level": 0,
+  "discipline": "coatings",
+  "parent": "coatings.foundations",
+  "dependencies": [],
+  "tags": ["corrosion", "electrochemistry", "galvanic", "pitting", "crevice", "SCC", "MIC", "corrosion-rate", "Faraday", "Nernst", "Pourbaix", "polarization"],
+  "standards": ["NACE-SP0169", "SSPC", "ISO-8044", "ASTM-G5"],
+  "key_references": [
+    "Uhlig & Revie (2008) Corrosion and Corrosion Control",
+    "Fontana (1986) Corrosion Engineering",
+    "Jones (1996) Principles and Prevention of Corrosion",
+    "NACE Corrosion Engineer's Reference Book"
+  ],
+  "equation_count": 8,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,76 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-001",
+    "title": "General Bearing Capacity Equation",
+    "equation": "q_u = c'N_c s_c d_c i_c + qN_q s_q d_q i_q + 0.5γBN_γ s_γ d_γ i_γ",
+    "source": "Meyerhof (1963), Hansen (1970), Vesic (1973)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-002",
+    "title": "N_q",
+    "equation": "N_q = e^(πtanφ') × tan²(45° + φ'/2)",
+    "source": "Prandtl (1921), Reissner (1924)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-003",
+    "title": "N_c",
+    "equation": "N_c = (N_q - 1) × cotφ'; N_c = 5.14 for φ' = 0",
+    "source": "Prandtl (1921)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-004",
+    "title": "N_γ (Vesic)",
+    "equation": "N_γ = 2(N_q + 1) × tanφ'",
+    "source": "Vesic (1973)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-005",
+    "title": "Shape Factors (Hansen/Vesic)",
+    "equation": "s_c = 1 + (B/L)(N_q/N_c); s_q = 1 + (B/L)tanφ'; s_γ = 1 - 0.4(B/L)",
+    "source": "Hansen (1970)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-006",
+    "title": "Depth Factors (Hansen)",
+    "equation": "d_c = 1 + 0.4(D_f/B); d_q = 1 + 2tanφ'(1-sinφ')²(D_f/B); d_γ = 1.0",
+    "applicability": "For D_f/B ≤ 1. Replace D_f/B with arctan(D_f/B) in radians when D_f/B > 1.",
+    "source": "Hansen (1970)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-007",
+    "title": "Effective Dimensions (Eccentric Load)",
+    "equation": "B' = B - 2e_B; L' = L - 2e_L",
+    "source": "Meyerhof (1953)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-008",
+    "title": "Undrained Bearing Capacity (Strip)",
+    "equation": "q_u = 5.14 × s_u + q",
+    "source": "Prandtl (1921)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-009",
+    "title": "Allowable Bearing Capacity",
+    "equation": "q_all = q_u / FS",
+    "source": "Standard practice"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-010",
+    "title": "Net Bearing Capacity",
+    "equation": "q_net = q_u - γD_f",
+    "source": "Standard definition"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-011",
+    "title": "Terzaghi Shape Corrections",
+    "equation": "Square: q_u = 1.3c'N_c + qN_q + 0.4γBN_γ; Circle: q_u = 1.3c'N_c + qN_q + 0.3γBN_γ",
+    "source": "Terzaghi (1943)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.eq-012",
+    "title": "Water Table Correction",
+    "equation": "Use γ' below WT in N_γ term; use effective overburden q' in N_q term",
+    "applicability": "If WT at foundation level: full γ' in third term. If WT at depth B below foundation: no correction needed. Linear interpolation between.",
+    "source": "Standard practice"
+  }
+]

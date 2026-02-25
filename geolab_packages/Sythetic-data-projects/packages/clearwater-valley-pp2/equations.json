@@ -1,0 +1,350 @@
+[
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.eq01",
+    "title": "Terzaghi General Bearing Capacity Equation — Spread Footing",
+    "equation": "q_ult = c * Nc + γ * Df * Nq + 0.5 * γ * B * Nγ",
+    "equation_latex": "q_{ult} = c N_c + \\gamma D_f N_q + 0.5 \\, \\gamma B N_\\gamma",
+    "variables": {
+      "q_ult": {
+        "description": "Ultimate bearing capacity of the footing",
+        "units": "psf"
+      },
+      "c": {
+        "description": "Effective cohesion of bearing soil; c' = 0 for clean sand (SM Layer 3)",
+        "units": "psf"
+      },
+      "Nc": {
+        "description": "Terzaghi bearing capacity factor for cohesion; Nc = 25.8 for φ = 28°",
+        "units": "dimensionless"
+      },
+      "γ": {
+        "description": "Unit weight of soil above and at bearing elevation; γ = 120 pcf (alluvial sand above GWT), 126 pcf (below GWT use γ')",
+        "units": "pcf"
+      },
+      "Df": {
+        "description": "Depth of footing below existing grade; Df = 14 ft for MCC column footings",
+        "units": "ft"
+      },
+      "Nq": {
+        "description": "Terzaghi bearing capacity factor for surcharge; Nq = 14.7 for φ = 28°",
+        "units": "dimensionless"
+      },
+      "B": {
+        "description": "Footing width (shortest plan dimension); B = 4–5 ft for MCC column footings",
+        "units": "ft"
+      },
+      "Nγ": {
+        "description": "Terzaghi bearing capacity factor for self-weight of soil; Nγ = 11.2 for φ = 28°",
+        "units": "dimensionless"
+      }
+    },
+    "site_application": {
+      "bearing_stratum": "Alluvial Sand (SM), Layer 3",
+      "bearing_depth_ft": 14,
+      "phi_degrees": 28,
+      "c_psf": 0,
+      "gamma_pcf": 120,
+      "B_ft": 4.5,
+      "q_ult_psf": 15700,
+      "factor_of_safety": 3.0,
+      "net_allowable_qa_psf": 3000,
+      "notes": "Net allowable bearing pressure qa = 3,000 psf governs; FS against shear failure ≈ 5.2. Settlement governs design at this site."
+    },
+    "applicability": "Shallow spread footings on granular or cohesive soil; rectangular or strip footings at moderate depth (Df/B < 4). Used for MCC building column footings and continuous wall footings bearing in Alluvial Sand at 14 ft bgs at PP-2.",
+    "source": "Terzaghi (1943); das (2016) Principles of Foundation Engineering, 8th ed., Chapter 3; WGC Report 2018-GEO-0093 Section 5.2"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.eq02",
+    "title": "Drilled Shaft End-Bearing Capacity in Rock",
+    "equation": "Q_b = q_b * A_b",
+    "equation_latex": "Q_b = q_b \\cdot A_b",
+    "variables": {
+      "Q_b": {
+        "description": "Total end-bearing resistance of drilled shaft at base of socket",
+        "units": "lbf"
+      },
+      "q_b": {
+        "description": "Unit end-bearing pressure; derived from UCS: q_b = (UCS × 144) / FS × CF; allowable q_b = 20,000 psf at PP-2",
+        "units": "psf"
+      },
+      "A_b": {
+        "description": "Cross-sectional area of shaft at base; A_b = π/4 × D²; 3.14 ft² for 24-inch diameter shaft",
+        "units": "ft²"
+      }
+    },
+    "site_application": {
+      "shaft_diameter_in": 24,
+      "shaft_area_ft2": 3.14,
+      "UCS_mean_psi": 6640,
+      "FS": 3.0,
+      "correction_factor_CF": 0.145,
+      "q_b_allowable_psf": 20000,
+      "Q_b_allowable_kips": 62.8,
+      "notes": "CF = 0.145 accounts for scale effects, socket roughness, and joint influence on mass rock bearing; q_b = UCS_mean × 144 psi-to-psf × CF / FS = 6640 × 144 × 0.145 / 3.0 ≈ 46,100 psf ultimate; allowable = 46,100/FS = 15,370 psf; rounded conservatively to 20,000 psf allowable for design (uses lower-bound UCS specimens)."
+    },
+    "applicability": "End-bearing capacity of drilled shafts or caissons socketed into rock. Appropriate for competent to moderately jointed rock (RQD > 40%). PP-2 application: 6 shafts socketed into Challis Volcanic welded rhyolitic tuff, RQD 45–78%, UCS 5,180–8,680 psi.",
+    "source": "O'Neill & Reese (1999) Drilled Shafts: Construction Procedures and LRFD Design Methods; FHWA-IF-99-025; WGC Report 2018-GEO-0093 Section 5.3"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.eq03",
+    "title": "Drilled Shaft Side Friction Capacity in Rock Socket",
+    "equation": "Q_s = f_s * π * D * L_socket",
+    "equation_latex": "Q_s = f_s \\cdot \\pi \\cdot D \\cdot L_{socket}",
+    "variables": {
+      "Q_s": {
+        "description": "Total side friction (skin friction) resistance along the rock socket",
+        "units": "lbf"
+      },
+      "f_s": {
+        "description": "Unit side friction in rock socket; f_s = α × UCS_mean / FS where α = 0.15 (empirical reduction for rough socket, welded tuff); allowable f_s = 215 psi at PP-2",
+        "units": "psi"
+      },
+      "π": {
+        "description": "Mathematical constant, 3.14159",
+        "units": "dimensionless"
+      },
+      "D": {
+        "description": "Nominal shaft diameter; D = 24 in = 2.0 ft at PP-2",
+        "units": "in or ft (consistent units required)"
+      },
+      "L_socket": {
+        "description": "Length of rock socket (depth from top of fresh rock to shaft base); design minimum 5.0 ft at PP-2",
+        "units": "ft"
+      }
+    },
+    "site_application": {
+      "shaft_diameter_in": 24,
+      "alpha_empirical": 0.15,
+      "UCS_mean_psi": 6640,
+      "FS": 2.0,
+      "f_s_allowable_psi": 215,
+      "f_s_derivation": "f_s = 0.15 × 6640 / (2.0 × 2.31) = 0.15 × 6640 / 4.62 ≈ 215 psi; factor 2.31 converts UCS to compatible unit basis for socket friction model",
+      "L_socket_min_ft": 5.0,
+      "Q_s_per_shaft_kips": 136.0,
+      "notes": "Side friction was considered supplemental to end-bearing for shaft capacity verification. Combined Q_b + Q_s provides FS > 3 against combined failure mode. Socket friction mobilization requires socket displacement typically 0.1–0.5 in."
+    },
+    "applicability": "Side resistance of drilled shafts in rock sockets. Applicable to rough or grooved sockets in moderately strong to strong intact rock. Reduction factor α = 0.10–0.20 depending on socket roughness and rock type. PP-2 value (α = 0.15) appropriate for welded tuff with natural drilling roughness.",
+    "source": "Kulhawy & Phoon (1993) in O'Neill & Reese (1999); FHWA NHI-10-016 Chapter 11; WGC Report 2018-GEO-0093 Section 5.3"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.eq04",
+    "title": "Rankine Active Earth Pressure Coefficient",
+    "equation": "Ka = tan²(45 - φ/2)",
+    "equation_latex": "K_a = \\tan^2\\!\\left(45^\\circ - \\frac{\\phi}{2}\\right)",
+    "variables": {
+      "Ka": {
+        "description": "Rankine active earth pressure coefficient; ratio of horizontal to vertical effective stress under active failure condition",
+        "units": "dimensionless"
+      },
+      "φ": {
+        "description": "Effective internal friction angle of soil; φ' = 28° for combined alluvial profile (Layers 1–3) at PP-2",
+        "units": "degrees"
+      }
+    },
+    "site_application": {
+      "phi_degrees": 28,
+      "Ka": 0.35,
+      "calculation": "Ka = tan²(45 - 28/2) = tan²(31°) = (0.6009)² = 0.361 ≈ 0.35 (rounded conservatively)",
+      "applied_to": "Active lateral pressure on pump bay below-grade walls and discharge vault walls",
+      "cohesion_c_psf": 200,
+      "active_pressure_with_cohesion": "σ_ha = Ka × σ'v - 2c × √Ka",
+      "notes": "Rankine active condition assumes smooth, vertical wall and no wall friction. Conservative for cast-in-place concrete walls with rough forming. Used as design pressure in conjunction with surcharge of 300 psf at grade."
+    },
+    "applicability": "Lateral earth pressure coefficient for granular and cohesive-frictional soils against retaining walls. Valid for smooth, vertical, frictionless walls. For rough or battered walls, Coulomb (1776) Ka is more appropriate. Rankine active condition requires wall deflection of H/1,000 to H/500 to mobilize; appropriate for flexible walls. Rigid cast-in-place walls designed to at-rest (K0) conditions.",
+    "source": "Rankine (1857); Das (2014) Principles of Foundation Engineering, Chapter 7; NAVFAC DM-7.02; WGC Report 2018-GEO-0093 Section 5.4"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.eq05",
+    "title": "Jaky At-Rest Earth Pressure Coefficient",
+    "equation": "K0 = 1 - sin(φ)",
+    "equation_latex": "K_0 = 1 - \\sin(\\phi)",
+    "variables": {
+      "K0": {
+        "description": "At-rest earth pressure coefficient; ratio of horizontal to vertical effective stress with zero lateral strain (no wall movement)",
+        "units": "dimensionless"
+      },
+      "φ": {
+        "description": "Effective internal friction angle of soil; φ' = 28° for combined alluvial profile at PP-2",
+        "units": "degrees"
+      }
+    },
+    "site_application": {
+      "phi_degrees": 28,
+      "K0_NC": 0.50,
+      "calculation": "K0 = 1 - sin(28°) = 1 - 0.4695 = 0.530 ≈ 0.50 (rounded; slight conservatism for design)",
+      "OCR_at_site": "4.0–5.2 (overconsolidated alluvial clay)",
+      "K0_OC_note": "For overconsolidated clay: K0,OC = K0,NC × OCR^sin(φ). For OCR = 4.5, K0,OC ≈ 0.50 × (4.5)^0.469 ≈ 0.50 × 1.97 = 0.99 → capped at 1.0 for design of walls within or adjacent to clay layer. K0 = 0.50 used for combined profile (clay + sand layers).",
+      "applied_to": "At-rest lateral pressure on rigid pump bay wet well walls (below-grade, cast-in-place concrete); conservative design for walls without significant movement during or after construction.",
+      "notes": "Used in place of Ka for the pump bay walls due to rigid monolithic construction. Provides approximately 43% more lateral force than Rankine active. At-rest condition also appropriate where backfill is placed against existing rigid structures."
+    },
+    "applicability": "Lateral earth pressure coefficient for at-rest (zero lateral strain) conditions. Applicable to rigid walls, basement walls, and any structure that does not allow sufficient deformation to mobilize active failure. Jaky (1944) formula is valid for normally consolidated (NC) soils. For overconsolidated (OC) soils, Mayne & Kulhawy (1982) modification applies: K0,OC = K0,NC × OCR^sin(φ).",
+    "source": "Jaky (1944); Mayne & Kulhawy (1982) ASCE JGED 108(6); WGC Report 2018-GEO-0093 Section 5.4"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.eq06",
+    "title": "Elastic Settlement of Spread Footing on Sand",
+    "equation": "S = (q * B * (1 - ν²) / E) * I_f",
+    "equation_latex": "S = \\frac{q \\cdot B \\cdot (1 - \\nu^2)}{E} \\cdot I_f",
+    "variables": {
+      "S": {
+        "description": "Immediate (elastic) settlement of footing",
+        "units": "inches"
+      },
+      "q": {
+        "description": "Net applied bearing pressure (total footing load divided by footing area, minus overburden removed); q = 3,000 psf for MCC footings",
+        "units": "psf"
+      },
+      "B": {
+        "description": "Footing width (smallest plan dimension); B = 4.5 ft (average for MCC column footings)",
+        "units": "ft"
+      },
+      "ν": {
+        "description": "Poisson's ratio of bearing soil; ν = 0.30 for medium dense silty sand (SM)",
+        "units": "dimensionless"
+      },
+      "E": {
+        "description": "Young's elastic modulus of bearing soil; E = 700,000–1,100,000 psf for SM Layer 3 (estimated from SPT N via Bowles correlation: E ≈ 500(N+15) ksf); mean E = 900,000 psf used in design",
+        "units": "psf"
+      },
+      "I_f": {
+        "description": "Influence factor for footing flexibility and embedment; I_f = 0.85 for flexible square footing (L/B = 1) at mid-depth of compressible layer",
+        "units": "dimensionless"
+      }
+    },
+    "site_application": {
+      "q_psf": 3000,
+      "B_ft": 4.5,
+      "nu": 0.30,
+      "E_mean_psf": 900000,
+      "I_f": 0.85,
+      "S_predicted_inches_range": "0.75–1.25",
+      "S_predicted_mean_inches": 0.95,
+      "S_measured_max_inches": 0.22,
+      "S_measured_avg_inches": 0.16,
+      "notes": "Measured settlement (0.16–0.22 in) is significantly less than predicted upper bound (1.25 in) due to conservatism in E estimate from SPT correlations. Actual soil stiffness is higher than SPT-based estimate, likely due to aging and diagenetic cementation of the alluvial sand. Settlement effectively stabilized after 18 months."
+    },
+    "applicability": "Immediate (elastic) settlement calculation for footings on cohesionless or stiff cohesive soils where time-dependent consolidation settlement is negligible. Applies to sands, gravels, and stiff clays. For soft clays, Terzaghi consolidation settlement formula governs. Settlement formula per Bowles (1996) formulation using uniform stress over footing area.",
+    "source": "Bowles (1996) Foundation Analysis and Design, 5th ed., Chapter 5; Timoshenko & Goodier (1951) Theory of Elasticity; WGC Report 2018-GEO-0093 Section 5.2"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.eq07",
+    "title": "Overconsolidation Ratio (OCR)",
+    "equation": "OCR = σ'_p / σ'_v0",
+    "equation_latex": "OCR = \\frac{\\sigma'_p}{\\sigma'_{v0}}",
+    "variables": {
+      "OCR": {
+        "description": "Overconsolidation ratio; ratio of past maximum effective stress to current in-situ effective vertical stress",
+        "units": "dimensionless"
+      },
+      "σ'_p": {
+        "description": "Preconsolidation pressure (past maximum effective vertical stress); determined from oedometer (consolidation) test via Casagrande graphical construction or curve fitting methods; σ'_p = 4,000–5,800 psf for Layer 2 clay at PP-2",
+        "units": "psf"
+      },
+      "σ'_v0": {
+        "description": "Current in-situ effective vertical stress at sample depth; σ'_v0 = γ_avg × z – u; for midpoint of Layer 2 (z = 8 ft, above GWT at 14 ft): σ'_v0 = 120 × 8 ≈ 960 psf",
+        "units": "psf"
+      }
+    },
+    "site_application": {
+      "sample_depths_ft": [5.5, 7.5, 9.0, 10.5],
+      "sigma_v0_range_psf": "660–1260",
+      "sigma_p_range_psf": "4000–5800",
+      "OCR_range": "4.0–5.2",
+      "OCR_mean": 4.5,
+      "interpretation": "OCR = 4–5 indicates significant overconsolidation. In this setting, overconsolidation is attributed to desiccation drying (shrinkage and evaporation during past droughts) rather than glacial loading, which is consistent with the Snake River Plain's climate history. High OCR suppresses consolidation settlement under new loads (recompression behavior: use Cr, not Cc) and contributes to the stiff to very stiff consistency of the clay.",
+      "Cr": "0.012–0.018",
+      "Cc": "0.11–0.15",
+      "notes": "Because all applied foundation stresses are well below σ'_p (3,000 psf << 4,000 psf minimum), the MCC footings load the clay in the overconsolidated (recompression) range if any stress is transmitted through the alluvial sand to the clay below. Settlement in this case would be governed by Cr, not Cc, yielding minimal consolidation settlement. No significant primary consolidation settlement of the clay is predicted."
+    },
+    "applicability": "Overconsolidation ratio characterizes stress history of fine-grained soils. OCR = 1 is normally consolidated; OCR > 1 is overconsolidated; OCR < 1 (underconsolidated) indicates excess pore pressure not yet dissipated. OCR controls whether loading falls in the recompression range (OCR > applied stress ratio, settlements small) or virgin compression range (settlements potentially large). Critical for distinguishing high-risk versus low-risk consolidation settlement scenarios.",
+    "source": "Casagrande (1936) graphical preconsolidation construction; Das (2016) Chapter 11; Holtz, Kovacs & Sheahan (2011) Introduction to Geotechnical Engineering; WGC Report 2018-GEO-0093 Section 4.3"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.eq08",
+    "title": "Liquefaction Factor of Safety (Simplified Method)",
+    "equation": "FS_liq = CRR_M7.5 / CSR × MSF",
+    "equation_latex": "FS_{liq} = \\frac{CRR_{M7.5}}{CSR} \\times MSF",
+    "variables": {
+      "FS_liq": {
+        "description": "Factor of safety against liquefaction initiation; FS_liq > 1.5 required for critical structures; FS_liq > 1.0 minimum for general structures",
+        "units": "dimensionless"
+      },
+      "CRR_M7.5": {
+        "description": "Cyclic Resistance Ratio normalized to Mw = 7.5 earthquake; derived from SPT N₁(60)cs using Youd et al. (2001) curve; CRR = 0.22–0.41 at PP-2 for N₁(60)cs = 22–34",
+        "units": "dimensionless"
+      },
+      "CSR": {
+        "description": "Cyclic Stress Ratio; CSR = 0.65 × (σ_v / σ'_v) × (a_max / g) × rd; CSR = 0.11–0.14 at PP-2 depths for PGA = 0.15g",
+        "units": "dimensionless"
+      },
+      "MSF": {
+        "description": "Magnitude Scaling Factor; adjusts CRR for earthquake magnitudes other than Mw 7.5; MSF = 10^(2.24) / Mw^(2.56) = 1.32 for Mw = 6.5 (Youd et al. 2001)",
+        "units": "dimensionless"
+      },
+      "a_max": {
+        "description": "Peak ground acceleration at ground surface; a_max = 0.15g for PP-2 design event",
+        "units": "g"
+      },
+      "rd": {
+        "description": "Stress reduction factor accounting for flexibility of soil column; rd = 1.0 – 0.00765z for z ≤ 9.15 m",
+        "units": "dimensionless"
+      },
+      "N1_60_cs": {
+        "description": "Clean-sand equivalent SPT blow count corrected for overburden (N1) and energy ratio (60%); corrections per Youd et al. (2001) Appendix",
+        "units": "blows/ft"
+      }
+    },
+    "site_application": {
+      "design_Mw": 6.5,
+      "PGA_g": 0.15,
+      "MSF": 1.32,
+      "layers_analyzed": [
+        {
+          "depth_ft": 12,
+          "N_measured": 17,
+          "N1_60_cs": 22,
+          "CSR": 0.13,
+          "CRR_M7p5": 0.22,
+          "FS_liq": 2.24
+        },
+        {
+          "depth_ft": 14,
+          "N_measured": 21,
+          "N1_60_cs": 26,
+          "CSR": 0.13,
+          "CRR_M7p5": 0.28,
+          "FS_liq": 2.84
+        },
+        {
+          "depth_ft": 16,
+          "N_measured": 24,
+          "N1_60_cs": 29,
+          "CSR": 0.14,
+          "CRR_M7p5": 0.32,
+          "FS_liq": 3.02
+        },
+        {
+          "depth_ft": 18,
+          "N_measured": 27,
+          "N1_60_cs": 32,
+          "CSR": 0.14,
+          "CRR_M7p5": 0.37,
+          "FS_liq": 3.49
+        },
+        {
+          "depth_ft": 20,
+          "N_measured": 29,
+          "N1_60_cs": 34,
+          "CSR": 0.14,
+          "CRR_M7p5": 0.41,
+          "FS_liq": 3.87
+        }
+      ],
+      "minimum_FS_liq": 2.24,
+      "conclusion": "All layers show FS_liq >> 1.5. No liquefaction mitigation required. The PP-2 alluvial sand is not liquefiable under the design seismic event.",
+      "notes": "CRR values read from Youd et al. (2001) Figure 2 (SPT-based boundary curve). Fines correction applied: Δ(N1)60 = exp(1.63 + 9.7/(FC + 0.01) - (15.7/(FC + 0.01))²) per Robertson & Wride (1998)."
+    },
+    "applicability": "Liquefaction susceptibility assessment for saturated cohesionless soils using the SPT-based simplified procedure (Seed & Idriss 1971; updated Youd et al. 2001). Applicable to sands, silty sands, and non-plastic silts below the groundwater table. Not applicable to gravels (SPT unreliable), clays (not liquefiable by classical definition), or unsaturated soils. Requires PGA, Mw, SPT N-values, and soil unit weights.",
+    "source": "Seed & Idriss (1971) ASCE JSMFD 97(SM9); Youd et al. (2001) ASCE JGE 127(10):817–833; Robertson & Wride (1998) Canadian Geotechnical Journal 35(3):442–459; WGC Report 2018-GEO-0093 Section 5.6"
+  }
+]

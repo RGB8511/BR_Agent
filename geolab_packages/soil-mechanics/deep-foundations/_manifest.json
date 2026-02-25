@@ -1,0 +1,28 @@
+{
+  "id": "geotechnical.soil-mechanics.deep-foundations",
+  "name": "Deep Foundations (Piles & Drilled Shafts)",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": [
+    "geotechnical.soil-mechanics.effective-stress",
+    "geotechnical.soil-mechanics.shear-strength",
+    "geotechnical.site-investigation.in-situ-testing"
+  ],
+  "tags": ["pile", "drilled-shaft", "skin-friction", "end-bearing", "alpha-method", "beta-method", "Meyerhof-pile", "group-effects", "negative-skin-friction", "lateral-loading", "p-y"],
+  "standards": ["D1143", "D3966"],
+  "key_references": [
+    "Tomlinson & Woodward (2015) Pile Design and Construction Practice",
+    "FHWA GEC-10 Drilled Shafts (2010)",
+    "FHWA GEC-12 Design and Construction of Driven Pile Foundations (2016)",
+    "Reese, Isenhower & Wang (2006) Analysis and Design of Shallow and Deep Foundations"
+  ],
+  "equation_count": 14,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate+graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

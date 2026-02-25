@@ -1,0 +1,23 @@
+{
+  "id": "concrete.design.mix-design",
+  "name": "Concrete Mix Design",
+  "level": 1,
+  "discipline": "concrete",
+  "parent": "concrete.design",
+  "dependencies": ["concrete.foundations.cement-hydration"],
+  "tags": ["w/c-ratio", "Abrams", "ACI-211", "air-entrainment", "aggregate", "slump", "workability", "admixtures", "proportioning"],
+  "standards": ["ACI-211.1", "C192", "C143", "C231", "C138"],
+  "key_references": [
+    "ACI 211.1 Standard Practice for Selecting Proportions for Normal, Heavyweight, and Mass Concrete",
+    "Neville (2011) Properties of Concrete",
+    "Kosmatka & Wilson (2016) Design and Control of Concrete Mixtures — PCA EB001"
+  ],
+  "equation_count": 8,
+  "concept_count": 16,
+  "table_count": 6,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

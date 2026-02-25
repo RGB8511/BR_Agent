@@ -1,0 +1,29 @@
+{
+  "id": "remote-sensing.fracture-mapping-remote",
+  "name": "Remote Fracture & Discontinuity Mapping from Point Clouds and Imagery",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.geotechnical-applications",
+  "dependencies": [
+    "remote-sensing.lidar-fundamentals",
+    "remote-sensing.point-cloud-processing",
+    "field-exploration.rock-mass-characterization"
+  ],
+  "tags": ["fracture-mapping", "discontinuity", "joint-set", "stereonet", "dip", "dip-direction", "orientation", "persistence", "spacing", "roughness", "JRC", "rock-face", "slope", "point-cloud", "TLS", "UAS", "DIPS", "CloudCompare", "Facets", "DSE", "RANSAC", "normal-vector", "plane-fitting", "kinematic-analysis"],
+  "standards": ["ISRM-Suggested-Methods", "ASTM-D5878"],
+  "key_references": [
+    "Sturzenegger & Stead (2009) Quantifying discontinuity orientation from LiDAR",
+    "Lato et al. (2009) Optimization of LiDAR scanning for rock face mapping",
+    "Riquelme et al. (2014) Discontinuity Set Extractor (DSE)",
+    "Jaboyedoff et al. (2012) Use of LIDAR in landslide investigations",
+    "ISRM (1978) Suggested methods for quantitative description of discontinuities"
+  ],
+  "equation_count": 10,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-001",
+    "title": "Infinite Slope — Dry Cohesionless",
+    "equation": "FS = tanφ' / tanβ",
+    "variables": {
+      "φ'": {"description": "Effective friction angle", "units": "degrees"},
+      "β": {"description": "Slope angle from horizontal", "units": "degrees"}
+    },
+    "source": "Basic equilibrium"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-002",
+    "title": "Infinite Slope — Submerged with Seepage",
+    "equation": "FS = (γ'/γ_sat) × (tanφ' / tanβ)",
+    "applicability": "Seepage parallel to slope surface. γ'/γ_sat ≈ 0.5 for typical soils.",
+    "source": "Standard derivation"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-003",
+    "title": "Infinite Slope — General (c', φ', u)",
+    "equation": "FS = c'/(γz sinβ cosβ) + tanφ'/tanβ - u tanφ'/(γz sinβ cosβ)",
+    "variables": {
+      "z": {"description": "Depth to slip surface", "units": "m"},
+      "u": {"description": "Pore pressure at slip surface", "units": "kPa"},
+      "c'": {"description": "Effective cohesion", "units": "kPa"}
+    },
+    "source": "Standard derivation"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-004",
+    "title": "Bishop's Simplified Method",
+    "equation": "FS = Σ{[c'b + (W - ub)tanφ'] / m_α} / Σ(W sinα)",
+    "variables": {
+      "m_α": {"description": "cosα + (sinα tanφ')/FS", "units": "dimensionless"},
+      "c'": {"description": "Effective cohesion on slice base", "units": "kPa"},
+      "b": {"description": "Slice width", "units": "m"},
+      "W": {"description": "Slice weight", "units": "kN/m"},
+      "u": {"description": "Pore pressure at slice base center", "units": "kPa"},
+      "α": {"description": "Inclination of slice base from horizontal", "units": "degrees"}
+    },
+    "applicability": "Circular surfaces. Iterative solution. Excellent accuracy (±1-2% of rigorous).",
+    "source": "Bishop (1955)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-005",
+    "title": "Ordinary Method of Slices (Fellenius)",
+    "equation": "FS = Σ[c'Δl + (W cosα - uΔl)tanφ'] / Σ(W sinα)",
+    "variables": {
+      "Δl": {"description": "Length of slice base", "units": "m"}
+    },
+    "applicability": "Non-iterative but underestimates FS by 10-15% for deep circles with high pore pressure. Use Bishop instead.",
+    "source": "Fellenius (1936)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-006",
+    "title": "Undrained FS (φ = 0, Circular Surface)",
+    "equation": "FS = s_u × R × θ / Σ(W × d)",
+    "variables": {
+      "s_u": {"description": "Undrained shear strength (constant along arc)", "units": "kPa"},
+      "R": {"description": "Radius of circular slip surface", "units": "m"},
+      "θ": {"description": "Central angle of arc", "units": "radians"},
+      "d": {"description": "Horizontal distance from slice center to center of rotation", "units": "m"}
+    },
+    "source": "Standard moment equilibrium"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-007",
+    "title": "Pore Pressure Ratio",
+    "equation": "r_u = u / (γ × z)",
+    "variables": {
+      "r_u": {"description": "Pore pressure ratio", "units": "dimensionless"},
+      "u": {"description": "Pore water pressure", "units": "kPa"},
+      "γ": {"description": "Total unit weight of soil above", "units": "kN/m³"},
+      "z": {"description": "Depth below ground surface", "units": "m"}
+    },
+    "applicability": "r_u = 0: dry. r_u ≈ 0.5: WT at surface with parallel seepage.",
+    "source": "Bishop & Morgenstern (1960)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-008",
+    "title": "Pseudostatic Seismic Force",
+    "equation": "F_h = k_h × W; F_v = k_v × W",
+    "variables": {
+      "F_h": {"description": "Horizontal seismic force on slice", "units": "kN/m"},
+      "k_h": {"description": "Horizontal seismic coefficient", "units": "dimensionless"},
+      "k_v": {"description": "Vertical seismic coefficient (often neglected)", "units": "dimensionless"},
+      "W": {"description": "Slice weight", "units": "kN/m"}
+    },
+    "applicability": "Typical k_h = 0.05–0.25. Pseudostatic FS ≥ 1.0–1.1 is acceptable (transient loading).",
+    "source": "Terzaghi (1950), Hynes-Griffin & Franklin (1984)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-009",
+    "title": "Taylor's Stability Charts (φ = 0)",
+    "equation": "s_u / (FS × γ × H) = N_s (stability number from chart)",
+    "variables": {
+      "N_s": {"description": "Taylor stability number", "units": "dimensionless"},
+      "H": {"description": "Slope height", "units": "m"},
+      "γ": {"description": "Unit weight", "units": "kN/m³"}
+    },
+    "applicability": "Quick estimate for homogeneous slopes in undrained conditions. Look up N_s from Taylor's chart using slope angle.",
+    "source": "Taylor (1937)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.eq-010",
+    "title": "Critical Height (Vertical Cut, φ = 0)",
+    "equation": "H_c = 4 × s_u / γ (unsupported) or H_c = 3.83 × s_u / γ (with tension crack)",
+    "variables": {
+      "H_c": {"description": "Maximum height of unsupported vertical cut", "units": "m"}
+    },
+    "source": "Taylor (1937)"
+  }
+]

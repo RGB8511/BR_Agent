@@ -1,0 +1,82 @@
+[
+  {
+    "id": "field-exploration.drilling-methods.eq-001",
+    "title": "Drilling Fluid Hydrostatic Pressure (Borehole Stability)",
+    "equation": "P_mud = γ_mud × h",
+    "variables": {
+      "P_mud": {"description": "Hydrostatic pressure of drilling fluid column", "units": "kPa"},
+      "γ_mud": {"description": "Unit weight of drilling fluid (typically 10.1–11.5 kN/m³ for bentonite mud)", "units": "kN/m³"},
+      "h": {"description": "Height of mud column above point of interest", "units": "m"}
+    },
+    "applicability": "Mud weight must exceed groundwater pressure plus any surcharge to prevent borehole collapse or inflow. In artesian conditions or gas-bearing zones, heavier mud may be required. Too heavy → formation fracture and mud loss.",
+    "source": "General drilling practice"
+  },
+  {
+    "id": "field-exploration.drilling-methods.eq-002",
+    "title": "Drilling Production Rate Estimate",
+    "equation": "T_total = Σ(D_i / R_i) + t_setup + n_samples × t_sample + t_moves",
+    "variables": {
+      "T_total": {"description": "Total estimated drilling time", "units": "hours or days"},
+      "D_i": {"description": "Depth interval in material type i", "units": "m"},
+      "R_i": {"description": "Advance rate in material type i", "units": "m/hour"},
+      "t_setup": {"description": "Setup/teardown time per boring", "units": "hours"},
+      "n_samples": {"description": "Number of samples to be collected", "units": "count"},
+      "t_sample": {"description": "Time per sample interval (SPT: 15–20 min, Shelby: 20–30 min)", "units": "hours"},
+      "t_moves": {"description": "Time to move between boring locations", "units": "hours"}
+    },
+    "applicability": "For cost estimation and scheduling. Production rates vary enormously by method, ground conditions, depth, and operator skill.",
+    "source": "General practice"
+  },
+  {
+    "id": "field-exploration.drilling-methods.eq-003",
+    "title": "Annular Velocity for Cuttings Transport",
+    "equation": "V_annular = Q / A_annulus = Q / [π/4 × (D_hole² - D_rod²)]",
+    "variables": {
+      "V_annular": {"description": "Uphole velocity of drilling fluid in annulus", "units": "m/s"},
+      "Q": {"description": "Drilling fluid circulation rate", "units": "m³/s"},
+      "D_hole": {"description": "Borehole diameter", "units": "m"},
+      "D_rod": {"description": "Drill rod outer diameter", "units": "m"}
+    },
+    "applicability": "Minimum annular velocity for cuttings transport: ~0.15–0.30 m/s for mud rotary, ~15–25 m/s for air rotary. Insufficient velocity → cuttings settle, pack around drill string, stuck pipe.",
+    "source": "Drilling engineering fundamentals"
+  },
+  {
+    "id": "field-exploration.drilling-methods.eq-004",
+    "title": "Lag Time for Cuttings Identification (Mud Rotary)",
+    "equation": "t_lag = V_annulus / Q = [π/4 × (D_hole² - D_rod²) × L] / Q",
+    "variables": {
+      "t_lag": {"description": "Time for cuttings to travel from bit to surface", "units": "seconds"},
+      "V_annulus": {"description": "Volume of annular space from bit to surface", "units": "m³"},
+      "Q": {"description": "Circulation rate", "units": "m³/s"},
+      "L": {"description": "Depth of borehole", "units": "m"}
+    },
+    "applicability": "Essential for accurate logging of mud rotary borings. Driller must account for lag time when matching cuttings to depth. Mark cuttings collection time and correlate with drilling depth at that lag-adjusted time.",
+    "source": "Drilling practice"
+  },
+  {
+    "id": "field-exploration.drilling-methods.eq-005",
+    "title": "Air Volume for DTH Hammer Drilling",
+    "equation": "Q_air = V_min × A_annulus × (P_atm / P_bottom)",
+    "variables": {
+      "Q_air": {"description": "Required compressor delivery at surface (free air)", "units": "m³/min"},
+      "V_min": {"description": "Minimum annular velocity for cuttings removal (~15 m/s)", "units": "m/s"},
+      "A_annulus": {"description": "Annular area between hole and drill rod", "units": "m²"},
+      "P_atm": {"description": "Atmospheric pressure", "units": "kPa abs"},
+      "P_bottom": {"description": "Pressure at hole bottom (P_atm + γ_air × depth + friction losses)", "units": "kPa abs"}
+    },
+    "applicability": "Compressor must deliver sufficient volume AND pressure. Typical requirements: 10–25 m³/min at 700–2400 kPa (100–350 psi) for geotechnical DTH drilling.",
+    "source": "Atlas Copco Drilling Solutions, general practice"
+  },
+  {
+    "id": "field-exploration.drilling-methods.eq-006",
+    "title": "Borehole Deviation Check",
+    "equation": "Horizontal displacement = Σ(ΔL_i × sin(α_i) × cos(β_i)), where measured at intervals",
+    "variables": {
+      "ΔL_i": {"description": "Measured depth interval between survey stations", "units": "m"},
+      "α_i": {"description": "Inclination from vertical at station i", "units": "degrees"},
+      "β_i": {"description": "Azimuth at station i", "units": "degrees"}
+    },
+    "applicability": "Acceptable deviation varies: ASTM D2113 for rock coring suggests 1–2% of depth for vertical holes. Inclined borings require survey at regular intervals. Excessive deviation affects sample depth accuracy and in-situ test interpretation. Measurement by single-shot or multi-shot survey tools, gyroscopic tools, or inclinometer.",
+    "source": "ASTM D2113, drilling practice"
+  }
+]

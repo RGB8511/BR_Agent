@@ -1,0 +1,103 @@
+[
+  {
+    "id": "remote-sensing.point-cloud-processing.eq-001",
+    "title": "ICP Objective Function",
+    "equation": "E = (1/n) × Σ||p_i - (R × q_i + t)||²  → minimize over R, t",
+    "variables": {
+      "E": {"description": "Mean squared error", "units": "m²"},
+      "p_i": {"description": "Points in target (reference) cloud", "units": "m"},
+      "q_i": {"description": "Corresponding points in source cloud", "units": "m"},
+      "R": {"description": "3×3 rotation matrix", "units": "—"},
+      "t": {"description": "3×1 translation vector", "units": "m"}
+    },
+    "applicability": "Point-to-point ICP. Point-to-plane variant: E = (1/n) × Σ((p_i - (R×q_i+t)) · n_i)² where n_i is normal at p_i. Converges faster for planar scenes. Typical convergence: 20–100 iterations to sub-mm RMS.",
+    "source": "Besl & McKay (1992)"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.eq-002",
+    "title": "Statistical Outlier Removal Threshold",
+    "equation": "d_threshold = μ_d + n_σ × σ_d",
+    "variables": {
+      "d_threshold": {"description": "Maximum allowable mean distance to k neighbors", "units": "m"},
+      "μ_d": {"description": "Global mean of mean-neighbor-distances", "units": "m"},
+      "σ_d": {"description": "Standard deviation of mean-neighbor-distances", "units": "m"},
+      "n_σ": {"description": "Multiplier (typically 1.0–2.0)", "units": "dimensionless"}
+    },
+    "applicability": "Points with mean neighbor distance > threshold are classified as noise and removed. k = 6–12 neighbors typical. Lower n_σ = more aggressive filtering (risk removing real points). Higher n_σ = more conservative.",
+    "source": "Rusu et al. (2008), PCL documentation"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.eq-003",
+    "title": "Cloud-to-Cloud Distance (C2C)",
+    "equation": "d_C2C(p) = min(||p - q_j||)  for all q_j in reference cloud",
+    "variables": {
+      "d_C2C": {"description": "Shortest distance from point p to reference cloud", "units": "m"},
+      "p": {"description": "Point in compared cloud", "units": "m"},
+      "q_j": {"description": "Points in reference cloud", "units": "m"}
+    },
+    "applicability": "Simplest distance metric. Unsigned (always positive). Sensitive to point density differences and surface roughness. For signed distances and better uncertainty estimation, use M3C2.",
+    "source": "General — implemented in CloudCompare, 3DReshaper"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.eq-004",
+    "title": "M3C2 Distance (Multiscale Model-to-Model Cloud Comparison)",
+    "equation": "d_M3C2 = (c₂ - c₁) · n̂",
+    "variables": {
+      "d_M3C2": {"description": "Signed distance along surface normal direction", "units": "m"},
+      "c₁": {"description": "Mean position of points within projection cylinder in cloud 1", "units": "m"},
+      "c₂": {"description": "Mean position of points within projection cylinder in cloud 2", "units": "m"},
+      "n̂": {"description": "Surface normal estimated at scale D (normal estimation diameter)", "units": "—"}
+    },
+    "applicability": "Computes distance along local normal direction (not nearest-point). Provides uncertainty estimate: LoD_95% = ±1.96 × √(σ₁²/n₁ + σ₂²/n₂ + reg²). Core algorithm for deformation monitoring from point clouds. Two key parameters: D (normal scale) and d (projection cylinder diameter).",
+    "source": "Lague et al. (2013)"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.eq-005",
+    "title": "Voxel Grid Subsampling",
+    "equation": "p_voxel = (1/n_v) × Σp_i  for all p_i in voxel",
+    "variables": {
+      "p_voxel": {"description": "Representative point (centroid of points in voxel)", "units": "m"},
+      "n_v": {"description": "Number of points in voxel", "units": "—"},
+      "p_i": {"description": "Original points falling within the voxel", "units": "m"}
+    },
+    "applicability": "Divides 3D space into regular cubes (voxels) of edge length L. One representative point per occupied voxel. Produces uniform point spacing regardless of original density. Reduction factor depends on original density vs. voxel size.",
+    "source": "General — PCL, PDAL, CloudCompare"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.eq-006",
+    "title": "Surface Roughness from Point Cloud",
+    "equation": "σ_roughness = √((1/k) × Σ(d_i²))  where d_i = distance from point to local best-fit plane",
+    "variables": {
+      "σ_roughness": {"description": "Local surface roughness (RMS deviation from fitted plane)", "units": "m"},
+      "d_i": {"description": "Distance from each neighbor to fitted plane", "units": "m"},
+      "k": {"description": "Number of neighbors used for local plane fit", "units": "—"}
+    },
+    "applicability": "Roughness = smallest eigenvalue of local PCA. Scale-dependent — different k values yield different roughness. For rock joint roughness: JRC correlation from 3D roughness parameters (Z2, SF, Rp) computed from point cloud profiles.",
+    "source": "General, Maerz et al. (2005)"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.eq-007",
+    "title": "Point Density Estimation",
+    "equation": "ρ_local = k / (π × r_k²)",
+    "variables": {
+      "ρ_local": {"description": "Local surface point density", "units": "pts/m²"},
+      "k": {"description": "Number of nearest neighbors", "units": "—"},
+      "r_k": {"description": "Distance to k-th nearest neighbor", "units": "m"}
+    },
+    "applicability": "Estimates 2D surface density (appropriate for TLS/ALS on surfaces). For 3D volumetric density: ρ_3D = k / (4/3 × π × r_k³). Density maps identify areas of insufficient coverage for analysis.",
+    "source": "General spatial statistics"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.eq-008",
+    "title": "RANSAC Plane Fitting — Inlier Count Threshold",
+    "equation": "N_iterations = log(1-p) / log(1 - w^s)",
+    "variables": {
+      "N_iterations": {"description": "Number of RANSAC iterations needed", "units": "—"},
+      "p": {"description": "Desired probability of finding correct model (typically 0.99)", "units": "dimensionless"},
+      "w": {"description": "Fraction of inliers in data (estimated)", "units": "dimensionless"},
+      "s": {"description": "Minimum sample size (3 for plane)", "units": "—"}
+    },
+    "applicability": "For 50% inliers and 99% success: N = log(0.01)/log(1-0.5³) = 35 iterations. For 20% inliers: N = 573 iterations. RANSAC is robust to outliers but requires enough iterations. Distance threshold for inlier classification typically 2–5× measurement noise.",
+    "source": "Fischler & Bolles (1981)"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "water-infra.embankment-dam-design.tbl-001",
+    "title": "Embankment Dam Zones and Functions",
+    "type": "classification",
+    "data": {
+      "headers": ["Zone", "Material", "Primary Function", "Permeability Target"],
+      "rows": [
+        ["Core (Zone 1)", "CL, CH, SC, GC — plastic fines", "Water barrier — minimizes seepage", "< 10⁻⁵ cm/s (< 10⁻⁷ m/s)"],
+        ["Filter/drain (Zone 2)", "Clean sand/gravel meeting filter criteria", "Intercepts seepage, prevents internal erosion", "≥ 25× core permeability"],
+        ["Shell — upstream (Zone 3)", "Random fill, rockfill, gravel", "Structural support, wave protection", "Higher permeability aids drainage"],
+        ["Shell — downstream (Zone 3)", "Random fill, rockfill, gravel", "Structural support, drain path for seepage", "Free-draining preferred"],
+        ["Riprap (Zone 4)", "Durable, angular quarrystone", "Wave protection on upstream face", "N/A — placed on filter bedding"],
+        ["Transition (Zone 2T)", "Intermediate gradation", "Gradation compatibility between zones", "Between adjacent zones"],
+        ["Blanket drain", "Clean sand/gravel", "Collects foundation seepage, reduces uplift", "High — must convey all seepage"],
+        ["Chimney drain", "Clean sand/gravel", "Intercepts seepage through embankment", "High — vertical or inclined"]
+      ]
+    },
+    "source": "USBR DS-13, USACE EM 1110-2-2300"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.tbl-002",
+    "title": "Filter Design Criteria Summary (USBR/USACE)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Criterion", "Requirement", "Purpose"],
+      "rows": [
+        ["Retention: D15F/d85B", "≤ 4–5 (varies by base soil category)", "Prevent base soil migration through filter"],
+        ["Permeability: D15F/d15B", "≥ 5", "Ensure filter drains freely"],
+        ["Fines content", "< 5% passing No. 200 sieve, non-plastic", "Prevent filter from acting as a barrier"],
+        ["Uniformity: Cu = D60/D10", "≤ 6 (USBR), some flexibility with ≤ 20 (USACE)", "Prevent internal instability"],
+        ["Maximum particle size", "75 mm (3 in)", "Prevent segregation during placement"],
+        ["No gap grading", "Continuous, smooth gradation curve", "Prevent internal instability"],
+        ["Thickness", "≥ 300 mm (12 in) compacted", "Construction tolerance, reliability"],
+        ["Transition zones", "D15coarse/d85fine ≤ 5 at each interface", "Gradation compatibility between all adjacent zones"]
+      ]
+    },
+    "source": "USBR DS-13 Ch5, USACE EM 1110-2-1901"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.tbl-003",
+    "title": "Foundation Seepage Control Methods",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Foundation Type", "Typical Depth", "Permeability Achieved", "Relative Cost"],
+      "rows": [
+        ["Cutoff trench to bedrock", "Shallow alluvium (< 10 m)", "To impervious foundation", "Very low (compacted fill)", "Low-moderate"],
+        ["Slurry wall (CB or SCB)", "Deep alluvium (10–60+ m)", "To impervious stratum", "10⁻⁷ to 10⁻⁸ cm/s", "High"],
+        ["Secant pile wall", "Deep alluvium, boulders", "To impervious stratum", "10⁻⁶ to 10⁻⁷ cm/s", "Very high"],
+        ["Grout curtain (rock)", "Fractured rock", "0.3–0.7H depth", "< 3–5 Lugeons target", "Moderate-high"],
+        ["Upstream impervious blanket", "Pervious alluvium", "Surface treatment (1–3 m thick)", "Lengthens seepage path", "Moderate"],
+        ["Relief wells", "Confined aquifer under blanket", "Penetrate pervious stratum", "Reduces uplift pressure", "Moderate"],
+        ["Downstream drainage blanket", "Any", "At ground surface", "Collects seepage, controls gradient", "Moderate"]
+      ]
+    },
+    "source": "USBR DS-13 Ch16, USACE EM 1110-2-1901, FEMA 484"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.tbl-004",
+    "title": "Freeboard Requirements by Agency",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Agency", "Minimum Freeboard Above Max Pool", "IDF for High-Hazard", "Wave Runup Included", "Settlement Allowance"],
+      "rows": [
+        ["USBR", "0.9 m (3 ft) above PMF level", "PMF", "Yes — separate calculation", "1–3% of height (earth), 1% (rockfill)"],
+        ["USACE", "0.9 m (3 ft) above PMF/IDF level", "PMF or risk-informed", "Yes — USACE wave methods", "Varies by fill type"],
+        ["FEMA (guidance)", "Per state requirements", "Function of hazard class", "Yes", "Per dam type"],
+        ["FERC", "Per design standards", "PMF for high-hazard", "Yes", "Demonstrated by monitoring"],
+        ["State programs", "Varies — typically 0.6–1.5 m", "Varies by hazard class", "Most require it", "Some require separate analysis"]
+      ]
+    },
+    "source": "USBR DS-13 Ch6, USACE EM 1110-2-2300, FEMA 333"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.tbl-005",
+    "title": "Typical Permeability Values for Embankment Dam Materials",
+    "type": "reference",
+    "data": {
+      "headers": ["Material", "Permeability k (cm/s)", "Zone Application", "Notes"],
+      "rows": [
+        ["Compacted clay (CL, CH)", "10⁻⁶ to 10⁻⁸", "Core", "Target < 10⁻⁵ for dam core"],
+        ["Compacted silty clay (SC, GC)", "10⁻⁴ to 10⁻⁶", "Core or transition", "Acceptable if filtered"],
+        ["Clean sand (SP)", "10⁻¹ to 10⁻³", "Filter/drain", "Must meet filter criteria"],
+        ["Sand-gravel mix (GW, GP)", "10⁻¹ to 10¹", "Drain, shell", "Excellent drainage"],
+        ["Compacted random fill (SM, GM)", "10⁻³ to 10⁻⁵", "Shell", "Variable — test actual material"],
+        ["Rockfill (GP, well-graded)", "10⁰ to 10²", "Shell", "Very free-draining"],
+        ["Concrete (intact)", "10⁻⁹ to 10⁻¹¹", "Cutoff, face slab", "Joints/cracks may govern"],
+        ["Bentonite slurry wall", "10⁻⁷ to 10⁻⁸", "Foundation cutoff", "Long-term permeability verified by testing"]
+      ]
+    },
+    "source": "Cedergren (1989), USBR, USACE"
+  }
+]

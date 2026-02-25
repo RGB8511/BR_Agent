@@ -1,0 +1,89 @@
+[
+  {
+    "id": "remote-sensing.structural-deformation.tbl-001",
+    "title": "Achievable Precision by Platform and Application",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Platform", "Single-Epoch Precision", "Multi-Epoch LoD (95%)", "Monitoring Range", "Best Application"],
+      "rows": [
+        ["TLS (phase-shift, < 50 m)", "1–2 mm", "3–8 mm", "0–100 m", "Dam faces, retaining walls, buildings, tunnels"],
+        ["TLS (long-range, 100–1000 m)", "5–15 mm", "10–30 mm", "100–1000 m", "Large rock slopes, quarry walls, open-pit"],
+        ["UAS photogrammetry (2 cm GSD)", "10–30 mm", "20–50 mm", "Site-scale", "Embankment settlement, large earthworks"],
+        ["UAS LiDAR", "20–50 mm", "30–70 mm", "Site-scale", "Terrain deformation, levee monitoring"],
+        ["InSAR (PSInSAR)", "1–2 mm/yr precision", "5–10 mm cumulative", "Regional (km)", "Subsidence, slow landslides, regional settlement"],
+        ["Total station (prism)", "0.5–2 mm", "1–3 mm", "0–1000 m", "Discrete points; highest precision; complement to scanning"]
+      ]
+    },
+    "source": "Literature compilation, general practice"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.tbl-002",
+    "title": "Deformation Alert Thresholds — Common Structures",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Structure Type", "Alert Level 1 (Attention)", "Alert Level 2 (Warning)", "Alert Level 3 (Alarm)", "Reference"],
+      "rows": [
+        ["Concrete gravity dam (crest)", "5–10 mm", "10–25 mm", "> 25 mm or accelerating", "USBR, USACE guidance"],
+        ["Embankment dam (crest settlement)", "25–50 mm", "50–150 mm", "> 150 mm or 1% of height", "FEMA, ICOLD"],
+        ["Retaining wall (lateral)", "10–25 mm", "25–50 mm", "> 50 mm or tilting > 1°", "Project-specific"],
+        ["Building (differential settlement)", "L/1000 to L/500", "L/500 to L/300", "L/300 or cracking", "Eurocode 7, Skempton & MacDonald"],
+        ["Tunnel (convergence)", "5–10 mm", "10–25 mm", "> 25 mm or accelerating", "Project-specific; depends on lining type"],
+        ["Slope (surface displacement)", "10–50 mm/yr", "50–200 mm/yr", "> 200 mm/yr or accelerating", "Based on creep rate and consequence"]
+      ]
+    },
+    "source": "Various standards and guidance; project-specific thresholds always govern"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.tbl-003",
+    "title": "Reference Target Types for Monitoring",
+    "type": "reference",
+    "data": {
+      "headers": ["Target Type", "Detection Accuracy", "Durability", "Cost", "Best For"],
+      "rows": [
+        ["Spherical targets (150 mm)", "0.5–1 mm (center fit)", "Moderate — reposition each survey", "$$", "Highest precision; indoor/outdoor"],
+        ["Flat checkerboard targets", "1–2 mm", "Low — paper/vinyl degrades", "$", "Photogrammetry GCPs"],
+        ["Retroreflective prism (survey nail)", "0.5–1 mm", "High — permanent mount", "$$$", "Long-term monuments; total station compatible"],
+        ["Bolt/nail on structure", "1–3 mm (centroid from cloud)", "High", "$", "Permanent; low-profile"],
+        ["Natural features (corners, edges)", "2–10 mm", "Variable", "Free", "When targets cannot be installed"],
+        ["Tilt-and-turn targets (Leica)", "0.5–1 mm", "Moderate", "$$", "Auto-detection in Cyclone"]
+      ]
+    },
+    "source": "General practice"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.tbl-004",
+    "title": "Monitoring Survey Design Parameters",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Recommendation", "Rationale"],
+      "rows": [
+        ["Scan positions", "Repeat exact same positions each epoch", "Minimizes registration error and occlusion differences"],
+        ["Reference targets (minimum)", "≥ 4 on stable ground, well-distributed in 3D", "Overdetermined transformation; check for target movement"],
+        ["Check targets", "≥ 2 on stable ground (not used in registration)", "Independent verification of epoch alignment"],
+        ["Point density on structure", "≥ 5000 pts/m² for mm-level detection", "Drives M3C2 precision through averaging"],
+        ["Temperature recording", "Record structure surface and air temp at survey time", "Thermal correction for dimensional changes"],
+        ["Survey timing", "Consistent time of day and season if possible", "Minimizes thermal and solar loading variation"],
+        ["Atmospheric conditions", "Avoid rain, fog, direct sun on scanner optics", "Maintains data quality and range accuracy"]
+      ]
+    },
+    "source": "Best practice, Abellán et al. (2014)"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.tbl-005",
+    "title": "Software for Deformation Analysis",
+    "type": "reference",
+    "data": {
+      "headers": ["Software", "Key Feature", "License", "Typical Application"],
+      "rows": [
+        ["CloudCompare + M3C2 plugin", "M3C2 distance with confidence", "Open source", "Research standard; versatile; scriptable"],
+        ["Leica Cyclone / CloudWorx", "TLS registration + inspection", "Commercial", "Leica workflow; construction monitoring"],
+        ["Trimble RealWorks", "Surface comparison, cross-sections", "Commercial", "Trimble workflow; tunnel monitoring"],
+        ["3DReshaper", "Mesh comparison, inspection, reports", "Commercial", "Industrial inspection, dam faces"],
+        ["Maptek PointStudio", "Mining deformation, convergence", "Commercial", "Open-pit and underground mining"],
+        ["GOM Inspect", "Mesh deviation analysis, annotations", "Commercial (free viewer)", "High-precision part inspection, adapted for civil"],
+        ["MATLAB / Python (Open3D)", "Custom analysis, automation, time-series", "Mixed", "Research, custom monitoring pipelines"]
+      ]
+    },
+    "source": "Software vendors, industry practice"
+  }
+]

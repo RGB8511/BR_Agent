@@ -1,0 +1,96 @@
+[
+  {
+    "id": "field-exploration.construction-testing.tbl-001",
+    "title": "Construction QA Test Method Selection",
+    "type": "classification",
+    "data": {
+      "headers": ["Test Method", "What It Measures", "Speed", "Depth of Influence", "Best For"],
+      "rows": [
+        ["Nuclear density gauge", "Density + moisture", "2 min", "150–300 mm", "Routine compaction verification (every lift)"],
+        ["Sand cone", "Density + moisture", "45 min", "150 mm", "NDG verification, non-nuclear sites"],
+        ["DCP", "Penetration resistance → CBR", "15–30 min per 1 m", "Continuous to 1+ m", "Subgrade profiling, weak zone detection"],
+        ["Clegg hammer", "Impact value → CBR", "2 min", "~150 mm", "Rapid screening, uniformity check"],
+        ["LWD", "Dynamic modulus (E_vd)", "2 min", "~1.5× plate dia", "Compaction quality, European specs"],
+        ["Plate load test", "k-value, bearing capacity", "2–4 hr", "~1.5–2× plate dia", "Pavement k-value, foundation verification"],
+        ["Proof rolling", "Visual deflection/pumping", "Continuous", "0.5–1.5 m", "Whole-area screening before paving"],
+        ["FWD", "Deflection basin → layer moduli", "30 sec/point", "Full pavement section", "In-service pavement evaluation"],
+        ["Intelligent compaction (IC)", "Roller-measured CMV/MDP", "Continuous", "Variable (0.5–1.5 m)", "100% area coverage, real-time mapping"]
+      ]
+    },
+    "source": "FHWA, ASTM, general practice"
+  },
+  {
+    "id": "field-exploration.construction-testing.tbl-002",
+    "title": "DCP Penetration Index — Approximate Soil Strength Classification",
+    "type": "reference",
+    "data": {
+      "headers": ["DCPI (mm/blow)", "Approximate CBR (%)", "Classification", "Subgrade Quality"],
+      "rows": [
+        ["< 5", "> 80", "Very strong", "Excellent — rock, cemented, very dense gravel"],
+        ["5–10", "35–80", "Strong", "Good — dense gravel, well-compacted fill"],
+        ["10–20", "15–35", "Moderate", "Fair — compacted sand/gravel, stiff clay"],
+        ["20–40", "7–15", "Weak", "Marginal — loose sand, medium clay"],
+        ["40–80", "3–7", "Very weak", "Poor — soft clay, loose silt"],
+        ["> 80", "< 3", "Extremely weak", "Unsuitable — very soft clay, organic, saturated fines"]
+      ]
+    },
+    "source": "ASTM D6951, USACE correlations"
+  },
+  {
+    "id": "field-exploration.construction-testing.tbl-003",
+    "title": "Typical Modulus of Subgrade Reaction (k) Values",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type / Condition", "k (kPa/m)", "k (pci)", "Notes"],
+      "rows": [
+        ["Very soft clay", "10,000–25,000", "35–90", ""],
+        ["Soft clay", "25,000–50,000", "90–185", ""],
+        ["Medium clay / silt", "50,000–100,000", "185–370", ""],
+        ["Stiff clay", "100,000–200,000", "370–740", ""],
+        ["Loose sand", "15,000–30,000", "55–110", ""],
+        ["Medium dense sand", "30,000–80,000", "110–295", ""],
+        ["Dense sand / gravel", "80,000–200,000", "295–740", ""],
+        ["Compacted granular base", "150,000–300,000+", "550–1100+", "Base course over subgrade"],
+        ["Cement-treated base", "200,000–400,000+", "740–1475+", "Rigid base"]
+      ]
+    },
+    "source": "AASHTO, FHWA NHI-05-037, Bowles (1996). Note: k is depth-dependent and plate-size-dependent. Values are for 762 mm (30 in) plate equivalent."
+  },
+  {
+    "id": "field-exploration.construction-testing.tbl-004",
+    "title": "CBR vs. Subgrade Quality Rating",
+    "type": "reference",
+    "data": {
+      "headers": ["CBR (%)", "General Rating", "Typical Soil Type", "USCS Group"],
+      "rows": [
+        ["< 3", "Very poor", "Organic, highly plastic clay", "OH, OL, CH, MH"],
+        ["3–7", "Poor to fair", "Soft clay, elastic silt", "CH, MH, CL"],
+        ["7–20", "Fair to good", "Silty clay, sandy clay, clayey sand", "CL, SC, SM"],
+        ["20–50", "Good", "Sandy gravel, well-graded sand", "GW, GP, SW, SP"],
+        ["50–80", "Excellent", "Dense well-graded gravel, crushed stone", "GW, GP"],
+        ["> 80", "Outstanding", "Hard rock, cemented gravel, stabilized material", "—"]
+      ]
+    },
+    "source": "AASHTO, FHWA, Bowles (1996)"
+  },
+  {
+    "id": "field-exploration.construction-testing.tbl-005",
+    "title": "Proof Rolling Specifications — Typical Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Typical Requirement", "Notes"],
+      "rows": [
+        ["Roller type", "Loaded pneumatic-tired roller", "4-wheel or multi-wheel; fully loaded dump truck acceptable for some agencies"],
+        ["Gross vehicle weight", "25–50 tonnes (55,000–110,000 lb)", "Heavier = more demanding test; specify per soil conditions"],
+        ["Tire pressure", "550–700 kPa (80–100 psi)", "Standard highway truck tire pressure"],
+        ["Speed", "3–5 km/hr (2–3 mph)", "Slow enough to observe deflection"],
+        ["Coverage", "Entire prepared subgrade surface", "Parallel passes with 50% overlap; both directions preferred"],
+        ["Maximum allowable rut", "≤ 25 mm (1 in)", "Some agencies: ≤ 12–19 mm for more critical applications"],
+        ["Pumping", "No pumping allowed", "Water/fines rising to surface = unstable subgrade"],
+        ["Observation", "Qualified inspector walking behind roller", "Mark failed areas with paint for remediation"],
+        ["Moisture condition", "Near optimum or slightly above", "Testing on dry subgrade may miss problems that appear when wet"]
+      ]
+    },
+    "source": "State DOT specifications (varies by agency), FHWA"
+  }
+]

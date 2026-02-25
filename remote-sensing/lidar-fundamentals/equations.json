@@ -1,0 +1,123 @@
+[
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-001",
+    "title": "Time-of-Flight Range Equation",
+    "equation": "R = c × t / 2",
+    "variables": {
+      "R": {"description": "Range (distance from scanner to target)", "units": "m"},
+      "c": {"description": "Speed of light (2.998 × 10⁸ m/s in air)", "units": "m/s"},
+      "t": {"description": "Round-trip travel time", "units": "seconds"}
+    },
+    "applicability": "Fundamental ranging equation. 1 ns timing resolution → 0.15 m range resolution. Modern systems achieve picosecond timing → mm-level range precision. Atmospheric corrections (temperature, pressure, humidity) required for high-precision work.",
+    "source": "General physics, Vosselman & Maas (2010)"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-002",
+    "title": "Laser Footprint Diameter",
+    "equation": "d_footprint = R × θ_div",
+    "variables": {
+      "d_footprint": {"description": "Beam footprint diameter at target", "units": "m"},
+      "R": {"description": "Range to target", "units": "m"},
+      "θ_div": {"description": "Full beam divergence angle", "units": "radians"}
+    },
+    "applicability": "Beam divergence 0.3 mrad → footprint = 3 cm at 100 m, 30 cm at 1 km. Smaller footprint = better spatial resolution but requires more points for coverage. ALS footprints typically 10–30 cm; TLS: 3–10 mm at working range.",
+    "source": "General optics"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-003",
+    "title": "ALS Point Density on Ground",
+    "equation": "ρ = PRR / (v × S)",
+    "variables": {
+      "ρ": {"description": "Point density (single pass)", "units": "pts/m²"},
+      "PRR": {"description": "Pulse repetition rate", "units": "pulses/second"},
+      "v": {"description": "Aircraft ground speed", "units": "m/s"},
+      "S": {"description": "Swath width on ground = 2 × H × tan(θ_max)", "units": "m"}
+    },
+    "applicability": "Simplified — assumes uniform distribution. Actual density higher at swath center, lower at edges. Multi-pass overlap increases effective density. Example: PRR=500,000, v=60 m/s, S=500 m → ρ = 17 pts/m².",
+    "source": "Shan & Toth (2018)"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-004",
+    "title": "ALS Vertical Accuracy (Empirical RMSE Model)",
+    "equation": "RMSE_z ≈ √(σ_range² + (H × σ_roll)² + (H × σ_pitch)² + σ_GNSS_z²)",
+    "variables": {
+      "RMSE_z": {"description": "Vertical root mean square error", "units": "m"},
+      "σ_range": {"description": "Laser ranging precision", "units": "m"},
+      "H": {"description": "Flying height above ground", "units": "m"},
+      "σ_roll, σ_pitch": {"description": "IMU angular accuracy", "units": "radians"},
+      "σ_GNSS_z": {"description": "GNSS vertical positioning accuracy", "units": "m"}
+    },
+    "applicability": "Simplified error propagation. Real error budget includes boresight calibration, lever arm, atmospheric refraction, and terrain slope. Typical ALS RMSE_z: 5–15 cm. TLS: 1–5 mm at short range.",
+    "source": "Baltsavias (1999), Shan & Toth (2018)"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-005",
+    "title": "TLS Registration Error (ICP — Iterative Closest Point)",
+    "equation": "E_ICP = (1/n) × Σ||p_i - T(q_i)||²   → minimize over transformation T",
+    "variables": {
+      "E_ICP": {"description": "Mean squared registration error", "units": "m²"},
+      "p_i": {"description": "Points in reference cloud", "units": "m"},
+      "q_i": {"description": "Corresponding closest points in aligned cloud", "units": "m"},
+      "T": {"description": "Rigid body transformation (rotation + translation)", "units": "—"},
+      "n": {"description": "Number of point correspondences", "units": "—"}
+    },
+    "applicability": "ICP iteratively refines alignment. Converges to local minimum — requires good initial alignment (from targets or manual). Variants: point-to-plane ICP (faster convergence), generalized ICP, RANSAC-based outlier rejection. Typical post-registration RMS: 1–5 mm for well-controlled TLS.",
+    "source": "Besl & McKay (1992)"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-006",
+    "title": "Laser Return Intensity — Range Normalization",
+    "equation": "I_norm = I_measured × (R / R_ref)²",
+    "variables": {
+      "I_norm": {"description": "Range-normalized intensity", "units": "arbitrary (scanner-dependent)"},
+      "I_measured": {"description": "Raw measured intensity", "units": "arbitrary"},
+      "R": {"description": "Actual range to target", "units": "m"},
+      "R_ref": {"description": "Reference range for normalization", "units": "m"}
+    },
+    "applicability": "Intensity decreases with R² (inverse square law). Normalization removes range dependency, allowing intensity-based material classification. Additional corrections for angle of incidence and atmospheric attenuation may be needed for rigorous analysis.",
+    "source": "Höfle & Pfeifer (2007)"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-007",
+    "title": "Minimum Detectable Displacement (TLS Monitoring)",
+    "equation": "LoD_95% = ±1.96 × √(σ_ref² + σ_comp²)",
+    "variables": {
+      "LoD_95%": {"description": "Level of detection at 95% confidence", "units": "mm"},
+      "σ_ref": {"description": "Registration + measurement uncertainty of reference epoch", "units": "mm"},
+      "σ_comp": {"description": "Registration + measurement uncertainty of comparison epoch", "units": "mm"}
+    },
+    "applicability": "For cloud-to-cloud comparison (C2C or M3C2). If each epoch has σ = 3 mm, then LoD = ±8.3 mm. Displacements below LoD cannot be reliably distinguished from noise. Improving registration, increasing point density, and spatial averaging all reduce LoD.",
+    "source": "Lague et al. (2013), Abellán et al. (2014)"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-008",
+    "title": "Scan Overlap Requirement (Multi-Station TLS)",
+    "equation": "Overlap ≥ 30% between adjacent scan positions",
+    "applicability": "Minimum overlap for reliable cloud-to-cloud registration. 50%+ overlap recommended for critical applications. Target-based registration requires ≥ 3 common targets visible from adjacent stations. Targets should be distributed in 3D (not coplanar).",
+    "source": "General practice, Vosselman & Maas (2010)"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-009",
+    "title": "ALS Swath Width",
+    "equation": "S = 2 × H × tan(θ_max)",
+    "variables": {
+      "S": {"description": "Swath width on ground (flat terrain)", "units": "m"},
+      "H": {"description": "Flying height above ground", "units": "m"},
+      "θ_max": {"description": "Half scan angle (maximum off-nadir)", "units": "degrees"}
+    },
+    "applicability": "Typical half-angle: 15–30°. H = 1000 m, θ = 20° → S = 728 m. Adjacent flight lines overlap 30–60% for uniform coverage. Accuracy degrades at high scan angles; some specifications limit usable scan angle to ±20°.",
+    "source": "General ALS geometry"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.eq-010",
+    "title": "Point Cloud Decimation — Spatial Subsampling",
+    "equation": "n_output = A / d_min²",
+    "variables": {
+      "n_output": {"description": "Approximate output point count", "units": "points"},
+      "A": {"description": "Total surface area", "units": "m²"},
+      "d_min": {"description": "Minimum spacing between retained points", "units": "m"}
+    },
+    "applicability": "Spatial subsampling (voxel or minimum-distance) reduces data volume while maintaining spatial uniformity. Critical for manageable file sizes: 10M points at 5 mm spacing covers ~250 m² surface. Choose d_min based on analysis requirements: structural monitoring 5–10 mm, geological mapping 20–50 mm, terrain models 0.5–2 m.",
+    "source": "General point cloud processing"
+  }
+]

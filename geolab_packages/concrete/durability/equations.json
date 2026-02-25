@@ -1,0 +1,125 @@
+[
+  {
+    "id": "concrete.durability.eq-001",
+    "title": "Carbonation Depth (Square Root of Time)",
+    "equation": "d = K × √t",
+    "variables": {
+      "d": {"description": "Carbonation depth", "units": "mm"},
+      "K": {"description": "Carbonation coefficient (depends on w/cm, CO₂, RH)", "units": "mm/√year"},
+      "t": {"description": "Time of exposure", "units": "years"}
+    },
+    "applicability": "K typically 1–5 mm/√year for normal quality concrete. K > 5 for poor concrete (high w/cm, poor curing). K < 1 for high-quality, low permeability concrete with SCMs.",
+    "source": "Parrott (1987), fib Model Code"
+  },
+  {
+    "id": "concrete.durability.eq-002",
+    "title": "Fick's Second Law — Chloride Diffusion",
+    "equation": "C(x,t) = C_s × [1 - erf(x / (2√(D_a × t)))]",
+    "variables": {
+      "C(x,t)": {"description": "Chloride concentration at depth x and time t", "units": "% by mass of concrete"},
+      "C_s": {"description": "Surface chloride concentration", "units": "% by mass of concrete"},
+      "x": {"description": "Depth from exposed surface", "units": "m"},
+      "D_a": {"description": "Apparent chloride diffusion coefficient", "units": "m²/s"},
+      "t": {"description": "Time of exposure", "units": "seconds"},
+      "erf": {"description": "Gaussian error function", "units": "dimensionless"}
+    },
+    "applicability": "Assumes constant C_s and D_a (simplification). D_a decreases over time for SCM concrete. Typical D_a: 1–50 × 10⁻¹² m²/s depending on w/cm and SCMs.",
+    "source": "Crank (1975), ASTM C1556"
+  },
+  {
+    "id": "concrete.durability.eq-003",
+    "title": "Time to Corrosion Initiation",
+    "equation": "t_i = (x_cover)² / (4 × D_a) × [erf⁻¹(1 - C_th/C_s)]⁻²",
+    "variables": {
+      "t_i": {"description": "Time to corrosion initiation", "units": "seconds"},
+      "x_cover": {"description": "Concrete cover depth", "units": "m"},
+      "C_th": {"description": "Chloride threshold for corrosion initiation", "units": "% by mass of concrete"},
+      "C_s": {"description": "Surface chloride concentration", "units": "% by mass of concrete"}
+    },
+    "applicability": "Rearrangement of Fick's law solved for time. C_th typically 0.05–0.10% by mass of concrete (≈ 0.2–0.4% by mass of cement).",
+    "source": "Service life modeling — fib Model Code, Life-365"
+  },
+  {
+    "id": "concrete.durability.eq-004",
+    "title": "Equivalent Alkali Content",
+    "equation": "Na₂O_eq = Na₂O + 0.658 × K₂O",
+    "variables": {
+      "Na₂O_eq": {"description": "Equivalent sodium oxide", "units": "% by mass of cement"},
+      "Na₂O": {"description": "Sodium oxide content", "units": "%"},
+      "K₂O": {"description": "Potassium oxide content", "units": "%"},
+      "0.658": {"description": "Molar mass ratio Na₂O/K₂O = 62/94.2", "units": "dimensionless"}
+    },
+    "applicability": "Low-alkali cement: Na₂O_eq ≤ 0.60%. Used for ASR prevention.",
+    "source": "ASTM C150"
+  },
+  {
+    "id": "concrete.durability.eq-005",
+    "title": "Freeze-Thaw Durability Factor",
+    "equation": "DF = (P_n × N) / 300",
+    "variables": {
+      "P_n": {"description": "Relative dynamic modulus of elasticity at N cycles", "units": "%"},
+      "N": {"description": "Number of cycles at which P reaches 60% or 300 cycles (whichever first)", "units": "cycles"},
+      "DF": {"description": "Durability factor", "units": "%"}
+    },
+    "applicability": "DF ≥ 60% (some specs require ≥ 80%) after 300 cycles is considered satisfactory. Relative dynamic modulus measured by ASTM C215 (resonant frequency).",
+    "source": "ASTM C666"
+  },
+  {
+    "id": "concrete.durability.eq-006",
+    "title": "Sorptivity",
+    "equation": "i = S × √t",
+    "variables": {
+      "i": {"description": "Cumulative water absorption per unit area", "units": "mm"},
+      "S": {"description": "Sorptivity coefficient", "units": "mm/√min"},
+      "t": {"description": "Time of contact with water", "units": "min"}
+    },
+    "applicability": "Measures capillary suction rate. Lower sorptivity = lower permeability. Typical initial sorptivity: 0.1–1.0 mm/√min for good concrete.",
+    "source": "ASTM C1585"
+  },
+  {
+    "id": "concrete.durability.eq-007",
+    "title": "RCPT Chloride Permeability Rating",
+    "equation": "Q = ∫₀ᵗ I dt (total charge in coulombs over 6 hours)",
+    "variables": {
+      "Q": {"description": "Total charge passed", "units": "coulombs"},
+      "I": {"description": "Current flowing through specimen", "units": "amperes"},
+      "t": {"description": "Test duration (6 hours = 21600 s)", "units": "s"}
+    },
+    "source": "ASTM C1202"
+  },
+  {
+    "id": "concrete.durability.eq-008",
+    "title": "Time-Dependent Diffusion Coefficient",
+    "equation": "D(t) = D_ref × (t_ref / t)^m",
+    "variables": {
+      "D(t)": {"description": "Diffusion coefficient at time t", "units": "m²/s"},
+      "D_ref": {"description": "Diffusion coefficient at reference time t_ref", "units": "m²/s"},
+      "t_ref": {"description": "Reference time (typically 28 days)", "units": "days"},
+      "m": {"description": "Aging exponent (0.2–0.6 for OPC; 0.4–0.8 for SCM concrete)", "units": "dimensionless"}
+    },
+    "applicability": "SCM concretes show greater reduction in D over time (higher m). Critical for realistic service life prediction.",
+    "source": "fib Model Code for Service Life Design (2006), Life-365"
+  },
+  {
+    "id": "concrete.durability.eq-009",
+    "title": "Corrosion Rate — Faraday's Law",
+    "equation": "x_loss = (M × i_corr × t) / (z × F × ρ_Fe)",
+    "variables": {
+      "x_loss": {"description": "Metal loss (section reduction)", "units": "mm"},
+      "M": {"description": "Atomic mass of iron (55.85)", "units": "g/mol"},
+      "i_corr": {"description": "Corrosion current density", "units": "A/m²"},
+      "z": {"description": "Valence (2 for Fe → Fe²⁺)", "units": "dimensionless"},
+      "F": {"description": "Faraday's constant (96485)", "units": "C/mol"},
+      "ρ_Fe": {"description": "Density of iron (7874)", "units": "kg/m³"}
+    },
+    "applicability": "Converts corrosion current density to physical steel loss. i_corr < 0.1 μA/cm² = passive; 0.1–0.5 = low; 0.5–1.0 = moderate; > 1.0 = high corrosion.",
+    "source": "RILEM TC 154-EMC, Andrade & Alonso (2001)"
+  },
+  {
+    "id": "concrete.durability.eq-010",
+    "title": "ASR Expansion Limit (ASTM C1260)",
+    "equation": "Expansion classification: < 0.10% at 14 days = innocuous; 0.10–0.20% = inconclusive; > 0.20% = potentially deleterious",
+    "applicability": "Accelerated test — mortar bars in 1N NaOH at 80°C. Fast but can be overly aggressive (false positives). Supplement with C1293 concrete prism test (1 year, < 0.04%).",
+    "source": "ASTM C1260, CSA A23.2-25A"
+  }
+]

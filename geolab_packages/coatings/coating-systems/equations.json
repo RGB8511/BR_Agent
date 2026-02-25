@@ -1,0 +1,67 @@
+[
+  {
+    "id": "coatings.protection.coating-systems.eq-001",
+    "title": "DFT from WFT",
+    "equation": "DFT = WFT × (% volume solids / 100)",
+    "variables": {
+      "DFT": {"description": "Dry film thickness", "units": "μm (microns) or mils"},
+      "WFT": {"description": "Wet film thickness", "units": "μm or mils"},
+      "volume solids": {"description": "Non-volatile content by volume (from TDS)", "units": "%"}
+    },
+    "applicability": "1 mil = 25.4 μm. Accuracy depends on correct volume solids data and measurement technique.",
+    "source": "SSPC-PA 2, general coating science"
+  },
+  {
+    "id": "coatings.protection.coating-systems.eq-002",
+    "title": "Theoretical Spread Rate",
+    "equation": "SR = (% VS × 10) / DFT_target",
+    "variables": {
+      "SR": {"description": "Theoretical spread rate", "units": "m²/L"},
+      "VS": {"description": "Volume solids", "units": "%"},
+      "DFT_target": {"description": "Target dry film thickness", "units": "μm"}
+    },
+    "applicability": "Practical spread rate = theoretical × transfer efficiency. Spray: 50–65%, brush/roller: 80–95%, airless spray: 55–70%.",
+    "source": "General coating calculation"
+  },
+  {
+    "id": "coatings.protection.coating-systems.eq-003",
+    "title": "Material Quantity Required",
+    "equation": "Q = A / (SR_practical)",
+    "variables": {
+      "Q": {"description": "Quantity of coating material", "units": "liters"},
+      "A": {"description": "Area to be coated", "units": "m²"},
+      "SR_practical": {"description": "Practical spread rate (includes waste/loss)", "units": "m²/L"}
+    },
+    "source": "General"
+  },
+  {
+    "id": "coatings.protection.coating-systems.eq-004",
+    "title": "Holiday Detection Voltage (NACE SP0188)",
+    "equation": "V = 1250 × √(DFT in μm) for conductive substrate, brush-type detector",
+    "variables": {
+      "V": {"description": "Test voltage", "units": "V DC"},
+      "DFT": {"description": "Total dry film thickness of coating", "units": "μm"}
+    },
+    "applicability": "Maximum voltage must not damage coating. Typical range 2–30 kV. Some standards use V = 525√DFT. Always verify against coating manufacturer recommendation.",
+    "source": "NACE SP0188, ASTM D5162"
+  },
+  {
+    "id": "coatings.protection.coating-systems.eq-005",
+    "title": "Dew Point Calculation (Magnus Formula Approximation)",
+    "equation": "T_dp = (243.04 × [ln(RH/100) + (17.625 × T)/(243.04 + T)]) / (17.625 - [ln(RH/100) + (17.625 × T)/(243.04 + T)])",
+    "variables": {
+      "T_dp": {"description": "Dew point temperature", "units": "°C"},
+      "T": {"description": "Air temperature", "units": "°C"},
+      "RH": {"description": "Relative humidity", "units": "%"}
+    },
+    "applicability": "Surface must be ≥ 3°C above dew point for coating application. Verify with psychrometer or digital hygrometer.",
+    "source": "Alduchov & Eskridge (1996), SSPC good practice"
+  },
+  {
+    "id": "coatings.protection.coating-systems.eq-006",
+    "title": "Coating Cost per Unit Area",
+    "equation": "Cost/m² = (material cost/L) / SR_practical + labor cost/m² + equipment cost/m²",
+    "applicability": "Full lifecycle cost should include surface preparation (often 50–70% of total), inspection, and maintenance recoating intervals.",
+    "source": "General estimating"
+  }
+]

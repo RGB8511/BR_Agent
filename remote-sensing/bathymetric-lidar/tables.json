@@ -1,0 +1,88 @@
+[
+  {
+    "id": "remote-sensing.bathy-lidar.tbl-001",
+    "title": "Bathymetric LiDAR Systems — Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["System", "Manufacturer", "Max Depth (clear water)", "Topo Point Density", "Bathy Point Density", "Platform"],
+      "rows": [
+        ["Chiroptera 4X", "Leica/Hexagon", "25 m (3×Secchi)", "Up to 1000 pts/m²", "Up to 50 pts/m²", "Manned aircraft, 300–600 m AGL"],
+        ["HawkEye 4X", "Leica/Hexagon", "50 m (deep channel)", "Up to 40 pts/m²", "Up to 10 pts/m²", "Manned aircraft, 300–600 m AGL"],
+        ["VQ-880-G II", "RIEGL", "15 m (1.5×Secchi)", "Up to 700 pts/m²", "Up to 20 pts/m²", "Manned aircraft or large UAS"],
+        ["CZMIL SuperNova", "Teledyne", "50 m", "Up to 70 pts/m²", "Up to 5 pts/m²", "Manned aircraft"],
+        ["ASTRALiTe Edge", "ASTRALiTe", "10 m", "Moderate", "1–5 pts/m²", "UAS-compatible (smaller/lighter)"]
+      ]
+    },
+    "source": "Manufacturer specifications (approximate; vary by conditions)"
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.tbl-002",
+    "title": "Water Clarity vs. Bathymetric LiDAR Penetration",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Water Clarity", "Secchi Depth (m)", "Kd (1/m)", "Expected Max Depth (m)", "Typical Environment"],
+      "rows": [
+        ["Ultra-clear", "> 25", "< 0.07", "50–70", "Tropical ocean, karst springs"],
+        ["Very clear", "10–25", "0.07–0.17", "25–50", "Clear lakes, mountain reservoirs"],
+        ["Clear", "5–10", "0.17–0.35", "10–25", "Clear rivers, moderate lakes"],
+        ["Moderate", "2–5", "0.35–0.85", "5–10", "Average rivers, productive lakes"],
+        ["Turbid", "1–2", "0.85–1.70", "2–5", "Agricultural runoff, algal blooms"],
+        ["Very turbid", "< 1", "> 1.70", "0–2", "Sediment-laden rivers, estuaries after storm"]
+      ]
+    },
+    "source": "Kd ≈ 1.7/Secchi (approximate). Actual penetration depends on system, bottom reflectance, and solar background."
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.tbl-003",
+    "title": "LAS 1.4 Point Classification — Bathymetric Classes",
+    "type": "reference",
+    "data": {
+      "headers": ["Class Code", "Description", "Use"],
+      "rows": [
+        ["2", "Ground", "Dry-land topographic surface"],
+        ["9", "Water", "Water surface (typically from NIR return)"],
+        ["40", "Bathymetric point (bottom)", "Submerged bottom surface"],
+        ["41", "Water surface", "Water surface from green-wavelength return"],
+        ["42", "Derived water surface", "Interpolated water surface"],
+        ["43", "Submerged object", "Known submerged feature (not bottom)"],
+        ["44", "IHO S-57 object", "Charted feature"],
+        ["45", "No-bottom-found", "Green pulse entered water but no bottom return detected"]
+      ]
+    },
+    "source": "ASPRS LAS 1.4 R15 specification"
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.tbl-004",
+    "title": "Accuracy Specifications — Topo-Bathy LiDAR",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Component", "Topographic Accuracy (95%)", "Bathymetric Accuracy (95%)", "Notes"],
+      "rows": [
+        ["Vertical (z)", "0.05–0.15 m", "0.15–0.30 m", "Bathy degrades with depth and turbidity"],
+        ["Horizontal (xy)", "0.30–1.0 m", "0.50–2.0 m", "Bathy position affected by refraction + surface waves"],
+        ["Depth bias", "N/A", "0.05–0.15 m (systematic)", "Speed-of-light calibration; water temp/salinity dependent"],
+        ["Point density — topo", "1–50+ pts/m²", "N/A", "System and flight parameter dependent"],
+        ["Point density — bathy", "N/A", "0.5–10 pts/m²", "Decreases with depth; bottom reflectance dependent"],
+        ["Seamless topo-bathy transition", "< 0.10 m vertical discontinuity at shoreline", "—", "Key advantage: single datum, single survey"]
+      ]
+    },
+    "source": "USGS Lidar Base Spec, JALBTCX, manufacturer specifications"
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.tbl-005",
+    "title": "Applications of Bathymetric LiDAR for Water Infrastructure",
+    "type": "reference",
+    "data": {
+      "headers": ["Application", "Required Accuracy", "Key Benefit", "Limitation"],
+      "rows": [
+        ["Reservoir sedimentation survey", "±0.20 m vertical", "Full coverage vs. sparse boat transects; includes shoreline", "Turbid reservoirs limit penetration"],
+        ["Dam tailwater scour mapping", "±0.15 m vertical", "Seamless dam face + tailwater + channel", "Turbulent aerated flow blocks penetration"],
+        ["River channel hydraulic modeling", "±0.20 m vertical", "Floodplain + channel in one dataset; HEC-RAS input", "Deep pools may exceed penetration"],
+        ["Spillway discharge channel", "±0.15 m vertical", "Survey during low-flow without dewatering", "Clear water required"],
+        ["Coastal levee / beach survey", "±0.15 m topo, ±0.25 m bathy", "Surf zone transition mapped continuously", "Wave conditions affect accuracy"],
+        ["Fish passage / habitat mapping", "±0.15 m vertical", "Pool-riffle sequences, substrate mapping from intensity", "Vegetation canopy in shallow water"]
+      ]
+    },
+    "source": "USGS, USACE, USBR, general practice"
+  }
+]

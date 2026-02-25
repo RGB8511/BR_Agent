@@ -1,0 +1,23 @@
+{
+  "id": "geotechnical.foundations.soil-classification",
+  "name": "Soil Classification Systems",
+  "level": 0,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.foundations",
+  "dependencies": [],
+  "tags": ["USCS", "AASHTO", "plasticity-chart", "grain-size", "classification", "fine-grained", "coarse-grained", "organic"],
+  "standards": ["D2487", "D2488", "D6913", "D7928", "D4318", "D2216", "AASHTO-M145"],
+  "key_references": [
+    "Casagrande (1948) Classification and Identification of Soils",
+    "ASTM D2487 Standard Practice for Classification of Soils (USCS)",
+    "AASHTO M 145 Classification of Soils and Soil-Aggregate Mixtures"
+  ],
+  "equation_count": 6,
+  "concept_count": 18,
+  "table_count": 8,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,76 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.tbl-001",
+    "title": "Time Factor vs. Degree of Consolidation (Uniform Initial u)",
+    "type": "reference",
+    "data": {
+      "headers": ["U (%)", "T_v"],
+      "rows": [
+        ["10", "0.008"],
+        ["20", "0.031"],
+        ["30", "0.071"],
+        ["40", "0.126"],
+        ["50", "0.197"],
+        ["60", "0.287"],
+        ["70", "0.403"],
+        ["80", "0.567"],
+        ["90", "0.848"],
+        ["95", "1.129"],
+        ["99", "1.781"]
+      ]
+    },
+    "source": "Terzaghi (1925) — tabulated solution"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.tbl-002",
+    "title": "Typical Compression Parameters",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "C_c Range", "C_r Range", "C_r/C_c", "C_α/C_c"],
+      "rows": [
+        ["Boston blue clay", "0.3–0.5", "0.04–0.07", "0.10–0.15", "0.03–0.05"],
+        ["Chicago clay", "0.2–0.4", "0.03–0.06", "0.10–0.15", "0.03–0.04"],
+        ["San Francisco Bay mud", "0.4–1.0", "0.05–0.10", "0.10–0.12", "0.04–0.06"],
+        ["Mexico City clay", "3–10", "0.3–1.0", "0.08–0.12", "0.03–0.05"],
+        ["Glacial lake clay", "0.2–0.5", "0.02–0.05", "0.10–0.15", "0.03–0.04"],
+        ["Soft marine clay (general)", "0.3–1.0", "0.03–0.10", "0.10–0.15", "0.04–0.05"],
+        ["Peat / organic soil", "2–10+", "0.2–1.0", "0.10", "0.05–0.07"],
+        ["Stiff overconsolidated clay", "0.1–0.3", "0.01–0.05", "0.10–0.20", "0.02–0.03"]
+      ]
+    },
+    "source": "Various — Mesri (1977), Holtz et al. (2011), Lambe & Whitman (1969)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.tbl-003",
+    "title": "Typical c_v Values",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "c_v (m²/yr)", "c_v (cm²/s)"],
+      "rows": [
+        ["Plastic clay (CH)", "0.3–3", "10⁻⁴–10⁻³"],
+        ["Lean clay (CL)", "1–10", "3×10⁻⁴–3×10⁻³"],
+        ["Silt (ML)", "3–30", "10⁻³–10⁻²"],
+        ["Organic clay/peat", "0.1–1", "3×10⁻⁵–3×10⁻⁴"],
+        ["Sandy clay", "3–30", "10⁻³–10⁻²"]
+      ]
+    },
+    "source": "Various — Holtz et al. (2011)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.tbl-004",
+    "title": "Cc Empirical Correlations",
+    "type": "reference",
+    "data": {
+      "headers": ["Correlation", "Equation", "Applicability"],
+      "rows": [
+        ["Skempton (1944)", "C_c = 0.009(LL - 10)", "Undisturbed clays, low-med sensitivity"],
+        ["Terzaghi & Peck (1967)", "C_c = 0.009(LL - 10)", "Same as above (widely used)"],
+        ["Azzouz et al. (1976)", "C_c = 0.01(w_n - 5)", "From natural moisture content"],
+        ["Nagaraj & Murthy (1985)", "C_c = 0.2343 × (e_L)", "e_L = LL×G_s/100 (void ratio at LL)"],
+        ["Nishida (1956)", "C_c = 1.15(e₀ - 0.35)", "All clays (rough)"],
+        ["Rendon-Herrero (1983)", "C_c = 0.141 × G_s^1.2 × [(1+e₀)/G_s]^2.38", "General, from void ratio"]
+      ]
+    },
+    "source": "Various authors as cited"
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "id": "field-exploration.spt.tbl-001",
+    "title": "SPT Correction Factors (Youd et al. 2001)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Factor", "Variable", "Value", "Correction"],
+      "rows": [
+        ["Energy ratio (CE)", "Automatic trip hammer", "80–95%", "CE = ER/60 (1.33–1.58)"],
+        ["Energy ratio (CE)", "Safety hammer (rope & cathead)", "55–70%", "CE = ER/60 (0.92–1.17)"],
+        ["Energy ratio (CE)", "Donut hammer", "30–60%", "CE = ER/60 (0.50–1.00)"],
+        ["Borehole diameter (CB)", "65–115 mm", "—", "1.00"],
+        ["Borehole diameter (CB)", "150 mm (6 in)", "—", "1.05"],
+        ["Borehole diameter (CB)", "200 mm (8 in)", "—", "1.15"],
+        ["Sampler (CS)", "Standard sampler (with liner)", "—", "1.00"],
+        ["Sampler (CS)", "Sampler without liner (when designed for liner)", "—", "1.1–1.3"],
+        ["Rod length (CR)", "3–4 m", "—", "0.75"],
+        ["Rod length (CR)", "4–6 m", "—", "0.85"],
+        ["Rod length (CR)", "6–10 m", "—", "0.95"],
+        ["Rod length (CR)", "> 10 m", "—", "1.00"]
+      ]
+    },
+    "source": "Youd et al. (2001), Skempton (1986)"
+  },
+  {
+    "id": "field-exploration.spt.tbl-002",
+    "title": "SPT N-Value vs. Soil Consistency/Density (Terzaghi & Peck)",
+    "type": "classification",
+    "data": {
+      "headers": ["N₆₀", "Sand — Relative Density", "Clay — Consistency", "Approx Su (kPa)", "Approx φ' (degrees)"],
+      "rows": [
+        ["0–4", "Very loose", "Very soft", "< 12", "< 28"],
+        ["4–10", "Loose", "Soft", "12–25", "28–30"],
+        ["10–30", "Medium dense", "Firm to stiff", "25–100", "30–36"],
+        ["30–50", "Dense", "Very stiff", "100–200", "36–41"],
+        ["> 50", "Very dense", "Hard", "> 200", "> 41"]
+      ]
+    },
+    "source": "Terzaghi & Peck (1967), modified. Note: clay correlations are very approximate; use vane shear or CPT for better Su estimates."
+  },
+  {
+    "id": "field-exploration.spt.tbl-003",
+    "title": "SPT-Based Bearing Capacity Estimation (Meyerhof 1965, simplified)",
+    "type": "reference",
+    "data": {
+      "headers": ["Foundation Type", "Allowable Bearing Pressure (kPa)", "Settlement Basis", "Notes"],
+      "rows": [
+        ["Strip footing on sand", "q_allow ≈ 12 × N₆₀ × (B+0.3)²/(B)² × Fd", "25 mm settlement", "B in meters, Fd = 1+0.33Df/B ≤ 1.33"],
+        ["Square/circular footing on sand", "q_allow ≈ 8 × N₆₀ × (B+0.3)²/(B)² × Fd", "25 mm settlement", "Conservative; widely used for preliminary design"],
+        ["Clay (short-term)", "q_allow ≈ Su × Nc / FS", "Use Su from better tests than SPT", "SPT not reliable for Su — use vane/CPT"],
+        ["Driven piles in sand — unit toe", "q_t ≈ 40 × N₆₀ (kPa) ≤ 4000 kPa", "Meyerhof method", "Very approximate"],
+        ["Driven piles in sand — unit shaft", "f_s ≈ 2 × N₆₀ (kPa) ≤ 100 kPa", "Meyerhof method", "Very approximate"]
+      ]
+    },
+    "source": "Meyerhof (1965, 1976), Bowles (1996)"
+  },
+  {
+    "id": "field-exploration.spt.tbl-004",
+    "title": "Common Sources of Error in SPT",
+    "type": "reference",
+    "data": {
+      "headers": ["Error Source", "Effect on N-value", "Prevention/Mitigation"],
+      "rows": [
+        ["Insufficient borehole cleaning", "Artificially high N (driving through cuttings/slough)", "Clean to bottom before each test; use proper drilling technique"],
+        ["Water level in borehole below groundwater", "Artificially low N (piping/loosening of sand at bottom)", "Maintain water/mud level at or above groundwater level"],
+        ["Short hammer drop", "Artificially high N", "Use automatic hammer; verify drop height"],
+        ["Damaged sampler (dented, bent)", "Artificially high N", "Inspect sampler before every test"],
+        ["Borehole too large", "Artificially low N (stress relief around hole)", "Use standard borehole diameter (65–115 mm)"],
+        ["Anvil/rod energy losses", "Reduced energy → higher N", "Measure energy (ASTM D4633); use corrections"],
+        ["Not seating sampler on undisturbed soil", "Variable — depends on condition", "Clean hole thoroughly; note if seating drive is abnormal"],
+        ["Gravel particles (false refusal)", "N appears much higher than matrix soil", "Note as refusal on gravel; use CPT or pressuremeter instead"],
+        ["Artesian pressure (heaving sand)", "Artificially low N (sand loosened)", "Weight mud; maintain head above artesian level"]
+      ]
+    },
+    "source": "ASTM D1586, Kulhawy & Mayne (1990), FHWA NHI-01-031"
+  },
+  {
+    "id": "field-exploration.spt.tbl-005",
+    "title": "SPT Sampling Frequency for Geotechnical Projects",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Project Type", "Typical SPT Interval", "Notes"],
+      "rows": [
+        ["Standard geotechnical boring (soil)", "Every 1.5 m (5 ft) or at change of stratum", "ASTM D1586 / AASHTO standard practice"],
+        ["Shallow foundation investigation", "Every 1.5 m to 2–3× footing width below grade", "Closer spacing near bearing level"],
+        ["Deep foundation investigation", "Every 1.5 m through overburden, continuous in bearing zone", "May reduce to 3 m in uniform deep deposits"],
+        ["Embankment/dam foundation", "Every 1.5 m; continuous SPT in critical zones", "Supplement with CPT for continuous profile"],
+        ["Liquefaction assessment", "Every 0.75–1.5 m through liquefiable zone", "Closer spacing critical; energy measurement required"],
+        ["Environmental / phase II", "Continuous or every 1.5 m with split-spoon", "Classification samples at every interval; supplemented by direct push"]
+      ]
+    },
+    "source": "ASTM D1586, AASHTO R22, FHWA NHI-01-031"
+  }
+]

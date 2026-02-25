@@ -1,0 +1,82 @@
+[
+  {
+    "id": "field-exploration.test-pits-trenches.eq-001",
+    "title": "OSHA Maximum Allowable Slope — Unshored Excavation",
+    "equation": "H_max = D × (slope_ratio)",
+    "variables": {
+      "H_max": {"description": "Horizontal distance from toe of excavation to top of slope", "units": "m"},
+      "D": {"description": "Depth of excavation", "units": "m"},
+      "slope_ratio": {"description": "Type A: 0.75, Type B: 1.0, Type C: 1.5 (horizontal per unit vertical)", "units": "dimensionless"}
+    },
+    "applicability": "OSHA 29 CFR 1926 Subpart P. Max depth 6 m (20 ft) for simple sloping. Deeper excavations require engineering design. Combined soil types use the more conservative requirement.",
+    "source": "OSHA 29 CFR 1926 Subpart P, Appendix B"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.eq-002",
+    "title": "Lateral Earth Pressure on Shoring (Simplified)",
+    "equation": "p = Ka × γ × H + q_surcharge × Ka",
+    "variables": {
+      "p": {"description": "Lateral earth pressure at depth H", "units": "kPa"},
+      "Ka": {"description": "Active earth pressure coefficient = tan²(45-φ/2)", "units": "dimensionless"},
+      "γ": {"description": "Unit weight of soil", "units": "kN/m³"},
+      "H": {"description": "Depth of excavation", "units": "m"},
+      "q_surcharge": {"description": "Surcharge from equipment, spoil piles, etc.", "units": "kPa"}
+    },
+    "applicability": "For design of shoring systems. Simplified Rankine for cohesionless soil. For cohesive soil, subtract 2c√Ka from pressure. OSHA Appendix A provides simplified timber shoring tables that bypass calculation.",
+    "source": "General soil mechanics, OSHA Appendix A"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.eq-003",
+    "title": "Volume of Excavation — Trapezoidal Pit",
+    "equation": "V = D × [W_b × L_b + W_t × L_t + √(W_b × L_b × W_t × L_t)] / 3",
+    "variables": {
+      "V": {"description": "Volume of excavation (prismoidal formula)", "units": "m³"},
+      "D": {"description": "Depth", "units": "m"},
+      "W_b, L_b": {"description": "Width and length at base", "units": "m"},
+      "W_t, L_t": {"description": "Width and length at top (including slopes)", "units": "m"}
+    },
+    "applicability": "Prismoidal formula for accurate volume. Quick estimate: V ≈ D × W_avg × L_avg. Swell factor for excavated soil: 1.2–1.5 depending on soil type.",
+    "source": "General earthwork calculations"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.eq-004",
+    "title": "Bulk Sample Volume for Proctor Testing",
+    "equation": "V_sample = n_tests × V_per_test × FS",
+    "variables": {
+      "V_sample": {"description": "Required bulk sample volume", "units": "kg"},
+      "n_tests": {"description": "Number of Proctor points (typically 5) plus extra for grain size, Atterberg", "units": "count"},
+      "V_per_test": {"description": "Material per Proctor point (~3 kg standard, ~7 kg modified per point)", "units": "kg"},
+      "FS": {"description": "Factor of safety for retesting, oversize removal (1.5–2.0)", "units": "dimensionless"}
+    },
+    "applicability": "Standard Proctor: ~35 kg minimum per complete test (5 points). Modified Proctor: ~70 kg. With grain size + Atterberg + moisture: add 5–10 kg. Typical bulk sample: 50–100 kg per horizon.",
+    "source": "ASTM D698, D1557, general practice"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.eq-005",
+    "title": "Falling Head Permeability in Test Pit (Simplified)",
+    "equation": "k = (A_pit / A_standpipe) × (L / t) × ln(h₁/h₂)",
+    "variables": {
+      "k": {"description": "Field hydraulic conductivity (approximate)", "units": "m/s"},
+      "A_pit": {"description": "Area of pit floor or infiltration area", "units": "m²"},
+      "A_standpipe": {"description": "Area of standpipe or pit (if using pit itself)", "units": "m²"},
+      "L": {"description": "Assumed flow path length", "units": "m"},
+      "h₁": {"description": "Initial water head above pit floor", "units": "m"},
+      "h₂": {"description": "Final water head", "units": "m"},
+      "t": {"description": "Time for head to fall from h₁ to h₂", "units": "seconds"}
+    },
+    "applicability": "Crude field estimate only. Proper percolation tests (e.g., ASTM D5084 in lab, or slug tests in wells) are preferred. This is useful for quick assessment of infiltration capacity for borrow area or septic suitability.",
+    "source": "General field practice"
+  },
+  {
+    "id": "field-exploration.test-pits-trenches.eq-006",
+    "title": "Spoil Pile Setback for Surcharge Control",
+    "equation": "d_setback ≥ max(0.6 m, H_spoil × tan(45° - φ/2))",
+    "variables": {
+      "d_setback": {"description": "Minimum distance from spoil pile to excavation edge", "units": "m"},
+      "H_spoil": {"description": "Height of spoil pile", "units": "m"},
+      "φ": {"description": "Friction angle of excavated soil (if known)", "units": "degrees"}
+    },
+    "applicability": "OSHA minimum setback is 0.6 m (2 ft) from edge. For deep or unstable excavations, the failure wedge analysis governs — spoil must be beyond the potential failure plane. Conservative practice: keep spoil at least 1× depth from edge.",
+    "source": "OSHA 29 CFR 1926.651, general practice"
+  }
+]

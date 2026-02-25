@@ -1,0 +1,24 @@
+{
+  "id": "field-exploration.spt",
+  "name": "Standard Penetration Test (SPT)",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.in-situ-testing",
+  "dependencies": ["field-exploration.drilling-methods", "field-exploration.soil-sampling"],
+  "tags": ["SPT", "N-value", "N60", "N160", "blow-count", "energy-ratio", "hammer-efficiency", "safety-hammer", "automatic-hammer", "donut-hammer", "correlations", "liquefaction", "relative-density", "friction-angle", "undrained-strength"],
+  "standards": ["ASTM-D1586", "ASTM-D6066", "AASHTO-T206"],
+  "key_references": [
+    "Skempton (1986) Standard Penetration Test Procedures — Geotechnique 36(3)",
+    "Seed et al. (1985) SPT-Based Analysis of Cyclic Pore Pressure Generation and Undrained Residual Strength",
+    "Liao & Whitman (1986) Overburden Correction Factors for SPT in Sand",
+    "Youd et al. (2001) Liquefaction Resistance of Soils — NCEER/NSF Workshop",
+    "FHWA NHI-01-031"
+  ],
+  "equation_count": 8,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

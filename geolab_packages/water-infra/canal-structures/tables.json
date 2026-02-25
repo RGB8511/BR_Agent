@@ -1,0 +1,94 @@
+[
+  {
+    "id": "water-infra.canal-structures.tbl-001",
+    "title": "Drop Structure Selection by Head and Discharge",
+    "type": "classification",
+    "data": {
+      "headers": ["Structure Type", "Max Drop (m)", "Max Q (m³/s)", "Tailwater Required", "Best Application"],
+      "rows": [
+        ["Vertical drop (rectangular)", "3.0–4.5", "5.6", "Yes — stilling pool", "Small canals, moderate drops"],
+        ["USBR Type VI impact basin", "1.8", "2.8", "No — self-contained", "Very small canals, limited space"],
+        ["Baffled apron drop", "6.0", "8.5", "No — self-adjusting", "Moderate drops, no reliable tailwater"],
+        ["Pipe drop", "6.0+", "5.6", "No — outlet energy dissipation", "Road crossings combined with drops"],
+        ["Chute drop with stilling basin", "15+", "30+", "Yes — stilling basin", "Large drops, larger canals"],
+        ["Stepped chute", "20+", "Moderate", "Yes — reduced from plain chute", "Steep drops, moderate flows"]
+      ]
+    },
+    "source": "USBR Design of Small Canal Structures"
+  },
+  {
+    "id": "water-infra.canal-structures.tbl-002",
+    "title": "Flow Measurement Structure Selection",
+    "type": "classification",
+    "data": {
+      "headers": ["Structure", "Accuracy", "Head Loss", "Capacity Range", "Advantages", "Limitations"],
+      "rows": [
+        ["Parshall flume", "±3–5%", "Low (0.06–0.12 m)", "0.3 L/s to 85 m³/s", "Standard, well-calibrated, handles sediment", "Fixed structure, submerged flow correction complex"],
+        ["Cutthroat flume", "±3–5%", "Low", "Similar to Parshall", "Flat bottom — easier to construct, portable", "Less standardized than Parshall"],
+        ["Broad-crested weir", "±5%", "Moderate", "Wide range", "Simple, robust, easy to maintain", "Sediment deposition upstream"],
+        ["Sharp-crested weir", "±2%", "High", "Small-moderate", "Most accurate for clean water", "Requires aeration, clogs with debris"],
+        ["Constant-head orifice", "±5%", "Low (0.06–0.15 m)", "Pipe turnout deliveries", "Simple, reliable, low cost", "Requires check structure upstream"],
+        ["Propeller/mag meter", "±1–2%", "Negligible", "Pipe flows", "High accuracy, continuous, electronic", "Cost, requires power, calibration"]
+      ]
+    },
+    "source": "USBR Water Measurement Manual, USGS"
+  },
+  {
+    "id": "water-infra.canal-structures.tbl-003",
+    "title": "Inverted Siphon Design Parameters",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Criterion", "Notes"],
+      "rows": [
+        ["Minimum velocity", "≥ 1.0 m/s (3.3 ft/s)", "Prevent sediment deposition"],
+        ["Maximum velocity", "≤ 3.0 m/s (10 ft/s)", "Limit friction loss and erosion"],
+        ["Entrance transition", "2:1 to 4:1 contraction", "Gradual transition from canal to pipe"],
+        ["Exit transition", "4:1 to 6:1 expansion", "Gradual expansion back to canal"],
+        ["Entrance loss coefficient", "Ke = 0.10 (bellmouth) to 0.50 (square)", "Lower with well-designed inlet"],
+        ["Exit loss coefficient", "Kx = 0.50 (gradual) to 1.0 (sudden)", ""],
+        ["Trashrack", "Required at inlet", "Bar spacing 25–50 mm clear"],
+        ["Air vent", "At high point of barrel", "Prevents vacuum during operation"],
+        ["Blowoff", "At low point", "For draining and sediment removal"],
+        ["Cover over pipe", "Per buried pipe standards (0.6–1.2 m)", "AASHTO loading at road crossings"]
+      ]
+    },
+    "source": "USBR Design of Small Canal Structures"
+  },
+  {
+    "id": "water-infra.canal-structures.tbl-004",
+    "title": "Parshall Flume Free-Flow Equations by Size",
+    "type": "reference",
+    "data": {
+      "headers": ["Throat Width W", "Q = K × Ha^n (Q in cfs, Ha in ft)", "Free-Flow Submergence Limit (Hb/Ha)"],
+      "rows": [
+        ["1 inch", "Q = 0.338 × Ha^1.55", "50%"],
+        ["2 inches", "Q = 0.676 × Ha^1.55", "50%"],
+        ["3 inches", "Q = 0.992 × Ha^1.55", "50%"],
+        ["6 inches", "Q = 2.06 × Ha^1.58", "60%"],
+        ["9 inches", "Q = 3.07 × Ha^1.53", "60%"],
+        ["1 foot", "Q = 4.00 × Ha^1.522", "70%"],
+        ["2 feet", "Q = 8.00 × Ha^1.550", "70%"],
+        ["4 feet", "Q = 16.00 × Ha^1.578", "70%"],
+        ["8 feet", "Q = 32.00 × Ha^1.607", "80%"],
+        ["10–50 feet", "Q = (3.6875W + 2.5) × Ha^1.6", "80%"]
+      ]
+    },
+    "source": "USBR Water Measurement Manual, Parshall (1950)"
+  },
+  {
+    "id": "water-infra.canal-structures.tbl-005",
+    "title": "Check Structure Spacing Guidelines",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Canal Capacity (m³/s)", "Canal Slope", "Check Spacing (km)", "Rationale"],
+      "rows": [
+        ["< 1", "0.0002–0.0005", "0.8–1.5", "Small canals — frequent turnouts, tight level control"],
+        ["1–5", "0.0002–0.0004", "1.5–3.0", "Medium canals — balance between control and cost"],
+        ["5–30", "0.0001–0.0003", "3.0–5.0", "Large canals — fewer but larger checks"],
+        ["> 30", "0.00005–0.0002", "5.0–10.0", "Major canals — radial gate checks typical"],
+        ["Any (automated)", "Any", "As needed", "SCADA-controlled overshot or radial gates — spacing based on delivery requirements"]
+      ]
+    },
+    "source": "USBR, general irrigation practice"
+  }
+]

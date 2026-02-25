@@ -1,0 +1,36 @@
+[
+  {
+    "id": "coatings.protection.surface-prep.eq-001",
+    "title": "Blasting Production Rate (Approximate)",
+    "equation": "Rate = f(nozzle_size, pressure, abrasive, cleanliness_level)",
+    "applicability": "Typical rates for 8mm (5/16\") nozzle at 690 kPa (100 psi): SP 5 white metal: 10–15 m²/hr. SP 10 near-white: 15–25 m²/hr. SP 6 commercial: 25–40 m²/hr. Rates vary significantly with rust grade, coating thickness, and operator skill.",
+    "source": "SSPC estimating guides"
+  },
+  {
+    "id": "coatings.protection.surface-prep.eq-002",
+    "title": "Abrasive Consumption (Expendable)",
+    "equation": "Consumption (kg/m²) ≈ 25–50 for SP 10 (field blasting with mineral abrasive)",
+    "applicability": "Varies with initial condition, nozzle size, pressure, and abrasive type. Garnet: lower consumption (harder, less breakdown). Coal slag: higher consumption. Recyclable metallic: consumption is makeup rate only.",
+    "source": "Industry estimating"
+  },
+  {
+    "id": "coatings.protection.surface-prep.eq-003",
+    "title": "Compressed Air Volume Requirement",
+    "equation": "Q = π/4 × d² × v × C",
+    "variables": {
+      "Q": {"description": "Air volume at nozzle pressure", "units": "m³/min (or cfm)"},
+      "d": {"description": "Nozzle orifice diameter", "units": "m"},
+      "v": {"description": "Air velocity (≈ 380 m/s for 690 kPa)", "units": "m/s"},
+      "C": {"description": "Compressibility factor", "units": "dimensionless"}
+    },
+    "applicability": "Rule of thumb: 6mm nozzle ≈ 4.2 m³/min (150 cfm); 8mm ≈ 7.1 m³/min (250 cfm); 10mm ≈ 11.3 m³/min (400 cfm); 12mm ≈ 15.6 m³/min (550 cfm). Size compressor accordingly with 50% margin for line losses.",
+    "source": "Clemco, Graco — equipment manufacturer data"
+  },
+  {
+    "id": "coatings.protection.surface-prep.eq-004",
+    "title": "Soluble Salt Extraction Concentration",
+    "equation": "Concentration (μg/cm²) = (Conductivity × Volume) / (Area × calibration factor)",
+    "applicability": "Bresle method: 2.5 mL distilled water in 12.5 cm² patch. Conductivity in μS/cm. Use calibration curve for NaCl equivalence. Some field kits give direct μg/cm² reading.",
+    "source": "ISO 8502-6, SSPC Guide 15"
+  }
+]

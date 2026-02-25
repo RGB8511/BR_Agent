@@ -1,0 +1,23 @@
+{
+  "id": "coatings.protection.cathodic-protection",
+  "name": "Cathodic Protection",
+  "level": 1,
+  "discipline": "coatings",
+  "parent": "coatings.protection",
+  "dependencies": ["coatings.foundations.corrosion"],
+  "tags": ["galvanic", "sacrificial-anode", "impressed-current", "ICCP", "reference-electrode", "CSE", "potential", "protection-criteria", "CP-survey", "pipeline", "tank", "marine", "concrete-rebar"],
+  "standards": ["NACE-SP0169", "NACE-SP0176", "NACE-SP0290", "NACE-TM0497", "ASTM-C876"],
+  "key_references": [
+    "Peabody (2001) Peabody's Control of Pipeline Corrosion",
+    "NACE CP1/CP2/CP3 Cathodic Protection Courses",
+    "Uhlig & Revie (2008) Corrosion and Corrosion Control"
+  ],
+  "equation_count": 8,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practitioner",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

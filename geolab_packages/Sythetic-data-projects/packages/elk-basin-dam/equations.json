@@ -1,0 +1,268 @@
+[
+  {
+    "id": "elk-basin.eq.01",
+    "title": "Maximum Grouting Injection Pressure (Hydrofracture Prevention)",
+    "equation": "P_max = 0.5 × D",
+    "latex": "P_{\\max} = 0.5 \\times D",
+    "variables": {
+      "P_max": {
+        "description": "Maximum allowable grouting injection pressure",
+        "units": "psi"
+      },
+      "D": {
+        "description": "Depth of grout hole at the injection interval below ground surface",
+        "units": "ft"
+      }
+    },
+    "constants": {
+      "0.5": {
+        "description": "Empirical pressure coefficient for rock grouting; 0.5 psi per foot of overburden is the standard rule-of-thumb to prevent hydrofracture of the overlying rock mass",
+        "units": "psi/ft"
+      }
+    },
+    "applicability": "Applies to pressure grouting of rock foundations beneath dams and embankments where the objective is to fill open fractures and voids without hydraulically fracturing the host rock. The rule P_max = 0.5 × depth (psi) is widely used in practice and is consistent with USACE and USBR grouting guidance. At Elk Basin Dam, supplemental grouting targets the weathered granodiorite at depths of 20–40 feet below the drainage gallery floor; the corresponding P_max limits are 10–20 psi, ensuring that grout pressure does not exceed the minimum principal stress in the weathered rock mass. Lower pressures (0.25 psi/ft) may be used in the most weathered, weakest intervals (RQD < 10%) to further reduce hydrofracture risk.",
+    "example": "For a grout hole with injection at 30 ft depth: P_max = 0.5 × 30 = 15 psi. This is the maximum surface pressure; down-hole pressure at the packer is P_max plus the grout column head (approximately 0.9 × depth in psi for water).",
+    "source": "USACE EM 1110-2-3506 (Grouting Technology), Section 8-3; USBR Ground Water Manual; FERC Engineering Guidelines Chapter 11. Applied in MWDE Remediation Alternatives Evaluation, November 2025."
+  },
+  {
+    "id": "elk-basin.eq.02",
+    "title": "Left Abutment Seepage Rate Trend (Linear Model)",
+    "equation": "Q(t) = Q_0 + r × t",
+    "latex": "Q(t) = Q_0 + r \\cdot t",
+    "variables": {
+      "Q(t)": {
+        "description": "Seepage rate at time t",
+        "units": "gpm"
+      },
+      "Q_0": {
+        "description": "Baseline seepage rate at reference time t = 0 (2010 reference year); Q_0 = 18.0 gpm",
+        "units": "gpm"
+      },
+      "r": {
+        "description": "Linear seepage trend rate; calibrated to Elk Basin Weir 1 data 2010–2025 as r = 1.57 gpm/yr (approximately 1.5 gpm/yr for design purposes)",
+        "units": "gpm/yr"
+      },
+      "t": {
+        "description": "Time elapsed since reference year",
+        "units": "years"
+      }
+    },
+    "applicability": "Used to project future seepage rates for risk assessment and to evaluate the urgency of grouting remediation. The linear model is fitted to the 2010–2025 Weir 1 data (R² = 0.97), indicating a strong linear trend. Extrapolation beyond 10 years should be treated cautiously because the seepage process may accelerate non-linearly as the flow channel enlarges. The model is used to estimate that seepage will reach approximately 50 gpm by 2035 if no remediation is implemented, which triggers a re-evaluation of the credible failure mode of internal erosion in the weathered granodiorite.",
+    "example": "Projected seepage in 2030 (t = 20 yr from 2010 reference): Q(20) = 18.0 + 1.57 × 20 = 49.4 gpm. Actual 2025 measured value: Q(15) = 18.0 + 1.57 × 15 = 33.6 gpm (measured: 33.7 gpm — excellent fit).",
+    "source": "Calibrated to EBID Instrumentation and Monitoring Summary 2015–2025 (October 2025), Table 12. Linear regression performed in MWDE Remediation Alternatives Evaluation (November 2025)."
+  },
+  {
+    "id": "elk-basin.eq.03",
+    "title": "ASR Penetration Front Advance Rate",
+    "equation": "d_ASR(t) = d_0 + v × t",
+    "latex": "d_{ASR}(t) = d_0 + v \\cdot t",
+    "variables": {
+      "d_ASR(t)": {
+        "description": "Depth of ASR penetration front from the downstream face at time t",
+        "units": "ft"
+      },
+      "d_0": {
+        "description": "Observed penetration depth at reference time t_0; d_0 = 4–6 ft (range, from 2025 petrographic analysis of crown cores)",
+        "units": "ft"
+      },
+      "v": {
+        "description": "Rate of penetration front advance; v = 0.3–0.5 ft/decade (calibrated from comparison of 1998, 2012, and 2025 core petrographic analyses at the crown section)",
+        "units": "ft/decade"
+      },
+      "t": {
+        "description": "Time elapsed since reference year (2025)",
+        "units": "decades"
+      }
+    },
+    "applicability": "Provides a first-order projection of ASR severity zone penetration into the arch concrete. The linear advance model is appropriate for conditions where moisture supply at the downstream face is relatively constant (precipitation and humidity) and where the reactive silica supply within the aggregate is not yet exhausted. The model predicts that without intervention, the penetration front will advance from the current 4–6 ft to approximately 5–8 ft by 2035 and 6–11 ft by 2045, potentially encroaching on the sound interior Zone 4 that currently provides the structural reserve. The model is used to set the timeline for lithium treatment implementation: treatment should be applied before the penetration front exceeds 8 ft (approximately 30% of arch thickness) to retain meaningful benefit.",
+    "example": "Upper-bound penetration in 50 years (5 decades): d_ASR = 6 + 0.5 × 5 = 8.5 ft from downstream face. Lower-bound: d_ASR = 4 + 0.3 × 5 = 5.5 ft. The arch is 22 ft thick; even the upper-bound projection leaves 13.5 ft of sound to mildly affected concrete.",
+    "source": "Rate calibrated from petrographic core analyses at crown section (1998 USBR, 2012 CDSC, 2025 MWDE). Reported in MWDE PFR Geotechnical Investigation Report, November 2025, Section 6.3."
+  },
+  {
+    "id": "elk-basin.eq.04",
+    "title": "Spencer's Method Factor of Safety (Slope Stability)",
+    "equation": "FS = ΣM_resisting / ΣM_driving",
+    "latex": "FS = \\frac{\\sum M_{\\text{resisting}}}{\\sum M_{\\text{driving}}} = \\frac{\\sum \\left[ c'_i \\, l_i + (W_i \\cos\\alpha_i - u_i l_i) \\tan\\phi'_i \\right] \\cos(\\alpha_i - \\theta)}{\\sum W_i \\sin(\\alpha_i - \\theta)}",
+    "variables": {
+      "FS": {
+        "description": "Factor of safety against slope failure (dimensionless)",
+        "units": "—"
+      },
+      "c'_i": {
+        "description": "Effective cohesion intercept for slice i base material",
+        "units": "psf"
+      },
+      "l_i": {
+        "description": "Length of base of slice i",
+        "units": "ft"
+      },
+      "W_i": {
+        "description": "Total weight of slice i (using total unit weights above phreatic surface, buoyant below)",
+        "units": "lbf/ft"
+      },
+      "alpha_i": {
+        "description": "Inclination of slice base from horizontal for slice i",
+        "units": "degrees"
+      },
+      "u_i": {
+        "description": "Pore water pressure at base of slice i; u_i = γ_w × h_w where h_w is the piezometric head above the slice base",
+        "units": "psf"
+      },
+      "phi'_i": {
+        "description": "Effective friction angle for slice i base material",
+        "units": "degrees"
+      },
+      "theta": {
+        "description": "Interslice force inclination angle (constant for all slices in Spencer's method; solved iteratively to satisfy both moment and force equilibrium)",
+        "units": "degrees"
+      }
+    },
+    "material_properties_elk_basin": {
+      "gravel_shell_GP-GM": {"c_prime_psf": 0, "phi_prime_deg": 38, "gamma_pcf": 135},
+      "clay_core_CL":        {"c_prime_psf": 600, "phi_prime_deg": 26, "gamma_pcf": 122},
+      "glacial_till_GC":     {"c_prime_psf": 0, "phi_prime_deg": 34, "gamma_pcf": 130},
+      "weathered_granodiorite": {"c_prime_psf": 200, "phi_prime_deg": 38, "gamma_pcf": 155}
+    },
+    "applicability": "Spencer's method is the limit-equilibrium method of choice for dam foundation stability analyses requiring rigorous equilibrium satisfaction. Unlike simplified Bishop's method (which satisfies only moment equilibrium), Spencer's method satisfies both moment equilibrium and horizontal force equilibrium, providing a theoretically complete solution for any slip surface geometry including non-circular composite surfaces. At Elk Basin Dam, the governing failure surface is a composite plane following the glacial till–weathered rock interface, for which Spencer's method is required. Results: FS = 1.42 (static, normal pool); FS = 1.08 (pseudo-static, k_h = 0.12).",
+    "example": "Static analysis at normal pool with right abutment material properties yields FS = 1.42 against the critical composite surface at the till–rock interface. FERC minimum for normal loading = 1.5; computed FS is 5% below this threshold, triggering enhanced monitoring and periodic re-analysis.",
+    "source": "Spencer, E. (1967). A method of analysis of the stability of embankments assuming parallel interslice forces. Géotechnique, 17(1), 11–26. Applied per FERC Engineering Guidelines Chapter 11, Appendix E. Analysis performed in Rocscience Slide2 v9.0, reported in MWDE PFR Geotechnical Investigation Report, November 2025."
+  },
+  {
+    "id": "elk-basin.eq.05",
+    "title": "Pseudo-Static Seismic Factor of Safety",
+    "equation": "FS_seismic = ΣM_resisting(W_seismic) / ΣM_driving(W_seismic)",
+    "latex": "FS_{\\text{seismic}} = \\frac{\\sum \\left[ c'_i l_i + (W_i \\cos\\alpha_i - k_h W_i \\sin\\alpha_i - u_i l_i) \\tan\\phi'_i \\right]}{\\sum W_i (\\sin\\alpha_i + k_h \\cos\\alpha_i)}",
+    "variables": {
+      "FS_seismic": {
+        "description": "Pseudo-static factor of safety under seismic loading",
+        "units": "—"
+      },
+      "k_h": {
+        "description": "Horizontal seismic coefficient (dimensionless); k_h = 0.12 for Elk Basin Dam, derived from USGS PSHA 10%/50-yr PGA = 0.24g divided by 2.0 per FERC guidance",
+        "units": "—"
+      },
+      "W_i": {
+        "description": "Total weight of slice i",
+        "units": "lbf/ft"
+      },
+      "c'_i": {
+        "description": "Effective cohesion of slice i base material",
+        "units": "psf"
+      },
+      "phi'_i": {
+        "description": "Effective friction angle of slice i base material",
+        "units": "degrees"
+      },
+      "alpha_i": {
+        "description": "Inclination of slice base from horizontal",
+        "units": "degrees"
+      },
+      "u_i": {
+        "description": "Pore water pressure at base of slice i",
+        "units": "psf"
+      }
+    },
+    "applicability": "Pseudo-static analysis applies a constant horizontal force equal to k_h × W to each slice, simulating the inertial force of an earthquake. The method is approximate; it does not model the time-dependent nature of seismic loading or the possibility of transient pore pressure generation. It is most appropriate as a screening tool: if FS_seismic > 1.1–1.2, no further analysis is required; if FS_seismic < 1.0–1.1, Newmark displacement analysis is required. At Elk Basin Dam, FS_seismic = 1.08, triggering Newmark analysis. The seismic coefficient k_h = 0.12 corresponds to the 475-year return period PGA of 0.24g, halved per FERC guidance to account for the transient nature of seismic loading (the Hynes-Griffin and Franklin (1984) approach).",
+    "example": "With k_h = 0.12, the additional driving moment from seismic inertia reduces FS from 1.42 (static) to 1.08. The 24% reduction reflects the moderate seismicity of the Elmore County site and the relatively flat slope of the critical failure surface (low alpha angles reduce the sensitivity to k_h).",
+    "source": "Hynes-Griffin, M.E. and Franklin, A.G. (1984). Rationalizing the seismic coefficient method. USACE WES Miscellaneous Paper GL-84-13. FERC Engineering Guidelines Chapter 11, Section 5.2.3. Applied in MWDE PFR Geotechnical Investigation Report, November 2025."
+  },
+  {
+    "id": "elk-basin.eq.06",
+    "title": "Newmark Sliding Block Permanent Displacement",
+    "equation": "u_N = ∫∫ [a(t) - a_y]⁺ dt²",
+    "latex": "u_N = \\int_0^{T} \\int_0^{t} \\left[ a(\\tau) - a_y \\right]^+ d\\tau \\, dt",
+    "variables": {
+      "u_N": {
+        "description": "Newmark permanent downslope displacement",
+        "units": "inches"
+      },
+      "a(t)": {
+        "description": "Ground acceleration time history at the base of the sliding mass",
+        "units": "g"
+      },
+      "a_y": {
+        "description": "Yield acceleration — the horizontal acceleration at which the factor of safety equals 1.0 on the critical slip surface; a_y = k_y × g. At Elk Basin Dam, a_y = 0.15g, derived from the pseudo-static analysis by interpolating to FS = 1.0.",
+        "units": "g"
+      },
+      "T": {
+        "description": "Duration of ground motion time history",
+        "units": "seconds"
+      },
+      "[·]⁺": {
+        "description": "Macaulay bracket notation: the positive part only (i.e., [x]⁺ = x when x > 0, else 0). Displacement accumulates only when a(t) > a_y.",
+        "units": "—"
+      }
+    },
+    "elk_basin_results": {
+      "yield_acceleration_a_y_g": 0.15,
+      "ground_motion_suite": "USGS Hazus scaled to 10%/50-yr hazard (475-yr return period)",
+      "number_of_records": 10,
+      "displacement_range_inches": [1.8, 3.5],
+      "displacement_median_inches": 2.4,
+      "displacement_84th_percentile_inches": 3.0,
+      "FERC_tolerable_displacement_inches": 12.0,
+      "conclusion": "Tolerable — median 2.4 in well below 12-in limit for embankment wing sections"
+    },
+    "applicability": "The Newmark method treats the potential failure mass as a rigid block on a yielding base. Permanent displacement accumulates when the ground acceleration exceeds the yield acceleration of the slope. The method provides a rational basis for judging the consequence of seismic loading when the pseudo-static FS is below the guideline minimum. It is required by FERC Engineering Guidelines when pseudo-static FS < 1.2. The method assumes that strength does not degrade during shaking (appropriate for drained, non-liquefiable materials such as the glacial till and granodiorite at Elk Basin). Results are reported as a distribution over the ground motion ensemble rather than a deterministic single value.",
+    "example": "For a_y = 0.15g and median 475-yr record: double integration over the 6 time intervals when a(t) > 0.15g yields u_N = 2.4 inches. This is < 12 inches (FERC tolerable limit for embankment wings not forming the primary water barrier), confirming seismic stability.",
+    "source": "Newmark, N.M. (1965). Effects of earthquakes on dams and embankments. Géotechnique, 15(2), 139–160. FERC Engineering Guidelines Chapter 11, Appendix E, Section E.3. Applied in MWDE PFR Geotechnical Investigation Report, November 2025."
+  },
+  {
+    "id": "elk-basin.eq.07",
+    "title": "ASR Compressive Strength Reduction Factor",
+    "equation": "f'c_ASR = f'c_sound × (1 - R_c)",
+    "latex": "f'_{c,ASR} = f'_{c,\\text{sound}} \\times (1 - R_c)",
+    "variables": {
+      "f'c_ASR": {
+        "description": "Reduced compressive strength of ASR-affected concrete in the degraded zone",
+        "units": "psi"
+      },
+      "f'c_sound": {
+        "description": "Compressive strength of sound (unaffected) concrete interior; at Elk Basin Dam, f'c_sound = 6,810 psi (mean of Zone 4 specimens)",
+        "units": "psi"
+      },
+      "R_c": {
+        "description": "Compressive strength reduction ratio for the given ASR severity level (dimensionless). R_c = 0.26 for Zone 1 (severe ASR); R_c = 0.14 for Zone 2 (moderate); R_c = 0.07 for Zone 3 (mild).",
+        "units": "—"
+      }
+    },
+    "elk_basin_values": {
+      "Zone_1_severe":   {"R_c": 0.288, "f_c_sound_psi": 6810, "f_c_ASR_predicted_psi": 4849, "f_c_ASR_measured_psi": 4850},
+      "Zone_2_moderate": {"R_c": 0.145, "f_c_sound_psi": 6810, "f_c_ASR_predicted_psi": 5822, "f_c_ASR_measured_psi": 5820},
+      "Zone_3_mild":     {"R_c": 0.069, "f_c_sound_psi": 6810, "f_c_ASR_predicted_psi": 6340, "f_c_ASR_measured_psi": 6340}
+    },
+    "applicability": "Provides a simple parametric model for estimating ASR-degraded concrete strength as a function of a dimensionless severity reduction coefficient calibrated from core testing. This equation is used in FEM structural analysis to assign spatially varying material properties to the arch: Zone 1 elements (outer 4 ft on downstream face) receive f'c_ASR = 4,850 psi and correspondingly reduced elastic modulus; Zone 4 elements (sound interior) retain f'c = 6,810 psi. The linear reduction model is appropriate for compressive strength over the observed severity range; non-linear models may be needed for more severely degraded concrete (> 50% reduction). Tensile strength reduction is larger in relative terms (37% for Zone 1 vs. 29% for compression), and a separate tensile reduction factor R_t = 0.37 is applied to f't_sound = 510 psi to obtain f't_ASR = 321 psi ≈ 320 psi.",
+    "example": "Zone 1 severe: f'c_ASR = 6,810 × (1 − 0.288) = 6,810 × 0.712 = 4,849 psi ≈ 4,850 psi measured. R_c computed from measured data: R_c = 1 − (4,850 / 6,810) = 0.288 ≈ 29%.",
+    "source": "Reduction ratios calibrated from 2025 crown core testing (MWDE PFR Geotechnical Investigation Report, November 2025, Tables 10–11). Strength reduction framework consistent with Smaoui et al. (2004), Cement and Concrete Research, Vol. 34, and ACI 221R-84."
+  },
+  {
+    "id": "elk-basin.eq.08",
+    "title": "Arch Dam Tensile Stress Screening Criterion",
+    "equation": "σ_t_demand ≤ f't_ASR",
+    "latex": "\\sigma_{t,\\text{demand}} \\leq f'_{t,ASR}",
+    "variables": {
+      "sigma_t_demand": {
+        "description": "Calculated tensile stress in the arch concrete under the governing load combination (temperature contraction, seismic, or reservoir drawdown); at Elk Basin Dam crown section, σ_t_demand = 250–350 psi under design load combinations from the 2020 FERC FEM analysis",
+        "units": "psi"
+      },
+      "f't_ASR": {
+        "description": "Tensile strength of ASR-degraded concrete in the governing zone (Zone 1, downstream fiber); f't_ASR = 320 psi (mean, from ASTM C496 split cylinder testing of Zone 1 core specimens)",
+        "units": "psi"
+      }
+    },
+    "elk_basin_evaluation": {
+      "demand_range_psi": [250, 350],
+      "demand_description": "Range from 2020 FERC FEM analysis covering temperature contraction, seismic, and reservoir drawdown combinations at the arch crown downstream fiber",
+      "capacity_psi": 320,
+      "capacity_description": "Mean split tensile strength of Zone 1 (severe ASR) core specimens; lower bound 295 psi",
+      "mean_demand_psi": 300,
+      "demand_to_capacity_ratio_mean": 0.94,
+      "demand_to_capacity_ratio_upper": 1.09,
+      "conclusion": "Mean demand (300 psi) < capacity (320 psi), so mean check passes. Upper-bound demand (350 psi) > capacity (320 psi) indicating marginal exceedance under worst-case load combination. Updated FEM with 2025 material properties is required to refine demand estimate.",
+      "note": "This screening uses the 2020 FEM demands with 2025 measured capacities. The updated FEM (Alternative 3, $60–90K) will provide current demand estimates. If updated FEM demands exceed 320 psi, structural intervention (epoxy injection or buttress) is required."
+    },
+    "applicability": "Provides a simple pass/fail screening check for tensile overstress in the ASR-degraded downstream fiber of the arch. Arch dams develop compressive ring stresses under normal reservoir loading (the dominant load case), but tensile stresses arise at (1) abutment contacts due to Poisson effects, (2) the upstream face under thermal contraction or reservoir drawdown, and (3) the downstream face under seismic loading. The downstream fiber of the crown section, where ASR degradation is most severe, is the critical element for the seismic and thermal tensile load cases. The criterion σ_t ≤ f't ensures that the reduced tensile capacity is not exceeded under design loading, preserving structural integrity of the arch.",
+    "example": "Under the temperature + seismic combination at the crown downstream fiber: σ_t_demand = 320 psi (upper estimate) vs. f't_ASR = 320 psi (mean capacity, lower bound 295 psi). Demand/capacity = 1.00 (mean) to 1.08 (demand vs. lower bound capacity). This marginal ratio is the primary justification for recommending the FEM update as a near-term action.",
+    "source": "Screening criterion consistent with FERC Engineering Guidelines Chapter 11, Section 4.6 (Concrete Dam Evaluation). Tensile capacity from ASTM C496 testing reported in MWDE PFR Geotechnical Investigation Report, November 2025, Table 11. FEM demands from CDSC FERC Part 12D Inspection Report, October 2020, Appendix C."
+  }
+]

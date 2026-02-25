@@ -1,0 +1,154 @@
+[
+  {
+    "id": "hydrology.foundations.fundamentals.eq-001",
+    "title": "Water Balance Equation",
+    "equation": "P = Q + ET + ΔS",
+    "variables": {
+      "P": {"description": "Precipitation", "units": "mm or inches"},
+      "Q": {"description": "Runoff (surface + subsurface)", "units": "mm or inches"},
+      "ET": {"description": "Evapotranspiration", "units": "mm or inches"},
+      "ΔS": {"description": "Change in storage", "units": "mm or inches"}
+    },
+    "source": "Fundamental — Chow et al. (1988)"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-002",
+    "title": "SCS Curve Number Runoff Equation",
+    "equation": "Q = (P - Ia)² / (P - Ia + S)  for P > Ia;  Q = 0 otherwise",
+    "variables": {
+      "Q": {"description": "Direct runoff depth", "units": "inches"},
+      "P": {"description": "Rainfall depth", "units": "inches"},
+      "Ia": {"description": "Initial abstraction = 0.2S (standard) or 0.05S (updated)", "units": "inches"},
+      "S": {"description": "Potential maximum retention = (1000/CN) - 10", "units": "inches"}
+    },
+    "source": "USDA-NRCS NEH Part 630, Chapter 10"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-003",
+    "title": "Rational Method",
+    "equation": "Qp = C × i × A",
+    "variables": {
+      "Qp": {"description": "Peak discharge", "units": "cfs (US) or m³/s (metric with conversion)"},
+      "C": {"description": "Runoff coefficient (dimensionless, 0–1)", "units": "dimensionless"},
+      "i": {"description": "Rainfall intensity for duration = tc", "units": "in/hr (US)"},
+      "A": {"description": "Drainage area", "units": "acres (US)"}
+    },
+    "applicability": "Small watersheds < 80–200 ha (200–500 acres). Metric form: Qp = 0.00278 × C × i(mm/hr) × A(ha).",
+    "source": "Mulvaney (1851), Kuichling (1889)"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-004",
+    "title": "Kirpich Time of Concentration",
+    "equation": "tc = 0.0078 × L^0.77 × S^(-0.385)",
+    "variables": {
+      "tc": {"description": "Time of concentration", "units": "minutes"},
+      "L": {"description": "Maximum length of flow path", "units": "feet"},
+      "S": {"description": "Average watershed slope = ΔH/L", "units": "ft/ft"}
+    },
+    "applicability": "Originally developed for small rural watersheds in Tennessee. Tends to underestimate tc for flat, heavily vegetated areas.",
+    "source": "Kirpich (1940)"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-005",
+    "title": "Return Period Probability",
+    "equation": "P(at least one in n years) = 1 - (1 - 1/T)^n",
+    "variables": {
+      "T": {"description": "Return period", "units": "years"},
+      "n": {"description": "Design life or period of interest", "units": "years"}
+    },
+    "applicability": "Example: 100-yr flood in 50-yr design life: P = 1 - (1-0.01)^50 = 0.395 (39.5% chance).",
+    "source": "Probability theory"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-006",
+    "title": "Horton's Infiltration Equation",
+    "equation": "f(t) = fc + (f0 - fc) × exp(-kt)",
+    "variables": {
+      "f(t)": {"description": "Infiltration rate at time t", "units": "mm/hr or in/hr"},
+      "f0": {"description": "Initial infiltration rate", "units": "mm/hr"},
+      "fc": {"description": "Final (equilibrium) infiltration rate", "units": "mm/hr"},
+      "k": {"description": "Decay constant", "units": "1/hr"}
+    },
+    "source": "Horton (1933)"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-007",
+    "title": "Green-Ampt Infiltration Model",
+    "equation": "f = Ks × [1 + (ψ × Δθ) / F]",
+    "variables": {
+      "f": {"description": "Infiltration rate", "units": "cm/hr"},
+      "Ks": {"description": "Saturated hydraulic conductivity", "units": "cm/hr"},
+      "ψ": {"description": "Wetting front suction head", "units": "cm"},
+      "Δθ": {"description": "Moisture deficit (porosity - initial moisture)", "units": "dimensionless"},
+      "F": {"description": "Cumulative infiltration", "units": "cm"}
+    },
+    "source": "Green & Ampt (1911)"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-008",
+    "title": "SCS Dimensionless Unit Hydrograph — Peak Flow",
+    "equation": "qp = (484 × A) / Tp",
+    "variables": {
+      "qp": {"description": "Peak discharge of UH", "units": "cfs"},
+      "A": {"description": "Watershed area", "units": "mi²"},
+      "Tp": {"description": "Time to peak = Δt/2 + tlag", "units": "hours"},
+      "484": {"description": "Constant for US customary units (peaking factor)", "units": ""}
+    },
+    "applicability": "SCS triangular approximation. Metric: qp = 2.08A/Tp (qp in m³/s, A in km², Tp in hours).",
+    "source": "USDA-NRCS NEH Part 630, Chapter 16"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-009",
+    "title": "SCS Lag Equation",
+    "equation": "tlag = (L^0.8 × (S_retention + 1)^0.7) / (1900 × Y^0.5)",
+    "variables": {
+      "tlag": {"description": "Watershed lag time (centroid of rainfall to peak of UH)", "units": "hours"},
+      "L": {"description": "Hydraulic length (longest flow path)", "units": "feet"},
+      "S_retention": {"description": "SCS retention = (1000/CN) - 10", "units": "inches"},
+      "Y": {"description": "Average watershed slope", "units": "percent"}
+    },
+    "applicability": "tc ≈ tlag / 0.6. Valid for rural and suburban watersheds.",
+    "source": "USDA-NRCS TR-55"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-010",
+    "title": "Penman-Monteith Reference ET (FAO-56)",
+    "equation": "ET0 = [0.408Δ(Rn-G) + γ(900/(T+273))u2(es-ea)] / [Δ + γ(1+0.34u2)]",
+    "variables": {
+      "ET0": {"description": "Reference evapotranspiration", "units": "mm/day"},
+      "Δ": {"description": "Slope of saturation vapor pressure curve at T", "units": "kPa/°C"},
+      "Rn": {"description": "Net radiation at crop surface", "units": "MJ/m²/day"},
+      "G": {"description": "Soil heat flux density", "units": "MJ/m²/day"},
+      "γ": {"description": "Psychrometric constant", "units": "kPa/°C"},
+      "T": {"description": "Mean daily air temperature at 2m", "units": "°C"},
+      "u2": {"description": "Wind speed at 2m height", "units": "m/s"},
+      "es-ea": {"description": "Saturation vapor pressure deficit", "units": "kPa"}
+    },
+    "source": "Allen et al. (1998), FAO Irrigation and Drainage Paper No. 56"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-011",
+    "title": "Curve Number — Potential Maximum Retention",
+    "equation": "S = (1000/CN) - 10",
+    "variables": {
+      "S": {"description": "Potential maximum retention after runoff begins", "units": "inches"},
+      "CN": {"description": "Curve number (0–100)", "units": "dimensionless"}
+    },
+    "applicability": "Metric form: S = (25400/CN) - 254 (mm). CN is adjusted for antecedent moisture conditions (AMC I dry, AMC II normal, AMC III wet).",
+    "source": "USDA-NRCS"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.eq-012",
+    "title": "Hargreaves Reference ET (Simplified)",
+    "equation": "ET0 = 0.0023 × (Tmean + 17.8) × (Tmax - Tmin)^0.5 × Ra",
+    "variables": {
+      "ET0": {"description": "Reference evapotranspiration", "units": "mm/day"},
+      "Tmean": {"description": "Mean daily temperature", "units": "°C"},
+      "Tmax": {"description": "Maximum daily temperature", "units": "°C"},
+      "Tmin": {"description": "Minimum daily temperature", "units": "°C"},
+      "Ra": {"description": "Extraterrestrial radiation", "units": "mm/day equivalent"}
+    },
+    "applicability": "Requires only temperature data. Less accurate than Penman-Monteith but useful where meteorological data is limited.",
+    "source": "Hargreaves & Samani (1985)"
+  }
+]

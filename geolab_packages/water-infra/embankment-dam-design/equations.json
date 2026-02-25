@@ -1,0 +1,131 @@
+[
+  {
+    "id": "water-infra.embankment-dam-design.eq-001",
+    "title": "Flow Net Seepage Quantity",
+    "equation": "q = k × H × (Nf / Nd)",
+    "variables": {
+      "q": {"description": "Seepage flow per unit length of dam", "units": "m³/s per m"},
+      "k": {"description": "Hydraulic conductivity (permeability) of the soil", "units": "m/s"},
+      "H": {"description": "Total head (difference between upstream and downstream water levels)", "units": "m"},
+      "Nf": {"description": "Number of flow channels in the flow net", "units": "dimensionless"},
+      "Nd": {"description": "Number of equipotential drops", "units": "dimensionless"}
+    },
+    "applicability": "For homogeneous, isotropic section. For anisotropic soils, transform section: x_transformed = x × √(kv/kh). For zoned dams, use numerical seepage analysis.",
+    "source": "Cedergren (1989), Das (2019)"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-002",
+    "title": "Filter Retention Criterion (USBR/USACE)",
+    "equation": "D15F ≤ 5 × d85B",
+    "variables": {
+      "D15F": {"description": "15% finer size of filter material", "units": "mm"},
+      "d85B": {"description": "85% finer size of base (protected) soil", "units": "mm"}
+    },
+    "applicability": "Simplified criterion. USBR method adjusts based on percent finer than No. 200 sieve in base soil: if > 85% finer than No. 200, D15F ≤ 9 × d85B (regraded). Full USBR procedure considers base soil gradation category (1–4) and adjusts D15F limit accordingly.",
+    "source": "USBR DS-13 Ch5, USACE EM 1110-2-1901"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-003",
+    "title": "Filter Permeability Criterion",
+    "equation": "D15F ≥ 5 × d15B",
+    "variables": {
+      "D15F": {"description": "15% finer size of filter material", "units": "mm"},
+      "d15B": {"description": "15% finer size of base soil", "units": "mm"}
+    },
+    "applicability": "Ensures filter is at least 25× more permeable than base soil (k ∝ D²). For drains, permeability must also handle the design seepage flow: Q = k × i × A.",
+    "source": "USBR DS-13 Ch5, Terzaghi filter criteria"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-004",
+    "title": "Exit Gradient (Vertical — Foundation Piping)",
+    "equation": "i_exit = Δh / Δl",
+    "variables": {
+      "i_exit": {"description": "Hydraulic gradient at the downstream exit point", "units": "dimensionless"},
+      "Δh": {"description": "Head loss between last two equipotential lines at exit", "units": "m"},
+      "Δl": {"description": "Distance between those equipotential lines", "units": "m"}
+    },
+    "applicability": "Critical gradient i_cr ≈ (Gs-1)(1-n) ≈ 1.0. Factor of safety against piping: FS = i_cr / i_exit. Required FS ≥ 3.0–4.0 (USACE), ≥ 2.0–3.0 (USBR). Weighted filter or drainage blanket at toe reduces exit gradients.",
+    "source": "Terzaghi, USACE EM 1110-2-1901"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-005",
+    "title": "Significant Wave Height (SMB Method)",
+    "equation": "Hs = 0.0016 × √(F) × U²/g (approximate, deep water, fully developed)",
+    "alt_form": "USACE SPM: Hs = f(U, F, d) from nomographs",
+    "variables": {
+      "Hs": {"description": "Significant wave height (average of highest 1/3)", "units": "m"},
+      "F": {"description": "Fetch length (distance of open water over which wind blows)", "units": "m"},
+      "U": {"description": "Wind speed (adjusted for overwater, duration, elevation)", "units": "m/s"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"}
+    },
+    "applicability": "Simplified version — use USACE Shore Protection Manual or CEM for detailed analysis. Wind speed adjustments: overwater factor 1.1, duration adjustment for fetch-limited vs duration-limited.",
+    "source": "USACE Shore Protection Manual (SPM), USBR DS-13 Ch6"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-006",
+    "title": "Wind Setup (Water Surface Tilt)",
+    "equation": "S = (U² × F) / (62,000 × d_avg) (English units)",
+    "variables": {
+      "S": {"description": "Wind setup — rise in water level at downwind shore", "units": "feet"},
+      "U": {"description": "Wind speed over the reservoir", "units": "mph"},
+      "F": {"description": "Fetch length", "units": "miles"},
+      "d_avg": {"description": "Average reservoir depth along fetch", "units": "feet"}
+    },
+    "applicability": "Zuider Zee formula. SI form: S = U²F/(g×d_avg) × 3.5×10⁻⁶. Typically small (0.01–0.30 m) for most reservoirs but can be significant for shallow, long-fetch reservoirs.",
+    "source": "USACE, USBR"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-007",
+    "title": "Riprap Sizing — Hudson Formula (Upstream Slope)",
+    "equation": "W50 = (γ_r × Hs³) / (K_D × (S_r - 1)³ × cot(θ))",
+    "variables": {
+      "W50": {"description": "Median weight of riprap stone", "units": "kN or lbs"},
+      "γ_r": {"description": "Unit weight of riprap stone", "units": "kN/m³"},
+      "Hs": {"description": "Significant wave height", "units": "m"},
+      "K_D": {"description": "Stability coefficient (2.0–4.0 for angular quarrystone)", "units": "dimensionless"},
+      "S_r": {"description": "Specific gravity of stone", "units": "dimensionless"},
+      "θ": {"description": "Angle of embankment slope from horizontal", "units": "degrees"}
+    },
+    "applicability": "Originally for breakwater armor but adapted for dam slopes. USACE method (ETL 1110-2-334) provides alternative. Minimum riprap layer thickness = 1.5 × D50 or D100, whichever is greater. Must be placed on a properly designed bedding/filter layer.",
+    "source": "Hudson (1959), USACE Shore Protection Manual"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-008",
+    "title": "Grout Curtain Depth Guideline",
+    "equation": "D_grout = (0.3 to 0.7) × H",
+    "variables": {
+      "D_grout": {"description": "Depth of grout curtain below dam foundation", "units": "m"},
+      "H": {"description": "Reservoir head on the dam", "units": "m"}
+    },
+    "applicability": "USBR guideline for initial sizing. Deeper at abutments (wrap around flanks). Actual depth determined by geological conditions — grouting continues until Lugeon values < 3–5 Lu are achieved. Multiple rows may be needed in highly fractured rock.",
+    "source": "USBR DS-13 Ch16"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-009",
+    "title": "Blanket Theory — Required Weight for Exit Gradient Control",
+    "equation": "FS = (t_b × γ_b) / (γ_w × h_excess)",
+    "variables": {
+      "FS": {"description": "Factor of safety against heave at downstream blanket edge", "units": "dimensionless"},
+      "t_b": {"description": "Thickness of impervious blanket", "units": "m"},
+      "γ_b": {"description": "Submerged unit weight of blanket material", "units": "kN/m³"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"},
+      "h_excess": {"description": "Excess artesian head above ground surface at blanket edge", "units": "m"}
+    },
+    "applicability": "For alluvial foundation with natural impervious blanket downstream. FS ≥ 1.5–2.0. If blanket is thin or absent, relief wells or weighted berm required.",
+    "source": "USACE EM 1110-2-1901"
+  },
+  {
+    "id": "water-infra.embankment-dam-design.eq-010",
+    "title": "Freeboard Computation",
+    "equation": "Freeboard = IDF surcharge + wave runup + wind setup + settlement + safety margin",
+    "variables": {
+      "IDF_surcharge": {"description": "Rise in reservoir level during IDF routing above normal pool", "units": "m"},
+      "wave_runup": {"description": "Height of wave runup on the dam slope", "units": "m"},
+      "wind_setup": {"description": "Wind-induced water surface rise", "units": "m"},
+      "settlement": {"description": "Long-term crest settlement allowance (1–5% of height)", "units": "m"},
+      "safety_margin": {"description": "Additional margin (0.3–1.0 m)", "units": "m"}
+    },
+    "applicability": "Crest elevation = Normal max pool + freeboard. USBR requires minimum 3 ft (0.9 m) freeboard above maximum water surface from PMF routing. USACE similar. For significant/low hazard dams, reduced IDF may be used.",
+    "source": "USBR DS-13 Ch6, USACE EM 1110-2-2300"
+  }
+]

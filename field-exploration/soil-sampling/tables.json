@@ -1,0 +1,93 @@
+[
+  {
+    "id": "field-exploration.soil-sampling.tbl-001",
+    "title": "Sampler Types, Dimensions, and Applications",
+    "type": "classification",
+    "data": {
+      "headers": ["Sampler", "OD (mm)", "ID (mm)", "Area Ratio (%)", "Sample Quality", "Best Application"],
+      "rows": [
+        ["Split-spoon (SPT)", "51", "35", "112", "Disturbed", "Classification, moisture, SPT N-value"],
+        ["Shelby tube (3 in)", "76", "73", "~10", "Undisturbed (moderate)", "Standard undisturbed — stiff to soft clay"],
+        ["Shelby tube (5 in)", "127", "122", "~8", "Undisturbed (good)", "Better quality — larger specimens"],
+        ["Fixed piston (Osterberg)", "76", "73", "~10", "Undisturbed (high)", "Soft clay — best tube sampler"],
+        ["Denison / Pitcher", "152–165", "Various", "15–25", "Undisturbed (moderate)", "Stiff-hard clay, silt, soft rock"],
+        ["Gel-push (GP-S)", "76–100", "71–95", "~10", "Undisturbed (very high)", "Soft-firm clay, highest tube quality"],
+        ["Block sample (hand-cut)", "200–300 cube", "—", "0", "Undisturbed (best possible)", "Cohesive soil in test pits"],
+        ["Sherbrooke block", "250 dia", "—", "—", "Undisturbed (very high)", "Below WT where blocks impossible"],
+        ["California sampler (2.5 in)", "76", "64", "~30", "Partially disturbed", "Stiff residual soils, alluvium (W US practice)"],
+        ["Macro-core (direct push)", "25–50", "22–45", "15–25", "Disturbed-partial", "Continuous profile, environmental"]
+      ]
+    },
+    "source": "Hvorslev (1949), ASTM D1587, Ladd & DeGroot (2003)"
+  },
+  {
+    "id": "field-exploration.soil-sampling.tbl-002",
+    "title": "Lunne et al. Sample Quality Categories",
+    "type": "classification",
+    "data": {
+      "headers": ["Category", "Δe/e₀ (OCR 1–2)", "Δe/e₀ (OCR 2–4)", "Assessment", "Typical Sampler"],
+      "rows": [
+        ["1", "< 0.04", "< 0.03", "Very good to excellent", "Fixed piston, Sherbrooke block, GP-S"],
+        ["2", "0.04–0.07", "0.03–0.05", "Good to fair", "Good Shelby tube push, careful handling"],
+        ["3", "0.07–0.14", "0.05–0.10", "Poor", "Average Shelby tube, some handling issues"],
+        ["4", "> 0.14", "> 0.10", "Very poor", "Driven samples, disturbed Shelby"]
+      ]
+    },
+    "source": "Lunne et al. (1997, 2006)"
+  },
+  {
+    "id": "field-exploration.soil-sampling.tbl-003",
+    "title": "Sampler Selection by Soil Type",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Soil Type", "Recommended Sampler", "Alternative", "Notes"],
+      "rows": [
+        ["Very soft clay (Su < 12 kPa)", "Fixed piston (Osterberg)", "Sherbrooke block, GP-S", "Sample retention critical — suction from piston essential"],
+        ["Soft-medium clay (Su 12–50 kPa)", "Fixed piston or Shelby tube", "Block sample in test pit", "Shelby acceptable with careful push and handling"],
+        ["Stiff-hard clay (Su 50–200 kPa)", "Shelby tube (hydraulic push)", "Denison/Pitcher barrel", "May need to pre-drill pilot hole; high push force"],
+        ["Very stiff clay / soft rock", "Denison/Pitcher barrel", "Rock coring (triple-tube)", "Shelby tube usually can't be pushed"],
+        ["Silt (above WT)", "Shelby tube", "Fixed piston", "Cohesion from partial saturation helps retention"],
+        ["Silt (below WT)", "Fixed piston", "Gel-push", "Sample loss likely with open tube below WT"],
+        ["Sand — all densities", "SPT split-spoon (disturbed only)", "Frozen sampling (research)", "Undisturbed sampling of sand essentially impossible with tubes; use in-situ tests (CPT, SPT) instead"],
+        ["Gravel / cobbles", "Bulk sample from test pit", "—", "No tube sampler works; large bulk samples needed"],
+        ["Organic soil / peat", "Shelby tube or fixed piston", "Block sample", "Very compressible; sample carefully; extrude immediately"]
+      ]
+    },
+    "source": "Ladd & DeGroot (2003), FHWA NHI-01-031, general practice"
+  },
+  {
+    "id": "field-exploration.soil-sampling.tbl-004",
+    "title": "Sample Handling and Preservation Requirements (ASTM D4220)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Requirement", "Group A (Moisture only)", "Group B (Index tests)", "Group C (Undisturbed — strength/compressibility)", "Group D (Undisturbed — sensitive/critical)"],
+      "rows": [
+        ["Container", "Glass jar, sealed bag", "Sealed bag, jar, liner", "Sealed tube with end caps and wax", "Sealed tube or block, wax, humidity room"],
+        ["Protection", "Moisture seal only", "Prevent drying, protect from impact", "No vibration, no temperature extremes, upright", "As C plus temperature-controlled transport"],
+        ["Temperature control", "No", "No", "Avoid freezing and > 30°C", "Maintain 3–30°C; refrigerate if > 3 days"],
+        ["Transport", "Any", "Protect from damage", "Padded, vibration-isolated, upright", "Padded, vibration-isolated, upright, temperature-controlled"],
+        ["Time to test", "No limit if sealed", "No limit if sealed", "< 30 days preferred", "< 14 days for sensitive clays"],
+        ["Labeling", "Project, boring, depth, date", "Same + soil type", "Same + sampler type, orientation", "Same + temperature log"]
+      ]
+    },
+    "source": "ASTM D4220"
+  },
+  {
+    "id": "field-exploration.soil-sampling.tbl-005",
+    "title": "Effects of Sample Disturbance on Laboratory Test Results",
+    "type": "reference",
+    "data": {
+      "headers": ["Property", "Effect of Disturbance", "Consequence for Design"],
+      "rows": [
+        ["Preconsolidation pressure (σ'p)", "Underestimated — yield point becomes less distinct", "OCR underestimated; settlement overpredicted or incorrect stress history"],
+        ["Compression index (Cc)", "Slightly affected (often appears lower in recompression zone)", "Less reliable settlement prediction"],
+        ["Coefficient of consolidation (cv)", "Overestimated in recompression range, reasonable in virgin compression", "Time rate of settlement prediction affected"],
+        ["Undrained shear strength (Su)", "Decreased for NC clays; increased for heavily OC clays", "Unconservative for NC; conservative for OC — but neither is correct"],
+        ["Effective friction angle (φ')", "Generally not significantly affected", "Relatively robust parameter"],
+        ["Permeability (k)", "May increase (disrupted fabric opens flow paths) or decrease (remolded clay)", "Uncertain — field permeability tests preferred"],
+        ["Small-strain stiffness (G₀, E₀)", "Significantly underestimated", "Use field seismic methods (SCPT, crosshole) for G₀ instead"]
+      ]
+    },
+    "source": "Ladd & DeGroot (2003), Lunne et al. (1997)"
+  }
+]

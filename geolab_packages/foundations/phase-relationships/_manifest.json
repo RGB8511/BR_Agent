@@ -1,0 +1,22 @@
+{
+  "id": "geotechnical.foundations.phase-relationships",
+  "name": "Phase Relationships & Index Properties",
+  "level": 0,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.foundations",
+  "dependencies": [],
+  "tags": ["void-ratio", "porosity", "saturation", "unit-weight", "moisture-content", "specific-gravity", "relative-density", "phase-diagram"],
+  "standards": ["D2216", "D854", "D4253", "D4254", "D2937", "D7263"],
+  "key_references": [
+    "Holtz, Kovacs & Sheahan (2011) An Introduction to Geotechnical Engineering",
+    "Das (2019) Principles of Geotechnical Engineering"
+  ],
+  "equation_count": 18,
+  "concept_count": 12,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

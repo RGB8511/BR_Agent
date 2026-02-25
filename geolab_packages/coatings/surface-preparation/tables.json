@@ -1,0 +1,89 @@
+[
+  {
+    "id": "coatings.protection.surface-prep.tbl-001",
+    "title": "SSPC/NACE/ISO Surface Cleanliness Standards Cross-Reference",
+    "type": "classification",
+    "data": {
+      "headers": ["SSPC", "NACE", "ISO 8501-1", "Description", "Typical Use"],
+      "rows": [
+        ["SP5", "No. 1", "Sa 3", "White metal blast — all visible contamination removed", "Immersion, high-performance, zinc-rich primers"],
+        ["SP10", "No. 2", "Sa 2½", "Near-white blast — 95% clean", "Most industrial coating systems"],
+        ["SP6", "No. 3", "Sa 2", "Commercial blast — 67% clean", "General atmospheric coatings"],
+        ["SP7", "No. 4", "Sa 1", "Brush-off blast — loose material removed", "Maintenance overcoating"],
+        ["SP11", "—", "—", "Power tool to bare metal (25 μm profile)", "Where blasting not feasible"],
+        ["SP3", "—", "St 3", "Power tool cleaning", "Light-duty maintenance"],
+        ["SP2", "—", "St 2", "Hand tool cleaning", "Minimal preparation"],
+        ["SP1", "—", "—", "Solvent cleaning", "Always first step"]
+      ]
+    },
+    "source": "SSPC, NACE, ISO 8501-1"
+  },
+  {
+    "id": "coatings.protection.surface-prep.tbl-002",
+    "title": "Abrasive Media Selection Guide",
+    "type": "reference",
+    "data": {
+      "headers": ["Media", "Shape", "Hardness (Mohs)", "Profile Range (μm)", "Recyclability", "Dust Level"],
+      "rows": [
+        ["Steel grit (G25–G80)", "Angular", "7–8", "50–115", "High (shop)", "Low"],
+        ["Steel shot (S170–S460)", "Round", "7–8", "25–75 (peening)", "High (shop)", "Low"],
+        ["Coal slag", "Angular", "6–7", "50–100", "Single use", "Moderate-High"],
+        ["Copper slag", "Angular", "6–7", "50–100", "Single use", "Low-Moderate"],
+        ["Garnet", "Sub-angular", "7–8", "50–75", "Limited reuse", "Low"],
+        ["Aluminum oxide", "Angular", "9", "50–115", "Moderate reuse", "Low"],
+        ["Glass bead", "Round", "5–6", "25–50", "Limited", "Low"],
+        ["Sponge (with abrasive)", "Sponge matrix", "Varies", "25–75", "Recyclable", "Very low"]
+      ]
+    },
+    "source": "SSPC Guide 6, ASTM D4940"
+  },
+  {
+    "id": "coatings.protection.surface-prep.tbl-003",
+    "title": "Surface Profile Requirements by Coating Type",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Coating Generic Type", "Typical DFT (μm)", "Profile Range (μm)", "Profile (mils)"],
+      "rows": [
+        ["Inorganic zinc-rich primer", "50–75", "38–75", "1.5–3.0"],
+        ["Organic zinc-rich primer", "50–100", "38–75", "1.5–3.0"],
+        ["Epoxy primer", "75–125", "38–63", "1.5–2.5"],
+        ["Epoxy high-build", "125–250", "50–75", "2.0–3.0"],
+        ["Polyurethane topcoat", "50–75", "25–50", "1.0–2.0"],
+        ["Coal tar epoxy", "200–400", "63–100", "2.5–4.0"],
+        ["Polysiloxane", "75–125", "38–75", "1.5–3.0"],
+        ["High-build epoxy (immersion)", "200–300", "63–115", "2.5–4.5"],
+        ["Thermal spray (zinc/aluminum)", "125–375", "63–100", "2.5–4.0"]
+      ]
+    },
+    "source": "SSPC, manufacturer data sheets, general practice"
+  },
+  {
+    "id": "coatings.protection.surface-prep.tbl-004",
+    "title": "Maximum Soluble Salt Levels for Coating Application",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Contaminant", "Mild Atmospheric (μg/cm²)", "Industrial/Marine (μg/cm²)", "Immersion Service (μg/cm²)"],
+      "rows": [
+        ["Chloride (Cl⁻)", "< 7", "< 5", "< 3"],
+        ["Sulfate (SO₄²⁻)", "< 17", "< 10", "< 5"],
+        ["Total soluble salts", "< 40", "< 20", "< 10"]
+      ]
+    },
+    "source": "ISO 8502-9, SSPC Guide 15, NACE SP0508. Note: thresholds vary by coating manufacturer and service environment."
+  },
+  {
+    "id": "coatings.protection.surface-prep.tbl-005",
+    "title": "SSPC-SP12 / NACE No. 5 Water Jetting Cleanliness Levels",
+    "type": "classification",
+    "data": {
+      "headers": ["Designation", "Condition", "Equivalent Visual"],
+      "rows": [
+        ["WJ-1", "Clean to bare substrate", "Equivalent to SP5 (no profile created)"],
+        ["WJ-2", "Very thorough cleaning", "Equivalent to SP10 (≤ 5% staining)"],
+        ["WJ-3", "Thorough cleaning", "Equivalent to SP6 (≤ 33% staining)"],
+        ["WJ-4", "Light cleaning", "Equivalent to SP7 (loose material removed)"]
+      ]
+    },
+    "source": "SSPC-SP12 / NACE No. 5"
+  }
+]

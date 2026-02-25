@@ -1,0 +1,164 @@
+[
+  {
+    "id": "geotechnical.foundations.soil-classification.tbl-001",
+    "title": "USCS Grain Size Boundaries",
+    "type": "classification",
+    "data": {
+      "headers": ["Soil Component", "Sieve/Size", "Diameter Range"],
+      "rows": [
+        ["Boulders", "> 12 in", "> 305 mm"],
+        ["Cobbles", "3–12 in", "75–305 mm"],
+        ["Gravel (coarse)", "3 in – 3/4 in", "75–19 mm"],
+        ["Gravel (fine)", "3/4 in – No. 4", "19–4.75 mm"],
+        ["Sand (coarse)", "No. 4 – No. 10", "4.75–2.0 mm"],
+        ["Sand (medium)", "No. 10 – No. 40", "2.0–0.425 mm"],
+        ["Sand (fine)", "No. 40 – No. 200", "0.425–0.075 mm"],
+        ["Fines (silt and clay)", "Passing No. 200", "< 0.075 mm"]
+      ]
+    },
+    "source": "ASTM D2487"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.tbl-002",
+    "title": "USCS Symbols and Descriptions",
+    "type": "classification",
+    "data": {
+      "headers": ["Symbol", "Description", "Criteria Summary"],
+      "rows": [
+        ["GW", "Well-graded gravel", "< 5% fines, Cu ≥ 4, 1 ≤ Cc ≤ 3"],
+        ["GP", "Poorly-graded gravel", "< 5% fines, fails Cu or Cc"],
+        ["GM", "Silty gravel", "> 12% fines, fines below A-line or PI < 4"],
+        ["GC", "Clayey gravel", "> 12% fines, fines above A-line and PI ≥ 7"],
+        ["SW", "Well-graded sand", "< 5% fines, Cu ≥ 6, 1 ≤ Cc ≤ 3"],
+        ["SP", "Poorly-graded sand", "< 5% fines, fails Cu or Cc"],
+        ["SM", "Silty sand", "> 12% fines, fines below A-line or PI < 4"],
+        ["SC", "Clayey sand", "> 12% fines, fines above A-line and PI ≥ 7"],
+        ["CL", "Lean clay", "LL < 50, above A-line, PI > 7"],
+        ["ML", "Silt", "LL < 50, below A-line or PI < 4"],
+        ["OL", "Organic clay/silt (low LL)", "LL < 50, LL(oven-dried)/LL(not-dried) < 0.75"],
+        ["CH", "Fat clay", "LL ≥ 50, above A-line"],
+        ["MH", "Elastic silt", "LL ≥ 50, below A-line"],
+        ["OH", "Organic clay/silt (high LL)", "LL ≥ 50, LL(oven-dried)/LL(not-dried) < 0.75"],
+        ["CL-ML", "Silty clay", "4 ≤ PI ≤ 7, above A-line"],
+        ["Pt", "Peat", "Highly organic, identified visually"]
+      ]
+    },
+    "source": "ASTM D2487"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.tbl-003",
+    "title": "USCS Dual-Symbol Requirements for Coarse-Grained Soils with 5–12% Fines",
+    "type": "classification",
+    "data": {
+      "headers": ["Condition", "Symbol"],
+      "rows": [
+        ["Meets GW criteria + fines below A-line or PI < 4", "GW-GM"],
+        ["Meets GW criteria + fines above A-line and PI ≥ 7", "GW-GC"],
+        ["Meets GP criteria + fines below A-line or PI < 4", "GP-GM"],
+        ["Meets GP criteria + fines above A-line and PI ≥ 7", "GP-GC"],
+        ["Meets SW criteria + fines below A-line or PI < 4", "SW-SM"],
+        ["Meets SW criteria + fines above A-line and PI ≥ 7", "SW-SC"],
+        ["Meets SP criteria + fines below A-line or PI < 4", "SP-SM"],
+        ["Meets SP criteria + fines above A-line and PI ≥ 7", "SP-SC"]
+      ]
+    },
+    "source": "ASTM D2487"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.tbl-004",
+    "title": "AASHTO Classification Groups",
+    "type": "classification",
+    "data": {
+      "headers": ["Group", "General Description", "Subgrade Rating"],
+      "rows": [
+        ["A-1-a", "Stone fragments, gravel, sand", "Excellent to good"],
+        ["A-1-b", "Gravel and sand with fines", "Excellent to good"],
+        ["A-2-4", "Silty or clayey gravel and sand", "Excellent to good"],
+        ["A-2-5", "Silty or clayey gravel and sand", "Excellent to good"],
+        ["A-2-6", "Clayey gravel and sand", "Fair to poor"],
+        ["A-2-7", "Clayey gravel and sand", "Fair to poor"],
+        ["A-3", "Fine sand", "Excellent to good"],
+        ["A-4", "Silty soils", "Fair to poor"],
+        ["A-5", "Silty soils (elastic)", "Fair to poor"],
+        ["A-6", "Clayey soils", "Fair to poor"],
+        ["A-7-5", "Clayey soils (moderate PI)", "Fair to poor"],
+        ["A-7-6", "Clayey soils (high PI)", "Fair to poor"]
+      ]
+    },
+    "source": "AASHTO M 145"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.tbl-005",
+    "title": "Visual-Manual Identification Tests — Fine-Grained Soils",
+    "type": "procedure",
+    "data": {
+      "headers": ["Test", "Silt (ML/MH)", "Clay (CL/CH)"],
+      "rows": [
+        ["Dilatancy (reaction to shaking)", "Rapid to slow", "None to very slow"],
+        ["Dry strength (crushing)", "None to low", "Medium to very high"],
+        ["Toughness (near PL)", "Low, thread weak/crumbly", "Medium to high, thread stiff"]
+      ]
+    },
+    "source": "ASTM D2488"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.tbl-006",
+    "title": "Plasticity Chart Zones — Engineering Behavior Summary",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Zone", "Typical Behavior"],
+      "rows": [
+        ["CL (above A-line, LL < 50)", "Moderate plasticity, moderate compressibility, moderate strength, low permeability"],
+        ["CH (above A-line, LL ≥ 50)", "High plasticity, high compressibility, high shrink-swell, very low permeability"],
+        ["ML (below A-line, LL < 50)", "Low plasticity, moderate compressibility, low dry strength, susceptible to frost and piping"],
+        ["MH (below A-line, LL ≥ 50)", "Elastic behavior, high compressibility at low PI, problematic for compaction"],
+        ["CL-ML (hatched zone)", "Intermediate behavior, often challenging to compact, sensitive to moisture"]
+      ]
+    },
+    "source": "Holtz, Kovacs & Sheahan (2011)"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.tbl-007",
+    "title": "Common Sieve Sizes",
+    "type": "reference",
+    "data": {
+      "headers": ["Sieve No.", "Opening (mm)", "Opening (in)"],
+      "rows": [
+        ["3 in", "75.0", "3.0"],
+        ["3/4 in", "19.0", "0.75"],
+        ["No. 4", "4.75", "0.187"],
+        ["No. 10", "2.00", "0.079"],
+        ["No. 20", "0.850", "0.033"],
+        ["No. 40", "0.425", "0.017"],
+        ["No. 60", "0.250", "0.010"],
+        ["No. 100", "0.150", "0.006"],
+        ["No. 140", "0.106", "0.004"],
+        ["No. 200", "0.075", "0.003"]
+      ]
+    },
+    "source": "ASTM E11"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.tbl-008",
+    "title": "USCS to AASHTO Approximate Correlation",
+    "type": "reference",
+    "data": {
+      "headers": ["USCS Symbol", "Most Probable AASHTO Group", "Possible AASHTO Groups"],
+      "rows": [
+        ["GW", "A-1-a", "A-1-a"],
+        ["GP", "A-1-a", "A-1-a, A-1-b"],
+        ["GM", "A-1-b, A-2-4", "A-1-b, A-2-4, A-2-5, A-2-7"],
+        ["GC", "A-2-6", "A-2-4, A-2-6, A-2-7"],
+        ["SW", "A-1-b", "A-1-a, A-1-b"],
+        ["SP", "A-3, A-1-b", "A-1-b, A-3"],
+        ["SM", "A-2-4, A-4", "A-1-b, A-2-4, A-2-5, A-4, A-5"],
+        ["SC", "A-2-6, A-6", "A-2-4, A-2-6, A-2-7, A-4, A-6, A-7"],
+        ["CL", "A-6", "A-4, A-6, A-7-6"],
+        ["ML", "A-4", "A-4, A-5"],
+        ["CH", "A-7-6", "A-7-5, A-7-6"],
+        ["MH", "A-5, A-7-5", "A-5, A-7-5"]
+      ]
+    },
+    "source": "After Holtz, Kovacs & Sheahan (2011)"
+  }
+]

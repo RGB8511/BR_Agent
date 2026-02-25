@@ -1,0 +1,22 @@
+{
+  "id": "water-infra.embankment-dam-design",
+  "name": "Embankment Dam Design — Hydraulic & Seepage Aspects",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.dams",
+  "dependencies": [
+    "geotechnical.embankment-dam-design",
+    "water-infra.dam-hydrology",
+    "water-infra.dam-risk-assessment"
+  ],
+  "tags": ["embankment-dam", "seepage", "internal-erosion", "piping", "filter-design", "drain", "chimney-drain", "blanket-drain", "toe-drain", "cutoff", "slurry-wall", "grout-curtain", "relief-wells", "phreatic-surface", "flow-net", "seepage-analysis", "exit-gradient", "freeboard", "wave-runup", "riprap", "slope-protection", "USBR", "USACE"],
+  "standards": ["USBR-DS-13", "USACE-EM-1110-2-2300", "FEMA-484", "ICOLD-Bulletin-164"],
+  "equation_count": 10,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

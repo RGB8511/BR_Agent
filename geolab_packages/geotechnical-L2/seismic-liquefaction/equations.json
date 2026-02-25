@@ -1,0 +1,110 @@
+[
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-001",
+    "title": "Cyclic Stress Ratio",
+    "equation": "CSR₇.₅ = 0.65 × (a_max/g) × (σ_v0/σ'_v0) × r_d / MSF",
+    "variables": {
+      "CSR₇.₅": {"description": "Cyclic stress ratio adjusted to M=7.5", "units": "dimensionless"},
+      "a_max": {"description": "Peak ground acceleration", "units": "g"},
+      "σ_v0": {"description": "Total overburden stress", "units": "kPa"},
+      "σ'_v0": {"description": "Effective overburden stress", "units": "kPa"},
+      "r_d": {"description": "Stress reduction factor", "units": "dimensionless"},
+      "MSF": {"description": "Magnitude scaling factor", "units": "dimensionless"}
+    },
+    "source": "Seed & Idriss (1971), updated Boulanger & Idriss (2014)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-002",
+    "title": "Stress Reduction Factor (Simplified)",
+    "equation": "r_d = 1.0 - 0.00765z (z ≤ 9.15m); r_d = 1.174 - 0.0267z (9.15 < z ≤ 23m)",
+    "source": "Liao & Whitman (1986)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-003",
+    "title": "Magnitude Scaling Factor",
+    "equation": "MSF = 10^2.24 / M_w^2.56",
+    "variables": {
+      "MSF": {"description": "Magnitude scaling factor (1.0 at M=7.5)", "units": "dimensionless"},
+      "M_w": {"description": "Moment magnitude", "units": "dimensionless"}
+    },
+    "source": "Idriss (1999)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-004",
+    "title": "CRR from SPT (Boulanger & Idriss 2014)",
+    "equation": "CRR₇.₅ = exp{(N₁)₆₀cs/14.1 + [(N₁)₆₀cs/126]² - [(N₁)₆₀cs/23.6]³ + [(N₁)₆₀cs/25.4]⁴ - 2.8}",
+    "variables": {
+      "(N₁)₆₀cs": {"description": "Clean-sand corrected, overburden-normalized SPT N-value", "units": "blows/300mm"}
+    },
+    "source": "Boulanger & Idriss (2014)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-005",
+    "title": "SPT Fines Correction (Boulanger & Idriss 2014)",
+    "equation": "ΔN = exp(1.63 + 9.7/(FC+0.01) - [15.7/(FC+0.01)]²)",
+    "variables": {
+      "ΔN": {"description": "Fines content correction to (N₁)₆₀", "units": "blows"},
+      "FC": {"description": "Fines content (% passing #200)", "units": "%"}
+    },
+    "applicability": "For FC ≥ 5%. (N₁)₆₀cs = (N₁)₆₀ + ΔN.",
+    "source": "Boulanger & Idriss (2014)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-006",
+    "title": "CRR from CPT (Boulanger & Idriss 2014)",
+    "equation": "CRR₇.₅ = exp{q_c1Ncs/113 + (q_c1Ncs/1000)² - (q_c1Ncs/140)³ + (q_c1Ncs/137)⁴ - 2.8}",
+    "variables": {
+      "q_c1Ncs": {"description": "Clean-sand corrected, normalized cone resistance", "units": "dimensionless"}
+    },
+    "source": "Boulanger & Idriss (2014)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-007",
+    "title": "Factor of Safety Against Liquefaction",
+    "equation": "FS_liq = CRR₇.₅ / CSR₇.₅",
+    "applicability": "FS < 1.0: likely to liquefy. FS 1.0–1.2: marginal. FS > 1.2: unlikely.",
+    "source": "Standard practice"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-008",
+    "title": "Overburden Correction for CPT (C_N)",
+    "equation": "C_N = (P_a/σ'_v0)^m where m = 0.784 - 0.521×D_r ≈ 0.5 to 1.7",
+    "applicability": "q_c1N = C_N × q_c/P_a. C_N ≤ 1.7.",
+    "source": "Boulanger & Idriss (2014)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-009",
+    "title": "Overburden Correction Factor (K_σ)",
+    "equation": "K_σ = 1 - C_σ × ln(σ'_v0/P_a) ≤ 1.1",
+    "variables": {
+      "K_σ": {"description": "Overburden correction factor for CRR", "units": "dimensionless"},
+      "C_σ": {"description": "Coefficient (≈ 0.3 for D_r=40%, ≈ 0.1 for D_r=80%)", "units": "dimensionless"}
+    },
+    "applicability": "Applied when σ'_v0 > P_a. CRR = CRR₇.₅ × K_σ. Important for deep deposits.",
+    "source": "Boulanger & Idriss (2014)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-010",
+    "title": "Post-Liquefaction Residual Strength (Idriss & Boulanger)",
+    "equation": "S_r/σ'_v0 = exp{q_c1Ncs/24.5 - [(q_c1Ncs/61.7)² + (q_c1Ncs/106)³] - 4.42}",
+    "variables": {
+      "S_r": {"description": "Residual undrained shear strength of liquefied soil", "units": "kPa"}
+    },
+    "applicability": "For flow-slide assessment and post-earthquake stability analysis.",
+    "source": "Idriss & Boulanger (2008)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-011",
+    "title": "Liquefaction-Induced Settlement (Zhang et al. 2002)",
+    "equation": "S = Σ(ε_v × Δz) where ε_v = f(FS, D_r) from charts",
+    "applicability": "Integrate volumetric strain over thickness of liquefiable layers. ε_v ranges 0.5–5%.",
+    "source": "Zhang, Robertson & Brachman (2002)"
+  },
+  {
+    "id": "geotechnical.seismic.liquefaction.eq-012",
+    "title": "Newmark Yield Acceleration",
+    "equation": "k_y = acceleration at which FS_pseudostatic = 1.0",
+    "applicability": "Computed from iterative pseudostatic analysis increasing k_h until FS = 1.0. Used as input to displacement estimation.",
+    "source": "Newmark (1965)"
+  }
+]

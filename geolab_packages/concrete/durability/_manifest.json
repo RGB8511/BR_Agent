@@ -1,0 +1,18 @@
+{
+  "id": "concrete.durability.mechanisms",
+  "name": "Concrete Durability & Degradation",
+  "level": 1,
+  "discipline": "concrete",
+  "parent": "concrete.durability",
+  "dependencies": ["concrete.foundations.cement-hydration", "concrete.design.mix-design"],
+  "tags": ["ASR", "DEF", "sulfate-attack", "carbonation", "chloride", "corrosion", "freeze-thaw", "scaling", "permeability", "diffusion", "service-life", "alkali-silica-reaction"],
+  "standards": ["C1260", "C1293", "C1567", "C1202", "C1556", "C666", "C672", "C856", "C457"],
+  "equation_count": 10,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate-graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

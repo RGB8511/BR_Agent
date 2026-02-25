@@ -1,0 +1,29 @@
+{
+  "id": "water-infra.canal-structures",
+  "name": "Canal Structures — Checks, Drops, Turnouts & Crossings",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.canals",
+  "dependencies": [
+    "water-infra.canal-design",
+    "hydrology.hydraulics.open-channel",
+    "water-infra.gates-valves"
+  ],
+  "tags": ["check-structure", "drop-structure", "chute", "turnout", "division-structure", "headgate", "inverted-siphon", "flume", "overchute", "road-crossing", "culvert", "energy-dissipation", "stilling-basin", "measurement-structure", "Parshall-flume", "weir", "constant-head-orifice", "wasteway", "safety"],
+  "standards": ["USBR-SWS", "USBR-DS-14-Ch3", "USACE-EM-1110-2-1603"],
+  "key_references": [
+    "USBR Small Water Structures (SWS) series",
+    "USBR Design of Small Canal Structures (1978)",
+    "USBR Hydraulic Design of Stilling Basins and Energy Dissipators",
+    "Aisenbrey et al. (1978) Design of Small Canal Structures — USBR",
+    "Chow (1959) Open-Channel Hydraulics"
+  ],
+  "equation_count": 10,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

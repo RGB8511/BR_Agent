@@ -1,0 +1,25 @@
+{
+  "id": "geotechnical.soil-mechanics.compaction",
+  "name": "Compaction Theory & Practice",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": [
+    "geotechnical.foundations.phase-relationships",
+    "geotechnical.foundations.soil-classification"
+  ],
+  "tags": ["compaction", "Proctor", "dry-density", "optimum-moisture", "ZAV", "relative-compaction", "sand-cone", "nuclear-gauge", "field-control"],
+  "standards": ["D698", "D1557", "D1556", "D6938", "D2937", "D4253", "D4254", "D5080"],
+  "key_references": [
+    "Proctor (1933) Fundamental Principles of Soil Compaction",
+    "Holtz, Kovacs & Sheahan (2011) An Introduction to Geotechnical Engineering"
+  ],
+  "equation_count": 6,
+  "concept_count": 14,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

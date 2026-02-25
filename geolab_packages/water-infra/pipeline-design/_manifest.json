@@ -1,0 +1,29 @@
+{
+  "id": "water-infra.pipeline-design",
+  "name": "Pipeline Design — Materials, Wall Thickness & Layout",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.conveyance",
+  "dependencies": [
+    "water-infra.pipeline-hydraulics",
+    "coatings.corrosion-fundamentals",
+    "coatings.cathodic-protection"
+  ],
+  "tags": ["steel-pipe", "DIP", "ductile-iron", "PCCP", "HDPE", "PVC", "GRP", "Barlow", "wall-thickness", "pressure-class", "thrust-restraint", "restrained-joints", "anchor-block", "burial-depth", "alignment", "appurtenances", "air-valve", "blowoff", "coating", "lining", "CML"],
+  "standards": ["AWWA-M11", "AWWA-C150", "AWWA-C200", "AWWA-C900", "AWWA-C906", "ASCE-MOP-79"],
+  "key_references": [
+    "AWWA M11 — Steel Pipe",
+    "AWWA M41 — Ductile-Iron Pipe and Fittings",
+    "AWWA M23 — PVC Pipe",
+    "AWWA M55 — PE Pipe",
+    "ASCE MOP 79 — Steel Penstocks"
+  ],
+  "equation_count": 10,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

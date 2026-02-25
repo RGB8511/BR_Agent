@@ -1,0 +1,25 @@
+{
+  "id": "field-exploration.geophysics-borehole",
+  "name": "Borehole Geophysics & Logging",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.subsurface",
+  "dependencies": ["field-exploration.drilling-methods", "field-exploration.geophysics-surface"],
+  "tags": ["downhole", "crosshole", "televiewer", "OTV", "ATV", "caliper", "natural-gamma", "SP", "resistivity", "sonic", "full-waveform-sonic", "suspension-logging", "Vs", "Vp", "fracture-mapping", "stereonet", "NMR", "neutron", "density-log"],
+  "standards": ["ASTM-D5753", "ASTM-D7400", "ASTM-D4428", "USACE-EM-1110-1-1802"],
+  "key_references": [
+    "USACE EM 1110-1-1802 Geophysical Exploration",
+    "Keys (1990) Borehole Geophysics Applied to Ground-Water Investigations (USGS TWI)",
+    "FHWA GEC-5 (2017)",
+    "Hearst et al. (2000) Well Logging for Physical Properties",
+    "ISRM (2007) Suggested Methods — Borehole Geophysics"
+  ],
+  "equation_count": 8,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

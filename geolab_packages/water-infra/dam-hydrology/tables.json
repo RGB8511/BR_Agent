@@ -1,0 +1,82 @@
+[
+  {
+    "id": "water-infra.dam-hydrology.tbl-001",
+    "title": "Dam Hazard Classification and IDF Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Agency", "High Hazard IDF", "Significant Hazard IDF", "Low Hazard IDF"],
+      "rows": [
+        ["USACE", "PMF (or risk-informed)", "0.5×PMF to PMF", "100-yr to 0.5×PMF"],
+        ["USBR", "PMF (or risk-informed per PPL)", "Site-specific, risk-informed", "100-yr to 500-yr"],
+        ["FERC", "PMF for most high-hazard", "1/2 PMF to PMF", "100-yr to 1/2 PMF"],
+        ["FEMA (Model Law)", "PMF", "1/2 PMF to PMF", "100-yr"],
+        ["Most US States", "PMF or risk-based", "500-yr to PMF", "100-yr to 500-yr"],
+        ["ANCOLD (Australia)", "Risk-based (10⁻⁶ to 10⁻⁴ AEP)", "Risk-based", "Risk-based"],
+        ["ICOLD", "10,000-yr to PMF (consequence-based)", "1,000-yr to 10,000-yr", "100-yr to 1,000-yr"]
+      ]
+    },
+    "source": "USACE ER 1110-8-2, USBR DS-13 Ch2, FERC Ch2, FEMA 333, ANCOLD (2019), ICOLD Bulletin 82"
+  },
+  {
+    "id": "water-infra.dam-hydrology.tbl-002",
+    "title": "Hazard Classification Criteria",
+    "type": "classification",
+    "data": {
+      "headers": ["Hazard Class", "Loss of Life", "Economic Loss", "Environmental/Lifeline", "Typical Downstream"],
+      "rows": [
+        ["High (I/A)", "Probable (≥1 life)", "Excessive", "Major damage", "Permanent residences, critical infrastructure in flood zone"],
+        ["Significant (II/B)", "None expected", "Significant", "Moderate damage", "Occupied structures, secondary roads, utilities"],
+        ["Low (III/C)", "None expected", "Minimal", "Minor damage", "Undeveloped land, minor rural roads, no occupied structures"]
+      ]
+    },
+    "source": "FEMA 333, USACE ER 1110-2-1156, state dam safety programs"
+  },
+  {
+    "id": "water-infra.dam-hydrology.tbl-003",
+    "title": "Generalized PMP Depths (HMR 51/52, Eastern US)",
+    "type": "reference",
+    "data": {
+      "headers": ["Duration", "10 mi²", "100 mi²", "200 mi²", "500 mi²", "1000 mi²"],
+      "rows": [
+        ["6 hours", "32–42 in", "24–34 in", "21–30 in", "17–25 in", "14–21 in"],
+        ["12 hours", "36–48 in", "28–39 in", "25–35 in", "21–30 in", "18–26 in"],
+        ["24 hours", "40–55 in", "32–44 in", "29–40 in", "25–35 in", "22–30 in"],
+        ["48 hours", "44–60 in", "36–49 in", "33–45 in", "29–40 in", "26–35 in"],
+        ["72 hours", "46–62 in", "38–51 in", "35–47 in", "31–42 in", "28–37 in"]
+      ]
+    },
+    "source": "HMR 51 (NOAA, 1978). Ranges represent geographic variation. Actual values are site-specific from HMR maps."
+  },
+  {
+    "id": "water-infra.dam-hydrology.tbl-004",
+    "title": "Dam Breach Parameter Ranges (Embankment Dams)",
+    "type": "reference",
+    "data": {
+      "headers": ["Parameter", "Overtopping", "Piping/Seepage", "Source"],
+      "rows": [
+        ["Breach width / dam height (B/Hd)", "1.0–5.0", "0.5–3.0", "Wahl (2004), Froehlich (2008)"],
+        ["Side slopes (z, H:V)", "0.5–1.5", "0.5–1.0", "Wahl (2004)"],
+        ["Formation time (hours)", "0.5–4.0", "1.0–6.0+", "Froehlich (2008), Xu & Zhang (2009)"],
+        ["Peak Q / (g^0.5 × Hw^2.5)", "0.15–0.65", "0.10–0.45", "Froehlich (2008)"],
+        ["Breach depth", "Full dam height typical", "Variable (may stop above foundation)", "USBR, USACE"]
+      ]
+    },
+    "source": "Wahl (2004), Froehlich (2008), Xu & Zhang (2009)"
+  },
+  {
+    "id": "water-infra.dam-hydrology.tbl-005",
+    "title": "Routing Time Step Selection Guidelines",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Recommended Δt", "Basis"],
+      "rows": [
+        ["Level-pool reservoir routing", "≤ Tp/5 (time to peak of inflow UH)", "Capture rising limb accurately"],
+        ["Dam breach routing (HEC-RAS)", "1–5 minutes near breach", "Resolve rapid hydrograph change"],
+        ["Downstream flood wave (unsteady)", "Δt ≤ Δx/c (Courant condition)", "Numerical stability; c = wave celerity"],
+        ["PMF routing through large reservoir", "0.5–1.0 hours", "Adequate for slowly varying inflow"],
+        ["Small watershed / urban", "5–15 minutes", "Match tc and rainfall temporal resolution"]
+      ]
+    },
+    "source": "USACE HEC-HMS/HEC-RAS Technical References"
+  }
+]

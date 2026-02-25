@@ -1,0 +1,76 @@
+[
+  {
+    "id": "geotech.seismic.liquefaction.tbl-001",
+    "title": "Magnitude Scaling Factors (MSF)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Earthquake Magnitude (Mw)", "MSF (Seed & Idriss)", "MSF (Idriss 1999)"],
+      "rows": [
+        ["5.5", "2.20", "2.21"],
+        ["6.0", "1.76", "1.77"],
+        ["6.5", "1.44", "1.44"],
+        ["7.0", "1.19", "1.19"],
+        ["7.5", "1.00", "1.00"],
+        ["8.0", "0.84", "0.84"],
+        ["8.5", "0.72", "0.73"]
+      ]
+    },
+    "source": "Youd et al. (2001), Idriss (1999)"
+  },
+  {
+    "id": "geotech.seismic.liquefaction.tbl-002",
+    "title": "Liquefaction Susceptibility by Soil Type",
+    "type": "classification",
+    "data": {
+      "headers": ["Soil Type", "Susceptibility", "Notes"],
+      "rows": [
+        ["Clean sand (SP)", "High", "Most susceptible. Well-documented case histories."],
+        ["Silty sand (SM)", "High", "Fines correction applies (FC < 35%)."],
+        ["Non-plastic silt (ML)", "Moderate–High", "Use CPT-based methods preferred."],
+        ["Sandy gravel (GP, GW)", "Low–Moderate", "Can liquefy in severe shaking. Hard to sample for SPT."],
+        ["Plastic silt / lean clay (ML-CL)", "Low", "May undergo cyclic softening, not classic liquefaction."],
+        ["Fat clay (CH)", "Very low", "Generally not liquefiable. May experience strength loss."],
+        ["Well-graded gravel (GW)", "Very low", "High permeability dissipates pore pressure."]
+      ]
+    },
+    "source": "Bray & Sancio (2006), Boulanger & Idriss (2006)"
+  },
+  {
+    "id": "geotech.seismic.liquefaction.tbl-003",
+    "title": "Post-Liquefaction Residual Strength (Sr) Correlations",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["(N₁)₆₀-cs", "Sr (kPa) — Seed & Harder (1990)", "Sr (kPa) — Idriss & Boulanger (2008)"],
+      "rows": [
+        ["2", "0–5", "2–4"],
+        ["5", "2–10", "5–8"],
+        ["8", "5–15", "8–14"],
+        ["10", "8–20", "12–18"],
+        ["12", "10–25", "16–24"],
+        ["15", "15–35", "24–36"],
+        ["20", "25–50", "—"]
+      ]
+    },
+    "source": "Seed & Harder (1990), Idriss & Boulanger (2008)"
+  },
+  {
+    "id": "geotech.seismic.liquefaction.tbl-004",
+    "title": "Liquefaction Mitigation Methods",
+    "type": "reference",
+    "data": {
+      "headers": ["Method", "Mechanism", "Applicable Soils", "Typical Depth"],
+      "rows": [
+        ["Vibro-compaction", "Densification via vibration", "Clean sands (FC < 10%)", "Up to 20 m"],
+        ["Stone columns", "Drainage + reinforcement + densification", "Sands, silty sands", "Up to 20 m"],
+        ["Deep dynamic compaction", "High-energy tamping (surface)", "Granular soils", "Up to 10 m"],
+        ["Compaction grouting", "Displacement grouting to densify", "All granular soils", "Up to 20+ m"],
+        ["Permeation grouting", "Fill voids with chemical/microfine cement", "Clean sands", "Variable"],
+        ["Jet grouting", "Soil-cement columns", "All soils", "Up to 30+ m"],
+        ["Deep soil mixing", "In-situ cementation", "Soft soils, sands", "Up to 30+ m"],
+        ["Wick drains + preloading", "Accelerate drainage/consolidation", "Silty sands, silts", "Up to 20 m"],
+        ["Ground replacement", "Remove and replace liquefiable soil", "Any", "Limited by cost/depth"]
+      ]
+    },
+    "source": "FHWA GEC-007, JGS (1998), Moseley & Kirsch (2004)"
+  }
+]

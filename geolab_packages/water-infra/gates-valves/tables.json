@@ -1,0 +1,98 @@
+[
+  {
+    "id": "water-infra.gates-valves.tbl-001",
+    "title": "Gate Type Selection Guide",
+    "type": "classification",
+    "data": {
+      "headers": ["Gate Type", "Head Range (m)", "Typical Application", "Flow Regulation", "Key Advantage"],
+      "rows": [
+        ["Radial (Tainter)", "3–25+", "Spillway crests, diversion dams", "Good — partial openings", "Low hoist force, proven reliability"],
+        ["Vertical lift (wheeled)", "3–30", "Spillways, outlet works", "Moderate", "Simple, robust, high-head capable"],
+        ["Slide gate", "Up to 60+", "Outlet works, penstocks, conduits", "Limited — cavitation at partial", "Simple, compact, emergency closure"],
+        ["Jet-flow gate", "15–150+", "High-head outlet works", "Excellent — designed for regulation", "Anti-cavitation design, smooth flow"],
+        ["Flap / bascule", "1–5", "Low-head diversion, canal checks", "Automatic level control", "Self-operating, no hoist needed"],
+        ["Drum gate", "3–12", "Long spillway crests", "Good — automated", "No piers, no hoists visible"],
+        ["Stop logs", "Any", "Maintenance closure only", "None — full open or closed", "Simple, low cost"],
+        ["Fusegate", "1–6", "Emergency spillway augmentation", "None — one-time actuation", "Passive, no mechanical parts"]
+      ]
+    },
+    "source": "USACE, USBR, Lewin (2001)"
+  },
+  {
+    "id": "water-infra.gates-valves.tbl-002",
+    "title": "Valve Type Selection for Outlet Works",
+    "type": "classification",
+    "data": {
+      "headers": ["Valve Type", "Head Range (m)", "Size Range (mm)", "Regulation Capability", "Energy Dissipation", "Key Feature"],
+      "rows": [
+        ["Hollow-jet (fixed-cone discharge)", "Up to 300+", "300–2700", "Excellent — 10–100% range", "Internal — within valve hood", "Best high-head regulating valve"],
+        ["Howell-Bunger (fixed-cone)", "Up to 200", "300–3000", "Good", "External — cone spray to atmosphere", "No downstream structure needed"],
+        ["Needle valve", "Up to 300+", "150–2000", "Excellent — very precise", "Internal", "Precise flow control, compact"],
+        ["Butterfly valve", "Up to 150", "300–3600+", "Limited — avoid < 30% open", "None — use with stilling basin", "Compact, fast, low cost"],
+        ["Cone (rotary plug)", "Up to 100", "150–1800", "Good", "Moderate", "Quarter-turn, good throttling"],
+        ["Ball valve", "Up to 100", "50–1200", "Limited — on/off preferred", "None", "Tight shutoff, low friction loss"],
+        ["Gate valve (AWWA)", "Up to 25", "50–1500", "Not recommended for regulation", "None", "Isolation only — full open/closed"]
+      ]
+    },
+    "source": "USBR, USACE, AWWA"
+  },
+  {
+    "id": "water-infra.gates-valves.tbl-003",
+    "title": "Discharge Coefficients for Common Gate/Valve Types",
+    "type": "reference",
+    "data": {
+      "headers": ["Gate/Valve Type", "Cd Range", "Notes"],
+      "rows": [
+        ["Radial (Tainter) gate — free flow undershot", "0.60–0.72", "Varies with d/H₁ ratio and gate angle"],
+        ["Vertical lift gate — free flow undershot", "0.55–0.68", "Lower Cd than radial due to flow contraction"],
+        ["Slide gate — free discharge", "0.55–0.65", "Depends on opening ratio and geometry"],
+        ["Sharp-edged orifice (standard)", "0.61", "Classic value for Re > 10⁵"],
+        ["Rounded orifice (bell-mouth)", "0.95–0.98", "Minimal contraction"],
+        ["Short tube (L/D = 2–3)", "0.82", "Partial recovery of contraction"],
+        ["Hollow-jet valve (full open)", "0.70–0.82", "Varies by manufacturer and model"],
+        ["Butterfly valve (full open)", "0.85–0.95", "K = 0.3–0.5 for head loss calc"],
+        ["Howell-Bunger (full open)", "0.85–0.90", "With cone in operating position"]
+      ]
+    },
+    "source": "USACE HDC, USBR, manufacturer data"
+  },
+  {
+    "id": "water-infra.gates-valves.tbl-004",
+    "title": "Incipient Cavitation Index (σ_i) for Gates and Valves",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Gate/Valve Type", "σ_incipient Range", "Opening at Highest Risk", "Mitigation"],
+      "rows": [
+        ["Slide gate (high-head)", "1.0–3.0", "10–50% open", "Aeration downstream, limit operating range"],
+        ["Radial gate (underflow)", "0.2–1.0", "Small openings", "Limit minimum opening, aeration"],
+        ["Butterfly valve", "0.5–2.5", "15–40% open", "Avoid throttling, use cone valve instead"],
+        ["Cone valve", "0.2–0.8", "10–30% open", "Better than butterfly for regulation"],
+        ["Jet-flow gate", "0.1–0.3", "All openings", "Designed for cavitation avoidance"],
+        ["Hollow-jet valve", "0.1–0.2", "All openings", "Inherently low cavitation — internal dissipation"],
+        ["Needle valve", "0.1–0.3", "All openings", "Excellent cavitation resistance"]
+      ]
+    },
+    "source": "Tullis (1989), Ball (1959), USBR EM-42"
+  },
+  {
+    "id": "water-infra.gates-valves.tbl-005",
+    "title": "Gate and Valve Material Selection",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Component", "Typical Material", "Notes"],
+      "rows": [
+        ["Gate skin plate", "ASTM A36 or A572 Gr 50 steel", "Carbon steel with protective coating"],
+        ["Gate frame / guides", "ASTM A36 steel or cast iron", "Stainless steel guides for high-head gates"],
+        ["Trunnion pin (radial gate)", "AISI 4140/4340 alloy steel", "Heat treated; critical fatigue member"],
+        ["Trunnion bearing", "Self-lubricating bronze (CDA 932/954) or PTFE-lined", "Maintenance-free preferred for submerged applications"],
+        ["Seals (side/bottom)", "Rubber (ASTM D2000, neoprene/EPDM) or UHMWPE", "J-seal, music-note seal, or block seal"],
+        ["Valve body (butterfly/gate)", "Cast/ductile iron (ASTM A536) or steel", "Fusion-bonded epoxy coated for water service"],
+        ["Valve disc/plug", "Ductile iron or cast steel", "Stainless steel or Ni-Al-Bronze for severe service"],
+        ["Valve seat", "EPDM rubber, Buna-N, or bronze", "Resilient-seated (AWWA) or metal-seated (high-head)"],
+        ["Stem / operating shaft", "AISI 410/416 stainless steel", "Corrosion resistance + mechanical strength"],
+        ["Fasteners (submerged)", "ASTM A193 B7 / A194 2H, stainless or galvanized", "Hot-dip galvanized minimum; stainless in marine environments"]
+      ]
+    },
+    "source": "USACE, USBR, AWWA C500/C504/C507 series, general practice"
+  }
+]

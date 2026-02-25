@@ -1,0 +1,100 @@
+[
+  {
+    "id": "remote-sensing.structural-deformation.eq-001",
+    "title": "M3C2 Level of Detection (95% Confidence)",
+    "equation": "LoD_95% = ±1.96 × √(σ₁²/n₁ + σ₂²/n₂ + reg²)",
+    "variables": {
+      "LoD_95%": {"description": "Minimum detectable change at 95% confidence", "units": "mm"},
+      "σ₁, σ₂": {"description": "Local surface roughness (std dev) in epoch 1 and 2", "units": "mm"},
+      "n₁, n₂": {"description": "Number of points in projection cylinder for each epoch", "units": "—"},
+      "reg": {"description": "Registration uncertainty between epochs", "units": "mm"}
+    },
+    "applicability": "Spatially variable — LoD is different at every point. Rough surfaces and sparse areas have higher LoD. Typical LoD for TLS monitoring: 3–15 mm. Improvements: better registration (more targets), higher point density, smoother surfaces.",
+    "source": "Lague et al. (2013)"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.eq-002",
+    "title": "Displacement Vector from Multi-Epoch Point Tracking",
+    "equation": "d⃗ = p⃗_Tn - p⃗_T0 = (Δx, Δy, Δz)",
+    "variables": {
+      "d⃗": {"description": "3D displacement vector", "units": "mm"},
+      "p⃗_T0": {"description": "Point position at baseline epoch", "units": "m"},
+      "p⃗_Tn": {"description": "Point position at monitoring epoch", "units": "m"}
+    },
+    "applicability": "For tracked discrete points (targets, natural features, or averaged surface patches). Magnitude: |d| = √(Δx²+Δy²+Δz²). Direction: azimuth and plunge of displacement vector. Decompose into horizontal and vertical components for interpretation.",
+    "source": "General surveying"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.eq-003",
+    "title": "Tilt from Differential Displacement",
+    "equation": "θ = arctan(Δd / L)",
+    "variables": {
+      "θ": {"description": "Tilt angle", "units": "radians or degrees"},
+      "Δd": {"description": "Differential displacement between two points", "units": "mm"},
+      "L": {"description": "Distance between the two points", "units": "mm"}
+    },
+    "applicability": "Fit plane to deformed surface; tilt = deviation from original orientation. For small angles: θ ≈ Δd/L (in radians). Alert thresholds vary by structure: retaining walls 0.5–1°, buildings 1/500 angular distortion.",
+    "source": "General structural monitoring"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.eq-004",
+    "title": "Displacement Rate (Velocity)",
+    "equation": "v = Δd / Δt",
+    "variables": {
+      "v": {"description": "Displacement rate (velocity)", "units": "mm/day or mm/year"},
+      "Δd": {"description": "Cumulative displacement between epochs", "units": "mm"},
+      "Δt": {"description": "Time interval between epochs", "units": "days or years"}
+    },
+    "applicability": "Average velocity between epochs. For acceleration detection: a = (v₂ - v₁)/Δt. Inverse velocity (1/v vs. time) used for slope failure prediction (Fukuzono method): linear trend of 1/v → 0 predicts failure time.",
+    "source": "General, Fukuzono (1985)"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.eq-005",
+    "title": "Thermal Expansion Correction",
+    "equation": "Δd_thermal = α × L × ΔT",
+    "variables": {
+      "Δd_thermal": {"description": "Apparent displacement due to thermal expansion", "units": "mm"},
+      "α": {"description": "Coefficient of thermal expansion", "units": "1/°C"},
+      "L": {"description": "Characteristic dimension of structure", "units": "mm"},
+      "ΔT": {"description": "Temperature change between epochs", "units": "°C"}
+    },
+    "applicability": "Steel: α = 12×10⁻⁶/°C. Concrete: α = 10–12×10⁻⁶/°C. Rock: α = 5–10×10⁻⁶/°C. For a 50m dam face with ΔT = 20°C: Δd = 10–12 mm. Must correct or survey at consistent temperatures for mm-level monitoring.",
+    "source": "General physics"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.eq-006",
+    "title": "Registration Error from Target Residuals",
+    "equation": "σ_reg = √((1/n) × Σ(d_target_i²))",
+    "variables": {
+      "σ_reg": {"description": "Registration RMS error", "units": "mm"},
+      "d_target_i": {"description": "Residual at each target after registration", "units": "mm"},
+      "n": {"description": "Number of targets", "units": "—"}
+    },
+    "applicability": "Computed from target residuals in cloud alignment. Should be < desired LoD. If σ_reg = 3 mm, theoretical LoD ≈ 6 mm minimum (even with perfect point cloud quality). Use stable check targets (not used in registration) to independently verify.",
+    "source": "General surveying, photogrammetry"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.eq-007",
+    "title": "Tunnel Convergence from Cross-Section",
+    "equation": "ΔD = D_T0 - D_Tn;  strain = ΔD / D_T0",
+    "variables": {
+      "ΔD": {"description": "Change in tunnel diameter (or chord)", "units": "mm"},
+      "D_T0": {"description": "Diameter at baseline", "units": "mm"},
+      "D_Tn": {"description": "Diameter at monitoring epoch", "units": "mm"}
+    },
+    "applicability": "Extract cross-sections at regular chainage (every 1–5 m). Compare diameters in multiple directions (horizontal, vertical, diagonals). Full profile comparison shows non-uniform convergence patterns indicating asymmetric loading.",
+    "source": "General tunnel monitoring"
+  },
+  {
+    "id": "remote-sensing.structural-deformation.eq-008",
+    "title": "Spatial Averaging for Improved Precision",
+    "equation": "σ_averaged = σ_single / √n",
+    "variables": {
+      "σ_averaged": {"description": "Precision of spatially averaged displacement", "units": "mm"},
+      "σ_single": {"description": "Single-point measurement precision", "units": "mm"},
+      "n": {"description": "Number of independent points in averaging area", "units": "—"}
+    },
+    "applicability": "Averaging displacement over a patch of n independent points improves precision by √n. 100 points → 10× improvement. Limited by spatial correlation — nearby points are not fully independent. Effective n may be less than total count.",
+    "source": "General statistics"
+  }
+]

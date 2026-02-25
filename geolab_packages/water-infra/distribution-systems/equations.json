@@ -1,0 +1,101 @@
+[
+  {
+    "id": "water-infra.distribution-systems.eq-001",
+    "title": "Peaking Factor — Maximum Day Demand",
+    "equation": "MDD = PF_MDD × ADD",
+    "variables": {
+      "MDD": {"description": "Maximum day demand", "units": "m³/day or MGD"},
+      "PF_MDD": {"description": "Maximum day peaking factor (1.5–2.5 typical)", "units": "dimensionless"},
+      "ADD": {"description": "Average day demand", "units": "m³/day or MGD"}
+    },
+    "applicability": "Higher peaking factors for smaller systems and warmer climates. Lower for large systems and conservation-oriented communities. 10 States Standards recommends MDD = 2.0 × ADD if data unavailable.",
+    "source": "AWWA M31, 10 States Standards"
+  },
+  {
+    "id": "water-infra.distribution-systems.eq-002",
+    "title": "Peaking Factor — Peak Hour Demand",
+    "equation": "PHD = PF_PHD × ADD",
+    "variables": {
+      "PHD": {"description": "Peak hour demand", "units": "m³/hr or gpm"},
+      "PF_PHD": {"description": "Peak hour peaking factor (2.5–4.0 × ADD typical)", "units": "dimensionless"}
+    },
+    "applicability": "Alternatively expressed as PHD = PF_hourly × MDD where PF_hourly = 1.5–2.0. Peak hour demand governs pipe sizing for normal (non-fire) operation.",
+    "source": "AWWA, general practice"
+  },
+  {
+    "id": "water-infra.distribution-systems.eq-003",
+    "title": "Available Fire Flow from Hydrant Test",
+    "equation": "Q_avail = Q_test × [(P_static - P_residual_min) / (P_static - P_residual_test)]^0.54",
+    "variables": {
+      "Q_avail": {"description": "Available fire flow at minimum residual pressure", "units": "gpm or L/s"},
+      "Q_test": {"description": "Measured flow during test", "units": "gpm or L/s"},
+      "P_static": {"description": "Static pressure (no flow)", "units": "psi or kPa"},
+      "P_residual_min": {"description": "Minimum allowable residual pressure (20 psi / 140 kPa)", "units": "psi or kPa"},
+      "P_residual_test": {"description": "Measured residual pressure during test flow", "units": "psi or kPa"}
+    },
+    "applicability": "Standard hydrant flow test analysis. Exponent 0.54 corresponds to Hazen-Williams relationship (Q ∝ ΔH^0.54). Results valid for the test location only; varies by network configuration and source capacity.",
+    "source": "AWWA M31, ISO"
+  },
+  {
+    "id": "water-infra.distribution-systems.eq-004",
+    "title": "Chlorine Residual Decay (First-Order)",
+    "equation": "C(t) = C₀ × e^(-k_b × t)",
+    "variables": {
+      "C(t)": {"description": "Chlorine concentration at time t", "units": "mg/L"},
+      "C₀": {"description": "Initial chlorine concentration", "units": "mg/L"},
+      "k_b": {"description": "Bulk decay coefficient (0.1–1.0 per day typical)", "units": "1/day"},
+      "t": {"description": "Time (water age)", "units": "days"}
+    },
+    "applicability": "Bulk decay only. Total decay includes wall demand: overall k = k_b + k_w where k_w depends on pipe material and condition. Old unlined cast iron has highest wall demand. Decay is temperature-dependent — doubles approximately every 10°C rise.",
+    "source": "EPA EPANET, Vasconcelos et al. (1997)"
+  },
+  {
+    "id": "water-infra.distribution-systems.eq-005",
+    "title": "Hardy-Cross Method — Flow Correction",
+    "equation": "ΔQ = -Σ(hf_i) / Σ(n × hf_i / Q_i)",
+    "variables": {
+      "ΔQ": {"description": "Flow correction for the loop", "units": "m³/s"},
+      "hf_i": {"description": "Head loss in pipe i (with sign: positive for CW assumed direction)", "units": "m"},
+      "Q_i": {"description": "Flow in pipe i", "units": "m³/s"},
+      "n": {"description": "Flow exponent (1.852 for Hazen-Williams, 2.0 for Darcy-Weisbach)", "units": "dimensionless"}
+    },
+    "applicability": "Iterative method for analyzing looped networks. Apply ΔQ to all pipes in the loop; iterate until ΔQ → 0 for all loops simultaneously. Historical method — modern software uses Newton-Raphson gradient algorithm, but Hardy-Cross remains useful for understanding.",
+    "source": "Hardy Cross (1936)"
+  },
+  {
+    "id": "water-infra.distribution-systems.eq-006",
+    "title": "Equivalent Pipe for Parallel Mains",
+    "equation": "C_eq^1.852 × D_eq^4.87 = Σ(Ci^1.852 × Di^4.87)  (for same length)",
+    "variables": {
+      "C_eq, D_eq": {"description": "Equivalent Hazen-Williams coefficient and diameter", "units": "dimensionless, m"},
+      "Ci, Di": {"description": "Individual pipe C-factors and diameters", "units": "dimensionless, m"}
+    },
+    "applicability": "For parallel pipes of the same length: combined capacity = sum of individual capacities at the same head loss. Simplifies analysis when replacing with a single equivalent pipe.",
+    "source": "Walski et al. (2003)"
+  },
+  {
+    "id": "water-infra.distribution-systems.eq-007",
+    "title": "Infrastructure Leakage Index (ILI)",
+    "equation": "ILI = CARL / UARL",
+    "variables": {
+      "ILI": {"description": "Infrastructure Leakage Index — ratio of actual to unavoidable losses", "units": "dimensionless"},
+      "CARL": {"description": "Current Annual Real Losses (measured)", "units": "L/day or L/service/day"},
+      "UARL": {"description": "Unavoidable Annual Real Losses = (18 × Lm + 0.8 × Nc + 25 × Lp) × P", "units": "L/day"}
+    },
+    "applicability": "ILI = 1.0 = theoretical minimum loss. ILI < 2: excellent. 2–4: good. 4–8: fair. > 8: poor. UARL formula (IWA): Lm = length of mains (km), Nc = number of service connections, Lp = total length of service pipes (km), P = average operating pressure (m).",
+    "source": "IWA Water Loss Task Force, Lambert et al. (1999)"
+  },
+  {
+    "id": "water-infra.distribution-systems.eq-008",
+    "title": "Pressure Zone Elevation Range",
+    "equation": "ΔZ_zone = (P_max - P_min) / (ρg)",
+    "variables": {
+      "ΔZ_zone": {"description": "Maximum elevation range within one pressure zone", "units": "m"},
+      "P_max": {"description": "Maximum acceptable static pressure (550 kPa / 80 psi typical)", "units": "kPa"},
+      "P_min": {"description": "Minimum acceptable pressure during peak demand (275 kPa / 40 psi)", "units": "kPa"},
+      "ρg": {"description": "Specific weight of water (9.81 kN/m³)", "units": "kN/m³"}
+    },
+    "applicability": "Example: (550-275)/9.81 = 28 m. With head losses in the system, practical zone range is 30–40 m. Wider zone ranges are acceptable with careful pressure management (PRVs at high-pressure locations).",
+    "source": "General practice, AWWA"
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "id": "coatings.protection.cp.tbl-001",
+    "title": "Galvanic Anode Material Properties",
+    "type": "reference",
+    "data": {
+      "headers": ["Material", "Potential vs. CSE (V)", "Capacity (A·h/kg)", "Consumption (kg/A·yr)", "Primary Application"],
+      "rows": [
+        ["Zinc (Mil-A-18001)", "-1.10", "780", "11.2", "Marine, soil, fresh water"],
+        ["Magnesium (standard AZ63)", "-1.55", "1100", "7.9", "Soil (moderate resistivity)"],
+        ["Magnesium (high-potential)", "-1.75", "1100", "7.9", "High-resistivity soil (>3000 Ω·cm)"],
+        ["Aluminum (Al-Zn-In alloy)", "-1.05 to -1.10", "2700", "3.2", "Offshore, seawater, brackish"],
+        ["Aluminum (Al-Zn-Hg alloy)", "-1.05", "2700", "3.2", "Seawater (less common now)"]
+      ]
+    },
+    "source": "DNV-RP-B401, NACE"
+  },
+  {
+    "id": "coatings.protection.cp.tbl-002",
+    "title": "CP Current Density Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Environment", "Coating Condition", "Current Density (mA/m²)", "Notes"],
+      "rows": [
+        ["Soil — well-coated pipeline", "Good FBE/PE", "5–20", "Typical design value: 10–15"],
+        ["Soil — aged/damaged coating", "Fair", "20–50", "Increasing with coating degradation"],
+        ["Soil — bare steel", "None", "50–150", "Highly dependent on soil resistivity"],
+        ["Seawater — tropical", "Bare", "100–150", "Warm water, high oxygen"],
+        ["Seawater — temperate", "Bare", "80–120", ""],
+        ["Seawater — cold/arctic", "Bare", "130–200", "High oxygen solubility"],
+        ["Seawater — buried in mud", "Bare", "20–30", "Anaerobic, lower demand"],
+        ["Concrete (rebar)", "N/A", "5–20", "For impressed current CP on rebar"],
+        ["Fresh water — immersed", "Bare", "30–60", "Variable with dissolved O₂"]
+      ]
+    },
+    "source": "DNV-RP-B401, NACE SP0169, AS 2832"
+  },
+  {
+    "id": "coatings.protection.cp.tbl-003",
+    "title": "CP Protection Criteria for Carbon Steel",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Criterion", "Value", "Measurement", "Notes"],
+      "rows": [
+        ["-850 mV (ON)", "≤ -850 mV vs. CSE", "With CP current flowing", "Includes IR drop — may overestimate protection"],
+        ["-850 mV (Instant-OFF)", "≤ -850 mV vs. CSE", "Within 1s of current interruption", "Preferred — eliminates IR drop error"],
+        ["100 mV polarization", "≥ 100 mV shift negative", "E_native - E_OFF", "Alternative when -850 absolute not practical"],
+        ["Over-protection limit", "More negative than -1200 mV CSE", "Instant-OFF", "Risk of disbondment, hydrogen embrittlement"],
+        ["-950 mV (SRB)", "≤ -950 mV vs. CSE", "Instant-OFF", "For sulfate-reducing bacteria environments"]
+      ]
+    },
+    "source": "NACE SP0169, EN 12954"
+  },
+  {
+    "id": "coatings.protection.cp.tbl-004",
+    "title": "Soil Resistivity Classification for CP Design",
+    "type": "classification",
+    "data": {
+      "headers": ["Resistivity (Ω·cm)", "Corrosivity", "CP Implications"],
+      "rows": [
+        ["< 1,000", "Very corrosive", "High current demand. Galvanic anodes very effective (low resistance)."],
+        ["1,000–5,000", "Corrosive", "Moderate demand. Galvanic or ICCP."],
+        ["5,000–10,000", "Moderately corrosive", "Galvanic anodes may have limited output. Consider ICCP."],
+        ["10,000–20,000", "Mildly corrosive", "Galvanic output marginal. High-potential Mg or ICCP preferred."],
+        ["> 20,000", "Low corrosivity", "CP difficult to apply (high resistance). May not be needed if well coated."]
+      ]
+    },
+    "source": "NACE, Peabody (2001)"
+  },
+  {
+    "id": "coatings.protection.cp.tbl-005",
+    "title": "ICCP Anode Materials",
+    "type": "reference",
+    "data": {
+      "headers": ["Material", "Consumption Rate", "Max Current Density", "Typical Application"],
+      "rows": [
+        ["High-silicon cast iron (HSCI)", "0.25–1 kg/A·yr", "10–50 A/m²", "Soil, fresh water — deep well groundbeds"],
+        ["Graphite", "0.1–1 kg/A·yr", "10–50 A/m²", "Soil — economical, fragile"],
+        ["Mixed metal oxide (MMO) / Ti", "1 mg/A·yr", "100–600 A/m²", "Universal — soil, seawater, concrete. Long life."],
+        ["Platinum-clad Ti or Nb", "6–8 mg/A·yr", "500–1000+ A/m²", "Seawater, compact anode design"],
+        ["Magnetite (Fe₃O₄)", "0.05 kg/A·yr", "50–100 A/m²", "Soil, concrete — specialized"],
+        ["Conductive polymer", "Varies", "10–50 mA/linear m", "Concrete, distributed anode systems"]
+      ]
+    },
+    "source": "NACE, Peabody (2001), manufacturer data"
+  }
+]

@@ -1,0 +1,85 @@
+[
+  {
+    "id": "field-exploration.rock-coring.tbl-001",
+    "title": "Wireline Core Barrel Sizes (DCDMA Standard)",
+    "type": "reference",
+    "data": {
+      "headers": ["Size", "Core Diameter (mm)", "Hole Diameter (mm)", "Drill Rod OD (mm)", "Casing ID (mm)", "Common Application"],
+      "rows": [
+        ["AQ", "27.0", "48.0", "44.4", "—", "Mineral exploration — too small for geotech"],
+        ["BQ", "36.5", "60.0", "55.6", "—", "Deep mineral exploration, limited geotech use"],
+        ["NQ / NQ2 / NQ3", "47.6 / 50.5 / 45.1", "75.7", "69.9", "76.2 (HW)", "Standard geotechnical coring — most common"],
+        ["HQ / HQ2 / HQ3", "61.1 / 63.5 / 61.1", "96.0", "88.9", "101.6 (PW)", "Preferred for dam/tunnel — better recovery"],
+        ["PQ / PQ3", "85.0 / 83.0", "122.6", "114.3", "127.0", "Large projects, lab testing, very fractured rock"]
+      ]
+    },
+    "source": "DCDMA (Diamond Core Drill Manufacturers Association)"
+  },
+  {
+    "id": "field-exploration.rock-coring.tbl-002",
+    "title": "RQD Classification (Deere 1964)",
+    "type": "classification",
+    "data": {
+      "headers": ["RQD (%)", "Rock Quality", "Typical Discontinuity Frequency (λ, per m)", "General Condition"],
+      "rows": [
+        ["90–100", "Excellent", "< 3", "Massive, few joints, intact rock"],
+        ["75–90", "Good", "3–8", "Widely spaced joints, blocky"],
+        ["50–75", "Fair", "8–15", "Moderately jointed"],
+        ["25–50", "Poor", "15–30", "Closely jointed, seamy"],
+        ["0–25", "Very poor", "> 30", "Crushed, earth-like, heavily fractured/sheared"]
+      ]
+    },
+    "source": "Deere (1964), Deere & Deere (1989)"
+  },
+  {
+    "id": "field-exploration.rock-coring.tbl-003",
+    "title": "ISRM Weathering Grades for Rock",
+    "type": "classification",
+    "data": {
+      "headers": ["Grade", "Term", "Description", "Field Identification"],
+      "rows": [
+        ["W1 / I", "Fresh", "No visible sign of weathering; slight discoloration on major discontinuity surfaces", "Ring when struck by hammer; no discoloration"],
+        ["W2 / II", "Slightly weathered", "Discoloration indicates weathering of rock and discontinuity surfaces. All rock material may be discolored. Rock is not noticeably weaker.", "Slight discoloration; no visible decomposition of minerals"],
+        ["W3 / III", "Moderately weathered", "Less than half of the rock material is decomposed. Fresh or discolored rock present as continuous framework or as core stones.", "Considerable discoloration; some minerals altered; strength somewhat reduced"],
+        ["W4 / IV", "Highly weathered", "More than half of the rock material is decomposed. Fresh or discolored rock present as discontinuous framework or as core stones.", "Most minerals show alteration; core stones may be present; easily broken by hand"],
+        ["W5 / V", "Completely weathered", "All rock material is decomposed to soil. Original mass structure still largely intact.", "Original fabric visible but all minerals decomposed; can be crumbled by hand"],
+        ["W6 / VI", "Residual soil", "All rock material is converted to soil. Mass structure and material fabric destroyed.", "Soil derived from rock; no original fabric; may contain fragments of resistant minerals"]
+      ]
+    },
+    "source": "ISRM (1978, 2007), BS 5930"
+  },
+  {
+    "id": "field-exploration.rock-coring.tbl-004",
+    "title": "Core Barrel Selection by Rock Condition",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Rock Condition", "Recommended Core Barrel", "Expected Recovery", "Notes"],
+      "rows": [
+        ["Massive, hard, competent", "Standard single/double tube NQ or HQ", "TCR > 98%, RQD > 90%", "Fast advance; standard bit"],
+        ["Moderately jointed, medium strength", "Double-tube HQ wireline", "TCR 85–98%, RQD varies", "Standard geotechnical coring"],
+        ["Highly fractured / fault zones", "Triple-tube HQ or PQ", "TCR 70–95%", "Triple tube prevents washing of fragments"],
+        ["Soft rock (shale, mudstone, marl)", "Triple-tube with spring-loaded core catcher", "TCR 80–95%", "Short runs (1.0 m); low bit weight; reduced water pressure"],
+        ["Interbedded hard/soft", "Triple-tube HQ", "Variable", "Differential erosion — soft layers wash out; low water pressure"],
+        ["Heavily sheared / gouge zones", "Triple-tube PQ; integral sampling", "TCR 50–85%", "Reduce run length; careful handling; wax seal recovered core"],
+        ["Very hard, abrasive (quartzite, granite)", "Impregnated diamond bit, NQ or HQ", "TCR > 98%, RQD high", "Slow advance; high bit wear; premium bits"]
+      ]
+    },
+    "source": "ASTM D2113, field experience"
+  },
+  {
+    "id": "field-exploration.rock-coring.tbl-005",
+    "title": "Diamond Bit Types and Applications",
+    "type": "reference",
+    "data": {
+      "headers": ["Bit Type", "Diamond Configuration", "Best Rock Type", "Relative Cost", "Notes"],
+      "rows": [
+        ["Surface-set", "Individual natural/synthetic diamonds set in matrix", "Soft-medium rock (limestone, sandstone, shale)", "Medium", "Aggressive cutting; fast in soft rock"],
+        ["Impregnated", "Diamond particles distributed throughout matrix", "Hard-very hard rock (granite, quartzite, gneiss)", "Medium-High", "Self-sharpening as matrix wears; slower but consistent"],
+        ["TSP (Thermally Stable Polycrystalline)", "Synthetic diamond inserts", "Medium-hard rock", "High", "Hybrid performance; longer life than surface-set"],
+        ["PDC (Polycrystalline Diamond Compact)", "Cutter inserts on face", "Soft-medium, uniform rock", "High", "Very fast in right conditions; fragile in hard/fractured rock"],
+        ["Carbide insert", "Tungsten carbide inserts", "Very soft rock, hard soil", "Low", "Low cost; fast in weak materials; no diamonds needed"]
+      ]
+    },
+    "source": "Bit manufacturers (Boart Longyear, Sandvik, Dimatec), general practice"
+  }
+]

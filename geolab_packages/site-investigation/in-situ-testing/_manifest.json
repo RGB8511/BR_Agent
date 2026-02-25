@@ -1,0 +1,26 @@
+{
+  "id": "geotechnical.site-investigation.in-situ-testing",
+  "name": "In-Situ Testing (SPT, CPT, PMT, DMT)",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.site-investigation",
+  "dependencies": [
+    "geotechnical.foundations.soil-classification",
+    "geotechnical.foundations.phase-relationships"
+  ],
+  "tags": ["SPT", "CPT", "CPTu", "PMT", "DMT", "N-value", "cone-resistance", "sleeve-friction", "pore-pressure", "correlations"],
+  "standards": ["D1586", "D5778", "D4719", "D6635"],
+  "key_references": [
+    "Mayne (2007) Cone Penetration Testing — NCHRP Synthesis 368",
+    "Robertson (2009) Interpretation of CPT — A Unified Approach",
+    "Kulhawy & Mayne (1990) Manual on Estimating Soil Properties for Foundation Design"
+  ],
+  "equation_count": 16,
+  "concept_count": 20,
+  "table_count": 6,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate+graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

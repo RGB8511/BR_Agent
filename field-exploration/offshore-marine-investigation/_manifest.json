@@ -1,0 +1,30 @@
+{
+  "id": "field-exploration.offshore-marine-investigation",
+  "name": "Offshore & Marine Geotechnical Investigation",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.marine",
+  "dependencies": [
+    "field-exploration.drilling-methods",
+    "field-exploration.cpt-cptu",
+    "field-exploration.soil-sampling",
+    "field-exploration.geophysics-surface"
+  ],
+  "tags": ["offshore", "marine", "jack-up", "geotechnical-vessel", "vibrocorer", "box-corer", "gravity-corer", "piston-corer", "seabed-CPT", "sub-bottom-profiler", "side-scan-sonar", "multibeam", "bathymetry", "ROV", "jumbo-piston-corer", "PCPT-seafloor", "vane-offshore", "deepwater", "pipeline-route", "wind-farm", "port-harbor"],
+  "standards": ["ISO-19901-8", "OSIG-guidelines", "SUT-guidelines", "ASTM-D3213", "NORSOK-G-001"],
+  "key_references": [
+    "ISO 19901-8 (2023) Marine Soil Investigations",
+    "OSIG (2014) Guidance Notes on Geotechnical Investigations for Marine Pipelines",
+    "Randolph & Gourvenec (2011) Offshore Geotechnical Engineering",
+    "Lunne (2012) The CPT in Offshore Soil Investigations — A Historic Perspective",
+    "SUT (2014) Guidance Notes for the Planning and Execution of Geophysical and Geotechnical Ground Investigations for Offshore Renewable Energy Developments"
+  ],
+  "equation_count": 8,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

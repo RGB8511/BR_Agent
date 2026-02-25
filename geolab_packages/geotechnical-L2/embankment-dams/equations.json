@@ -1,0 +1,103 @@
+[
+  {
+    "id": "geotechnical.embankment-dams.design.eq-001",
+    "title": "Terzaghi Filter Retention Criterion",
+    "equation": "D₁₅(filter) / D₈₅(base) ≤ 4 to 5",
+    "applicability": "Original criterion. Modern practice uses NEF criteria (more conservative for fine-grained bases).",
+    "source": "Terzaghi (1922)"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-002",
+    "title": "Terzaghi Filter Permeability Criterion",
+    "equation": "D₁₅(filter) / D₁₅(base) ≥ 4 to 5",
+    "source": "Terzaghi (1922)"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-003",
+    "title": "Seepage Through Homogeneous Dam (Dupuit Approximation)",
+    "equation": "q = k × (h₁² - h₂²) / (2L)",
+    "variables": {
+      "q": {"description": "Seepage per unit length of dam", "units": "m³/s/m"},
+      "k": {"description": "Hydraulic conductivity of dam material", "units": "m/s"},
+      "h₁": {"description": "Upstream head (reservoir level above base)", "units": "m"},
+      "h₂": {"description": "Downstream head (tailwater above base)", "units": "m"},
+      "L": {"description": "Base length of dam", "units": "m"}
+    },
+    "applicability": "Very approximate. Assumes horizontal flow (Dupuit). Flow net or numerical analysis required for design.",
+    "source": "Dupuit (1863)"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-004",
+    "title": "Exit Gradient FS Against Piping",
+    "equation": "FS = i_cr / i_exit = [(G_s - 1)/(1 + e)] / i_exit",
+    "applicability": "FS ≥ 3–5 for dam foundations. i_exit from flow net or seepage analysis.",
+    "source": "USACE EM 1110-2-1901"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-005",
+    "title": "Blanket Theory — Seepage Exit Gradient (Infinite Blanket)",
+    "equation": "i_exit = h × √(k_f/k_b) / (z × coth(L√(k_b/k_f)/z))",
+    "variables": {
+      "h": {"description": "Net head (reservoir level minus tailwater)", "units": "m"},
+      "k_f": {"description": "Permeability of foundation (pervious layer)", "units": "m/s"},
+      "k_b": {"description": "Permeability of blanket (impervious top layer)", "units": "m/s"},
+      "z": {"description": "Thickness of pervious foundation layer", "units": "m"},
+      "L": {"description": "Length of impervious blanket", "units": "m"}
+    },
+    "applicability": "USACE blanket theory for underseepage analysis. Simplified closed-form for uniform blanket.",
+    "source": "USACE EM 1110-2-1901, EM 1110-2-1913"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-006",
+    "title": "Wave Runup (SMB Method Simplified)",
+    "equation": "R = 0.5 × H_s (for smooth slopes); R = 0.75 × H_s (for rough riprap)",
+    "variables": {
+      "R": {"description": "Wave runup height above still water level", "units": "m"},
+      "H_s": {"description": "Significant wave height", "units": "m"}
+    },
+    "applicability": "Simplified. Full calculation uses SMB or CEM methods with fetch, wind speed, and slope angle.",
+    "source": "USACE Shore Protection Manual, USBR DS-13 Ch. 6"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-007",
+    "title": "Freeboard Requirement",
+    "equation": "Freeboard = Wave runup + Wind setup + Settlement allowance + Safety margin",
+    "applicability": "Minimum freeboard: typically 1.5–3 m above maximum water surface for large dams. Must be above PMF level.",
+    "source": "USBR DS-13 Ch. 6"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-008",
+    "title": "Riprap Sizing (USBR Simplified)",
+    "equation": "D₅₀ = H_s / 2.2 (for 2H:1V slope); D₅₀ = H_s / 1.4 (for 3H:1V slope)",
+    "variables": {
+      "D₅₀": {"description": "Median riprap stone diameter", "units": "m"},
+      "H_s": {"description": "Significant wave height", "units": "m"}
+    },
+    "applicability": "Angular riprap, properly placed. Minimum layer thickness = 1.5 × D₅₀.",
+    "source": "USBR DS-13 Ch. 7"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-009",
+    "title": "Kenney & Lau Internal Stability Criterion",
+    "equation": "H/F ≥ 1.0 for all grain sizes between D₂₀ and D₉₀",
+    "variables": {
+      "H": {"description": "Mass fraction between D and 4D", "units": "fraction"},
+      "F": {"description": "Mass fraction finer than D", "units": "fraction"}
+    },
+    "applicability": "If H/F < 1.0 at any point → potentially internally unstable → susceptible to suffusion.",
+    "source": "Kenney & Lau (1985, 1986)"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.eq-010",
+    "title": "Drain Capacity Check",
+    "equation": "Q_drain = k_drain × i × A_drain ≥ Q_seepage × FS",
+    "variables": {
+      "Q_drain": {"description": "Drain flow capacity", "units": "m³/s/m"},
+      "k_drain": {"description": "Permeability of drain material", "units": "m/s"},
+      "A_drain": {"description": "Cross-sectional area of drain", "units": "m²/m"},
+      "FS": {"description": "Factor (typically 10–100× seepage quantity)", "units": "dimensionless"}
+    },
+    "applicability": "Drains must have large excess capacity. Gradient through drain typically low (< 0.3).",
+    "source": "USBR DS-13 Ch. 5"
+  }
+]

@@ -1,0 +1,73 @@
+[
+  {
+    "id": "field-exploration.rock-coring.eq-001",
+    "title": "Rock Quality Designation (RQD)",
+    "equation": "RQD = (Σ lengths of intact core pieces ≥ 100 mm) / L_run × 100%",
+    "variables": {
+      "RQD": {"description": "Rock Quality Designation", "units": "%"},
+      "L_run": {"description": "Total length of core run (typically 1.5 m or 3.0 m)", "units": "mm"}
+    },
+    "applicability": "Only count hard, sound rock pieces. Exclude drilling-induced breaks (fresh, tight-fitting surfaces, usually perpendicular to axis). Exclude soft weathered zones. Reported per core run. RQD = 0–25: very poor; 25–50: poor; 50–75: fair; 75–90: good; 90–100: excellent.",
+    "source": "Deere (1964), ASTM D6032"
+  },
+  {
+    "id": "field-exploration.rock-coring.eq-002",
+    "title": "Total Core Recovery (TCR)",
+    "equation": "TCR = L_recovered / L_run × 100%",
+    "variables": {
+      "L_recovered": {"description": "Total length of all core recovered (all pieces, any condition)", "units": "mm"},
+      "L_run": {"description": "Length of core run", "units": "mm"}
+    },
+    "applicability": "TCR > 100% is possible if core swells or if previous run stub is recovered. TCR < 100% indicates core loss — record loss zones. Core loss is typically in weak/fractured zones (the most important zones for design).",
+    "source": "ASTM D2113"
+  },
+  {
+    "id": "field-exploration.rock-coring.eq-003",
+    "title": "Theoretical RQD from Discontinuity Frequency (Priest & Hudson)",
+    "equation": "RQD = 100 × e^(-0.1λ) × (0.1λ + 1)",
+    "variables": {
+      "RQD": {"description": "Estimated RQD", "units": "%"},
+      "λ": {"description": "Mean discontinuity frequency (number per meter along scanline/core)", "units": "per meter"}
+    },
+    "applicability": "Assumes negative exponential distribution of spacing. Provides theoretical link between RQD and fracture frequency. Useful for converting scanline mapping data to equivalent RQD. At λ = 6/m: RQD ≈ 90%. At λ = 15/m: RQD ≈ 56%. At λ = 30/m: RQD ≈ 16%.",
+    "source": "Priest & Hudson (1976)"
+  },
+  {
+    "id": "field-exploration.rock-coring.eq-004",
+    "title": "True Orientation from Alpha-Beta Angles",
+    "equation": "True dip/dip direction computed from: α (angle between discontinuity and core axis), β (rotation from reference line), borehole inclination, and borehole azimuth",
+    "variables": {
+      "α": {"description": "Angle between discontinuity trace and core axis (0° = perpendicular to axis, 90° = parallel to axis)", "units": "degrees"},
+      "β": {"description": "Clockwise rotation angle from the bottom-of-hole orientation mark to the maximum dip direction of the discontinuity", "units": "degrees"},
+      "borehole_inclination": {"description": "Inclination of borehole from horizontal", "units": "degrees"},
+      "borehole_azimuth": {"description": "Azimuth (bearing) of borehole", "units": "degrees"}
+    },
+    "applicability": "Calculation by stereographic projection (graphically) or analytically. Software: DIPS (Rocscience), CoreOrientation. For vertical boreholes: true dip = α, dip direction = β + borehole reference azimuth. For inclined holes: full 3D transformation required.",
+    "source": "Goodman (1989), ISRM Suggested Methods"
+  },
+  {
+    "id": "field-exploration.rock-coring.eq-005",
+    "title": "Terzaghi Correction for Orientation Bias in Boreholes",
+    "equation": "N_corrected = N_apparent / cos(δ)",
+    "variables": {
+      "N_corrected": {"description": "Corrected discontinuity count (true frequency)", "units": "count per meter"},
+      "N_apparent": {"description": "Observed count from core or borehole wall", "units": "count per meter"},
+      "δ": {"description": "Angle between the borehole axis and the normal to the discontinuity set", "units": "degrees"}
+    },
+    "applicability": "Boreholes intersect fewer discontinuities when the set is subparallel to the borehole axis (blind zone: δ > 70–80°). Correction becomes infinite as δ → 90°, so a practical limit of δ ≤ 60–70° is applied. For comprehensive characterization, drill boreholes at different orientations.",
+    "source": "Terzaghi (1965)"
+  },
+  {
+    "id": "field-exploration.rock-coring.eq-006",
+    "title": "Core Barrel Bit Clearance and Kerf Width",
+    "equation": "Kerf width = (D_bit_OD - D_bit_ID) / 2 = (D_hole - D_core) / 2",
+    "variables": {
+      "D_bit_OD": {"description": "Outer diameter of diamond bit (= borehole diameter)", "units": "mm"},
+      "D_bit_ID": {"description": "Inner diameter of diamond bit (= core diameter)", "units": "mm"},
+      "D_hole": {"description": "Borehole diameter", "units": "mm"},
+      "D_core": {"description": "Core diameter", "units": "mm"}
+    },
+    "applicability": "Standard wireline kerf widths: NQ: (75.7-47.6)/2 = 14 mm. HQ: (96.0-61.1)/2 = 17.5 mm. PQ: (122.6-85.0)/2 = 18.8 mm. Larger kerf → more material removed → slower advance but more annular clearance for cuttings removal.",
+    "source": "DCDMA standards"
+  }
+]

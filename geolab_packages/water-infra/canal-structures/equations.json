@@ -1,0 +1,133 @@
+[
+  {
+    "id": "water-infra.canal-structures.eq-001",
+    "title": "Sharp-Crested Weir Discharge (Rectangular)",
+    "equation": "Q = Cd × (2/3) × √(2g) × L × H^1.5",
+    "variables": {
+      "Q": {"description": "Discharge over weir", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (0.60–0.65 for sharp-crested)", "units": "dimensionless"},
+      "L": {"description": "Effective crest length (subtract end contractions if present)", "units": "m"},
+      "H": {"description": "Head on weir (water surface above crest)", "units": "m"},
+      "g": {"description": "Gravitational acceleration (9.81 m/s²)", "units": "m/s²"}
+    },
+    "applicability": "Standard weir equation. For suppressed weir (L = channel width), Cd ≈ 0.611. With end contractions, effective L = L - 0.1nH where n = number of contractions. Must have free-fall (aeration) downstream of nappe.",
+    "source": "Kindsvater-Carter (USGS), USBR Water Measurement Manual"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-002",
+    "title": "Broad-Crested Weir Discharge",
+    "equation": "Q = Cd × L × H^1.5  where Cd ≈ 1.6 (SI)",
+    "variables": {
+      "Q": {"description": "Discharge", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (~1.6 SI, ~3.09 US)", "units": "varies by unit system"},
+      "L": {"description": "Crest length (transverse to flow)", "units": "m"},
+      "H": {"description": "Total upstream head above crest", "units": "m"}
+    },
+    "applicability": "Crest length in flow direction ≥ 2–3 × H for broad-crested behavior. Cd varies with H/crest-length ratio. Used for check structures, division weirs.",
+    "source": "USBR Water Measurement Manual"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-003",
+    "title": "Parshall Flume Discharge (Free Flow)",
+    "equation": "Q = K × Ha^n",
+    "variables": {
+      "Q": {"description": "Discharge", "units": "m³/s or cfs"},
+      "K": {"description": "Flume coefficient (varies by throat width)", "units": "varies"},
+      "Ha": {"description": "Upstream head (gauge reading at 2/3 A from throat)", "units": "m or ft"},
+      "n": {"description": "Exponent (varies by throat width, typically 1.522–1.607)", "units": "dimensionless"}
+    },
+    "applicability": "Free-flow condition: submergence ratio Hb/Ha < transition submergence (60–80% depending on size). For submerged flow, correction factor applied. Standard sizes from 1 inch to 50 feet throat width.",
+    "source": "Parshall (1950), USBR Water Measurement Manual"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-004",
+    "title": "Constant-Head Orifice (CHO) Discharge",
+    "equation": "Q = Cd × A × √(2g × Δh)",
+    "variables": {
+      "Q": {"description": "Discharge through orifice", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (0.60–0.65 for sharp-edged)", "units": "dimensionless"},
+      "A": {"description": "Orifice area", "units": "m²"},
+      "Δh": {"description": "Head differential across orifice", "units": "m"}
+    },
+    "applicability": "USBR CHO turnout maintains constant Δh by adjusting upstream check. Measurement accuracy ±5% with proper maintenance. Δh typically 0.06–0.15 m (0.2–0.5 ft).",
+    "source": "USBR Design of Small Canal Structures"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-005",
+    "title": "Vertical Drop — Pool Depth (Momentum Balance)",
+    "equation": "d₂ = (d₁/2) × [-1 + √(1 + 8Fr₁²)]",
+    "variables": {
+      "d₂": {"description": "Sequent (conjugate) depth after hydraulic jump", "units": "m"},
+      "d₁": {"description": "Depth at base of drop (supercritical)", "units": "m"},
+      "Fr₁": {"description": "Froude number at section 1 = V₁/√(gd₁)", "units": "dimensionless"}
+    },
+    "applicability": "Belanger equation for sequent depth. Stilling pool must be deep enough to contain the jump. Pool length ≈ 4–6 × d₂. USBR provides standard designs for small drops.",
+    "source": "Belanger (1828), USBR Design of Small Canal Structures"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-006",
+    "title": "Baffled Drop — USBR Design Criteria",
+    "equation": "q_max = 5.6 × D_baffle^1.5 (SI, q in m²/s)",
+    "variables": {
+      "q_max": {"description": "Maximum unit discharge for baffle design", "units": "m²/s per m width"},
+      "D_baffle": {"description": "Height of baffle blocks", "units": "m"}
+    },
+    "applicability": "USBR baffled apron drop. Baffle height typically 0.8 × critical depth. Baffle rows spaced at 2× baffle height, staggered. Chute slope 2H:1V. Upstream sill, end sill at toe.",
+    "source": "USBR Design of Small Canal Structures, Peterka (1984)"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-007",
+    "title": "Inverted Siphon — Head Loss",
+    "equation": "hL = he + hf + hb + hx",
+    "variables": {
+      "hL": {"description": "Total head loss through siphon", "units": "m"},
+      "he": {"description": "Entrance loss = Ke × V²/(2g), Ke = 0.10–0.50", "units": "m"},
+      "hf": {"description": "Friction loss = f × L/D × V²/(2g) or Manning/Hazen-Williams", "units": "m"},
+      "hb": {"description": "Bend losses = ΣKb × V²/(2g)", "units": "m"},
+      "hx": {"description": "Exit loss = Kx × V²/(2g), Kx = 0.50–1.0", "units": "m"}
+    },
+    "applicability": "Available head = difference in canal water surface elevation upstream and downstream. Head loss must not exceed available head. Minimum velocity 1.0 m/s to prevent sedimentation. Maximum velocity 3.0 m/s.",
+    "source": "USBR Design of Small Canal Structures"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-008",
+    "title": "Pipe Drop — Inlet Control Head",
+    "equation": "HW/D = c × (Q/(A × √(g×D)))^n + Y - 0.5S",
+    "variables": {
+      "HW": {"description": "Headwater depth above pipe invert", "units": "m"},
+      "D": {"description": "Pipe diameter", "units": "m"},
+      "Q": {"description": "Design discharge", "units": "m³/s"},
+      "A": {"description": "Pipe cross-sectional area", "units": "m²"},
+      "c, n": {"description": "Coefficients depending on inlet type (from FHWA HDS-5)", "units": "dimensionless"},
+      "Y": {"description": "Datum adjustment", "units": "m"},
+      "S": {"description": "Pipe slope", "units": "m/m"}
+    },
+    "applicability": "FHWA inlet control nomographs also used for pipe drops and culvert crossings. Check both inlet and outlet control — governing condition produces higher headwater.",
+    "source": "FHWA HDS-5 (Hydraulic Design of Highway Culverts)"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-009",
+    "title": "Side Wasteway — Lateral Spillway Discharge",
+    "equation": "dQ/dx = Cd × (2/3) × √(2g) × (y - P)^1.5",
+    "variables": {
+      "dQ/dx": {"description": "Discharge per unit length of side weir", "units": "m²/s"},
+      "Cd": {"description": "Side weir discharge coefficient (0.33–0.40, lower than frontal weir)", "units": "dimensionless"},
+      "y": {"description": "Water depth in canal at the weir location", "units": "m"},
+      "P": {"description": "Side weir crest height above canal invert", "units": "m"}
+    },
+    "applicability": "Side weir discharge coefficient is lower than for frontal (normal) weirs because of oblique approach flow. Total wasteway discharge obtained by integrating over the weir length. For design, often simplified with average head.",
+    "source": "De Marchi (1934), Subramanya & Awasthy (1972)"
+  },
+  {
+    "id": "water-infra.canal-structures.eq-010",
+    "title": "Siphon Spillway — Priming Head and Discharge",
+    "equation": "Q = A × √(2g × H_net)",
+    "variables": {
+      "Q": {"description": "Siphon discharge when primed", "units": "m³/s"},
+      "A": {"description": "Cross-sectional area of siphon barrel", "units": "m²"},
+      "H_net": {"description": "Net head (difference between upstream and downstream levels minus losses)", "units": "m"}
+    },
+    "applicability": "Siphon spillways activate automatically when water rises above the priming level. Discharge jumps from zero to full capacity over a small head range (~0.1–0.3 m). Air vent at crown controls priming elevation. Used for canal wasteways and reservoir emergency spillways.",
+    "source": "USBR, Head (1975)"
+  }
+]

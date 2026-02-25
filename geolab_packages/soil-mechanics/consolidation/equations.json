@@ -1,0 +1,206 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-001",
+    "title": "Terzaghi 1-D Consolidation Equation",
+    "equation": "∂u/∂t = c_v × ∂²u/∂z²",
+    "variables": {
+      "u": {"description": "Excess pore water pressure", "units": "kPa"},
+      "t": {"description": "Time", "units": "s"},
+      "c_v": {"description": "Coefficient of consolidation", "units": "m²/s or m²/yr"},
+      "z": {"description": "Depth coordinate", "units": "m"}
+    },
+    "source": "Terzaghi (1925)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-002",
+    "title": "Coefficient of Consolidation",
+    "equation": "c_v = k / (m_v × γ_w)",
+    "variables": {
+      "c_v": {"description": "Coefficient of consolidation", "units": "m²/s"},
+      "k": {"description": "Hydraulic conductivity", "units": "m/s"},
+      "m_v": {"description": "Coefficient of volume compressibility", "units": "1/kPa"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"}
+    },
+    "source": "Terzaghi (1925)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-003",
+    "title": "Compression Index",
+    "equation": "C_c = -Δe / Δ(log σ')",
+    "variables": {
+      "C_c": {"description": "Compression index (slope of virgin compression line)", "units": "dimensionless"},
+      "Δe": {"description": "Change in void ratio (negative for compression)", "units": "dimensionless"},
+      "Δ(log σ')": {"description": "Change in log effective stress (one log cycle)", "units": "dimensionless"}
+    },
+    "source": "Terzaghi & Peck (1967)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-004",
+    "title": "Settlement — NC Clay",
+    "equation": "S_c = [C_c × H / (1 + e₀)] × log[(σ'_v0 + Δσ') / σ'_v0]",
+    "variables": {
+      "S_c": {"description": "Primary consolidation settlement", "units": "m"},
+      "C_c": {"description": "Compression index", "units": "dimensionless"},
+      "H": {"description": "Thickness of compressible layer", "units": "m"},
+      "e₀": {"description": "Initial void ratio", "units": "dimensionless"},
+      "σ'_v0": {"description": "Initial vertical effective stress at mid-layer", "units": "kPa"},
+      "Δσ'": {"description": "Stress increase at mid-layer from loading", "units": "kPa"}
+    },
+    "applicability": "Normally consolidated clay (OCR = 1). For thick layers, subdivide and sum.",
+    "source": "Standard consolidation theory"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-005",
+    "title": "Settlement — OC Clay (Stress Remains in Recompression)",
+    "equation": "S_c = [C_r × H / (1 + e₀)] × log[(σ'_v0 + Δσ') / σ'_v0]",
+    "variables": {
+      "S_c": {"description": "Primary consolidation settlement", "units": "m"},
+      "C_r": {"description": "Recompression index", "units": "dimensionless"}
+    },
+    "applicability": "When σ'_v0 + Δσ' ≤ σ'_p (final stress does not exceed preconsolidation pressure).",
+    "source": "Standard consolidation theory"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-006",
+    "title": "Settlement — OC Clay (Stress Exceeds σ'_p)",
+    "equation": "S_c = [C_r × H / (1 + e₀)] × log[σ'_p / σ'_v0] + [C_c × H / (1 + e₀)] × log[(σ'_v0 + Δσ') / σ'_p]",
+    "applicability": "When σ'_v0 + Δσ' > σ'_p. Two-part calculation: recompression to σ'_p, then virgin compression beyond.",
+    "source": "Standard consolidation theory"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-007",
+    "title": "Coefficient of Volume Compressibility",
+    "equation": "m_v = Δε_v / Δσ' = (Δe / Δσ') / (1 + e₀)",
+    "variables": {
+      "m_v": {"description": "Coefficient of volume compressibility", "units": "1/kPa or m²/kN"},
+      "Δε_v": {"description": "Change in vertical strain", "units": "dimensionless"},
+      "Δσ'": {"description": "Change in effective stress", "units": "kPa"}
+    },
+    "applicability": "Stress-dependent — valid only for the stress increment from which computed.",
+    "source": "Standard definition"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-008",
+    "title": "Time Factor",
+    "equation": "T_v = c_v × t / H_dr²",
+    "variables": {
+      "T_v": {"description": "Time factor (dimensionless)", "units": "dimensionless"},
+      "c_v": {"description": "Coefficient of consolidation", "units": "m²/time"},
+      "t": {"description": "Time", "units": "same time unit as c_v"},
+      "H_dr": {"description": "Length of drainage path", "units": "m"}
+    },
+    "applicability": "H_dr = H (single drainage — impervious base). H_dr = H/2 (double drainage — pervious top and bottom).",
+    "source": "Terzaghi (1925)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-009",
+    "title": "U-T Approximation (U < 60%)",
+    "equation": "T_v = (π/4) × U²",
+    "alt_form": "U = √(4T_v / π)",
+    "variables": {
+      "T_v": {"description": "Time factor", "units": "dimensionless"},
+      "U": {"description": "Average degree of consolidation (as decimal)", "units": "dimensionless"}
+    },
+    "applicability": "Uniform initial excess pore pressure distribution. U < 0.6.",
+    "source": "Terzaghi (1925) — approximate solution"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-010",
+    "title": "U-T Approximation (U > 60%)",
+    "equation": "T_v = -0.933 × log₁₀(1 - U) - 0.085",
+    "applicability": "Uniform initial excess pore pressure distribution. U > 0.6.",
+    "source": "Terzaghi (1925) — approximate solution"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-011",
+    "title": "c_v from Log-Time Method (Casagrande)",
+    "equation": "c_v = 0.197 × H_dr² / t₅₀",
+    "variables": {
+      "c_v": {"description": "Coefficient of consolidation", "units": "m²/time"},
+      "H_dr": {"description": "Average drainage path length during increment", "units": "m"},
+      "t₅₀": {"description": "Time for 50% consolidation", "units": "time"}
+    },
+    "source": "Casagrande & Fadum (1940)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-012",
+    "title": "c_v from Root-Time Method (Taylor)",
+    "equation": "c_v = 0.848 × H_dr² / t₉₀",
+    "variables": {
+      "c_v": {"description": "Coefficient of consolidation", "units": "m²/time"},
+      "H_dr": {"description": "Average drainage path length during increment", "units": "m"},
+      "t₉₀": {"description": "Time for 90% consolidation", "units": "time"}
+    },
+    "source": "Taylor (1948)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-013",
+    "title": "Secondary Compression Settlement",
+    "equation": "S_s = C_αε × H × log(t₂ / t₁)",
+    "variables": {
+      "S_s": {"description": "Secondary compression settlement", "units": "m"},
+      "C_αε": {"description": "Modified secondary compression index (Δε/Δlog t)", "units": "dimensionless"},
+      "H": {"description": "Layer thickness (at end of primary)", "units": "m"},
+      "t₁": {"description": "Time at end of primary consolidation", "units": "time"},
+      "t₂": {"description": "Time of interest", "units": "time"}
+    },
+    "source": "Mesri & Godlewski (1977)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-014",
+    "title": "Mesri's Cα/Cc Ratio",
+    "equation": "C_α / C_c ≈ 0.04 ± 0.01",
+    "applicability": "Most inorganic clays and silts. Peats: 0.05–0.07. Granular: 0.02.",
+    "source": "Mesri & Godlewski (1977)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-015",
+    "title": "Cc Correlation with Liquid Limit (Skempton)",
+    "equation": "C_c = 0.009 × (LL - 10)",
+    "variables": {
+      "C_c": {"description": "Estimated compression index", "units": "dimensionless"},
+      "LL": {"description": "Liquid limit", "units": "%"}
+    },
+    "applicability": "Undisturbed clays of moderate to low sensitivity. Order-of-magnitude estimate only.",
+    "source": "Skempton (1944)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-016",
+    "title": "Cc Correlation with Natural Moisture Content",
+    "equation": "C_c = 0.01 × (w_n - 5)",
+    "variables": {
+      "C_c": {"description": "Estimated compression index", "units": "dimensionless"},
+      "w_n": {"description": "Natural moisture content", "units": "%"}
+    },
+    "applicability": "Rough estimate for preliminary calculations. Many other correlations exist.",
+    "source": "Azzouz et al. (1976)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-017",
+    "title": "Strain from Oedometer Data",
+    "equation": "ε_v = Δe / (1 + e₀) = ΔH / H₀",
+    "variables": {
+      "ε_v": {"description": "Vertical strain", "units": "dimensionless"},
+      "Δe": {"description": "Change in void ratio", "units": "dimensionless"},
+      "e₀": {"description": "Initial void ratio at start of increment", "units": "dimensionless"},
+      "ΔH": {"description": "Change in specimen height", "units": "mm"},
+      "H₀": {"description": "Initial specimen height", "units": "mm"}
+    },
+    "source": "Fundamental definition"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.consolidation.eq-018",
+    "title": "Void Ratio from Specimen Height",
+    "equation": "e = (H × (1 + e₀) / H₀) - 1",
+    "alt_form": "e = H × G_s × γ_w × A / (M_s × g) - 1",
+    "variables": {
+      "e": {"description": "Current void ratio", "units": "dimensionless"},
+      "H": {"description": "Current specimen height", "units": "mm"},
+      "H₀": {"description": "Initial specimen height", "units": "mm"},
+      "e₀": {"description": "Initial void ratio", "units": "dimensionless"},
+      "M_s": {"description": "Dry mass of specimen", "units": "kg"},
+      "A": {"description": "Cross-sectional area of ring", "units": "m²"}
+    },
+    "source": "Phase relationships applied to oedometer specimen"
+  }
+]

@@ -1,0 +1,104 @@
+[
+  {
+    "id": "field-exploration.geophysics-surface.eq-001",
+    "title": "Seismic Refraction — Layer Depth (Two-Layer Case)",
+    "equation": "z₁ = (x_c / 2) × √((V₂ - V₁) / (V₂ + V₁))",
+    "variables": {
+      "z₁": {"description": "Depth to first refractor (e.g., bedrock)", "units": "m"},
+      "x_c": {"description": "Crossover distance (where refracted arrival overtakes direct arrival)", "units": "m"},
+      "V₁": {"description": "Velocity of upper layer", "units": "m/s"},
+      "V₂": {"description": "Velocity of lower (refracting) layer", "units": "m/s"}
+    },
+    "applicability": "Simple two-layer case. Requires V₂ > V₁. For multi-layer cases, use generalized reciprocal method (GRM) or tomographic inversion. Also: z₁ = (ti × V₁ × V₂) / (2 × √(V₂² - V₁²)) where ti = intercept time.",
+    "source": "Palmer (1981), Redpath (1973)"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.eq-002",
+    "title": "Rayleigh Wave Depth of Investigation",
+    "equation": "z_max ≈ λ_max / 2 to λ_max / 3",
+    "variables": {
+      "z_max": {"description": "Maximum depth of investigation", "units": "m"},
+      "λ_max": {"description": "Maximum wavelength recorded = V_R(f_min) / f_min", "units": "m"},
+      "V_R": {"description": "Rayleigh wave phase velocity at minimum frequency", "units": "m/s"},
+      "f_min": {"description": "Minimum usable frequency in dispersion curve", "units": "Hz"}
+    },
+    "applicability": "MASW depth depends on lowest frequency with reliable phase velocity. Active source: f_min ≈ 4–8 Hz. Passive source can reach 1–3 Hz for deeper investigation. Vs ≈ 1.1 × V_R (Rayleigh wave velocity is ~90% of shear wave velocity).",
+    "source": "Park et al. (1999), Xia et al. (1999)"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.eq-003",
+    "title": "Vs30 — Time-Averaged Shear Wave Velocity",
+    "equation": "Vs30 = 30 / Σ(di / Vsi)  for i = 1 to n layers within 30 m",
+    "variables": {
+      "Vs30": {"description": "Time-averaged shear wave velocity in upper 30 m", "units": "m/s"},
+      "di": {"description": "Thickness of layer i", "units": "m"},
+      "Vsi": {"description": "Shear wave velocity of layer i", "units": "m/s"}
+    },
+    "applicability": "Used for IBC/ASCE 7 seismic site classification: Site Class A (Vs30 > 1500), B (760–1500), C (360–760), D (180–360), E (< 180 m/s). MASW is the most common field method for Vs30 determination.",
+    "source": "ASCE 7, IBC, Eurocode 8"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.eq-004",
+    "title": "Apparent Resistivity — Wenner Array",
+    "equation": "ρ_a = 2πa × (ΔV / I)",
+    "variables": {
+      "ρ_a": {"description": "Apparent resistivity", "units": "Ω·m"},
+      "a": {"description": "Electrode spacing (all four equally spaced)", "units": "m"},
+      "ΔV": {"description": "Measured potential difference between inner electrodes", "units": "V"},
+      "I": {"description": "Injected current between outer electrodes", "units": "A"}
+    },
+    "applicability": "Wenner array: equal spacing, good vertical resolution. Depth of investigation ≈ 0.5a (median depth of sensitivity). For other arrays, geometric factor K differs: Schlumberger K = π×n×(n+1)×a, dipole-dipole K = π×n×(n+1)×(n+2)×a.",
+    "source": "Telford et al. (1990), Loke (2004)"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.eq-005",
+    "title": "GPR Depth of Penetration",
+    "equation": "d_max ≈ 35 / σ  (simplified for low-loss media)",
+    "alt_form": "Two-way travel time: t = 2d × √(ε_r) / c",
+    "variables": {
+      "d_max": {"description": "Approximate maximum penetration depth", "units": "m"},
+      "σ": {"description": "Ground conductivity (inverse of resistivity)", "units": "mS/m"},
+      "d": {"description": "Target depth", "units": "m"},
+      "ε_r": {"description": "Relative dielectric permittivity", "units": "dimensionless"},
+      "c": {"description": "Speed of light (3 × 10⁸ m/s)", "units": "m/s"}
+    },
+    "applicability": "GPR velocity: v = c/√ε_r. Typical ε_r: dry sand 3–5, wet sand 20–30, clay 5–40, water 80, air 1, concrete 6–11. Resolution ≈ λ/4 = v/(4f). Example: 400 MHz in dry sand (v≈0.15 m/ns) → resolution ≈ 0.09 m.",
+    "source": "Daniels (2004), Annan (2009)"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.eq-006",
+    "title": "Electromagnetic Skin Depth",
+    "equation": "δ = 503 × √(ρ / f)",
+    "variables": {
+      "δ": {"description": "Skin depth — depth at which EM signal attenuates to 1/e (37%)", "units": "m"},
+      "ρ": {"description": "Ground resistivity", "units": "Ω·m"},
+      "f": {"description": "Frequency of EM signal", "units": "Hz"}
+    },
+    "applicability": "Lower frequency → deeper penetration. Higher resistivity → deeper penetration. EM31 at ~9.8 kHz in 100 Ω·m ground: δ ≈ 50 m, effective exploration depth ≈ 1.5δ for vertical dipole. Conductive ground (10 Ω·m) reduces depth dramatically.",
+    "source": "McNeill (1980), Telford et al. (1990)"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.eq-007",
+    "title": "Seismic Rippability Index (from Refraction Velocity)",
+    "equation": "Rippability assessment based on Vp threshold",
+    "variables": {
+      "Vp": {"description": "P-wave velocity from refraction survey", "units": "m/s"}
+    },
+    "applicability": "Caterpillar rippability chart (D8/D9/D10 dozers): Generally rippable if Vp < 1500–2000 m/s. Marginal 2000–2500 m/s. Non-rippable > 2500–3000 m/s (varies by rock type and dozer class). Correlations are equipment-specific — use manufacturer charts.",
+    "source": "Caterpillar Handbook of Ripping (2000), FHWA"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.eq-008",
+    "title": "Gravity Anomaly from Spherical Void",
+    "equation": "Δg_max = (4/3) × π × G × Δρ × R³ / z²",
+    "variables": {
+      "Δg_max": {"description": "Maximum gravity anomaly directly above void", "units": "mGal"},
+      "G": {"description": "Gravitational constant (6.674 × 10⁻¹¹ m³/(kg·s²))", "units": "m³/(kg·s²)"},
+      "Δρ": {"description": "Density contrast (host rock - void fill; ≈ -2000 to -2500 kg/m³ for air-filled void in rock)", "units": "kg/m³"},
+      "R": {"description": "Radius of void (sphere)", "units": "m"},
+      "z": {"description": "Depth to center of void", "units": "m"}
+    },
+    "applicability": "Detectable anomaly depends on instrument precision (~1–5 μGal for modern instruments) and noise. Example: 3 m radius void at 10 m depth in limestone (Δρ ≈ -2400): Δg ≈ -0.006 mGal = -6 μGal — marginally detectable. Deeper or smaller voids may not be resolvable.",
+    "source": "Telford et al. (1990), Butler (1984)"
+  }
+]

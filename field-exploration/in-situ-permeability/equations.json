@@ -1,0 +1,136 @@
+[
+  {
+    "id": "field-exploration.in-situ-permeability.eq-001",
+    "title": "Lugeon Value Calculation",
+    "equation": "Lu = (Q/L) × (P₀/P)",
+    "variables": {
+      "Lu": {"description": "Lugeon value", "units": "L/min/m at 1 MPa"},
+      "Q": {"description": "Steady-state flow rate at test pressure", "units": "L/min"},
+      "L": {"description": "Length of test interval between packers", "units": "m"},
+      "P": {"description": "Effective test pressure at interval midpoint", "units": "MPa"},
+      "P₀": {"description": "Reference pressure (1.0 MPa)", "units": "MPa"}
+    },
+    "applicability": "P = gauge pressure + hydrostatic head to interval center - friction loss in pipe. Valid for laminar flow only. For turbulent/dilating flow patterns, compute Lu at lowest pressure step. 1 Lu ≈ 1.3×10⁻⁷ m/s (approximate).",
+    "source": "Lugeon (1933), Houlsby (1976), USBR 7310"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-002",
+    "title": "Approximate K from Lugeon Value",
+    "equation": "K ≈ 1.3 × 10⁻⁷ × Lu",
+    "variables": {
+      "K": {"description": "Hydraulic conductivity of rock mass", "units": "m/s"},
+      "Lu": {"description": "Lugeon value", "units": "Lu"}
+    },
+    "applicability": "Order-of-magnitude approximation. Assumes specific borehole geometry (NX hole, 3 m interval). More precise conversion requires analytical or numerical solution for the specific test geometry. Useful for screening only.",
+    "source": "Ewert (1997), general practice"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-003",
+    "title": "Hvorslev Slug Test — Hydraulic Conductivity",
+    "equation": "K = (r² × ln(Le/R)) / (2 × Le × T₀)",
+    "variables": {
+      "K": {"description": "Hydraulic conductivity", "units": "m/s"},
+      "r": {"description": "Radius of standpipe / casing", "units": "m"},
+      "Le": {"description": "Length of well screen or open section", "units": "m"},
+      "R": {"description": "Radius of well screen or borehole (including filter pack)", "units": "m"},
+      "T₀": {"description": "Basic time lag = time for H/H₀ to reach 0.37 (1/e)", "units": "seconds"}
+    },
+    "applicability": "For uniform soil around well screen. Plot ln(H/H₀) vs. time → should be linear. T₀ from intercept at H/H₀ = 0.37. Non-linear plot indicates heterogeneity or well skin effects.",
+    "source": "Hvorslev (1951)"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-004",
+    "title": "Bouwer-Rice Slug Test (Unconfined)",
+    "equation": "K = (rc² × ln(Re/rw)) / (2 × Le) × (1/t) × ln(H₀/Ht)",
+    "variables": {
+      "K": {"description": "Hydraulic conductivity", "units": "m/s"},
+      "rc": {"description": "Radius of well casing (where water level changes)", "units": "m"},
+      "rw": {"description": "Effective radius of well (including gravel pack)", "units": "m"},
+      "Re": {"description": "Effective radius of influence (from Bouwer-Rice empirical curves)", "units": "m"},
+      "Le": {"description": "Screen length", "units": "m"},
+      "H₀, Ht": {"description": "Head difference at t=0 and at time t", "units": "m"},
+      "t": {"description": "Time since test initiation", "units": "seconds"}
+    },
+    "applicability": "For unconfined aquifers. ln(Re/rw) determined from dimensionless parameters A, B, C tabulated by Bouwer & Rice (depend on Le/rw and Lw/rw). Works for partially and fully penetrating wells.",
+    "source": "Bouwer & Rice (1976), Bouwer (1989)"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-005",
+    "title": "Cooper-Jacob (Simplified Theis) — Pump Test",
+    "equation": "T = (2.303 × Q) / (4π × Δs);  S = (2.25 × T × t₀) / r²",
+    "variables": {
+      "T": {"description": "Transmissivity = K × b (aquifer thickness)", "units": "m²/s"},
+      "Q": {"description": "Constant pumping rate", "units": "m³/s"},
+      "Δs": {"description": "Drawdown per log cycle of time", "units": "m"},
+      "S": {"description": "Storativity (storage coefficient)", "units": "dimensionless"},
+      "t₀": {"description": "Time intercept at zero drawdown (from semilog plot)", "units": "seconds"},
+      "r": {"description": "Distance from pumping well to observation well", "units": "m"}
+    },
+    "applicability": "For confined aquifers where u = r²S/(4Tt) < 0.05 (late-time data). Plot drawdown s vs. log(time). Fit straight line through late-time data. T from slope (Δs per log cycle), S from time-axis intercept.",
+    "source": "Cooper & Jacob (1946)"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-006",
+    "title": "Theis Well Function",
+    "equation": "s = (Q / 4πT) × W(u);  where u = r²S / (4Tt)",
+    "variables": {
+      "s": {"description": "Drawdown at distance r from pumping well at time t", "units": "m"},
+      "Q": {"description": "Pumping rate", "units": "m³/s"},
+      "T": {"description": "Transmissivity", "units": "m²/s"},
+      "W(u)": {"description": "Theis well function (tabulated; W(u) = -Ei(-u))", "units": "dimensionless"},
+      "S": {"description": "Storativity", "units": "dimensionless"},
+      "r": {"description": "Radial distance to observation well", "units": "m"}
+    },
+    "applicability": "For fully confined, homogeneous, isotropic aquifer of infinite extent. Type-curve matching: plot s vs. r²/t on log-log, overlay on W(u) vs. 1/u type curve. Match point gives T and S.",
+    "source": "Theis (1935)"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-007",
+    "title": "Maximum Safe Test Pressure (Packer Test)",
+    "equation": "P_max = γ_rock × H_overburden × F_safety",
+    "variables": {
+      "P_max": {"description": "Maximum allowable test pressure at interval", "units": "kPa"},
+      "γ_rock": {"description": "Unit weight of overburden (typically 23–26 kN/m³)", "units": "kN/m³"},
+      "H_overburden": {"description": "Depth of overburden above test interval midpoint", "units": "m"},
+      "F_safety": {"description": "Factor (typically 0.5–1.0; common rule: 1 psi/ft = 22.6 kPa/m)", "units": "dimensionless"}
+    },
+    "applicability": "To prevent hydrofracture. USBR typically uses P_max = 1 psi per foot of overburden (22.6 kPa/m). Near-surface tests: reduce pressure to avoid jacking. Some standards limit to 0.5 × overburden stress for shallow tests (< 15 m).",
+    "source": "USBR 7310, Houlsby (1976)"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-008",
+    "title": "Falling Head Test in Borehole (Hvorslev Shape Factor)",
+    "equation": "K = (A / (F × Δt)) × ln(H₁/H₂)",
+    "variables": {
+      "K": {"description": "Hydraulic conductivity", "units": "m/s"},
+      "A": {"description": "Cross-sectional area of standpipe", "units": "m²"},
+      "F": {"description": "Hvorslev shape factor (depends on geometry)", "units": "m"},
+      "H₁, H₂": {"description": "Head differences at start and end of time interval", "units": "m"},
+      "Δt": {"description": "Time interval", "units": "seconds"}
+    },
+    "applicability": "Shape factors: F = 2.75D for flush-bottom casing (D = diameter). F = 2πL/ln(L/D) for uncased borehole of length L, diameter D (when L/D > 8). Multiple geometries tabulated in Hvorslev (1951).",
+    "source": "Hvorslev (1951)"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-009",
+    "title": "Specific Capacity to Transmissivity (Empirical)",
+    "equation": "T ≈ C × Sc",
+    "variables": {
+      "T": {"description": "Transmissivity", "units": "m²/day"},
+      "C": {"description": "Empirical constant (1.0–1.5 for confined, 0.9–1.2 for unconfined)", "units": "dimensionless"},
+      "Sc": {"description": "Specific capacity = Q/s (pumping rate / drawdown)", "units": "m²/day"}
+    },
+    "applicability": "Quick screening estimate from pump test data or well yield tests. Accuracy ±50%. More refined methods account for well efficiency, partial penetration, and aquifer type. Useful when full pump test analysis is not warranted.",
+    "source": "Driscoll (1986), Razack & Huntley (1991)"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.eq-010",
+    "title": "Grouting Criterion from Lugeon Tests",
+    "equation": "Grout if Lu > Lu_threshold (typically 3–10 Lu for dam foundations)",
+    "variables": {
+      "Lu": {"description": "Lugeon value from water pressure test", "units": "Lu"}
+    },
+    "applicability": "USBR and USACE: grout curtain if Lu > 3–5 in dam foundation. Blanket grouting if Lu > 10 near surface. After grouting: verify by re-testing — target Lu < 3 (some agencies target Lu < 1 for critical structures). Houlsby criterion: grouting unlikely to be effective if Lu < 1.",
+    "source": "USBR DS-13 Ch11, Houlsby (1990), Ewert (1997)"
+  }
+]

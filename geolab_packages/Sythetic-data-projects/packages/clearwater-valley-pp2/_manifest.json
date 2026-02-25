@@ -1,0 +1,31 @@
+{
+  "id": "projects.clearwater-valley.pumping-plant-pp2",
+  "name": "Clearwater Valley Pumping Plant PP-2 — Geotechnical Investigation & Performance",
+  "level": 2,
+  "discipline": "projects",
+  "parent": "projects.clearwater-valley",
+  "dependencies": [
+    "geotechnical.soil-mechanics.bearing-capacity",
+    "geotechnical.soil-mechanics.consolidation",
+    "geotechnical.soil-mechanics.lateral-earth-pressure",
+    "geotechnical.rock-mechanics.hoek-brown",
+    "geotechnical.site-investigation.in-situ-testing",
+    "geotechnical.foundations.soil-classification"
+  ],
+  "tags": ["pumping-plant", "drilled-shafts", "spread-footings", "swell-mitigation", "corrosion", "SPT", "rock-core", "UCS", "ITS", "dewatering", "Challis-Volcanics", "alluvial-clay", "Idaho", "CVID", "construction-verification", "facility-assessment", "surge-tank"],
+  "standards": ["ASTM D1586", "ASTM D1587", "ASTM D2216", "ASTM D2487", "ASTM D3967", "ASTM D4318", "ASTM D4546", "ASTM D4972", "ASTM D6032", "ASTM D6913", "ASTM D698", "ASTM D7012", "ASTM D7928", "ASTM G57", "ASCE 7-16", "ACI 318", "AWWA D100"],
+  "key_references": [
+    "WGC Report 2018-GEO-0093 (October 2018)",
+    "WGC Field Inspection Memo — PP-2 Foundation Excavation (March 2019)",
+    "CVID 2024 Annual Facility Assessment — PP-2",
+    "CVID Preliminary Design Memo — TK-2A (July 2025)"
+  ],
+  "equation_count": 8,
+  "concept_count": 18,
+  "table_count": 12,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

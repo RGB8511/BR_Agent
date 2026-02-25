@@ -1,0 +1,29 @@
+{
+  "id": "water-infra.spillway-design",
+  "name": "Spillway Design",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.dams",
+  "dependencies": [
+    "water-infra.dam-hydrology",
+    "hydrology.hydraulics.open-channel",
+    "concrete.mix-design"
+  ],
+  "tags": ["spillway", "ogee", "WES", "labyrinth", "stepped", "chute", "flip-bucket", "stilling-basin", "energy-dissipation", "cavitation", "aeration", "morning-glory", "side-channel", "fuse-plug", "auxiliary", "USBR"],
+  "standards": ["USBR-DS14-Ch3", "USBR-EM36", "USACE-HDC", "FEMA-P1015"],
+  "key_references": [
+    "USBR Design of Small Dams (1987) — Chapters 9, 10, 11",
+    "USBR Hydraulic Design of Stilling Basins and Energy Dissipators (EM 25)",
+    "USBR Design Standards No. 14, Chapter 3 — General Spillway Design",
+    "USACE Hydraulic Design Criteria (HDC) Sheets",
+    "Chanson (2015) Hydraulics of Open Channel Flow"
+  ],
+  "equation_count": 12,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

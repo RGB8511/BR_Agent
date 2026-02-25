@@ -1,0 +1,99 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.tbl-001",
+    "title": "Typical Effective Friction Angles",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "φ' (degrees)", "c' (kPa)", "Notes"],
+      "rows": [
+        ["Gravel (angular)", "35–45", "0", "Dense, well-graded"],
+        ["Gravel (rounded)", "30–38", "0", "Dense"],
+        ["Sand (dense)", "35–42", "0", "Depends on angularity, gradation"],
+        ["Sand (loose)", "28–34", "0", ""],
+        ["Silty sand", "28–35", "0–5", "Fines reduce φ'"],
+        ["Silt (non-plastic)", "26–35", "0–5", ""],
+        ["Lean clay CL (NC)", "22–30", "0–10", "c' ≈ 0 for NC at large strain"],
+        ["Lean clay CL (OC)", "24–32", "5–20", "c' from overconsolidation"],
+        ["Fat clay CH (NC)", "16–24", "0–5", "High PI → low φ'"],
+        ["Fat clay CH (OC)", "18–28", "10–40", ""],
+        ["Organic clay/silt", "20–28", "0–5", "Low strength, high compressibility"],
+        ["Compacted clay fill", "25–32", "5–20", "Depends on compaction conditions"]
+      ]
+    },
+    "source": "Various — NAVFAC DM-7, Holtz et al. (2011), Terzaghi, Peck & Mesri (1996)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.tbl-002",
+    "title": "Triaxial Test Selection Guide",
+    "type": "procedure",
+    "data": {
+      "headers": ["Test", "ASTM", "Parameters", "Best Application"],
+      "rows": [
+        ["UU", "D2850", "s_u (total stress)", "End-of-construction bearing capacity; short-term stability"],
+        ["CU with PP", "D4767", "c', φ' and c_u, φ_u", "Most versatile — effective stress analysis, stress paths, both short & long term"],
+        ["CD", "D7181", "c', φ' (direct)", "Long-term drained conditions. Very slow for clays."],
+        ["Direct shear", "D3080", "c', φ' or c'_r, φ'_r", "Interface friction, residual strength (multi-reversal), rapid testing"],
+        ["Ring shear", "D6467", "φ'_r only", "True residual — unlimited displacement. Reactivated landslides."],
+        ["UCS", "D2166", "q_u → s_u = q_u/2", "Quick index test. Sensitive to sample disturbance."],
+        ["Vane shear (field)", "D2573", "s_u, sensitivity", "Soft clays in situ. Minimal disturbance."],
+        ["Pocket penetrometer", "—", "Approximate q_u", "Field screening only. Not for design."]
+      ]
+    },
+    "source": "Standard practice"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.tbl-003",
+    "title": "Typical Residual Friction Angles",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type / PI", "φ'_r (degrees)"],
+      "rows": [
+        ["Sand / non-plastic silt", "28–36 (≈ φ'_peak)"],
+        ["Low plasticity clay (PI < 15)", "22–30"],
+        ["Medium plasticity clay (PI 15–40)", "15–25"],
+        ["High plasticity clay (PI 40–80)", "10–18"],
+        ["Very high plasticity clay (PI > 80)", "5–12"],
+        ["Bentonite / montmorillonite", "4–10"]
+      ]
+    },
+    "source": "Skempton (1964), Stark & Eid (1994), Lupini et al. (1981)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.tbl-004",
+    "title": "Bjerrum Vane Correction Factors",
+    "type": "reference",
+    "data": {
+      "headers": ["PI (%)", "μ (correction factor)"],
+      "rows": [
+        ["10", "1.05"],
+        ["20", "1.00"],
+        ["30", "0.92"],
+        ["40", "0.85"],
+        ["50", "0.80"],
+        ["60", "0.75"],
+        ["70", "0.70"],
+        ["80", "0.67"],
+        ["100", "0.62"],
+        ["120+", "0.58"]
+      ]
+    },
+    "source": "Bjerrum (1972), as modified by Ladd (1975)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.tbl-005",
+    "title": "Typical s_u/σ'_v0 and SHANSEP Parameters",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil", "S (NC ratio)", "m (exponent)", "Test Type"],
+      "rows": [
+        ["Boston blue clay", "0.20–0.22", "0.80–0.85", "CK₀U TC"],
+        ["San Francisco Bay mud", "0.32–0.35", "0.75–0.80", "CK₀U TC"],
+        ["Maine organic clay", "0.26–0.28", "0.80", "CK₀U TC"],
+        ["Soft marine clay (general)", "0.20–0.30", "0.75–0.85", "CK₀U TC"],
+        ["Norwegian quick clay", "0.22–0.28", "0.70–0.80", "CK₀U TC"],
+        ["Average (Mesri 1975)", "0.22", "0.80", "General NC clays"]
+      ]
+    },
+    "source": "Ladd & Foott (1974), Ladd (1991), Mesri (1975)"
+  }
+]

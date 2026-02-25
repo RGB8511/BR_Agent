@@ -1,0 +1,125 @@
+[
+  {
+    "id": "remote-sensing.fracture-mapping.eq-001",
+    "title": "Dip and Dip Direction from Normal Vector",
+    "equation": "Dip = arccos(nz);  Dip Direction = atan2(nx, ny)  (adjusted to 0–360°)",
+    "variables": {
+      "nz": {"description": "Vertical component of unit normal vector (positive upward)", "units": "dimensionless"},
+      "nx": {"description": "Easting component of unit normal vector", "units": "dimensionless"},
+      "ny": {"description": "Northing component of unit normal vector", "units": "dimensionless"}
+    },
+    "applicability": "Normal vector must point upward (nz > 0); if not, reverse sign. Convention: dip direction = azimuth that the plane dips toward (downhill direction of steepest descent). Ensure coordinate system is georeferenced (survey-registered point cloud).",
+    "source": "General structural geology, Priest (1993)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-002",
+    "title": "Planarity Index from Eigenvalues",
+    "equation": "P = (λ₂ - λ₃) / λ₁",
+    "variables": {
+      "P": {"description": "Planarity index (0–1; higher = more planar)", "units": "dimensionless"},
+      "λ₁": {"description": "Largest eigenvalue of local covariance matrix", "units": "m²"},
+      "λ₂": {"description": "Second eigenvalue", "units": "m²"},
+      "λ₃": {"description": "Smallest eigenvalue (near 0 for perfect plane)", "units": "m²"}
+    },
+    "applicability": "Computed from k-nearest neighbors around each point. Additional shape descriptors: linearity L = (λ₁-λ₂)/λ₁; scattering S = λ₃/λ₁. Filter for P > 0.3–0.5 to isolate planar surfaces before discontinuity extraction.",
+    "source": "West et al. (2004), Brodu & Lague (2012)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-003",
+    "title": "Terzaghi Orientation Bias Correction",
+    "equation": "w = 1 / cos(δ)  where δ = arccos(|n_disc · n_face|)",
+    "variables": {
+      "w": {"description": "Weight applied to each discontinuity for unbiased frequency estimation", "units": "dimensionless"},
+      "δ": {"description": "Angle between discontinuity normal and face/sampling normal", "units": "degrees"},
+      "n_disc": {"description": "Unit normal of the discontinuity", "units": "dimensionless"},
+      "n_face": {"description": "Unit normal of the rock face (or line of sight direction)", "units": "dimensionless"}
+    },
+    "applicability": "Cap weight at δ_max ≈ 70–80° (w_max ≈ 3–6) to avoid instability for near-parallel features. Discontinuities with δ > 80° are in the blind zone and cannot be reliably detected from that viewing direction. Requires multi-view scanning to cover all orientations.",
+    "source": "Terzaghi (1965), Lato et al. (2009)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-004",
+    "title": "True Spacing from Plane Equations",
+    "equation": "d = |D₂ - D₁|  for parallel planes a×x + b×y + c×z = D",
+    "variables": {
+      "d": {"description": "True (perpendicular) spacing between two parallel discontinuities", "units": "m"},
+      "D₁, D₂": {"description": "Plane constants (a,b,c are the same unit normal for parallel planes)", "units": "m"}
+    },
+    "applicability": "For non-parallel planes within a joint set, project planes onto the mean set normal direction. Spacing = distance between successive intercepts along a virtual scanline perpendicular to the mean plane. True spacing eliminates the apparent-to-true correction needed in manual scanline surveys.",
+    "source": "Sturzenegger & Stead (2009)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-005",
+    "title": "RQD from Discontinuity Frequency",
+    "equation": "RQD = 100 × e^(-0.1λ) × (0.1λ + 1)",
+    "variables": {
+      "RQD": {"description": "Rock Quality Designation estimated from frequency", "units": "%"},
+      "λ": {"description": "Mean discontinuity frequency per meter (all sets combined) = 1/mean spacing", "units": "1/m"}
+    },
+    "applicability": "Priest & Hudson (1976) theoretical relationship assuming negative exponential spacing distribution. Equivalent to percentage of 0.1 m or longer intact lengths. Allows estimation of RQD from remotely-measured spacing without core recovery.",
+    "source": "Priest & Hudson (1976)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-006",
+    "title": "Z₂ Roughness Parameter from Profile",
+    "equation": "Z₂ = √[(1/L) × Σ((yi+1 - yi)² / (xi+1 - xi))]",
+    "variables": {
+      "Z₂": {"description": "Root mean square of first derivative of profile (roughness parameter)", "units": "dimensionless"},
+      "yi": {"description": "Profile elevation at sample point i", "units": "mm"},
+      "xi": {"description": "Profile distance at sample point i", "units": "mm"},
+      "L": {"description": "Profile length", "units": "mm"}
+    },
+    "applicability": "Correlates to JRC: JRC = 32.2 + 32.47 × log₁₀(Z₂) (Tse & Cruden 1979, 0.5 mm interval). Resolution-dependent — use consistent sampling interval. Extract profiles from point cloud along discontinuity surface. Minimum profile length 100 mm; ISRM recommends characterizing at multiple scales.",
+    "source": "Tse & Cruden (1979), Yu & Vayssade (1991)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-007",
+    "title": "Fisher Distribution — Mean Orientation and Dispersion",
+    "equation": "κ = (N - 1) / (N - R)  where R = |Σ nᵢ|",
+    "variables": {
+      "κ": {"description": "Fisher concentration parameter (higher = tighter cluster)", "units": "dimensionless"},
+      "N": {"description": "Number of orientation measurements (normal vectors)", "units": "count"},
+      "R": {"description": "Resultant length of summed unit normal vectors", "units": "dimensionless"},
+      "nᵢ": {"description": "Unit normal vector for each discontinuity", "units": "dimensionless"}
+    },
+    "applicability": "Fisher distribution is the spherical equivalent of the normal distribution. Mean orientation = direction of resultant vector R. κ > 100: very tight cluster (well-defined joint set). κ < 10: highly dispersed. Cone of confidence (α₉₅) for the mean: cos(α₉₅) = 1 - (N-R)/R × [(1/p)^(1/(N-1)) - 1] where p = 0.05.",
+    "source": "Fisher (1953), Priest (1993)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-008",
+    "title": "Minimum Detectable Discontinuity Size",
+    "equation": "L_min ≈ k × s  where s = point spacing on the face",
+    "variables": {
+      "L_min": {"description": "Minimum discontinuity trace length that can be reliably detected", "units": "m"},
+      "k": {"description": "Multiplier (typically 5–10 points needed to fit a plane)", "units": "dimensionless"},
+      "s": {"description": "Mean point spacing on the rock face at scanning distance", "units": "m"}
+    },
+    "applicability": "At 50 m range with typical TLS (5 mm point spacing): L_min ≈ 25–50 mm. At 200 m range (20 mm spacing): L_min ≈ 100–200 mm. UAS photogrammetry at 30 m flight altitude: ~15–30 mm GSD → L_min ≈ 75–300 mm. Detection sensitivity depends on both point density and discontinuity aperture/contrast.",
+    "source": "Lato et al. (2009), general practice"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-009",
+    "title": "Angular Accuracy of Extracted Orientations",
+    "equation": "σ_θ ≈ arctan(σ_pos / (s × √N_facet))",
+    "variables": {
+      "σ_θ": {"description": "Angular uncertainty in extracted dip/dip direction", "units": "degrees"},
+      "σ_pos": {"description": "Point position accuracy", "units": "m"},
+      "s": {"description": "Point spacing", "units": "m"},
+      "N_facet": {"description": "Number of points in the segmented facet", "units": "count"}
+    },
+    "applicability": "Typical TLS: σ_pos ≈ 3–5 mm at 50 m range. For a facet with 100 points: σ_θ ≈ 1–3°. Comparable to compass/clinometer accuracy (±2–5°). Large facets (many points) yield more accurate orientations. Registration and georeferencing errors add systematic bias.",
+    "source": "Sturzenegger & Stead (2009), Lato et al. (2009)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.eq-010",
+    "title": "Block Volume from Joint Sets (Palmström)",
+    "equation": "Vb = (s₁ × s₂ × s₃) / (sin γ₁₂ × sin γ₁₃ × sin γ₂₃)",
+    "variables": {
+      "Vb": {"description": "Representative block volume", "units": "m³"},
+      "s₁, s₂, s₃": {"description": "Mean true spacings of three dominant joint sets", "units": "m"},
+      "γ₁₂, γ₁₃, γ₂₃": {"description": "Angles between joint set pairs", "units": "degrees"}
+    },
+    "applicability": "Used in GSI estimation and rockfall volume assessment. For 3 orthogonal sets: Vb = s₁×s₂×s₃. Random jointing with frequency λ: Vb ≈ β/λ³ where β depends on randomness (β = 27 for 3 orthogonal sets, β = 36 for random). Remote sensing provides s and γ for all visible sets simultaneously.",
+    "source": "Palmström (2005), Cai et al. (2004)"
+  }
+]

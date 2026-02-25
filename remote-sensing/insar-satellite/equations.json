@@ -1,0 +1,100 @@
+[
+  {
+    "id": "remote-sensing.insar-satellite.eq-001",
+    "title": "Interferometric Phase — Deformation Component",
+    "equation": "Δφ_defo = (4π / λ) × d_LOS",
+    "variables": {
+      "Δφ_defo": {"description": "Phase change due to line-of-sight displacement", "units": "radians"},
+      "λ": {"description": "Radar wavelength (C-band: 0.056 m, L-band: 0.236 m, X-band: 0.031 m)", "units": "m"},
+      "d_LOS": {"description": "Displacement in satellite line-of-sight direction", "units": "m"}
+    },
+    "applicability": "One full fringe (2π radians) corresponds to λ/2 displacement: C-band = 2.8 cm, L-band = 11.8 cm, X-band = 1.6 cm. Maximum unambiguous displacement per revisit = λ/2.",
+    "source": "Hanssen (2001), Ferretti et al. (2007)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.eq-002",
+    "title": "LOS to Vertical Displacement Conversion",
+    "equation": "d_vertical = d_LOS / cos(θ)",
+    "variables": {
+      "d_vertical": {"description": "Vertical displacement component", "units": "m"},
+      "d_LOS": {"description": "Measured line-of-sight displacement", "units": "m"},
+      "θ": {"description": "Incidence angle from vertical (typically 20–45°)", "units": "degrees"}
+    },
+    "applicability": "Valid only when displacement is purely vertical (subsidence). For mixed vertical + horizontal: decompose using ascending + descending geometry. d_LOS = d_v × cos(θ) + d_h × sin(θ) × cos(α_heading).",
+    "source": "Hanssen (2001)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.eq-003",
+    "title": "Height of Ambiguity (Topographic Sensitivity)",
+    "equation": "h_a = (λ × R × sin(θ)) / (2 × B_perp)",
+    "variables": {
+      "h_a": {"description": "Height of ambiguity — height change producing one full fringe from topography", "units": "m"},
+      "λ": {"description": "Radar wavelength", "units": "m"},
+      "R": {"description": "Slant range distance to target", "units": "m"},
+      "θ": {"description": "Incidence angle", "units": "radians"},
+      "B_perp": {"description": "Perpendicular baseline between acquisitions", "units": "m"}
+    },
+    "applicability": "Small B_perp → large h_a → low topographic sensitivity (good for deformation). Large B_perp → small h_a → high topographic sensitivity (good for DEM generation). DInSAR uses external DEM to remove topographic phase.",
+    "source": "Hanssen (2001)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.eq-004",
+    "title": "Coherence (Interferometric Correlation)",
+    "equation": "γ = |E[s₁ × s₂*]| / √(E[|s₁|²] × E[|s₂|²])",
+    "variables": {
+      "γ": {"description": "Coherence magnitude (0 = no correlation, 1 = perfect correlation)", "units": "dimensionless"},
+      "s₁, s₂": {"description": "Complex SAR signals from two acquisitions", "units": "complex"},
+      "E[]": {"description": "Expected value (estimated over spatial window)", "units": "—"}
+    },
+    "applicability": "γ > 0.3: phase measurement usable. γ > 0.6: good quality. γ < 0.2: decorrelated — no reliable phase. Decorrelation sources: temporal (vegetation change), geometric (large baseline), thermal noise.",
+    "source": "Zebker & Villasenor (1992)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.eq-005",
+    "title": "Phase Standard Deviation from Coherence",
+    "equation": "σ_φ ≈ (1 / γ) × √((1 - γ²) / (2N))",
+    "variables": {
+      "σ_φ": {"description": "Standard deviation of phase measurement", "units": "radians"},
+      "γ": {"description": "Coherence", "units": "dimensionless"},
+      "N": {"description": "Number of independent looks (multilooking)", "units": "dimensionless"}
+    },
+    "applicability": "Approximate — Cramér-Rao bound. For γ = 0.8, N = 20: σ_φ ≈ 0.10 rad → σ_d ≈ 0.9 mm (C-band). Higher coherence and more looks improve precision. Time-series methods achieve sub-mm by stacking many interferograms.",
+    "source": "Rodriguez & Martin (1992)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.eq-006",
+    "title": "PS-InSAR Velocity Precision",
+    "equation": "σ_v ≈ (λ / (4π)) × σ_φ_residual / (T_span / √N_images)",
+    "variables": {
+      "σ_v": {"description": "Velocity precision per PS point", "units": "mm/year"},
+      "σ_φ_residual": {"description": "Residual phase standard deviation after atmospheric removal", "units": "radians"},
+      "T_span": {"description": "Total time span of image stack", "units": "years"},
+      "N_images": {"description": "Number of SAR images in stack", "units": "dimensionless"}
+    },
+    "applicability": "Typical: 30 Sentinel-1 images over 2 years → σ_v ≈ 0.5–1.5 mm/yr. More images and longer timespan improve velocity precision. Atmospheric phase screen estimation is the critical quality factor.",
+    "source": "Ferretti et al. (2001), Crosetto et al. (2016)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.eq-007",
+    "title": "Critical Baseline (Decorrelation Limit)",
+    "equation": "B_perp_crit = λ × R × tan(θ) / (2 × Δr)",
+    "variables": {
+      "B_perp_crit": {"description": "Maximum perpendicular baseline before geometric decorrelation", "units": "m"},
+      "Δr": {"description": "Range resolution (slant range pixel size)", "units": "m"}
+    },
+    "applicability": "C-band Sentinel-1: B_perp_crit ≈ 5–10 km (very large — geometric decorrelation rarely an issue). X-band at fine resolution: smaller critical baseline. SBAS selects pairs with B_perp < threshold (typically 200–500 m).",
+    "source": "Hanssen (2001)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.eq-008",
+    "title": "Atmospheric Phase Screen Magnitude",
+    "equation": "Δφ_atm = (4π / λ) × 10⁻⁶ × ∫ΔN(z) dz",
+    "variables": {
+      "Δφ_atm": {"description": "Atmospheric phase delay", "units": "radians"},
+      "ΔN": {"description": "Refractivity difference between two acquisitions", "units": "dimensionless"},
+      "z": {"description": "Height (integrated along radar path through troposphere)", "units": "m"}
+    },
+    "applicability": "Tropospheric water vapor is the dominant error source: produces apparent displacement of ±10–20 mm per interferogram. Stratified component correlates with topography; turbulent component is spatially correlated over 1–10 km scales. Time-series methods separate atmospheric from deformation by temporal behavior.",
+    "source": "Hanssen (2001), Jolivet et al. (2014)"
+  }
+]

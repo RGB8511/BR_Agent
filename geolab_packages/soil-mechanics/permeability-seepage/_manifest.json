@@ -1,0 +1,26 @@
+{
+  "id": "geotechnical.soil-mechanics.permeability-seepage",
+  "name": "Permeability & Seepage",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": [
+    "geotechnical.foundations.phase-relationships",
+    "geotechnical.soil-mechanics.effective-stress"
+  ],
+  "tags": ["Darcy", "hydraulic-conductivity", "permeability", "flow-net", "seepage", "quicksand", "critical-gradient", "Hazen", "Kozeny-Carman"],
+  "standards": ["D2434", "D5084", "D4511", "D5856"],
+  "key_references": [
+    "Darcy (1856) Les Fontaines Publiques de la Ville de Dijon",
+    "Terzaghi, Peck & Mesri (1996) Soil Mechanics in Engineering Practice",
+    "Cedergren (1989) Seepage, Drainage, and Flow Nets"
+  ],
+  "equation_count": 14,
+  "concept_count": 15,
+  "table_count": 3,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

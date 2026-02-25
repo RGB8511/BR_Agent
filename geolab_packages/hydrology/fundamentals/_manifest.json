@@ -1,0 +1,24 @@
+{
+  "id": "hydrology.foundations.fundamentals",
+  "name": "Hydrology Fundamentals",
+  "level": 0,
+  "discipline": "hydrology",
+  "parent": "hydrology.foundations",
+  "dependencies": [],
+  "tags": ["water-cycle", "precipitation", "evapotranspiration", "infiltration", "runoff", "watershed", "water-balance", "unit-hydrograph", "SCS-CN", "curve-number", "time-of-concentration", "IDF-curves", "return-period", "rainfall-intensity"],
+  "standards": ["NRCS-TR55", "NRCS-NEH-630"],
+  "key_references": [
+    "Chow, Maidment & Mays (1988) Applied Hydrology",
+    "USDA-NRCS TR-55 (1986) Urban Hydrology for Small Watersheds",
+    "USDA-NRCS NEH Part 630 — Hydrology",
+    "McCuen (2005) Hydrologic Analysis and Design"
+  ],
+  "equation_count": 12,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

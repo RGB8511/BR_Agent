@@ -1,0 +1,82 @@
+[
+  {
+    "id": "water-infra.dam-risk-assessment.tbl-001",
+    "title": "Tolerable Risk Guidelines — Major Agencies",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Agency", "Individual Risk (per year)", "Societal Risk Threshold", "ALARP Zone", "Notes"],
+      "rows": [
+        ["USBR", "< 10⁻⁴", "f-N chart: AFP vs. life loss", "Between 10⁻⁴ and 10⁻⁶ AFP, depending on consequences", "Risk reduction justified if AFP > 10⁻⁴ or life loss > 0"],
+        ["USACE", "< 10⁻⁴", "ALL < 0.001 lives/year preferred", "10⁻⁴ to 10⁻⁶ AFP with DSAC risk matrix", "Dam Safety Action Classification (DSAC) I–V rating system"],
+        ["FERC", "No specific numerical target", "Category I PFMs require evaluation and action", "N/A — risk-informed but not risk-based", "Semi-quantitative risk ranking of portfolio"],
+        ["FEMA", "< 10⁻⁴ (recommended)", "General guidance — defers to state programs", "N/A", "Federal guidelines only — states implement"],
+        ["ANCOLD (Australia)", "< 10⁻⁵ (new dams), < 10⁻⁴ (existing)", "ALARP required below 10⁻⁴", "10⁻⁴ to 10⁻⁶", "Most quantitative international framework"],
+        ["ICOLD", "< 10⁻⁴ to 10⁻⁵", "Risk reduction to ALARP", "Per national standards", "Bulletin 130 provides guidance framework"]
+      ]
+    },
+    "source": "USBR, USACE, FERC, FEMA 93, ANCOLD, ICOLD Bulletin 130"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.tbl-002",
+    "title": "USACE Dam Safety Action Classification (DSAC) Ratings",
+    "type": "classification",
+    "data": {
+      "headers": ["DSAC Class", "Description", "Urgency", "Risk Level"],
+      "rows": [
+        ["DSAC I", "Urgent — failure is imminent or in progress", "Immediate action required", "Extremely high — life safety emergency"],
+        ["DSAC II", "Urgent — conditions exist that could lead to failure", "Near-term action required (< 1 year)", "Very high — unacceptable risk"],
+        ["DSAC III", "High priority — PFM identified, risk above guidelines", "Intermediate action (1–5 years)", "High — exceeds tolerable risk"],
+        ["DSAC IV", "Priority — dam safety concerns exist", "Long-term action (5–10 years)", "Moderate — approaching tolerable limits"],
+        ["DSAC V", "Normal — no significant dam safety concerns", "Routine monitoring and maintenance", "Low — within tolerable risk guidelines"]
+      ]
+    },
+    "source": "USACE ER 1110-2-1156"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.tbl-003",
+    "title": "Common Potential Failure Modes by Dam Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Dam Type", "Top Failure Modes (by frequency)", "Key Risk Drivers"],
+      "rows": [
+        ["Earth/rockfill embankment", "1. Internal erosion (through, along, under) 2. Overtopping 3. Slope instability", "Filter adequacy, conduit condition, spillway capacity"],
+        ["Concrete gravity", "1. Foundation sliding 2. Overtopping 3. Foundation erosion", "Uplift, weak foundation planes, drain effectiveness"],
+        ["Concrete arch", "1. Abutment sliding 2. Foundation degradation 3. Overtopping", "Rock mass quality, joint/fault geometry, thermal stress"],
+        ["Concrete buttress", "1. Sliding 2. Structural failure of buttress 3. Deterioration", "Uplift, reinforcement corrosion, freeze-thaw"],
+        ["Tailings dam", "1. Overtopping 2. Static liquefaction 3. Seismic liquefaction 4. Internal erosion", "Water management, upstream construction method, drainage"]
+      ]
+    },
+    "source": "ICOLD historical failure statistics, USBR, FEMA"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.tbl-004",
+    "title": "RCEM Fatality Rates by Severity and Warning Time",
+    "type": "reference",
+    "data": {
+      "headers": ["Flood Severity Category", "DV (m²/s)", "Warning < 15 min", "Warning 15–60 min", "Warning 1–12 hr", "Warning > 12 hr"],
+      "rows": [
+        ["Low (shallow, slow)", "< 0.5", "0.01–0.03", "0.005–0.01", "0.002–0.005", "0.0002–0.001"],
+        ["Medium", "0.5–2.0", "0.03–0.15", "0.01–0.05", "0.005–0.02", "0.001–0.005"],
+        ["High", "2.0–7.0", "0.15–0.50", "0.05–0.20", "0.02–0.10", "0.005–0.02"],
+        ["Extreme (deep, fast, debris)", "> 7.0", "0.50–1.0", "0.30–0.70", "0.10–0.40", "0.02–0.10"]
+      ]
+    },
+    "source": "USBR RCEM (2014), Bowles et al. Note: Ranges reflect uncertainty; use with engineering judgment for site-specific conditions."
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.tbl-005",
+    "title": "Internal Erosion Event Tree — Typical Node Probabilities",
+    "type": "reference",
+    "data": {
+      "headers": ["Event Tree Node", "Favorable (Low P)", "Neutral", "Unfavorable (High P)", "Key Factors"],
+      "rows": [
+        ["Initiation of erosion", "10⁻⁴ – 10⁻³", "10⁻³ – 10⁻²", "10⁻² – 10⁻¹", "Gradient, soil erodibility, defects, cracking"],
+        ["Continuation (no filter stops it)", "0.01 – 0.1", "0.1 – 0.5", "0.5 – 1.0", "Filter presence and adequacy, self-healing"],
+        ["Progression to breach", "0.01 – 0.1", "0.1 – 0.5", "0.5 – 0.9", "Roof support, soil gradation, extent of erosion path"],
+        ["Unsuccessful intervention", "0.1 – 0.3", "0.3 – 0.7", "0.7 – 1.0", "Monitoring capability, drawdown capacity, response time"],
+        ["Breach (uncontrolled release)", "0.1 – 0.3", "0.3 – 0.7", "0.7 – 1.0", "Reservoir volume, breach geometry"]
+      ]
+    },
+    "source": "USBR Best Practices in Dam Safety Risk Analysis, Fell et al. (2015)"
+  }
+]

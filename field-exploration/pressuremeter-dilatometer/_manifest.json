@@ -1,0 +1,25 @@
+{
+  "id": "field-exploration.pressuremeter-dilatometer",
+  "name": "Pressuremeter & Flat Dilatometer Tests",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.in-situ-testing",
+  "dependencies": [],
+  "tags": ["pressuremeter", "PMT", "Menard", "self-boring", "SBPMT", "prebored", "PBP", "dilatometer", "DMT", "Marchetti", "p0", "p1", "ID", "KD", "ED", "creep-pressure", "limit-pressure", "shear-modulus", "K0", "OCR", "Su", "settlement"],
+  "standards": ["ASTM-D4719", "ASTM-D6635", "BS-EN-ISO-22476-4", "BS-EN-ISO-22476-5", "BS-EN-ISO-22476-11"],
+  "key_references": [
+    "Baguelin, Jézéquel & Shields (1978) The Pressuremeter and Foundation Engineering",
+    "Marchetti (1980) In situ tests by flat dilatometer",
+    "Marchetti et al. (2001) DMT — Design applications",
+    "Clarke (1995) The Pressuremeter in Practice",
+    "FHWA GEC-5 Evaluation of Soil and Rock Properties"
+  ],
+  "equation_count": 10,
+  "concept_count": 16,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "remote-sensing.bathy-lidar.eq-001",
+    "title": "Water Depth from Time-of-Flight",
+    "equation": "d = (Δt × c_w) / (2 × cos(θ_w))",
+    "variables": {
+      "d": {"description": "Vertical water depth", "units": "m"},
+      "Δt": {"description": "Time difference between surface and bottom returns", "units": "ns"},
+      "c_w": {"description": "Speed of light in water (≈ 0.225 m/ns; varies with temperature, salinity)", "units": "m/ns"},
+      "θ_w": {"description": "Refracted beam angle in water (from Snell's law)", "units": "degrees"}
+    },
+    "applicability": "Accounts for oblique incidence — off-nadir beams travel longer path through water. For nadir beam: d = Δt × c_w / 2. Refraction index of water: n_w ≈ 1.333 (fresh) to 1.340 (seawater).",
+    "source": "General optics, Guenther et al. (2000)"
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.eq-002",
+    "title": "Snell's Law — Air-Water Refraction",
+    "equation": "n_a × sin(θ_a) = n_w × sin(θ_w)",
+    "variables": {
+      "n_a": {"description": "Refractive index of air (≈ 1.000)", "units": "dimensionless"},
+      "θ_a": {"description": "Incidence angle in air (from vertical)", "units": "degrees"},
+      "n_w": {"description": "Refractive index of water (≈ 1.333)", "units": "dimensionless"},
+      "θ_w": {"description": "Refracted angle in water", "units": "degrees"}
+    },
+    "applicability": "The refracted beam is deflected toward vertical upon entering water. For a 20° incidence: θ_w = arcsin(sin(20°)/1.333) ≈ 14.9°. This bends the beam, causing apparent position of bottom points to be offset from true position — refraction correction is essential.",
+    "source": "General optics"
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.eq-003",
+    "title": "Maximum Penetration Depth",
+    "equation": "d_max ≈ K / Kd",
+    "variables": {
+      "d_max": {"description": "Maximum detectable depth", "units": "m"},
+      "K": {"description": "System-dependent constant (typically 1.5–3.0 for modern systems)", "units": "dimensionless"},
+      "Kd": {"description": "Diffuse attenuation coefficient at 532 nm", "units": "1/m"}
+    },
+    "applicability": "Kd measured from Secchi disk: Kd ≈ 1.7/Secchi_depth. Or from turbidity: Kd ≈ 0.1 + 0.03 × Turbidity(NTU) (approximate). Clear ocean: Kd ≈ 0.05 → d_max ≈ 50 m. Moderate river: Kd ≈ 0.5 → d_max ≈ 5 m.",
+    "source": "Guenther et al. (2000), Pe'eri et al. (2011)"
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.eq-004",
+    "title": "Beam Footprint on Bottom",
+    "equation": "D_bottom = D_surface + 2 × d × tan(α/2) / n_w",
+    "variables": {
+      "D_bottom": {"description": "Beam footprint diameter at the bottom", "units": "m"},
+      "D_surface": {"description": "Beam footprint diameter at water surface", "units": "m"},
+      "d": {"description": "Water depth", "units": "m"},
+      "α": {"description": "Beam divergence angle", "units": "radians"},
+      "n_w": {"description": "Refractive index of water", "units": "dimensionless"}
+    },
+    "applicability": "Refraction reduces divergence in water by factor 1/n_w. Typical surface footprint: 1–3 m (airborne). Bottom footprint in 10 m water: 2–5 m. Limits horizontal resolution of bathymetric features — fine features (< footprint) cannot be resolved.",
+    "source": "Guenther et al. (2000)"
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.eq-005",
+    "title": "Beer-Lambert Law — Attenuation in Water",
+    "equation": "I(d) = I₀ × e^(-2 × Kd × d)",
+    "variables": {
+      "I(d)": {"description": "Return signal intensity from depth d", "units": "W or photon count"},
+      "I₀": {"description": "Incident signal intensity at water surface", "units": "W"},
+      "Kd": {"description": "Diffuse attenuation coefficient", "units": "1/m"},
+      "d": {"description": "Water depth (factor of 2 for two-way path)", "units": "m"}
+    },
+    "applicability": "Signal attenuates exponentially with depth. At d_max, return signal ≈ noise floor of the detector. Two-way path means effective attenuation is 2×Kd per meter depth. Bottom reflectance also affects return signal — dark bottoms further reduce returns.",
+    "source": "General optics, limnology"
+  },
+  {
+    "id": "remote-sensing.bathy-lidar.eq-006",
+    "title": "Vertical Accuracy — Bathymetric LiDAR",
+    "equation": "σ_z_bathy = √(σ_z_topo² + σ_d² + σ_refraction² + σ_surface²)",
+    "variables": {
+      "σ_z_topo": {"description": "Topographic LiDAR vertical uncertainty (GPS/IMU/ranging)", "units": "m"},
+      "σ_d": {"description": "Depth measurement uncertainty (timing, speed of light)", "units": "m"},
+      "σ_refraction": {"description": "Uncertainty from refraction correction (wave effects)", "units": "m"},
+      "σ_surface": {"description": "Water surface position uncertainty (waves, tides)", "units": "m"}
+    },
+    "applicability": "Typical total vertical uncertainty: 0.15–0.30 m (95%) in calm, clear conditions. Degrades with depth, turbidity, and wave action. Topo points: 0.05–0.15 m vertical (same as standard ALS). Bathy accuracy meets IHO S-44 Order 1b in optimal conditions.",
+    "source": "USGS, JALBTCX, system manufacturers"
+  }
+]

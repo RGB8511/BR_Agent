@@ -1,0 +1,16 @@
+{
+  "id": "remote-sensing.point-cloud-processing",
+  "name": "Point Cloud Processing — Filtering, Registration & Analysis",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.processing",
+  "dependencies": ["remote-sensing.lidar-fundamentals", "remote-sensing.uas-photogrammetry"],
+  "tags": ["point-cloud", "filtering", "classification", "ICP", "registration", "segmentation", "meshing", "octree", "voxel", "LAS", "LAZ", "E57", "CloudCompare", "PDAL", "noise-removal", "Poisson", "Delaunay", "normal-estimation", "CSF", "cloth-simulation"],
+  "standards": ["ASPRS-LAS", "ASTM-E2807"],
+  "equation_count": 8,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

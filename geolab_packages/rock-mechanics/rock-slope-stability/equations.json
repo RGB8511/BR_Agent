@@ -1,0 +1,97 @@
+[
+  {
+    "id": "geotechnical.rock-mechanics.rock-slope-stability.eq-001",
+    "title": "Planar Failure FS (General with Water & Reinforcement)",
+    "equation": "FS = [cA + (Wcosψ_p - U - Vsinψ_p + Tcosθ)tanφ] / [Wsinψ_p + Vcosψ_p - Tsinθ]",
+    "variables": {
+      "W": {"description": "Weight of sliding block", "units": "kN/m"},
+      "ψ_p": {"description": "Dip of failure plane", "units": "degrees"},
+      "U": {"description": "Water uplift force on failure plane", "units": "kN/m"},
+      "V": {"description": "Water force in tension crack", "units": "kN/m"},
+      "T": {"description": "Reinforcement force (bolt/anchor)", "units": "kN/m"},
+      "θ": {"description": "Angle of reinforcement below horizontal", "units": "degrees"},
+      "c": {"description": "Cohesion of failure plane", "units": "kPa"},
+      "φ": {"description": "Friction angle of failure plane", "units": "degrees"},
+      "A": {"description": "Area of failure plane per unit width", "units": "m²/m"}
+    },
+    "source": "Hoek & Bray (1981)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-slope-stability.eq-002",
+    "title": "Planar Failure FS (Dry, No Reinforcement, c = 0)",
+    "equation": "FS = tanφ / tanψ_p",
+    "applicability": "Simplest case: friction-only on dry failure plane.",
+    "source": "Basic equilibrium"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-slope-stability.eq-003",
+    "title": "Water Uplift Force on Failure Plane",
+    "equation": "U = 0.5 × γ_w × z_w × A_p",
+    "variables": {
+      "z_w": {"description": "Height of water above failure plane at tension crack", "units": "m"},
+      "A_p": {"description": "Area of failure plane", "units": "m²/m"}
+    },
+    "applicability": "Assuming linear pressure distribution along failure plane from tension crack to toe.",
+    "source": "Hoek & Bray (1981)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-slope-stability.eq-004",
+    "title": "Water Force in Tension Crack",
+    "equation": "V = 0.5 × γ_w × z_w²",
+    "variables": {
+      "V": {"description": "Horizontal water force in tension crack", "units": "kN/m"},
+      "z_w": {"description": "Depth of water in tension crack", "units": "m"}
+    },
+    "source": "Hydrostatic pressure in vertical crack"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-slope-stability.eq-005",
+    "title": "Kinematic Planar Failure Condition",
+    "equation": "φ < ψ_p < ψ_f AND |α_j - α_f| < 20°",
+    "variables": {
+      "ψ_p": {"description": "Dip of joint (failure plane)", "units": "degrees"},
+      "ψ_f": {"description": "Dip of slope face", "units": "degrees"},
+      "φ": {"description": "Friction angle of joint", "units": "degrees"},
+      "α_j": {"description": "Dip direction of joint", "units": "degrees"},
+      "α_f": {"description": "Dip direction of slope face", "units": "degrees"}
+    },
+    "applicability": "Joint daylights in face (ψ_p < ψ_f) and can slide (ψ_p > φ). Strike approximately parallel.",
+    "source": "Hoek & Bray (1981)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-slope-stability.eq-006",
+    "title": "Kinematic Wedge Failure Condition",
+    "equation": "φ < ψ_i < ψ_f AND intersection plunges toward face",
+    "variables": {
+      "ψ_i": {"description": "Plunge of intersection line of two planes", "units": "degrees"},
+      "ψ_f": {"description": "Dip of slope face", "units": "degrees"},
+      "φ": {"description": "Friction angle (average of two planes)", "units": "degrees"}
+    },
+    "source": "Hoek & Bray (1981)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-slope-stability.eq-007",
+    "title": "Simplified Wedge FS (Equal Friction)",
+    "equation": "FS = (F_w/F_s) × (tanφ / tanψ_i)",
+    "variables": {
+      "F_w": {"description": "Wedge geometry factor (weight component)", "units": "dimensionless"},
+      "F_s": {"description": "Wedge geometry factor (shear component)", "units": "dimensionless"},
+      "φ": {"description": "Friction angle (same on both planes)", "units": "degrees"},
+      "ψ_i": {"description": "Plunge of intersection line", "units": "degrees"}
+    },
+    "applicability": "F_w/F_s depends on geometry of wedge — computed from dip/dip direction of both planes and slope face.",
+    "source": "Hoek & Bray (1981)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-slope-stability.eq-008",
+    "title": "Toppling Condition (Block Toppling)",
+    "equation": "Δx/y < tanψ_p",
+    "variables": {
+      "Δx": {"description": "Block width (thickness normal to discontinuity)", "units": "m"},
+      "y": {"description": "Block height (along discontinuity)", "units": "m"},
+      "ψ_p": {"description": "Dip of base plane", "units": "degrees"}
+    },
+    "applicability": "If Δx/y < tanψ_p, block is too slender and topples before sliding. If Δx/y > tanψ_p, block slides.",
+    "source": "Goodman & Bray (1976)"
+  }
+]

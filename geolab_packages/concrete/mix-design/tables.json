@@ -1,0 +1,115 @@
+[
+  {
+    "id": "concrete.design.mix-design.tbl-001",
+    "title": "ACI 211.1 — Approximate Water Content (kg/m³)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Slump (mm)", "9.5 mm agg", "12.5 mm agg", "19 mm agg", "25 mm agg", "37.5 mm agg"],
+      "rows": [
+        ["25–50 (non-AE)", "207", "199", "190", "179", "166"],
+        ["75–100 (non-AE)", "228", "216", "205", "193", "181"],
+        ["150–175 (non-AE)", "243", "228", "216", "202", "190"],
+        ["25–50 (AE)", "181", "175", "168", "160", "150"],
+        ["75–100 (AE)", "202", "193", "184", "175", "165"],
+        ["150–175 (AE)", "216", "205", "197", "184", "174"]
+      ]
+    },
+    "source": "ACI 211.1 Table 6.3.3"
+  },
+  {
+    "id": "concrete.design.mix-design.tbl-002",
+    "title": "w/cm Ratio vs. Compressive Strength",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["f'c 28-day (MPa)", "w/cm Non-AE", "w/cm Air-Entrained"],
+      "rows": [
+        ["45", "0.38", "—"],
+        ["40", "0.42", "0.34"],
+        ["35", "0.47", "0.39"],
+        ["30", "0.54", "0.45"],
+        ["25", "0.61", "0.52"],
+        ["20", "0.69", "0.60"],
+        ["15", "0.79", "0.70"]
+      ]
+    },
+    "source": "ACI 211.1 Table 6.3.4a"
+  },
+  {
+    "id": "concrete.design.mix-design.tbl-003",
+    "title": "Maximum w/cm and Minimum Strength for Durability (ACI 318)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Exposure Class", "Condition", "Max w/cm", "Min f'c (MPa)"],
+      "rows": [
+        ["F0", "No freeze-thaw", "None", "None"],
+        ["F1", "Freeze-thaw, moderate saturation", "0.45", "31"],
+        ["F2", "Freeze-thaw, high saturation", "0.45", "31"],
+        ["F3", "Freeze-thaw + deicers", "0.45", "31"],
+        ["S0", "No sulfate", "None", "None"],
+        ["S1", "Moderate sulfate (150–1500 ppm)", "0.50", "28"],
+        ["S2", "Severe sulfate (1500–10000 ppm)", "0.45", "31"],
+        ["S3", "Very severe sulfate (> 10000 ppm)", "0.40", "35"],
+        ["W0", "Dry / low moisture", "None", "None"],
+        ["W1", "In contact with water, low permeability", "0.50", "28"],
+        ["C0", "Dry (no corrosion risk)", "None", "None"],
+        ["C1", "Exposed to moisture (corrosion)", "0.50", "28"],
+        ["C2", "Exposed to moisture + chloride", "0.40", "35"]
+      ]
+    },
+    "source": "ACI 318-19 Table 19.3.2"
+  },
+  {
+    "id": "concrete.design.mix-design.tbl-004",
+    "title": "Target Air Content for Frost Resistance",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Max Aggregate Size (mm)", "Mild Exposure (%)", "Severe Exposure (%)"],
+      "rows": [
+        ["9.5", "4.5", "7.5"],
+        ["12.5", "4.0", "7.0"],
+        ["19", "3.5", "6.0"],
+        ["25", "3.0", "6.0"],
+        ["37.5", "2.5", "5.5"],
+        ["50", "2.0", "5.0"],
+        ["75", "1.5", "4.5"]
+      ]
+    },
+    "source": "ACI 211.1 Table 6.3.3, ACI 318"
+  },
+  {
+    "id": "concrete.design.mix-design.tbl-005",
+    "title": "Chemical Admixture Types (ASTM C494)",
+    "type": "classification",
+    "data": {
+      "headers": ["Type", "Function", "Water Reduction", "Common Chemistry"],
+      "rows": [
+        ["A", "Water-reducing", "5–10%", "Lignosulfonates, hydroxylated carboxylic acids"],
+        ["B", "Retarding", "—", "Sugars, lignosulfonates, hydroxylated carboxylic acids"],
+        ["C", "Accelerating", "—", "Calcium chloride, calcium nitrate, triethanolamine"],
+        ["D", "Water-reducing + retarding", "5–10%", "Lignosulfonates"],
+        ["E", "Water-reducing + accelerating", "5–10%", "Various"],
+        ["F", "High-range water-reducing", "12–30%", "Naphthalene/melamine sulfonates, polycarboxylates"],
+        ["G", "High-range WR + retarding", "12–30%", "Polycarboxylate ethers (PCE)"]
+      ]
+    },
+    "source": "ASTM C494"
+  },
+  {
+    "id": "concrete.design.mix-design.tbl-006",
+    "title": "Typical Concrete Mix Proportions (kg/m³)",
+    "type": "reference",
+    "data": {
+      "headers": ["Parameter", "20 MPa", "30 MPa", "40 MPa", "50 MPa"],
+      "rows": [
+        ["Cement (kg/m³)", "260–290", "310–350", "360–420", "400–500"],
+        ["w/cm", "0.65–0.70", "0.50–0.55", "0.40–0.45", "0.33–0.38"],
+        ["Water (kg/m³)", "175–190", "165–180", "155–170", "145–165"],
+        ["Coarse agg (kg/m³)", "1000–1100", "1000–1100", "1000–1080", "950–1050"],
+        ["Fine agg (kg/m³)", "750–850", "700–800", "650–750", "600–700"],
+        ["Air (%)", "1–2 (non-AE)", "1–2 or 5–7", "1–2 or 4–6", "1–2"],
+        ["Superplasticizer", "No", "Optional", "Recommended", "Required"]
+      ]
+    },
+    "source": "Approximate ranges — PCA EB001, general practice"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "remote-sensing.insar-satellite.tbl-001",
+    "title": "SAR Satellite Systems for Deformation Monitoring",
+    "type": "reference",
+    "data": {
+      "headers": ["Satellite", "Band", "λ (cm)", "Resolution (m)", "Revisit (days)", "Swath (km)", "Data Access", "Status"],
+      "rows": [
+        ["Sentinel-1A/B", "C", "5.6", "5×20 (IW)", "6", "250", "Free (ESA Copernicus)", "Operational (1A ended 2021, 1C launched 2024)"],
+        ["TerraSAR-X / TanDEM-X", "X", "3.1", "1–3 (Spotlight)", "11", "10–100", "Commercial (Airbus)", "Operational"],
+        ["COSMO-SkyMed (4 sats)", "X", "3.1", "1–3 (Spotlight)", "4–16", "10–40", "Commercial (ASI/e-GEOS)", "Operational (2nd gen)"],
+        ["ALOS-2 PALSAR-2", "L", "23.6", "3–10", "14", "25–350", "Commercial (JAXA/RESTEC)", "Operational"],
+        ["RADARSAT Constellation (3)", "C", "5.6", "1–3 (Spotlight)", "4", "20–350", "Commercial (MDA)", "Operational"],
+        ["NISAR", "L+S", "23.6+9.3", "3–10", "12", "240", "Free (NASA/ISRO)", "Launched 2024"],
+        ["PAZ", "X", "3.1", "1–3", "11", "10–100", "Commercial (Hisdesat)", "Operational"],
+        ["SAOCOM (2 sats)", "L", "23.5", "10", "8–16", "20–350", "Commercial (CONAE)", "Operational"]
+      ]
+    },
+    "source": "ESA, NASA, satellite operator specifications (2024-2025)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.tbl-002",
+    "title": "InSAR Technique Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Technique", "Images Needed", "Scatterer Type", "Precision (mm)", "Velocity Precision (mm/yr)", "Best For"],
+      "rows": [
+        ["Single-pair DInSAR", "2 (+ DEM)", "All coherent", "5–15", "N/A (one measurement)", "Rapid assessment, coseismic, large deformation"],
+        ["Stacking (average velocity)", "5–10", "All coherent", "3–8", "2–5", "Quick velocity estimate, limited image availability"],
+        ["PS-InSAR", "20–60+", "Persistent scatterers (hard targets)", "1–3", "0.5–1.5", "Urban, infrastructure, dams — best point precision"],
+        ["SBAS", "15–40+", "Distributed scatterers", "3–8", "1–3", "Rural, agricultural, bare soil — broader coverage"],
+        ["SqueeSAR / DS-InSAR", "20–60+", "Distributed + persistent", "1–5", "0.5–2", "Combined approach — best coverage + precision"],
+        ["Offset tracking", "2+", "Any (amplitude)", "50–500", "N/A", "Very large/fast displacement (glaciers, co-seismic)"]
+      ]
+    },
+    "source": "Ferretti et al. (2007), Crosetto et al. (2016)"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.tbl-003",
+    "title": "Coherence Behavior by Land Cover and Band",
+    "type": "reference",
+    "data": {
+      "headers": ["Land Cover", "C-band (6-day)", "C-band (24-day)", "L-band (14-day)", "L-band (3-month)", "Notes"],
+      "rows": [
+        ["Urban / buildings", "0.8–0.95", "0.7–0.9", "0.8–0.95", "0.7–0.9", "Excellent PS targets; stable over years"],
+        ["Bare rock", "0.7–0.9", "0.6–0.85", "0.8–0.95", "0.7–0.9", "Good for slope monitoring"],
+        ["Bare soil / desert", "0.5–0.8", "0.3–0.7", "0.6–0.85", "0.4–0.8", "Soil moisture changes reduce coherence"],
+        ["Agricultural (crops)", "0.3–0.6", "0.1–0.3", "0.4–0.7", "0.2–0.5", "Rapid decorrelation; SBAS or L-band preferred"],
+        ["Grassland", "0.4–0.7", "0.2–0.5", "0.5–0.8", "0.3–0.6", "Seasonal variation"],
+        ["Forest (deciduous)", "0.1–0.3", "< 0.1", "0.3–0.6", "0.1–0.4", "C-band nearly unusable; L-band maintains some coherence"],
+        ["Forest (coniferous)", "0.1–0.3", "< 0.1", "0.2–0.5", "0.1–0.3", "Challenging for all bands; L-band best"],
+        ["Water / wetland", "< 0.1", "< 0.1", "< 0.1", "< 0.1", "Always decorrelated (specular reflection)"]
+      ]
+    },
+    "source": "Ferretti et al. (2007), empirical studies, Sentinel-1 experience"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.tbl-004",
+    "title": "InSAR Applications in Geotechnical Engineering",
+    "type": "classification",
+    "data": {
+      "headers": ["Application", "Typical Displacement Rate", "Recommended Technique", "Precision Needed", "Notes"],
+      "rows": [
+        ["Regional subsidence (groundwater)", "5–300 mm/yr", "SBAS or PS-InSAR", "2–5 mm/yr", "Wide area; Sentinel-1 adequate"],
+        ["Mining subsidence", "10–500 mm/yr", "DInSAR or SBAS", "5–10 mm", "Rapid rates may exceed C-band limit"],
+        ["Dam deformation", "0.5–10 mm/yr", "PS-InSAR + corner reflectors", "< 1 mm/yr", "Corner reflectors essential on dam surface"],
+        ["Tunnel-induced settlement", "2–50 mm total", "PS-InSAR (urban)", "1–3 mm", "Need near-real-time processing for construction"],
+        ["Landslide pre-failure", "1–100 mm/yr", "PS/SBAS", "1–3 mm/yr", "Acceleration detection critical"],
+        ["Levee/embankment settlement", "1–20 mm/yr", "PS-InSAR or SBAS", "2–5 mm/yr", "Linear infrastructure; good for corridor monitoring"],
+        ["Bridge/building settlement", "0.5–5 mm/yr", "PS-InSAR", "0.5–1 mm/yr", "Dense PS in urban areas"],
+        ["Volcanic/tectonic", "1–1000+ mm/yr", "All techniques", "Variable", "Full range of rates and scales"]
+      ]
+    },
+    "source": "Crosetto et al. (2016), general practice"
+  },
+  {
+    "id": "remote-sensing.insar-satellite.tbl-005",
+    "title": "Corner Reflector Specifications for InSAR Augmentation",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "C-band", "X-band", "L-band", "Notes"],
+      "rows": [
+        ["Minimum side length (triangular)", "0.6–0.8 m", "0.4–0.5 m", "1.2–1.5 m", "Larger = stronger return (RCS ∝ a⁴/λ²)"],
+        ["Radar Cross Section (RCS) target", "> 30 dBm²", "> 25 dBm²", "> 35 dBm²", "Must exceed background clutter by > 15 dB"],
+        ["Alignment accuracy", "±2° azimuth, ±1° elevation", "±1° az, ±0.5° el", "±3° az, ±2° el", "Misalignment reduces RCS rapidly"],
+        ["Material", "Aluminum (marine grade)", "Aluminum", "Aluminum or steel", "Corrosion resistance for outdoor deployment"],
+        ["Foundation", "Concrete pad or rock bolt", "Same", "Same", "Must be geotechnically stable (not on moving ground)"],
+        ["Typical cost (installed)", "$2,000–5,000", "$1,500–4,000", "$5,000–10,000", "Including monument, leveling, survey"]
+      ]
+    },
+    "source": "Ferretti et al. (2007), TRE-Altamira, general practice"
+  }
+]

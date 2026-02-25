@@ -1,0 +1,106 @@
+[
+  {
+    "id": "water-infra.pipeline-hydraulics.tbl-001",
+    "title": "Hazen-Williams C Coefficients",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Pipe Material", "C (new)", "C (design / aged)", "Notes"],
+      "rows": [
+        ["Steel (cement-mortar lined)", "140–145", "120–130", "CML protects against tuberculation"],
+        ["Steel (unlined)", "140–150", "80–110", "Depends on corrosion and water quality"],
+        ["Ductile iron (cement-mortar lined)", "140", "120–130", "Standard for DIP"],
+        ["Ductile iron (unlined)", "130", "80–100", "Not recommended — line with CML"],
+        ["Concrete (precast / PCCP)", "140", "120–130", "Smooth interior"],
+        ["PVC", "150", "140–150", "Smooth, non-corroding; minimal aging"],
+        ["HDPE", "150", "140–150", "Smooth, non-corroding"],
+        ["Asbestos-cement", "140", "120–130", "Legacy material — no new installations"],
+        ["Cast iron (old, tuberculated)", "—", "60–80", "Severe capacity loss after decades"],
+        ["Riveted steel", "110", "80–100", "Historic installations"]
+      ]
+    },
+    "source": "AWWA M11, AWWA M23, Walski et al. (2003)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.tbl-002",
+    "title": "Absolute Roughness (ε) for Darcy-Weisbach",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Pipe Material", "ε New (mm)", "ε Aged (mm)", "Notes"],
+      "rows": [
+        ["Steel (cement-mortar lined)", "0.025–0.05", "0.10–0.30", "CML maintains smoothness"],
+        ["Steel (unlined, new)", "0.045", "0.30–3.0", "Heavily affected by corrosion"],
+        ["Ductile iron (CML)", "0.025–0.05", "0.10–0.30", ""],
+        ["Concrete / PCCP", "0.30–0.60", "0.60–1.5", "Joints and surface roughness"],
+        ["PVC", "0.0015–0.005", "0.005–0.015", "Very smooth; minimal aging"],
+        ["HDPE", "0.005–0.01", "0.01–0.05", "Very smooth"],
+        ["Galvanized steel", "0.15", "0.30+", ""],
+        ["Copper", "0.0015", "0.005", ""],
+        ["Cast iron (old)", "—", "1.0–3.0+", "Tuberculation, deposits"]
+      ]
+    },
+    "source": "Moody (1944), Larock et al. (2000), AWWA"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.tbl-003",
+    "title": "Minor Loss Coefficients (K) for Common Fittings",
+    "type": "reference",
+    "data": {
+      "headers": ["Fitting / Component", "K Value", "Notes"],
+      "rows": [
+        ["Bell-mouth entrance", "0.03–0.05", "Smooth, rounded"],
+        ["Square-edge entrance", "0.50", "Flush with wall"],
+        ["Projecting (re-entrant) entrance", "0.78", "Pipe extends into reservoir"],
+        ["Exit (sudden expansion to tank)", "1.0", "All velocity head lost"],
+        ["90° long-radius elbow", "0.20", "r/D ≥ 1.5"],
+        ["90° short-radius elbow", "0.35", "r/D ≈ 1.0"],
+        ["90° miter bend", "1.10", "Sharp corner"],
+        ["45° elbow", "0.15–0.20", ""],
+        ["Tee (straight-through)", "0.10–0.30", ""],
+        ["Tee (branch flow)", "0.50–1.50", "Depends on flow split"],
+        ["Gate valve (full open)", "0.10–0.20", ""],
+        ["Butterfly valve (full open)", "0.30–0.50", ""],
+        ["Check valve (swing type)", "0.60–2.50", "Varies widely by design"],
+        ["Sudden expansion (D1→D2)", "(1 - D1²/D2²)²", "Borda-Carnot"],
+        ["Sudden contraction (D1→D2)", "0.42 × (1 - D2²/D1²)", "Approximate"],
+        ["Gradual expansion (7° cone)", "0.10–0.15", "Well-designed diffuser"]
+      ]
+    },
+    "source": "Miller (1978), Idelchik (1966), AWWA, Crane Technical Paper 410"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.tbl-004",
+    "title": "Wave Speed and Transient Characteristics by Pipe Material",
+    "type": "reference",
+    "data": {
+      "headers": ["Pipe Material", "E (GPa)", "Wave Speed a (m/s)", "Joukowsky ΔH per 1 m/s ΔV (m)", "Relative Transient Severity"],
+      "rows": [
+        ["Steel", "200", "900–1200", "92–122", "High — fast wave, high pressure"],
+        ["Ductile iron", "165", "1000–1200", "102–122", "High"],
+        ["Concrete / PCCP", "25–35", "900–1100", "92–112", "High"],
+        ["PVC", "2.7–3.4", "300–500", "31–51", "Moderate — flexible pipe attenuates"],
+        ["HDPE (PE100)", "0.8–1.1", "200–400", "20–41", "Low — very flexible"],
+        ["GRP / FRP", "10–20", "400–700", "41–71", "Moderate"],
+        ["Copper", "120", "1100–1300", "112–133", "High"]
+      ]
+    },
+    "source": "Wylie & Streeter (1993), AWWA, manufacturer data"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.tbl-005",
+    "title": "Pipeline Design Velocity Guidelines",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Minimum (m/s)", "Economic Range (m/s)", "Maximum (m/s)", "Notes"],
+      "rows": [
+        ["Water transmission main", "0.6", "0.9–2.4", "3.0", "Higher velocity → smaller pipe but more pumping"],
+        ["Water distribution", "0.3", "0.6–1.5", "2.4", "Fire flow may require higher"],
+        ["Raw water pipeline", "0.6", "0.9–2.4", "3.0", "Sediment settling if too slow"],
+        ["Pump suction pipe", "0.6", "0.9–1.5", "1.8", "NPSH considerations — keep velocity low"],
+        ["Pump discharge pipe", "0.6", "1.5–3.0", "3.6", "Can be higher than suction"],
+        ["Gravity flow pipeline", "0.6", "0.9–2.4", "4.5", "Controlled by available head"],
+        ["Penstock (hydropower)", "1.5", "3.0–6.0", "10.0", "Economics of steel vs. energy loss"]
+      ]
+    },
+    "source": "AWWA M11, ASCE MOP 79, general practice"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "id": "geotechnical.soil-mechanics.lateral-earth-pressure",
+  "name": "Lateral Earth Pressure",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": [
+    "geotechnical.soil-mechanics.effective-stress",
+    "geotechnical.soil-mechanics.shear-strength"
+  ],
+  "tags": ["Rankine", "Coulomb", "active", "passive", "at-rest", "retaining-wall", "surcharge", "log-spiral"],
+  "standards": [],
+  "key_references": [
+    "Rankine (1857) On the Stability of Loose Earth",
+    "Coulomb (1776) Essai",
+    "NAVFAC DM-7.02 Foundations and Earth Structures"
+  ],
+  "equation_count": 12,
+  "concept_count": 14,
+  "table_count": 3,
+  "content_files": ["theory.md", "equations.json", "tables.json"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

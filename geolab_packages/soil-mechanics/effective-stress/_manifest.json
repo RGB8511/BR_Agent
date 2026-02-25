@@ -1,0 +1,23 @@
+{
+  "id": "geotechnical.soil-mechanics.effective-stress",
+  "name": "Effective Stress & Pore Pressure",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": ["geotechnical.foundations.phase-relationships"],
+  "tags": ["effective-stress", "pore-pressure", "Terzaghi", "K0", "total-stress", "Skempton", "capillary"],
+  "standards": [],
+  "key_references": [
+    "Terzaghi (1943) Theoretical Soil Mechanics",
+    "Skempton (1954) Pore Pressure Coefficients A and B",
+    "Jaky (1944) The Coefficient of Earth Pressure at Rest"
+  ],
+  "equation_count": 10,
+  "concept_count": 12,
+  "table_count": 3,
+  "content_files": ["theory.md", "equations.json", "tables.json"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

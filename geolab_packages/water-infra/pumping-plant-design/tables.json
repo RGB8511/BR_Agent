@@ -1,0 +1,87 @@
+[
+  {
+    "id": "water-infra.pumping-plant-design.tbl-001",
+    "title": "Pump Station Configuration Selection",
+    "type": "classification",
+    "data": {
+      "headers": ["Configuration", "Flow Range", "Head Range", "Suction Condition", "Best Application"],
+      "rows": [
+        ["Horizontal split-case (dry-pit)", "50–20,000 L/s", "10–150 m", "Flooded or low suction lift", "Water utility standard, large stations"],
+        ["Vertical turbine (dry-pit)", "20–5,000 L/s", "10–300 m", "Deep wet well, high suction", "Deep wells, raw water intakes"],
+        ["Submersible (wet-pit)", "5–2,000 L/s", "5–100 m", "Submerged", "Smaller stations, limited space, stormwater"],
+        ["In-line booster", "10–500 L/s", "10–60 m", "Pressurized suction", "Distribution system pressure boost"],
+        ["Can-type (barrel)", "50–5,000 L/s", "30–200 m", "Self-priming configuration", "High suction lift, no wet well"],
+        ["Axial-flow (propeller)", "500–50,000+ L/s", "1–6 m", "Flooded", "Flood control, low-lift irrigation, fish passage"]
+      ]
+    },
+    "source": "Sanks (1998), Hydraulic Institute, general practice"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.tbl-002",
+    "title": "Pump Station Redundancy Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application / Standard", "Redundancy", "Firm Capacity", "Notes"],
+      "rows": [
+        ["Potable water (10 States Standards)", "N+1 pumps", "Peak day demand with largest pump out", "Must meet demand during maintenance"],
+        ["Potable water (fire flow)", "Fire flow + max day with largest pump out", "Fire + domestic simultaneous", "May require additional pump(s)"],
+        ["Raw water supply", "N+1", "Design capacity with one pump out", "Seasonal variation may reduce requirement"],
+        ["Irrigation pump station", "N or N+1", "Design flow", "Depends on criticality, crop sensitivity"],
+        ["Stormwater / flood control", "N+1 (critical) or N (non-critical)", "Design storm capacity", "Consequence-based — flooding risk"],
+        ["Dam outlet works", "Redundant gates/valves", "Full drawdown capability", "FERC/USBR require redundancy for safety"]
+      ]
+    },
+    "source": "10 States Standards, AWWA, USBR, general practice"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.tbl-003",
+    "title": "Piping Velocity Guidelines Within Pump Stations",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Pipe Location", "Velocity Range (m/s)", "Velocity Range (ft/s)", "Key Consideration"],
+      "rows": [
+        ["Suction main (approaching station)", "0.6–1.5", "2–5", "Low velocity to minimize NPSH losses"],
+        ["Suction pipe (pump-specific)", "0.6–1.2", "2–4", "Even lower than main — protect NPSH"],
+        ["Discharge pipe (pump-specific)", "1.5–3.0", "5–10", "Higher acceptable — pressure pipe"],
+        ["Discharge header (combined flow)", "1.5–2.4", "5–8", "Size for max simultaneous pump operation"],
+        ["Force main (leaving station)", "0.9–2.4", "3–8", "Economic velocity optimization"],
+        ["Wet well approach channel", "0.3–0.6", "1–2", "HI 9.8 maximum approach velocity"]
+      ]
+    },
+    "source": "Hydraulic Institute, Sanks (1998), AWWA M11"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.tbl-004",
+    "title": "Standby Power Requirements by Application",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Facility Type", "Standby Power Required?", "Duration", "Transfer Time", "Standard"],
+      "rows": [
+        ["Potable water (primary supply)", "Yes — required", "24–72 hours fuel storage", "< 10 seconds (automatic)", "10 States Standards, state regulations"],
+        ["Potable water (booster)", "Case-by-case", "12–48 hours", "< 30 seconds", "Depends on system redundancy"],
+        ["Critical raw water intake", "Yes — required", "48–72 hours", "< 10 seconds", "USBR, owner requirements"],
+        ["Irrigation pump station", "Optional", "N/A", "Manual acceptable", "Cost-benefit analysis"],
+        ["Flood control / stormwater", "Yes for critical", "Duration of design storm", "< 10 seconds", "USACE, local flood control"],
+        ["Dam outlet works", "Yes — required", "72+ hours", "< 10 seconds", "FERC, USBR, dam safety"]
+      ]
+    },
+    "source": "10 States Standards, NFPA 110, agency requirements"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.tbl-005",
+    "title": "Pump Station Noise Guidelines",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Location", "Maximum Sound Level", "Mitigation Measures"],
+      "rows": [
+        ["Interior pump room", "85 dBA (OSHA 8-hr exposure)", "Hearing protection required above 85 dBA"],
+        ["Property boundary (residential)", "45–55 dBA (night)", "Sound enclosure, barriers, equipment selection"],
+        ["Property boundary (commercial)", "55–65 dBA", "Less stringent — local ordinance governs"],
+        ["Property boundary (industrial)", "65–75 dBA", "Typically not a concern"],
+        ["Outdoor air intake / exhaust", "50–65 dBA at nearest receptor", "Silencers on ventilation, acoustic louvers"],
+        ["Emergency generator", "75–85 dBA at 7 m", "Enclosure with sound attenuation, silencer on exhaust"]
+      ]
+    },
+    "source": "OSHA 29 CFR 1910.95, local noise ordinances, general practice"
+  }
+]

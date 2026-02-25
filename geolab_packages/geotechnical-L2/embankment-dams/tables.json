@@ -1,0 +1,99 @@
+[
+  {
+    "id": "geotechnical.embankment-dams.design.tbl-001",
+    "title": "NEF Filter Criteria (USACE/Foster & Fell)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Base Soil Category", "% Fines in Base", "Filter D₁₅ Criterion"],
+      "rows": [
+        ["1: Fine-grained", "> 85% passing #200", "D₁₅(F) ≤ 0.7 mm"],
+        ["2: Sand/gravel with significant fines", "35–85% passing #200", "D₁₅(F) ≤ 0.7 mm"],
+        ["3: Sand/gravel with some fines", "15–35% passing #200", "D₁₅(F) ≤ 4×D₈₅(B) but not < 0.7 mm"],
+        ["4: Sand/gravel with few fines", "< 15% passing #200", "D₁₅(F) ≤ 4×D₈₅(B)"]
+      ]
+    },
+    "source": "USACE EM 1110-2-1901, Foster & Fell (2001)"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.tbl-002",
+    "title": "Embankment Dam Slope Guidelines",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Dam Height", "Upstream Slope (H:V)", "Downstream Slope (H:V)", "Notes"],
+      "rows": [
+        ["Small (< 15 m)", "2.5:1 to 3:1", "2:1 to 2.5:1", "Homogeneous or simple zoned"],
+        ["Medium (15–50 m)", "2.5:1 to 3.5:1", "2:1 to 3:1", "Zoned with filters"],
+        ["Large (50–100 m)", "3:1 to 4:1", "2.5:1 to 3:1", "Well-zoned, rockfill shells"],
+        ["Very large (> 100 m)", "3:1 to 5:1", "2.5:1 to 3.5:1", "Wide core, extensive drainage"]
+      ]
+    },
+    "source": "General practice — USBR, USACE. Actual slopes from stability analysis."
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.tbl-003",
+    "title": "Compaction Specifications for Dam Zones",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Zone", "Material", "RC (%)", "Reference Test", "Moisture"],
+      "rows": [
+        ["Core (impervious)", "CL, CH, SC", "≥ 95", "Standard Proctor", "w_opt to w_opt+3%"],
+        ["Filter/drain", "Clean sand/gravel", "≥ 95", "Relative density or Mod Proctor", "Saturated during placement"],
+        ["Transition shell", "Sand/gravel", "≥ 95", "Modified Proctor", "Near w_opt"],
+        ["Rockfill shell", "Sound rock", "—", "4–6 passes vibratory roller", "Sluiced (10% by volume)"],
+        ["Riprap", "Durable rock", "—", "Placed, not dumped", "Individual placement"]
+      ]
+    },
+    "source": "USBR DS-13 Ch. 3, USACE EM 1110-2-1911"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.tbl-004",
+    "title": "Internal Erosion Failure Modes",
+    "type": "classification",
+    "data": {
+      "headers": ["Mechanism", "Location", "Key Condition", "Detection"],
+      "rows": [
+        ["Backward erosion piping (BEP)", "Foundation beneath dam", "Non-cohesive soil, exit point, roof", "Sand boils at toe, increased seepage"],
+        ["Concentrated leak erosion", "Through core (cracks, defects)", "Crack or discontinuity in core", "Turbid seepage, sinkholes on crest"],
+        ["Suffusion", "Core or transition zones", "Internally unstable gradation", "Gradual increase in seepage, settlement"],
+        ["Contact erosion", "Interface of fine/coarse layers", "Parallel flow at contact", "Seepage increase, local settlement"]
+      ]
+    },
+    "source": "ICOLD Bulletin 164, Fell et al. (2015)"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.tbl-005",
+    "title": "Instrumentation Selection for Embankment Dams",
+    "type": "reference",
+    "data": {
+      "headers": ["Measurement", "Instrument", "Location", "Response Time"],
+      "rows": [
+        ["Pore pressure", "Vibrating wire piezometer", "Core, foundation, shells", "Minutes to hours"],
+        ["Pore pressure", "Standpipe (Casagrande)", "Core, foundation", "Days to weeks (clay)"],
+        ["Settlement", "Survey monuments", "Crest, berms", "N/A (manual survey)"],
+        ["Settlement", "Hydrostatic cells / extensometers", "Within embankment", "Real-time"],
+        ["Lateral movement", "Inclinometer", "Downstream shell, foundation", "Manual (weekly-monthly)"],
+        ["Seepage quantity", "V-notch weir", "Drain outlets, toe", "Continuous"],
+        ["Seepage quality", "Turbidity meter", "Drain outlets", "Continuous"],
+        ["Water level", "Staff gauge / pressure transducer", "Reservoir, tailwater", "Continuous"]
+      ]
+    },
+    "source": "USBR DS-13 Ch. 11, USACE EM 1110-2-1908"
+  },
+  {
+    "id": "geotechnical.embankment-dams.design.tbl-006",
+    "title": "Dam Safety FS Requirements (USACE/USBR)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Condition", "Slope", "Minimum FS"],
+      "rows": [
+        ["End of construction", "Both", "1.3"],
+        ["Steady-state seepage (normal pool)", "Downstream", "1.5"],
+        ["Steady-state seepage (PMF pool)", "Downstream", "1.4"],
+        ["Rapid drawdown (to min pool)", "Upstream", "1.1–1.3"],
+        ["Earthquake (pseudostatic)", "Both", "1.0–1.1"],
+        ["Post-earthquake (liquefied strengths)", "Both", "1.2"]
+      ]
+    },
+    "source": "USACE EM 1110-2-1902, USBR DS-13 Ch. 4"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "id": "water-infra.arch-dams",
+  "name": "Arch Dam Design & Analysis",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.dams",
+  "dependencies": [
+    "water-infra.concrete-gravity-dams",
+    "water-infra.dam-hydrology",
+    "rock-mechanics.rock-mass-classification",
+    "concrete.mix-design"
+  ],
+  "tags": ["arch-dam", "thin-arch", "thick-arch", "double-curvature", "cupola", "trial-load", "finite-element", "abutment", "thrust", "crown-cantilever", "independent-arch", "arch-cantilever", "thermal", "contraction-joint", "grouting", "foundation", "rock-abutment", "sliding-stability", "USBR", "FERC"],
+  "standards": ["USBR-DS-14-Ch4", "FERC-Ch11", "USACE-EM-1110-2-2201", "ICOLD-Bulletin-155"],
+  "key_references": [
+    "USBR Design Standards No. 14 — Appurtenant Structures, Ch 4: Arch Dams",
+    "USBR Design of Arch Dams (1977)",
+    "FERC Engineering Guidelines Ch 11 — Arch Dams",
+    "Boggs et al. (1988) Arch Dam Design & Analysis — USBR",
+    "ICOLD Bulletin 155 — Guidelines for Use of Numerical Models in Dam Engineering"
+  ],
+  "equation_count": 10,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

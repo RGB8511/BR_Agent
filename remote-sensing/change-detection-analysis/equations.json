@@ -1,0 +1,101 @@
+[
+  {
+    "id": "remote-sensing.change-detection.eq-001",
+    "title": "M3C2 Level of Detection (95% Confidence)",
+    "equation": "LOD_95% = ±1.96 × √(σ_reg² + σ₁²/n₁ + σ₂²/n₂)",
+    "variables": {
+      "LOD_95%": {"description": "Minimum detectable change at 95% confidence", "units": "m"},
+      "σ_reg": {"description": "Registration error between epochs (from ICP RMS or GCP residuals)", "units": "m"},
+      "σ₁": {"description": "Surface roughness (standard deviation of points from local plane) in epoch 1", "units": "m"},
+      "σ₂": {"description": "Surface roughness in epoch 2", "units": "m"},
+      "n₁, n₂": {"description": "Number of points within projection cylinder for each epoch", "units": "count"}
+    },
+    "applicability": "Per-point detection limit. Roughness and density vary spatially — LOD is not constant. Smooth surfaces with high density achieve LOD < 5 mm. Rough surfaces (rubble, vegetation) may have LOD > 50 mm.",
+    "source": "Lague et al. (2013) — M3C2 algorithm"
+  },
+  {
+    "id": "remote-sensing.change-detection.eq-002",
+    "title": "DEM of Difference (DoD)",
+    "equation": "DoD(x,y) = DEM₂(x,y) - DEM₁(x,y)",
+    "variables": {
+      "DoD": {"description": "Elevation change at each cell", "units": "m"},
+      "DEM₁": {"description": "Reference epoch elevation model", "units": "m"},
+      "DEM₂": {"description": "Comparison epoch elevation model", "units": "m"}
+    },
+    "applicability": "Positive values = surface rise (deposition, heave, swelling). Negative values = surface lowering (erosion, settlement, excavation). Both DEMs must be in the same coordinate system and datum.",
+    "source": "Wheaton et al. (2010), general geomorphic change detection"
+  },
+  {
+    "id": "remote-sensing.change-detection.eq-003",
+    "title": "DoD Uncertainty Propagation",
+    "equation": "σ_DoD = √(σ_DEM1² + σ_DEM2²)",
+    "variables": {
+      "σ_DoD": {"description": "Uncertainty of elevation change (per cell)", "units": "m"},
+      "σ_DEM1": {"description": "Vertical uncertainty of epoch 1 DEM", "units": "m"},
+      "σ_DEM2": {"description": "Vertical uncertainty of epoch 2 DEM", "units": "m"}
+    },
+    "applicability": "Assumes errors in the two DEMs are uncorrelated (valid for independent surveys). If systematic errors exist (e.g., same GPS base station), correlation reduces effective uncertainty. Spatially variable σ_DEM enables cell-by-cell LOD.",
+    "source": "Brasington et al. (2003), Wheaton et al. (2010)"
+  },
+  {
+    "id": "remote-sensing.change-detection.eq-004",
+    "title": "Volumetric Change from DoD",
+    "equation": "ΔV = Σᵢ [DoD(i) × A_cell]  for all cells where |DoD(i)| > LOD",
+    "variables": {
+      "ΔV": {"description": "Net volumetric change (positive = net gain, negative = net loss)", "units": "m³"},
+      "DoD(i)": {"description": "Elevation change at cell i", "units": "m"},
+      "A_cell": {"description": "Area of each raster cell", "units": "m²"}
+    },
+    "applicability": "Only sum cells exceeding LOD threshold to avoid noise contamination of volume estimate. Volume uncertainty: σ_V = A_cell × √(Σ σ_DoD(i)²) or approximated as σ_V ≈ σ_DoD_mean × √(N_cells) × A_cell.",
+    "source": "Wheaton et al. (2010), Lane et al. (2003)"
+  },
+  {
+    "id": "remote-sensing.change-detection.eq-005",
+    "title": "Stockpile Volume (Above Base Plane)",
+    "equation": "V_stockpile = Σᵢ max(0, Z_surface(i) - Z_base(i)) × A_cell",
+    "variables": {
+      "V_stockpile": {"description": "Volume of material above reference base", "units": "m³"},
+      "Z_surface": {"description": "Measured surface elevation", "units": "m"},
+      "Z_base": {"description": "Base reference elevation (ground plane or pre-stockpile surface)", "units": "m"}
+    },
+    "applicability": "Base surface definition critical. For conical/pyramidal stockpiles, base plane from perimeter toe points. Volume uncertainty dominated by base plane uncertainty at perimeter and surface accuracy at crest. Typical accuracy: 2–5% of volume for well-controlled surveys.",
+    "source": "General surveying practice"
+  },
+  {
+    "id": "remote-sensing.change-detection.eq-006",
+    "title": "Displacement Rate from Multi-Epoch Comparison",
+    "equation": "v = Δd / Δt",
+    "variables": {
+      "v": {"description": "Displacement rate", "units": "m/year or mm/day"},
+      "Δd": {"description": "Measured displacement (scalar or vector magnitude)", "units": "m"},
+      "Δt": {"description": "Time between epochs", "units": "years or days"}
+    },
+    "applicability": "Linear rate assumption valid for steady-state processes. For accelerating movements (landslides approaching failure), fit exponential or inverse-velocity models to multi-epoch data. Velocity precision = displacement precision / time interval.",
+    "source": "General"
+  },
+  {
+    "id": "remote-sensing.change-detection.eq-007",
+    "title": "Inverse Velocity Method — Failure Prediction",
+    "equation": "1/v = a - b × t  →  t_failure = a/b  (when 1/v → 0)",
+    "variables": {
+      "v": {"description": "Displacement velocity at time t", "units": "mm/day"},
+      "a, b": {"description": "Linear regression parameters on 1/v vs time plot", "units": "various"},
+      "t_failure": {"description": "Predicted time of failure (when velocity → ∞)", "units": "time units"}
+    },
+    "applicability": "Fukuzono (1985) method adapted for remote sensing. Plot inverse velocity over time; linear trend extrapolated to zero predicts failure time. Requires at least 3 epochs showing acceleration. Works for landslides and some structural failures. Not always linear — can be concave or convex.",
+    "source": "Fukuzono (1985), adapted for InSAR/LiDAR by Carlà et al. (2017)"
+  },
+  {
+    "id": "remote-sensing.change-detection.eq-008",
+    "title": "Area-Based Image Correlation (PIV) Precision",
+    "equation": "σ_disp ≈ GSD / (C × SNR)",
+    "variables": {
+      "σ_disp": {"description": "Displacement measurement precision", "units": "m"},
+      "GSD": {"description": "Ground sample distance (pixel size)", "units": "m"},
+      "C": {"description": "Correlation quality factor (5–20 for good texture)", "units": "dimensionless"},
+      "SNR": {"description": "Signal-to-noise ratio of imagery", "units": "dimensionless"}
+    },
+    "applicability": "Sub-pixel precision achievable: typically 0.1–0.5 × GSD. With 2 cm GSD UAS imagery, displacement precision of 2–10 mm is typical. Requires good surface texture (natural or applied targets). Poor texture (uniform surfaces) degrades precision significantly.",
+    "source": "White et al. (2003), Travelletti et al. (2012)"
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "field-exploration.in-situ-permeability.tbl-001",
+    "title": "Lugeon Value Interpretation and Grouting Significance",
+    "type": "classification",
+    "data": {
+      "headers": ["Lugeon Value", "Permeability Class", "Approx K (m/s)", "Dam Foundation Significance"],
+      "rows": [
+        ["< 1", "Very low / tight", "< 1.3×10⁻⁷", "Acceptable — no treatment needed"],
+        ["1–3", "Low", "1.3×10⁻⁷ to 4×10⁻⁷", "Generally acceptable; may grout in critical zones"],
+        ["3–10", "Moderate", "4×10⁻⁷ to 1.3×10⁻⁶", "Grouting recommended for dam foundations"],
+        ["10–30", "High", "1.3×10⁻⁶ to 4×10⁻⁶", "Significant seepage; grouting essential"],
+        ["30–100", "Very high", "4×10⁻⁶ to 1.3×10⁻⁵", "Open fractures; heavy grouting or treatment required"],
+        ["> 100", "Extremely high", "> 1.3×10⁻⁵", "Cavernous or highly fractured; special treatment needed"]
+      ]
+    },
+    "source": "Houlsby (1976), Ewert (1997), USBR DS-13"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.tbl-002",
+    "title": "Houlsby Packer Test Flow Pattern Interpretation",
+    "type": "classification",
+    "data": {
+      "headers": ["Pattern", "Ascending Steps", "Descending Steps", "Interpretation", "Action"],
+      "rows": [
+        ["Laminar", "Q ∝ P (linear)", "Same as ascending", "Darcy flow through fractures; valid Lugeon", "Standard calculation valid"],
+        ["Turbulent", "Q less than ∝ P", "Same as ascending", "High flow velocity in fractures; Darcy not valid", "Use low-pressure steps for Lugeon; overestimates at high P"],
+        ["Dilation", "Low Q at low P; rapid increase at high P", "Descending Q > ascending Q", "Fractures opening under pressure (hydrojacking)", "Report onset pressure; reduce max pressure; Lugeon from low P only"],
+        ["Washout", "Increasing Q with time at each step", "Desc > ascending (progressive)", "Joint infill being eroded by water flow", "Not a reliable permeability; indicates erodible infill; grouting concern"],
+        ["Void filling", "Decreasing Q with time at each step", "Desc < ascending", "Voids being filled with water; not reaching steady state", "Not a permeability test; indicates large voids; extend test time"]
+      ]
+    },
+    "source": "Houlsby (1976), Quiñones-Rozo (2010)"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.tbl-003",
+    "title": "In-Situ Permeability Test Selection Guide",
+    "type": "classification",
+    "data": {
+      "headers": ["Test Method", "Material", "K Range (m/s)", "Test Volume", "Duration", "Parameters Obtained"],
+      "rows": [
+        ["Packer (Lugeon) test", "Rock", "10⁻⁸ to 10⁻⁴", "3–5 m interval", "1–3 hours per test", "Lu, K, flow pattern"],
+        ["Slug test (Hvorslev)", "Soil / weak rock", "10⁻⁸ to 10⁻⁴", "Well screen zone", "Minutes to hours", "K (horizontal)"],
+        ["Slug test (Bouwer-Rice)", "Unconfined soil", "10⁻⁸ to 10⁻⁴", "Well screen zone", "Minutes to hours", "K"],
+        ["Pump test (Theis/Cooper-Jacob)", "Aquifers (soil/rock)", "10⁻⁶ to 10⁻²", "Large (aquifer scale)", "Hours to weeks", "T, S, K, boundary effects"],
+        ["Falling/rising head in borehole", "Soil", "10⁻⁹ to 10⁻⁵", "Borehole bottom zone", "Minutes to hours", "K (vertical + horizontal)"],
+        ["CPT dissipation test", "Fine-grained soil", "10⁻¹⁰ to 10⁻⁶", "Local (cone area)", "Minutes to hours", "ch (horizontal consolidation)"],
+        ["Double-ring infiltrometer", "Surface soil", "10⁻⁷ to 10⁻³", "Surface (0.3 m depth)", "1–4 hours", "Infiltration rate, K_sat (vertical)"]
+      ]
+    },
+    "source": "General practice, USACE EM 1110-1-1804"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.tbl-004",
+    "title": "Typical Hydraulic Conductivity Ranges by Material",
+    "type": "reference",
+    "data": {
+      "headers": ["Material", "K Range (m/s)", "K Range (cm/s)", "Drainage Class"],
+      "rows": [
+        ["Clean gravel", "10⁻² to 1", "1 to 100", "Very high — free draining"],
+        ["Clean sand", "10⁻⁵ to 10⁻²", "10⁻³ to 1", "High — good drainage"],
+        ["Silty sand", "10⁻⁷ to 10⁻⁴", "10⁻⁵ to 10⁻²", "Moderate"],
+        ["Silt (ML)", "10⁻⁸ to 10⁻⁶", "10⁻⁶ to 10⁻⁴", "Low — poor drainage"],
+        ["Clay (CL)", "10⁻¹⁰ to 10⁻⁷", "10⁻⁸ to 10⁻⁵", "Very low — practically impervious"],
+        ["Fat clay (CH)", "10⁻¹¹ to 10⁻⁸", "10⁻⁹ to 10⁻⁶", "Essentially impervious"],
+        ["Glacial till (mixed)", "10⁻¹² to 10⁻⁶", "10⁻¹⁰ to 10⁻⁴", "Highly variable"],
+        ["Sound granite / gneiss", "10⁻¹³ to 10⁻¹⁰", "10⁻¹¹ to 10⁻⁸", "Matrix — impervious"],
+        ["Fractured rock mass", "10⁻⁸ to 10⁻⁴", "10⁻⁶ to 10⁻²", "Depends on fracture density and aperture"],
+        ["Karst limestone", "10⁻⁶ to 10⁻¹", "10⁻⁴ to 10", "Extremely variable — solution features"]
+      ]
+    },
+    "source": "Freeze & Cherry (1979), Das (2019), general practice"
+  },
+  {
+    "id": "field-exploration.in-situ-permeability.tbl-005",
+    "title": "Packer Test Procedure — Standard 5-Step Pressure Schedule",
+    "type": "reference",
+    "data": {
+      "headers": ["Step", "Pressure (% of Pmax)", "Typical Duration", "Purpose"],
+      "rows": [
+        ["1 (ascending)", "25%", "10 min (5 min minimum)", "Low-pressure baseline — detect laminar flow"],
+        ["2 (ascending)", "50%", "10 min", "Transition check"],
+        ["3 (ascending — max)", "100%", "10 min", "Maximum test pressure — check for jacking/turbulence"],
+        ["4 (descending)", "50%", "10 min", "Compare to Step 2 — check for hysteresis (dilation/washout)"],
+        ["5 (descending)", "25%", "10 min", "Compare to Step 1 — confirm repeatability or change"]
+      ]
+    },
+    "source": "USBR 7310, Houlsby (1976). Some standards use 3-step or 7-step schedules. Total test time: ~1–1.5 hr per interval."
+  }
+]

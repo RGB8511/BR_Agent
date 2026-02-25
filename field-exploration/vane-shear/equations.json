@@ -1,0 +1,77 @@
+[
+  {
+    "id": "field-exploration.vane-shear.eq-001",
+    "title": "Undrained Shear Strength from Vane Torque",
+    "equation": "Su = T / [π × D² × (H/2 + D/6)]",
+    "variables": {
+      "Su": {"description": "Undrained shear strength (peak or remolded)", "units": "kPa"},
+      "T": {"description": "Maximum torque measured during test", "units": "kN·m"},
+      "D": {"description": "Vane blade diameter", "units": "m"},
+      "H": {"description": "Vane blade height", "units": "m"}
+    },
+    "applicability": "Assumes uniform shear stress distribution on cylindrical failure surface (sides + top + bottom). For standard vane H/D = 2: Su = 6T/(7πD³). Exact only for isotropic shear strength; actual failure surface has variable mobilization.",
+    "source": "ASTM D2573, Chandler (1988)"
+  },
+  {
+    "id": "field-exploration.vane-shear.eq-002",
+    "title": "Sensitivity from Vane Test",
+    "equation": "St = Su(peak) / Su(remolded)",
+    "variables": {
+      "St": {"description": "Sensitivity (ratio of peak to remolded undrained shear strength)", "units": "dimensionless"},
+      "Su(peak)": {"description": "Peak undrained shear strength from first rotation", "units": "kPa"},
+      "Su(remolded)": {"description": "Remolded undrained shear strength after 10+ full revolutions", "units": "kPa"}
+    },
+    "applicability": "St < 2: insensitive. 2–4: medium. 4–8: sensitive. 8–16: extra-sensitive. > 16: quick. Quick clays (St > 30) undergo complete strength loss when remolded.",
+    "source": "ASTM D2573, Skempton & Northey (1952)"
+  },
+  {
+    "id": "field-exploration.vane-shear.eq-003",
+    "title": "Bjerrum Correction Factor",
+    "equation": "Su(design) = μ × Su(FVT)",
+    "alt_form": "μ = 1.7 - 0.54 × log(PI)  [Bjerrum 1972, for PI in %]",
+    "variables": {
+      "Su(design)": {"description": "Corrected undrained shear strength for stability analysis", "units": "kPa"},
+      "μ": {"description": "Correction factor (function of plasticity index)", "units": "dimensionless"},
+      "Su(FVT)": {"description": "Measured field vane shear strength (peak)", "units": "kPa"},
+      "PI": {"description": "Plasticity index of clay", "units": "%"}
+    },
+    "applicability": "PI = 20: μ ≈ 1.0. PI = 50: μ ≈ 0.78. PI = 75: μ ≈ 0.69. PI = 100: μ ≈ 0.62. Aas et al. (1986) refined using OCR and PI. Always apply for slope stability; not needed for bearing capacity (which has its own factors).",
+    "source": "Bjerrum (1972), Aas et al. (1986)"
+  },
+  {
+    "id": "field-exploration.vane-shear.eq-004",
+    "title": "Vane Torque with Anisotropic Shear Strength",
+    "equation": "T = π × D² × [H/2 × Su(H) + D/6 × Su(V)]",
+    "variables": {
+      "Su(H)": {"description": "Undrained shear strength on horizontal planes (sides of cylinder)", "units": "kPa"},
+      "Su(V)": {"description": "Undrained shear strength on vertical planes (top and bottom)", "units": "kPa"}
+    },
+    "applicability": "For H/D = 2 standard vane: T ≈ π×D³/6 × [2×Su(H) + Su(V)]/3. The measured Su is a weighted average of horizontal and vertical strength. In anisotropic clays, Su(H)/Su(V) can be 1.5–2.0. Wroth (1984) provides framework for separating components using different H/D vanes.",
+    "source": "Wroth (1984), Chandler (1988)"
+  },
+  {
+    "id": "field-exploration.vane-shear.eq-005",
+    "title": "Rate Correction for Non-Standard Rotation",
+    "equation": "Su(ref) = Su(test) × (ω_ref / ω_test)^0.05",
+    "variables": {
+      "Su(ref)": {"description": "Shear strength corrected to reference rotation rate", "units": "kPa"},
+      "Su(test)": {"description": "Measured shear strength at test rotation rate", "units": "kPa"},
+      "ω_ref": {"description": "Reference rotation rate (6°/min per ASTM)", "units": "°/min"},
+      "ω_test": {"description": "Actual test rotation rate", "units": "°/min"}
+    },
+    "applicability": "Su increases approximately 5–10% per log cycle of strain rate. Exponent 0.05 is approximate; varies with soil type. If test performed at non-standard rate, apply correction.",
+    "source": "Chandler (1988), Blight (1968)"
+  },
+  {
+    "id": "field-exploration.vane-shear.eq-006",
+    "title": "Su/σ'v0 Ratio from Vane (SHANSEP Check)",
+    "equation": "Su/σ'v0 = S × OCR^m",
+    "variables": {
+      "S": {"description": "Normally consolidated Su/σ'v0 ratio (0.20–0.25 for most clays from FVT)", "units": "dimensionless"},
+      "OCR": {"description": "Overconsolidation ratio", "units": "dimensionless"},
+      "m": {"description": "Strength increase exponent (0.75–0.85 typical)", "units": "dimensionless"}
+    },
+    "applicability": "Plot Su(FVT)/σ'v0 vs. depth to assess consistency with expected OCR profile. Values significantly above trend may indicate desiccation, cementation, or test error. Values below may indicate sample disturbance or drainage during test.",
+    "source": "Ladd & Foott (1974), Mesri (1975)"
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "field-exploration.tracers-and-grouting.tbl-001",
+    "title": "Fluorescent Dye Tracer Properties",
+    "type": "reference",
+    "data": {
+      "headers": ["Dye", "Color", "Detection Limit (ppb)", "Sorption", "pH Sensitivity", "Best Use"],
+      "rows": [
+        ["Fluorescein (Uranine)", "Green", "0.01–0.02", "Moderate (organic matter, clay)", "Degraded below pH 5", "Most common; karst; fractured rock; general purpose"],
+        ["Rhodamine WT", "Orange-red", "0.005–0.01", "High (organic, clay)", "Stable pH 5–10", "Surface water; short-distance tests"],
+        ["Sulforhodamine B", "Red", "0.01", "Low–moderate", "Stable", "Karst; where fluorescein background is high"],
+        ["Eosin", "Orange", "0.01", "Moderate", "Degraded below pH 6", "Simultaneous injection with fluorescein (different wavelength)"],
+        ["Tinopal CBS-X", "UV blue/white", "Visual on cotton", "Moderate", "Stable", "Qualitative connection tests; cheap; visual detection on bugs"],
+        ["Lithium bromide (LiBr)", "None (salt)", "0.01 mg/L (Li)", "Very low", "N/A", "Long-distance; low sorption; no fluorescence interference"]
+      ]
+    },
+    "source": "Käss (1998), Benischke et al. (2007), Goldscheider et al. (2008)"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.tbl-002",
+    "title": "Lugeon Value Interpretation and Grouting Implications",
+    "type": "classification",
+    "data": {
+      "headers": ["Lugeon Value (Lu)", "Approximate k (m/s)", "Rock Condition", "Grouting Implication"],
+      "rows": [
+        ["< 1", "< 1.3×10⁻⁷", "Very tight; minimal flow", "Grouting generally not needed; target for curtain closure"],
+        ["1–3", "1.3×10⁻⁷ to 4×10⁻⁷", "Tight; minor fractures", "Acceptable for many dam foundations; verification target"],
+        ["3–10", "4×10⁻⁷ to 1.3×10⁻⁶", "Minor to moderate fracturing", "Groutable with standard cement; primary treatment zone"],
+        ["10–30", "1.3×10⁻⁶ to 4×10⁻⁶", "Moderately fractured", "Good cement grout take expected; straightforward grouting"],
+        ["30–100", "4×10⁻⁶ to 1.3×10⁻⁵", "Highly fractured or open features", "High grout takes; may need thicker mixes or staged approach; watch for grout travel"],
+        ["> 100", "> 1.3×10⁻⁵", "Very open fractures, karst, voids", "Extreme takes possible; consider hot mixes, sand-cement, or void filling before curtain grouting"]
+      ]
+    },
+    "source": "Houlsby (1990), Ewert (2003), USACE EM 1110-2-3506"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.tbl-003",
+    "title": "Grout Type Selection by Application",
+    "type": "classification",
+    "data": {
+      "headers": ["Application", "Grout Type", "Mix Design", "Notes"],
+      "rows": [
+        ["Dam curtain grouting (rock)", "Cement or cement-bentonite", "W:C 0.67–5.0 (traditional) or stable mix W:C 0.67–1.0 (GIN)", "Split-spacing closure; multi-pressure Lugeon verification"],
+        ["Blanket grouting (shallow rock)", "Cement", "W:C 1:1 to 3:1", "Low pressure (< 200 kPa); shallow fractured zone consolidation"],
+        ["Fine fracture grouting", "Microfine cement or colloidal silica", "Manufacturer recommendations", "Penetrates fractures 0.05–0.2 mm; higher cost"],
+        ["Sand/gravel permeation", "Sodium silicate, colloidal silica, or microfine cement", "Varies with soil gradation", "k_soil must be > 10⁻⁴ m/s for cement; silicate for finer soils"],
+        ["Compaction grouting", "Stiff sand-cement mortar (25–75 mm slump)", "10–15% cement by weight of sand; W:C ≈ 0.5", "Low mobility; displaces and densifies surrounding soil"],
+        ["Jet grouting", "Cement slurry", "W:C 0.6–1.0; Specific gravity 1.5–1.7", "High pressure (20–50 MPa); erodes and mixes in-situ soil"],
+        ["Active water cutoff", "Polyurethane resin", "Single or dual-component; expands on water contact", "Fast setting; used for tunnel inflow, emergency seepage"],
+        ["Void filling (karst, mine)", "Low-strength flowable fill or lean cement grout", "Cement + sand + fly ash; or cellular concrete", "Large volumes; cost-effective; need not be high strength"]
+      ]
+    },
+    "source": "Warner (2004), USACE EM 1110-2-3506, general practice"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.tbl-004",
+    "title": "Dam Foundation Grouting — Typical Specifications",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Typical Value", "Notes"],
+      "rows": [
+        ["Curtain depth", "0.3–0.7 × H_reservoir or to tight rock", "Deeper is more conservative; USBR often deeper than USACE"],
+        ["Primary hole spacing", "6–12 m (20–40 ft)", "Starting spacing before split-spacing"],
+        ["Closure criterion", "< 3–5 Lugeon average in verification holes", "Some projects < 1 Lu for high dams"],
+        ["Maximum grouting pressure", "0.023–0.057 MPa/m of depth (1–2.5 psi/ft)", "Higher pressure = better penetration but risk of hydrojacking"],
+        ["Stage length", "3–6 m (10–20 ft) typical", "Shorter stages in difficult conditions; upstage or downstage method"],
+        ["Grout refusal", "< 0.25 L/min at maximum pressure for 10 min", "Practical refusal; not absolute zero"],
+        ["Number of rows", "1 (simple) to 3 (high dams, critical)", "Multiple rows for higher head, more pervious foundations"],
+        ["GIN value", "500–2500 bar·L/m", "Lombardi & Deere method; project-specific"]
+      ]
+    },
+    "source": "USBR DS-13 Ch16, USACE EM 1110-2-3506, Houlsby (1990)"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.tbl-005",
+    "title": "Lugeon Test Pressure Pattern Interpretation",
+    "type": "reference",
+    "data": {
+      "headers": ["Pattern", "Q-P Behavior", "Interpretation", "Implication for Grouting"],
+      "rows": [
+        ["Laminar", "Q proportional to P (linear); same Lu at all pressures", "Tight fractures; Darcy flow", "Straightforward grouting; predictable grout take"],
+        ["Turbulent", "Q increases less than proportionally with P; Lu decreases with P", "Open fractures; high-velocity flow", "Easy to grout — large apertures accept cement readily"],
+        ["Dilation", "Lu increases at higher pressures; hysteresis (higher on ascending)", "Fractures opening under pressure (hydrojacking)", "Limit grouting pressure to avoid permanent dilation; tighter pressure control"],
+        ["Washout", "Lu increases progressively at constant pressure", "Infilling material being eroded from fractures", "Flush before grouting; may need staged approach; watch for increasing takes"],
+        ["Void filling", "Lu very high initially, decreasing as void fills", "Large void or open conduit intersected", "Large grout volumes; consider sand-cement or void filling first"]
+      ]
+    },
+    "source": "Houlsby (1990), Ewert (2003), Quinones-Rozo (2010)"
+  }
+]

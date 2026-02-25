@@ -1,0 +1,106 @@
+[
+  {
+    "id": "hydrology.foundations.fundamentals.tbl-001",
+    "title": "NRCS Hydrologic Soil Groups",
+    "type": "classification",
+    "data": {
+      "headers": ["Group", "Description", "Infiltration Rate", "Runoff Potential", "Typical Soils"],
+      "rows": [
+        ["A", "Low runoff, high infiltration", "> 7.6 mm/hr (0.30 in/hr)", "Low", "Deep sand, deep loess, aggregated silts"],
+        ["B", "Moderate infiltration", "3.8–7.6 mm/hr (0.15–0.30)", "Moderately low", "Shallow loess, sandy loam"],
+        ["C", "Slow infiltration", "1.3–3.8 mm/hr (0.05–0.15)", "Moderately high", "Clay loams, shallow sandy loam, soils with high water table"],
+        ["D", "Very slow infiltration", "0–1.3 mm/hr (0–0.05)", "High", "Heavy clays, high swelling, high water table, shallow over impervious"]
+      ]
+    },
+    "source": "USDA-NRCS NEH Part 630, Chapter 7"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.tbl-002",
+    "title": "SCS Curve Numbers for Selected Land Uses (AMC II)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Land Use / Cover", "Hydrologic Condition", "Group A", "Group B", "Group C", "Group D"],
+      "rows": [
+        ["Impervious (pavement, roofs)", "—", "98", "98", "98", "98"],
+        ["Open space — poor condition (< 50% grass)", "Poor", "68", "79", "86", "89"],
+        ["Open space — good condition (> 75% grass)", "Good", "39", "61", "74", "80"],
+        ["Residential — 1/8 acre lots (65% impervious)", "—", "77", "85", "90", "92"],
+        ["Residential — 1/2 acre lots (25% impervious)", "—", "54", "70", "80", "85"],
+        ["Commercial (85% impervious)", "—", "89", "92", "94", "95"],
+        ["Industrial (72% impervious)", "—", "81", "88", "91", "93"],
+        ["Cultivated — straight row, no conservation", "Poor", "72", "81", "88", "91"],
+        ["Cultivated — contoured + terraced", "Good", "62", "71", "78", "81"],
+        ["Pasture / range", "Good", "39", "61", "74", "80"],
+        ["Meadow (continuous grass)", "—", "30", "58", "71", "78"],
+        ["Woods — thin stand, poor litter", "Poor", "45", "66", "77", "83"],
+        ["Woods — good cover", "Good", "30", "55", "70", "77"],
+        ["Farmsteads", "—", "59", "74", "82", "86"]
+      ]
+    },
+    "source": "USDA-NRCS TR-55, Table 2-2"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.tbl-003",
+    "title": "Rational Method Runoff Coefficients (C)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Surface / Land Use", "C (low)", "C (high)"],
+      "rows": [
+        ["Asphalt / concrete pavement", "0.70", "0.95"],
+        ["Brick pavement", "0.70", "0.85"],
+        ["Rooftops", "0.75", "0.95"],
+        ["Lawns — sandy soil, flat (< 2%)", "0.05", "0.10"],
+        ["Lawns — sandy soil, steep (> 7%)", "0.15", "0.20"],
+        ["Lawns — clay soil, flat", "0.13", "0.17"],
+        ["Lawns — clay soil, steep", "0.25", "0.35"],
+        ["Unimproved areas", "0.10", "0.30"],
+        ["Parks / cemeteries", "0.10", "0.25"],
+        ["Railroad yards", "0.20", "0.40"],
+        ["Single-family residential", "0.30", "0.50"],
+        ["Multi-family residential", "0.40", "0.75"],
+        ["Light commercial", "0.50", "0.80"],
+        ["Heavy commercial / downtown", "0.60", "0.95"],
+        ["Light industrial", "0.50", "0.80"],
+        ["Heavy industrial", "0.60", "0.90"]
+      ]
+    },
+    "source": "ASCE (1992), various references"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.tbl-004",
+    "title": "Green-Ampt Infiltration Parameters by Soil Texture",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Texture", "Ks (cm/hr)", "ψ (cm)", "Porosity (η)", "Field Capacity (θfc)"],
+      "rows": [
+        ["Sand", "11.78", "4.95", "0.437", "0.062"],
+        ["Loamy sand", "2.99", "6.13", "0.437", "0.105"],
+        ["Sandy loam", "1.09", "11.01", "0.453", "0.190"],
+        ["Loam", "0.34", "8.89", "0.463", "0.232"],
+        ["Silt loam", "0.65", "16.68", "0.501", "0.284"],
+        ["Sandy clay loam", "0.15", "21.85", "0.398", "0.244"],
+        ["Clay loam", "0.10", "20.88", "0.464", "0.310"],
+        ["Silty clay loam", "0.10", "27.30", "0.471", "0.342"],
+        ["Sandy clay", "0.06", "23.90", "0.430", "0.321"],
+        ["Silty clay", "0.05", "29.22", "0.479", "0.371"],
+        ["Clay", "0.03", "31.63", "0.475", "0.385"]
+      ]
+    },
+    "source": "Rawls, Brakensiek & Miller (1983)"
+  },
+  {
+    "id": "hydrology.foundations.fundamentals.tbl-005",
+    "title": "SCS Rainfall Distribution Types by US Region",
+    "type": "classification",
+    "data": {
+      "headers": ["Type", "Region", "Characteristics"],
+      "rows": [
+        ["Type I", "Pacific coast (CA, OR, WA)", "Mild storms, moderate intensity, frontal rainfall"],
+        ["Type IA", "Pacific Northwest (western WA, OR)", "Lowest intensity, prolonged duration"],
+        ["Type II", "Rest of US (most common)", "Convective storms, highest peak intensity"],
+        ["Type III", "Gulf Coast, southern Atlantic", "Tropical storm influence, high total depth"]
+      ]
+    },
+    "source": "USDA-NRCS TR-55"
+  }
+]

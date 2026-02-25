@@ -1,0 +1,112 @@
+[
+  {
+    "id": "water-infra.canal-lining.eq-001",
+    "title": "Concrete Lining Thickness — Minimum (USBR)",
+    "equation": "t_min = max(50 mm, D_n/36 + 25 mm)",
+    "variables": {
+      "t_min": {"description": "Minimum concrete lining thickness", "units": "mm"},
+      "D_n": {"description": "Normal depth of flow in canal", "units": "mm"}
+    },
+    "applicability": "USBR guideline for unreinforced concrete. Practical range: 50–150 mm. Larger canals (Q > 30 m³/s) typically 100–150 mm. Add reinforcement or increase thickness for differential settlement, frost, or uplift.",
+    "source": "USBR Design Standards, Aisenbrey et al. (1978)"
+  },
+  {
+    "id": "water-infra.canal-lining.eq-002",
+    "title": "Seepage Loss Through Lined Canal",
+    "equation": "Q_seep = q × P × L",
+    "variables": {
+      "Q_seep": {"description": "Total seepage loss", "units": "L/day or m³/day"},
+      "q": {"description": "Seepage rate per unit wetted area", "units": "L/m²/day"},
+      "P": {"description": "Wetted perimeter of canal", "units": "m"},
+      "L": {"description": "Canal length", "units": "m"}
+    },
+    "applicability": "For estimating total seepage. Seepage rate q depends on lining type, condition, and groundwater level. Rate increases with head differential and deterioration of lining.",
+    "source": "General hydraulics"
+  },
+  {
+    "id": "water-infra.canal-lining.eq-003",
+    "title": "Hydrostatic Uplift on Empty Canal Lining",
+    "equation": "FS_uplift = (W_lining + W_soil_cover) / (γ_w × h_gw × cos(α))",
+    "variables": {
+      "FS_uplift": {"description": "Factor of safety against lining blowout (≥ 1.3–1.5)", "units": "dimensionless"},
+      "W_lining": {"description": "Weight of lining per unit area", "units": "kN/m²"},
+      "W_soil_cover": {"description": "Weight of soil cover over membrane (if any)", "units": "kN/m²"},
+      "γ_w": {"description": "Unit weight of water (9.81 kN/m³)", "units": "kN/m³"},
+      "h_gw": {"description": "Groundwater head above canal invert", "units": "m"},
+      "α": {"description": "Slope angle of canal side (from horizontal)", "units": "degrees"}
+    },
+    "applicability": "Critical when canal is drained for maintenance or during low-flow periods. Underdrain system required when FS < 1.5 without drainage.",
+    "source": "USBR, general geotechnical practice"
+  },
+  {
+    "id": "water-infra.canal-lining.eq-004",
+    "title": "Seepage Through Concrete Lining (Darcy's Law)",
+    "equation": "q = k_lining × (h + t) / t",
+    "variables": {
+      "q": {"description": "Seepage rate per unit area", "units": "m/day"},
+      "k_lining": {"description": "Hydraulic conductivity of concrete lining (typically 10⁻⁸ to 10⁻⁶ cm/s)", "units": "m/day"},
+      "h": {"description": "Head of water above lining invert", "units": "m"},
+      "t": {"description": "Lining thickness", "units": "m"}
+    },
+    "applicability": "Assumes saturated flow through lining. Actual seepage is dominated by joints and cracks, not concrete permeability. Total seepage = lining seepage + joint seepage.",
+    "source": "Wachyan & Rushton (1987), general Darcy application"
+  },
+  {
+    "id": "water-infra.canal-lining.eq-005",
+    "title": "Economic Lining Thickness Optimization",
+    "equation": "C_total = C_lining(t) + C_seepage(t) + C_maintenance(t)",
+    "variables": {
+      "C_total": {"description": "Total annualized cost per unit length", "units": "$/m/yr"},
+      "C_lining": {"description": "Capital cost of lining (increases with thickness)", "units": "$/m/yr"},
+      "C_seepage": {"description": "Value of water lost through seepage (decreases with thickness)", "units": "$/m/yr"},
+      "C_maintenance": {"description": "Annual maintenance cost (decreases with thicker/better lining)", "units": "$/m/yr"}
+    },
+    "applicability": "Optimal thickness minimizes total annualized cost. For irrigation: value of water = crop revenue per m³ × seepage volume. Economic analysis must include discount rate and design life.",
+    "source": "USBR Economic Analysis, general practice"
+  },
+  {
+    "id": "water-infra.canal-lining.eq-006",
+    "title": "Concrete Joint Spacing (Thermal Contraction)",
+    "equation": "L_joint ≤ 2 × √(f_t × t / (E × α_T × ΔT × γ_c × μ))",
+    "variables": {
+      "L_joint": {"description": "Maximum contraction joint spacing", "units": "m"},
+      "f_t": {"description": "Tensile strength of concrete", "units": "kPa"},
+      "t": {"description": "Lining thickness", "units": "m"},
+      "E": {"description": "Modulus of elasticity of concrete", "units": "kPa"},
+      "α_T": {"description": "Coefficient of thermal expansion (10×10⁻⁶/°C)", "units": "1/°C"},
+      "ΔT": {"description": "Temperature drop from placement to service", "units": "°C"},
+      "γ_c": {"description": "Unit weight of concrete", "units": "kN/m³"},
+      "μ": {"description": "Coefficient of friction between lining and subgrade (0.5–1.5)", "units": "dimensionless"}
+    },
+    "applicability": "Simplified approach. Practical joint spacing: 3–5 m for unreinforced concrete. USBR typically specifies 3.0–3.7 m (10–12 ft). Wider spacing requires reinforcement to control crack widths.",
+    "source": "USBR, ACI 350, general concrete practice"
+  },
+  {
+    "id": "water-infra.canal-lining.eq-007",
+    "title": "Geomembrane Anchor Trench Depth",
+    "equation": "D_anchor = T_pullout / (γ_soil × K_p × W_trench)",
+    "variables": {
+      "D_anchor": {"description": "Minimum anchor trench depth", "units": "m"},
+      "T_pullout": {"description": "Pullout force on membrane (from wind, thermal, or water)", "units": "kN/m"},
+      "γ_soil": {"description": "Unit weight of backfill soil", "units": "kN/m³"},
+      "K_p": {"description": "Passive earth pressure coefficient", "units": "dimensionless"},
+      "W_trench": {"description": "Width of anchor trench", "units": "m"}
+    },
+    "applicability": "Simplified. Typical anchor trench: 300–600 mm deep × 300 mm wide, backfilled with compacted soil. Membrane extends into trench, folds back, and is buried. USBR and geomembrane manufacturer guidelines provide detailed anchor trench designs.",
+    "source": "Koerner (2012) Designing with Geosynthetics, USBR"
+  },
+  {
+    "id": "water-infra.canal-lining.eq-008",
+    "title": "Slip-Form Paving Production Rate",
+    "equation": "P_daily = v_pave × P_canal × t × 8 hr × η_production",
+    "variables": {
+      "P_daily": {"description": "Daily concrete placement volume", "units": "m³/day"},
+      "v_pave": {"description": "Paving machine speed (typically 1.5–4.0 m/min)", "units": "m/min"},
+      "P_canal": {"description": "Canal perimeter being paved per pass", "units": "m"},
+      "t": {"description": "Lining thickness", "units": "m"},
+      "η_production": {"description": "Production efficiency factor (0.50–0.70 typical)", "units": "dimensionless"}
+    },
+    "applicability": "Large canal lining projects use specialized slip-form machines that place, vibrate, and finish concrete in one pass. Typical output: 150–500 m³/day for large-canal operations.",
+    "source": "USBR construction experience, general practice"
+  }
+]

@@ -1,0 +1,104 @@
+[
+  {
+    "id": "coatings.foundations.corrosion.tbl-001",
+    "title": "Standard Electrode Potentials (vs. SHE at 25°C)",
+    "type": "reference",
+    "data": {
+      "headers": ["Half-Reaction", "E° (V vs. SHE)"],
+      "rows": [
+        ["Li⁺ + e⁻ → Li", "-3.04"],
+        ["Mg²⁺ + 2e⁻ → Mg", "-2.37"],
+        ["Al³⁺ + 3e⁻ → Al", "-1.66"],
+        ["Zn²⁺ + 2e⁻ → Zn", "-0.76"],
+        ["Fe²⁺ + 2e⁻ → Fe", "-0.44"],
+        ["Ni²⁺ + 2e⁻ → Ni", "-0.25"],
+        ["Sn²⁺ + 2e⁻ → Sn", "-0.14"],
+        ["Pb²⁺ + 2e⁻ → Pb", "-0.13"],
+        ["2H⁺ + 2e⁻ → H₂", "0.00"],
+        ["Cu²⁺ + 2e⁻ → Cu", "+0.34"],
+        ["Ag⁺ + e⁻ → Ag", "+0.80"],
+        ["Pt²⁺ + 2e⁻ → Pt", "+1.20"],
+        ["Au³⁺ + 3e⁻ → Au", "+1.50"]
+      ]
+    },
+    "source": "CRC Handbook of Chemistry and Physics"
+  },
+  {
+    "id": "coatings.foundations.corrosion.tbl-002",
+    "title": "Eight Forms of Corrosion",
+    "type": "classification",
+    "data": {
+      "headers": ["Form", "Mechanism", "Susceptible Materials", "Visual Identification", "Prevention"],
+      "rows": [
+        ["Uniform", "Even dissolution over surface", "Carbon steel, copper", "Even thinning, rust", "Coatings, alloys, inhibitors"],
+        ["Galvanic", "Dissimilar metals in electrolyte", "Any coupled dissimilar pair", "Accelerated attack near junction", "Insulate, match metals, sacrificial anode"],
+        ["Pitting", "Local passive film breakdown", "SS, Al, Ti in chloride", "Small holes, minimal surface loss", "Higher alloy (Mo, N), design out stagnation"],
+        ["Crevice", "O₂ depletion in confined space", "SS, Al under gaskets/fasteners", "Attack within crevice geometry", "Eliminate crevices, seal, higher alloy"],
+        ["Intergranular", "Grain boundary depletion", "Sensitized SS, Al-Cu alloys", "Grain dropping, sugaring", "Low-C grades, stabilized grades, anneal"],
+        ["SCC", "Stress + specific environment", "SS+Cl⁻, steel+NaOH, brass+NH₃", "Branching cracks", "Material selection, stress relief, environment control"],
+        ["Erosion-corrosion", "Flow removes protective film", "Cu in high-velocity water", "Directional grooves, horseshoe pits", "Reduce velocity, harder alloys, design"],
+        ["MIC", "Microbial metabolites accelerate attack", "Carbon steel under biofilm", "Tubercles, under-deposit pitting", "Biocide, cleaning, cathodic protection"]
+      ]
+    },
+    "source": "Fontana (1986), NACE classification"
+  },
+  {
+    "id": "coatings.foundations.corrosion.tbl-003",
+    "title": "Corrosion Rate Classification (General Corrosion)",
+    "type": "classification",
+    "data": {
+      "headers": ["Rate (mpy)", "Rate (mm/yr)", "Classification", "Suitability"],
+      "rows": [
+        ["< 1", "< 0.025", "Outstanding", "Excellent — no protection needed"],
+        ["1–5", "0.025–0.13", "Excellent", "Good for most applications"],
+        ["5–20", "0.13–0.51", "Good", "Acceptable with corrosion allowance"],
+        ["20–50", "0.51–1.27", "Fair", "Usually acceptable only for short life"],
+        ["50–200", "1.27–5.1", "Poor", "Not recommended unless unavoidable"],
+        ["> 200", "> 5.1", "Unacceptable", "Complete failure expected"]
+      ]
+    },
+    "source": "NACE/Fontana (1986)"
+  },
+  {
+    "id": "coatings.foundations.corrosion.tbl-004",
+    "title": "PREN Values for Common Stainless Steels",
+    "type": "reference",
+    "data": {
+      "headers": ["Alloy", "UNS", "Cr%", "Mo%", "N%", "PREN", "Seawater Pitting"],
+      "rows": [
+        ["304", "S30400", "18", "0", "0.05", "18.8", "Not resistant"],
+        ["316", "S31600", "17", "2.2", "0.05", "24.9", "Marginal"],
+        ["317L", "S31703", "18.5", "3.2", "0.06", "30.0", "Fair"],
+        ["2205 duplex", "S32205", "22", "3.2", "0.17", "35.3", "Good"],
+        ["254 SMO", "S31254", "20", "6.1", "0.20", "43.3", "Excellent"],
+        ["2507 super duplex", "S32750", "25", "4.0", "0.28", "42.7", "Excellent"],
+        ["625 (Ni alloy)", "N06625", "21.5", "9.0", "—", "51.2", "Excellent"]
+      ]
+    },
+    "source": "Various alloy datasheets. PREN = Cr + 3.3Mo + 16N."
+  },
+  {
+    "id": "coatings.foundations.corrosion.tbl-005",
+    "title": "Galvanic Series in Seawater (Practical)",
+    "type": "reference",
+    "data": {
+      "headers": ["Position", "Material", "Potential Range (V vs. SCE)"],
+      "rows": [
+        ["Most anodic", "Magnesium, Mg alloys", "-1.60 to -1.63"],
+        ["", "Zinc", "-1.00 to -1.03"],
+        ["", "Aluminum alloys (5052, 3003)", "-0.76 to -0.99"],
+        ["", "Carbon steel, cast iron", "-0.60 to -0.71"],
+        ["", "Stainless 304 (active)", "-0.46 to -0.58"],
+        ["", "Stainless 316 (active)", "-0.43 to -0.54"],
+        ["", "Lead", "-0.31 to -0.35"],
+        ["", "Copper, copper alloys", "-0.20 to -0.36"],
+        ["", "Nickel 200 (passive)", "-0.10 to -0.20"],
+        ["", "Stainless 304 (passive)", "-0.05 to -0.10"],
+        ["", "Stainless 316 (passive)", "+0.00 to -0.05"],
+        ["", "Titanium", "-0.05 to +0.06"],
+        ["Most cathodic", "Platinum, gold", "+0.15 to +0.25"]
+      ]
+    },
+    "source": "LaQue (1975), ASTM G82, MIL-STD-889"
+  }
+]

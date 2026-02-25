@@ -1,0 +1,90 @@
+[
+  {
+    "id": "field-exploration.groundwater-monitoring.tbl-001",
+    "title": "Monitoring Well Construction Materials",
+    "type": "classification",
+    "data": {
+      "headers": ["Component", "Material Options", "Standard Size", "Notes"],
+      "rows": [
+        ["Casing", "PVC Sch 40 (most common), PVC Sch 80, 316 SS, HDPE, PTFE", "50 mm (2 in) ID monitoring; 100 mm (4 in) pump test", "PVC adequate for most geotech; SS or PTFE for trace metals/organics"],
+        ["Screen", "Factory-slotted PVC, wire-wound SS, continuous-slot SS", "0.25 mm (0.010 in) slot typical", "Slot size matched to filter pack D10"],
+        ["Filter pack", "Clean silica sand (ASTM C33 or commercial filter sand)", "1–2 mm (#10–#20 sieve)", "Placed by tremie or gravity through water; avoid bridging"],
+        ["Bentonite seal", "Coated bentonite pellets (3/8 in), chips (1/4–3/8 in), granular", "0.6–1.0 m (2–3 ft) thick", "Pellets for deep water; chips/granular for shallow. Hydrate 30+ min"],
+        ["Annular grout", "Cement-bentonite (neat cement + 3–5% bentonite), bentonite grout", "Tremie from seal to surface", "Do not pour from surface — will bridge. Max 20% bentonite by weight of cement"],
+        ["Surface protection", "Steel protective casing (6–8 in), locking J-plug cap, concrete pad", "Stick-up or flush-mount", "Pad 0.6 m square minimum, sloped away. Bollards if traffic exposure"]
+      ]
+    },
+    "source": "ASTM D5092, ASTM D6724, state regulations"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.tbl-002",
+    "title": "Well Development Criteria",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Criterion", "Notes"],
+      "rows": [
+        ["Minimum volume purged", "3–5 casing volumes", "Include filter pack volume for conservative estimate"],
+        ["Turbidity", "< 10 NTU (preferably < 5 NTU)", "Most common completion criterion"],
+        ["pH", "Stable within ±0.1 unit over 3 readings", "Readings 5 min apart"],
+        ["Specific conductance", "Stable within ±3% over 3 readings", "Indicates formation water reached"],
+        ["Temperature", "Stable within ±0.2°C over 3 readings", "Formation temp, not surface"],
+        ["Dissolved oxygen", "Stable within ±0.3 mg/L", "Indicator of representative sample"],
+        ["ORP", "Stable within ±10 mV", "Redox indicator"],
+        ["Sand content (Imhoff cone)", "< 1 mL/L in production wells", "For pump test or production wells"]
+      ]
+    },
+    "source": "ASTM D5521, EPA low-flow sampling guidance"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.tbl-003",
+    "title": "Water Level Measurement Methods",
+    "type": "reference",
+    "data": {
+      "headers": ["Method", "Accuracy", "Range", "Best Use"],
+      "rows": [
+        ["Electric water level indicator (e-tape)", "±1–3 mm", "0–300+ m", "Standard manual measurement; most common"],
+        ["Steel tape with chalk", "±3 mm", "0–50 m", "Backup; wells with NAPL (won't damage tape)"],
+        ["Pressure transducer (vented)", "±1–5 mm (0.01–0.05% FS)", "0–100+ m range", "Continuous monitoring; pump tests; seasonal trends"],
+        ["Pressure transducer (non-vented)", "±3–10 mm", "0–100+ m", "Remote locations; requires barometric correction"],
+        ["Sonic/ultrasonic level", "±5–15 mm", "0–50 m", "Non-contact; useful for contaminated wells"],
+        ["Float-type recorder", "±5 mm", "Limited by float travel", "Legacy; being replaced by transducers"],
+        ["Airline (bubbler)", "±15–30 mm", "Any depth", "Deep wells, artesian; lower accuracy"]
+      ]
+    },
+    "source": "ASTM D4750, USGS Techniques of Water-Resources Investigations"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.tbl-004",
+    "title": "Typical Well Screen Lengths by Application",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Screen Length", "Screen Position", "Notes"],
+      "rows": [
+        ["Water table monitoring", "1.5–3.0 m (5–10 ft)", "Straddle anticipated water table", "Account for seasonal fluctuation"],
+        ["Confined aquifer monitoring", "1.5–3.0 m (5–10 ft)", "Within target aquifer zone", "Short screen for discrete head measurement"],
+        ["Contamination assessment", "0.6–1.5 m (2–5 ft)", "Target specific contaminant zone", "Shorter = more discrete; long screens dilute"],
+        ["Slug test well", "1.5–3.0 m (5–10 ft)", "Fully penetrating if possible", "Screen length affects analysis method"],
+        ["Pump test well", "Full aquifer thickness or 80%+", "Centered in aquifer", "Partial penetration corrections if < 80%"],
+        ["Production / supply well", "50–80% of aquifer thickness", "Below pumping water level", "Maximize specific capacity; avoid dewatering screen"]
+      ]
+    },
+    "source": "ASTM D5092, Roscoe Moss (1990), general practice"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.tbl-005",
+    "title": "Multi-Level Monitoring System Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["System", "Typical Application", "Zones per Hole", "Advantages", "Limitations"],
+      "rows": [
+        ["Nested PVC wells (one borehole)", "Shallow soil monitoring", "2–3", "Simple, low cost, familiar", "Seal integrity between zones uncertain; limited to 3 zones"],
+        ["Cluster wells (separate boreholes)", "Any depth; critical sites", "Unlimited", "Best isolation; independent access", "Most expensive; more surface impact"],
+        ["Westbay system", "Deep rock; many zones", "10–40+", "Many discrete zones; pressure + sampling; small footprint", "Proprietary; specialized equipment; expensive"],
+        ["FLUTe system", "Rock boreholes", "5–20+", "Seals open rock borehole; multilevel sampling", "Proprietary; specialized; limited pumping"],
+        ["CMT (Solinst)", "Overburden monitoring", "3–7", "Small diameter (multiple channels in one casing)", "Limited volume; not suitable for pump tests"],
+        ["Waterloo system", "Overburden; contamination", "3–15", "Flexible port spacing; good isolation", "Moderate cost; specialized training"]
+      ]
+    },
+    "source": "Manufacturer literature, Cherry et al. (2007), ITRC guidance"
+  }
+]

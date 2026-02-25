@@ -1,0 +1,27 @@
+{
+  "id": "water-infra.pump-hydraulics",
+  "name": "Pump Hydraulics & Selection",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.pumping",
+  "dependencies": [
+    "water-infra.pipeline-hydraulics"
+  ],
+  "tags": ["pump", "centrifugal", "specific-speed", "affinity-laws", "NPSH", "cavitation", "system-curve", "pump-curve", "efficiency", "BEP", "series", "parallel", "VFD", "variable-speed", "axial-flow", "mixed-flow", "submersible", "vertical-turbine"],
+  "standards": ["HI-14.6", "ANSI-ASME-B73", "AWWA-E101"],
+  "key_references": [
+    "Hydraulic Institute Standards (HI)",
+    "Karassik et al. (2008) Pump Handbook",
+    "Sanks et al. (1998) Pumping Station Design",
+    "AWWA M44 — Distribution Valves",
+    "Sulzer (2010) Centrifugal Pump Handbook"
+  ],
+  "equation_count": 10,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

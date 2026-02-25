@@ -1,0 +1,24 @@
+{
+  "id": "geotechnical.construction.ground-improvement",
+  "name": "Ground Improvement Methods",
+  "level": 2,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.construction",
+  "dependencies": ["soil-mechanics.compaction", "soil-mechanics.consolidation", "soil-mechanics.shear-strength"],
+  "tags": ["preloading", "surcharge", "wick-drains", "PVD", "stone-columns", "vibro-compaction", "vibro-replacement", "deep-soil-mixing", "jet-grouting", "compaction-grouting", "dynamic-compaction", "geosynthetics", "reinforced-earth", "lime-stabilization", "cement-stabilization"],
+  "standards": ["FHWA-NHI-06-019", "FHWA-NHI-06-020", "ASTM-D4546"],
+  "key_references": [
+    "FHWA NHI-06-019/020 Ground Improvement Methods (Volumes I & II)",
+    "Moseley & Kirsch (2004) Ground Improvement",
+    "Schaefer et al. (2017) Ground Modification Methods Reference Manual — FHWA-NHI-16-027",
+    "Mitchell & Soga (2005) Fundamentals of Soil Behavior"
+  ],
+  "equation_count": 10,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practitioner-graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

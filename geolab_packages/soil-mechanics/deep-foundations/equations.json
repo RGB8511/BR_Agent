@@ -1,0 +1,158 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-001",
+    "title": "Ultimate Pile Capacity (General)",
+    "equation": "Q_u = Q_s + Q_b = Σ(f_s × A_s) + q_b × A_b",
+    "variables": {
+      "Q_u": {"description": "Ultimate axial capacity", "units": "kN"},
+      "Q_s": {"description": "Total shaft resistance", "units": "kN"},
+      "Q_b": {"description": "Base (tip) resistance", "units": "kN"},
+      "f_s": {"description": "Unit shaft friction in layer", "units": "kPa"},
+      "A_s": {"description": "Shaft surface area in layer (π×D×L)", "units": "m²"},
+      "q_b": {"description": "Unit base resistance", "units": "kPa"},
+      "A_b": {"description": "Base area (π×D²/4)", "units": "m²"}
+    },
+    "source": "Standard pile capacity framework"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-002",
+    "title": "α-Method (Shaft in Clay)",
+    "equation": "f_s = α × s_u",
+    "variables": {
+      "f_s": {"description": "Unit shaft friction", "units": "kPa"},
+      "α": {"description": "Adhesion factor (0.3–1.0)", "units": "dimensionless"},
+      "s_u": {"description": "Undrained shear strength", "units": "kPa"}
+    },
+    "applicability": "Total stress method. α decreases with increasing s_u.",
+    "source": "Tomlinson (1957), API RP 2A"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-003",
+    "title": "β-Method (Shaft — Effective Stress)",
+    "equation": "f_s = β × σ'_v = K × tanδ × σ'_v",
+    "variables": {
+      "β": {"description": "Shaft friction coefficient", "units": "dimensionless"},
+      "K": {"description": "Lateral earth pressure coefficient on pile shaft", "units": "dimensionless"},
+      "δ": {"description": "Pile-soil interface friction angle", "units": "degrees"},
+      "σ'_v": {"description": "Vertical effective stress at depth", "units": "kPa"}
+    },
+    "applicability": "Effective stress method. Works for any soil type and drainage condition.",
+    "source": "Burland (1973), Meyerhof (1976)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-004",
+    "title": "β for NC Clay",
+    "equation": "β = (1 - sinφ') × tanφ'",
+    "applicability": "K₀ condition assumed. For OC: β = (1-sinφ')×OCR^sinφ' × tanφ'.",
+    "source": "Burland (1973)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-005",
+    "title": "Base Resistance in Clay",
+    "equation": "q_b = N_c × s_u = 9 × s_u",
+    "applicability": "For L/D > 4 (depth below critical depth). N_c = 9 is standard for deep foundations.",
+    "source": "Skempton (1951)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-006",
+    "title": "Base Resistance in Sand (Meyerhof)",
+    "equation": "q_b = N_q × σ'_v ≤ q_b,max",
+    "variables": {
+      "N_q": {"description": "Meyerhof bearing capacity factor for piles (see table)", "units": "dimensionless"},
+      "q_b,max": {"description": "Limiting base resistance", "units": "kPa"}
+    },
+    "source": "Meyerhof (1976)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-007",
+    "title": "α for Drilled Shafts (O'Neill & Reese)",
+    "equation": "α = 0.55 for s_u/P_a ≤ 1.5; α = 0.55 - 0.1(s_u/P_a - 1.5) for 1.5 < s_u/P_a ≤ 2.5",
+    "variables": {
+      "P_a": {"description": "Atmospheric pressure (≈100 kPa)", "units": "kPa"}
+    },
+    "applicability": "FHWA drilled shaft design method. Exclude top 1.5 m and bottom 1D from shaft resistance.",
+    "source": "O'Neill & Reese (1999), FHWA GEC-10"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-008",
+    "title": "SPT → Pile Base Resistance (Sand)",
+    "equation": "q_b = 400 × N₆₀ × (D_b/D) ≤ 400 × N₆₀ (kPa)",
+    "variables": {
+      "D_b": {"description": "Pile embedment depth in bearing stratum", "units": "m"},
+      "D": {"description": "Pile diameter", "units": "m"}
+    },
+    "applicability": "Driven displacement piles. Meyerhof (1976). N₆₀ averaged near pile tip.",
+    "source": "Meyerhof (1976)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-009",
+    "title": "SPT → Pile Shaft Resistance (Sand)",
+    "equation": "f_s = 2 × N₆₀ (kPa) for driven displacement piles",
+    "applicability": "Rough estimate. For non-displacement piles (drilled): f_s ≈ N₆₀ (kPa).",
+    "source": "Meyerhof (1976)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-010",
+    "title": "Group Efficiency",
+    "equation": "η = Q_group / (n × Q_single)",
+    "variables": {
+      "η": {"description": "Group efficiency factor", "units": "dimensionless"},
+      "n": {"description": "Number of piles in group", "units": "count"},
+      "Q_single": {"description": "Ultimate capacity of single pile", "units": "kN"}
+    },
+    "source": "Standard definition"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-011",
+    "title": "Block Failure Capacity (Clay)",
+    "equation": "Q_block = 2(B_g + L_g) × D × s_u(avg) + N_c × s_u(base) × B_g × L_g",
+    "variables": {
+      "B_g": {"description": "Group width (out-to-out of piles + 1D)", "units": "m"},
+      "L_g": {"description": "Group length", "units": "m"},
+      "D": {"description": "Pile length (embedment)", "units": "m"},
+      "s_u(avg)": {"description": "Average s_u along group perimeter", "units": "kPa"},
+      "s_u(base)": {"description": "s_u at group base level", "units": "kPa"}
+    },
+    "applicability": "Critical for close spacing (s < 3D center-to-center) in clay.",
+    "source": "Terzaghi & Peck (1967)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-012",
+    "title": "Allowable Pile Capacity",
+    "equation": "Q_all = Q_u / FS or Q_all = Q_s/FS_s + Q_b/FS_b",
+    "variables": {
+      "FS": {"description": "Global factor of safety (2.0–3.0)", "units": "dimensionless"},
+      "FS_s": {"description": "Shaft FS (1.5–2.0)", "units": "dimensionless"},
+      "FS_b": {"description": "Base FS (2.5–3.0)", "units": "dimensionless"}
+    },
+    "applicability": "Split FS approach recognizes that shaft resistance is mobilized at much smaller displacement (~5-10mm) than base resistance (~5-10% of diameter).",
+    "source": "Standard practice"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-013",
+    "title": "Shaft Resistance in Rock (Horvath & Kenney)",
+    "equation": "f_s = 0.65 × P_a × √(q_u/P_a)",
+    "variables": {
+      "f_s": {"description": "Unit shaft friction in rock socket", "units": "kPa"},
+      "q_u": {"description": "Uniaxial compressive strength of rock", "units": "kPa"},
+      "P_a": {"description": "Atmospheric pressure (100 kPa)", "units": "kPa"}
+    },
+    "applicability": "Clean, rough rock sockets. Reduce for smeared/muddy sidewalls, smooth sockets.",
+    "source": "Horvath & Kenney (1979), FHWA GEC-10"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.eq-014",
+    "title": "Davisson Failure Criterion (Load Test)",
+    "equation": "s_f = PL/(AE) + D/120 + 4 mm",
+    "variables": {
+      "s_f": {"description": "Settlement defining failure", "units": "mm"},
+      "P": {"description": "Applied load", "units": "kN"},
+      "L": {"description": "Pile length", "units": "mm"},
+      "A": {"description": "Pile cross-sectional area", "units": "mm²"},
+      "E": {"description": "Pile material modulus", "units": "kPa"},
+      "D": {"description": "Pile diameter", "units": "mm"}
+    },
+    "applicability": "Driven piles ≤ 600mm diameter. Intersection of load-settlement curve with offset line defines failure load.",
+    "source": "Davisson (1972)"
+  }
+]

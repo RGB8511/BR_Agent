@@ -1,0 +1,99 @@
+[
+  {
+    "id": "remote-sensing.seepage-thermal.tbl-001",
+    "title": "Thermal Detection Conditions — Seasonal Summary",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Season/Condition", "Seepage Appearance", "Expected ΔT", "Detection Reliability", "Notes"],
+      "rows": [
+        ["Winter — snow cover", "Warm (snowmelt above seepage)", "5–15°C", "Excellent", "Best overall; snow-free patches at seepage zones are unmistakable"],
+        ["Winter — frozen ground, no snow", "Warm", "3–10°C", "Very good", "Frost-free zones at seepage exits"],
+        ["Spring — thaw", "Warm relative to frozen ground", "2–5°C", "Good", "Transitional; variable conditions"],
+        ["Summer — pre-dawn", "Cool (evaporative cooling or GW temp)", "1–5°C", "Moderate", "Requires calm, clear conditions"],
+        ["Summer — midday", "Masked by solar heating", "< 1°C often", "Poor", "Avoid — solar radiation dominates"],
+        ["Summer — post-sunset", "Cool", "1–4°C", "Moderate", "Radiative cooling reveals wet zones"],
+        ["Autumn — clear nights", "Warm (GW temp > air temp)", "2–6°C", "Good", "Cooling ground reveals seepage warmth"]
+      ]
+    },
+    "source": "USACE, FEMA, general practice. Optimal survey windows: 2 hours before sunrise (winter) or 4–6 hours after sunset."
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.tbl-002",
+    "title": "Thermal IR Sensor Specifications for Seepage Detection",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Minimum Requirement", "Recommended", "Notes"],
+      "rows": [
+        ["Spectral range", "LWIR 8–14 μm", "LWIR 7.5–13.5 μm", "LWIR preferred; not affected by solar reflection"],
+        ["NETD (thermal sensitivity)", "< 0.08°C", "< 0.05°C", "Better NETD = finer temperature discrimination"],
+        ["Detector resolution", "320 × 240", "640 × 512", "Higher resolution improves spatial detection"],
+        ["Detector type", "Uncooled VOx microbolometer", "Uncooled VOx (or cooled for MWIR)", "Uncooled adequate for most applications"],
+        ["Radiometric accuracy", "±2°C absolute", "±1°C or better", "Relative accuracy more important than absolute"],
+        ["Frame rate", "9 Hz", "30 Hz", "Higher rate for UAS (reduces motion blur)"],
+        ["Lens HFOV", "Match application", "24–45° for UAS; 12–24° for ground", "Wider FOV = more coverage; narrower = better GSD"]
+      ]
+    },
+    "source": "Camera manufacturers, ASTM D4788, industry practice"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.tbl-003",
+    "title": "Surface Emissivity Values for Common Materials",
+    "type": "reference",
+    "data": {
+      "headers": ["Material", "Emissivity (8–14 μm)", "Notes"],
+      "rows": [
+        ["Water (calm surface)", "0.95–0.98", "High and consistent; excellent thermal target"],
+        ["Wet soil / mud", "0.92–0.96", "Moisture increases emissivity"],
+        ["Dry soil", "0.90–0.95", "Varies with composition"],
+        ["Grass / vegetation", "0.96–0.99", "Very high emissivity"],
+        ["Concrete (dry)", "0.90–0.95", "Rougher surface = higher emissivity"],
+        ["Concrete (wet)", "0.93–0.97", ""],
+        ["Asphalt", "0.93–0.97", ""],
+        ["Rock (most types)", "0.85–0.95", "Polished surfaces lower; rough surfaces higher"],
+        ["Gravel / riprap", "0.88–0.93", "Angular rock surfaces"],
+        ["Metal (oxidized)", "0.60–0.85", "Variable; caution interpreting metal surfaces"],
+        ["Metal (polished)", "0.05–0.30", "Very low; appears cold in thermal imagery (reflected environment)"],
+        ["Snow / ice", "0.95–0.99", "Nearly perfect emitter"]
+      ]
+    },
+    "source": "FLIR thermal imaging guide, Maldague (2001), general references"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.tbl-004",
+    "title": "Seepage Detection Methods — Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Detection Type", "Coverage Rate", "Sensitivity", "Quantitative?", "Best Application"],
+      "rows": [
+        ["Thermal IR (ground-based)", "Surface thermal anomaly", "Slow (single face/reach)", "ΔT > 0.5°C", "Qualitative (location)", "Dam faces, targeted investigation"],
+        ["Thermal IR (UAS)", "Surface thermal anomaly", "Moderate (5–20 km/day)", "ΔT > 0.5°C", "Qualitative", "Levees, canals, dam faces, embankments"],
+        ["Thermal IR (airborne)", "Surface thermal anomaly", "Fast (50–200 km/day)", "ΔT > 1.0°C", "Qualitative", "System-wide levee screening"],
+        ["Fiber-optic DTS", "Subsurface temperature profile", "Continuous along cable", "ΔT > 0.1°C", "Semi-quantitative (flow rate)", "Permanent monitoring of dam/levee toes"],
+        ["ERI / resistivity", "Subsurface saturation", "Point/section profiles", "Qualitative saturation", "Semi-quantitative", "Internal seepage path characterization"],
+        ["Self-potential (SP)", "Streaming potential from flow", "Profile lines", "Qualitative flow direction", "Semi-quantitative", "Active seepage path identification"],
+        ["Visual observation", "Wet zones, springs, vegetation", "Walking survey", "Large flows only", "No", "Baseline; always supplement remote methods"],
+        ["Piezometers", "Pore pressure at point", "Point measurements only", "±1 mm water head", "Quantitative", "Reference data for calibrating remote methods"]
+      ]
+    },
+    "source": "USACE, FEMA, general dam safety practice"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.tbl-005",
+    "title": "UAS Flight Parameters for Thermal Seepage Surveys",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Dam Face Survey", "Levee/Canal Linear Survey", "Notes"],
+      "rows": [
+        ["Flight altitude (AGL)", "20–50 m", "30–60 m", "Lower = better GSD but slower coverage"],
+        ["Thermal GSD", "20–50 mm/pixel", "30–60 mm/pixel", "Min detectable seepage zone ≈ 3–5 × GSD"],
+        ["Forward overlap", "70–80%", "70–80%", "For thermal orthomosaic generation"],
+        ["Side overlap", "60–70%", "60–70%", ""],
+        ["Flight speed", "2–4 m/s", "4–8 m/s", "Slower for better image quality"],
+        ["Time of survey", "Pre-dawn or 4+ hr after sunset", "Same; or winter midday", "Minimize solar interference"],
+        ["Simultaneous RGB", "Yes — co-registered", "Yes — co-registered", "RGB for context and precise anomaly localization"],
+        ["Radiometric calibration", "On-site blackbody or reference panels", "Temperature reference targets", "Needed for absolute temperature mapping"]
+      ]
+    },
+    "source": "Wells & Lovelace (2018), USACE guidance, industry practice"
+  }
+]

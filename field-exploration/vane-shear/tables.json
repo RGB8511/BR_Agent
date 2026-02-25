@@ -1,0 +1,75 @@
+[
+  {
+    "id": "field-exploration.vane-shear.tbl-001",
+    "title": "Standard Vane Sizes and Applicability",
+    "type": "reference",
+    "data": {
+      "headers": ["Vane Size", "Diameter (mm)", "Height (mm)", "H/D", "Su Range (kPa)", "Soil Applicability"],
+      "rows": [
+        ["Large", "92", "184", "2.0", "< 25", "Very soft clay, organic soils"],
+        ["Standard", "65", "130", "2.0", "10–100", "Soft to firm clay — most common"],
+        ["Small", "50", "100", "2.0", "50–200", "Firm to stiff clay"],
+        ["Very small", "38", "76", "2.0", "100–300", "Stiff clay (approaching limit of applicability)"],
+        ["Lab mini-vane", "12.7–25.4", "25.4–50.8", "2.0", "1–100+", "Laboratory testing on samples (ASTM D4648)"]
+      ]
+    },
+    "source": "ASTM D2573, Chandler (1988)"
+  },
+  {
+    "id": "field-exploration.vane-shear.tbl-002",
+    "title": "Bjerrum Correction Factor (μ) by Plasticity Index",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["PI (%)", "μ (Bjerrum 1972)", "μ (Aas et al. 1986, NC)", "Notes"],
+      "rows": [
+        ["10–15", "1.05–1.0", "1.0", "Low plasticity — minimal correction"],
+        ["20", "1.0", "0.95", ""],
+        ["30", "0.90", "0.85", ""],
+        ["40", "0.82", "0.80", ""],
+        ["50", "0.78", "0.75", "Moderate plasticity"],
+        ["60", "0.74", "0.70", ""],
+        ["75", "0.69", "0.65", "High plasticity"],
+        ["100", "0.62", "0.55", "Very high plasticity — significant correction"],
+        ["150+", "0.50–0.55", "0.45–0.50", "Mexico City clay type"]
+      ]
+    },
+    "source": "Bjerrum (1972), Aas et al. (1986). Aas et al. corrections also account for OCR."
+  },
+  {
+    "id": "field-exploration.vane-shear.tbl-003",
+    "title": "Sensitivity Classification of Clays",
+    "type": "classification",
+    "data": {
+      "headers": ["Sensitivity (St)", "Classification", "Behavior When Remolded", "Examples"],
+      "rows": [
+        ["< 2", "Insensitive", "Minor strength loss", "Stiff OC clays, residual soils"],
+        ["2–4", "Low to medium sensitivity", "Moderate strength loss", "Most glacial tills, alluvial clays"],
+        ["4–8", "Sensitive", "Significant strength loss", "Soft marine clays, lacustrine clays"],
+        ["8–16", "Extra-sensitive", "Severe strength loss", "Leached marine clays (Eastern Canada)"],
+        ["16–30", "Highly sensitive", "Near-complete strength loss", "Quick clays (partial)"],
+        ["30–100+", "Quick clay", "Complete liquefaction when remolded", "Leda clay, Norwegian quick clays; retrogressive slides"]
+      ]
+    },
+    "source": "Skempton & Northey (1952), Rosenqvist (1953), Mitchell & Soga (2005)"
+  },
+  {
+    "id": "field-exploration.vane-shear.tbl-004",
+    "title": "Common Sources of Error in Field Vane Testing",
+    "type": "reference",
+    "data": {
+      "headers": ["Error Source", "Effect on Su", "Mitigation"],
+      "rows": [
+        ["Rod friction not accounted for", "Overestimates Su", "Use slip coupling; or run friction test without vane"],
+        ["Excessive insertion delay", "Overestimates Su (consolidation around vane)", "Test within 1–5 min of insertion"],
+        ["Too fast rotation rate", "Overestimates Su (viscous effects)", "Maintain 6°/min per ASTM; calibrate torque system"],
+        ["Too slow rotation rate", "Underestimates Su (partial drainage in silty soils)", "Maintain standard rate; avoid testing in silty soils"],
+        ["Vane inserted in disturbed zone", "Underestimates Su", "Advance ≥ 5 diameters below borehole bottom"],
+        ["Sand/gravel inclusions", "Erratic, unreliable results", "Not suitable — use other tests"],
+        ["Partial saturation", "Overestimates Su (negative pore pressure effects)", "Only test below water table in saturated soils"],
+        ["Equipment calibration drift", "Systematic error", "Calibrate torque wrench before and after each day; verify with known weights"],
+        ["Progressive failure (stiff clays)", "Underestimates true peak Su", "Not suitable for stiff fissured clays — Su varies along failure surface"]
+      ]
+    },
+    "source": "Chandler (1988), FHWA GEC-5, general practice"
+  }
+]

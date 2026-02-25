@@ -1,0 +1,143 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-001",
+    "title": "Rankine Active Earth Pressure Coefficient",
+    "equation": "K_a = tan²(45° - φ'/2) = (1 - sinφ') / (1 + sinφ')",
+    "variables": {
+      "K_a": {"description": "Active earth pressure coefficient", "units": "dimensionless"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"}
+    },
+    "applicability": "Vertical smooth wall, horizontal backfill. Most common case.",
+    "source": "Rankine (1857)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-002",
+    "title": "Rankine Passive Earth Pressure Coefficient",
+    "equation": "K_p = tan²(45° + φ'/2) = (1 + sinφ') / (1 - sinφ')",
+    "variables": {
+      "K_p": {"description": "Passive earth pressure coefficient", "units": "dimensionless"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"}
+    },
+    "applicability": "Vertical smooth wall, horizontal backfill. Conservative (δ = 0).",
+    "source": "Rankine (1857)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-003",
+    "title": "Active Pressure Distribution (c'-φ' Soil)",
+    "equation": "σ'_a = K_a × σ'_v - 2c'√K_a",
+    "variables": {
+      "σ'_a": {"description": "Active horizontal effective stress", "units": "kPa"},
+      "K_a": {"description": "Active coefficient", "units": "dimensionless"},
+      "σ'_v": {"description": "Vertical effective stress at depth", "units": "kPa"},
+      "c'": {"description": "Effective cohesion", "units": "kPa"}
+    },
+    "source": "Rankine (1857)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-004",
+    "title": "Passive Pressure Distribution (c'-φ' Soil)",
+    "equation": "σ'_p = K_p × σ'_v + 2c'√K_p",
+    "variables": {
+      "σ'_p": {"description": "Passive horizontal effective stress", "units": "kPa"}
+    },
+    "source": "Rankine (1857)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-005",
+    "title": "Tension Crack Depth",
+    "equation": "z_c = 2c' / (γ × √K_a)",
+    "alt_form": "z_c = (2c'/γ) × tan(45° + φ'/2)",
+    "variables": {
+      "z_c": {"description": "Depth of tension crack", "units": "m"},
+      "c'": {"description": "Effective cohesion", "units": "kPa"},
+      "γ": {"description": "Unit weight of soil", "units": "kN/m³"},
+      "K_a": {"description": "Active earth pressure coefficient", "units": "dimensionless"}
+    },
+    "applicability": "Temporary excavations. Assume crack fills with water for design.",
+    "source": "Standard derivation"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-006",
+    "title": "Active Thrust (Granular, Level Backfill)",
+    "equation": "P_a = ½ × K_a × γ × H²",
+    "variables": {
+      "P_a": {"description": "Total active force per unit length of wall", "units": "kN/m"},
+      "K_a": {"description": "Active coefficient", "units": "dimensionless"},
+      "γ": {"description": "Unit weight (use γ' below WT)", "units": "kN/m³"},
+      "H": {"description": "Wall height", "units": "m"}
+    },
+    "applicability": "Resultant acts at H/3 from base. For c'-φ' soil, subtract tension zone contribution.",
+    "source": "Standard derivation"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-007",
+    "title": "Surcharge Effect on Active Pressure",
+    "equation": "Δσ_h = K_a × q",
+    "variables": {
+      "Δσ_h": {"description": "Additional horizontal stress from uniform surcharge", "units": "kPa"},
+      "K_a": {"description": "Active coefficient", "units": "dimensionless"},
+      "q": {"description": "Uniform surcharge pressure on ground surface", "units": "kPa"}
+    },
+    "applicability": "Rectangular distribution over full wall height. Resultant acts at H/2.",
+    "source": "Standard derivation"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-008",
+    "title": "Rankine K_a for Inclined Backfill",
+    "equation": "K_a = cosβ × [cosβ - √(cos²β - cos²φ')] / [cosβ + √(cos²β - cos²φ')]",
+    "variables": {
+      "K_a": {"description": "Active coefficient for sloping backfill", "units": "dimensionless"},
+      "β": {"description": "Backfill slope angle from horizontal", "units": "degrees"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"}
+    },
+    "applicability": "β < φ'. Resultant acts parallel to slope surface, not horizontal.",
+    "source": "Rankine (1857)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-009",
+    "title": "Coulomb Active Coefficient (General)",
+    "equation": "K_a = sin²(α+φ') / [sin²α × sin(α-δ) × (1 + √(sin(φ'+δ)sin(φ'-β) / sin(α-δ)sin(α+β)))²]",
+    "variables": {
+      "α": {"description": "Wall face inclination from horizontal (90° for vertical)", "units": "degrees"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"},
+      "δ": {"description": "Wall-soil friction angle", "units": "degrees"},
+      "β": {"description": "Backfill slope angle", "units": "degrees"}
+    },
+    "applicability": "General case with wall friction, inclined face, sloping backfill. Resultant acts at angle δ to wall normal.",
+    "source": "Coulomb (1776)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-010",
+    "title": "Undrained Active Pressure (φ_u = 0)",
+    "equation": "σ_a = γz - 2s_u",
+    "variables": {
+      "σ_a": {"description": "Total active horizontal stress (undrained)", "units": "kPa"},
+      "γ": {"description": "Total unit weight", "units": "kN/m³"},
+      "z": {"description": "Depth below surface", "units": "m"},
+      "s_u": {"description": "Undrained shear strength", "units": "kPa"}
+    },
+    "applicability": "Short-term, undrained loading of saturated clay. Tension crack to depth z_c = 2s_u/γ.",
+    "source": "Total stress Rankine analysis"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-011",
+    "title": "Undrained Passive Pressure (φ_u = 0)",
+    "equation": "σ_p = γz + 2s_u",
+    "variables": {
+      "σ_p": {"description": "Total passive horizontal stress (undrained)", "units": "kPa"}
+    },
+    "source": "Total stress Rankine analysis"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.lateral-earth-pressure.eq-012",
+    "title": "Relationship: K₀, K_a, K_p",
+    "equation": "K_a ≤ K₀ ≤ K_p (always)",
+    "variables": {
+      "K_a": {"description": "Active coefficient", "units": "dimensionless"},
+      "K₀": {"description": "At-rest coefficient", "units": "dimensionless"},
+      "K_p": {"description": "Passive coefficient", "units": "dimensionless"}
+    },
+    "applicability": "For φ' = 30°: K_a = 0.33, K₀ = 0.50, K_p = 3.0. Note K_p >> K₀ >> K_a.",
+    "source": "Fundamental relationship"
+  }
+]

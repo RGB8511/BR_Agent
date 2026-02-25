@@ -1,0 +1,46 @@
+[
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.eq-001",
+    "title": "Sensitivity",
+    "equation": "S_t = s_u(undisturbed) / s_u(remolded)",
+    "variables": {
+      "S_t": {"description": "Sensitivity", "units": "dimensionless"},
+      "s_u(undisturbed)": {"description": "Undrained shear strength, undisturbed", "units": "kPa"},
+      "s_u(remolded)": {"description": "Undrained shear strength, remolded at same water content", "units": "kPa"}
+    },
+    "source": "Terzaghi (1944), Skempton & Northey (1952)"
+  },
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.eq-002",
+    "title": "Percent Sodium (Dispersivity Indicator)",
+    "equation": "PS = Na⁺ / (Na⁺ + K⁺ + Ca²⁺ + Mg²⁺) × 100",
+    "variables": {
+      "PS": {"description": "Percent sodium in pore water extract", "units": "%"},
+      "Na⁺, K⁺, Ca²⁺, Mg²⁺": {"description": "Cation concentrations in pore water", "units": "meq/L"}
+    },
+    "applicability": "PS > 40% suggests dispersive clay. Used with Sherard's classification chart.",
+    "source": "Sherard et al. (1976)"
+  },
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.eq-003",
+    "title": "Double Hydrometer Dispersion Ratio",
+    "equation": "DR = (% finer than 5 μm without dispersant) / (% finer than 5 μm with dispersant) × 100",
+    "variables": {
+      "DR": {"description": "Dispersion ratio", "units": "%"}
+    },
+    "applicability": "DR > 50%: dispersive. 30–50%: intermediate. < 30%: non-dispersive.",
+    "source": "ASTM D4221"
+  },
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.eq-004",
+    "title": "Specific Surface Area Estimate from Activity",
+    "equation": "SSA ≈ 10 × Activity × CF",
+    "variables": {
+      "SSA": {"description": "Approximate specific surface area", "units": "m²/g"},
+      "Activity": {"description": "Skempton activity (PI / % clay)", "units": "dimensionless"},
+      "CF": {"description": "Clay fraction (% < 2 μm)", "units": "decimal"}
+    },
+    "applicability": "Very rough estimate. Kaolinite SSA ~10–20 m²/g, illite ~80–100, montmorillonite ~600–800.",
+    "source": "Mitchell & Soga (2005)"
+  }
+]

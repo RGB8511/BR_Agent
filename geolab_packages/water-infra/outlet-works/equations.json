@@ -1,0 +1,135 @@
+[
+  {
+    "id": "water-infra.outlet-works.eq-001",
+    "title": "Pressurized Conduit Discharge",
+    "equation": "Q = Cd × A × √(2g × Hnet)",
+    "variables": {
+      "Q": {"description": "Conduit discharge", "units": "m³/s"},
+      "Cd": {"description": "Overall discharge coefficient (0.6–0.85 typical)", "units": "dimensionless"},
+      "A": {"description": "Conduit cross-sectional area", "units": "m²"},
+      "Hnet": {"description": "Net head (reservoir WSE - centerline of outlet or tailwater, whichever controls)", "units": "m"}
+    },
+    "source": "General hydraulics — USBR Design of Small Dams"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-002",
+    "title": "Conduit Energy Equation (Full Flow)",
+    "equation": "H = h_entrance + h_friction + h_bends + h_gate + h_transition + h_exit",
+    "alt_form": "H = (Ke + f×L/D + ΣKb + Kg + Kt + 1.0) × V²/(2g)",
+    "variables": {
+      "H": {"description": "Total head consumed by system", "units": "m"},
+      "Ke": {"description": "Entrance loss coefficient (0.04 bell-mouth, 0.50 square-edge)", "units": "dimensionless"},
+      "f": {"description": "Darcy-Weisbach friction factor", "units": "dimensionless"},
+      "L": {"description": "Conduit length", "units": "m"},
+      "D": {"description": "Conduit diameter", "units": "m"},
+      "Kb": {"description": "Bend loss coefficient (0.10–0.50 per bend depending on r/D)", "units": "dimensionless"},
+      "Kg": {"description": "Gate/valve loss coefficient (varies with type and opening)", "units": "dimensionless"},
+      "Kt": {"description": "Transition loss coefficient", "units": "dimensionless"},
+      "V": {"description": "Mean conduit velocity", "units": "m/s"}
+    },
+    "source": "USBR, USACE EM 1110-2-1602"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-003",
+    "title": "Trashrack Head Loss",
+    "equation": "hL = Kt × (t/b)^(4/3) × (V_n²)/(2g) × sin(α)",
+    "variables": {
+      "hL": {"description": "Head loss through trashrack", "units": "m"},
+      "Kt": {"description": "Bar shape coefficient (1.79 sharp-edge, 1.67 rectangular, 0.76 circular, 2.42 flat)", "units": "dimensionless"},
+      "t": {"description": "Bar thickness (in flow direction)", "units": "m"},
+      "b": {"description": "Clear spacing between bars", "units": "m"},
+      "V_n": {"description": "Velocity through net area (gross area minus bars)", "units": "m/s"},
+      "α": {"description": "Angle of rack from horizontal", "units": "degrees"}
+    },
+    "applicability": "Kirschmer (1926) formula. For partially clogged racks, increase hL by factor of 2× or more. Design rack structure for 50% clogging case.",
+    "source": "Kirschmer (1926), USBR, ASCE"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-004",
+    "title": "Air Demand Behind Gate (Empirical)",
+    "equation": "β = Qa/Qw ≈ 0.04 × (Fr_gate - 1)^0.85",
+    "variables": {
+      "β": {"description": "Air demand ratio (air flow / water flow)", "units": "dimensionless"},
+      "Qa": {"description": "Air flow rate into vent", "units": "m³/s"},
+      "Qw": {"description": "Water flow rate", "units": "m³/s"},
+      "Fr_gate": {"description": "Froude number of flow downstream of gate", "units": "dimensionless"}
+    },
+    "applicability": "Approximate — varies significantly with gate type and geometry. β ranges 0.03–0.25 typically. Air vent sized for maximum air velocity ≤ 45 m/s.",
+    "source": "USACE EM 1110-2-1602, Sharma (1976)"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-005",
+    "title": "Reservoir Drawdown Time",
+    "equation": "T = ∫(dS/Q_outlet) from S_initial to S_final",
+    "alt_form": "Discrete: T ≈ Σ[ΔS_i / Q_avg_i] where ΔS = storage change per increment, Q_avg = average outlet discharge at mean pool level of increment",
+    "variables": {
+      "T": {"description": "Time to draw down reservoir", "units": "hours or days"},
+      "S": {"description": "Reservoir storage", "units": "m³"},
+      "Q_outlet": {"description": "Outlet discharge (function of head, which decreases as pool drops)", "units": "m³/s"}
+    },
+    "applicability": "As pool drops, head decreases and Q decreases — drawdown slows over time. Compute in increments (e.g., 1 m pool elevation steps) using elevation-storage-discharge relationships.",
+    "source": "USBR DS-14 Ch2, general practice"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-006",
+    "title": "Entrance Loss Coefficient",
+    "equation": "he = Ke × V²/(2g)",
+    "variables": {
+      "Ke": {"description": "Entrance loss coefficient", "units": "dimensionless"},
+      "V": {"description": "Conduit velocity", "units": "m/s"}
+    },
+    "applicability": "Ke values: bell-mouth (rounded) = 0.04, slightly rounded = 0.10, square-edge = 0.50, projecting (re-entrant) = 0.78. Bell-mouth entrance strongly recommended for outlet conduits.",
+    "source": "USBR, USACE, Miller (1978)"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-007",
+    "title": "Gate/Valve Discharge Coefficient (Partially Open)",
+    "equation": "Q = Cd_gate × A_opening × √(2g × ΔH)",
+    "variables": {
+      "Q": {"description": "Discharge through partially open gate", "units": "m³/s"},
+      "Cd_gate": {"description": "Gate discharge coefficient (varies with gate type and opening)", "units": "dimensionless"},
+      "A_opening": {"description": "Area of gate opening", "units": "m²"},
+      "ΔH": {"description": "Head differential across gate", "units": "m"}
+    },
+    "applicability": "Cd varies: slide gate 0.60–0.75, fixed-wheel 0.70–0.82, hollow-jet valve 0.60–0.85 (function of % open). Partial openings experience high velocities and potential cavitation.",
+    "source": "USBR, USACE HDC Series 320"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-008",
+    "title": "Conduit Collapse Pressure (Vacuum)",
+    "equation": "P_cr = (2E × (t/D)³) / (1 - ν²)",
+    "variables": {
+      "P_cr": {"description": "Critical external pressure for buckling", "units": "Pa"},
+      "E": {"description": "Modulus of elasticity of conduit material", "units": "Pa"},
+      "t": {"description": "Wall thickness", "units": "m"},
+      "D": {"description": "Conduit diameter", "units": "m"},
+      "ν": {"description": "Poisson's ratio", "units": "dimensionless"}
+    },
+    "applicability": "For steel pipe under vacuum loading. Full vacuum = ~101 kPa external pressure. Safety factor ≥ 2.0 against collapse. Alternatively, provide air vent to prevent vacuum formation.",
+    "source": "Timoshenko (1936), AWWA M11"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-009",
+    "title": "Hollow-Jet Valve Discharge",
+    "equation": "Q = Cd × (π/4) × D² × √(2gH)",
+    "variables": {
+      "Q": {"description": "Valve discharge", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (0.60–0.85 depending on opening)", "units": "dimensionless"},
+      "D": {"description": "Valve nominal diameter", "units": "m"},
+      "H": {"description": "Head at valve centerline", "units": "m"}
+    },
+    "applicability": "Fixed-cone (Howell-Bunger) valve produces a hollow cone of spray — excellent energy dissipation in free discharge. Maximum head typically 150–200 m. Sizes up to 3+ m diameter.",
+    "source": "USBR, valve manufacturers"
+  },
+  {
+    "id": "water-infra.outlet-works.eq-010",
+    "title": "Bend Loss in Conduit",
+    "equation": "hb = Kb × V²/(2g)",
+    "variables": {
+      "Kb": {"description": "Bend loss coefficient", "units": "dimensionless"},
+      "V": {"description": "Conduit velocity", "units": "m/s"}
+    },
+    "applicability": "Kb depends on bend radius ratio (r/D) and deflection angle: 90° miter = 1.1, 90° r/D=1 = 0.35, 90° r/D=2 = 0.19, 90° r/D=4 = 0.10, 45° r/D=2 = 0.10, compound bends: losses are not simply additive if closely spaced.",
+    "source": "Miller (1978), USBR, Idelchik (1966)"
+  }
+]

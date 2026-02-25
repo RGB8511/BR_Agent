@@ -1,0 +1,81 @@
+[
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.tbl-001",
+    "title": "Basic Friction Angle (φ_b) for Common Rock Types",
+    "type": "reference",
+    "data": {
+      "headers": ["Rock Type", "φ_b (degrees)", "Surface Condition"],
+      "rows": [
+        ["Granite", "31–35", "Dry, saw-cut"],
+        ["Basalt", "35–38", "Dry, saw-cut"],
+        ["Gneiss", "29–35", "Dry, saw-cut"],
+        ["Sandstone", "26–35", "Dry, saw-cut"],
+        ["Limestone", "33–40", "Dry, saw-cut"],
+        ["Dolostone", "31–37", "Dry, saw-cut"],
+        ["Schist", "25–30", "Dry, along foliation"],
+        ["Slate", "25–30", "Dry, along cleavage"],
+        ["Quartzite", "34–38", "Dry, saw-cut"],
+        ["Marble", "33–36", "Dry, saw-cut"],
+        ["Shale", "22–30", "Dry, along bedding"],
+        ["Chalk", "30–33", "Dry, saw-cut"]
+      ]
+    },
+    "source": "Barton & Choubey (1977), various compilations"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.tbl-002",
+    "title": "JRC Standard Profiles (Barton & Choubey 1977)",
+    "type": "classification",
+    "data": {
+      "headers": ["Profile No.", "JRC Range", "Description"],
+      "rows": [
+        ["1", "0–2", "Smooth, planar"],
+        ["2", "2–4", "Smooth, slightly undulating"],
+        ["3", "4–6", "Smooth, undulating"],
+        ["4", "6–8", "Slightly rough, undulating"],
+        ["5", "8–10", "Rough, undulating"],
+        ["6", "10–12", "Rough, undulating (moderate amplitude)"],
+        ["7", "12–14", "Rough, irregular"],
+        ["8", "14–16", "Rough, irregular (high amplitude)"],
+        ["9", "16–18", "Very rough, stepped"],
+        ["10", "18–20", "Very rough, stepped (high amplitude)"]
+      ]
+    },
+    "source": "Barton & Choubey (1977). Original 10 standard profiles at 100mm length."
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.tbl-003",
+    "title": "Typical Infilling Material Properties",
+    "type": "reference",
+    "data": {
+      "headers": ["Infilling Type", "φ (°)", "c (kPa)", "Notes"],
+      "rows": [
+        ["Clean tight joint", "Use Barton-Bandis", "—", "No infilling"],
+        ["Sandy/silty", "25–35", "0–50", "Non-cohesive filling"],
+        ["Calcite", "33–40", "50–200", "Hard crystalline filling"],
+        ["Clay (NC)", "12–20", "0–10", "Governs many stability problems"],
+        ["Clay (OC)", "15–25", "10–50", ""],
+        ["Clay gouge (fault)", "8–16", "0–25", "Montmorillonite gouge can be very low"],
+        ["Chlorite/talc", "8–15", "0–20", "Very low friction minerals"],
+        ["Crushed rock / breccia", "25–35", "0–50", "Depends on fragments and matrix"]
+      ]
+    },
+    "source": "Various — Barton (1974), Hoek & Bray (1981)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.tbl-004",
+    "title": "JRC Estimation from Different Methods",
+    "type": "procedure",
+    "data": {
+      "headers": ["Method", "Accuracy", "Notes"],
+      "rows": [
+        ["Visual comparison with standard profiles", "± 2–4", "Most common. Subjective. Practice improves estimates."],
+        ["Tilt test", "± 1–2", "Small blocks. Low normal stress. Good for lab."],
+        ["Profilometer / straight edge", "± 1–3", "Measure maximum amplitude over length → correlate to JRC."],
+        ["Back-calculation from shear test", "± 1", "Best accuracy but requires direct shear test data."],
+        ["Laser scanning / photogrammetry", "± 1–2", "Modern methods. Statistical roughness parameters."]
+      ]
+    },
+    "source": "Various"
+  }
+]

@@ -1,0 +1,89 @@
+[
+  {
+    "id": "water-infra.pipeline-design.tbl-001",
+    "title": "Pipe Material Comparison for Water Transmission",
+    "type": "classification",
+    "data": {
+      "headers": ["Material", "Size Range (mm)", "Max Pressure (MPa)", "Design Life (yr)", "Relative Cost", "Key Advantage"],
+      "rows": [
+        ["Steel (welded, CML)", "100–3600+", "Unlimited (by design)", "75–100+", "Medium-High", "Highest pressure/size capability, weldable"],
+        ["Ductile iron (DIP)", "75–1600", "2.4", "75–100", "Medium", "Widely available, robust, easy installation"],
+        ["PCCP (ECP/LCP)", "400–3600", "2.75", "75–100", "High", "Very large diameters, corrosion resistant"],
+        ["HDPE (PE4710)", "16–1600", "1.7 (DR7)", "50–100", "Low-Medium", "Flexible, fused joints, chemical resistance"],
+        ["PVC (C900)", "100–900", "2.1 (Class 305)", "75–100", "Low", "Smooth, corrosion-free, lowest friction"],
+        ["GRP / FRP", "300–3600", "2.5", "50–75", "Medium-High", "Corrosion-free, large sizes, lightweight"],
+        ["Concrete cylinder (non-prestressed)", "300–3600", "1.0", "50–75", "Medium", "Large sizes, local production"]
+      ]
+    },
+    "source": "AWWA manuals, manufacturer data, general practice"
+  },
+  {
+    "id": "water-infra.pipeline-design.tbl-002",
+    "title": "Steel Pipe — Common Grades and Allowable Stresses (AWWA M11)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Steel Grade", "ASTM", "Yield (MPa)", "σ_allow Working (MPa)", "σ_allow Work+Transient (MPa)"],
+      "rows": [
+        ["Grade 36", "A36", "250", "125 (50% Fy)", "188 (75% Fy)"],
+        ["Grade 42", "A572 Gr 42", "290", "145", "218"],
+        ["Grade 50", "A572 Gr 50", "345", "173", "259"],
+        ["Grade 60", "A572 Gr 60", "415", "208", "311"],
+        ["Spiral weld (coil)", "A139 Gr B/C/D/E", "240–415", "120–208", "180–311"]
+      ]
+    },
+    "source": "AWWA M11, AWWA C200"
+  },
+  {
+    "id": "water-infra.pipeline-design.tbl-003",
+    "title": "DIP Pressure Classes (AWWA C150)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Pressure Class (psi)", "Working Pressure (psi)", "Surge Allowance (psi)", "Total Design (psi)"],
+      "rows": [
+        ["150", "150", "100", "250"],
+        ["200", "200", "100", "300"],
+        ["250", "250", "100", "350"],
+        ["300", "300", "100", "400"],
+        ["350", "350", "100", "450"]
+      ]
+    },
+    "source": "AWWA C150. Note: Surge allowance of 100 psi is standard. Higher transient pressures require thicker class or transient control."
+  },
+  {
+    "id": "water-infra.pipeline-design.tbl-004",
+    "title": "Minimum Cover Depth for Buried Water Pipe",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Condition", "Minimum Cover (m)", "Minimum Cover (ft)", "Basis"],
+      "rows": [
+        ["Non-traffic areas", "0.60–0.75", "2.0–2.5", "Protection from surface loads, frost"],
+        ["Roadway (passenger vehicles)", "0.90", "3.0", "AASHTO HL-93 loading consideration"],
+        ["Roadway (heavy trucks)", "1.2", "4.0", "Higher impact, distributed load"],
+        ["Railroad crossing", "1.5–2.0", "5.0–6.5", "Cooper E-80 loading"],
+        ["Below frost line", "Frost depth + 0.30 m", "Frost depth + 12 in", "Prevent freezing"],
+        ["Irrigation / agricultural", "0.90–1.2", "3.0–4.0", "Protection from farm equipment"],
+        ["Open cut in rock", "0.30–0.60", "1.0–2.0", "Less cover acceptable in rock with padding"]
+      ]
+    },
+    "source": "AWWA, local codes (vary by jurisdiction)"
+  },
+  {
+    "id": "water-infra.pipeline-design.tbl-005",
+    "title": "Pipeline Appurtenance Spacing Guidelines",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Appurtenance", "Location", "Typical Spacing / Rule"],
+      "rows": [
+        ["Air/vacuum valve", "All high points in profile", "Every high point; also every 600–1200 m on long ascending runs"],
+        ["Air release valve", "Summits, after pumps, after valves", "Every high point and long flat section"],
+        ["Combination air valve", "All significant high points", "Combines air/vacuum + air release in one body"],
+        ["Blowoff / drain valve", "All low points", "Every low point; sized for practical drain time"],
+        ["Isolation valve (butterfly/gate)", "Regularly spaced", "Every 1.5–5 km on transmission; every 500–1000 m in distribution"],
+        ["Pressure relief valve", "Downstream of pump stations", "At locations where surge exceeds pipe rating"],
+        ["Check valve", "At each pump discharge", "Prevents reverse flow on pump trip"],
+        ["Flow meter", "Key measurement points", "Upstream/downstream of delivery points, pump stations"]
+      ]
+    },
+    "source": "AWWA M11, AWWA M51, 10 States Standards, general practice"
+  }
+]

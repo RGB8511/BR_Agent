@@ -1,0 +1,90 @@
+[
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.eq-001",
+    "title": "Barton-Bandis Criterion",
+    "equation": "τ = σ'_n × tan[JRC × log₁₀(JCS/σ'_n) + φ_r]",
+    "variables": {
+      "τ": {"description": "Shear strength of discontinuity", "units": "MPa"},
+      "σ'_n": {"description": "Effective normal stress", "units": "MPa"},
+      "JRC": {"description": "Joint roughness coefficient (0–20)", "units": "dimensionless"},
+      "JCS": {"description": "Joint wall compressive strength", "units": "MPa"},
+      "φ_r": {"description": "Residual friction angle", "units": "degrees"}
+    },
+    "applicability": "Unfilled rock joints. Valid for σ'_n < JCS. Check that total angle ≤ ~70°.",
+    "source": "Barton (1973), Barton & Choubey (1977)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.eq-002",
+    "title": "Patton's Model — Low Normal Stress",
+    "equation": "τ = σ'_n × tan(φ_b + i)",
+    "variables": {
+      "φ_b": {"description": "Basic friction angle", "units": "degrees"},
+      "i": {"description": "Effective roughness (dilation) angle", "units": "degrees"}
+    },
+    "applicability": "Sliding over asperities without shearing them.",
+    "source": "Patton (1966)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.eq-003",
+    "title": "JRC Scale Correction",
+    "equation": "JRC_n = JRC_0 × (L_n/L_0)^(-0.02 × JRC_0)",
+    "variables": {
+      "JRC_n": {"description": "Field-scale JRC", "units": "dimensionless"},
+      "JRC_0": {"description": "Lab-scale JRC (~100mm sample)", "units": "dimensionless"},
+      "L_n": {"description": "Field joint length", "units": "m"},
+      "L_0": {"description": "Lab sample length (typically 0.1 m)", "units": "m"}
+    },
+    "source": "Barton & Bandis (1982)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.eq-004",
+    "title": "JCS Scale Correction",
+    "equation": "JCS_n = JCS_0 × (L_n/L_0)^(-0.03 × JRC_0)",
+    "source": "Barton & Bandis (1982)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.eq-005",
+    "title": "JCS from Schmidt Hammer (L-type)",
+    "equation": "log₁₀(JCS) = 0.00088 × γ × R + 1.01",
+    "variables": {
+      "JCS": {"description": "Joint wall compressive strength", "units": "MPa"},
+      "γ": {"description": "Rock unit weight", "units": "kN/m³"},
+      "R": {"description": "Schmidt hammer rebound number (L-type, on joint surface)", "units": "dimensionless"}
+    },
+    "source": "Deere & Miller (1966), Barton & Choubey (1977)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.eq-006",
+    "title": "Residual Friction Angle (Barton-Choubey)",
+    "equation": "φ_r = (φ_b - 20°) + 20 × (r/R)",
+    "variables": {
+      "φ_r": {"description": "Residual friction angle", "units": "degrees"},
+      "φ_b": {"description": "Basic friction angle (saw-cut surface)", "units": "degrees"},
+      "r": {"description": "Schmidt rebound on weathered joint surface", "units": "dimensionless"},
+      "R": {"description": "Schmidt rebound on fresh rock surface", "units": "dimensionless"}
+    },
+    "applicability": "When r = R (unweathered): φ_r = φ_b. When r = 0 (fully weathered): φ_r = φ_b - 20°.",
+    "source": "Barton & Choubey (1977)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.eq-007",
+    "title": "JRC from Tilt Test",
+    "equation": "JRC = (α - φ_r) / log₁₀(JCS / σ'_n0)",
+    "variables": {
+      "α": {"description": "Tilt angle at which upper block slides", "units": "degrees"},
+      "σ'_n0": {"description": "Normal stress on joint at sliding (from block weight)", "units": "MPa"}
+    },
+    "applicability": "Simple lab or field test. Block weight provides very low σ'_n.",
+    "source": "Barton & Choubey (1977)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.discontinuity-shear-strength.eq-008",
+    "title": "Peak Dilation Angle (Barton)",
+    "equation": "d_n = (JRC/2) × log₁₀(JCS/σ'_n)",
+    "variables": {
+      "d_n": {"description": "Peak dilation angle at field scale", "units": "degrees"}
+    },
+    "applicability": "Approximate. Dilation decreases with increasing normal stress and scale.",
+    "source": "Barton (1973)"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "id": "water-infra.gates-valves",
+  "name": "Gates, Valves & Flow Control",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.mechanical",
+  "dependencies": [
+    "water-infra.outlet-works",
+    "water-infra.spillway-design"
+  ],
+  "tags": ["gate", "valve", "radial-gate", "tainter-gate", "slide-gate", "crest-gate", "needle-valve", "hollow-jet", "Howell-Bunger", "butterfly-valve", "cone-valve", "jet-flow-gate", "stop-log", "bulkhead", "flashboard", "fusegate", "drum-gate", "hoist", "hydraulic-cylinder", "cavitation", "vibration", "discharge-coefficient"],
+  "standards": ["USACE-EM-1110-2-1603", "USACE-EM-1110-2-1602", "USBR-DS14-Ch3", "AWWA-C500-Series"],
+  "key_references": [
+    "USACE EM 1110-2-1603 — Hydraulic Design of Spillways",
+    "USACE EM 1110-2-1602 — Hydraulic Design of Reservoir Outlet Works",
+    "USBR Design Standards No. 14, Ch. 3 — Spillway Gates",
+    "Lewin (2001) Hydraulic Gates and Valves in Free Surface Flow",
+    "USBR Engineering Monograph No. 25 — Hydraulic Design of Stilling Basins"
+  ],
+  "equation_count": 10,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

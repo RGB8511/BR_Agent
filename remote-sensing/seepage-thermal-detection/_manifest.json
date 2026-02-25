@@ -1,0 +1,35 @@
+{
+  "id": "remote-sensing.seepage-thermal-detection",
+  "name": "Seepage & Thermal Anomaly Detection",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.applications",
+  "dependencies": [
+    "remote-sensing.uas-photogrammetry"
+  ],
+  "tags": [
+    "infrared",
+    "thermography",
+    "IRT",
+    "seepage",
+    "thermal-camera",
+    "FLIR",
+    "dam-seepage",
+    "levee-seepage",
+    "canal-loss",
+    "groundwater-discharge",
+    "temperature-anomaly",
+    "fiber-optic-DTS"
+  ],
+  "equation_count": 8,
+  "table_count": 5,
+  "content_files": [
+    "theory.md",
+    "equations.json",
+    "tables.json",
+    "standards.md"
+  ],
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

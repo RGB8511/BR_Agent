@@ -1,0 +1,29 @@
+{
+  "id": "remote-sensing.concrete-inspection-remote",
+  "name": "Remote Concrete Inspection — Crack Detection, Spalling & Condition Assessment",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.structural-applications",
+  "dependencies": [
+    "remote-sensing.uas-photogrammetry",
+    "remote-sensing.lidar-fundamentals",
+    "concrete.deterioration-mechanisms"
+  ],
+  "tags": ["crack-detection", "spalling", "delamination", "concrete", "dam-inspection", "bridge-inspection", "UAS-inspection", "thermal-IR", "GPR", "rebar", "corrosion", "efflorescence", "image-analysis", "deep-learning", "CNN", "semantic-segmentation", "crack-width", "crack-mapping", "condition-rating"],
+  "standards": ["ACI-201.1R", "AASHTO-MBEI", "FHWA-HIF-19-056", "ASTM-D4580", "FEMA-93"],
+  "key_references": [
+    "FHWA (2019) Use of Unmanned Aerial Systems for Bridge Inspection",
+    "ACI 201.1R — Guide for Conducting a Visual Inspection of Concrete in Service",
+    "Prasanna et al. (2016) Automated crack detection on concrete bridges",
+    "FEMA 93 — Federal Guidelines for Dam Safety: Condition Assessment",
+    "Wells & Lovelace (2018) UAS for Dam Safety Inspections"
+  ],
+  "equation_count": 8,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

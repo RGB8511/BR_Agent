@@ -1,0 +1,25 @@
+{
+  "id": "field-exploration.groundwater-monitoring",
+  "name": "Groundwater Monitoring — Wells, Piezometers & Aquifer Testing",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.hydrogeology",
+  "dependencies": ["field-exploration.drilling-methods", "field-exploration.in-situ-permeability"],
+  "tags": ["monitoring-well", "piezometer", "well-screen", "filter-pack", "grout-seal", "well-development", "water-level", "slug-test", "pump-test", "multi-level", "Westbay", "CMT", "datalogger", "transducer", "water-sampling"],
+  "standards": ["ASTM-D5092", "ASTM-D5521", "ASTM-D4750", "ASTM-D6724", "ASTM-D4044"],
+  "key_references": [
+    "ASTM D5092 — Design and Installation of Groundwater Monitoring Wells",
+    "Driscoll (1986) Groundwater and Wells",
+    "Kruseman & de Ridder (1990) Analysis of Pumping Test Data",
+    "USACE EM 1110-2-1901 Seepage Analysis and Control",
+    "Nielsen (2006) Practical Handbook of Environmental Site Characterization"
+  ],
+  "equation_count": 8,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

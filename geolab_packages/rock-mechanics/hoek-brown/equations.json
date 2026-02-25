@@ -1,0 +1,122 @@
+[
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-001",
+    "title": "Generalized Hoek-Brown Criterion",
+    "equation": "σ'₁ = σ'₃ + σ_ci × (m_b × σ'₃/σ_ci + s)^a",
+    "variables": {
+      "σ'₁": {"description": "Major principal effective stress at failure", "units": "MPa"},
+      "σ'₃": {"description": "Minor principal effective stress at failure", "units": "MPa"},
+      "σ_ci": {"description": "Uniaxial compressive strength of intact rock", "units": "MPa"},
+      "m_b": {"description": "Reduced material constant for rock mass", "units": "dimensionless"},
+      "s": {"description": "Rock mass constant (0 to 1)", "units": "dimensionless"},
+      "a": {"description": "Rock mass constant (0.5 to ~0.65)", "units": "dimensionless"}
+    },
+    "source": "Hoek, Carranza-Torres & Corkum (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-002",
+    "title": "mb Parameter",
+    "equation": "m_b = m_i × exp[(GSI - 100) / (28 - 14D)]",
+    "variables": {
+      "m_b": {"description": "Rock mass material constant", "units": "dimensionless"},
+      "m_i": {"description": "Intact rock material constant", "units": "dimensionless"},
+      "GSI": {"description": "Geological Strength Index (0–100)", "units": "dimensionless"},
+      "D": {"description": "Disturbance factor (0–1)", "units": "dimensionless"}
+    },
+    "source": "Hoek et al. (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-003",
+    "title": "s Parameter",
+    "equation": "s = exp[(GSI - 100) / (9 - 3D)]",
+    "source": "Hoek et al. (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-004",
+    "title": "a Parameter",
+    "equation": "a = 0.5 + (1/6) × [exp(-GSI/15) - exp(-20/3)]",
+    "applicability": "a = 0.5 for GSI > 65. Approaches 0.65 for very low GSI.",
+    "source": "Hoek et al. (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-005",
+    "title": "Intact Rock Criterion",
+    "equation": "σ'₁ = σ'₃ + σ_ci × (m_i × σ'₃/σ_ci + 1)^0.5",
+    "applicability": "GSI = 100, D = 0 → m_b = m_i, s = 1, a = 0.5",
+    "source": "Hoek & Brown (1980)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-006",
+    "title": "Rock Mass UCS (Simplified)",
+    "equation": "σ_cm = σ_ci × s^a",
+    "variables": {
+      "σ_cm": {"description": "Uniaxial compressive strength of rock mass", "units": "MPa"}
+    },
+    "applicability": "Simplified form. Full expression gives slightly different values for a ≠ 0.5.",
+    "source": "Hoek et al. (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-007",
+    "title": "Rock Mass Tensile Strength",
+    "equation": "σ_t = -s × σ_ci / m_b",
+    "variables": {
+      "σ_t": {"description": "Tensile strength of rock mass (negative = tension)", "units": "MPa"}
+    },
+    "source": "Hoek et al. (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-008",
+    "title": "Rock Mass Modulus (Hoek-Diederichs 2006)",
+    "equation": "E_rm = E_i × (0.02 + [1 - D/2] / [1 + exp((60 + 15D - GSI)/11)])",
+    "variables": {
+      "E_rm": {"description": "Rock mass deformation modulus", "units": "GPa"},
+      "E_i": {"description": "Intact rock modulus", "units": "GPa"},
+      "GSI": {"description": "Geological Strength Index", "units": "dimensionless"},
+      "D": {"description": "Disturbance factor", "units": "dimensionless"}
+    },
+    "applicability": "Most reliable E_rm estimate when E_i is known. If not: E_i ≈ MR × σ_ci where MR is modulus ratio.",
+    "source": "Hoek & Diederichs (2006)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-009",
+    "title": "Equivalent φ' (Mohr-Coulomb Fit)",
+    "equation": "sinφ' = [6a·m_b·(s + m_b·σ'₃n)^(a-1)] / [2(1+a)(2+a) + 6a·m_b·(s + m_b·σ'₃n)^(a-1)]",
+    "variables": {
+      "σ'₃n": {"description": "σ'₃,max / σ_ci (normalized confining stress)", "units": "dimensionless"}
+    },
+    "applicability": "Fitted over stress range 0 to σ'₃,max. Result depends on stress range chosen.",
+    "source": "Hoek et al. (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-010",
+    "title": "σ'₃,max for Tunnels",
+    "equation": "σ'₃,max / σ_cm = 0.47 × (σ_cm / γH)^(-0.94)",
+    "variables": {
+      "σ_cm": {"description": "Rock mass UCS", "units": "MPa"},
+      "γ": {"description": "Rock unit weight", "units": "MN/m³"},
+      "H": {"description": "Depth below surface to tunnel", "units": "m"}
+    },
+    "source": "Hoek et al. (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-011",
+    "title": "σ'₃,max for Slopes",
+    "equation": "σ'₃,max / σ_cm = 0.72 × (σ_cm / γH)^(-0.91)",
+    "variables": {
+      "H": {"description": "Slope height", "units": "m"}
+    },
+    "source": "Hoek et al. (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.eq-012",
+    "title": "Modulus Ratio (MR) for E_i Estimation",
+    "equation": "E_i = MR × σ_ci",
+    "variables": {
+      "E_i": {"description": "Intact rock deformation modulus", "units": "MPa"},
+      "MR": {"description": "Modulus ratio (see table)", "units": "dimensionless"},
+      "σ_ci": {"description": "Intact UCS", "units": "MPa"}
+    },
+    "applicability": "When E_i not measured. MR varies 150–600 depending on rock type.",
+    "source": "Deere (1968), Hoek & Diederichs (2006)"
+  }
+]

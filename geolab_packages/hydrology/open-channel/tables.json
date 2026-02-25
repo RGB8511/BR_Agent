@@ -1,0 +1,92 @@
+[
+  {
+    "id": "hydrology.hydraulics.open-channel.tbl-001",
+    "title": "Manning's Roughness Coefficient (n) — Common Channels",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Channel Type", "n (min)", "n (normal)", "n (max)"],
+      "rows": [
+        ["Concrete — finished", "0.011", "0.013", "0.015"],
+        ["Concrete — unfinished", "0.014", "0.017", "0.020"],
+        ["Gravel bottom — sides formed", "0.017", "0.020", "0.025"],
+        ["Earth — straight, uniform, clean", "0.016", "0.018", "0.020"],
+        ["Earth — winding, some weeds", "0.023", "0.025", "0.030"],
+        ["Earth — dense weeds/brush, deep pools", "0.050", "0.080", "0.120"],
+        ["Rock cut — smooth, uniform", "0.025", "0.035", "0.040"],
+        ["Rock cut — jagged/irregular", "0.035", "0.040", "0.050"],
+        ["Riprap-lined", "0.020", "0.030", "0.035"],
+        ["Natural stream — clean, straight", "0.025", "0.030", "0.033"],
+        ["Natural stream — some weeds, stones", "0.030", "0.035", "0.040"],
+        ["Natural stream — sluggish, weedy, deep pools", "0.050", "0.070", "0.080"],
+        ["Floodplain — pasture, no brush", "0.025", "0.030", "0.035"],
+        ["Floodplain — cultivated areas", "0.020", "0.035", "0.050"],
+        ["Floodplain — heavy timber and brush", "0.080", "0.100", "0.160"],
+        ["Corrugated metal pipe", "0.021", "0.024", "0.030"],
+        ["Concrete pipe", "0.011", "0.013", "0.015"],
+        ["PVC / HDPE pipe", "0.009", "0.011", "0.013"]
+      ]
+    },
+    "source": "Chow (1959), FHWA HEC-RAS Reference, Arcement & Schneider (1989)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.tbl-002",
+    "title": "Geometric Properties of Common Channel Sections",
+    "type": "reference",
+    "data": {
+      "headers": ["Shape", "Area (A)", "Wetted Perimeter (P)", "Hydraulic Radius (R)", "Top Width (T)"],
+      "rows": [
+        ["Rectangle (b × y)", "b × y", "b + 2y", "by/(b+2y)", "b"],
+        ["Trapezoid (b, side slope z:1)", "(b + zy)y", "b + 2y√(1+z²)", "(b+zy)y / (b+2y√(1+z²))", "b + 2zy"],
+        ["Triangle (side slope z:1)", "z × y²", "2y√(1+z²)", "zy / (2√(1+z²))", "2zy"],
+        ["Circle (diameter D, full)", "πD²/4", "πD", "D/4", "0"],
+        ["Circle (depth y < D)", "Complex function of y/D", "D × arccos(1-2y/D)", "A/P", "D×sin(arccos(1-2y/D))"],
+        ["Parabolic (T, y)", "2Ty/3", "T + 8y²/(3T)", "A/P", "T"]
+      ]
+    },
+    "source": "Chow (1959)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.tbl-003",
+    "title": "GVF Water Surface Profile Types",
+    "type": "classification",
+    "data": {
+      "headers": ["Profile", "Slope Type", "Depth Zone", "Characteristics", "Example"],
+      "rows": [
+        ["M1", "Mild (S₀<Sc)", "y > yn > yc", "Backwater — depth increasing downstream", "Behind a dam on mild slope"],
+        ["M2", "Mild", "yn > y > yc", "Drawdown — depth decreasing downstream", "Approach to free overfall"],
+        ["M3", "Mild", "yn > yc > y", "Supercritical on mild slope", "Below sluice gate on mild slope"],
+        ["S1", "Steep (S₀>Sc)", "y > yc > yn", "Subcritical on steep slope", "Behind dam on steep slope"],
+        ["S2", "Steep", "yc > y > yn", "Drawdown toward normal depth", "Entrance to steep channel"],
+        ["S3", "Steep", "yc > yn > y", "Below normal on steep slope", "Below sluice gate on steep slope"],
+        ["C1", "Critical (S₀=Sc)", "y > yc=yn", "Backwater on critical slope", "Rare in practice"],
+        ["C3", "Critical", "y < yc=yn", "Supercritical on critical slope", "Rare in practice"],
+        ["H2", "Horizontal (S₀=0)", "y > yc (yn→∞)", "Drawdown on flat bed", "Approach to overfall on flat channel"],
+        ["A2", "Adverse (S₀<0)", "y > yc (yn N/A)", "Uphill flow, depth decreasing", "Adverse slope approach to overfall"]
+      ]
+    },
+    "source": "Chow (1959), Henderson (1966)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.tbl-004",
+    "title": "Permissible Velocities for Unlined Channels",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Material", "Clear Water (m/s)", "Water with Sediment (m/s)"],
+      "rows": [
+        ["Fine sand (non-colloidal)", "0.46", "0.76"],
+        ["Sandy loam (non-colloidal)", "0.53", "0.76"],
+        ["Silt loam (non-colloidal)", "0.61", "0.91"],
+        ["Firm loam", "0.76", "1.07"],
+        ["Stiff clay (very colloidal)", "1.14", "1.52"],
+        ["Graded loam to cobbles", "1.14", "1.52"],
+        ["Graded silts to cobbles", "1.22", "1.68"],
+        ["Coarse gravel (non-colloidal)", "1.22", "1.83"],
+        ["Cobbles and shingles", "1.52", "1.68"],
+        ["Grass-lined (established)", "1.2–1.8", "—"],
+        ["Riprap (D50 = 150 mm)", "2.5–3.5", "—"],
+        ["Concrete lining", "4.5–6.0", "—"]
+      ]
+    },
+    "source": "USACE EM 1110-2-1601, Fortier & Scobey (1926), various"
+  }
+]

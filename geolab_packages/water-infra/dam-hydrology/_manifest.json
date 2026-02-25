@@ -1,0 +1,29 @@
+{
+  "id": "water-infra.dam-hydrology",
+  "name": "Dam Hydrology — Inflow Design Floods & Reservoir Routing",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.dams",
+  "dependencies": [
+    "hydrology.foundations.fundamentals",
+    "hydrology.analysis.flood-frequency",
+    "hydrology.hydraulics.open-channel"
+  ],
+  "tags": ["PMF", "PMP", "IDF", "inflow-design-flood", "dam-breach", "reservoir-routing", "modified-puls", "level-pool", "hydrologic-hazard", "spillway-design-flood", "incremental-damage", "USBR", "USACE", "FERC"],
+  "standards": ["USBR-DS13-Ch2", "USACE-ER-1110-8-2", "FERC-Ch2", "FEMA-94-0002", "WMO-1045"],
+  "key_references": [
+    "USBR Design Standards No. 13, Chapter 2 — Hydrologic Considerations",
+    "USACE ER 1110-8-2 (FR) Inflow Design Floods for Dams and Reservoirs",
+    "FERC Engineering Guidelines, Chapter 2 — Selecting and Accommodating IDF",
+    "HMR 51/52 — Hydrometeorological Reports (PMP estimates)",
+    "NWS FLDWAV / HEC-HMS / HEC-RAS dam breach models"
+  ],
+  "equation_count": 10,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "geotechnical.rock-mechanics.hoek-brown",
+  "name": "Hoek-Brown Failure Criterion",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.rock-mechanics",
+  "dependencies": ["geotechnical.foundations.rock-classification"],
+  "tags": ["Hoek-Brown", "GSI", "mi", "mb", "s", "a", "intact-rock", "rock-mass", "disturbance-factor", "equivalent-MC"],
+  "standards": ["D7012"],
+  "key_references": [
+    "Hoek & Brown (1980) Underground Excavations in Rock",
+    "Hoek, Carranza-Torres & Corkum (2002) Hoek-Brown Failure Criterion — 2002 Edition",
+    "Hoek & Brown (2019) The Hoek-Brown Failure Criterion and GSI — 2018 Edition"
+  ],
+  "equation_count": 12,
+  "concept_count": 16,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,126 @@
+[
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-001",
+    "title": "Menard Pressuremeter Modulus",
+    "equation": "EM = 2 × (1+ν) × (V₀ + Vm) × (ΔP/ΔV)",
+    "variables": {
+      "EM": {"description": "Menard pressuremeter modulus", "units": "kPa"},
+      "ν": {"description": "Poisson's ratio (0.33 assumed)", "units": "dimensionless"},
+      "V₀": {"description": "Initial volume of probe at rest", "units": "cm³"},
+      "Vm": {"description": "Volume at midpoint of linear portion of curve", "units": "cm³"},
+      "ΔP/ΔV": {"description": "Slope of linear (pseudo-elastic) portion of pressure-volume curve", "units": "kPa/cm³"}
+    },
+    "applicability": "EM is NOT directly equivalent to Young's modulus E. For settlement calculations using Menard's method, EM is used with rheological factor α: E/EM = 1/α (α = 0.25–1.0 depending on soil type and EM/pL ratio). Design directly with Menard rules, or convert to E.",
+    "source": "Menard (1957), ASTM D4719"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-002",
+    "title": "Menard Limit Pressure (Net)",
+    "equation": "pL* = pL - p₀",
+    "variables": {
+      "pL*": {"description": "Net limit pressure", "units": "kPa"},
+      "pL": {"description": "Limit pressure (from extrapolation of curve)", "units": "kPa"},
+      "p₀": {"description": "Initial contact pressure (lift-off)", "units": "kPa"}
+    },
+    "applicability": "Net limit pressure is the key parameter for Menard bearing capacity design: q_u = k × pL* + q₀ where k is a bearing capacity factor (function of foundation shape and depth).",
+    "source": "Menard (1963), NF P 94-261 (French standard)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-003",
+    "title": "Undrained Shear Strength from SBPMT (Cavity Expansion)",
+    "equation": "Su = (pL - σh0) / [1 + ln(G/Su)]",
+    "variables": {
+      "Su": {"description": "Undrained shear strength", "units": "kPa"},
+      "pL": {"description": "Limit pressure", "units": "kPa"},
+      "σh0": {"description": "In-situ horizontal stress (from lift-off pressure)", "units": "kPa"},
+      "G": {"description": "Shear modulus (from unload-reload loop)", "units": "kPa"}
+    },
+    "applicability": "From Gibson & Anderson (1961) undrained cylindrical cavity expansion theory. Requires iteration (Su appears on both sides). Typical Ir = G/Su = 50–500 → ln(Ir) = 4–6. Applicable to SBPMT; less reliable for PBP due to disturbance.",
+    "source": "Gibson & Anderson (1961), Clarke (1995)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-004",
+    "title": "Shear Modulus from Unload-Reload Loop",
+    "equation": "Gur = (V × ΔP) / (2 × ΔV)",
+    "variables": {
+      "Gur": {"description": "Unload-reload shear modulus", "units": "kPa"},
+      "V": {"description": "Current volume of cavity at start of unload", "units": "cm³"},
+      "ΔP": {"description": "Pressure change during unload-reload", "units": "kPa"},
+      "ΔV": {"description": "Volume change during unload-reload", "units": "cm³"}
+    },
+    "applicability": "Gur from unload-reload loops is the best pressuremeter estimate of in-situ shear stiffness. Perform loop in the pseudo-elastic portion of the curve. Unload by ~50% of current net pressure. Gur ≈ G at small-to-medium strain (0.01–0.1%).",
+    "source": "Clarke (1995), Mair & Wood (1987)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-005",
+    "title": "DMT Material Index",
+    "equation": "ID = (p₁ - p₀) / (p₀ - u₀)",
+    "variables": {
+      "ID": {"description": "Material (soil type) index", "units": "dimensionless"},
+      "p₀": {"description": "Corrected A-reading (lift-off pressure)", "units": "kPa"},
+      "p₁": {"description": "Corrected B-reading (1.1 mm expansion pressure)", "units": "kPa"},
+      "u₀": {"description": "Equilibrium pore pressure (hydrostatic)", "units": "kPa"}
+    },
+    "applicability": "ID < 0.1: peat/organic. 0.1–0.6: clay. 0.6–1.8: silt. > 1.8: sand. Boundaries are approximate — silty soils may cross boundaries.",
+    "source": "Marchetti (1980)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-006",
+    "title": "DMT Horizontal Stress Index",
+    "equation": "KD = (p₀ - u₀) / σ'v0",
+    "variables": {
+      "KD": {"description": "Horizontal stress index (analogous to K₀ but amplified by penetration)", "units": "dimensionless"},
+      "p₀": {"description": "Corrected lift-off pressure", "units": "kPa"},
+      "u₀": {"description": "Hydrostatic pore pressure", "units": "kPa"},
+      "σ'v0": {"description": "Effective vertical stress", "units": "kPa"}
+    },
+    "applicability": "KD ≈ 2 for NC soils (OCR ≈ 1). KD increases with OCR. KD is the most useful single DMT parameter — correlates with OCR, K₀, Su, and liquefaction potential.",
+    "source": "Marchetti (1980)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-007",
+    "title": "DMT Dilatometer Modulus",
+    "equation": "ED = 34.7 × (p₁ - p₀)",
+    "variables": {
+      "ED": {"description": "Dilatometer modulus", "units": "kPa"},
+      "p₁": {"description": "Corrected B-reading", "units": "kPa"},
+      "p₀": {"description": "Corrected A-reading", "units": "kPa"}
+    },
+    "applicability": "ED is NOT a Young's modulus — it is an intermediate parameter. Convert to constrained modulus M = RM × ED where RM depends on ID and KD. 34.7 is a theoretical factor from elastic solution for a loaded circular plate in a half-space.",
+    "source": "Marchetti (1980)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-008",
+    "title": "OCR from DMT (Clays)",
+    "equation": "OCR = (0.5 × KD)^1.56",
+    "variables": {
+      "OCR": {"description": "Overconsolidation ratio", "units": "dimensionless"},
+      "KD": {"description": "Horizontal stress index", "units": "dimensionless"}
+    },
+    "applicability": "For clays (ID < 1.2). Reasonably reliable for OCR < 8–10. For highly OC clays, may overestimate. Site-specific calibration against oedometer results recommended.",
+    "source": "Marchetti (1980)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-009",
+    "title": "Su from DMT (Clays)",
+    "equation": "Su = 0.22 × σ'v0 × (0.5 × KD)^1.25",
+    "variables": {
+      "Su": {"description": "Undrained shear strength", "units": "kPa"},
+      "σ'v0": {"description": "Effective vertical stress", "units": "kPa"},
+      "KD": {"description": "Horizontal stress index", "units": "dimensionless"}
+    },
+    "applicability": "For clays. Essentially combines SHANSEP framework (Su/σ'v = f(OCR)) with OCR from KD. Consistent with Su/σ'v0 = 0.22 for NC clay. Compare with vane and CPT Su values.",
+    "source": "Marchetti (1980), Marchetti et al. (2001)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.eq-010",
+    "title": "K₀ from DMT",
+    "equation": "K₀ = (KD/1.5)^0.47 - 0.6",
+    "variables": {
+      "K₀": {"description": "At-rest earth pressure coefficient", "units": "dimensionless"},
+      "KD": {"description": "Horizontal stress index", "units": "dimensionless"}
+    },
+    "applicability": "Original Marchetti (1980) correlation for uncemented clays. Best for NC to lightly OC soils. For KD = 2 (NC): K₀ ≈ 0.47 (reasonable for NC clay with PI ~30). Less reliable for highly OC or cemented soils.",
+    "source": "Marchetti (1980)"
+  }
+]

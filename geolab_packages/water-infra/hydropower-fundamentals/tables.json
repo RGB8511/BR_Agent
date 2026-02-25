@@ -1,0 +1,96 @@
+[
+  {
+    "id": "water-infra.hydropower.tbl-001",
+    "title": "Turbine Type Selection by Head and Flow",
+    "type": "classification",
+    "data": {
+      "headers": ["Turbine Type", "Head Range (m)", "Flow Range (m³/s)", "Ns (US)", "Peak Efficiency (%)", "Part-Load Behavior"],
+      "rows": [
+        ["Pelton (1 jet)", "50–1800", "0.05–5", "4–25", "90–93", "Excellent — needle valve regulation"],
+        ["Pelton (multi-jet)", "50–1800", "0.5–30", "25–60", "90–93", "Excellent — shut off individual jets"],
+        ["Francis (slow)", "100–700", "1–100", "60–150", "92–95", "Good above 40% load"],
+        ["Francis (medium)", "30–300", "5–300", "150–250", "92–95", "Good above 50% load"],
+        ["Francis (fast)", "10–100", "10–500+", "250–400", "90–93", "Moderate — draft tube swirl at part-load"],
+        ["Kaplan (double-regulated)", "2–70", "5–800", "300–900", "90–93", "Excellent — blade angle + wicket gates"],
+        ["Propeller (fixed-blade)", "2–30", "5–500", "300–900", "88–92", "Poor — steep efficiency drop off-design"],
+        ["Bulb turbine", "2–25", "10–500", "500–900", "89–92", "Good (Kaplan variant)"],
+        ["Crossflow (Banki)", "2–200", "0.02–10", "—", "80–86", "Flat — good for variable flow"],
+        ["Turgo", "30–300", "0.02–10", "20–80", "85–90", "Good — similar to Pelton"]
+      ]
+    },
+    "source": "USBR, ESHA (2004), manufacturer data"
+  },
+  {
+    "id": "water-infra.hydropower.tbl-002",
+    "title": "Typical Capacity Factors for Hydropower Plants",
+    "type": "reference",
+    "data": {
+      "headers": ["Plant Type", "Capacity Factor", "Notes"],
+      "rows": [
+        ["Large storage (baseload operation)", "0.40–0.60", "High CF when operated for energy production"],
+        ["Large storage (peaking)", "0.20–0.35", "Low CF — used during peak demand hours only"],
+        ["Run-of-river (good hydrology)", "0.40–0.60", "Wet climates, reliable streams"],
+        ["Run-of-river (seasonal)", "0.25–0.40", "Dry season reduces output significantly"],
+        ["Pumped storage", "0.10–0.25", "Operates only during peak price periods"],
+        ["Small hydro (well-designed)", "0.35–0.55", "Depends on flow regime and design"],
+        ["Micro hydro", "0.25–0.50", "Often limited by seasonal flow"]
+      ]
+    },
+    "source": "IEA Hydropower, IRENA, general practice"
+  },
+  {
+    "id": "water-infra.hydropower.tbl-003",
+    "title": "Atmospheric Pressure Correction for Altitude (Turbine Setting)",
+    "type": "reference",
+    "data": {
+      "headers": ["Elevation (m)", "P_atm (kPa)", "P_atm/(ρg) (m of water)", "Reduction from Sea Level (m)"],
+      "rows": [
+        ["0 (sea level)", "101.3", "10.33", "0"],
+        ["500", "95.5", "9.74", "0.59"],
+        ["1000", "89.9", "9.17", "1.16"],
+        ["1500", "84.6", "8.63", "1.70"],
+        ["2000", "79.5", "8.11", "2.22"],
+        ["2500", "74.7", "7.62", "2.71"],
+        ["3000", "70.1", "7.15", "3.18"],
+        ["4000", "61.6", "6.29", "4.04"]
+      ]
+    },
+    "source": "Standard atmosphere. Critical for turbine setting: lower P_atm → turbine must be set lower to avoid cavitation."
+  },
+  {
+    "id": "water-infra.hydropower.tbl-004",
+    "title": "Penstock Head Loss Budget (Typical)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Loss Component", "Typical % of Gross Head", "Notes"],
+      "rows": [
+        ["Trashrack", "0.1–0.5", "Depends on bar spacing, velocity, and debris load"],
+        ["Intake (bell-mouth)", "0.1–0.3", "Well-designed intake: K = 0.03–0.10"],
+        ["Penstock friction", "2.0–6.0", "Dominant loss — function of L, D, Q, roughness"],
+        ["Bends", "0.1–0.5", "K = 0.10–0.30 per bend"],
+        ["Valve/gate (full open)", "0.1–0.5", "Butterfly: K = 0.3; gate: K = 0.1"],
+        ["Bifurcation/manifold", "0.1–0.5", "If multiple units share one penstock"],
+        ["Total typical range", "3–8", "Target ≤ 5% for economic design"]
+      ]
+    },
+    "source": "ASCE MOP 79, ESHA (2004), general practice"
+  },
+  {
+    "id": "water-infra.hydropower.tbl-005",
+    "title": "Hydropower Cost Ranges (Installed $/kW)",
+    "type": "reference",
+    "data": {
+      "headers": ["Plant Type / Size", "Cost Range (USD/kW, 2024)", "Major Cost Drivers"],
+      "rows": [
+        ["Large hydro (new dam, > 100 MW)", "1500–4500", "Dam construction dominates; highly site-specific"],
+        ["Large hydro (existing dam, adding power)", "1000–2500", "Civil works for powerhouse, penstock, tailrace"],
+        ["Medium hydro (10–100 MW)", "2000–5000", "Site access, environmental mitigation, licensing"],
+        ["Small hydro (1–10 MW)", "2500–7000", "Higher per-kW civil and equipment costs"],
+        ["Micro hydro (< 1 MW)", "3000–10000+", "Standardized equipment helps, but civil costs high per kW"],
+        ["Pumped storage (new)", "1500–3500", "Two reservoirs, reversible units, tunnels"],
+        ["Refurbishment (existing)", "500–1500", "New turbines/generators, upgraded controls"]
+      ]
+    },
+    "source": "IRENA (2023), IEA, USBR, general industry data. Costs highly site-specific."
+  }
+]

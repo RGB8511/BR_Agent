@@ -1,0 +1,57 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.permeability-seepage.tbl-001",
+    "title": "Typical Hydraulic Conductivity Ranges",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "k (cm/s)", "k (m/s)", "Drainage"],
+      "rows": [
+        ["Clean gravel", "1–100", "10⁻²–1", "Very good"],
+        ["Clean sand (coarse)", "0.01–1", "10⁻⁴–10⁻²", "Good"],
+        ["Clean sand (fine)", "0.001–0.01", "10⁻⁵–10⁻⁴", "Good"],
+        ["Silty sand", "10⁻⁴–10⁻²", "10⁻⁶–10⁻⁴", "Fair"],
+        ["Silt", "10⁻⁶–10⁻⁴", "10⁻⁸–10⁻⁶", "Poor"],
+        ["Silty clay", "10⁻⁷–10⁻⁵", "10⁻⁹–10⁻⁷", "Very poor"],
+        ["Clay (CL)", "10⁻⁸–10⁻⁶", "10⁻¹⁰–10⁻⁸", "Practically impervious"],
+        ["Clay (CH)", "10⁻⁹–10⁻⁷", "10⁻¹¹–10⁻⁹", "Practically impervious"],
+        ["Intact rock", "10⁻¹¹–10⁻⁸", "10⁻¹³–10⁻¹⁰", "Impervious"],
+        ["Fractured rock", "10⁻⁵–10⁻¹", "10⁻⁷–10⁻³", "Variable"]
+      ]
+    },
+    "source": "Holtz et al. (2011), Terzaghi, Peck & Mesri (1996)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.permeability-seepage.tbl-002",
+    "title": "Laboratory vs. Field Permeability Test Selection",
+    "type": "procedure",
+    "data": {
+      "headers": ["Test", "Best For", "Limitations"],
+      "rows": [
+        ["Constant head (D2434)", "Coarse-grained (k > 10⁻⁴ cm/s)", "Not precise for fine-grained"],
+        ["Falling head / Flex-wall (D5084)", "Fine-grained (k < 10⁻⁴ cm/s)", "Time-consuming, sample disturbance"],
+        ["CRS consolidation (D4186)", "Fine-grained, k vs. void ratio", "Indirect — derived from c_v and m_v"],
+        ["Slug test (field)", "Estimate k at specific stratum", "Small zone of influence"],
+        ["Pump test (field)", "Average k over large volume", "Expensive, needs observation wells"],
+        ["Packer/Lugeon (field)", "Rock mass permeability", "Measures fracture flow, not matrix"]
+      ]
+    },
+    "source": "Various"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.permeability-seepage.tbl-003",
+    "title": "Anisotropy Ratios (k_h / k_v)",
+    "type": "reference",
+    "data": {
+      "headers": ["Deposit Type", "k_h/k_v Range", "Typical"],
+      "rows": [
+        ["Uniform sand (lab specimen)", "1–1.5", "1"],
+        ["Stratified sand", "2–10", "5"],
+        ["Natural clay", "2–10", "3–5"],
+        ["Varved clay / lacustrine", "10–1000+", "100"],
+        ["Compacted clay fill", "2–10", "5"],
+        ["Embankment dam core", "1–5", "2–3"]
+      ]
+    },
+    "source": "Various — Cedergren (1989), Mitchell & Soga (2005)"
+  }
+]

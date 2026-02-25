@@ -1,0 +1,101 @@
+[
+  {
+    "id": "coatings.protection.cp.eq-001",
+    "title": "Current Requirement for CP",
+    "equation": "I = A × i",
+    "variables": {
+      "I": {"description": "Total protective current required", "units": "amperes (A)"},
+      "A": {"description": "Bare metal surface area requiring protection", "units": "m²"},
+      "i": {"description": "Current density required for protection", "units": "A/m²"}
+    },
+    "applicability": "i varies by environment: 5–20 mA/m² for coated pipelines in soil, 50–150 mA/m² for bare steel in soil, 100–400 mA/m² for bare steel in seawater.",
+    "source": "NACE SP0169, Peabody (2001)"
+  },
+  {
+    "id": "coatings.protection.cp.eq-002",
+    "title": "Anode Life — Galvanic",
+    "equation": "Life = (W × U × E) / (I × C × 8760)",
+    "variables": {
+      "Life": {"description": "Anode service life", "units": "years"},
+      "W": {"description": "Anode weight", "units": "kg"},
+      "U": {"description": "Utilization factor (typically 0.85)", "units": "dimensionless"},
+      "E": {"description": "Electrochemical efficiency (current capacity)", "units": "A·h/kg"},
+      "I": {"description": "Current output per anode", "units": "amperes"},
+      "C": {"description": "Consumption rate factor (= 1 if E already accounts for efficiency)", "units": "dimensionless"},
+      "8760": {"description": "Hours per year", "units": "hours/year"}
+    },
+    "source": "DNV-RP-B401, NACE"
+  },
+  {
+    "id": "coatings.protection.cp.eq-003",
+    "title": "Anode Current Output (Galvanic) — Dwight's Formula for Horizontal Anode",
+    "equation": "R_a = (ρ / (2πL)) × [ln(4L/d) - 1]",
+    "variables": {
+      "R_a": {"description": "Anode-to-electrolyte resistance", "units": "ohms (Ω)"},
+      "ρ": {"description": "Soil resistivity", "units": "Ω·cm (divide by 100 for Ω·m)"},
+      "L": {"description": "Anode length", "units": "cm"},
+      "d": {"description": "Anode diameter (or equivalent)", "units": "cm"}
+    },
+    "applicability": "For a single horizontal anode buried in uniform soil. Current output I = ΔV / R_a where ΔV is driving voltage.",
+    "source": "Dwight (1936), Peabody (2001)"
+  },
+  {
+    "id": "coatings.protection.cp.eq-004",
+    "title": "Driving Voltage",
+    "equation": "ΔV = E_anode - E_protected",
+    "variables": {
+      "ΔV": {"description": "Net driving voltage available", "units": "volts (V)"},
+      "E_anode": {"description": "Open-circuit potential of anode material vs. CSE", "units": "V"},
+      "E_protected": {"description": "Target protection potential of structure (-0.85 V CSE for steel)", "units": "V"}
+    },
+    "source": "General electrochemistry"
+  },
+  {
+    "id": "coatings.protection.cp.eq-005",
+    "title": "Number of Anodes Required",
+    "equation": "N = I_total / I_per_anode",
+    "alt_form": "Also check: N ≥ I_total × Life_design × 8760 / (W × U × E) for weight-based design",
+    "variables": {
+      "N": {"description": "Number of anodes", "units": "count"},
+      "I_total": {"description": "Total current demand", "units": "A"},
+      "I_per_anode": {"description": "Current output per anode (ΔV / R_a)", "units": "A"}
+    },
+    "source": "NACE, DNV-RP-B401"
+  },
+  {
+    "id": "coatings.protection.cp.eq-006",
+    "title": "Coating Breakdown Factor (Coating Efficiency Over Time)",
+    "equation": "f_c = a + b × t",
+    "variables": {
+      "f_c": {"description": "Coating breakdown factor (fraction of surface bare)", "units": "dimensionless (0–1)"},
+      "a": {"description": "Initial coating breakdown (at installation)", "units": "dimensionless"},
+      "b": {"description": "Annual coating degradation rate", "units": "1/year"},
+      "t": {"description": "Time since installation", "units": "years"}
+    },
+    "applicability": "Linear model. DNV-RP-B401 provides values: e.g., FBE pipeline coating a=0.02, b=0.003. Bare area at time t = total_area × f_c.",
+    "source": "DNV-RP-B401"
+  },
+  {
+    "id": "coatings.protection.cp.eq-007",
+    "title": "Polarization Shift Criterion",
+    "equation": "ΔE_polarization = E_native - E_OFF ≥ 100 mV",
+    "variables": {
+      "E_native": {"description": "Free-corroding (native) potential before CP", "units": "mV vs. CSE"},
+      "E_OFF": {"description": "Instant-OFF (polarized) potential with CP", "units": "mV vs. CSE"}
+    },
+    "applicability": "Alternative protection criterion when -850 mV absolute is not practical. Both values must be stable, measured at same location.",
+    "source": "NACE SP0169"
+  },
+  {
+    "id": "coatings.protection.cp.eq-008",
+    "title": "Anode Current Capacity (Electrochemical)",
+    "type": "reference_values",
+    "data": {
+      "zinc": {"capacity": "780 A·h/kg", "consumption": "11.2 kg/A·yr"},
+      "magnesium_standard": {"capacity": "1100 A·h/kg", "consumption": "7.9 kg/A·yr"},
+      "magnesium_high_potential": {"capacity": "1100 A·h/kg", "consumption": "7.9 kg/A·yr"},
+      "aluminum_alloy": {"capacity": "2700 A·h/kg", "consumption": "3.2 kg/A·yr"}
+    },
+    "source": "DNV-RP-B401, NACE"
+  }
+]

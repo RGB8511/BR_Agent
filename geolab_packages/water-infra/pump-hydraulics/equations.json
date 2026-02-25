@@ -1,0 +1,124 @@
+[
+  {
+    "id": "water-infra.pump-hydraulics.eq-001",
+    "title": "Specific Speed (US Customary)",
+    "equation": "Ns = N × √Q / H^0.75",
+    "variables": {
+      "Ns": {"description": "Specific speed", "units": "dimensionless (US customary convention)"},
+      "N": {"description": "Pump rotational speed", "units": "rpm"},
+      "Q": {"description": "Flow rate at BEP (per impeller eye — divide by 2 for double suction)", "units": "US gpm"},
+      "H": {"description": "Total dynamic head per stage at BEP", "units": "feet"}
+    },
+    "applicability": "Ns < 4000: radial flow. 4000–10000: mixed flow. > 10000: axial flow. SI form: ns = N√Q / H^0.75 with Q in m³/s, H in m (ns_SI = Ns_US / 51.6).",
+    "source": "Hydraulic Institute, Karassik (2008)"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-002",
+    "title": "Affinity Laws — Speed Change",
+    "equation": "Q₂/Q₁ = N₂/N₁;  H₂/H₁ = (N₂/N₁)²;  P₂/P₁ = (N₂/N₁)³",
+    "variables": {
+      "Q": {"description": "Flow rate", "units": "m³/s or gpm"},
+      "H": {"description": "Head", "units": "m or ft"},
+      "P": {"description": "Power", "units": "kW or hp"},
+      "N": {"description": "Rotational speed", "units": "rpm"}
+    },
+    "applicability": "For a given pump with the same impeller diameter. Exact for geometrically similar conditions. Approximate for significant speed changes (efficiency changes slightly).",
+    "source": "Fundamental — Euler turbomachinery equations"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-003",
+    "title": "Affinity Laws — Impeller Trim",
+    "equation": "Q₂/Q₁ = D₂/D₁;  H₂/H₁ = (D₂/D₁)²;  P₂/P₁ = (D₂/D₁)³",
+    "variables": {
+      "D": {"description": "Impeller diameter", "units": "mm or inches"}
+    },
+    "applicability": "For the same pump at the same speed, changing impeller diameter. Accurate for small trims (≤ 10–15% of original diameter). Larger trims deviate from affinity laws.",
+    "source": "Hydraulic Institute"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-004",
+    "title": "NPSH Available",
+    "equation": "NPSHA = Patm/(ρg) + Hs - hf_suction - Pv/(ρg)",
+    "variables": {
+      "NPSHA": {"description": "Net Positive Suction Head Available", "units": "m"},
+      "Patm": {"description": "Atmospheric pressure (101.3 kPa at sea level)", "units": "kPa"},
+      "ρg": {"description": "Specific weight of water (9.81 kN/m³)", "units": "kN/m³"},
+      "Hs": {"description": "Static suction head (+above pump, -below pump centerline)", "units": "m"},
+      "hf_suction": {"description": "Friction and minor losses in suction piping", "units": "m"},
+      "Pv": {"description": "Vapor pressure of water (2.34 kPa at 20°C)", "units": "kPa"}
+    },
+    "applicability": "Must be calculated for the worst case: lowest suction source level, highest water temperature, maximum suction pipe losses, highest elevation (lowest atmospheric pressure). NPSHA must exceed NPSHR by adequate margin.",
+    "source": "Hydraulic Institute, Karassik (2008)"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-005",
+    "title": "Brake Horsepower (Shaft Power)",
+    "equation": "P_brake = (ρ × g × Q × H) / (η_pump × 1000)  [kW]",
+    "alt_form": "P_brake = (Q × H) / (3960 × η_pump)  [hp, with Q in gpm, H in ft]",
+    "variables": {
+      "P_brake": {"description": "Power input to pump shaft", "units": "kW or hp"},
+      "Q": {"description": "Flow rate", "units": "m³/s or gpm"},
+      "H": {"description": "Total dynamic head", "units": "m or ft"},
+      "η_pump": {"description": "Pump efficiency (decimal)", "units": "dimensionless"}
+    },
+    "source": "General — Hydraulic Institute"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-006",
+    "title": "Wire-to-Water Efficiency",
+    "equation": "η_total = η_pump × η_motor × η_VFD",
+    "variables": {
+      "η_total": {"description": "Overall wire-to-water efficiency", "units": "dimensionless"},
+      "η_pump": {"description": "Pump efficiency at operating point (0.70–0.90 typical)", "units": "dimensionless"},
+      "η_motor": {"description": "Motor efficiency (0.90–0.97 for premium motors)", "units": "dimensionless"},
+      "η_VFD": {"description": "VFD efficiency (0.95–0.98 typical, omit if no VFD)", "units": "dimensionless"}
+    },
+    "applicability": "Typical overall: 0.60–0.85. For energy cost estimation: Annual cost = P_brake × hours × $/kWh / (η_motor × η_VFD).",
+    "source": "General practice"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-007",
+    "title": "Suction Specific Speed",
+    "equation": "Nss = N × √Q / NPSHR^0.75",
+    "variables": {
+      "Nss": {"description": "Suction specific speed", "units": "dimensionless (US customary)"},
+      "N": {"description": "Pump speed", "units": "rpm"},
+      "Q": {"description": "Flow rate per impeller eye at BEP", "units": "US gpm"},
+      "NPSHR": {"description": "NPSH Required at BEP", "units": "feet"}
+    },
+    "applicability": "Nss < 8500: conservative, reliable suction performance. 8500–11000: acceptable with care. > 11000: risk of suction recirculation, reduced reliability. Some standards allow up to 13000 for special applications.",
+    "source": "Hydraulic Institute HI 9.6.1"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-008",
+    "title": "Total Dynamic Head",
+    "equation": "TDH = H_static + hf_discharge + hm_discharge + hf_suction + hm_suction",
+    "variables": {
+      "TDH": {"description": "Total dynamic head the pump must produce", "units": "m"},
+      "H_static": {"description": "Static head = discharge elevation - suction source elevation", "units": "m"},
+      "hf, hm": {"description": "Friction and minor losses in suction and discharge piping", "units": "m"}
+    },
+    "applicability": "TDH is the head the pump must provide at the design flow rate. The operating point is where TDH = H_pump on the pump curve.",
+    "source": "General hydraulics"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-009",
+    "title": "VFD Energy Savings (Cubic Law)",
+    "equation": "P₂/P₁ = (N₂/N₁)³ = (Q₂/Q₁)³  (at same system)",
+    "applicability": "Example: reducing speed by 20% (N₂/N₁ = 0.80) reduces power by 49% (0.8³ = 0.512). This is approximate — actual savings depend on system curve shape (more savings when friction dominates, less when static head dominates).",
+    "source": "Affinity laws"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.eq-010",
+    "title": "Minimum Submergence for Vertical Pumps",
+    "equation": "S_min = D + 0.574 × Q^0.5 / D^0.25  (HI recommendation, approximate)",
+    "alt_form": "HI 9.8: S/D depends on Froude number at bell entrance: Fr = V/(gD)^0.5",
+    "variables": {
+      "S_min": {"description": "Minimum submergence above pump bell or intake", "units": "m"},
+      "D": {"description": "Diameter of pump bell or intake", "units": "m"},
+      "Q": {"description": "Flow rate per pump", "units": "m³/s"}
+    },
+    "applicability": "Inadequate submergence causes vortex formation, air entrainment, and cavitation. HI 9.8 provides detailed intake design guidelines including approach velocity, floor clearance, and back wall distance.",
+    "source": "Hydraulic Institute HI 9.8"
+  }
+]

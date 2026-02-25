@@ -1,0 +1,98 @@
+[
+  {
+    "id": "water-infra.concrete-gravity-dams.tbl-001",
+    "title": "Stability Criteria — Required Factors of Safety",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Loading Condition", "Sliding FS (USBR)", "Sliding FS (USACE)", "Overturning FS", "Resultant Location"],
+      "rows": [
+        ["Usual (normal operating)", "3.0", "2.0", "1.5", "Within middle 1/3 (no tension)"],
+        ["Unusual (flood, single drain failure)", "2.0", "1.7", "1.25", "Within middle 1/2"],
+        ["Extreme (MCE seismic)", "> 1.0", "> 1.3", "> 1.0", "Within base width"],
+        ["Extreme (PMF)", "> 1.0", "> 1.3", "> 1.0", "Within base width"],
+        ["Post-earthquake (cracked base)", "> 1.0", "> 1.3", "> 1.0", "Within base width"]
+      ]
+    },
+    "source": "USBR DS-14 Ch1, USACE EM 1110-2-2200, FERC Ch3. Note: agency criteria differ — always confirm applicable standard."
+  },
+  {
+    "id": "water-infra.concrete-gravity-dams.tbl-002",
+    "title": "Typical Foundation Shear Strength Parameters",
+    "type": "reference",
+    "data": {
+      "headers": ["Contact Type", "Cohesion c (MPa)", "Friction Angle φ (degrees)", "Notes"],
+      "rows": [
+        ["Concrete on sound granite/gneiss", "1.0–3.0", "55–65", "Clean, rough, unweathered surface"],
+        ["Concrete on sound sandstone", "0.5–2.0", "45–55", "Varies with cementation"],
+        ["Concrete on sound limestone", "0.5–2.0", "45–55", "Check for dissolution features"],
+        ["Concrete on shale (sound)", "0.2–1.0", "30–45", "Orientation of bedding critical"],
+        ["Concrete on weak/weathered rock", "0.05–0.3", "25–35", "Remove weathered zone if possible"],
+        ["Concrete on concrete (bonded lift)", "1.0–3.0", "55–65", "Well-prepared, clean, roughened surface"],
+        ["RCC lift joint (well-prepared)", "0.5–1.5", "45–55", "Cured, cleaned, bedding mortar applied"],
+        ["RCC lift joint (cold joint)", "0.1–0.5", "40–50", "Minimal preparation, potential weakness"],
+        ["Existing crack / unbonded joint", "0.0", "35–45", "Friction only, no cohesion"]
+      ]
+    },
+    "source": "USBR, USACE, Fell et al. (2015). Site-specific testing required — these are general ranges only."
+  },
+  {
+    "id": "water-infra.concrete-gravity-dams.tbl-003",
+    "title": "Loads and Load Combinations for Gravity Dam Analysis",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Load", "Usual", "Unusual (Flood)", "Unusual (Drain Fail)", "Extreme (Seismic)", "Extreme (PMF)"],
+      "rows": [
+        ["Dead load (dam weight)", "✓", "✓", "✓", "✓", "✓"],
+        ["Headwater (normal max pool)", "✓", "—", "✓", "✓", "—"],
+        ["Headwater (flood pool / IDF)", "—", "✓", "—", "—", "✓"],
+        ["Tailwater", "✓", "✓", "✓", "✓", "✓"],
+        ["Uplift (drains working)", "✓", "✓", "—", "✓", "✓"],
+        ["Uplift (drains failed)", "—", "—", "✓", "—", "—"],
+        ["Silt pressure", "✓", "✓", "✓", "✓", "✓"],
+        ["Ice pressure", "✓ (if applicable)", "—", "✓", "—", "—"],
+        ["Seismic inertia + hydrodynamic", "—", "—", "—", "✓", "—"],
+        ["Temperature", "✓", "✓", "✓", "—", "✓"]
+      ]
+    },
+    "source": "USBR DS-14 Ch1, USACE EM 1110-2-2200"
+  },
+  {
+    "id": "water-infra.concrete-gravity-dams.tbl-004",
+    "title": "Allowable Stresses for Gravity Dam Concrete and Foundation",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Typical Value", "Notes"],
+      "rows": [
+        ["Concrete compressive strength (f'c)", "17–28 MPa (conventional), 10–17 MPa (RCC interior)", "1-year age typically specified for dams"],
+        ["Allowable compressive stress (usual)", "f'c / 3.0", "FS = 3 on compressive strength"],
+        ["Allowable compressive stress (extreme)", "f'c / 1.5", "Reduced safety factor for extreme loading"],
+        ["Concrete tensile strength", "0.10 × f'c to 0.15 × f'c (splitting)", "Direct tension ≈ 60–75% of splitting"],
+        ["Foundation bearing capacity", "Site-specific (rock UCS / FS)", "FS ≥ 3 usual, ≥ 2 unusual, ≥ 1.5 extreme"],
+        ["Maximum base stress (usual)", "< min(allowable concrete, allowable foundation)", "Governs downstream toe stress"],
+        ["Allowable tension (usual)", "None (no tension in usual loading)", "Resultant must be in middle 1/3"]
+      ]
+    },
+    "source": "USBR, USACE, ACI 207.1R"
+  },
+  {
+    "id": "water-infra.concrete-gravity-dams.tbl-005",
+    "title": "RCC vs. Conventional Concrete Dam Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Parameter", "Conventional Concrete", "RCC"],
+      "rows": [
+        ["Placement rate", "2,000–5,000 m³/week per block", "10,000–50,000 m³/week total"],
+        ["Cement content", "150–250 kg/m³", "80–150 kg/m³ (+ fly ash 30–60%)"],
+        ["Slump", "25–75 mm", "0 mm (dry, no slump)"],
+        ["Formwork", "Extensive — slip-form or conventional", "Minimal — upstream/downstream forming only"],
+        ["Lift height", "1.5–2.5 m (forms)", "300 mm (single roller pass)"],
+        ["Compressive strength (1 yr)", "20–30 MPa", "10–20 MPa (interior), 20–30 MPa (facing)"],
+        ["Lift joint concern", "Moderate (construction joints)", "High — critical for seepage and shear"],
+        ["Cost savings vs. conventional", "—", "30–50% lower total cost"],
+        ["Thermal concerns", "Moderate (contraction joints help)", "Lower cement → lower heat, but many joints"],
+        ["Spillway integration", "Separate structure typical", "Stepped spillway on downstream face — natural fit"]
+      ]
+    },
+    "source": "USBR, USACE EM 1110-2-2006, Hansen & Reinhardt (1991)"
+  }
+]

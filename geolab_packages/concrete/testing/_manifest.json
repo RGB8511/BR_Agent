@@ -1,0 +1,18 @@
+{
+  "id": "concrete.testing.methods",
+  "name": "Concrete Testing Methods",
+  "level": 1,
+  "discipline": "concrete",
+  "parent": "concrete.testing",
+  "dependencies": ["concrete.foundations.cement-hydration", "concrete.design.mix-design"],
+  "tags": ["compressive-strength", "cylinders", "flexural", "split-tensile", "modulus", "UPV", "rebound-hammer", "cores", "maturity", "NDT", "petrography"],
+  "standards": ["C39", "C78", "C496", "C469", "C42", "C597", "C805", "C1074", "C31", "C617", "C1231"],
+  "equation_count": 10,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,1280 @@
+[
+  {
+    "id": "elk-basin.tbl.01",
+    "title": "Historical Left and Right Abutment Seepage Summary, 1969–2020",
+    "description": "Annual maximum seepage at left and right abutment drainage weirs correlated with concurrent reservoir elevation at time of maximum reading. Left abutment Weir 1 measures combined abutment and arch gallery drainage through 2001; Weir 2 (arch gallery only) installed 1995. Right abutment Weir 3 installed 2001. Values reported at near-normal pool conditions.",
+    "units": "seepage in gpm; reservoir elevation in ft-MSL",
+    "source": "EBID Weir Records 1969–2020; CDSC FERC Part 12D Inspection Report, October 2020, Table 3-1",
+    "data": {
+      "headers": [
+        "Year",
+        "Left Abt Seepage (gpm)",
+        "Right Abt Seepage (gpm)",
+        "Reservoir Elevation (ft-MSL)",
+        "Notes"
+      ],
+      "rows": [
+        [
+          1969,
+          8.2,
+          "—",
+          4216.1,
+          "First full operational season; baseline established"
+        ],
+        [
+          1975,
+          8.8,
+          "—",
+          4217.4,
+          "Stable period; no significant change"
+        ],
+        [
+          1980,
+          9.1,
+          "—",
+          4215.8,
+          "Minor increase within baseline variability"
+        ],
+        [
+          1985,
+          9.7,
+          "—",
+          4218.0,
+          "Slight upward trend beginning"
+        ],
+        [
+          1990,
+          10.3,
+          "—",
+          4217.6,
+          "Gradual increase continues"
+        ],
+        [
+          1995,
+          12.5,
+          "—",
+          4217.9,
+          "Accelerating increase; Weir 2 installed this year"
+        ],
+        [
+          2000,
+          16.2,
+          "—",
+          4216.4,
+          "Continued increase; rate ~0.7 gpm/yr"
+        ],
+        [
+          2005,
+          20.1,
+          2.0,
+          4217.2,
+          "Weir 3 installed 2001; right abt baseline 2.0 gpm"
+        ],
+        [
+          2010,
+          23.8,
+          2.1,
+          4217.8,
+          "Rate ~0.7 gpm/yr continuing"
+        ],
+        [
+          2020,
+          33.7,
+          2.2,
+          4217.5,
+          "Rate increases to ~1.0 gpm/yr; FERC Part 12D inspection"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.02",
+    "title": "Right Abutment Crest Displacement Monitoring, 1995–2025",
+    "description": "Annual survey monument readings for right abutment crest monuments RA-1 through RA-4. Positive values indicate downstream displacement from 1995 baseline (zero). RA-1 is on the powerhouse structure (concrete/rock); RA-2 through RA-4 are on the embankment crest at increasing distances from the arch contact. Average is mean of RA-2 through RA-4. Rate is 5-year rolling average displacement rate.",
+    "units": "displacement in inches (positive = downstream); rate in inches per year",
+    "source": "EBID Annual Survey Records 1995–2025; EBID Instrumentation and Monitoring Summary 2015–2025, October 2025, Table 2",
+    "data": {
+      "headers": [
+        "Year",
+        "RA-1 (in)",
+        "RA-2 (in)",
+        "RA-3 (in)",
+        "RA-4 (in)",
+        "Avg RA-2 to RA-4 (in)",
+        "Rate RA-2 (in/yr)"
+      ],
+      "rows": [
+        [
+          1995,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          "—"
+        ],
+        [
+          1997,
+          0.0,
+          0.41,
+          0.3,
+          0.14,
+          0.28,
+          0.21
+        ],
+        [
+          1999,
+          0.0,
+          0.8,
+          0.58,
+          0.28,
+          0.55,
+          0.2
+        ],
+        [
+          2001,
+          0.0,
+          1.21,
+          0.87,
+          0.42,
+          0.83,
+          0.21
+        ],
+        [
+          2003,
+          0.0,
+          1.6,
+          1.15,
+          0.55,
+          1.1,
+          0.2
+        ],
+        [
+          2005,
+          0.0,
+          2.0,
+          1.44,
+          0.69,
+          1.38,
+          0.2
+        ],
+        [
+          2010,
+          0.0,
+          2.2,
+          1.59,
+          0.77,
+          1.52,
+          0.2
+        ],
+        [
+          2015,
+          0.0,
+          2.6,
+          1.87,
+          0.91,
+          1.79,
+          0.2
+        ],
+        [
+          2018,
+          0.0,
+          2.8,
+          2.01,
+          0.98,
+          1.93,
+          0.2
+        ],
+        [
+          2020,
+          0.0,
+          2.95,
+          2.12,
+          1.02,
+          2.03,
+          0.19
+        ],
+        [
+          2023,
+          0.0,
+          3.0,
+          2.16,
+          1.04,
+          2.07,
+          0.2
+        ],
+        [
+          2025,
+          0.0,
+          3.07,
+          2.21,
+          1.05,
+          2.11,
+          0.2
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.03",
+    "title": "2025 Boring Program Summary",
+    "description": "Summary of investigation borings drilled in 2025 for the MWDE Geotechnical Investigation. Borings B-1 through B-3 in left abutment; B-4 and B-5 in right abutment. Depths are from ground surface at collar elevation. GW = groundwater depth at completion.",
+    "units": "elevations in ft-MSL; depths in ft below ground surface",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 1",
+    "data": {
+      "headers": [
+        "Boring ID",
+        "Location",
+        "Collar Elevation (ft-MSL)",
+        "Total Depth (ft)",
+        "GW Depth (ft)",
+        "Drill Method",
+        "Instruments Installed"
+      ],
+      "rows": [
+        [
+          "B-1",
+          "Left abutment, drainage gallery — 35 ft upstream of toe",
+          4170.5,
+          65.0,
+          22.0,
+          "NX rotary coring (triple-tube core barrel)",
+          "VW piezometer P-7 at 50 ft; falling-head permeability (packer) tests at 10-ft intervals"
+        ],
+        [
+          "B-2",
+          "Left abutment, drainage gallery — 60 ft upstream of toe",
+          4169.8,
+          65.0,
+          19.5,
+          "NX rotary coring (triple-tube core barrel)",
+          "VW piezometer P-8 at 55 ft; borehole televiewer log; ERT electrode array"
+        ],
+        [
+          "B-3",
+          "Left abutment, 20 ft downstream of gallery",
+          4172.1,
+          50.0,
+          25.0,
+          "NX rotary coring (triple-tube core barrel)",
+          "VW piezometer P-9 at 42 ft; packer tests at 10-ft intervals"
+        ],
+        [
+          "B-4",
+          "Right abutment, powerhouse access road — 45 ft upstream of toe",
+          4155.3,
+          80.0,
+          30.0,
+          "NX rotary coring (triple-tube core barrel)",
+          "VW piezometer P-10 at 65 ft; undisturbed till samples (Shelby tubes) at 20, 35, 50 ft"
+        ],
+        [
+          "B-5",
+          "Right abutment, embankment crest — 30 ft downstream of arch contact",
+          4210.4,
+          70.0,
+          18.0,
+          "HSA auger to till/rock contact; NX rotary coring below contact",
+          "Inclinometer casing (ABS) full depth; VW piezometer P-11 at 55 ft"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.04",
+    "title": "Embankment Clay Core Index Properties — Boring B-1",
+    "description": "Index property test results on undisturbed Shelby tube samples and disturbed jar samples from the embankment clay core (Zone 2) intercepted in boring B-1. All tests per ASTM D4318 (Atterberg limits) and ASTM D698/D1557 (Proctor). Relative compaction based on modified Proctor (ASTM D1557) maximum dry density of 106.9 pcf.",
+    "summary_statistics": {
+      "LL_mean": 41.8,
+      "PI_mean": 20.2,
+      "dry_density_mean_pcf": 105.5,
+      "relative_compaction_mean_pct": 98.7,
+      "permeability_k_cm_per_s": "2.8e-7 (falling-head, trimmed specimen from B1-CC-4)"
+    },
+    "units": "depths in ft below gallery floor; MC and LL/PL/PI in percent; density in pcf",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 4",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Depth (ft)",
+        "Elevation (ft-MSL)",
+        "Liquid Limit LL (%)",
+        "Plastic Limit PL (%)",
+        "Plasticity Index PI (%)",
+        "Natural MC (%)",
+        "Dry Density (pcf)",
+        "Relative Compaction (%)",
+        "USCS Classification"
+      ],
+      "rows": [
+        [
+          "B1-CC-1",
+          14.0,
+          4156.5,
+          39,
+          20,
+          19,
+          17.8,
+          104.2,
+          97.5,
+          "CL"
+        ],
+        [
+          "B1-CC-2",
+          18.5,
+          4152.0,
+          41,
+          21,
+          20,
+          18.5,
+          105.1,
+          98.3,
+          "CL"
+        ],
+        [
+          "B1-CC-3",
+          22.0,
+          4148.5,
+          42,
+          22,
+          20,
+          19.2,
+          105.8,
+          99.0,
+          "CL"
+        ],
+        [
+          "B1-CC-4",
+          26.5,
+          4144.0,
+          43,
+          22,
+          21,
+          17.9,
+          106.2,
+          99.3,
+          "CL"
+        ],
+        [
+          "B1-CC-5",
+          30.0,
+          4140.5,
+          44,
+          23,
+          21,
+          18.1,
+          106.5,
+          99.6,
+          "CL"
+        ],
+        [
+          "B1-CC-6",
+          33.5,
+          4137.0,
+          42,
+          22,
+          20,
+          18.8,
+          105.4,
+          98.6,
+          "CL"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.05",
+    "title": "Glacial Till Index Properties — Right Abutment Boring B-4",
+    "description": "Index properties for glacial till (basal till, GC) samples from boring B-4 on the right abutment. Samples obtained by Shelby tube push (ST) and split-spoon (SS) at depths producing best recovery in the fine-matrix-rich intervals. Gradation by ASTM D422.",
+    "notes": "SPT refusal (N > 50) at 50 ft and 65 ft depth; till classified as very dense. Gravel fraction includes particles 4.75 mm to 75 mm; larger cobbles excluded from gradation sample. Both samples classified as GC (clayey gravel) per USCS — matrix-supported fabric governs engineering behavior.",
+    "units": "depths in ft below ground surface; percentages by weight",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 5",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Depth (ft)",
+        "Elevation (ft-MSL)",
+        "Sample Type",
+        "LL (%)",
+        "PL (%)",
+        "PI (%)",
+        "Natural MC (%)",
+        "% Gravel",
+        "% Sand",
+        "% Fines",
+        "USCS"
+      ],
+      "rows": [
+        [
+          "B4-GT-1",
+          20.0,
+          4135.3,
+          "Shelby tube (ST)",
+          26,
+          15,
+          11,
+          12.4,
+          42,
+          24,
+          34,
+          "GC"
+        ],
+        [
+          "B4-GT-2",
+          35.0,
+          4120.3,
+          "Shelby tube (ST)",
+          28,
+          16,
+          12,
+          14.8,
+          38,
+          26,
+          36,
+          "GC"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.06",
+    "title": "Consolidated-Undrained Triaxial Test Results (ASTM D4767)",
+    "description": "CU triaxial shear tests with pore pressure measurement on embankment clay core and glacial till specimens. Specimens prepared from undisturbed Shelby tube samples. Confining pressures span the in-situ stress range. Effective stress failure envelopes are Mohr-Coulomb linear fits to the test data.",
+    "notes": "Failure defined at maximum deviator stress (peak strength). Linear Mohr-Coulomb envelopes fitted to paired test results for clay core (specimens 1a and 1b). Single till specimen; φ' reported with c' = 0 for conservative long-term analysis (actual test shows minor c' ≈ 50 psf, neglected). Strain at failure: clay core 4.2–5.8%, glacial till 8.1%.",
+    "units": "stresses in psf; friction angle in degrees",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 6",
+    "data": {
+      "headers": [
+        "Specimen ID",
+        "Material",
+        "Boring ID",
+        "Sample Depth (ft)",
+        "Cell Pressure σ₃ (psf)",
+        "Deviator Stress at Failure Δσ (psf)",
+        "Pore Pressure at Failure u (psf)",
+        "Effective Confining Stress σ'₃ (psf)",
+        "c' (psf) — From Envelope",
+        "φ' (degrees) — From Envelope"
+      ],
+      "rows": [
+        [
+          "B1-CU-1a",
+          "Clay Core (CL)",
+          "B-1",
+          22.0,
+          1500,
+          2280,
+          520,
+          980,
+          600,
+          26
+        ],
+        [
+          "B1-CU-1b",
+          "Clay Core (CL)",
+          "B-1",
+          22.0,
+          3000,
+          3850,
+          980,
+          2020,
+          600,
+          26
+        ],
+        [
+          "B4-CU-1a",
+          "Glacial Till (GC)",
+          "B-4",
+          20.0,
+          2000,
+          4480,
+          620,
+          1380,
+          0,
+          34
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.07",
+    "title": "Fresh Granodiorite Unconfined Compressive Strength (ASTM D7012 Method C)",
+    "description": "UCS test results on NX cores from fresh granodiorite (ISRM Grade I–II) recovered from borings B-1 through B-4 below the weathering front. Specimens prepared per ASTM D7012; length-to-diameter ratio maintained at 2.0–2.5:1. E50 is the secant modulus at 50% of peak stress. Failure modes: S = shear plane, S-E = shear + extension, C = cone/triaxial.",
+    "summary_statistics": {
+      "UCS_min_psi": 18400,
+      "UCS_max_psi": 25600,
+      "UCS_mean_psi": 22422,
+      "UCS_std_dev_psi": 2086,
+      "E50_mean_MPsi": 8.46,
+      "nu_mean": 0.242,
+      "n_specimens": 9
+    },
+    "units": "depth in ft below ground surface; dimensions in inches; UCS in psi; E50 in 10⁶ psi",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 7",
+    "data": {
+      "headers": [
+        "Specimen ID",
+        "Boring",
+        "Depth (ft)",
+        "Diameter D (in)",
+        "Length L (in)",
+        "UCS (psi)",
+        "E50 (×10⁶ psi)",
+        "Poisson's Ratio ν",
+        "Failure Mode"
+      ],
+      "rows": [
+        [
+          "B1-FG-1",
+          "B-1",
+          48.2,
+          2.125,
+          4.75,
+          18400,
+          7.8,
+          0.22,
+          "S"
+        ],
+        [
+          "B1-FG-2",
+          "B-1",
+          52.0,
+          2.125,
+          4.8,
+          21300,
+          8.1,
+          0.23,
+          "S-E"
+        ],
+        [
+          "B2-FG-1",
+          "B-2",
+          45.5,
+          2.125,
+          4.7,
+          22800,
+          8.5,
+          0.25,
+          "S"
+        ],
+        [
+          "B2-FG-2",
+          "B-2",
+          55.0,
+          2.125,
+          4.75,
+          24100,
+          8.8,
+          0.24,
+          "S"
+        ],
+        [
+          "B3-FG-1",
+          "B-3",
+          38.0,
+          2.125,
+          4.8,
+          23500,
+          8.6,
+          0.25,
+          "S-E"
+        ],
+        [
+          "B4-FG-1",
+          "B-4",
+          60.2,
+          2.125,
+          4.75,
+          25600,
+          9.2,
+          0.26,
+          "S"
+        ],
+        [
+          "B4-FG-2",
+          "B-4",
+          64.0,
+          2.125,
+          4.7,
+          22100,
+          8.3,
+          0.23,
+          "C"
+        ],
+        [
+          "B4-FG-3",
+          "B-4",
+          67.5,
+          2.125,
+          4.8,
+          21900,
+          8.2,
+          0.24,
+          "S"
+        ],
+        [
+          "B5-FG-1",
+          "B-5",
+          55.0,
+          2.125,
+          4.75,
+          24021,
+          8.6,
+          0.25,
+          "S"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.08",
+    "title": "Weathered Granodiorite Unconfined Compressive Strength",
+    "description": "UCS test results on specimens from the highly weathered granodiorite zone (ISRM Grades IV–V) above the weathering front in left abutment borings. High variability reflects heterogeneous weathering. Some specimens are hand-trimmed due to poor core quality; these are flagged. ISRM weathering grade per ISRM (1981) classification scheme.",
+    "summary_statistics": {
+      "UCS_min_psi": 1280,
+      "UCS_max_psi": 4100,
+      "UCS_mean_psi": 2573,
+      "n_specimens": 6,
+      "note": "High variability (COV = 44%) is typical for weathered rock; use lower-bound values for conservative foundation design"
+    },
+    "units": "depth in ft below ground surface (gallery floor collar); UCS in psi",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 8",
+    "data": {
+      "headers": [
+        "Specimen ID",
+        "Boring",
+        "Depth (ft)",
+        "ISRM Weathering Grade",
+        "UCS (psi)",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "B1-WG-1",
+          "B-1",
+          12.5,
+          "IV (Highly Weathered)",
+          1280,
+          "Hand-trimmed; friable; lowest strength in program"
+        ],
+        [
+          "B1-WG-2",
+          "B-1",
+          18.0,
+          "IV (Highly Weathered)",
+          2150,
+          "Machine-cut; moderate coherence"
+        ],
+        [
+          "B2-WG-1",
+          "B-2",
+          10.0,
+          "V (Completely Weathered)",
+          1480,
+          "Hand-trimmed; clay-filled joints dominant"
+        ],
+        [
+          "B2-WG-2",
+          "B-2",
+          15.5,
+          "IV (Highly Weathered)",
+          2780,
+          "Machine-cut; relict foliation visible"
+        ],
+        [
+          "B3-WG-1",
+          "B-3",
+          20.0,
+          "III (Moderately Weathered)",
+          3650,
+          "Machine-cut; approaching fresh transition"
+        ],
+        [
+          "B3-WG-2",
+          "B-3",
+          25.0,
+          "III (Moderately Weathered)",
+          4100,
+          "Machine-cut; relict fracture spacing 0.3 ft"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.09",
+    "title": "Fresh Granodiorite Indirect Tensile Strength — Brazilian Disk Test (ASTM D3967)",
+    "description": "Brazilian disk indirect tensile strength (ITS) test results on NX-diameter disks from fresh granodiorite. Disk thickness t approximately equal to half the diameter (D/2). Load applied diametrically per ASTM D3967. Failure mode: C = central splitting (valid), I = irregular (excluded from statistics).",
+    "summary_statistics": {
+      "ITS_min_psi": 1806,
+      "ITS_max_psi": 2207,
+      "ITS_mean_psi": 1999,
+      "ITS_std_dev_psi": 126,
+      "n_specimens": 10,
+      "UCS_ITS_ratio_using_UCS_mean": 11.2,
+      "note": "UCS/ITS ratio of 11.2 is consistent with intact, low-microcrack rock (typical range 8–14 for granitic rock)"
+    },
+    "formula": "ITS = (2 × P) / (π × D × t)",
+    "units": "depth in ft; diameter and thickness in inches; peak load in lbf; ITS in psi",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 9",
+    "data": {
+      "headers": [
+        "Specimen ID",
+        "Boring",
+        "Depth (ft)",
+        "Diameter D (in)",
+        "Thickness t (in)",
+        "Peak Load P (lbf)",
+        "ITS (psi)",
+        "Failure Mode"
+      ],
+      "rows": [
+        [
+          "B1-IT-1",
+          "B-1",
+          48.5,
+          2.125,
+          1.05,
+          12840,
+          1834,
+          "C"
+        ],
+        [
+          "B1-IT-2",
+          "B-1",
+          52.5,
+          2.125,
+          1.1,
+          13200,
+          1806,
+          "C"
+        ],
+        [
+          "B2-IT-1",
+          "B-2",
+          46.0,
+          2.125,
+          1.05,
+          14100,
+          2014,
+          "C"
+        ],
+        [
+          "B2-IT-2",
+          "B-2",
+          55.5,
+          2.125,
+          1.08,
+          14850,
+          2076,
+          "C"
+        ],
+        [
+          "B2-IT-3",
+          "B-2",
+          58.0,
+          2.125,
+          1.1,
+          13750,
+          1882,
+          "C"
+        ],
+        [
+          "B3-IT-1",
+          "B-3",
+          39.0,
+          2.125,
+          1.06,
+          15200,
+          2158,
+          "C"
+        ],
+        [
+          "B3-IT-2",
+          "B-3",
+          42.0,
+          2.125,
+          1.07,
+          14600,
+          2055,
+          "C"
+        ],
+        [
+          "B4-IT-1",
+          "B-4",
+          61.0,
+          2.125,
+          1.08,
+          15800,
+          2207,
+          "C"
+        ],
+        [
+          "B4-IT-2",
+          "B-4",
+          65.0,
+          2.125,
+          1.05,
+          14200,
+          2029,
+          "C"
+        ],
+        [
+          "B5-IT-1",
+          "B-5",
+          56.0,
+          2.125,
+          1.09,
+          13980,
+          1934,
+          "C"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.10",
+    "title": "Concrete Core Compressive Strength by ASR Severity Zone (ASTM C42 / ASTM C39)",
+    "description": "Compressive strength test results on NX-diameter concrete cores from the arch crown section. Cores drilled vertically from dam crest November 2025. Depth measured from downstream face. ASR severity zone assigned by petrographic analysis (ASTM C856).",
+    "zone_summary": {
+      "Zone_1_severe_mean_psi": 4850,
+      "Zone_1_range": "4450–5220",
+      "Zone_2_moderate_mean_psi": 5815,
+      "Zone_2_range": "5510–6120",
+      "Zone_4_sound_mean_psi": 6805,
+      "Zone_4_range": "6720–6890",
+      "original_design_strength_psi": 6750,
+      "Zone_1_reduction_pct": 28.1
+    },
+    "units": "depth in ft from downstream face; f'c in psi",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 10",
+    "data": {
+      "headers": [
+        "Specimen ID",
+        "Core Hole",
+        "Depth from Downstream Face (ft)",
+        "Compressive Strength f'c (psi)",
+        "ASR Severity Zone",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "CC-Crown-1-Z1",
+          "Crown-1",
+          1.5,
+          4450,
+          "Zone 1 — Severe",
+          "Active gel exudation on ends; map cracking visible"
+        ],
+        [
+          "CC-Crown-1-Z1b",
+          "Crown-1",
+          3.5,
+          5220,
+          "Zone 1 — Severe",
+          "Gel in aggregate cracks; pervasive microcracking"
+        ],
+        [
+          "CC-Crown-2-Z2",
+          "Crown-2",
+          5.5,
+          5510,
+          "Zone 2 — Moderate",
+          "Moderate gel; some aggregate particles intact"
+        ],
+        [
+          "CC-Crown-2-Z3",
+          "Crown-2",
+          10.0,
+          6120,
+          "Zone 2 — Moderate",
+          "Gel in aggregate interfaces; minor microcracking"
+        ],
+        [
+          "CC-Crown-3-Z4",
+          "Crown-3",
+          19.0,
+          6720,
+          "Zone 4 — Sound",
+          "No gel; intact paste; excellent aggregate bond"
+        ],
+        [
+          "CC-Crown-3-Z4b",
+          "Crown-3",
+          21.0,
+          6890,
+          "Zone 4 — Sound",
+          "As-built condition; confirming design-era strength"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.11",
+    "title": "Concrete Core Split Tensile (Indirect Tensile) Strength by ASR Zone (ASTM C496)",
+    "description": "Split cylinder indirect tensile strength test results on NX-diameter concrete core specimens from the arch crown. Specimens prepared from the same core holes as the compressive strength tests (Table 10). ITS formula: f't = 2P / (π × d × L). ASR zones confirmed by petrographic analysis.",
+    "zone_summary": {
+      "Zone_1_severe_ITS_psi": 295,
+      "Zone_1_note": "Range from multiple petrographic specimens: 295–345 psi; mean 320 psi (this specimen is near lower bound)",
+      "Zone_2_moderate_ITS_psi": 410,
+      "Zone_4_sound_ITS_psi": 510,
+      "UCS_ITS_ratio_Zone_1": 15.1,
+      "UCS_ITS_ratio_Zone_4": 13.3,
+      "tensile_reduction_Zone_1_pct": 37.3
+    },
+    "units": "depth in ft from downstream face; dimensions in inches; load in lbf; f't in psi",
+    "source": "MWDE PFR Geotechnical Investigation Report, November 2025, Table 11",
+    "data": {
+      "headers": [
+        "Specimen ID",
+        "Core Hole",
+        "Depth from Downstream Face (ft)",
+        "Diameter d (in)",
+        "Length L (in)",
+        "Peak Load P (lbf)",
+        "Split Tensile f't (psi)",
+        "ASR Severity Zone"
+      ],
+      "rows": [
+        [
+          "ST-Crown-1-Z1",
+          "Crown-1",
+          2.0,
+          2.125,
+          4.25,
+          9120,
+          295,
+          "Zone 1 — Severe"
+        ],
+        [
+          "ST-Crown-2-Z2",
+          "Crown-2",
+          6.0,
+          2.125,
+          4.3,
+          12850,
+          410,
+          "Zone 2 — Moderate"
+        ],
+        [
+          "ST-Crown-3-Z4",
+          "Crown-3",
+          20.0,
+          2.125,
+          4.25,
+          15760,
+          510,
+          "Zone 4 — Sound"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.12",
+    "title": "Annual Seepage Summary 2015–2025",
+    "description": "Annual maximum seepage readings for all active weirs and drainage collection points, measured at or near normal pool conditions. Weir 1 = left abutment foundation gallery; Weir 2 = arch gallery (installed 1995); Weir 3 = right abutment toe drain (installed 2001). Left Total = Weir 1 + Weir 2; Dam Total = Left Total + Right Total + Arch Gallery. Reservoir elevation is concurrent reading at time of maximum seepage.",
+    "trend_summary": {
+      "Left_Total_2015_gpm": 18.0,
+      "Left_Total_2025_gpm": 33.7,
+      "absolute_increase_gpm": 15.7,
+      "percent_increase_pct": 87.2,
+      "linear_rate_gpm_per_yr": 1.57,
+      "right_total_trend": "Stable (2.1–2.2 gpm, no significant trend)",
+      "arch_gallery_trend": "Slight increase 1.2 to 1.8 gpm (50% increase over decade)"
+    },
+    "units": "seepage in gpm; reservoir elevation in ft-MSL",
+    "source": "EBID Instrumentation and Monitoring Summary 2015–2025, October 2025, Table 12",
+    "data": {
+      "headers": [
+        "Year",
+        "Weir 1 — Left Abt Foundation (gpm)",
+        "Weir 2 — Arch Gallery (gpm)",
+        "Left Total (gpm)",
+        "Right Total Weir 3 (gpm)",
+        "Arch Gallery (gpm)",
+        "Dam Total (gpm)",
+        "Reservoir Elevation (ft-MSL)"
+      ],
+      "rows": [
+        [
+          2015,
+          16.8,
+          1.2,
+          18.0,
+          2.1,
+          1.2,
+          21.3,
+          4217.1
+        ],
+        [
+          2016,
+          17.5,
+          1.2,
+          18.7,
+          2.0,
+          1.2,
+          21.9,
+          4216.8
+        ],
+        [
+          2017,
+          18.4,
+          1.3,
+          19.7,
+          2.1,
+          1.3,
+          23.1,
+          4217.4
+        ],
+        [
+          2018,
+          19.8,
+          1.4,
+          21.2,
+          2.2,
+          1.4,
+          24.8,
+          4217.8
+        ],
+        [
+          2019,
+          21.2,
+          1.4,
+          22.6,
+          2.1,
+          1.4,
+          26.1,
+          4218.0
+        ],
+        [
+          2020,
+          31.9,
+          1.8,
+          33.7,
+          2.2,
+          1.8,
+          37.7,
+          4217.5
+        ],
+        [
+          2021,
+          27.4,
+          1.5,
+          28.9,
+          2.1,
+          1.5,
+          32.5,
+          4216.5
+        ],
+        [
+          2022,
+          29.1,
+          1.6,
+          30.7,
+          2.1,
+          1.6,
+          34.4,
+          4217.0
+        ],
+        [
+          2023,
+          30.8,
+          1.7,
+          32.5,
+          2.2,
+          1.7,
+          36.4,
+          4217.3
+        ],
+        [
+          2024,
+          32.2,
+          1.8,
+          34.0,
+          2.2,
+          1.8,
+          38.0,
+          4217.6
+        ],
+        [
+          2025,
+          31.9,
+          1.8,
+          33.7,
+          2.2,
+          1.8,
+          37.7,
+          4217.2
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.13",
+    "title": "Piezometer P-3 Historical Readings 2010–2025 (Left Abutment Weathered Granodiorite)",
+    "description": "Historical readings from piezometer P-3, installed in 1988 in the left abutment at elevation 4,168 ft-MSL, within the highly weathered granodiorite zone 50 ft below the embankment crest. P-3 was converted from an open standpipe to a vibrating wire instrument in 2003. Readings are near-simultaneous with Weir 1 seepage readings. Reservoir elevation is concurrent reading.",
+    "trend_summary": {
+      "baseline_psi_2010": 10.5,
+      "latest_psi_2025": 18.0,
+      "absolute_increase_psi": 7.5,
+      "percent_increase_pct": 71.4,
+      "linear_rate_psi_per_yr": 0.5,
+      "correlation_with_seepage": "Strong positive correlation (r = 0.97 over 6 readings); both seepage and P-3 increasing at consistent rates"
+    },
+    "units": "pore pressure in psi; equivalent head in ft of water; reservoir elevation in ft-MSL",
+    "source": "EBID Instrumentation and Monitoring Summary 2015–2025, October 2025, Table 13; CDSC Part 12D Inspection Report 2020 for pre-2015 values",
+    "data": {
+      "headers": [
+        "Reading Date",
+        "P-3 Pore Pressure (psi)",
+        "Equivalent Head (ft-water)",
+        "Reservoir Elevation (ft-MSL)",
+        "Weir 1 Left Seepage (gpm)",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "June 2010",
+          10.5,
+          24.3,
+          4217.0,
+          22.3,
+          "Baseline reading; VW instrument stable post-2003 conversion"
+        ],
+        [
+          "June 2013",
+          12.1,
+          28.0,
+          4217.2,
+          25.8,
+          "Upward trend beginning; rate ~0.5 psi/yr"
+        ],
+        [
+          "June 2016",
+          13.8,
+          31.9,
+          4217.1,
+          18.3,
+          "Continued gradual increase"
+        ],
+        [
+          "June 2019",
+          15.4,
+          35.6,
+          4217.8,
+          21.8,
+          "Correlated with accelerating seepage"
+        ],
+        [
+          "June 2022",
+          16.9,
+          39.1,
+          4217.0,
+          29.5,
+          "Rate consistent ~0.5 psi/yr"
+        ],
+        [
+          "October 2025",
+          18.0,
+          41.6,
+          4217.2,
+          31.9,
+          "Most recent; 71% increase from 2010 baseline over 15 years"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "elk-basin.tbl.14",
+    "title": "Remediation Cost Summary — Elk Basin Dam",
+    "description": "Opinion of probable cost for recommended and contingency remediation alternatives evaluated in the November 2025 MWDE Remediation Alternatives Evaluation. Costs are in 2025 USD. Ranges reflect uncertainty in subsurface conditions and contractor pricing; lower bound assumes favorable conditions and competitive bidding, upper bound reflects adverse conditions. Priority: 1 = highest urgency.",
+    "total_recommended_items_1_to_8": "$503,000–$710,000",
+    "contingency_item_9": "$350,000–$500,000",
+    "total_with_contingency": "$853,000–$1,210,000",
+    "units": "costs in 2025 US dollars; all items include engineering, construction, and inspection unless noted",
+    "source": "MWDE Remediation Alternatives Evaluation, November 2025, Table 5-1",
+    "data": {
+      "headers": [
+        "Item No.",
+        "Description",
+        "Cost Estimate (2025 USD)",
+        "Implementation Timing",
+        "Priority",
+        "Notes"
+      ],
+      "rows": [
+        [
+          1,
+          "Supplemental grouting — left abutment weathered granodiorite (8–12 NQ grout holes, 40 ft depth, cement-bentonite with silica fume)",
+          "$180,000–$250,000",
+          "Year 1 (2026–2027)",
+          1,
+          "Primary safety action; addresses accelerating seepage and P-3 trend; implement at low pool (< el. 4,190 ft)"
+        ],
+        [
+          2,
+          "Grouting program management and QC/QA (geotechnical engineer oversight, Lugeon testing pre- and post-grouting)",
+          "$35,000–$50,000",
+          "Year 1 (2026–2027)",
+          1,
+          "Required with Item 1; Lugeon target ≤ 3 Lugeons post-grouting"
+        ],
+        [
+          3,
+          "Lithium nitrate ASR treatment — downstream face of arch (30% LiNO₃ pressure injection, 18-in port spacing)",
+          "$120,000–$180,000",
+          "Year 2 (2027–2028)",
+          2,
+          "Arrests future ASR gel expansion in Zones 2–3; defer pending grouting success confirmation"
+        ],
+        [
+          4,
+          "Protective elastomeric coating — downstream face (after lithium treatment, reduce moisture ingress)",
+          "$25,000–$40,000",
+          "Year 2 (2027–2028)",
+          2,
+          "Combined with Item 3; extends service life of lithium treatment"
+        ],
+        [
+          5,
+          "Updated FEM structural analysis of arch dam (3D model, measured material properties from 2025 investigation, updated seismic hazard)",
+          "$60,000–$90,000",
+          "Year 1–2 (2026–2028)",
+          2,
+          "Required for FERC reporting; confirms whether structural margins are adequate with ASR-degraded properties"
+        ],
+        [
+          6,
+          "Enhanced monitoring — new VW piezometers (P-7 through P-11), inclinometer B-5, automated datalogger (installed 2025)",
+          "$45,000",
+          "Complete (2025)",
+          1,
+          "Installed during investigation; ongoing O&M approximately $5,000/yr"
+        ],
+        [
+          7,
+          "Post-grouting Lugeon testing and seepage monitoring evaluation (12-month performance assessment)",
+          "$18,000–$25,000",
+          "Year 2 (2027)",
+          1,
+          "Confirm grouting effectiveness; trigger for contingency buttress if seepage not reduced to < 15 gpm"
+        ],
+        [
+          8,
+          "FERC Part 12D compliance documentation and reporting (engineering reports, monitoring summaries)",
+          "$20,000–$30,000/yr",
+          "Ongoing annual",
+          1,
+          "Required per 18 CFR Part 12; includes annual instrumentation report"
+        ],
+        [
+          9,
+          "Contingency: downstream concrete buttress at arch crown (founded on fresh granodiorite, provides supplemental lateral support)",
+          "$350,000–$500,000",
+          "Year 3+ if needed (2028+)",
+          3,
+          "Contingent on FEM confirming structural deficiency; defer unless updated FEM demands exceed f't_ASR capacity"
+        ]
+      ]
+    }
+  }
+]

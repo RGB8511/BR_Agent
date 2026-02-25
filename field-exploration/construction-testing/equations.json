@@ -1,0 +1,101 @@
+[
+  {
+    "id": "field-exploration.construction-testing.eq-001",
+    "title": "Modulus of Subgrade Reaction (Plate Load Test)",
+    "equation": "k = q / δ",
+    "variables": {
+      "k": {"description": "Modulus of subgrade reaction", "units": "kPa/m (or pci: 1 pci = 271.4 kPa/m)"},
+      "q": {"description": "Applied bearing pressure on plate", "units": "kPa"},
+      "δ": {"description": "Measured settlement (typically at 1.27 mm / 0.05 in)", "units": "m"}
+    },
+    "applicability": "k depends on plate size, moisture, loading sequence, and depth of influence (~1.5–2 × plate diameter). Correct to 762 mm (30 in) plate for pavement design: k_30 ≈ k_plate × (d_plate/762). k for rigid pavement design: AASHTO 1993 or MEPDG input.",
+    "source": "ASTM D1196, AASHTO T222"
+  },
+  {
+    "id": "field-exploration.construction-testing.eq-002",
+    "title": "DCP to CBR Correlation (USACE / ASTM D6951)",
+    "equation": "CBR = 292 / DCPI^1.12",
+    "variables": {
+      "CBR": {"description": "Estimated California Bearing Ratio", "units": "%"},
+      "DCPI": {"description": "DCP penetration index (penetration per blow)", "units": "mm/blow"}
+    },
+    "applicability": "Most widely used correlation. Valid for a wide range of soils. Other correlations: CBR = 1/(0.017×DCPI)² (South Africa), log(CBR) = 2.46 - 1.12×log(DCPI) (Australia). Always verify with laboratory CBR for critical applications.",
+    "source": "ASTM D6951, USACE TL-99-10, Webster et al. (1992)"
+  },
+  {
+    "id": "field-exploration.construction-testing.eq-003",
+    "title": "CBR to Resilient Modulus Correlation",
+    "equation": "M_R = 2555 × CBR^0.64  (psi)",
+    "alt_form": "M_R (MPa) ≈ 17.6 × CBR^0.64",
+    "variables": {
+      "M_R": {"description": "Resilient modulus (subgrade stiffness for pavement design)", "units": "psi or MPa"},
+      "CBR": {"description": "California Bearing Ratio", "units": "%"}
+    },
+    "applicability": "AASHTO 1993 design guide correlation. Approximate — actual M_R depends on stress state, moisture, and soil type. For CBR 2–20: reasonable estimate. For design, prefer resilient modulus from triaxial testing (AASHTO T307) or FWD back-calculation.",
+    "source": "AASHTO Guide for Design of Pavement Structures (1993)"
+  },
+  {
+    "id": "field-exploration.construction-testing.eq-004",
+    "title": "Clegg Impact Value to CBR Correlation",
+    "equation": "CBR ≈ 0.07 × CIV²",
+    "variables": {
+      "CBR": {"description": "Estimated California Bearing Ratio", "units": "%"},
+      "CIV": {"description": "Clegg Impact Value (4th drop, standard 4.5 kg hammer)", "units": "dimensionless"}
+    },
+    "applicability": "Approximate correlation; varies significantly by soil type. Use for screening and relative comparison, not for design. Other correlations exist for specific soil groups.",
+    "source": "Clegg (1986), various agency adaptations"
+  },
+  {
+    "id": "field-exploration.construction-testing.eq-005",
+    "title": "LWD Dynamic Deformation Modulus",
+    "equation": "E_vd = f × (1 - ν²) × σ₀ × r / d₀",
+    "variables": {
+      "E_vd": {"description": "Dynamic deformation modulus", "units": "MPa"},
+      "f": {"description": "Shape factor (2 for rigid plate, π/2 for flexible plate)", "units": "dimensionless"},
+      "ν": {"description": "Poisson's ratio (assumed 0.35 for soil)", "units": "dimensionless"},
+      "σ₀": {"description": "Peak applied stress (force / plate area)", "units": "MPa"},
+      "r": {"description": "Plate radius", "units": "m"},
+      "d₀": {"description": "Peak center deflection", "units": "m"}
+    },
+    "applicability": "Based on Boussinesq elastic half-space solution. E_vd is a dynamic modulus — generally higher than static plate load modulus. Ratio E_vd/E_static varies 1–3 depending on soil type and stress level. Target E_vd values are agency-specific.",
+    "source": "ASTM E2583, German TP BF-StB Part B 8.3"
+  },
+  {
+    "id": "field-exploration.construction-testing.eq-006",
+    "title": "FWD Back-Calculated Subgrade Modulus",
+    "equation": "E_subgrade = 0.24 × P / (d_r × r)",
+    "variables": {
+      "E_subgrade": {"description": "Subgrade resilient modulus (simplified)", "units": "MPa"},
+      "P": {"description": "Applied load", "units": "kN"},
+      "d_r": {"description": "Deflection at distance r from load center", "units": "mm"},
+      "r": {"description": "Distance from load center to the deflection sensor used", "units": "m"}
+    },
+    "applicability": "Simplified AASHTO method using outer sensor deflection (where pavement layer influence is minimal). Full back-calculation uses all sensor deflections and iterative layer analysis (MODULUS, ELMOD, BAKFAA software). For bare subgrade, simpler Boussinesq-based analysis.",
+    "source": "AASHTO Guide (1993), FHWA NHI-05-037"
+  },
+  {
+    "id": "field-exploration.construction-testing.eq-007",
+    "title": "Proof Rolling — Deflection Criterion",
+    "equation": "Pass if δ_rut < δ_max (typically 25 mm / 1 in)",
+    "variables": {
+      "δ_rut": {"description": "Observed rut depth under loaded roller", "units": "mm"},
+      "δ_max": {"description": "Maximum allowable rut depth per specification", "units": "mm"}
+    },
+    "applicability": "Qualitative and semi-quantitative. Modern intelligent compaction rollers (IC) measure continuous compaction values (CMV, MDP, CCV) that provide quantitative mapping of entire area. FHWA has guidance on IC specifications and acceptance criteria.",
+    "source": "State DOT specifications, FHWA"
+  },
+  {
+    "id": "field-exploration.construction-testing.eq-008",
+    "title": "Plate Load — Bearing Capacity from Load Test",
+    "equation": "q_ult = P_failure / A_plate   or   q_allow = q_at_δ_allow / FS",
+    "variables": {
+      "q_ult": {"description": "Ultimate bearing capacity from plate load test", "units": "kPa"},
+      "P_failure": {"description": "Load at failure (or at defined displacement)", "units": "kN"},
+      "A_plate": {"description": "Area of loading plate", "units": "m²"},
+      "q_allow": {"description": "Allowable bearing pressure at acceptable settlement", "units": "kPa"},
+      "FS": {"description": "Factor of safety (typically 2.0–3.0)", "units": "dimensionless"}
+    },
+    "applicability": "Plate load test directly measures bearing response but only for shallow depth (1.5–2× plate diameter influence zone). For full-scale footing design, must account for size effect: settlement of footing = settlement of plate × (B_footing/B_plate)^n where n ≈ 0.5–1.0.",
+    "source": "ASTM D1196, Terzaghi (1943)"
+  }
+]

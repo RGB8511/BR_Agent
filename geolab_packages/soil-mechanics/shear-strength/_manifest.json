@@ -1,0 +1,27 @@
+{
+  "id": "geotechnical.soil-mechanics.shear-strength",
+  "name": "Shear Strength of Soils",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": [
+    "geotechnical.foundations.phase-relationships",
+    "geotechnical.soil-mechanics.effective-stress"
+  ],
+  "tags": ["Mohr-Coulomb", "friction-angle", "cohesion", "triaxial", "UU", "CU", "CD", "direct-shear", "vane-shear", "undrained-strength", "drained-strength", "stress-path", "critical-state", "residual"],
+  "standards": ["D2850", "D4767", "D7181", "D3080", "D6528", "D2573", "D4648"],
+  "key_references": [
+    "Mohr (1900) Stress Circles",
+    "Coulomb (1776) Essai sur une application des règles de maximis et minimis",
+    "Bishop & Henkel (1962) Measurement of Soil Properties in the Triaxial Test",
+    "Skempton (1964) Long-Term Stability of Clay Slopes"
+  ],
+  "equation_count": 14,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate+graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

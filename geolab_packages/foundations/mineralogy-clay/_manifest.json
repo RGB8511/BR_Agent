@@ -1,0 +1,22 @@
+{
+  "id": "geotechnical.foundations.mineralogy-clay",
+  "name": "Mineralogy & Clay Behavior",
+  "level": 0,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.foundations",
+  "dependencies": ["geotechnical.foundations.phase-relationships"],
+  "tags": ["clay-minerals", "kaolinite", "illite", "montmorillonite", "double-layer", "CEC", "swelling", "dispersive", "sensitivity", "thixotropy"],
+  "standards": ["D4647", "D4221", "D4546", "D4318"],
+  "key_references": [
+    "Mitchell & Soga (2005) Fundamentals of Soil Behavior",
+    "Holtz, Kovacs & Sheahan (2011) An Introduction to Geotechnical Engineering"
+  ],
+  "equation_count": 4,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate+graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

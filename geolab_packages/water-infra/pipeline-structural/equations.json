@@ -1,0 +1,138 @@
+[
+  {
+    "id": "water-infra.pipeline-structural.eq-001",
+    "title": "Marston Earth Load — Trench Condition",
+    "equation": "W_d = C_d × γ × B_d²",
+    "variables": {
+      "W_d": {"description": "Earth load on pipe per unit length", "units": "kN/m"},
+      "C_d": {"description": "Marston load coefficient = (1 - e^(-2Kμ'H/Bd)) / (2Kμ')", "units": "dimensionless"},
+      "γ": {"description": "Unit weight of backfill soil", "units": "kN/m³"},
+      "B_d": {"description": "Trench width at top of pipe", "units": "m"}
+    },
+    "applicability": "K = ratio of lateral to vertical pressure (Rankine: 0.33 for sand). μ' = coefficient of friction between fill and trench walls (tan φ, typically 0.3–0.5). Cd from tables/charts as function of H/Bd. For H/Bd > 10, Cd approaches 1/(2Kμ').",
+    "source": "Marston (1930), Moser & Folkman (2008)"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-002",
+    "title": "Marston Earth Load — Positive Projecting Embankment",
+    "equation": "W_c = C_c × γ × D_o²",
+    "variables": {
+      "W_c": {"description": "Earth load on pipe per unit length (embankment)", "units": "kN/m"},
+      "C_c": {"description": "Embankment load coefficient (function of H/D and settlement ratio rsd)", "units": "dimensionless"},
+      "D_o": {"description": "Outside pipe diameter", "units": "m"}
+    },
+    "applicability": "For pipe projecting above natural ground, buried under embankment fill. rsd > 0 (complete projection) gives Cc > H/D (load exceeds prism). rsd < 0 (settling pipe) gives Cc < H/D. For rigid pipe on rock foundation: rsd → +1.0, very high loads.",
+    "source": "Marston (1930), Spangler & Handy (1982)"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-003",
+    "title": "Prism Earth Load (Simplified)",
+    "equation": "W_prism = γ × H × D_o",
+    "variables": {
+      "W_prism": {"description": "Prism load per unit length", "units": "kN/m"},
+      "γ": {"description": "Unit weight of soil above pipe", "units": "kN/m³"},
+      "H": {"description": "Depth of cover above pipe crown", "units": "m"},
+      "D_o": {"description": "Outside diameter", "units": "m"}
+    },
+    "applicability": "Simple overburden weight. Conservative for trench condition. May underestimate embankment loads on rigid pipe (due to negative arching). Commonly used for flexible pipe design as a reasonable approximation.",
+    "source": "General — simplified Marston"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-004",
+    "title": "AASHTO Live Load on Buried Pipe",
+    "equation": "W_L = P × I_f × C_s / (L_e × D_o)",
+    "variables": {
+      "W_L": {"description": "Live load on pipe per unit length", "units": "kN/m"},
+      "P": {"description": "Wheel load (72 kN for HL-93 design truck)", "units": "kN"},
+      "I_f": {"description": "Impact factor = 1.0 + 0.33(1-H/2.4), minimum 1.0", "units": "dimensionless"},
+      "C_s": {"description": "Surface load distribution coefficient (function of H)", "units": "dimensionless"},
+      "L_e": {"description": "Effective length of load spread at pipe crown", "units": "m"},
+      "D_o": {"description": "Outside diameter", "units": "m"}
+    },
+    "applicability": "Simplified approach. At H=0.6 m: WL is very significant. At H=2.4 m: WL approaches earth load magnitude. At H > 3 m: WL often negligible. AASHTO LRFD provides more detailed distribution factors.",
+    "source": "AASHTO LRFD Bridge Design Specifications, AWWA C150"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-005",
+    "title": "Modified Iowa Formula — Flexible Pipe Deflection",
+    "equation": "Δx/D = (D_L × K × W_c) / (EI/r³ + 0.061 × E'_s)",
+    "variables": {
+      "Δx": {"description": "Horizontal deflection of pipe", "units": "m"},
+      "D": {"description": "Pipe diameter", "units": "m"},
+      "D_L": {"description": "Deflection lag factor (1.0 immediate, 1.0–1.5 long-term)", "units": "dimensionless"},
+      "K": {"description": "Bedding constant (0.1 for typical point/narrow bedding, 0.083–0.110)", "units": "dimensionless"},
+      "W_c": {"description": "Total vertical load per unit length (earth + live)", "units": "kN/m"},
+      "EI/r³": {"description": "Pipe ring stiffness per unit length", "units": "kN/m²"},
+      "E'_s": {"description": "Modulus of soil reaction (embedment soil)", "units": "kN/m²"}
+    },
+    "applicability": "Predicts ring deflection under load. Flexible pipe relies on E's (soil support) — proper haunch compaction is critical. For HDPE: EI decreases with time due to creep — use long-term modulus.",
+    "source": "Spangler (1941), Watkins & Anderson (2000), Moser & Folkman (2008)"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-006",
+    "title": "Pipe Ring Stiffness",
+    "equation": "PS = EI/r³ = E × t³ / (12 × r³)",
+    "variables": {
+      "PS": {"description": "Pipe stiffness per unit length", "units": "kPa"},
+      "E": {"description": "Modulus of elasticity of pipe material", "units": "kPa"},
+      "I": {"description": "Moment of inertia of pipe wall per unit length = t³/12", "units": "m⁴/m"},
+      "t": {"description": "Pipe wall thickness", "units": "m"},
+      "r": {"description": "Mean radius of pipe", "units": "m"}
+    },
+    "applicability": "Measure of pipe's inherent ring bending resistance. For flexible pipe, PS is much less than 0.061E's — soil provides most of the support. ASTM D2412 defines pipe stiffness at 5% deflection (F/Δy test).",
+    "source": "General structural mechanics"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-007",
+    "title": "Buckling Pressure — Buried Flexible Pipe",
+    "equation": "q_cr = 32 × R_w × B' × E'_s × (EI/D³)",
+    "variables": {
+      "q_cr": {"description": "Critical buckling pressure (external)", "units": "kPa"},
+      "R_w": {"description": "Water buoyancy factor = 1 - 0.33(h_w/H)", "units": "dimensionless"},
+      "B'": {"description": "Empirical coefficient of elastic support (≈ 1/(1+4e^(-0.065H)))", "units": "dimensionless"},
+      "E'_s": {"description": "Modulus of soil reaction", "units": "kPa"},
+      "EI": {"description": "Pipe wall stiffness per unit length", "units": "kN·m"},
+      "D": {"description": "Pipe diameter", "units": "m"}
+    },
+    "applicability": "Safety factor ≥ 2.0 against buckling. External pressure = groundwater + vacuum (if any). Buckling is interactive with deflection — heavily deflected pipe buckles at lower pressure.",
+    "source": "Luscher (1966), Moser & Folkman (2008)"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-008",
+    "title": "Rigid Pipe — Required D-Load",
+    "equation": "D_load_req = W_total / (B_f × D_i)",
+    "variables": {
+      "D_load_req": {"description": "Required three-edge bearing strength", "units": "kN/m/m (or lb/ft/ft)"},
+      "W_total": {"description": "Total load per unit length (earth + live + safety factor)", "units": "kN/m"},
+      "B_f": {"description": "Bedding factor (1.1–4.8 depending on installation type)", "units": "dimensionless"},
+      "D_i": {"description": "Internal diameter", "units": "m"}
+    },
+    "applicability": "Select pipe class (ASTM C76 for RCP) with D-load strength ≥ D_load_req. Factor of safety of 1.0 is typically applied to the 0.3mm crack D-load (D_0.3), or 1.5 to the ultimate D-load.",
+    "source": "ASCE 15, ASTM C76, Moser & Folkman (2008)"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-009",
+    "title": "Flexible Pipe — Combined Loading Check",
+    "equation": "σ_wall = (σ_ring_bending)² + (σ_hoop)² - σ_ring × σ_hoop ≤ σ_allow²  (von Mises simplified)",
+    "variables": {
+      "σ_ring_bending": {"description": "Bending stress from external load deflection", "units": "MPa"},
+      "σ_hoop": {"description": "Hoop stress from internal pressure", "units": "MPa"},
+      "σ_allow": {"description": "Allowable combined stress", "units": "MPa"}
+    },
+    "applicability": "For flexible pipe under simultaneous internal pressure and external load. Ring bending stress = 4×E×t×Δx/(D²) for elastic ring. Most design standards check deflection and pressure separately rather than combined.",
+    "source": "AWWA M11, general mechanics"
+  },
+  {
+    "id": "water-infra.pipeline-structural.eq-010",
+    "title": "Transition Width (Trench to Embankment Loading)",
+    "equation": "B_d_transition ≈ D_o × √(C_c / C_d_max)",
+    "variables": {
+      "B_d_transition": {"description": "Trench width at which trench load equals embankment load", "units": "m"},
+      "D_o": {"description": "Outside pipe diameter", "units": "m"},
+      "C_c": {"description": "Embankment load coefficient", "units": "dimensionless"},
+      "C_d_max": {"description": "Maximum trench load coefficient (at large H/Bd)", "units": "dimensionless"}
+    },
+    "applicability": "For trench widths wider than the transition width, the pipe load is governed by embankment conditions regardless of the trench. Important for design — wider trenches do not always mean less load. AWWA C150 provides transition width tables.",
+    "source": "Marston theory, AWWA C150"
+  }
+]

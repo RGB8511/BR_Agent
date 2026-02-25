@@ -1,0 +1,108 @@
+[
+  {
+    "id": "eq-sage-creek-01",
+    "title": "Manning's Equation — Canal Design Flow",
+    "equation": "Q = (1.49 / n) × A × R^(2/3) × S^(1/2)",
+    "variables": {
+      "Q": { "description": "Volumetric flow rate", "units": "ft³/s (cfs)" },
+      "n": { "description": "Manning's roughness coefficient (0.013–0.015 for concrete; 0.013 for new smooth concrete, 0.015 for aged or algae-covered concrete)", "units": "dimensionless" },
+      "A": { "description": "Wetted cross-sectional area of flow", "units": "ft²" },
+      "R": { "description": "Hydraulic radius, equal to A divided by wetted perimeter P", "units": "ft" },
+      "S": { "description": "Channel longitudinal slope (hydraulic gradient)", "units": "ft/ft (dimensionless)" },
+      "1.49": { "description": "Unit conversion constant for US customary units (metric equivalent is 1.0)", "units": "dimensionless" }
+    },
+    "applicability": "Used to verify that the rehabilitated Reach 7 cross-section (bottom width 12 ft, side slopes 1.5H:1V, design depth 5.5 ft, S = 0.0008 ft/ft) can convey the design capacity of 280 cfs. Calculated Q with n = 0.013 for new concrete: A = 111.4 ft², R = 3.12 ft, Q = 295 cfs, confirming adequate capacity. Also used to evaluate the effect of degraded lining roughness (n = 0.015–0.018) on conveyance efficiency in the existing failed lining condition.",
+    "source": "Chow, V.T. (1959). Open-Channel Hydraulics. McGraw-Hill. USBR Design Standards No. 3 — Canals and Related Structures (2014)."
+  },
+  {
+    "id": "eq-sage-creek-02",
+    "title": "Seepage Loss Rate — Darcy's Law Applied to Canal Lining",
+    "equation": "q = k × i × A",
+    "variables": {
+      "q": { "description": "Volumetric seepage flow rate through lining element", "units": "ft³/s or gal/min" },
+      "k": { "description": "Hydraulic conductivity of lining material. Intact concrete: 1×10⁻⁸ cm/s; cracked/failed concrete (Reach 7 back-calculated): 5×10⁻⁵ cm/s; 40-mil HDPE intact: 1×10⁻¹² cm/s; HDPE with installation defects: 5×10⁻¹⁰ cm/s", "units": "cm/s or ft/day" },
+      "i": { "description": "Hydraulic gradient across the lining, approximated as (h_water) / (lining thickness) where h_water is the water head above the lining and thickness is the lining material thickness", "units": "ft/ft (dimensionless)" },
+      "A": { "description": "Area of lining through which seepage is occurring", "units": "ft²" }
+    },
+    "applicability": "Applied to estimate seepage losses from individual panels, failed zones, and lining joints in Reach 7. Used in SEEP/W model calibration to assign hydraulic conductivity values to lining elements. With existing cracked lining k = 5×10⁻⁵ cm/s, the model yields 15.8 cfs/1,000 ft, consistent with field measurements of 7.7 cfs/1,000 ft (the difference reflects non-uniform cracking distribution). With new geomembrane + PCC (composite k effectively governed by geomembrane), seepage reduces to 0.05 cfs/1,000 ft — a 99.7% reduction.",
+    "source": "Darcy, H. (1856). Les Fontaines Publiques de la Ville de Dijon. Dalmont, Paris. USBR Water Measurement Manual (2001). HDE Seepage Modeling Report, Reach 7 (April 2025)."
+  },
+  {
+    "id": "eq-sage-creek-03",
+    "title": "Swell Uplift Force on Lining Panel",
+    "equation": "F_swell = p_s × A_panel",
+    "variables": {
+      "F_swell": { "description": "Total uplift force exerted by swelling clay on a single lining panel", "units": "lbf or kips" },
+      "p_s": { "description": "Measured swell pressure of lacustrine clay at natural void ratio and moisture content (constant volume ASTM D4546 Method A). Range for Reach 7: 3,600–6,500 psf; mean 4,800 psf", "units": "psf (lb/ft²)" },
+      "A_panel": { "description": "Plan area of individual concrete lining panel. Standard panel in Reach 7: 12 ft (width) × 10 ft (length) = 120 ft²", "units": "ft²" }
+    },
+    "applicability": "Demonstrates why lining heave failure is inevitable without subgrade treatment. For a 12×10 ft panel: F_swell = 4,800 psf × 120 ft² = 576,000 lbf = 288 tons of uplift force. The panel self-weight is approximately 50 psf × 120 ft² = 6,000 lbf = 3 tons. The swell force exceeds the panel self-weight by a factor of 96. No practical anchoring system can resist this force — only eliminating the moisture change (geomembrane) or the swell potential (lime stabilization) provides an effective solution. This calculation is the fundamental design justification for the lime treatment + geomembrane approach in Alternative A.",
+    "source": "ASTM D4546-14: Standard Test Methods for One-Dimensional Swell or Collapse of Soils. Holtz, W.G. and Gibbs, H.J. (1956). Engineering properties of expansive clays. Transactions ASCE 121:641–677. HDE Geotechnical Investigation Report, Reach 7 (March 2025)."
+  },
+  {
+    "id": "eq-sage-creek-04",
+    "title": "Collapse Potential — Jennings and Knight Single-Oedometer Method",
+    "equation": "CP = (Δe / (1 + e₀)) × 100",
+    "variables": {
+      "CP": { "description": "Collapse potential, expressed as percentage volumetric strain upon inundation under applied load", "units": "%" },
+      "Δe": { "description": "Change in void ratio upon inundation at constant applied stress. Computed as: e₀ (void ratio at natural moisture, just before flooding) minus e_f (void ratio after equilibration under same stress after flooding)", "units": "dimensionless" },
+      "e₀": { "description": "Initial void ratio at natural moisture content before inundation (typically at in-situ stress plus overburden from canal water)", "units": "dimensionless" }
+    },
+    "applicability": "Applied to five loess samples from Reach 7, inundated at a stress of 4 tsf (representative of combined overburden + canal water + traffic loading). Results: CP = 5.5%, 6.2%, 7.1%, 8.8%, 10.2%. Jennings and Knight classification: 1–5% = Moderate, 5–10% = Moderately Severe, >10% = Severe (ASTM D5333 categorizes: <1% No problem, 1–5% Moderate, 5–10% Moderately severe, 10–20% Severe, >20% Very severe). The Reach 7 loess falls in the Moderately Severe to Severe range, indicating potential for differential settlement of 3–8 inches across the canal footprint if loess is wetted for the first time under full load. This collapse risk is partially realized in existing panels (joint offset, cracking) and must be managed during construction by pre-wetting or phased loading.",
+    "source": "Jennings, J.E. and Knight, K. (1975). A guide to construction on or with materials exhibiting additional settlement due to collapse of grain structure. Proc. 6th Reg. Conf. Africa SMFE, Durban, pp. 99–105. ASTM D5333-03(2012): Standard Test Method for Measurement of Collapse Potential of Soils."
+  },
+  {
+    "id": "eq-sage-creek-05",
+    "title": "Factor of Safety — Spencer's Method of Slices",
+    "equation": "FS = Σ[c'·l + (N - u·l)·tan(φ')] / Σ[T]",
+    "variables": {
+      "FS": { "description": "Factor of safety against slope failure along the trial slip surface. FS = 1.0 indicates incipient failure; FS < 1.0 indicates active failure. Target FS ≥ 1.30 for remediated slope (sustained loading, residual strength)", "units": "dimensionless" },
+      "c'": { "description": "Effective cohesion of soil on failure surface. Loess peak: c' = 200–400 psf; loess saturated: c' ≈ 0–50 psf; lacustrine clay residual: c'r = 40–80 psf", "units": "psf (lb/ft²)" },
+      "l": { "description": "Length of base of slice along failure surface", "units": "ft" },
+      "N": { "description": "Normal force at base of slice (total stress), resolved from slice weight and inter-slice forces in Spencer's formulation", "units": "lbf/ft" },
+      "u": { "description": "Pore water pressure at the base of slice, computed from the phreatic surface imported from SEEP/W model", "units": "psf (lb/ft²)" },
+      "φ'": { "description": "Effective friction angle of soil on failure surface. Loess peak: φ' = 28–32°; lacustrine clay peak: φ' = 22–26°; lacustrine clay residual: φ'r = 12–14°", "units": "degrees" },
+      "T": { "description": "Mobilized shear force at base of slice, equal to N·tan(α) + W·sin(α) adjusted for inter-slice forces, where α is the inclination of the slice base to horizontal", "units": "lbf/ft" }
+    },
+    "applicability": "Used in all five slope stability cases analyzed for Reach 7. The critical result is FS = 0.92 for the existing geometry with residual strength at the clay contact surface and mid-season phreatic surface — confirming active failure. The remediated geometry (3H:1V bank + drainage blanket) yields FS = 1.35 with residual strength, meeting the FS ≥ 1.30 design criterion. Spencer's method is used (rather than Bishop's simplified method) because it satisfies both force and moment equilibrium, is appropriate for non-circular failure surfaces (the translational slide along the clay contact), and handles the abrupt strength change at the loess-clay interface correctly.",
+    "source": "Spencer, E. (1967). A method of analysis of the stability of embankments assuming parallel inter-slice forces. Géotechnique 17(1):11–26. GeoStudio SLOPE/W version 2021. HDE Slope Stability Analysis Report, Reach 7 (March 2025)."
+  },
+  {
+    "id": "eq-sage-creek-06",
+    "title": "Lime Dosage Determination — Eades and Grim pH Test",
+    "equation": "Minimum lime % where pH_measured ≥ 12.4 at 1 hour (ASTM D6276)",
+    "variables": {
+      "pH_target": { "description": "Minimum pH required to confirm sufficient lime has been added to satisfy the soil's lime demand and initiate the pozzolanic reaction. Target: pH ≥ 12.4", "units": "pH units" },
+      "lime_percent": { "description": "Calcium oxide (CaO) content as a percentage of dry soil mass. Test range: 2%, 3%, 4%, 5%, 6%, 7%. Design value for Reach 7 clay: 6% CaO", "units": "% by dry weight" },
+      "pH_measured": { "description": "pH of lime-soil-water mixture (20 g soil : 1 g lime : 100 mL distilled water) after 1 hour of periodic agitation at 77°F (25°C)", "units": "pH units" }
+    },
+    "applicability": "Eades and Grim pH test results for Reach 7 lacustrine clay: 2% CaO → pH 11.8; 3% CaO → pH 12.1; 4% CaO → pH 12.2; 5% CaO → pH 12.3; 6% CaO → pH 12.5; 7% CaO → pH 12.5. The minimum lime content to achieve pH ≥ 12.4 is 6% CaO. At this dosage, 28-day cured lime-treated specimens show PI reduced to 8–12 (from 30–42), swell pressure reduced to <400 psf (from 3,600–6,500 psf), and unconfined compressive strength (UCS) of 45–65 psi — adequate for the lining subgrade application. Field application rate: 6% × 88 pcf (γd) × 8 in (0.667 ft) treatment depth = 23.4 lb/ft² = approximately 112 tons of CaO per 1,000 linear feet of canal.",
+    "source": "Eades, J.L. and Grim, R.E. (1966). A quick test to determine lime requirements for lime stabilization. Highway Research Record 139:61–72. ASTM D6276-19: Standard Test Method for Using pH to Estimate the Soil-Lime Proportion Requirement for Soil Stabilization. Little, D.N. (1995). Handbook for Stabilization of Pavement Subgrades and Base Courses with Lime. National Lime Association."
+  },
+  {
+    "id": "eq-sage-creek-07",
+    "title": "Canal Freeboard — USBR Formula",
+    "equation": "F = 0.5 + 0.025 × V × √d",
+    "variables": {
+      "F": { "description": "Minimum freeboard (distance from design water surface to top of canal lining or bank). For Reach 7 design conditions: F = 1.5 ft", "units": "ft" },
+      "V": { "description": "Mean flow velocity in the canal at design discharge. For Reach 7: V = Q/A = 295/111.4 = 2.65 ft/s", "units": "ft/s" },
+      "d": { "description": "Design water depth in the canal. For Reach 7: d = 5.5 ft", "units": "ft" },
+      "0.025": { "description": "USBR empirical coefficient for the velocity-depth term; dimensions are (ft^(1/2)·s/ft = s/ft^(1/2)) making the overall formula dimensionally consistent", "units": "s/ft^(1/2)" },
+      "0.5": { "description": "Minimum base freeboard for small canals (less than 100 cfs). For larger canals, additional allowances for wave action, water surface drawdown at bends, and operational surge are added.", "units": "ft" }
+    },
+    "applicability": "Freeboard verification for Reach 7 design: F = 0.5 + 0.025 × 2.65 × √5.5 = 0.5 + 0.025 × 2.65 × 2.345 = 0.5 + 0.155 = 0.655 ft minimum. The USBR Design Standards No. 3 requires a minimum freeboard of 1.5 ft for a canal carrying 280 cfs in a geotechnically sensitive location with adjacent slope stability concerns. The design freeboard of 1.5 ft governs and is provided by setting the top of lining at 7.0 ft above the canal invert (5.5 ft design depth + 1.5 ft freeboard). The increased freeboard requirement reflects the risk of increased water level during surge conditions and the consequences of overtopping in proximity to the documented slope failure zone.",
+    "source": "USBR Design Standards No. 3 — Canals and Related Structures, Chapter 2 (2014). Bureau of Reclamation, Denver, CO. Chow, V.T. (1959). Open-Channel Hydraulics. McGraw-Hill."
+  },
+  {
+    "id": "eq-sage-creek-08",
+    "title": "Simple Payback Period — Project Economic Analysis",
+    "equation": "T = C_project / S_annual",
+    "variables": {
+      "T": { "description": "Simple payback period — the time in years for cumulative annual savings to equal the initial project cost, without discounting future cash flows", "units": "years" },
+      "C_project": { "description": "Total project cost for Reach 7 rehabilitation under Alternative A (lime-stabilized subgrade + sand cushion + 40-mil HDPE geomembrane + 4-inch reinforced PCC). Includes construction, engineering, and construction management: $1,020,000", "units": "USD ($)" },
+      "S_annual": { "description": "Annual economic benefit from seepage reduction. Calculated as: 5,384 AF/yr water savings × $50/AF water value = $269,200/yr ≈ $270,000/yr. Excludes secondary benefits (slope failure liability, drainage cost reduction, delivery reliability)", "units": "USD/year ($/yr)" }
+    },
+    "applicability": "T = $1,020,000 / $270,000 = 3.78 years ≈ 3.8 years. This is an exceptionally favorable payback for irrigation infrastructure rehabilitation. For comparison: Alternative B (PCC only) has T = $620,000 / $240,000 = 2.6 years but a shorter service life and higher residual seepage, yielding a lower 40-year NPV. Alternative A's 40-year NPV at 3.5% discount rate = $270,000 × 21.36 (40-year annuity factor) − $1,020,000 = $5,767,000 − $1,020,000 = $4,747,000 (undiscounted gross). The standard USBR NPV figure of $1,180,000 reported in project documents reflects conservative assumptions about water value escalation and residual seepage. With 50% WaterSMART cost-share: T = $510,000 / $270,000 = 1.9 years.",
+    "source": "HDE Canal Lining Design Alternatives Memo, Reach 7 (April 2025). USBR WaterSMART Grant Program Guidelines (2024). Engineering Economics textbook standard formula: Blank, L. and Tarquin, A. (2018). Engineering Economy, 8th Ed. McGraw-Hill."
+  }
+]

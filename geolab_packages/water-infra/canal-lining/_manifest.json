@@ -1,0 +1,18 @@
+{
+  "id": "water-infra.canal-lining",
+  "name": "Canal Lining Design",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.canals",
+  "dependencies": ["water-infra.canal-design"],
+  "tags": ["canal-lining", "concrete-lining", "shotcrete", "geomembrane", "HDPE-liner", "PVC-liner", "compacted-earth", "soil-cement", "seepage-loss", "frost-heave", "uplift", "underdrain", "joint-design", "erosion-control"],
+  "standards": ["USBR-Canals", "USACE-EM-1110-2-2902"],
+  "equation_count": 6,
+  "concept_count": 14,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

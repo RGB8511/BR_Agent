@@ -1,0 +1,101 @@
+[
+  {
+    "id": "field-exploration.cpt-cptu.tbl-001",
+    "title": "Robertson (2009) Soil Behavior Type (SBTn) Classification from CPT",
+    "type": "classification",
+    "data": {
+      "headers": ["Zone", "SBTn Description", "Ic Range", "Typical Soils"],
+      "rows": [
+        ["1", "Sensitive, fine-grained", "> 3.60 (off-chart)", "Quick clays, sensitive marine clays"],
+        ["2", "Organic soils — clay", "> 3.60", "Peat, organic clay, muck"],
+        ["3", "Clay — silty clay to clay", "2.95–3.60", "Soft to firm clay, CL/CH"],
+        ["4", "Silt mixtures — clayey silt to silty clay", "2.60–2.95", "Silty clay, clayey silt, CL-ML"],
+        ["5", "Sand mixtures — silty sand to sandy silt", "2.05–2.60", "SM, ML, silty sand"],
+        ["6", "Clean sand to silty sand", "1.31–2.05", "SP, SP-SM, SW-SM"],
+        ["7", "Gravelly sand to dense sand", "< 1.31", "GP, GW, dense sand, gravelly"],
+        ["8", "Very stiff sand to clayey sand", "—", "Heavily OC or cemented (low Fr, high Qt)"],
+        ["9", "Very stiff fine-grained", "—", "Heavily OC clay/silt (low Fr, high Qt)"]
+      ]
+    },
+    "source": "Robertson (2009, 2016). Zones 8 & 9 identified by position on chart rather than Ic alone."
+  },
+  {
+    "id": "field-exploration.cpt-cptu.tbl-002",
+    "title": "Typical CPT Parameters by Soil Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "qt (MPa)", "fs (kPa)", "Rf (%)", "Bq", "Notes"],
+      "rows": [
+        ["Soft clay (NC)", "0.2–1.0", "5–30", "2–5", "0.6–1.0+", "High pore pressure response"],
+        ["Firm clay (OC)", "1.0–4.0", "30–100", "2–5", "0.2–0.6", "Moderate pore pressure"],
+        ["Stiff clay", "3.0–10", "50–200", "1–3", "0.0–0.4", "May show dilative behavior"],
+        ["Silt (ML)", "1.0–5.0", "10–50", "1–3", "0.1–0.5", "Variable drainage response"],
+        ["Loose sand", "2–8", "10–40", "0.3–1.0", "~0", "Low resistance; liquefiable potential"],
+        ["Medium dense sand", "8–25", "20–80", "0.3–0.8", "~0", "Moderate resistance"],
+        ["Dense sand", "25–50+", "50–200", "0.3–0.8", "< 0 possible", "High resistance; dilative u2"],
+        ["Gravel / gravelly sand", "30–80+", "50–300", "0.3–1.0", "~0", "Very high resistance; possible cone damage"],
+        ["Organic soil / peat", "0.1–0.5", "5–20", "3–10+", "0.5–1.0", "Very low resistance, high friction ratio"]
+      ]
+    },
+    "source": "Lunne et al. (1997), Robertson & Cabal (2015), general practice"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.tbl-003",
+    "title": "CPT Equipment Specifications",
+    "type": "reference",
+    "data": {
+      "headers": ["Parameter", "Standard (10 cm²)", "Large (15 cm²)", "Mini / Research (2–5 cm²)"],
+      "rows": [
+        ["Projected cone area", "10 cm² (35.7 mm dia)", "15 cm² (43.7 mm dia)", "2–5 cm²"],
+        ["Cone apex angle", "60°", "60°", "60°"],
+        ["Friction sleeve area", "150 cm²", "225 cm²", "Variable"],
+        ["Penetration rate", "20 mm/s ± 5 mm/s", "20 mm/s ± 5 mm/s", "20 mm/s"],
+        ["u2 filter location", "Behind cone (shoulder)", "Behind cone", "Behind cone"],
+        ["Filter material", "Porous plastic or sintered steel", "Same", "Same"],
+        ["Typical capacity — qc", "100 MPa", "100 MPa", "50–100 MPa"],
+        ["Typical capacity — fs", "1–2 MPa", "1–2 MPa", "0.5–1 MPa"],
+        ["Typical capacity — u2", "2–5 MPa", "2–5 MPa", "1–3 MPa"],
+        ["Push force required", "100–200 kN (10–20 ton)", "150–300 kN", "20–50 kN"],
+        ["Rod diameter", "36 mm", "36 mm", "25 mm"]
+      ]
+    },
+    "source": "ASTM D5778, ISSMGE Reference Test Procedure"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.tbl-004",
+    "title": "Nkt Cone Factor Ranges for Undrained Shear Strength",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Soil Type / Condition", "Nkt Range", "Recommended Default", "Notes"],
+      "rows": [
+        ["Soft NC clay (PI > 20)", "10–15", "12", "Well-established for Scandinavian, Gulf Coast clays"],
+        ["Firm to stiff OC clay", "12–18", "15", "Higher Nkt for stiffer clays"],
+        ["Sensitive / structured clay", "8–12", "10", "Lower due to structure effects"],
+        ["Fissured stiff clay (London Clay type)", "15–25", "20", "Fissures reduce qt relative to intact Su"],
+        ["Silty clay / clayey silt", "12–18", "14", "Partial drainage may affect"],
+        ["General (no calibration data)", "—", "14", "Use with ±30% uncertainty"]
+      ]
+    },
+    "source": "Lunne et al. (1997), Mayne (2007), Aas et al. (1986)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.tbl-005",
+    "title": "CPT Advantages, Limitations, and Method Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Aspect", "CPT/CPTU", "SPT", "Notes"],
+      "rows": [
+        ["Repeatability", "Excellent (< 5% variation)", "Poor (30–50% variation)", "CPT is the most repeatable in-situ test"],
+        ["Continuous profiling", "Yes — data every 10–50 mm", "No — data at 0.75/1.5 m intervals", "CPT detects thin layers SPT misses"],
+        ["Sample recovery", "No sample (unless paired with boring)", "Disturbed sample from split spoon", "CPT must be supplemented with borings for samples"],
+        ["Pore pressure measurement", "Yes (CPTU) — continuous u2", "No", "Critical for effective stress analysis and drainage ID"],
+        ["Penetration in gravel/cobbles", "Limited — risk of cone damage", "Possible (with difficulty)", "CPT refusal in gravelly soils is common"],
+        ["Penetration in rock", "Not possible", "Possible to soft rock", "CPT stops at bedrock/hard layers"],
+        ["Cost per meter (relative)", "Lower (faster advance)", "Higher (slower advance)", "CPT: 100–200 m/day vs. SPT: 20–40 m/day"],
+        ["Direct design parameters", "Many correlations (Su, φ', OCR, M, k, Dr)", "Primarily N-value correlations", "CPT produces higher-quality design parameters"],
+        ["Seismic measurement (Vs)", "Yes with SCPT module", "No (requires separate test)", "SCPT adds Vs at 1 m intervals"]
+      ]
+    },
+    "source": "Lunne et al. (1997), Mayne et al. (2002), Robertson & Cabal (2015)"
+  }
+]

@@ -1,0 +1,126 @@
+[
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-001",
+    "title": "Mean Groundwater Velocity from Tracer Test",
+    "equation": "v = L / t_mean",
+    "variables": {
+      "v": {"description": "Mean linear velocity between injection and detection points", "units": "m/day"},
+      "L": {"description": "Straight-line distance from injection to detection", "units": "m"},
+      "t_mean": {"description": "Mean residence time (centroid of breakthrough curve)", "units": "days"}
+    },
+    "applicability": "In karst: velocity can be very high (10–1000+ m/day through conduits). In porous media: typically 0.01–10 m/day. In fractured rock: highly variable depending on fracture aperture and connectivity.",
+    "source": "Käss (1998), Benischke et al. (2007)"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-002",
+    "title": "Tracer Recovery",
+    "equation": "R = ∫₀^∞ C(t) × Q(t) dt / M₀",
+    "variables": {
+      "R": {"description": "Fraction of injected tracer mass recovered at detection point", "units": "dimensionless (0 to 1)"},
+      "C(t)": {"description": "Tracer concentration at detection point as function of time", "units": "mg/L or ppb"},
+      "Q(t)": {"description": "Flow rate at detection point", "units": "m³/day or L/s"},
+      "M₀": {"description": "Total mass of tracer injected", "units": "mg or kg"}
+    },
+    "applicability": "Discrete sampling: R ≈ Σ[Ci × Qi × Δti] / M₀. Recovery < 100%: tracer lost to other flow paths, sorption, degradation, or matrix diffusion. Low recovery (< 50%) means incomplete understanding of flow system.",
+    "source": "Field & Nash (1997), standard hydrogeological practice"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-003",
+    "title": "Longitudinal Dispersivity from Breakthrough Curve",
+    "equation": "α_L = σ² × v / (2 × L)",
+    "variables": {
+      "α_L": {"description": "Longitudinal dispersivity", "units": "m"},
+      "σ²": {"description": "Spatial variance of the tracer cloud = (σ_t × v)²", "units": "m²"},
+      "v": {"description": "Mean velocity", "units": "m/day"},
+      "L": {"description": "Transport distance", "units": "m"}
+    },
+    "applicability": "Scale-dependent: α_L ≈ 0.1 × L (Gelhar relationship) as a rough estimate. Laboratory-scale: 0.01–0.1 m. Field-scale 10 m: α ≈ 0.1–1 m. Field-scale 1000 m: α ≈ 10–100 m.",
+    "source": "Gelhar et al. (1992), Fetter (2001)"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-004",
+    "title": "Lugeon Value (from Packer Test)",
+    "equation": "Lu = (Q / L_test) × (P₀ / P_test) × 10",
+    "variables": {
+      "Lu": {"description": "Lugeon value (liters/min per meter of test interval at 1 MPa)", "units": "L/(min·m)"},
+      "Q": {"description": "Steady-state water take rate", "units": "L/min"},
+      "L_test": {"description": "Length of test interval between packers", "units": "m"},
+      "P_test": {"description": "Effective test pressure at the interval", "units": "MPa"},
+      "P₀": {"description": "Reference pressure = 1 MPa", "units": "MPa"}
+    },
+    "applicability": "1 Lugeon ≈ k = 1.3 × 10⁻⁷ m/s (approximate). Grouting targets: dam curtains typically grouted to < 3–5 Lu. Closure criterion < 3 Lu in final verification holes is common. Test conducted at multiple pressures (ascending/descending) to identify flow behavior (laminar, turbulent, dilation, washout).",
+    "source": "Lugeon (1933), Houlsby (1990), USACE EM 1110-2-3506"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-005",
+    "title": "GIN Method — Grouting Intensity Number",
+    "equation": "GIN = P × V = constant",
+    "variables": {
+      "GIN": {"description": "Grouting Intensity Number (energy envelope)", "units": "MPa × L/m (or bar·L/m)"},
+      "P": {"description": "Grouting pressure at the interval", "units": "MPa (or bar)"},
+      "V": {"description": "Volume of grout injected per meter of stage", "units": "L/m"}
+    },
+    "applicability": "Typical GIN values: 500–2500 bar·L/m for dam curtain grouting. Single stable mix (W:C = 0.67–1.0 with superplasticizer). Stop grouting when: P reaches P_max, V reaches V_max, or P×V reaches GIN limit — whichever comes first. Computer-monitored in real time.",
+    "source": "Lombardi & Deere (1993)"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-006",
+    "title": "Grout Cement Content by Weight",
+    "equation": "W:C = weight_water / weight_cement",
+    "variables": {
+      "W:C": {"description": "Water-to-cement ratio by weight", "units": "dimensionless"}
+    },
+    "applicability": "Traditional dam grouting: start at W:C = 5:1 (thin), thicken progressively to 3:1, 2:1, 1:1, 0.8:1, 0.6:1 based on grout take. GIN method: single stable mix at W:C = 0.67–1.0 with superplasticizer. For volume estimation: 1 bag (42.6 kg) cement at W:C = 1.0 yields ~58 L of grout.",
+    "source": "Houlsby (1990), USACE EM 1110-2-3506"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-007",
+    "title": "Grout Penetration in Fracture (Bingham Fluid)",
+    "equation": "R = (P × w²) / (6 × τ₀) - (w × μ_p × Q) / (12 × π × τ₀ × R)",
+    "simplified_form": "R_max ≈ (ΔP × w²) / (6 × τ₀)  (for Bingham flow in parallel plates)",
+    "variables": {
+      "R": {"description": "Grout penetration distance from borehole", "units": "m"},
+      "ΔP": {"description": "Grouting pressure at the fracture", "units": "Pa"},
+      "w": {"description": "Fracture aperture (opening width)", "units": "m"},
+      "τ₀": {"description": "Yield stress of grout (Bingham model)", "units": "Pa"},
+      "μ_p": {"description": "Plastic viscosity of grout", "units": "Pa·s"}
+    },
+    "applicability": "Grout penetration is extremely sensitive to fracture aperture (w² dependence). Doubling aperture quadruples penetration. Cement grout cannot penetrate fractures < 0.1–0.2 mm; microfine cement needed for 0.05–0.1 mm; chemical grout for finer.",
+    "source": "Gustafson & Stille (2005), Lombardi (1985)"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-008",
+    "title": "Compaction Grout Injection Pressure (Limiting)",
+    "equation": "P_max ≈ (σ'_v + 2 × c_u) to (σ'_v × K_p + 2 × c × √K_p)",
+    "variables": {
+      "P_max": {"description": "Maximum injection pressure before hydraulic fracture or heave", "units": "kPa"},
+      "σ'_v": {"description": "Effective vertical stress at injection depth", "units": "kPa"},
+      "c_u": {"description": "Undrained shear strength of surrounding soil", "units": "kPa"},
+      "K_p": {"description": "Passive earth pressure coefficient", "units": "dimensionless"}
+    },
+    "applicability": "Approximate — actual fracture pressure depends on in-situ stress state and soil strength. Monitor surface heave continuously during compaction grouting (typically limit to < 12 mm). Injection rate typically 15–75 L/min (4–20 gal/min).",
+    "source": "Warner (2004), FHWA guidance"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-009",
+    "title": "Jet Grout Column Diameter (Empirical)",
+    "equation": "D_col ≈ f(system, soil type, energy, withdrawal rate)",
+    "variables": {
+      "D_col": {"description": "Soilcrete column diameter", "units": "m"}
+    },
+    "applicability": "Typical ranges: Single-fluid system: 0.6–1.2 m. Double-fluid (grout+air): 1.0–1.8 m. Triple-fluid (water+air+grout): 1.5–2.5 m. Diameter varies with soil type (larger in soft clay than dense sand), nozzle pressure, rotation speed, and withdrawal rate. Always verify with trial columns.",
+    "source": "Burke (2004), Croce et al. (2014)"
+  },
+  {
+    "id": "field-exploration.tracers-and-grouting.eq-010",
+    "title": "Grout Curtain Effectiveness (Seepage Reduction)",
+    "equation": "Q_grouted / Q_ungrouted ≈ k_grouted / k_original  (for curtain of thickness t)",
+    "variables": {
+      "Q": {"description": "Seepage flow rate (per unit length of dam)", "units": "m³/s/m"},
+      "k_grouted": {"description": "Permeability of grouted zone", "units": "m/s"},
+      "k_original": {"description": "Original permeability of rock mass", "units": "m/s"}
+    },
+    "applicability": "Simplified — assumes curtain is the controlling element. More rigorous: Q = k_grouted × H / t_curtain where H = head across curtain, t_curtain = curtain thickness. Multi-row curtain: effective thickness ≈ row spacing. Grouting reduces k by 1–3 orders of magnitude typically (e.g., from 5 Lu to < 1 Lu).",
+    "source": "Ewert (2003), general dam engineering"
+  }
+]

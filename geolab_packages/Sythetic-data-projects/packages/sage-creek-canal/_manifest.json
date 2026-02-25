@@ -1,0 +1,31 @@
+{
+  "id": "projects.sage-creek.canal-rehabilitation",
+  "name": "Sage Creek Main Canal — Reach 7 Rehabilitation Investigation & Design",
+  "level": 2,
+  "discipline": "projects",
+  "parent": "projects.sage-creek",
+  "dependencies": [
+    "water-infra.canal-design",
+    "water-infra.canal-lining",
+    "geotechnical.soil-mechanics.slope-stability",
+    "geotechnical.soil-mechanics.consolidation",
+    "geotechnical.foundations.soil-classification",
+    "concrete.durability.mechanisms"
+  ],
+  "tags": ["canal-lining", "expansive-clay", "loess", "collapse-potential", "ASR", "freeze-thaw", "slope-failure", "seepage", "geomembrane", "HDPE", "lime-stabilization", "lacustrine-clay", "montmorillonite", "swell-pressure", "Idaho", "USBR", "WaterSMART", "rehabilitation"],
+  "standards": ["ASTM D4546", "ASTM D5333", "ASTM D3080", "ASTM D5084", "ASTM D698", "ASTM C1260", "ASTM C260", "ASTM C666", "ASTM D6276", "GRI GM-13"],
+  "key_references": [
+    "HDE Canal Condition Assessment — Reach 7 (September 2023)",
+    "HDE Geotechnical Investigation Report — Reach 7 (March 2025)",
+    "HDE Boring Logs BH-SC-01 through BH-SC-04 (January 2025)",
+    "HDE Canal Lining Design Alternatives Memo (April 2025)"
+  ],
+  "equation_count": 8,
+  "concept_count": 18,
+  "table_count": 14,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

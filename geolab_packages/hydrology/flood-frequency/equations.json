@@ -1,0 +1,101 @@
+[
+  {
+    "id": "hydrology.analysis.flood-frequency.eq-001",
+    "title": "Log-Pearson Type III Quantile",
+    "equation": "log(QT) = X̄ + KT × s",
+    "variables": {
+      "QT": {"description": "Flood discharge for return period T", "units": "cfs or m³/s"},
+      "X̄": {"description": "Mean of log-transformed annual maxima", "units": "log units"},
+      "KT": {"description": "Frequency factor (function of skew G and exceedance probability)", "units": "dimensionless"},
+      "s": {"description": "Standard deviation of log-transformed annual maxima", "units": "log units"}
+    },
+    "source": "USGS Bulletin 17C (2019)"
+  },
+  {
+    "id": "hydrology.analysis.flood-frequency.eq-002",
+    "title": "Weighted Skew Coefficient",
+    "equation": "Gw = (MSE_G × GR + MSE_R × Gs) / (MSE_G + MSE_R)",
+    "variables": {
+      "Gw": {"description": "Weighted skew coefficient", "units": "dimensionless"},
+      "Gs": {"description": "Station (sample) skew", "units": "dimensionless"},
+      "GR": {"description": "Regional skew (from USGS map)", "units": "dimensionless"},
+      "MSE_G": {"description": "Mean square error of station skew", "units": ""},
+      "MSE_R": {"description": "Mean square error of regional skew (≈ 0.12 for USGS national map)", "units": ""}
+    },
+    "source": "USGS Bulletin 17C"
+  },
+  {
+    "id": "hydrology.analysis.flood-frequency.eq-003",
+    "title": "Station Skew Coefficient",
+    "equation": "G = [n × Σ(Xi - X̄)³] / [(n-1)(n-2) × s³]",
+    "variables": {
+      "G": {"description": "Sample skew coefficient", "units": "dimensionless"},
+      "Xi": {"description": "Log-transformed annual maximum for year i", "units": "log units"},
+      "n": {"description": "Number of years of record", "units": "count"}
+    },
+    "source": "Standard statistical formula"
+  },
+  {
+    "id": "hydrology.analysis.flood-frequency.eq-004",
+    "title": "Gumbel Distribution (EV Type I)",
+    "equation": "QT = X̄ + KT × s,  where KT = -(√6/π)[0.5772 + ln(ln(T/(T-1)))]",
+    "variables": {
+      "QT": {"description": "Flood discharge for return period T", "units": "cfs or m³/s"},
+      "X̄": {"description": "Mean of annual maxima (not log-transformed)", "units": "cfs or m³/s"},
+      "s": {"description": "Standard deviation of annual maxima", "units": "cfs or m³/s"},
+      "T": {"description": "Return period", "units": "years"}
+    },
+    "applicability": "Equivalent to LP-III with skew ≈ 1.14. Standard in many international applications.",
+    "source": "Gumbel (1958)"
+  },
+  {
+    "id": "hydrology.analysis.flood-frequency.eq-005",
+    "title": "Weibull Plotting Position",
+    "equation": "p = i / (n + 1)",
+    "variables": {
+      "p": {"description": "Exceedance probability (AMS convention: rank 1 = largest)", "units": "dimensionless"},
+      "i": {"description": "Rank (1 = largest for exceedance; 1 = smallest for CDF)", "units": "integer"},
+      "n": {"description": "Total number of observations", "units": "count"}
+    },
+    "applicability": "Most common plotting position for flood frequency. T = 1/p for exceedance probability.",
+    "source": "Weibull (1939)"
+  },
+  {
+    "id": "hydrology.analysis.flood-frequency.eq-006",
+    "title": "GEV Distribution Quantile",
+    "equation": "QT = ξ + α/k × [1 - (-ln(1-1/T))^k]    for k ≠ 0",
+    "variables": {
+      "ξ": {"description": "Location parameter", "units": "same as Q"},
+      "α": {"description": "Scale parameter", "units": "same as Q"},
+      "k": {"description": "Shape parameter (k=0 → Gumbel, k>0 → Fréchet, k<0 → Weibull)", "units": "dimensionless"},
+      "T": {"description": "Return period", "units": "years"}
+    },
+    "source": "Jenkinson (1955), Hosking & Wallis (1997)"
+  },
+  {
+    "id": "hydrology.analysis.flood-frequency.eq-007",
+    "title": "Regional Regression (General Form)",
+    "equation": "QT = a × A^b1 × S^b2 × P^b3 × ...",
+    "variables": {
+      "QT": {"description": "T-year flood at ungauged site", "units": "cfs or m³/s"},
+      "A": {"description": "Contributing drainage area", "units": "mi² or km²"},
+      "S": {"description": "Channel or basin slope", "units": "various"},
+      "P": {"description": "Mean annual precipitation", "units": "inches or mm"},
+      "a, b1, b2, b3": {"description": "Regression coefficients (region-specific)", "units": "varies"}
+    },
+    "applicability": "State-specific USGS regression equations available through StreamStats. Include standard error of prediction.",
+    "source": "USGS state/regional reports"
+  },
+  {
+    "id": "hydrology.analysis.flood-frequency.eq-008",
+    "title": "Probability of Exceedance in Design Life",
+    "equation": "P(≥1 event in n years) = 1 - (1 - 1/T)^n",
+    "variables": {
+      "P": {"description": "Probability of at least one exceedance", "units": "dimensionless"},
+      "T": {"description": "Return period of design event", "units": "years"},
+      "n": {"description": "Design life or exposure period", "units": "years"}
+    },
+    "applicability": "Risk-based design: e.g., 100-yr flood, 75-yr dam life → P = 1-(0.99)^75 = 53% chance of exceedance.",
+    "source": "Probability theory"
+  }
+]

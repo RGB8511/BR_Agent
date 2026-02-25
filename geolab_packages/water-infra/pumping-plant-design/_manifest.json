@@ -1,0 +1,27 @@
+{
+  "id": "water-infra.pumping-plant-design",
+  "name": "Pumping Plant Design & Layout",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.pumping",
+  "dependencies": [
+    "water-infra.pump-hydraulics",
+    "water-infra.pipeline-hydraulics"
+  ],
+  "tags": ["pump-station", "wet-well", "dry-well", "can-type", "suction-piping", "discharge-header", "valve-vault", "electrical", "standby-power", "SCADA", "controls", "ventilation", "crane", "noise", "vibration"],
+  "standards": ["HI-9.8", "AWWA-E101", "NFPA-820", "OSHA-29CFR1910"],
+  "key_references": [
+    "Sanks et al. (1998) Pumping Station Design",
+    "Hydraulic Institute Standards",
+    "AWWA M11 — Steel Pipe",
+    "10 States Standards — Recommended Standards for Water Works"
+  ],
+  "equation_count": 8,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

@@ -1,0 +1,113 @@
+[
+  {
+    "id": "field-exploration.geophysics-surface.tbl-001",
+    "title": "Surface Geophysical Method Selection Guide",
+    "type": "classification",
+    "data": {
+      "headers": ["Target / Objective", "Primary Method(s)", "Supporting Method(s)", "Limitations"],
+      "rows": [
+        ["Depth to bedrock", "Seismic refraction", "ERI, MASW", "Refraction needs velocity increase; fails with weathered rock gradient"],
+        ["Vs30 / seismic site class", "MASW", "Downhole seismic (borehole)", "Active MASW limited to ~30 m; passive extends deeper"],
+        ["Soft/weak soil zones", "MASW (low Vs zones)", "ERI (low resistivity if clay)", "Requires sufficient contrast"],
+        ["Groundwater table", "Seismic refraction (Vp jump)", "ERI, GPR (in coarse soils)", "Refraction: table must be flat; GPR fails in clay"],
+        ["Clay thickness / extent", "ERI (low resistivity)", "EM (quick reconnaissance)", "Equivalence problem — thick/thin clay can give same response"],
+        ["Karst / voids / sinkholes", "ERI + microgravity", "GPR (if shallow & in resistive ground)", "Small voids at depth may not be detectable"],
+        ["Contamination plume", "ERI (conductive plume)", "EM reconnaissance", "LNAPL may be resistive; DNAPL complex"],
+        ["Buried utilities / tanks", "GPR", "EM (metal detection), magnetics", "GPR fails in clay; EM detects only metallic objects"],
+        ["Rippability assessment", "Seismic refraction (Vp)", "—", "Correlations are equipment-specific"],
+        ["Dam / levee seepage", "ERI (time-lapse)", "Self-potential (SP)", "Requires repeated surveys or steady-state contrast"],
+        ["Landslide investigation", "ERI (slip surface, water)", "MASW (Vs contrast), seismic refraction", "Complex 3D geometry may need multiple 2D lines"],
+        ["Fault / fracture mapping", "ERI, seismic refraction/reflection", "GPR (shallow, in resistive ground)", "Requires sufficient offset and contrast across fault"]
+      ]
+    },
+    "source": "FHWA GEC-5, Anderson & Croxton (2008), USACE EM 1110-1-1802"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.tbl-002",
+    "title": "Typical P-Wave Velocities for Geotechnical Materials",
+    "type": "reference",
+    "data": {
+      "headers": ["Material", "Vp (m/s)", "Notes"],
+      "rows": [
+        ["Air", "330", ""],
+        ["Water", "1450–1500", "Temperature dependent"],
+        ["Loose dry sand", "200–600", ""],
+        ["Saturated sand/gravel", "1500–2000", "Vp jumps at water table"],
+        ["Soft clay", "1000–1500", "Near-saturated → Vp ≈ Vp_water"],
+        ["Stiff clay / till", "1500–2500", ""],
+        ["Weathered rock", "1500–3000", "Rippable to marginal"],
+        ["Sandstone", "2000–4500", "Depends on cementation, porosity"],
+        ["Limestone", "3000–6500", "Dense limestone on high end"],
+        ["Granite / gneiss", "4500–6500", "Fresh, intact"],
+        ["Basalt", "5000–6500", "Dense"],
+        ["Concrete", "3000–4500", ""],
+        ["Ice", "3400–3800", "Permafrost detection"]
+      ]
+    },
+    "source": "Telford et al. (1990), FHWA, various"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.tbl-003",
+    "title": "Typical Shear Wave Velocities (Vs) for Geotechnical Materials",
+    "type": "reference",
+    "data": {
+      "headers": ["Material", "Vs (m/s)", "ASCE 7 Site Class", "Notes"],
+      "rows": [
+        ["Very soft clay (Su < 25 kPa)", "< 100", "E/F", "Potential site amplification"],
+        ["Soft clay", "100–180", "E", ""],
+        ["Medium stiff clay", "150–250", "D–E", ""],
+        ["Stiff clay / dense sand", "200–360", "D", "Most common site class"],
+        ["Very dense soil / soft rock", "360–760", "C", ""],
+        ["Weathered rock", "500–1000", "C–B", "Gradient common"],
+        ["Sound rock", "760–1500", "B", ""],
+        ["Hard rock", "> 1500", "A", "Fresh igneous/metamorphic"],
+        ["Loose sand (dry)", "100–200", "E–D", ""],
+        ["Dense sand (dry)", "200–400", "D–C", ""],
+        ["Gravel", "250–500", "D–C", ""],
+        ["Saturated sand", "150–350", "D", "Vs NOT affected by saturation (unlike Vp)"]
+      ]
+    },
+    "source": "ASCE 7, various compilations. Note: Vs is controlled by skeleton stiffness; saturation does not affect Vs significantly."
+  },
+  {
+    "id": "field-exploration.geophysics-surface.tbl-004",
+    "title": "Typical Electrical Resistivities of Geotechnical Materials",
+    "type": "reference",
+    "data": {
+      "headers": ["Material", "Resistivity (Ω·m)", "Conductivity (mS/m)", "Notes"],
+      "rows": [
+        ["Marine clay", "1–10", "100–1000", "Very conductive — high salinity pore water"],
+        ["Soft clay (fresh water)", "5–50", "20–200", ""],
+        ["Stiff clay / till", "10–100", "10–100", ""],
+        ["Silt", "20–200", "5–50", ""],
+        ["Sand (saturated, fresh water)", "50–500", "2–20", ""],
+        ["Sand (dry)", "500–5000", "0.2–2", ""],
+        ["Gravel (saturated)", "100–1000", "1–10", ""],
+        ["Gravel (dry)", "1000–10000", "0.1–1", ""],
+        ["Weathered rock", "50–500", "2–20", "Depends on fracturing and clay infill"],
+        ["Intact igneous / metamorphic rock", "1000–100000", "0.01–1", "Very resistive if unweathered"],
+        ["Intact sedimentary rock", "100–10000", "0.1–10", "Porosity and saturation dependent"],
+        ["Fresh water", "10–100", "10–100", ""],
+        ["Salt water", "0.2–1", "1000–5000", "Dominates bulk resistivity"],
+        ["Contaminated groundwater (inorganic)", "1–10", "100–1000", "Ionic contamination → low resistivity"]
+      ]
+    },
+    "source": "Telford et al. (1990), Palacky (1987), Reynolds (2011)"
+  },
+  {
+    "id": "field-exploration.geophysics-surface.tbl-005",
+    "title": "GPR Antenna Frequency Selection",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Frequency (MHz)", "Depth in Favorable Soil (m)", "Resolution (m)", "Typical Application"],
+      "rows": [
+        ["50–100", "10–30+", "0.5–1.0", "Bedrock mapping, deep stratigraphy in sand/gravel"],
+        ["200", "3–10", "0.2–0.5", "Utility detection at depth, geologic mapping"],
+        ["400", "1–5", "0.1–0.25", "Utility detection (standard), rebar in concrete"],
+        ["900", "0.5–1.5", "0.03–0.1", "Concrete inspection, shallow pavement layers"],
+        ["1600–2000", "0.1–0.5", "0.01–0.03", "Pavement surface layers, bridge decks"]
+      ]
+    },
+    "source": "GSSI, Sensors & Software, Daniels (2004). Note: Depths assume favorable conditions (dry, sandy, low-conductivity). In clay or saturated fine-grained soil, penetration is drastically reduced."
+  }
+]

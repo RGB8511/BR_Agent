@@ -1,0 +1,29 @@
+{
+  "id": "water-infra.hydropower-fundamentals",
+  "name": "Hydropower Fundamentals",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.power",
+  "dependencies": [
+    "water-infra.pipeline-hydraulics",
+    "water-infra.pump-hydraulics",
+    "water-infra.reservoir-design"
+  ],
+  "tags": ["hydropower", "turbine", "Francis", "Kaplan", "Pelton", "penstock", "powerhouse", "generator", "head", "efficiency", "capacity-factor", "energy", "small-hydro", "run-of-river", "storage", "pumped-storage", "specific-speed", "cavitation", "draft-tube", "FERC"],
+  "standards": ["FERC-Licensing", "ASCE-MOP-79", "IEEE-1020", "IEC-60041", "IEC-61116"],
+  "key_references": [
+    "USBR Design of Small Dams (2007) Ch. 18 — Powerplant Planning",
+    "Creager & Justin (1950) Hydroelectric Handbook",
+    "Dixon & Hall (2014) Fluid Mechanics and Thermodynamics of Turbomachinery",
+    "ASCE MOP 79 — Steel Penstocks",
+    "ESHA (2004) Guide on How to Develop a Small Hydropower Plant"
+  ],
+  "equation_count": 10,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.tbl-001",
+    "title": "Pressuremeter Type Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Feature", "Prebored (PBP/Menard)", "Self-Boring (SBPMT)", "Full-Displacement (FDPMT)"],
+      "rows": [
+        ["Borehole required", "Yes — prebored to probe diameter", "No — self-drills", "No — pushed/driven"],
+        ["Disturbance", "Moderate-high (borehole dependent)", "Minimal (best quality)", "High (full displacement)"],
+        ["σh0 measurement", "Unreliable (disturbed)", "Reliable (primary use)", "Not applicable"],
+        ["Modulus quality", "EM = empirical; Gur better", "Gur = excellent; Gi reliable", "Reflects post-installation state"],
+        ["Su measurement", "pL* correlation", "Cavity expansion theory — best quality", "Pile-related interpretation"],
+        ["Soil types", "All (with care)", "Soft-firm clays, silts, sands", "Soft-firm clays, sands"],
+        ["Speed", "2–4 tests/day", "1–3 tests/day", "Faster (piggybacked on CPT)"],
+        ["Cost (relative)", "Low-moderate", "High", "Moderate"],
+        ["Typical use", "Routine investigation; French/Menard design", "Research; K₀; high-quality modulus", "Pile design; offshore"]
+      ]
+    },
+    "source": "Clarke (1995), Mair & Wood (1987)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.tbl-002",
+    "title": "Menard Rheological Factor α and EM/E Relationship",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Soil Type", "EM/pL*", "α (Menard)", "E/EM ≈ 1/α", "Notes"],
+      "rows": [
+        ["Peat / organic", "—", "1.0", "1.0", "Direct use of EM"],
+        ["Soft clay (NC)", "5–8", "0.67", "1.5", ""],
+        ["Stiff clay (OC)", "8–14", "0.50", "2.0", ""],
+        ["Loose sand", "7–10", "0.33", "3.0", ""],
+        ["Medium dense sand", "10–14", "0.33", "3.0", ""],
+        ["Dense sand", "12–16", "0.50", "2.0", ""],
+        ["Silt", "8–12", "0.50", "2.0", ""],
+        ["Weathered rock", "> 14", "0.33–0.50", "2.0–3.0", ""],
+        ["Intact rock", "> 16", "0.33", "3.0", ""]
+      ]
+    },
+    "source": "Menard (1975), Baguelin et al. (1978), NF P 94-261"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.tbl-003",
+    "title": "Typical Pressuremeter Results by Soil Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "pL* (kPa)", "EM (MPa)", "EM/pL*", "Notes"],
+      "rows": [
+        ["Very soft clay", "25–100", "0.2–1.5", "5–12", ""],
+        ["Soft clay", "100–300", "1.5–5", "7–15", ""],
+        ["Firm clay", "300–600", "5–15", "10–20", ""],
+        ["Stiff clay", "600–1500", "10–50", "12–25", ""],
+        ["Loose sand", "100–500", "2–10", "7–12", "Below WT difficult"],
+        ["Medium dense sand", "500–1500", "10–30", "10–15", ""],
+        ["Dense sand", "1500–3000", "30–80", "12–18", ""],
+        ["Gravel", "1000–5000", "20–100", "10–20", "Difficult to test"],
+        ["Weak rock", "2000–5000", "50–200", "15–30", ""],
+        ["Sound rock", "> 5000", "> 200", "> 20", "Rock pressuremeter needed"]
+      ]
+    },
+    "source": "Baguelin et al. (1978), Clarke (1995), French practice"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.tbl-004",
+    "title": "DMT Constrained Modulus Factor (RM)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Condition", "RM Formula", "Typical RM Range", "Notes"],
+      "rows": [
+        ["Clay (ID < 0.6), KD > 10", "RM = 0.14 + 2.36 × log(KD)", "0.8–3.0", "OC clay"],
+        ["Clay (ID < 0.6), KD = 2", "RM = 0.14 + 2.36 × log(2) = 0.85", "~0.85", "NC clay baseline"],
+        ["Silt (0.6 < ID < 1.8)", "RM = RM₀ + (2.5 - RM₀) × log(KD)", "0.5–3.0", "RM₀ depends on ID"],
+        ["Sand (ID > 1.8), KD > 10", "RM = 0.5 + 2.0 × log(KD)", "1.5–4.0", "OC or dense sand"],
+        ["Sand (ID > 1.8), KD < 10", "RM = RM₀ + (2.5 - RM₀) × log(KD)", "0.5–3.0", ""],
+        ["All soils: M from ED", "M = RM × ED", "—", "M is then used directly for settlement"]
+      ]
+    },
+    "source": "Marchetti (1980), Marchetti et al. (2001)"
+  },
+  {
+    "id": "field-exploration.pressuremeter-dilatometer.tbl-005",
+    "title": "DMT vs CPT — Parameter Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Parameter", "DMT Provides", "CPT Provides", "Which Is Better"],
+      "rows": [
+        ["Soil type", "ID classification", "SBTn from Qtn-Fr", "CPT (continuous, more refined zones)"],
+        ["OCR", "From KD — good for clays", "From Qt — good for clays", "Comparable; DMT may be slightly better"],
+        ["K₀", "From KD (approximate)", "Not directly measured", "DMT (only in-situ test besides SBPMT)"],
+        ["Su", "From KD", "From qt/Nkt or Δu", "Comparable; CPT is more established"],
+        ["φ'", "Not directly (through M)", "From Qtn correlations", "CPT (more correlations available)"],
+        ["Modulus (M)", "From ED → M via RM", "From qt → αM correlation", "Comparable; DMT somewhat better for M"],
+        ["Liquefaction", "KD-based CRR (less common)", "qc1Ncs-based CRR (standard)", "CPT (much more data, established curves)"],
+        ["Profiling resolution", "Every 200 mm", "Every 10–50 mm", "CPT (much higher resolution)"],
+        ["Continuous pore pressure", "No", "Yes (u2 in CPTU)", "CPT"]
+      ]
+    },
+    "source": "Marchetti et al. (2001), Mayne (2007)"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "id": "water-infra.water-storage-tanks",
+  "name": "Water Storage Tanks — Design & Sizing",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.distribution",
+  "dependencies": [
+    "water-infra.pipeline-hydraulics",
+    "concrete.mix-design"
+  ],
+  "tags": ["storage-tank", "elevated-tank", "standpipe", "ground-level", "reservoir", "clearwell", "equalization", "fire-storage", "turnover", "mixing", "AWWA-D100", "AWWA-D110", "AWWA-D115", "seismic"],
+  "standards": ["AWWA-D100", "AWWA-D110", "AWWA-D115", "AWWA-M42"],
+  "key_references": [
+    "AWWA M42 — Steel Water-Storage Tanks",
+    "AWWA D100 — Welded Carbon Steel Tanks for Water Storage",
+    "AWWA D110 — Wire- and Strand-Wound Prestressed Concrete Water Tanks",
+    "10 States Standards"
+  ],
+  "equation_count": 8,
+  "concept_count": 16,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

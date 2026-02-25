@@ -1,0 +1,90 @@
+[
+  {
+    "id": "water-infra.pump-hydraulics.tbl-001",
+    "title": "Pump Type Selection by Specific Speed",
+    "type": "classification",
+    "data": {
+      "headers": ["Ns (US)", "ns (SI)", "Impeller Type", "Head Range (m)", "Flow Range", "Typical Application"],
+      "rows": [
+        ["500–2000", "10–40", "Radial, low Ns", "30–300+", "Low-moderate", "Booster, high-pressure, small systems"],
+        ["2000–4000", "40–80", "Radial, high Ns", "15–60", "Moderate", "Water utility standard, distribution"],
+        ["4000–7000", "80–140", "Mixed flow (Francis)", "8–30", "Moderate-high", "Large pump stations, water supply"],
+        ["7000–10000", "140–200", "Mixed flow", "3–15", "High", "Large-volume transfer, irrigation"],
+        ["10000–15000+", "200–300+", "Axial flow (propeller)", "1–6", "Very high", "Flood control, stormwater, low-lift irrigation"]
+      ]
+    },
+    "source": "Hydraulic Institute, Karassik (2008)"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.tbl-002",
+    "title": "Typical Pump Efficiency Ranges",
+    "type": "reference",
+    "data": {
+      "headers": ["Pump Type / Size", "Efficiency at BEP (%)", "Notes"],
+      "rows": [
+        ["Small centrifugal (< 20 L/s)", "60–75", "Lower efficiency due to proportionally higher losses"],
+        ["Medium centrifugal (20–200 L/s)", "75–85", "Standard water utility range"],
+        ["Large centrifugal (> 200 L/s)", "82–90", "Highest efficiency, custom impeller design"],
+        ["Vertical turbine (deep-set)", "75–85", "Line shaft and bearing losses reduce efficiency"],
+        ["Submersible", "70–82", "Motor heat dissipation in water aids motor efficiency"],
+        ["Axial flow / propeller", "80–90", "High efficiency at design point, steep curve"],
+        ["Positive displacement", "60–85", "Efficiency relatively constant with flow"]
+      ]
+    },
+    "source": "Hydraulic Institute, manufacturer data"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.tbl-003",
+    "title": "Vapor Pressure of Water (for NPSH Calculations)",
+    "type": "reference",
+    "data": {
+      "headers": ["Temperature (°C)", "Pv (kPa)", "Pv/(ρg) (m)", "Notes"],
+      "rows": [
+        ["5", "0.87", "0.09", "Cold water — minimal vapor pressure effect"],
+        ["10", "1.23", "0.13", ""],
+        ["15", "1.71", "0.17", ""],
+        ["20", "2.34", "0.24", "Standard design temperature"],
+        ["25", "3.17", "0.32", ""],
+        ["30", "4.24", "0.43", ""],
+        ["40", "7.38", "0.75", "Warm climate, un-shaded wet well"],
+        ["50", "12.34", "1.26", "Industrial applications"],
+        ["60", "19.94", "2.03", ""]
+      ]
+    },
+    "source": "Standard thermodynamic tables"
+  },
+  {
+    "id": "water-infra.pump-hydraulics.tbl-004",
+    "title": "Standard Motor Speeds (60 Hz)",
+    "type": "reference",
+    "data": {
+      "headers": ["Poles", "Synchronous Speed (rpm)", "Typical Full-Load Speed (rpm)", "Common Application"],
+      "rows": [
+        ["2", "3600", "3450–3560", "Small pumps, high-Ns applications"],
+        ["4", "1800", "1750–1785", "Most common for pumps — best balance"],
+        ["6", "1200", "1150–1185", "Larger pumps, lower Ns, reduced wear"],
+        ["8", "900", "870–890", "Very large pumps, axial flow"],
+        ["10", "720", "690–710", "Large axial flow, low speed"],
+        ["12", "600", "575–590", "Large vertical turbine"]
+      ]
+    },
+    "source": "NEMA MG 1, general practice. For 50 Hz: multiply synchronous speed by 50/60."
+  },
+  {
+    "id": "water-infra.pump-hydraulics.tbl-005",
+    "title": "VFD Application Guidelines for Pump Stations",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["System Characteristic", "VFD Benefit", "Estimated Energy Savings", "Notes"],
+      "rows": [
+        ["High static head, low friction", "Moderate", "10–25%", "Speed reduction limited — pump must overcome static head at any speed"],
+        ["Low static head, high friction", "Excellent", "30–60%", "Cubic law applies well — greatest savings potential"],
+        ["Constant-flow demand", "Minimal", "< 10%", "Soft start and power quality benefits remain"],
+        ["Highly variable demand", "Excellent", "25–50%", "VFD matches pump output to demand continuously"],
+        ["Multiple pumps, staged", "Good", "15–30%", "Lead pump on VFD, others constant speed"],
+        ["All pumps on VFD", "Best control", "20–50%", "Maximum flexibility and efficiency"]
+      ]
+    },
+    "source": "Hydraulic Institute, DOE Pump System Assessment Tool (PSAT), general practice"
+  }
+]

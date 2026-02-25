@@ -1,0 +1,92 @@
+[
+  {
+    "id": "field-exploration.offshore-marine.tbl-001",
+    "title": "Marine Geophysical Survey Methods — Selection Guide",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Frequency Range", "Penetration", "Resolution", "Primary Purpose"],
+      "rows": [
+        ["Multibeam echo sounder (MBES)", "12–400 kHz", "Seabed surface only", "0.1–1 m (depth-dependent)", "Bathymetry mapping, seabed morphology"],
+        ["Side-scan sonar", "100–900 kHz", "Seabed surface only", "0.1–1 m lateral", "Seabed texture, object detection, debris, outcrops"],
+        ["Chirp sub-bottom profiler", "2–16 kHz", "10–50 m", "0.05–0.5 m", "Shallow stratigraphy, soft sediment layers"],
+        ["Boomer sub-bottom", "0.5–5 kHz", "50–100 m", "0.5–1 m", "Intermediate stratigraphy, engineering depths"],
+        ["Sparker sub-bottom", "0.1–1 kHz", "100–500 m", "1–2 m", "Deep stratigraphy, bedrock mapping"],
+        ["Ultra-high resolution seismic (UHRS)", "0.5–4 kHz", "50–200 m", "0.25–1 m", "Wind farm / pipeline route, detailed stratigraphy"],
+        ["Marine resistivity / EM", "DC–10 kHz", "5–50 m", "1–5 m", "Saltwater intrusion, contamination, peat layers"],
+        ["Magnetometer", "N/A", "Near-surface objects", "1–5 m lateral", "Ferrous object detection (UXO, pipelines, anchors)"]
+      ]
+    },
+    "source": "OSIG guidelines, SUT guidance, general practice"
+  },
+  {
+    "id": "field-exploration.offshore-marine.tbl-002",
+    "title": "Marine Sampling and In-Situ Testing Methods",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Sample Type", "Max Depth Below Seabed", "Soil Types", "Quality / Notes"],
+      "rows": [
+        ["Grab sampler (Van Veen, Shipek)", "Disturbed surficial", "0.05–0.20 m", "All soft seabed", "Classification only; disturbed"],
+        ["Box corer", "Intact surficial block", "0.3–0.6 m", "Soft clay, silt", "Preserves seabed interface; good for shallow strength"],
+        ["Gravity corer", "Continuous core", "3–6 m", "Soft clay, silt", "Simple deployment; core disturbance from impact"],
+        ["Piston corer (Kullenberg)", "Continuous core", "10–30 m", "Soft-medium clay", "Better recovery than gravity; piston reduces friction"],
+        ["Vibrocore", "Continuous core", "3–12 m", "Sand, silt, soft clay", "Vibration aids penetration in granular soils"],
+        ["Seabed CPT (Neptun, Penfeld)", "In-situ test", "3–40 m", "All except boulders", "Continuous profiling; no sample recovery"],
+        ["Seabed drilling (jack-up or vessel)", "Core/samples + SPT/CPT", "50–200+ m", "All", "Full geotechnical investigation; weather-dependent"],
+        ["Downhole CPT (from vessel drilling)", "In-situ test", "100+ m", "All", "Pushed through drill string; alternates with sampling"]
+      ]
+    },
+    "source": "ISO 19901-8, OSIG guidelines, FHWA GEC-5"
+  },
+  {
+    "id": "field-exploration.offshore-marine.tbl-003",
+    "title": "Platform Types for Marine Geotechnical Investigation",
+    "type": "classification",
+    "data": {
+      "headers": ["Platform Type", "Water Depth Range", "Sea State Limit (Hs)", "Capabilities", "Cost Relative"],
+      "rows": [
+        ["Jack-up barge", "0–60 m", "Unlimited (once jacked)", "Full drilling, CPT, sampling; most stable", "High mobilization; moderate daily rate"],
+        ["Anchored barge (flat-deck)", "0–30 m", "0.5–1.5 m", "Drilling, CPT with heave compensation", "Low cost; very weather-sensitive"],
+        ["DP vessel (Dynamic Positioning)", "20–3000+ m", "2.0–3.5 m", "Full drilling and CPT; deepwater capability", "Highest cost; best for deepwater"],
+        ["Small workboat + seabed equipment", "0–100 m", "1.0–2.0 m", "Seabed CPT, vibrocore, grab sampling", "Low cost; limited to seabed-deployed tools"],
+        ["Jetted/crane-deployed from shore/bridge", "0–15 m", "N/A (sheltered)", "CPT, vibrocore in nearshore/river", "Lowest cost; very limited depth/distance"]
+      ]
+    },
+    "source": "OSIG, SUT Marine Site Investigation guidance, industry practice"
+  },
+  {
+    "id": "field-exploration.offshore-marine.tbl-004",
+    "title": "IHO Survey Order Requirements (S-44, 6th Edition)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Survey Order", "THU (95%)", "TVU (95%)", "Full Seabed Coverage?", "Typical Application"],
+      "rows": [
+        ["Exclusive Order", "1 m", "a=0.15m, b=0.0075", "Yes (MBES mandatory)", "Harbors, berths, critical underkeel clearance"],
+        ["Special Order", "2 m", "a=0.25m, b=0.0075", "Yes (MBES mandatory)", "Harbors, approach channels, pipelines"],
+        ["Order 1a", "5m + 5%d", "a=0.50m, b=0.013", "Yes", "General navigation, offshore construction"],
+        ["Order 1b", "5m + 5%d", "a=0.50m, b=0.013", "No", "General navigation, moderate depths"],
+        ["Order 2", "20m + 10%d", "a=1.0m, b=0.023", "No", "Offshore, deep water reconnaissance"]
+      ]
+    },
+    "source": "IHO S-44 Ed. 6 (2020). TVU = √(a² + (b×d)²) where d = depth in m. THU = Total Horizontal Uncertainty."
+  },
+  {
+    "id": "field-exploration.offshore-marine.tbl-005",
+    "title": "Typical Acoustic Properties of Marine Sediments",
+    "type": "reference",
+    "data": {
+      "headers": ["Sediment Type", "P-wave Velocity (m/s)", "Density (kg/m³)", "Impedance Z (×10⁶)", "Reflection Coeff vs Water"],
+      "rows": [
+        ["Water (seawater)", "1500", "1025", "1.54", "—"],
+        ["Very soft clay / mud", "1450–1550", "1200–1500", "1.7–2.3", "0.05–0.20"],
+        ["Firm clay", "1550–1700", "1500–1800", "2.3–3.1", "0.20–0.30"],
+        ["Stiff clay", "1700–2000", "1800–2100", "3.1–4.2", "0.30–0.45"],
+        ["Loose sand", "1600–1800", "1700–2000", "2.7–3.6", "0.25–0.40"],
+        ["Dense sand / gravel", "1800–2200", "2000–2200", "3.6–4.8", "0.40–0.50"],
+        ["Sandstone", "2500–4500", "2200–2600", "5.5–11.7", "0.55–0.75"],
+        ["Limestone", "3000–6000", "2400–2700", "7.2–16.2", "0.65–0.80"],
+        ["Granite / basalt", "4500–6500", "2600–3000", "11.7–19.5", "0.75–0.85"]
+      ]
+    },
+    "source": "Hamilton & Bachman (1982), Sheriff & Geldart (1995), general geophysics"
+  }
+]

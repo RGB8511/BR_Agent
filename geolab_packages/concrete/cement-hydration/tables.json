@@ -1,0 +1,85 @@
+[
+  {
+    "id": "concrete.foundations.cement-hydration.tbl-001",
+    "title": "Portland Cement Types (ASTM C150)",
+    "type": "classification",
+    "data": {
+      "headers": ["Type", "Description", "C₃A Limit", "C₃S Limit", "Key Use"],
+      "rows": [
+        ["I", "General purpose", "No limit", "No limit", "Default — most common"],
+        ["II", "Moderate sulfate resistance / moderate heat", "≤ 8%", "No limit", "Foundations in moderate sulfate soil"],
+        ["III", "High early strength", "No limit", "No limit", "Cold weather, fast turnaround"],
+        ["IV", "Low heat of hydration", "≤ 7%", "≤ 35%", "Mass concrete (rarely available)"],
+        ["V", "High sulfate resistance", "≤ 5%", "No limit", "Severe sulfate exposure"]
+      ]
+    },
+    "source": "ASTM C150"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.tbl-002",
+    "title": "Cement Compound Properties",
+    "type": "reference",
+    "data": {
+      "headers": ["Compound", "Abbreviation", "Typical %", "Reaction Rate", "Heat (J/g)", "Contribution"],
+      "rows": [
+        ["Tricalcium silicate", "C₃S", "50–70", "Moderate-fast", "500", "Early + ultimate strength"],
+        ["Dicalcium silicate", "C₂S", "15–30", "Slow", "250", "Late strength (28+ days)"],
+        ["Tricalcium aluminate", "C₃A", "5–12", "Very fast", "870", "Early setting, heat, sulfate vulnerability"],
+        ["Tetracalcium aluminoferrite", "C₄AF", "5–15", "Moderate", "420", "Minor strength, gray color"]
+      ]
+    },
+    "source": "Mindess, Young & Darwin (2003)"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.tbl-003",
+    "title": "SCM Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["SCM", "ASTM Standard", "Typical Replacement %", "Key Benefits", "Key Limitations"],
+      "rows": [
+        ["Fly ash (Class F)", "C618", "15–35", "Reduces heat, improves durability, ASR mitigation", "Slow early strength, variable quality"],
+        ["Fly ash (Class C)", "C618", "15–30", "Self-cementing + pozzolanic", "Less effective for ASR, sulfate"],
+        ["GGBFS (slag)", "C989", "25–70", "Sulfate resistance, ASR mitigation, low heat", "Slow early strength, light color"],
+        ["Silica fume", "C1240", "5–10", "Very low permeability, high strength", "High water demand, cost, sticky"],
+        ["Natural pozzolan", "C618 (Class N)", "15–30", "Varies by source", "Requires qualification testing"],
+        ["Metakaolin", "C618 (Class N)", "5–15", "High reactivity, white color", "High water demand, cost"]
+      ]
+    },
+    "source": "Various — ACI 232, ACI 233, ACI 234"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.tbl-004",
+    "title": "Typical Blaine Fineness by Cement Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Cement Type", "Blaine (m²/kg)", "Notes"],
+      "rows": [
+        ["Type I", "300–400", "Standard grind"],
+        ["Type II", "300–400", "Similar to Type I"],
+        ["Type III", "450–600+", "Finer grind for early strength"],
+        ["Type IV", "280–320", "Coarser grind for low heat"],
+        ["Type V", "280–380", ""],
+        ["Silica fume", "15,000–25,000", "Ultrafine (BET method, not Blaine)"]
+      ]
+    },
+    "source": "Neville (2011)"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.tbl-005",
+    "title": "Strength Development Over Time (Typical, w/c = 0.50)",
+    "type": "reference",
+    "data": {
+      "headers": ["Age", "Type I (%28d)", "Type III (%28d)", "Type I + 30% FA (%28d)"],
+      "rows": [
+        ["1 day", "25–35", "40–55", "15–25"],
+        ["3 days", "45–55", "60–75", "30–40"],
+        ["7 days", "65–75", "80–90", "50–60"],
+        ["28 days", "100", "100", "100"],
+        ["56 days", "105–115", "100–105", "110–125"],
+        ["90 days", "110–120", "100–110", "120–140"],
+        ["365 days", "115–130", "105–115", "130–160"]
+      ]
+    },
+    "source": "After ACI 209, Neville (2011). Values are approximate % of 28-day strength."
+  }
+]

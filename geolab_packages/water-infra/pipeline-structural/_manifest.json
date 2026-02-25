@@ -1,0 +1,28 @@
+{
+  "id": "water-infra.pipeline-structural",
+  "name": "Pipeline Structural Design — External Loads & Bedding",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.conveyance",
+  "dependencies": [
+    "water-infra.pipeline-design",
+    "geotechnical.foundations.shallow"
+  ],
+  "tags": ["Marston", "Spangler", "Iowa-formula", "bedding-factor", "earth-load", "live-load", "AASHTO", "Cooper-E80", "trench-width", "embankment-load", "flexible-pipe", "rigid-pipe", "deflection", "buckling", "SIDD", "pipe-zone", "haunch", "springline"],
+  "standards": ["ASCE-15", "AWWA-M11", "AWWA-C150", "AASHTO-LRFD-Bridge", "ASTM-C76"],
+  "key_references": [
+    "Moser & Folkman (2008) Buried Pipe Design",
+    "Spangler & Handy (1982) Soil Engineering",
+    "ASCE MOP 60 — Gravity Sanitary Sewer Design and Construction",
+    "AWWA M11 — Steel Pipe",
+    "AWWA C150 — Ductile Iron Pipe Design"
+  ],
+  "equation_count": 10,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

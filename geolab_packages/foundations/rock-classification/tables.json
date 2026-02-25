@@ -1,0 +1,119 @@
+[
+  {
+    "id": "geotechnical.foundations.rock-classification.tbl-001",
+    "title": "ISRM Rock Strength Classification",
+    "type": "classification",
+    "data": {
+      "headers": ["Grade", "Term", "UCS (MPa)", "Field Identification"],
+      "rows": [
+        ["R0", "Extremely weak", "0.25–1", "Indented by thumbnail"],
+        ["R1", "Very weak", "1–5", "Crumbles under firm hammer blows, peeled by knife"],
+        ["R2", "Weak", "5–25", "Peeled by knife with difficulty, shallow indentations by firm hammer blow"],
+        ["R3", "Medium strong", "25–50", "Cannot be scraped or peeled with knife, specimen fractured with single firm hammer blow"],
+        ["R4", "Strong", "50–100", "Specimen requires more than one hammer blow to fracture"],
+        ["R5", "Very strong", "100–250", "Specimen requires many hammer blows to fracture"],
+        ["R6", "Extremely strong", "> 250", "Specimen can only be chipped by hammer"]
+      ]
+    },
+    "source": "ISRM (1981), Brown (1981)"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.tbl-002",
+    "title": "RQD Classification",
+    "type": "classification",
+    "data": {
+      "headers": ["RQD (%)", "Rock Quality"],
+      "rows": [
+        ["0–25", "Very poor"],
+        ["25–50", "Poor"],
+        ["50–75", "Fair"],
+        ["75–90", "Good"],
+        ["90–100", "Excellent"]
+      ]
+    },
+    "source": "Deere (1963)"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.tbl-003",
+    "title": "ISRM Weathering Grades",
+    "type": "classification",
+    "data": {
+      "headers": ["Grade", "Term", "Description"],
+      "rows": [
+        ["W1", "Fresh", "No visible sign of weathering"],
+        ["W2", "Slightly weathered", "Discoloration on major discontinuity surfaces"],
+        ["W3", "Moderately weathered", "< 50% decomposed, noticeably weaker"],
+        ["W4", "Highly weathered", "> 50% decomposed, large pieces cannot be broken by hand"],
+        ["W5", "Completely weathered", "All decomposed to soil, original fabric preserved"],
+        ["W6", "Residual soil", "All decomposed, no original fabric visible"]
+      ]
+    },
+    "source": "ISRM (1981)"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.tbl-004",
+    "title": "Typical UCS Ranges by Rock Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Rock Type", "UCS Range (MPa)", "Typical Value (MPa)"],
+      "rows": [
+        ["Granite", "100–300", "160"],
+        ["Diorite", "100–250", "180"],
+        ["Gabbro", "150–300", "225"],
+        ["Basalt", "100–350", "200"],
+        ["Rhyolite", "50–200", "100"],
+        ["Tuff", "5–50", "20"],
+        ["Sandstone (well-cemented)", "40–200", "80"],
+        ["Sandstone (poorly cemented)", "5–40", "20"],
+        ["Siltstone", "10–80", "40"],
+        ["Mudstone/Shale", "5–50", "20"],
+        ["Limestone", "30–200", "80"],
+        ["Dolostone", "50–200", "100"],
+        ["Gneiss", "100–250", "160"],
+        ["Schist (⊥ foliation)", "50–150", "80"],
+        ["Schist (∥ foliation)", "10–50", "25"],
+        ["Quartzite", "150–350", "250"],
+        ["Marble", "50–200", "100"],
+        ["Slate", "50–200", "100"]
+      ]
+    },
+    "source": "Various — Goodman (1989), Hoek (2007), Wyllie & Mah (2004)"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.tbl-005",
+    "title": "Point Load K Factor by Rock Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Rock Type", "K Factor Range", "Suggested Default"],
+      "rows": [
+        ["Granite, gneiss", "20–25", "22"],
+        ["Basalt, dolerite", "20–25", "22"],
+        ["Sandstone", "15–24", "20"],
+        ["Limestone, dolostone", "15–24", "20"],
+        ["Shale, mudstone", "10–20", "15"],
+        ["Schist, phyllite", "15–25", "20"],
+        ["General (no calibration)", "20–25", "22"]
+      ]
+    },
+    "source": "Various — Bieniawski (1975), Read et al. (1980)"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.tbl-006",
+    "title": "Common Rock-Forming Minerals — Engineering Relevance",
+    "type": "reference",
+    "data": {
+      "headers": ["Mineral", "Mohs Hardness", "Engineering Note"],
+      "rows": [
+        ["Quartz", "7", "Very hard, abrasive, chemically stable. Dominates sandstone, quartzite, granite."],
+        ["Feldspar (K-spar, plagioclase)", "6", "Weathers to clay minerals. Key weathering indicator in granites."],
+        ["Mica (muscovite, biotite)", "2.5–3", "Low shear strength along cleavage. Causes slabbing in metamorphics."],
+        ["Calcite", "3", "Soluble in acidic water → karst. Defines limestone/marble."],
+        ["Dolomite", "3.5–4", "Similar to calcite but slower dissolution."],
+        ["Clay minerals", "1–2", "Very low hardness, absorb water, swell. Products of feldspar weathering."],
+        ["Gypsum", "2", "Soluble. Problematic in foundations (dissolution voids)."],
+        ["Pyrite", "6–6.5", "Oxidizes to sulfuric acid → sulfate attack on concrete, acid rock drainage."]
+      ]
+    },
+    "source": "Various mineralogy references"
+  }
+]

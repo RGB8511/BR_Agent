@@ -1,0 +1,94 @@
+[
+  {
+    "id": "remote-sensing.concrete-inspection.tbl-001",
+    "title": "Camera/Sensor Requirements for Concrete Defect Detection",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Defect Type", "Minimum GSD", "Recommended GSD", "Sensor Type", "Notes"],
+      "rows": [
+        ["Hairline cracks (< 0.2 mm)", "0.2 mm/px", "0.1 mm/px", "High-res RGB (≥ 45 MP)", "Very close range required; may need macro lens"],
+        ["Fine cracks (0.2–0.5 mm)", "0.5 mm/px", "0.3 mm/px", "RGB (≥ 20 MP)", "Standard inspection target; 3–5 m standoff typical"],
+        ["Medium cracks (0.5–2 mm)", "1.0 mm/px", "0.5 mm/px", "RGB", "Readily detectable at moderate standoff"],
+        ["Wide cracks (> 2 mm)", "3.0 mm/px", "1.0 mm/px", "RGB", "Detectable at reconnaissance level"],
+        ["Spalling (shallow, < 25 mm)", "2.0 mm/px", "1.0 mm/px", "RGB + LiDAR for depth", "Depth measurement requires 3D"],
+        ["Spalling (deep, > 25 mm)", "5.0 mm/px", "2.0 mm/px", "RGB + LiDAR", "Exposed rebar visible at coarser GSD"],
+        ["Delamination (subsurface)", "N/A (thermal)", "N/A", "LWIR thermal (≥ 640×512)", "Not visible in RGB; requires thermal IR or chain drag"],
+        ["Rebar location/corrosion halo", "1.0 mm/px", "0.5 mm/px", "RGB for staining; GPR for rebar", "Rust staining visible in RGB; rebar depth requires GPR"],
+        ["Efflorescence / leaching", "3.0 mm/px", "1.0 mm/px", "RGB", "White deposits readily visible with good contrast"]
+      ]
+    },
+    "source": "FHWA (2019), Wells & Lovelace (2018), general practice"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.tbl-002",
+    "title": "UAS Platform Selection for Concrete Inspection",
+    "type": "classification",
+    "data": {
+      "headers": ["Platform Type", "Payload", "Flight Time", "Best Application", "Limitations"],
+      "rows": [
+        ["Small multirotor (DJI Mavic class)", "< 0.5 kg", "25–40 min", "Reconnaissance, overview imagery, thermal screening", "Limited payload; GSD limited by small sensor"],
+        ["Medium multirotor (DJI M300/M350 class)", "1–3 kg", "30–50 min", "Primary inspection platform; carries high-res + thermal + LiDAR", "Wind sensitivity; GPS-denied environments challenging"],
+        ["Heavy-lift multirotor", "5–15 kg", "15–30 min", "Specialized sensors (heavy LiDAR, multi-spectral)", "Short flight time; large; expensive"],
+        ["Confined-space / caged drone", "< 0.5 kg", "5–15 min", "Interior inspection (culverts, tunnels, dam galleries)", "Limited payload; contact-tolerant cage required"],
+        ["Tethered multirotor", "1–3 kg", "Unlimited (powered)", "Extended observation, live video feed to inspectors", "Limited range to tether point; obstruction risk"]
+      ]
+    },
+    "source": "FHWA (2019), industry practice"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.tbl-003",
+    "title": "Concrete Deterioration Types — Remote Detection Capability",
+    "type": "classification",
+    "data": {
+      "headers": ["Deterioration Type", "RGB Camera", "Thermal IR", "LiDAR/3D", "GPR", "Detection Confidence"],
+      "rows": [
+        ["Surface cracking (pattern/linear)", "Excellent", "Fair (if wide)", "Fair (if wide/deep)", "N/A", "High — primary detection method"],
+        ["Spalling / popouts", "Excellent", "Fair", "Excellent (depth)", "Fair", "High — RGB + 3D for quantification"],
+        ["Delamination (subsurface)", "None (unless cracked)", "Excellent", "None", "Good", "High — thermal or GPR required"],
+        ["Rebar corrosion (surface staining)", "Good", "Poor", "None", "Excellent (rebar location)", "Moderate — staining visible; severity unknown"],
+        ["Efflorescence / leaching", "Excellent", "None", "None", "None", "High — visual detection"],
+        ["Alkali-silica reaction (ASR)", "Good (pattern cracking)", "Fair", "Fair", "None", "Moderate — pattern cracking + gel staining"],
+        ["Freeze-thaw scaling", "Good", "Fair", "Good (surface loss)", "None", "High — surface roughening + loss"],
+        ["Erosion / abrasion", "Good", "None", "Excellent (volume loss)", "None", "High — 3D comparison quantifies material loss"],
+        ["Joint deterioration", "Good", "Fair (moisture)", "Good (gap width)", "None", "Moderate — multi-sensor approach best"],
+        ["Structural displacement / deformation", "Fair", "None", "Excellent", "None", "High — LiDAR or repeat photogrammetry"]
+      ]
+    },
+    "source": "ACI 201.1R, FHWA, general practice"
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.tbl-004",
+    "title": "Crack Width Significance — Structural Assessment",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Crack Width (mm)", "Significance", "Typical Cause", "Action"],
+      "rows": [
+        ["< 0.1", "Cosmetic / negligible", "Plastic shrinkage, curing", "Monitor; no action typically needed"],
+        ["0.1–0.3", "Minor — may allow moisture ingress", "Drying shrinkage, thermal, early loading", "Monitor; seal if aggressive environment"],
+        ["0.3–0.5", "Moderate — corrosion risk to rebar", "Structural loading, restraint, settlement", "Investigate cause; seal or repair; monitor"],
+        ["0.5–1.0", "Significant — active water/air penetration", "Overload, differential settlement, ASR", "Engineering assessment; structural repair"],
+        ["1.0–3.0", "Major — structural concern", "Structural distress, foundation movement", "Immediate engineering evaluation; stabilization"],
+        ["> 3.0", "Severe — possible structural failure", "Overstress, seismic damage, severe settlement", "Emergency assessment; load restriction or closure"]
+      ]
+    },
+    "source": "ACI 224R, EN 1992-1-1 Table 7.1N, general practice. Note: context-dependent — cracks in prestressed members more significant than in non-structural elements."
+  },
+  {
+    "id": "remote-sensing.concrete-inspection.tbl-005",
+    "title": "Optimal Conditions for Thermal IR Concrete Inspection",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Optimal Condition", "Avoid", "Reason"],
+      "rows": [
+        ["Sky condition", "Clear to partly cloudy", "Heavy overcast, rain", "Solar radiation drives thermal contrast"],
+        ["Wind speed", "< 15 km/h (< 10 mph)", "> 25 km/h", "Wind convection reduces surface thermal contrasts"],
+        ["Time of day (heating)", "10:00 AM – 2:00 PM (solar heating)", "Early morning, late evening", "Maximum solar input produces strongest contrasts"],
+        ["Time of day (cooling)", "2–6 hours after sunset", "Midnight–dawn (equilibrium)", "Radiative cooling differentiates delaminated vs. sound"],
+        ["Surface moisture", "Dry surface", "Wet surface, recent rain", "Evaporative cooling masks delamination signatures"],
+        ["Ambient temperature", "> 10°C; daily range > 10°C", "Below freezing; isothermal days", "Need sufficient thermal excitation for contrast"],
+        ["Surface color/texture", "Uniform color/texture preferred", "Multi-color patches, shadow patterns", "Color/texture variations create false thermal contrasts"]
+      ]
+    },
+    "source": "ASTM D4788, Maldague (2001), FHWA guidelines"
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "id": "coatings.foundations.corrosion.eq-001",
+    "title": "Nernst Equation",
+    "equation": "E = E° - (RT/nF) × ln(a_products/a_reactants)",
+    "simplified": "E = E° - (0.0592/n) × log(Q) at 25°C",
+    "variables": {
+      "E": {"description": "Electrode potential", "units": "V"},
+      "E°": {"description": "Standard electrode potential", "units": "V"},
+      "R": {"description": "Gas constant (8.314)", "units": "J/mol·K"},
+      "T": {"description": "Temperature", "units": "K"},
+      "n": {"description": "Number of electrons transferred", "units": "dimensionless"},
+      "F": {"description": "Faraday's constant (96485)", "units": "C/mol"}
+    },
+    "source": "Nernst (1889)"
+  },
+  {
+    "id": "coatings.foundations.corrosion.eq-002",
+    "title": "Faraday's Law of Electrolysis",
+    "equation": "m = (M × I × t) / (n × F)",
+    "variables": {
+      "m": {"description": "Mass of metal dissolved or deposited", "units": "g"},
+      "M": {"description": "Atomic/molar mass of metal", "units": "g/mol"},
+      "I": {"description": "Current", "units": "A"},
+      "t": {"description": "Time", "units": "s"},
+      "n": {"description": "Number of electrons per atom (valence)", "units": "dimensionless"},
+      "F": {"description": "Faraday's constant (96485)", "units": "C/mol"}
+    },
+    "source": "Faraday (1834)"
+  },
+  {
+    "id": "coatings.foundations.corrosion.eq-003",
+    "title": "Corrosion Rate from Weight Loss",
+    "equation": "CR = (K × W) / (A × T × ρ)",
+    "variables": {
+      "CR": {"description": "Corrosion rate", "units": "mpy (mils per year)"},
+      "K": {"description": "Constant = 3.45 × 10⁶ (for mpy)", "units": "dimensionless"},
+      "W": {"description": "Weight loss", "units": "g"},
+      "A": {"description": "Exposed area", "units": "cm²"},
+      "T": {"description": "Exposure time", "units": "hours"},
+      "ρ": {"description": "Metal density", "units": "g/cm³"}
+    },
+    "applicability": "1 mpy = 0.0254 mm/yr. For mm/yr: K = 8.76 × 10⁴.",
+    "source": "NACE/ASTM G1"
+  },
+  {
+    "id": "coatings.foundations.corrosion.eq-004",
+    "title": "Corrosion Rate from Corrosion Current Density",
+    "equation": "CR (mpy) = 0.129 × (i_corr × M) / (n × ρ)",
+    "variables": {
+      "i_corr": {"description": "Corrosion current density", "units": "μA/cm²"},
+      "M": {"description": "Atomic weight", "units": "g/mol"},
+      "n": {"description": "Number of electrons", "units": "dimensionless"},
+      "ρ": {"description": "Metal density", "units": "g/cm³"}
+    },
+    "applicability": "For steel: i_corr of 1 μA/cm² ≈ 0.46 mpy ≈ 0.012 mm/yr.",
+    "source": "ASTM G102"
+  },
+  {
+    "id": "coatings.foundations.corrosion.eq-005",
+    "title": "Tafel Equation",
+    "equation": "η = β × log(i / i₀)",
+    "variables": {
+      "η": {"description": "Overpotential (deviation from equilibrium)", "units": "V"},
+      "β": {"description": "Tafel slope", "units": "V/decade (typically 0.06–0.12)"},
+      "i": {"description": "Current density", "units": "A/cm²"},
+      "i₀": {"description": "Exchange current density", "units": "A/cm²"}
+    },
+    "source": "Tafel (1905)"
+  },
+  {
+    "id": "coatings.foundations.corrosion.eq-006",
+    "title": "Pitting Resistance Equivalent Number (PREN)",
+    "equation": "PREN = %Cr + 3.3(%Mo) + 16(%N)",
+    "applicability": "Higher PREN = better pitting/crevice resistance. PREN > 32–34 for seawater applications. PREN > 40 for very aggressive chloride environments. Some formulas include W: PREN_W = %Cr + 3.3(%Mo + 0.5%W) + 16(%N).",
+    "source": "ASTM G48, various — widely used industry metric"
+  },
+  {
+    "id": "coatings.foundations.corrosion.eq-007",
+    "title": "Galvanic Corrosion — Area Ratio Effect",
+    "equation": "i_corr(anode) ∝ (A_cathode / A_anode) × Δ(driving potential)",
+    "applicability": "Large cathode / small anode = accelerated corrosion. Classic example: small steel fastener in large copper plate. Design rule: if dissimilar metals are unavoidable, make the anode the larger area.",
+    "source": "Fontana (1986)"
+  },
+  {
+    "id": "coatings.foundations.corrosion.eq-008",
+    "title": "Stern-Geary Equation (Polarization Resistance)",
+    "equation": "i_corr = B / R_p",
+    "variables": {
+      "i_corr": {"description": "Corrosion current density", "units": "A/cm²"},
+      "B": {"description": "Stern-Geary coefficient = (β_a × β_c) / [2.303(β_a + β_c)]", "units": "V"},
+      "R_p": {"description": "Polarization resistance (ΔE/Δi near E_corr)", "units": "Ω·cm²"}
+    },
+    "applicability": "Linear polarization resistance (LPR) technique. B typically 13–52 mV. For steel in concrete: B ≈ 26 mV (active) or 52 mV (passive).",
+    "source": "Stern & Geary (1957), ASTM G59"
+  }
+]

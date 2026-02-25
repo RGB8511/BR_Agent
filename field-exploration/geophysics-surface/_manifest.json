@@ -1,0 +1,25 @@
+{
+  "id": "field-exploration.geophysics-surface",
+  "name": "Surface Geophysical Methods",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.geophysics",
+  "dependencies": [],
+  "tags": ["seismic-refraction", "MASW", "surface-wave", "Vs30", "GPR", "ground-penetrating-radar", "resistivity", "ERI", "electrical-resistivity-imaging", "EM", "electromagnetic", "FDEM", "TDEM", "gravity", "magnetics", "microgravity", "Vs", "P-wave", "S-wave", "tomography", "2D-profile", "depth-of-investigation"],
+  "standards": ["ASTM-D5777", "ASTM-D6431", "ASTM-D6429", "ASTM-D6639", "ASTM-D7128"],
+  "key_references": [
+    "Reynolds (2011) An Introduction to Applied and Environmental Geophysics",
+    "Telford et al. (1990) Applied Geophysics",
+    "USACE EM 1110-1-1802 Geophysical Exploration",
+    "Park et al. (1999) MASW method",
+    "Loke (2004) Tutorial on 2-D and 3-D Electrical Imaging"
+  ],
+  "equation_count": 10,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

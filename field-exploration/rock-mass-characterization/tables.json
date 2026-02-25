@@ -1,0 +1,111 @@
+[
+  {
+    "id": "field-exploration.rock-mass-characterization.tbl-001",
+    "title": "ISRM Discontinuity Description Parameters",
+    "type": "classification",
+    "data": {
+      "headers": ["Parameter", "Classes", "Measurement Method"],
+      "rows": [
+        ["Orientation", "Dip (0–90°) / Dip Direction (0–360°)", "Geological compass (Brunton or Clar type)"],
+        ["Spacing", "Extremely close < 20 mm | Very close 20–60 | Close 60–200 | Moderate 200–600 | Wide 600–2000 | Very wide > 2000 mm", "Tape measure normal to set"],
+        ["Persistence", "Very low < 1 m | Low 1–3 | Medium 3–10 | High 10–20 | Very high > 20 m", "Tape measure along trace"],
+        ["Roughness (large)", "Stepped | Undulating | Planar", "Visual assessment of waviness over 1–10 m"],
+        ["Roughness (small)", "Rough | Smooth | Slickensided", "Touch/visual; JRC profile comb for quantitative"],
+        ["Wall strength", "Same as intact rock | Weathered (lower)", "Schmidt hammer on joint wall vs. intact surface"],
+        ["Aperture", "Closed < 0.1 mm | Very tight 0.1–0.25 | Tight 0.25–0.5 | Partly open 0.5–2.5 | Open 2.5–10 | Moderately wide 10–100 | Wide > 100 mm", "Feeler gauge or ruler"],
+        ["Infilling", "Type: clay/silt/calcite/quartz/breccia/gouge | Thickness | Strength", "Visual + sampling for lab testing"],
+        ["Seepage", "Dry | Damp | Wet | Dripping | Flowing (with rate estimate)", "Visual observation + flow measurement"],
+        ["Number of sets", "Massive (0–1) | Two sets | Three sets | Four+ sets | Crushed/random", "Stereonet cluster analysis"]
+      ]
+    },
+    "source": "ISRM (1978) Suggested Methods for the Quantitative Description of Discontinuities"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.tbl-002",
+    "title": "RMR Rating Tables (Bieniawski 1989) — Summary",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Rating Range", "Key Thresholds"],
+      "rows": [
+        ["R₁: UCS of intact rock", "0–15", "< 1 MPa → 0 pts | 1–5 → 1 | 5–25 → 2 | 25–50 → 4 | 50–100 → 7 | 100–250 → 12 | > 250 → 15"],
+        ["R₂: RQD", "3–20", "< 25% → 3 | 25–50% → 8 | 50–75% → 13 | 75–90% → 17 | 90–100% → 20"],
+        ["R₃: Spacing", "5–20", "< 60 mm → 5 | 60–200 → 8 | 200–600 → 10 | 600–2000 → 15 | > 2000 mm → 20"],
+        ["R₄: Condition", "0–30", "Slickensided or gouge → 0 | Soft fill > 5 mm → 10 | Soft fill < 5 mm → 20 | Slightly rough → 25 | Very rough, unweathered → 30"],
+        ["R₅: Groundwater", "0–15", "Flowing → 0 | Dripping → 4 | Wet → 7 | Damp → 10 | Dry → 15"],
+        ["Orientation adjustment", "-60 to 0", "Very unfavorable → -60 (tunnels) to -25 (slopes) | Favorable → -2 to 0"]
+      ]
+    },
+    "source": "Bieniawski (1989) Engineering Rock Mass Classifications"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.tbl-003",
+    "title": "Q-System Parameter Ratings (Key Values)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Description", "Common Values"],
+      "rows": [
+        ["Jn — Joint set number", "Massive (0.5–1) | One set (2) | One + random (3) | Two sets (4) | Two + random (6) | Three sets (9) | Three + random (12) | Four+ sets (15) | Crushed (20)", "Most rock: 4–12"],
+        ["Jr — Joint roughness", "Discontinuous joints (4) | Rough undulating (3) | Smooth undulating (2) | Slickensided undulating (1.5) | Rough planar (1.5) | Smooth planar (1.0) | Slickensided planar (0.5)", "Typical: 1.0–3.0"],
+        ["Ja — Joint alteration", "Tightly healed (0.75) | Unaltered walls (1.0) | Slightly altered (2.0) | Silty/sandy clay coat (3.0) | Soft clay coat (4.0) | Soft clay fill < 5 mm (6–8) | Swelling clay fill (8–12) | Thick gouge (13–20)", "Wide range: 1–12"],
+        ["Jw — Water reduction", "Dry (1.0) | Minor inflow (0.66) | Moderate (0.5) | Large inflow (0.33) | Exceptionally high inflow (0.1–0.05)", "Most conditions: 0.5–1.0"],
+        ["SRF — Stress", "Low stress (2.5) | Medium stress (1.0) | High stress (0.5–2) | Very high stress (5–400) | Weakness zones (2.5–10)", "Variable; critical parameter"]
+      ]
+    },
+    "source": "Barton, Lien & Lunde (1974), updated Barton (2002)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.tbl-004",
+    "title": "Weathering Grade Classification (ISRM / BS 5930)",
+    "type": "classification",
+    "data": {
+      "headers": ["Grade", "Term", "Description", "Typical Properties"],
+      "rows": [
+        ["W1 / I", "Fresh", "No visible sign of weathering; slight discoloration on major discontinuity surfaces", "Full intact strength; rings under hammer"],
+        ["W2 / II", "Slightly weathered", "Discoloration indicates weathering on discontinuity surfaces; rock may be slightly weaker", "Most strength retained; minor discoloration"],
+        ["W3 / III", "Moderately weathered", "Less than half of rock material decomposed/disintegrated; fresh or discolored rock forms continuous framework", "Significant strength reduction; cannot be broken by hand"],
+        ["W4 / IV", "Highly weathered", "More than half decomposed/disintegrated; discolored material forms continuous framework; in-situ fabric preserved", "Weak; can break by hand with effort; retains structure"],
+        ["W5 / V", "Completely weathered", "All rock material decomposed/disintegrated to soil; original structure still visible", "Soil strength; excavated by hand tools; relict fabric"],
+        ["W6 / VI", "Residual soil", "All rock material converted to soil; no original fabric visible; volume change from original rock", "Soil; no relict structure; may be laterite, saprolite"]
+      ]
+    },
+    "source": "ISRM (1981), BS 5930:2015"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.tbl-005",
+    "title": "GSI Estimation from Field Observation",
+    "type": "classification",
+    "data": {
+      "headers": ["Rock Mass Structure", "Surface Condition: Very Good (rough, fresh)", "Good (rough, slightly weathered)", "Fair (smooth, moderately weathered)", "Poor (slickensided, weathered, clay coating)", "Very Poor (thick clay infill, highly weathered)"],
+      "rows": [
+        ["Intact or Massive (few widely spaced joints)", "90", "80", "70", "55", "45"],
+        ["Blocky (3+ sets, large blocks)", "80", "70", "60", "45", "35"],
+        ["Very Blocky (interlocked, partially disturbed)", "70", "60", "50", "35", "25"],
+        ["Blocky/Disturbed (angular blocks, folded/faulted)", "55", "50", "40", "28", "18"],
+        ["Disintegrated (crushed, heavily broken)", "45", "35", "25", "18", "12"],
+        ["Laminated/Sheared (thin plates, shear zones)", "30", "22", "15", "10", "5"]
+      ]
+    },
+    "source": "Hoek & Marinos (2000), Hoek, Kaiser & Bawden (1995)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.tbl-006",
+    "title": "JRC Standard Roughness Profiles — Descriptive Summary",
+    "type": "reference",
+    "data": {
+      "headers": ["JRC Range", "Description", "Large-Scale / Small-Scale", "Typical Occurrence"],
+      "rows": [
+        ["0–2", "Flat, smooth, planar", "Planar / Smooth or polished", "Bedding planes, faults with gouge, polished slickensides"],
+        ["2–4", "Smooth, slightly undulating", "Planar / Smooth", "Bedding planes, low-relief joints"],
+        ["4–6", "Smooth, undulating", "Undulating / Smooth", "Joints in sedimentary rock"],
+        ["6–8", "Slightly rough, undulating", "Undulating / Slightly rough", "Typical joints in moderate-strength rock"],
+        ["8–10", "Rough, undulating", "Undulating / Rough", "Typical joints in strong rock"],
+        ["10–12", "Rough, undulating, minor steps", "Slightly stepped / Rough", "Joints in crystalline rock"],
+        ["12–14", "Stepped, smooth on steps", "Stepped / Smooth", "Joints in strong brittle rock"],
+        ["14–16", "Stepped, slightly rough", "Stepped / Slightly rough", "Columnar joints, rough stepped"],
+        ["16–18", "Stepped, rough", "Stepped / Rough", "Very rough tension fractures"],
+        ["18–20", "Irregular, stepped, very rough", "Stepped / Very rough", "Fresh tension fractures in strong rock"]
+      ]
+    },
+    "source": "Barton & Choubey (1977), ISRM Suggested Methods"
+  }
+]

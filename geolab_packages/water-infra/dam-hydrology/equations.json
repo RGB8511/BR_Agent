@@ -1,0 +1,126 @@
+[
+  {
+    "id": "water-infra.dam-hydrology.eq-001",
+    "title": "Level-Pool (Modified Puls) Routing — Storage Indication",
+    "equation": "(2S₂/Δt + O₂) = (I₁ + I₂) + (2S₁/Δt - O₁)",
+    "variables": {
+      "S": {"description": "Reservoir storage volume", "units": "m³ or acre-ft"},
+      "O": {"description": "Total outflow (spillway + outlet works)", "units": "m³/s or cfs"},
+      "I": {"description": "Inflow to reservoir", "units": "m³/s or cfs"},
+      "Δt": {"description": "Routing time step", "units": "seconds or hours"},
+      "subscripts 1,2": {"description": "Beginning and end of time step", "units": ""}
+    },
+    "applicability": "Valid for reservoirs where water surface is approximately horizontal. Requires elevation-storage and elevation-discharge curves.",
+    "source": "Puls (1928), USACE HEC-HMS Technical Reference"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-002",
+    "title": "Reservoir Storage-Elevation Relationship (Approximation)",
+    "equation": "S = a × (h - h₀)^b  or  S = Σ[(A_i + A_{i+1})/2 × Δh_i] (prismoidal)",
+    "variables": {
+      "S": {"description": "Storage volume at elevation h", "units": "m³ or acre-ft"},
+      "h": {"description": "Pool elevation", "units": "m or ft"},
+      "h₀": {"description": "Elevation of reservoir bottom", "units": "m or ft"},
+      "A_i": {"description": "Surface area at elevation i (from contour map or DEM)", "units": "m² or acres"},
+      "a, b": {"description": "Regression constants from site-specific area-capacity survey", "units": "varies"}
+    },
+    "source": "General — USBR Flood Hydrology Manual"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-003",
+    "title": "PMP Moisture Maximization Ratio",
+    "equation": "PMP = P_storm × (W_max / W_storm)",
+    "variables": {
+      "PMP": {"description": "Probable maximum precipitation (maximized)", "units": "mm or inches"},
+      "P_storm": {"description": "Observed storm precipitation", "units": "mm or inches"},
+      "W_max": {"description": "Maximum precipitable water for the location and season (from 100-year persisting 12-hr dewpoint)", "units": "mm or inches"},
+      "W_storm": {"description": "Precipitable water during the observed storm (from representative dewpoint)", "units": "mm or inches"}
+    },
+    "applicability": "Storm transposition technique. Ratio W_max/W_storm typically 1.2–1.8. Applied to individual controlling storms, then envelope the results.",
+    "source": "WMO Manual on PMP (WMO-1045), HMR 51/52"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-004",
+    "title": "USBR Simplified Peak Breach Outflow",
+    "equation": "Qp = 19.1 × Hw^1.85",
+    "variables": {
+      "Qp": {"description": "Peak breach outflow", "units": "m³/s"},
+      "Hw": {"description": "Height of water above breach invert at time of failure", "units": "m"}
+    },
+    "applicability": "Regression from historical dam failures. Quick screening estimate. For detailed analysis, use Froehlich (2008) or NWS BREACH model.",
+    "source": "USBR (1982), recalibrated by multiple studies"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-005",
+    "title": "Froehlich (1995) Peak Breach Outflow",
+    "equation": "Qp = 0.607 × Vw^0.295 × Hw^1.24",
+    "variables": {
+      "Qp": {"description": "Peak breach outflow", "units": "m³/s"},
+      "Vw": {"description": "Reservoir volume at time of failure", "units": "m³"},
+      "Hw": {"description": "Height of water above breach invert", "units": "m"}
+    },
+    "source": "Froehlich (1995), updated Froehlich (2008)"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-006",
+    "title": "Froehlich (2008) — Average Breach Width",
+    "equation": "B_avg = 0.27 × k₀ × Vw^0.32 × Hb^0.04",
+    "variables": {
+      "B_avg": {"description": "Average breach width", "units": "m"},
+      "k₀": {"description": "Overtopping coefficient: 1.3 for overtopping, 1.0 for piping", "units": "dimensionless"},
+      "Vw": {"description": "Reservoir volume at time of breach", "units": "m³"},
+      "Hb": {"description": "Breach height (typically full dam height for embankments)", "units": "m"}
+    },
+    "source": "Froehlich (2008)"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-007",
+    "title": "Froehlich (2008) — Breach Formation Time",
+    "equation": "tf = 63.2 × √(Vw / (g × Hb²))",
+    "variables": {
+      "tf": {"description": "Breach formation time", "units": "seconds"},
+      "Vw": {"description": "Reservoir volume at time of breach", "units": "m³"},
+      "g": {"description": "Gravitational acceleration (9.81 m/s²)", "units": "m/s²"},
+      "Hb": {"description": "Breach height", "units": "m"}
+    },
+    "source": "Froehlich (2008)"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-008",
+    "title": "Broad-Crested Weir Outflow (Breach or Spillway)",
+    "equation": "Q = C_L × B × H^1.5",
+    "variables": {
+      "Q": {"description": "Discharge through breach or over spillway", "units": "m³/s"},
+      "C_L": {"description": "Weir coefficient (1.44–1.70 for broad-crested, m^0.5/s)", "units": "m^0.5/s"},
+      "B": {"description": "Breach width or spillway crest length", "units": "m"},
+      "H": {"description": "Head above weir crest or breach invert", "units": "m"}
+    },
+    "applicability": "Used in breach models and spillway rating curves. US customary: Q = C_L × B × H^1.5 with C_L in ft^0.5/s (typically 2.6–3.1).",
+    "source": "General hydraulics — USBR, HEC-RAS"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-009",
+    "title": "Reservoir Attenuation (Rule of Thumb)",
+    "equation": "Q_peak_out / Q_peak_in ≈ f(S_flood / V_inflow)",
+    "variables": {
+      "Q_peak_out": {"description": "Peak outflow from reservoir", "units": "m³/s"},
+      "Q_peak_in": {"description": "Peak inflow to reservoir", "units": "m³/s"},
+      "S_flood": {"description": "Available flood storage volume (surcharge)", "units": "m³"},
+      "V_inflow": {"description": "Total inflow volume of flood event", "units": "m³"}
+    },
+    "applicability": "If S_flood/V_inflow is large (>0.3), significant attenuation occurs. If small (<0.05), minimal attenuation — outflow ≈ inflow. Used for preliminary sizing only. Formal routing required for design.",
+    "source": "General — USACE"
+  },
+  {
+    "id": "water-infra.dam-hydrology.eq-010",
+    "title": "DV Product — Life Safety Criterion",
+    "equation": "DV = d × v",
+    "variables": {
+      "d": {"description": "Flood depth at location", "units": "m"},
+      "v": {"description": "Flood velocity at location", "units": "m/s"},
+      "DV": {"description": "Depth-velocity product", "units": "m²/s"}
+    },
+    "applicability": "DV < 0.3 m²/s: low hazard (wading possible). 0.3–0.5: moderate (adults at risk). 0.5–1.0: high (structural damage to light buildings). >1.0: extreme (destruction of wood-frame structures). Used in dam breach consequence assessment and EAPs.",
+    "source": "USBR Downstream Hazard Classification, ANCOLD, Clausen & Clark (1990)"
+  }
+]

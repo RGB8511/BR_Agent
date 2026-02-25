@@ -1,0 +1,89 @@
+[
+  {
+    "id": "water-infra.water-storage-tanks.tbl-001",
+    "title": "Storage Components and Sizing Criteria",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Storage Component", "Purpose", "Typical Sizing Basis", "Notes"],
+      "rows": [
+        ["Operational / equalizing storage", "Meet hourly demand variations without continuous pump operation", "25–50% of maximum day demand", "Allows pumps to run at steady rate while demand fluctuates"],
+        ["Fire storage", "Dedicated volume for fire suppression", "Fire flow × duration (per ISO/local code)", "Typically 2–4 hr at required fire flow; 500–10,000 gpm depending on area"],
+        ["Emergency / standby storage", "Reserve for source failure, power outage, main break", "25–50% of maximum day demand, or 2–8 hours average day", "Varies by system reliability, backup power availability"],
+        ["Dead storage", "Volume below lowest outlet or below minimum operating level", "Minimize — typically 5–10% of total", "Not usable but maintains structural stability and prevents vortex"]
+      ]
+    },
+    "source": "AWWA M5, AWWA M42, 10 States Standards"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.tbl-002",
+    "title": "Tank Type Selection Guide",
+    "type": "classification",
+    "data": {
+      "headers": ["Tank Type", "Typical Volume (ML)", "Typical Volume (MG)", "Advantages", "Limitations"],
+      "rows": [
+        ["Ground-level steel (welded)", "0.1–40", "0.025–10", "Most common; AWWA D100; field-welded; any size", "Requires site at correct HGL elevation or booster pumps"],
+        ["Ground-level steel (bolted)", "0.05–10", "0.01–2.5", "Factory panels; fast erection; relocatable", "Limited to smaller volumes; more joints/seals"],
+        ["Ground-level concrete (cast-in-place)", "0.5–200+", "0.1–50+", "Long life; large volumes; in-ground or above-ground", "Higher initial cost; longer construction time"],
+        ["Ground-level prestressed concrete", "2–100+", "0.5–25+", "AWWA D110; wire-wound; very large volumes", "Specialized construction; limited contractors"],
+        ["Elevated steel (pedestal / multi-column)", "0.2–15", "0.05–4", "Provides pressure head by elevation; no pumps needed for pressure", "Higher cost per volume; visual impact; maintenance of riser/structure"],
+        ["Elevated composite (steel bowl/concrete pedestal)", "0.5–15", "0.1–4", "Aesthetic flexibility; durable pedestal", "Complex design; specialized construction"],
+        ["Standpipe (tall ground-level)", "0.5–20", "0.1–5", "Simpler than elevated tank; provides some head", "Only upper portion provides useful pressure head"],
+        ["Buried/partially buried concrete", "1–200+", "0.25–50+", "Minimal visual impact; insulated from weather", "Higher excavation cost; waterproofing critical"]
+      ]
+    },
+    "source": "AWWA D100, D110, D103, general practice"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.tbl-003",
+    "title": "Water Quality Considerations for Tank Design",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Issue", "Cause", "Design Solution"],
+      "rows": [
+        ["Thermal stratification", "Warm water floats on cool; poor mixing", "Inlet/outlet design for mixing; mechanical mixers; separate inlet/outlet"],
+        ["Disinfectant residual loss", "Excessive detention time; stagnation; warm temps", "Size for adequate turnover (< 3–5 days); active mixing; proper cycling"],
+        ["Short-circuiting", "Inlet/outlet too close; poor baffling", "Separate inlet/outlet to maximize flow path; baffles; inlet diffusers"],
+        ["Sediment accumulation", "Particulates settle in low-flow zones", "Sloped floor to drain; regular cleaning; adequate turnover"],
+        ["Nitrification", "Ammonia-oxidizing bacteria in warm, stagnant zones", "Maintain chloramine residual; boost; minimize dead zones; cleaning"],
+        ["Ice damage (cold climates)", "Surface ice expands; ice loads on walls/roof", "Insulation; circulation; heating; structural design for ice pressure"],
+        ["Biofilm growth", "Surfaces in contact with low-residual water", "Interior coating/lining; adequate disinfectant; regular inspection"]
+      ]
+    },
+    "source": "AWWA M42, EPA guidance"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.tbl-004",
+    "title": "Tank Overflow Height and HGL Setting",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Typical Range", "Notes"],
+      "rows": [
+        ["Overflow elevation", "Set to maximum HGL for pressure zone", "Controls maximum system pressure at tank location"],
+        ["Minimum water level", "Overflow - usable depth", "Controls minimum pressure at highest service point"],
+        ["Minimum system pressure (at service)", "140–280 kPa (20–40 psi)", "10 States: 20 psi minimum at peak hourly; 35 psi recommended"],
+        ["Maximum system pressure", "550–700 kPa (80–100 psi)", "Above 80 psi: PRVs recommended; above 100 psi: not acceptable"],
+        ["Usable storage depth", "3–12 m (10–40 ft)", "Ground tanks: 5–12 m. Elevated: constrained by structure. Deeper = less footprint"],
+        ["Freeboard above overflow", "0.3–0.6 m (12–24 in)", "Prevents overspill; accommodates wave action, roof runoff"]
+      ]
+    },
+    "source": "AWWA M5, 10 States Standards, general practice"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.tbl-005",
+    "title": "Seismic Design Requirements for Water Tanks (AWWA D100/D110)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Description", "Key Consideration"],
+      "rows": [
+        ["Impulsive mode (Ti)", "Fluid moves rigidly with tank wall", "Dominates in broad/squat tanks; short period response"],
+        ["Convective (sloshing) mode (Tc)", "Free surface oscillation", "Long period (2–10 sec); determines freeboard for sloshing"],
+        ["Sloshing wave height", "d = 0.5 × D × Af × I (approx)", "Must be accommodated by freeboard or roof designed for wave impact"],
+        ["Base shear", "V = Ci × Ws + Cc × Wf_impulsive + Cc × Wf_convective", "Combined impulsive + convective per SRSS"],
+        ["Overturning moment", "MOT from impulsive and convective at CG heights", "Governs anchor bolt design or self-weight stability"],
+        ["Anchorage", "Mechanically anchored or self-anchored (unanchored)", "Unanchored: limited uplift allowed; anchored: bolt design per D100"],
+        ["Flexible-wall vs rigid-wall", "Steel = flexible wall; concrete = rigid wall", "Different response spectra and hydrodynamic coefficients"]
+      ]
+    },
+    "source": "AWWA D100 (Appendix E — Seismic), AWWA D110, ASCE 7"
+  }
+]

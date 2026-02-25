@@ -1,0 +1,1328 @@
+[
+  {
+    "id": "tbl-sage-creek-01",
+    "title": "Canal Geometry and Project History",
+    "description": "Key parameters describing the Sage Creek Main Canal infrastructure, construction history, and Reach 7 geometry.",
+    "source": "HDE Canal Condition Assessment — Reach 7 (September 2023); USBR Project Records (1924, 1962); HDE Canal Lining Design Alternatives Memo (April 2025)",
+    "data": {
+      "headers": [
+        "Parameter",
+        "Value",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Construction year — original earthen canal",
+          "1924",
+          "USBR Sage Creek Irrigation Project"
+        ],
+        [
+          "Construction year — concrete lining (Reach 7)",
+          "1962",
+          "Federal rehabilitation program"
+        ],
+        [
+          "Lining age at time of assessment (2023)",
+          "61 years",
+          "Exceeds 40-year design service life by 53%"
+        ],
+        [
+          "Total canal length",
+          "12.4 miles",
+          "Headworks to terminus distribution works"
+        ],
+        [
+          "Design discharge capacity",
+          "280 cfs",
+          "Full supply level, all reaches"
+        ],
+        [
+          "Service area",
+          "42,000 acres",
+          "Two-county agricultural service area"
+        ],
+        [
+          "Operating season",
+          "April–October",
+          "7-month irrigation season"
+        ],
+        [
+          "Reach 7 station limits",
+          "Sta. 142+00 to 166+00",
+          "Rehabilitation reach"
+        ],
+        [
+          "Reach 7 length",
+          "2,400 linear feet",
+          "0.455 miles"
+        ],
+        [
+          "Canal type",
+          "Trapezoidal, concrete-lined",
+          "Side slopes 1.5H:1V (existing)"
+        ],
+        [
+          "Bottom width",
+          "12.0 ft",
+          "Uniform through Reach 7"
+        ],
+        [
+          "Design water depth",
+          "5.5 ft",
+          "Full supply level"
+        ],
+        [
+          "Design freeboard",
+          "1.5 ft",
+          "Top of lining to design water surface"
+        ],
+        [
+          "Canal bank height (top to invert)",
+          "7.0 ft",
+          "Lining height including freeboard"
+        ],
+        [
+          "Longitudinal slope",
+          "0.0008 ft/ft",
+          "0.08% grade through Reach 7"
+        ],
+        [
+          "Design flow velocity (Manning's n=0.013)",
+          "2.65 ft/s",
+          "New concrete lining condition"
+        ],
+        [
+          "Design flow velocity (Manning's n=0.016)",
+          "2.15 ft/s",
+          "Aged/algae-covered concrete, approximate existing"
+        ],
+        [
+          "Wetted perimeter at design depth",
+          "35.7 ft",
+          "Trapezoidal section, 1.5H:1V sides"
+        ],
+        [
+          "Hydraulic radius at design depth",
+          "3.12 ft",
+          "A/P = 111.4/35.7"
+        ],
+        [
+          "Cross-sectional area at design depth",
+          "111.4 ft²",
+          "Trapezoidal section, 5.5 ft depth"
+        ],
+        [
+          "Original lining design thickness",
+          "3.5 inches",
+          "Plain concrete, no air entrainment"
+        ],
+        [
+          "Measured existing lining thickness (range)",
+          "2.0–3.5 inches",
+          "Varies by panel condition"
+        ],
+        [
+          "Original lining design strength",
+          "3,000 psi",
+          "28-day compressive strength"
+        ],
+        [
+          "WaterSMART project number",
+          "Pending FY2026",
+          "50% federal cost-share application"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-02",
+    "title": "Boring Program Summary",
+    "description": "Summary of four geotechnical borings drilled in January 2025 for the Reach 7 rehabilitation investigation.",
+    "notes": [
+      "All borings drilled January 2025 with hollow-stem auger (HSA) rig; 3-inch OD split-spoon and Shelby tube sampling",
+      "Groundwater depths reflect January non-irrigation season conditions; irrigation season water table expected 3–6 ft higher based on adjacent monitoring wells",
+      "Shelby tube undisturbed samples collected at 2.5-ft intervals through clay and loess for swell, collapse, and shear strength testing",
+      "SPT blow counts recorded at 2.5-ft intervals; N-values ranged from 4–8 in clay to 12–22 in loess to refusal at basalt"
+    ],
+    "source": "HDE Boring Logs BH-SC-01 through BH-SC-04 (January 2025); HDE Geotechnical Investigation Report — Reach 7 (March 2025)",
+    "data": {
+      "headers": [
+        "Boring ID",
+        "Station (Approx.)",
+        "Offset from CL",
+        "Ground Elevation (ft)",
+        "Total Depth (ft)",
+        "Groundwater Depth (ft)",
+        "GW Elevation (ft)",
+        "Primary Purpose"
+      ],
+      "rows": [
+        [
+          "BH-SC-01",
+          "Sta. 144+50",
+          "10 ft L (left bank)",
+          "3,672.4",
+          "25.0",
+          "Dry (January)",
+          "N/A",
+          "Characterize loess and clay stratigraphy, left bank; collect samples for index and swell testing"
+        ],
+        [
+          "BH-SC-02",
+          "Sta. 152+20",
+          "15 ft R (right bank)",
+          "3,669.8",
+          "30.0",
+          "14.2 ft",
+          "3,655.6",
+          "Investigate slope failure zone; characterize failure surface depth and residual shear strength"
+        ],
+        [
+          "BH-SC-03",
+          "Sta. 158+80",
+          "8 ft L (left bank)",
+          "3,671.2",
+          "28.0",
+          "16.8 ft",
+          "3,654.4",
+          "Characterize loess collapse potential and alluvial sand lens permeability"
+        ],
+        [
+          "BH-SC-04",
+          "Sta. 163+40",
+          "5 ft R (right bank)",
+          "3,670.5",
+          "20.0",
+          "Dry (January)",
+          "N/A",
+          "Establish subgrade profile at downstream end of reach; verify basalt depth"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-03",
+    "title": "Lining Panel Condition Summary",
+    "description": "Summary of 200 concrete lining panel condition ratings from the September 2023 condition assessment of Reach 7.",
+    "notes": [
+      "Total panels assessed: 200 (full Reach 7, Sta. 142+00 to 166+00)",
+      "Panel size: nominally 12 ft wide × 10 ft long; some variation due to field adjustments",
+      "Failed panels concentrated in Sta. 149+00 to 158+00 (highest clay swell zone) and Sta. 144+00 to 146+00 (highest ASR incidence)",
+      "ASR severity ratings: Level 1 = gel deposits without cracking; Level 2 = map cracking with gel; Level 3 = extensive map cracking, gel exudate, measurable expansion",
+      "30% of all panels show some degree of ASR (Level 1–3)"
+    ],
+    "source": "HDE Canal Condition Assessment — Reach 7 (September 2023)",
+    "data": {
+      "headers": [
+        "Condition Category",
+        "Rating Criteria",
+        "Panel Count",
+        "Percentage",
+        "Typical f'c Range (psi)",
+        "Typical Thickness Range (in)",
+        "Primary Distress Mechanisms"
+      ],
+      "rows": [
+        [
+          "Good",
+          "No significant cracking, uniform surface, no delamination, joints intact",
+          "28",
+          "14%",
+          "3,200–3,850",
+          "3.0–3.5",
+          "Minor carbonation; surface dust only"
+        ],
+        [
+          "Fair",
+          "Minor to moderate cracking (<1/8-in width), localized scaling, minor edge delamination, minor joint seal loss",
+          "52",
+          "26%",
+          "2,400–3,200",
+          "2.5–3.0",
+          "Freeze-thaw scaling; hairline shrinkage cracks; minor joint seal deterioration"
+        ],
+        [
+          "Poor",
+          "Extensive cracking (1/8–1/2-in width), surface spalling, significant delamination, joint seal failed, some displacement",
+          "78",
+          "39%",
+          "1,400–2,400",
+          "2.0–2.5",
+          "Freeze-thaw damage; ASR (Level 1–2); clay swell displacement; joint seal failure with seepage staining"
+        ],
+        [
+          "Failed",
+          "Structural failure; panels broken into multiple fragments, severe displacement or upheaval, total loss of integrity",
+          "42",
+          "21%",
+          "980–1,400 (fragments)",
+          "1.5–2.0 (fragments)",
+          "Clay swell heave (2–6-in uplift); severe ASR (Level 2–3); freeze-thaw delamination; loess collapse settlement"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-04",
+    "title": "Seepage Loss Measurements — Irrigation Season 2023",
+    "description": "Inflow-outflow seepage measurements for Reach 7 (Sta. 142+00 to 166+00, 2,400 LF) conducted during the 2023 irrigation season.",
+    "notes": [
+      "Flows measured with calibrated staff gauges and handheld velocity meters (Marsh-McBirney FlowMate 2000)",
+      "USBR target seepage rate for concrete-lined canal in good condition: 0.5–1.0 cfs/1,000 LF",
+      "Measured losses are 7–16× above acceptable target levels",
+      "Average loss over 5 measurements: 18.0 cfs total reach; 7.51 cfs/1,000 LF; 8.3% of flow",
+      "Annualized loss estimate: 5,400 AF/yr based on 210-day season, average 18 cfs loss, adjusted for variable flow"
+    ],
+    "source": "HDE Canal Condition Assessment — Reach 7 (September 2023)",
+    "data": {
+      "headers": [
+        "Measurement Date",
+        "Upstream Flow (cfs)",
+        "Downstream Flow (cfs)",
+        "Measured Loss (cfs)",
+        "Loss per 1,000 LF (cfs)",
+        "Loss as % of Flow",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "April 18, 2023",
+          "198.4",
+          "181.2",
+          "17.2",
+          "7.17",
+          "8.7%",
+          "Early season; subgrade partially dry; canal filling phase"
+        ],
+        [
+          "May 22, 2023",
+          "224.6",
+          "205.3",
+          "19.3",
+          "8.04",
+          "8.6%",
+          "Spring peak delivery; moderate seepage after initial soil wetting"
+        ],
+        [
+          "July 8, 2023",
+          "242.1",
+          "223.7",
+          "18.4",
+          "7.67",
+          "7.6%",
+          "Peak irrigation season; near-steady seepage conditions"
+        ],
+        [
+          "August 14, 2023",
+          "238.5",
+          "220.0",
+          "18.5",
+          "7.71",
+          "7.8%",
+          "Mid-season; saturated subgrade; phreatic surface at peak"
+        ],
+        [
+          "September 30, 2023",
+          "187.2",
+          "170.5",
+          "16.7",
+          "6.96",
+          "8.9%",
+          "Late season; drainage drawdown from surrounding soils increasing gradient"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-05",
+    "title": "Ponding Test Results — April 2025",
+    "description": "Results of ponding test conducted on isolated 600-LF section of Reach 7 failed lining (Sta. 150+00 to 156+00), April 2025.",
+    "notes": [
+      "Test section length: 600 LF (Sta. 150+00 to 156+00); test section isolated with inflatable dams",
+      "Water surface area at 5.5 ft depth: 12 ft + 2 × (1.5 × 5.5) = 28.5 ft bottom + sides = approximately 17,700 ft² wetted area",
+      "Steady-state seepage rate (hours 48–72): 278–285 gpm = 0.62–0.63 cfs per 600 LF = 10.4 cfs/1,000 LF",
+      "Higher than inflow-outflow measurement (7.7 cfs/1,000 LF) because test section coincides with most severely failed panels",
+      "Back-calculated effective hydraulic conductivity of existing lining: k_eff ≈ 5×10⁻⁵ cm/s",
+      "1-inch decline in water level over 600 LF × 17,700 ft² = 14,750 gallons per inch of decline"
+    ],
+    "source": "HDE Geotechnical Investigation Report — Reach 7 (March 2025)",
+    "data": {
+      "headers": [
+        "Elapsed Time (hours)",
+        "Water Level (ft above invert)",
+        "Level Decline from Previous (in)",
+        "Cumulative Water Loss (gallons)",
+        "Average Seepage Rate (gpm)",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "0",
+          "5.50",
+          "—",
+          "0",
+          "—",
+          "Filling complete; test start; inflow valve closed"
+        ],
+        [
+          "6",
+          "5.38",
+          "1.44",
+          "3,850",
+          "642",
+          "Rapid initial absorption by dry loess; not steady state"
+        ],
+        [
+          "12",
+          "5.29",
+          "1.08",
+          "7,240",
+          "573",
+          "Absorption rate declining as loess wets"
+        ],
+        [
+          "24",
+          "5.14",
+          "1.80",
+          "13,650",
+          "398",
+          "Seepage rate still declining; subgrade approaching saturation"
+        ],
+        [
+          "36",
+          "5.03",
+          "1.32",
+          "19,200",
+          "320",
+          "Near-steady seepage through cracked panels; loess saturated"
+        ],
+        [
+          "48",
+          "4.93",
+          "1.20",
+          "24,610",
+          "285",
+          "Quasi-steady state; rate stabilized"
+        ],
+        [
+          "60",
+          "4.83",
+          "1.20",
+          "29,870",
+          "279",
+          "Steady-state seepage; subgrade fully saturated"
+        ],
+        [
+          "72",
+          "4.73",
+          "1.20",
+          "35,090",
+          "278",
+          "Steady-state confirmed; test terminated"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-06",
+    "title": "Loess Index Properties (Unit 1) — Laboratory Results",
+    "description": "Index properties for loess (Unit 1, ML/CL) samples collected from borings BH-SC-01 through BH-SC-04, January 2025.",
+    "notes": [
+      "Atterberg limits per ASTM D4318; unit weight per ASTM D7263; gradation per ASTM D7928 (hydrometer) and D6913 (sieve)",
+      "Apparent cohesion from matric suction estimated at 150–200 psf for natural (unsaturated) loess samples",
+      "All samples show characteristic loess composition: silt-dominated, low clay fraction, non-plastic to low-plasticity",
+      "Specific gravity Gs = 2.67–2.69 (mean 2.68, carbonite-bearing silts)"
+    ],
+    "source": "HDE Geotechnical Investigation Report — Reach 7 (March 2025); Lab Testing by Intermountain Geotechnical Laboratory",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Boring",
+        "Depth (ft)",
+        "LL (%)",
+        "PL (%)",
+        "PI (%)",
+        "USCS Class",
+        "Natural MC (%)",
+        "Dry Unit Wt γd (pcf)",
+        "% Gravel",
+        "% Sand",
+        "% Fines (silt+clay)",
+        "% Clay (<0.002mm)"
+      ],
+      "rows": [
+        [
+          "SC-01-3.5",
+          "BH-SC-01",
+          "3.5",
+          "32",
+          "22",
+          "10",
+          "CL",
+          "12",
+          "88",
+          "0",
+          "8",
+          "92",
+          "18"
+        ],
+        [
+          "SC-01-6.5",
+          "BH-SC-01",
+          "6.5",
+          "35",
+          "23",
+          "12",
+          "CL",
+          "11",
+          "86",
+          "0",
+          "6",
+          "94",
+          "22"
+        ],
+        [
+          "SC-02-4.0",
+          "BH-SC-02",
+          "4.0",
+          "28",
+          "18",
+          "10",
+          "ML",
+          "10",
+          "90",
+          "0",
+          "12",
+          "88",
+          "15"
+        ],
+        [
+          "SC-02-7.5",
+          "BH-SC-02",
+          "7.5",
+          "38",
+          "24",
+          "14",
+          "CL",
+          "14",
+          "84",
+          "0",
+          "5",
+          "95",
+          "24"
+        ],
+        [
+          "SC-03-3.0",
+          "BH-SC-03",
+          "3.0",
+          "30",
+          "20",
+          "10",
+          "ML",
+          "9",
+          "90",
+          "0",
+          "10",
+          "90",
+          "16"
+        ],
+        [
+          "SC-03-6.0",
+          "BH-SC-03",
+          "6.0",
+          "36",
+          "22",
+          "14",
+          "CL",
+          "13",
+          "85",
+          "0",
+          "7",
+          "93",
+          "20"
+        ],
+        [
+          "SC-04-5.0",
+          "BH-SC-04",
+          "5.0",
+          "33",
+          "21",
+          "12",
+          "CL",
+          "11",
+          "87",
+          "0",
+          "9",
+          "91",
+          "19"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-07",
+    "title": "Lacustrine Clay Index Properties (Unit 2) — Laboratory Results",
+    "description": "Index properties for lacustrine clay (Unit 2, CH) samples collected from borings BH-SC-01 through BH-SC-04, January 2025.",
+    "notes": [
+      "Mineralogy confirmed by X-ray diffraction (XRD) analysis at three depths; montmorillonite 65–75% of clay fraction",
+      "Activity A = PI / (% clay fraction); A = 0.70–0.74 consistent with montmorillonite-dominated assemblage",
+      "Specific gravity Gs = 2.72–2.76 (mean 2.74, higher than loess due to clay minerals)",
+      "All samples classify as CH (fat clay) per USCS; 'very high' expansion potential per AASHTO M-145 criteria (PI > 35 for deepest samples)",
+      "Preconsolidation pressure σ'p from oedometer tests: 1.2–1.8 tsf (lightly to moderately overconsolidated)"
+    ],
+    "source": "HDE Geotechnical Investigation Report — Reach 7 (March 2025); XRD analysis by University of Idaho Soils Lab",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Boring",
+        "Depth (ft)",
+        "LL (%)",
+        "PL (%)",
+        "PI (%)",
+        "USCS Class",
+        "Natural MC (%)",
+        "Dry Unit Wt γd (pcf)",
+        "% Clay (<0.002mm)",
+        "Activity (PI/CF)",
+        "Dominant Mineral"
+      ],
+      "rows": [
+        [
+          "SC-01-10.0",
+          "BH-SC-01",
+          "10.0",
+          "58",
+          "24",
+          "34",
+          "CH",
+          "26",
+          "80",
+          "46",
+          "0.74",
+          "Montmorillonite"
+        ],
+        [
+          "SC-01-14.5",
+          "BH-SC-01",
+          "14.5",
+          "62",
+          "26",
+          "36",
+          "CH",
+          "29",
+          "78",
+          "50",
+          "0.72",
+          "Montmorillonite"
+        ],
+        [
+          "SC-02-11.0",
+          "BH-SC-02",
+          "11.0",
+          "55",
+          "22",
+          "33",
+          "CH",
+          "24",
+          "82",
+          "47",
+          "0.70",
+          "Montmorillonite"
+        ],
+        [
+          "SC-02-15.5",
+          "BH-SC-02",
+          "15.5",
+          "65",
+          "27",
+          "38",
+          "CH",
+          "30",
+          "76",
+          "53",
+          "0.72",
+          "Montmorillonite"
+        ],
+        [
+          "SC-03-10.5",
+          "BH-SC-03",
+          "10.5",
+          "60",
+          "24",
+          "36",
+          "CH",
+          "27",
+          "79",
+          "49",
+          "0.73",
+          "Montmorillonite"
+        ],
+        [
+          "SC-03-14.0",
+          "BH-SC-03",
+          "14.0",
+          "68",
+          "26",
+          "42",
+          "CH",
+          "32",
+          "74",
+          "58",
+          "0.72",
+          "Montmorillonite"
+        ],
+        [
+          "SC-04-12.0",
+          "BH-SC-04",
+          "12.0",
+          "57",
+          "25",
+          "32",
+          "CH",
+          "25",
+          "81",
+          "45",
+          "0.71",
+          "Montmorillonite"
+        ],
+        [
+          "SC-04-16.5",
+          "BH-SC-04",
+          "16.5",
+          "63",
+          "25",
+          "38",
+          "CH",
+          "31",
+          "77",
+          "52",
+          "0.73",
+          "Montmorillonite"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-08",
+    "title": "Swell Pressure and Free Swell Test Results",
+    "description": "One-dimensional swell pressure (ASTM D4546 Method A — constant volume) and free swell (ASTM D4546 Method C) results for lacustrine clay samples, Reach 7.",
+    "notes": [
+      "ASTM D4546 Method A: Sample loaded to in-situ overburden stress + panel weight surcharge, then inundated; stress adjusted to maintain constant height; equilibrium pressure = swell pressure",
+      "ASTM D4546 Method C: Sample inundated under 144 psf (1 psi) token surcharge; free swell % = (final height - initial height) / initial height × 100",
+      "Expansion ratings: Low <0.5%, Medium 0.5–1.5%, High 1.5–5%, Very High >5% (after ASTM D4546 Appendix)",
+      "Panel self-weight ≈ 50 psf; swell pressure exceeds panel weight by factor 72–130× — fundamental design driver",
+      "Samples SC-01-14.5, SC-02-15.5, SC-03-14.0 represent deepest and most expansive clay encountered"
+    ],
+    "source": "HDE Geotechnical Investigation Report — Reach 7 (March 2025); ASTM D4546-14",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Depth (ft)",
+        "Initial MC (%)",
+        "Initial Void Ratio e₀",
+        "Final MC (%) — Const. Vol.",
+        "Swell Pressure (psf)",
+        "Swell Pressure (tsf)",
+        "Surcharge — Free Swell Test (psf)",
+        "Free Swell (%)",
+        "Expansion Rating"
+      ],
+      "rows": [
+        [
+          "SC-01-10.0",
+          "10.0",
+          "26",
+          "0.882",
+          "34",
+          "3,600",
+          "1.80",
+          "144",
+          "4.5",
+          "High"
+        ],
+        [
+          "SC-01-14.5",
+          "14.5",
+          "29",
+          "0.944",
+          "38",
+          "4,200",
+          "2.10",
+          "144",
+          "5.8",
+          "Very High"
+        ],
+        [
+          "SC-02-11.0",
+          "11.0",
+          "24",
+          "0.856",
+          "32",
+          "3,800",
+          "1.90",
+          "144",
+          "4.8",
+          "High"
+        ],
+        [
+          "SC-02-15.5",
+          "15.5",
+          "30",
+          "0.968",
+          "41",
+          "5,100",
+          "2.55",
+          "144",
+          "6.7",
+          "Very High"
+        ],
+        [
+          "SC-03-10.5",
+          "10.5",
+          "27",
+          "0.903",
+          "36",
+          "4,400",
+          "2.20",
+          "144",
+          "5.2",
+          "High"
+        ],
+        [
+          "SC-03-14.0",
+          "14.0",
+          "32",
+          "1.012",
+          "44",
+          "6,500",
+          "3.25",
+          "144",
+          "8.1",
+          "Very High"
+        ],
+        [
+          "SC-04-12.0",
+          "12.0",
+          "25",
+          "0.872",
+          "33",
+          "3,900",
+          "1.95",
+          "144",
+          "5.0",
+          "High"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-09",
+    "title": "Collapse Potential Test Results — Loess (Unit 1)",
+    "description": "Single-oedometer collapse potential tests (ASTM D5333) on loess samples from Reach 7. Samples loaded to 4 tsf (representative of overburden + canal water + surcharge loading), then inundated.",
+    "notes_additional": [
+      "BH-SC-04 sample at 5.0 ft (SC-04-5.0) shows highest collapse potential (CP = 9.17%); this area has least prior irrigation exposure and most intact metastable structure"
+    ],
+    "notes": [
+      "CP = Δe / (1 + e₀) × 100% after Jennings and Knight (1975)",
+      "Classification: <1% = No problem; 1–5% = Moderate; 5–10% = Moderately severe; 10–20% = Severe; >20% = Very severe",
+      "Applied stress for inundation: 4.0 tsf = 8,000 psf (represents 8 ft overburden at 90 pcf + 5.5 ft water at 62.4 pcf + construction equipment surcharge)",
+      "Collapse in loess beneath existing canal may have partially occurred (1962 to present); material directly under canal may have lower remaining CP",
+      "Differential collapse settlements of 3–8 inches across panel widths consistent with pattern of cracking and joint offset observed in existing lining"
+    ],
+    "source": "HDE Geotechnical Investigation Report — Reach 7 (March 2025); ASTM D5333-03",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Depth (ft)",
+        "Initial Void Ratio e₀",
+        "Initial MC (%)",
+        "Final Void Ratio e_f (after flood)",
+        "Δe (e₀ - e_f)",
+        "Collapse Potential CP (%)",
+        "CP Severity Classification"
+      ],
+      "rows": [
+        [
+          "SC-01-3.5",
+          "3.5",
+          "1.072",
+          "12",
+          "1.015",
+          "0.057",
+          "2.76",
+          "Moderate"
+        ],
+        [
+          "SC-01-6.5",
+          "6.5",
+          "1.098",
+          "11",
+          "1.023",
+          "0.075",
+          "3.58",
+          "Moderate"
+        ],
+        [
+          "SC-03-3.0",
+          "3.0",
+          "1.058",
+          "9",
+          "0.996",
+          "0.062",
+          "3.01",
+          "Moderate"
+        ],
+        [
+          "SC-03-6.0",
+          "6.0",
+          "1.115",
+          "13",
+          "1.002",
+          "0.113",
+          "5.28",
+          "Moderately Severe"
+        ],
+        [
+          "SC-02-4.0",
+          "4.0 (at failure zone)",
+          "1.088",
+          "10",
+          "0.967",
+          "0.121",
+          "5.79",
+          "Moderately Severe"
+        ],
+        [
+          "SC-02-7.5",
+          "7.5 (above clay contact)",
+          "1.132",
+          "14",
+          "0.977",
+          "0.155",
+          "7.22",
+          "Moderately Severe"
+        ],
+        [
+          "SC-04-5.0",
+          "5.0",
+          "1.105",
+          "11",
+          "0.912",
+          "0.193",
+          "9.17",
+          "Severe"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-10",
+    "title": "Direct Shear Test Results — Peak and Residual Strength Parameters",
+    "description": "Consolidated-drained (CD) direct shear test results for key materials in the Reach 7 slope stability analyses. Tests conducted in 4-inch square shear box at three normal stresses.",
+    "notes": [
+      "All CD direct shear tests: samples saturated under normal stress before shearing; shear rate 0.0006 in/min to ensure drainage",
+      "Residual parameters obtained by reversing shear direction 4–6 times until stable low-stress plateau reached",
+      "Slope stability design uses: loess (saturated, above failure plane) c' = 200 psf, φ' = 28°; slickensided clay contact c'r = 40 psf (lower bound), φ'r = 12° (lower bound) for conservative analysis",
+      "ASTM D3080-11 (Standard Test Method for Direct Shear Test of Soils Under Consolidated Drained Conditions)"
+    ],
+    "source": "HDE Geotechnical Investigation Report — Reach 7 (March 2025)",
+    "data": {
+      "headers": [
+        "Sample ID / Material",
+        "Depth (ft)",
+        "Test Condition",
+        "Normal Stress Range (psf)",
+        "Peak Cohesion c' (psf)",
+        "Peak Friction Angle φ' (°)",
+        "Residual Cohesion c'r (psf)",
+        "Residual Friction Angle φ'r (°)",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "SC-02-4.0 / Loess (ML)",
+          "4.0",
+          "CD, saturated, 3 normal stresses",
+          "500–4,000",
+          "240",
+          "31",
+          "20",
+          "26",
+          "Peak strength from first shear; residual from large-displacement reversals"
+        ],
+        [
+          "SC-02-7.5 / Loess (CL), near clay contact",
+          "7.5",
+          "CD, saturated, 3 normal stresses",
+          "500–4,000",
+          "180",
+          "28",
+          "0",
+          "24",
+          "Lower cohesion due to higher clay content near contact"
+        ],
+        [
+          "SC-02-11.0 / Lacustrine Clay (CH)",
+          "11.0",
+          "CD, saturated, 3 normal stresses",
+          "500–4,000",
+          "320",
+          "24",
+          "60",
+          "13",
+          "Residual from slickensided remolded surface; 4 reversal cycles"
+        ],
+        [
+          "SC-02-15.5 / Lacustrine Clay (CH) — deep",
+          "15.5",
+          "CD, saturated, 3 normal stresses",
+          "500–4,000",
+          "280",
+          "22",
+          "40",
+          "12",
+          "Deepest clay sample; lower residual c'r consistent with softer mineral assemblage"
+        ],
+        [
+          "SC-03-10.5 / Lacustrine Clay (CH)",
+          "10.5",
+          "CD, saturated, 3 normal stresses",
+          "500–4,000",
+          "300",
+          "23",
+          "50",
+          "13",
+          "Intermediate depth clay"
+        ],
+        [
+          "SC-01-10.0 / Lacustrine Clay (CH)",
+          "10.0",
+          "CD, saturated, 3 normal stresses",
+          "500–4,000",
+          "350",
+          "26",
+          "80",
+          "14",
+          "Highest residual cohesion and friction; likely higher illite content"
+        ],
+        [
+          "Slickensided Clay Contact / Remolded",
+          "10–12 (contact zone)",
+          "CD, large displacement, remolded surface",
+          "500–4,000",
+          "0",
+          "—",
+          "40–80",
+          "12–14",
+          "Design range used in slope stability analyses; c'r = 40–80 psf, φ'r = 12–14° bracket for sensitivity"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-11",
+    "title": "Slug Test Permeability Results — In-Situ Hydraulic Conductivity",
+    "description": "In-situ hydraulic conductivity measured by slug tests in monitoring wells installed in borings BH-SC-02, BH-SC-03, and BH-SC-04 during the January 2025 investigation.",
+    "notes": [
+      "All slug tests analyzed using Bouwer and Rice (1976) method for unconfined aquifers",
+      "K values represent horizontal hydraulic conductivity (dominant direction for flow in layered stratigraphy)",
+      "Five-order-of-magnitude range in k between clay (10⁻⁷ cm/s) and sand (10⁻³ cm/s) creates strong lateral flow in sand lenses",
+      "ASTM D4044 (slug tests); D4104 (Bouwer-Rice analysis)"
+    ],
+    "source": "HDE Geotechnical Investigation Report — Reach 7 (March 2025)",
+    "data": {
+      "headers": [
+        "Test ID",
+        "Boring",
+        "Test Interval (ft)",
+        "Formation",
+        "Slug Type",
+        "K_horizontal (cm/s)",
+        "K_horizontal (ft/day)",
+        "Permeability Classification",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "ST-SC-02A",
+          "BH-SC-02",
+          "12.0–17.0",
+          "Lacustrine Clay (Unit 2, CH)",
+          "Falling head (slug injection)",
+          "4.2 × 10⁻⁷",
+          "0.0012",
+          "Very Low / Impermeable",
+          "Multiple slug tests; Bouwer-Rice method; k within expected range for CH clay"
+        ],
+        [
+          "ST-SC-02B",
+          "BH-SC-02",
+          "17.5–22.5",
+          "Alluvial Sand Lens (Unit 3, SP)",
+          "Falling head (slug injection)",
+          "3.5 × 10⁻³",
+          "9.92",
+          "High / Permeable Sand",
+          "Sand lens at 17.5–21.0 ft; k 10,000× greater than overlying clay — critical seepage pathway"
+        ],
+        [
+          "ST-SC-03A",
+          "BH-SC-03",
+          "10.0–15.0",
+          "Lacustrine Clay (Unit 2, CH)",
+          "Falling head (slug injection)",
+          "1.5 × 10⁻⁷",
+          "0.00043",
+          "Very Low / Impermeable",
+          "Lower bound of clay permeability in reach; well-consolidated deeper clay"
+        ],
+        [
+          "ST-SC-03B",
+          "BH-SC-03",
+          "13.5–18.5",
+          "Alluvial Sand / Clay Transition",
+          "Falling head (slug injection)",
+          "8.2 × 10⁻⁵",
+          "0.233",
+          "Low / Sandy Clay",
+          "Transition zone between Units 2 and 3; intermediate permeability"
+        ],
+        [
+          "ST-SC-04A",
+          "BH-SC-04",
+          "8.0–13.0",
+          "Loess (Unit 1, CL)",
+          "Falling head (slug injection)",
+          "1.8 × 10⁻⁵",
+          "0.051",
+          "Low / Silt",
+          "Upper loess unit; k consistent with macropore structure; anisotropy likely kh/kv ≈ 3–5"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-12",
+    "title": "Concrete Core Test Results",
+    "description": "Results of concrete core testing from four locations in Reach 7. 2-inch diameter cores extracted September 2023.",
+    "notes": [
+      "All cores tested per ASTM C42 (core drilling and compression testing)",
+      "f'c from core test corrected for length-to-diameter ratio per ASTM C42 Table 1",
+      "Air void spacing factor (ASTM C457) > 0.008 in is threshold for freeze-thaw resistance; cores CC-7-02 and CC-7-03 have no measurable air void system",
+      "ASR expansion measured on cores CC-7-02 and CC-7-03: 0.12% and 0.18% at 38°C/3-week accelerated test (above 0.10% ASTM C1293 rejection threshold)",
+      "Design f'c = 3,000 psi; only Good-condition core CC-7-01 meets design strength"
+    ],
+    "source": "HDE Canal Condition Assessment — Reach 7 (September 2023)",
+    "data": {
+      "headers": [
+        "Core ID",
+        "Station",
+        "Panel Condition Rating",
+        "Core Length (in)",
+        "Effective Thickness (in)",
+        "28-day Equivalent f'c (psi)",
+        "Air Void Spacing Factor (in)",
+        "ASR Severity",
+        "Freeze-Thaw Damage",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "CC-7-01",
+          "Sta. 143+80",
+          "Good",
+          "3.5",
+          "3.5",
+          "3,850",
+          "0.012",
+          "Level 1 (trace gel)",
+          "None observed",
+          "Best condition core; approaching design strength; minimal deterioration"
+        ],
+        [
+          "CC-7-02",
+          "Sta. 150+20",
+          "Poor",
+          "2.5",
+          "2.2",
+          "1,820",
+          "N/A (no air voids)",
+          "Level 2 (map cracking + gel exudate)",
+          "Significant — 0.25-in delamination layer",
+          "ASR gel filling cracks; surface delamination from freeze-thaw; no air entrainment"
+        ],
+        [
+          "CC-7-03",
+          "Sta. 155+60",
+          "Failed (heaved)",
+          "2.0",
+          "1.8",
+          "1,140",
+          "N/A (no air voids)",
+          "Level 3 (extensive map cracking)",
+          "Severe — top 0.5 in delaminated",
+          "Sample from heaved panel fragment; swell damage visible on bottom face; volcanic aggregate reactive"
+        ],
+        [
+          "CC-7-04",
+          "Sta. 162+40",
+          "Fair",
+          "3.0",
+          "3.0",
+          "2,680",
+          "0.014",
+          "Level 1 (isolated gel)",
+          "Minor scaling only",
+          "Slightly below design strength; light ASR; no significant freeze-thaw damage; near design condition"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-13",
+    "title": "Slope Stability Analysis Results — Spencer's Method",
+    "description": "Summary of slope stability factors of safety for five analysis cases for the Reach 7 right bank slope, using Spencer's method of slices (SLOPE/W).",
+    "notes": [
+      "All analyses in terms of effective stress; pore pressures from SEEP/W steady-state model",
+      "Spencer's method satisfies both force and moment equilibrium; appropriate for non-circular (translational) failure surfaces",
+      "Design criterion: FS ≥ 1.30 for sustained (irrigation season) loading with residual strength at existing failure surface",
+      "Sensitivity to drain performance: FS decreases from 1.35 to 1.18 if drainage blanket becomes fully clogged (worst case) — monitoring required",
+      "Phreatic surface for mid-season condition from calibrated SEEP/W model with existing cracked lining; phreatic surface with new lining is lower, providing additional FS margin not credited in design"
+    ],
+    "source": "HDE Geotechnical Investigation Report — Reach 7 (March 2025); GeoStudio SLOPE/W version 2021",
+    "data": {
+      "headers": [
+        "Case",
+        "Slope Geometry",
+        "Phreatic Surface Condition",
+        "Clay Contact Strength",
+        "Factor of Safety (FS)",
+        "Status / Interpretation"
+      ],
+      "rows": [
+        [
+          "Case 1 — Existing Dry",
+          "Existing 1.5H:1V",
+          "Dry (no irrigation; phreatic surface below failure plane)",
+          "Peak strength (c' = 200 psf, φ' = 28°) for loess; peak clay contact (c' = 300 psf, φ' = 24°)",
+          "1.68",
+          "Stable — baseline pre-irrigation condition; historically stable when dry"
+        ],
+        [
+          "Case 2 — Existing Mid-Season, Peak Strength",
+          "Existing 1.5H:1V",
+          "Mid-season irrigation phreatic surface (from SEEP/W); water table at 6 ft below bank top",
+          "Peak strength loess and clay",
+          "1.15",
+          "Marginally stable — seepage significantly reduces FS; first-time failure risk during wet years"
+        ],
+        [
+          "Case 3 — Existing Mid-Season, Residual Strength",
+          "Existing 1.5H:1V",
+          "Mid-season irrigation phreatic surface",
+          "Residual strength at clay contact (c'r = 40 psf, φ'r = 12°); peak strength above contact",
+          "0.92",
+          "ACTIVE FAILURE — FS < 1.0 confirms ongoing slope movement; consistent with observed 2–3 ft scarp and 18-in lateral bulge"
+        ],
+        [
+          "Case 4 — Remediated, Peak Strength with Drainage",
+          "Regraded 3H:1V",
+          "Mid-season phreatic surface with drainage blanket (water table > 3 ft below slope surface)",
+          "Peak strength loess and clay",
+          "1.52",
+          "Stable — meets FS ≥ 1.30 design criterion; adequate safety margin for peak-strength condition"
+        ],
+        [
+          "Case 5 — Remediated, Residual Strength with Drainage",
+          "Regraded 3H:1V",
+          "Mid-season phreatic surface with drainage blanket",
+          "Residual strength at clay contact (c'r = 40 psf, φ'r = 12°); controls design",
+          "1.35",
+          "Stable — meets FS ≥ 1.30 design criterion even with residual strength; drain blanket essential for achieving this FS"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tbl-sage-creek-14",
+    "title": "Lining Alternatives Comparison",
+    "description": "Quantitative comparison of four rehabilitation alternatives for Reach 7 lining, evaluated on seepage reduction, swell resistance, service life, cost, and 40-year NPV.",
+    "notes": [
+      "NPV calculated at 3.5% discount rate over 40 years (USBR project evaluation period)",
+      "All alternatives include right bank slope stabilization at $95,000 (same for all alternatives)",
+      "WaterSMART 50% cost-share applies to Alt. A: district net cost $510,000; payback 1.9 years",
+      "Alt. A service life of 40+ years is conservative; modern concrete canal linings with air entrainment, SCM, and non-reactive aggregate routinely achieve 50–60-year service lives",
+      "Annual benefit calculated at $50/AF water value; water value sensitivity: at $75/AF, Alt. A payback = 2.5 years; at $30/AF, payback = 6.3 years"
+    ],
+    "source": "HDE Canal Lining Design Alternatives Memo (April 2025)",
+    "data": {
+      "headers": [
+        "Alternative",
+        "Description",
+        "Seepage Reduction (%)",
+        "Swell Resistance",
+        "Estimated Service Life (years)",
+        "Estimated Construction Cost ($)",
+        "Annual Water Savings (AF/yr)",
+        "Annual Benefit ($)",
+        "40-Year NPV at 3.5% ($)",
+        "Simple Payback (years)",
+        "Recommendation"
+      ],
+      "rows": [
+        [
+          "Alt. A — Lime + Geomembrane + PCC (Recommended)",
+          "6% CaO lime-stabilized subgrade (8-in depth) + 4-in sand cushion + 40-mil HDPE geomembrane + 4-in reinforced PCC (4,000 psi, 6% air, SCM, non-reactive agg., WWF, PVC waterstop at 12-ft joints)",
+          "99.7%",
+          "Excellent — clay swell eliminated by lime treatment; geomembrane prevents moisture change; no heave mechanism",
+          "40+",
+          "$1,020,000",
+          "5,384",
+          "$269,200",
+          "$1,180,000",
+          "3.8",
+          "RECOMMENDED — Best NPV; eliminates root causes; qualifies for WaterSMART cost-share"
+        ],
+        [
+          "Alt. B — New PCC Only",
+          "Remove existing lining; regrade subgrade; 4-in reinforced PCC (4,000 psi, 6% air, SCM, non-reactive agg.) without geomembrane or lime treatment",
+          "90%",
+          "Poor — clay swell not addressed; new panels will heave within 5–15 years as moisture infiltrates cracks",
+          "15–20 (limited by clay swell)",
+          "$620,000",
+          "4,860",
+          "$243,000",
+          "$380,000",
+          "2.6",
+          "NOT RECOMMENDED — Short service life; clay swell will repeat failure cycle; lower NPV despite lower initial cost"
+        ],
+        [
+          "Alt. C — Shotcrete Overlay",
+          "Crack repair and preparation of existing panels; 2-in shotcrete overlay with fiber reinforcement applied over existing lining",
+          "60%",
+          "Very Poor — existing clay swell continues; overlay will fail with substrate movement within 3–7 years",
+          "5–8",
+          "$580,000",
+          "3,240",
+          "$162,000",
+          "$-120,000",
+          "3.6",
+          "NOT RECOMMENDED — Negative NPV; does not address root cause; short life; highest long-term cost"
+        ],
+        [
+          "Alt. D — Geomembrane Only (No New PCC)",
+          "Remove existing lining; lime-stabilized subgrade + sand cushion + 40-mil HDPE geomembrane exposed (no concrete cover)",
+          "99.5%",
+          "Good — geomembrane prevents moisture changes; clay swell not chemically treated but moisture controlled",
+          "20–25 (UV degradation of exposed membrane limits life)",
+          "$680,000",
+          "5,370",
+          "$268,500",
+          "$820,000",
+          "2.5",
+          "NOT RECOMMENDED — Lower service life than Alt. A; membrane susceptible to UV, vandalism, and debris; annual inspection and patching required"
+        ]
+      ]
+    }
+  }
+]

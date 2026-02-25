@@ -1,0 +1,112 @@
+[
+  {
+    "id": "concrete.testing.eq-001",
+    "title": "Compressive Strength",
+    "equation": "f'c = P / A",
+    "variables": {
+      "f'c": {"description": "Compressive strength", "units": "MPa"},
+      "P": {"description": "Maximum load at failure", "units": "N"},
+      "A": {"description": "Cross-sectional area of cylinder", "units": "mm²"}
+    },
+    "source": "ASTM C39"
+  },
+  {
+    "id": "concrete.testing.eq-002",
+    "title": "Split Tensile Strength",
+    "equation": "f_t = 2P / (π × L × D)",
+    "variables": {
+      "f_t": {"description": "Split tensile strength", "units": "MPa"},
+      "P": {"description": "Maximum applied load", "units": "N"},
+      "L": {"description": "Length of cylinder", "units": "mm"},
+      "D": {"description": "Diameter of cylinder", "units": "mm"}
+    },
+    "source": "ASTM C496"
+  },
+  {
+    "id": "concrete.testing.eq-003",
+    "title": "Modulus of Rupture — Third-Point Loading",
+    "equation": "f_r = P × L / (b × d²)",
+    "variables": {
+      "f_r": {"description": "Modulus of rupture (flexural strength)", "units": "MPa"},
+      "P": {"description": "Maximum applied load", "units": "N"},
+      "L": {"description": "Span length", "units": "mm"},
+      "b": {"description": "Average width of specimen at fracture", "units": "mm"},
+      "d": {"description": "Average depth of specimen at fracture", "units": "mm"}
+    },
+    "applicability": "Valid when fracture occurs in middle third of span. If fracture is outside by ≤ 5% of span: f_r = 3Pa/(bd²) where a = distance from nearest support to fracture. Discard if > 5% outside.",
+    "source": "ASTM C78"
+  },
+  {
+    "id": "concrete.testing.eq-004",
+    "title": "Modulus of Rupture — Center-Point Loading",
+    "equation": "f_r = 3PL / (2bd²)",
+    "source": "ASTM C293"
+  },
+  {
+    "id": "concrete.testing.eq-005",
+    "title": "ACI 318 Empirical Modulus of Elasticity",
+    "equation": "E_c = 4730√f'c (MPa, normal weight) or E_c = 0.043 × w^1.5 × √f'c (general)",
+    "variables": {
+      "E_c": {"description": "Static modulus of elasticity", "units": "MPa"},
+      "f'c": {"description": "Compressive strength", "units": "MPa"},
+      "w": {"description": "Unit weight of concrete", "units": "kg/m³"}
+    },
+    "applicability": "Secant modulus to 40% f'c. Normal weight: w ≈ 2300 kg/m³. For lightweight and heavyweight, use general formula.",
+    "source": "ACI 318-19 §19.2.2"
+  },
+  {
+    "id": "concrete.testing.eq-006",
+    "title": "Tensile Strength Approximations",
+    "equation": "f_t ≈ 0.56√f'c (MPa); f_r ≈ 0.62√f'c (MPa)",
+    "applicability": "ACI approximate relationships. Split tensile ≈ 8–14% of f'c, modulus of rupture ≈ 10–15% of f'c. MOR > split tensile due to stress gradient.",
+    "source": "ACI 318"
+  },
+  {
+    "id": "concrete.testing.eq-007",
+    "title": "L/D Correction Factor for Cores",
+    "equation": "f_corrected = f_measured × CF",
+    "variables": {
+      "CF": {"description": "Correction factor from ASTM C42 Table 1", "units": "dimensionless"}
+    },
+    "applicability": "L/D = 2.00: CF = 1.00; L/D = 1.75: CF = 0.98; L/D = 1.50: CF = 0.96; L/D = 1.25: CF = 0.93; L/D = 1.00: CF = 0.87. Only apply when L/D < 1.75.",
+    "source": "ASTM C42"
+  },
+  {
+    "id": "concrete.testing.eq-008",
+    "title": "Ultrasonic Pulse Velocity",
+    "equation": "V = L / t",
+    "variables": {
+      "V": {"description": "Pulse velocity", "units": "m/s"},
+      "L": {"description": "Path length between transducers", "units": "m"},
+      "t": {"description": "Transit time", "units": "s"}
+    },
+    "source": "ASTM C597"
+  },
+  {
+    "id": "concrete.testing.eq-009",
+    "title": "Dynamic Modulus of Elasticity (from UPV)",
+    "equation": "E_d = ρ × V² × (1+ν)(1-2ν) / (1-ν)",
+    "variables": {
+      "E_d": {"description": "Dynamic modulus of elasticity", "units": "Pa"},
+      "ρ": {"description": "Density of concrete", "units": "kg/m³"},
+      "V": {"description": "Pulse velocity", "units": "m/s"},
+      "ν": {"description": "Poisson's ratio (assume 0.20 if unknown)", "units": "dimensionless"}
+    },
+    "applicability": "Dynamic modulus is typically 20–40% higher than static modulus (C469). Useful for monitoring deterioration over time.",
+    "source": "ASTM C597, Neville (2011)"
+  },
+  {
+    "id": "concrete.testing.eq-010",
+    "title": "Arrhenius Equivalent Age (Maturity)",
+    "equation": "t_e = Σ exp[Q × (1/T_r - 1/T_a)] × Δt",
+    "variables": {
+      "t_e": {"description": "Equivalent age at reference temperature", "units": "hours"},
+      "Q": {"description": "Activation energy / R (typically 4000–5000 K for OPC)", "units": "K"},
+      "T_r": {"description": "Reference temperature (typically 293 K = 20°C)", "units": "K"},
+      "T_a": {"description": "Average concrete temperature during interval", "units": "K"},
+      "Δt": {"description": "Time interval", "units": "hours"}
+    },
+    "applicability": "More accurate than Nurse-Saul for wide temperature ranges. Requires calibration with same mix design.",
+    "source": "ASTM C1074, Freiesleben Hansen & Pedersen (1977)"
+  }
+]

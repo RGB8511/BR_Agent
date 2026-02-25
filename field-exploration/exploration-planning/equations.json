@@ -1,0 +1,50 @@
+[
+  {
+    "id": "field-exploration.exploration-planning.eq-001",
+    "title": "Boring Depth — Zone of Influence (Shallow Foundation)",
+    "equation": "D_boring = D_f + 2 × B_min",
+    "variables": {
+      "D_boring": {"description": "Minimum boring depth below ground surface", "units": "m"},
+      "D_f": {"description": "Foundation embedment depth", "units": "m"},
+      "B_min": {"description": "Minimum dimension of foundation (width)", "units": "m"}
+    },
+    "applicability": "Based on stress influence depth (~10% of applied stress at 2B below foundation). Extend deeper if compressible layers are expected. Can terminate earlier if sound rock or very dense material is encountered and verified. FHWA recommends borings extend until stress increase < 10% of overburden pressure.",
+    "source": "FHWA GEC 5 (2017), AASHTO"
+  },
+  {
+    "id": "field-exploration.exploration-planning.eq-002",
+    "title": "Boring Depth — Pile Foundation",
+    "equation": "D_boring = D_tip + 6 m  (single pile); D_boring = D_tip + 2 × B_group  (pile group)",
+    "variables": {
+      "D_boring": {"description": "Minimum boring depth", "units": "m"},
+      "D_tip": {"description": "Anticipated pile tip elevation", "units": "m"},
+      "B_group": {"description": "Width of pile group", "units": "m"}
+    },
+    "applicability": "Extend 6 m (20 ft) below anticipated tip for driven piles, or 2× group width if group settlement governs. For drilled shafts in rock: 3× socket diameter below shaft tip, or 3 m minimum in competent rock. In karst: extend to verify no voids below tip.",
+    "source": "FHWA GEC 5, AASHTO LRFD Bridge Design Specifications"
+  },
+  {
+    "id": "field-exploration.exploration-planning.eq-003",
+    "title": "Investigation Cost as Percentage of Project",
+    "equation": "C_investigation ≈ (0.5% to 2.0%) × C_project",
+    "variables": {
+      "C_investigation": {"description": "Total cost of geotechnical investigation", "units": "$"},
+      "C_project": {"description": "Total project construction cost", "units": "$"}
+    },
+    "applicability": "Lower end (0.5%): routine projects, well-understood conditions. Upper end (2%+): complex conditions (soft soils, karst, seismic), critical structures (dams, tunnels, hospitals). Underinvestigation is the #1 cause of cost overruns. Studies show $1 spent on investigation saves $5–15 in construction costs.",
+    "source": "Institution of Civil Engineers (1991), FHWA, general practice"
+  },
+  {
+    "id": "field-exploration.exploration-planning.eq-004",
+    "title": "Number of Borings — Statistical Adequacy (Simplified)",
+    "equation": "n ≈ (z_α × COV / E)²",
+    "variables": {
+      "n": {"description": "Number of test points needed", "units": "count"},
+      "z_α": {"description": "Standard normal variate for confidence level (1.645 for 90%, 1.96 for 95%)", "units": "dimensionless"},
+      "COV": {"description": "Coefficient of variation of the soil property", "units": "dimensionless"},
+      "E": {"description": "Acceptable margin of error (as fraction of mean)", "units": "dimensionless"}
+    },
+    "applicability": "Statistical approach — rarely used in practice for boring count but useful context. Example: COV = 0.30, 95% confidence, ±15% accuracy → n ≈ (1.96 × 0.30 / 0.15)² ≈ 15 tests. In practice, boring count is governed by spatial coverage requirements and project type (see tables).",
+    "source": "Phoon & Kulhawy (1999), Baecher & Christian (2003)"
+  }
+]

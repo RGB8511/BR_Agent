@@ -1,0 +1,97 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.tbl-001",
+    "title": "α-Factor for Driven Piles in Clay",
+    "type": "reference",
+    "data": {
+      "headers": ["s_u (kPa)", "α (driven piles)", "α (drilled shafts)"],
+      "rows": [
+        ["< 25", "1.0", "0.55"],
+        ["25–50", "0.8–1.0", "0.55"],
+        ["50–75", "0.6–0.8", "0.55"],
+        ["75–100", "0.5–0.6", "0.50"],
+        ["100–150", "0.4–0.5", "0.40–0.50"],
+        ["150–250", "0.3–0.4", "0.30–0.40"],
+        ["> 250", "0.25–0.30", "Use β-method"]
+      ]
+    },
+    "source": "API RP 2A, Tomlinson (1957), O'Neill & Reese (1999)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.tbl-002",
+    "title": "Typical β Values for Piles",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "Pile Type", "β Range"],
+      "rows": [
+        ["NC clay", "Driven", "0.25–0.40"],
+        ["NC clay", "Drilled", "0.20–0.35"],
+        ["OC clay (OCR 2–4)", "Driven", "0.35–0.60"],
+        ["OC clay (OCR 4–8)", "Driven", "0.50–0.80"],
+        ["Loose sand", "Driven", "0.30–0.50"],
+        ["Medium dense sand", "Driven", "0.50–0.80"],
+        ["Dense sand", "Driven", "0.70–1.20"],
+        ["Sand", "Drilled", "0.30–0.60"],
+        ["Gravel", "Driven", "0.80–1.50"]
+      ]
+    },
+    "source": "Various — Fellenius (2019), FHWA GEC-10, GEC-12"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.tbl-003",
+    "title": "Meyerhof N_q for Pile Base Resistance",
+    "type": "reference",
+    "data": {
+      "headers": ["φ' (°)", "N_q (driven)", "q_b,max (kPa)"],
+      "rows": [
+        ["26", "10", "2500"],
+        ["28", "15", "3500"],
+        ["30", "25", "5000"],
+        ["32", "35", "6500"],
+        ["34", "45", "8000"],
+        ["36", "60", "10000"],
+        ["38", "80", "12000"],
+        ["40", "120", "15000"]
+      ]
+    },
+    "source": "Meyerhof (1976)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.tbl-004",
+    "title": "Typical FS Values for Deep Foundations",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Capacity Determination", "FS (Global)", "FS (Shaft/Base Split)"],
+      "rows": [
+        ["Static analysis only", "2.5–3.0", "FS_s=2.0, FS_b=3.0"],
+        ["Static analysis + dynamic monitoring (CAPWAP)", "2.0–2.5", "—"],
+        ["Static load test (ASTM D1143)", "2.0", "—"],
+        ["Bi-directional (Osterberg) load test", "2.0", "—"],
+        ["Dynamic formula only (e.g., Gates)", "3.0–4.0", "—"],
+        ["LRFD (AASHTO) — static analysis", "φ = 0.35–0.45", "Resistance factor"],
+        ["LRFD — static load test", "φ = 0.75–0.80", "Resistance factor"]
+      ]
+    },
+    "source": "FHWA GEC-12, AASHTO LRFD Bridge Design"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.deep-foundations.tbl-005",
+    "title": "Pile Type Selection Guide",
+    "type": "reference",
+    "data": {
+      "headers": ["Pile Type", "Typical Capacity (kN)", "Max Length (m)", "Best Application"],
+      "rows": [
+        ["Timber", "100–500", "15–20", "Light structures, marine, temporary"],
+        ["Steel H-pile", "500–2500", "30–60+", "Hard driving, end-bearing on rock, high capacity"],
+        ["Steel pipe (open-end)", "500–3000", "40–80+", "Marine, long piles, high capacity"],
+        ["Steel pipe (closed-end)", "300–2000", "25–40", "Displacement pile, friction + end bearing"],
+        ["Precast concrete", "500–3000", "15–30", "Common in many applications"],
+        ["Prestressed concrete", "500–4000", "20–40", "Marine, corrosive environments, high moment"],
+        ["Drilled shaft", "1000–50000+", "30–90+", "Very high capacity, rock sockets, urban areas"],
+        ["CFA (auger-cast)", "500–3000", "20–35", "Urban, vibration-sensitive, sand/clay"],
+        ["Micropile", "100–2000", "15–30", "Restricted access, underpinning, rock anchoring"]
+      ]
+    },
+    "source": "FHWA GEC-12, Tomlinson & Woodward (2015)"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "id": "remote-sensing.uas-photogrammetry",
+  "name": "UAS Photogrammetry — Structure from Motion & Dense Matching",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.acquisition",
+  "dependencies": ["remote-sensing.lidar-fundamentals"],
+  "tags": ["UAS", "drone", "photogrammetry", "SfM", "structure-from-motion", "GSD", "GCP", "DEM", "DSM", "orthomosaic", "dense-matching", "MVS", "camera-calibration", "flight-planning", "overlap", "RTK", "PPK", "Pix4D", "Agisoft", "DJI", "bundle-adjustment"],
+  "standards": ["ASPRS-Positional-Accuracy", "FAA-Part-107", "ASTM-WK73376"],
+  "equation_count": 10,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

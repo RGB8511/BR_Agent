@@ -1,0 +1,57 @@
+[
+  {
+    "id": "geotechnical.foundations.rock-classification.eq-001",
+    "title": "Rock Quality Designation (RQD)",
+    "equation": "RQD = (Σ length of intact core pieces ≥ 10 cm) / (total core run length) × 100%",
+    "variables": {
+      "RQD": {"description": "Rock quality designation", "units": "% (0–100)"}
+    },
+    "applicability": "NX-size or larger core. Only hard, sound pieces ≥ 10 cm counted. Fresh mechanical breaks counted as intact.",
+    "source": "Deere (1963), ASTM D6032"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.eq-002",
+    "title": "RQD from Volumetric Joint Count",
+    "equation": "RQD = 115 - 3.3 × J_v",
+    "variables": {
+      "RQD": {"description": "Estimated RQD", "units": "%"},
+      "J_v": {"description": "Volumetric joint count (joints per m³)", "units": "joints/m³"}
+    },
+    "applicability": "For J_v > 4.5. If J_v ≤ 4.5, use RQD = 100%.",
+    "source": "Palmström (1982)"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.eq-003",
+    "title": "Point Load Strength Index (Size-Corrected)",
+    "equation": "I_s(50) = (P / D_e²) × (D_e / 50)^0.45",
+    "variables": {
+      "I_s(50)": {"description": "Point load index corrected to 50 mm equivalent diameter", "units": "MPa"},
+      "P": {"description": "Failure load", "units": "kN"},
+      "D_e": {"description": "Equivalent core diameter", "units": "mm"}
+    },
+    "source": "ASTM D5731, ISRM Suggested Method"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.eq-004",
+    "title": "UCS from Point Load Index",
+    "equation": "UCS ≈ K × I_s(50)",
+    "variables": {
+      "UCS": {"description": "Estimated uniaxial compressive strength", "units": "MPa"},
+      "K": {"description": "Conversion factor (typically 20–25; ranges 15–50)", "units": "dimensionless"},
+      "I_s(50)": {"description": "Size-corrected point load index", "units": "MPa"}
+    },
+    "applicability": "K must be calibrated for specific rock types. Common default K = 22–24. Use with caution for anisotropic rocks.",
+    "source": "ISRM, various correlations"
+  },
+  {
+    "id": "geotechnical.foundations.rock-classification.eq-005",
+    "title": "RQD from Mean Discontinuity Frequency",
+    "equation": "RQD = 100 × e^(-0.1λ) × (0.1λ + 1)",
+    "variables": {
+      "RQD": {"description": "Theoretical RQD", "units": "%"},
+      "λ": {"description": "Mean discontinuity frequency (joints per meter along scanline)", "units": "1/m"}
+    },
+    "applicability": "Assumes negative exponential distribution of joint spacings. Threshold length t = 0.1 m.",
+    "source": "Priest & Hudson (1976)"
+  }
+]

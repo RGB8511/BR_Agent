@@ -1,0 +1,24 @@
+{
+  "id": "hydrology.hydraulics.open-channel",
+  "name": "Open Channel Hydraulics",
+  "level": 1,
+  "discipline": "hydrology",
+  "parent": "hydrology.hydraulics",
+  "dependencies": ["hydrology.foundations.fundamentals"],
+  "tags": ["Manning", "Chezy", "Froude", "critical-flow", "normal-depth", "hydraulic-radius", "backwater", "energy-grade-line", "specific-energy", "weir", "culvert", "gradually-varied", "rapidly-varied", "hydraulic-jump"],
+  "standards": ["HEC-RAS", "FHWA-HDS5", "FHWA-HEC14"],
+  "key_references": [
+    "Chow (1959) Open Channel Hydraulics",
+    "Henderson (1966) Open Channel Flow",
+    "USACE HEC-RAS Hydraulic Reference Manual",
+    "FHWA HDS-5 Hydraulic Design of Highway Culverts"
+  ],
+  "equation_count": 10,
+  "concept_count": 16,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

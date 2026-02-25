@@ -1,0 +1,27 @@
+{
+  "id": "water-infra.outlet-works",
+  "name": "Outlet Works Design",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.dams",
+  "dependencies": [
+    "water-infra.dam-hydrology",
+    "hydrology.hydraulics.open-channel"
+  ],
+  "tags": ["outlet-works", "intake-tower", "conduit", "gate", "valve", "guard-gate", "regulating-gate", "energy-dissipation", "cavitation", "air-demand", "Howell-Bunger", "hollow-jet", "cone-valve", "needle-valve", "jet-flow-gate", "trashrack", "low-level-outlet", "USBR", "USACE"],
+  "standards": ["USBR-DS14-Ch2", "FEMA-484", "USACE-EM-1110-2-1602"],
+  "key_references": [
+    "USBR Design Standards No. 14, Chapter 2 — Outlet Works",
+    "USBR Design of Small Dams (1987) — Chapter 10",
+    "FEMA 484 — Technical Manual: Conduits through Embankment Dams",
+    "USACE EM 1110-2-1602 — Hydraulic Design of Reservoir Outlet Works"
+  ],
+  "equation_count": 10,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,89 @@
+[
+  {
+    "id": "water-infra.outlet-works.tbl-001",
+    "title": "Gate and Valve Types for Outlet Works",
+    "type": "classification",
+    "data": {
+      "headers": ["Type", "Service", "Max Head (m)", "Throttling", "Free Discharge", "Key Advantage"],
+      "rows": [
+        ["Slide gate (cast iron)", "Guard or regulating", "30", "Limited — cavitation at partial openings", "No", "Simple, economical for low head"],
+        ["Fixed-wheel gate", "Guard or regulating", "150+", "Yes with aeration", "No", "Very high head capability"],
+        ["Jet-flow gate", "Regulating", "200+", "Yes — designed for partial opening", "Yes", "High head, free discharge, minimal cavitation"],
+        ["Hollow-jet (fixed-cone) valve", "Regulating", "150–200", "Yes — excellent at all positions", "Yes — conical spray", "Superior energy dissipation, free discharge"],
+        ["Howell-Bunger valve", "Regulating", "150", "Yes", "Yes — conical spray with hood", "Directed spray, good dissipation"],
+        ["Needle valve", "Regulating", "200+", "Yes", "Yes or submerged", "Precise flow control, high head"],
+        ["Butterfly valve", "Guard only", "150", "No — do not throttle", "No", "Compact, fast closure, guard service"],
+        ["Ball/plug valve", "Guard", "200+", "No", "No", "Full-bore, low head loss when open"],
+        ["Clamshell gate", "Guard (emergency)", "100", "No", "No", "Emergency bulkhead, gravity closure"]
+      ]
+    },
+    "source": "USBR, USACE EM 1110-2-1602, manufacturer data"
+  },
+  {
+    "id": "water-infra.outlet-works.tbl-002",
+    "title": "Entrance Loss Coefficients (Ke)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Entrance Type", "Ke", "Description"],
+      "rows": [
+        ["Bell-mouth (well-rounded)", "0.04", "Smooth elliptical transition — r/D ≥ 0.15"],
+        ["Slightly rounded", "0.10", "r/D ≈ 0.05"],
+        ["Square-edge (flush)", "0.50", "Conduit flush with headwall, no rounding"],
+        ["Projecting (re-entrant)", "0.78", "Conduit projects into reservoir"],
+        ["Grooved socket end", "0.20", "Pipe with hub end projecting into headwall"],
+        ["Mitered to slope", "0.70", "Cut to match embankment slope, no headwall"]
+      ]
+    },
+    "source": "USBR, FHWA HDS-5, USACE"
+  },
+  {
+    "id": "water-infra.outlet-works.tbl-003",
+    "title": "Conduit Velocity Limits",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Condition", "Maximum Velocity (m/s)", "Basis"],
+      "rows": [
+        ["Unlined concrete conduit", "3–6", "Erosion/abrasion of concrete surface"],
+        ["Steel-lined conduit (normal operation)", "6–10", "Economics, head loss, vibration"],
+        ["Steel-lined conduit (maximum)", "12–15", "Cavitation control required above 12 m/s"],
+        ["Free-discharge valve (hollow-jet)", "40+", "Designed for high velocity; cavitation managed"],
+        ["Trashrack approach velocity", "0.3–0.6", "Fish impingement, debris, structural load"],
+        ["Intake tower port velocity", "0.9–1.5", "Vortex prevention, structural load"],
+        ["Air vent pipe", "≤ 45", "Noise, head loss, vibration"]
+      ]
+    },
+    "source": "USBR DS-14 Ch2, USACE EM 1110-2-1602, FEMA 484"
+  },
+  {
+    "id": "water-infra.outlet-works.tbl-004",
+    "title": "Conduit Material Selection",
+    "type": "classification",
+    "data": {
+      "headers": ["Material", "Max Head (m)", "Advantages", "Limitations", "Typical Application"],
+      "rows": [
+        ["Steel (welded)", "300+", "Highest strength, weldable, inspectable", "Corrosion (requires coating/CP), cost", "Through-dam conduits, penstocks, high head"],
+        ["Ductile iron (DIP)", "150", "Corrosion resistant, push-on joints", "Joints may leak under dam, limited diameter", "Low-head outlets, small dams"],
+        ["Reinforced concrete (RCP)", "30", "Durable, local material", "Leakage at joints, limited pressure", "Low-head, short conduits"],
+        ["PCCP", "100", "High strength, corrosion resistant", "Brittle failure mode, costly repairs", "Water supply conduits, large diameter"],
+        ["HDPE", "30", "Flexible, chemical resistant, fusible joints", "Low stiffness, creep, UV sensitivity", "Low-head, small outlets, relining"]
+      ]
+    },
+    "source": "USBR, FEMA 484, AWWA standards"
+  },
+  {
+    "id": "water-infra.outlet-works.tbl-005",
+    "title": "USBR Drawdown Capability Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Dam Hazard Classification", "Drawdown Requirement", "Timeframe"],
+      "rows": [
+        ["High hazard", "Ability to lower pool to safe level for emergency repair", "Days to weeks (site-specific)"],
+        ["High hazard (USBR)", "Lower flood surcharge pool within 10–20 days", "USBR guidance"],
+        ["All dams (USBR)", "Complete reservoir drawdown capability recommended", "Weeks to months acceptable"],
+        ["State regulations (typical)", "Varies — many require full drawdown capability", "60–120 days common"],
+        ["Low hazard", "Minimum outlet for maintenance drawdown", "No specific time requirement"]
+      ]
+    },
+    "source": "USBR DS-14 Ch2, state dam safety regulations (vary)"
+  }
+]

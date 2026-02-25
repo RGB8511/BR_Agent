@@ -1,0 +1,29 @@
+{
+  "id": "water-infra.canal-design",
+  "name": "Canal Design",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.conveyance",
+  "dependencies": [
+    "hydrology.hydraulics.open-channel",
+    "soil-mechanics.permeability-seepage",
+    "soil-mechanics.slope-stability"
+  ],
+  "tags": ["canal", "irrigation", "conveyance", "regime-theory", "tractive-force", "Lacey", "Kennedy", "lined-canal", "unlined", "freeboard", "bank-stability", "cross-section", "best-hydraulic-section", "seepage-loss", "Manning", "transition", "USBR"],
+  "standards": ["USBR-DS3-Ch1", "USACE-EM-1110-2-1601", "IS-10430"],
+  "key_references": [
+    "USBR Design Standards No. 3, Chapter 1 — Canals and Related Structures",
+    "USBR Design of Small Canal Structures (1978)",
+    "Chow (1959) Open Channel Hydraulics",
+    "French (1985) Open-Channel Hydraulics",
+    "USACE EM 1110-2-1601 Hydraulic Design of Flood Control Channels"
+  ],
+  "equation_count": 10,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

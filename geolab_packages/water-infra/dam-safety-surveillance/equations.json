@@ -1,0 +1,82 @@
+[
+  {
+    "id": "water-infra.dam-safety.eq-001",
+    "title": "Seepage vs. Reservoir Level Relationship (Normal Behavior)",
+    "equation": "Q_seepage = k × (H_res - H_tw)^n",
+    "variables": {
+      "Q_seepage": {"description": "Total measured seepage flow", "units": "L/min or m³/s"},
+      "k": {"description": "Empirical coefficient (site-specific, from regression)", "units": "varies"},
+      "H_res": {"description": "Reservoir water level", "units": "m"},
+      "H_tw": {"description": "Tailwater level", "units": "m"},
+      "n": {"description": "Exponent (typically 1.0–2.0; n=1 for Darcy flow, n>1 for increasing gradient)", "units": "dimensionless"}
+    },
+    "applicability": "Establish baseline relationship during normal operations. Plot Q vs. (H_res - H_tw). Departures from the established trend indicate changed seepage conditions — investigate immediately. Turbid seepage or seepage carrying fines is always critical regardless of quantity.",
+    "source": "Dunnicliff (1993), USBR Dam Safety Practice"
+  },
+  {
+    "id": "water-infra.dam-safety.eq-002",
+    "title": "HST Model — Concrete Dam Displacement",
+    "equation": "δ = Σ(aᵢ × Hⁱ) + Σ(bⱼ × sin(2πjt/365) + cⱼ × cos(2πjt/365)) + d₁×θ + d₂×θ²",
+    "variables": {
+      "δ": {"description": "Measured displacement (crest, pendulum, joint meter)", "units": "mm"},
+      "H": {"description": "Reservoir level (polynomial terms for hydrostatic effect)", "units": "m"},
+      "t": {"description": "Day of year (harmonic terms for seasonal/thermal effect)", "units": "days"},
+      "θ": {"description": "Time since reference date (linear + quadratic for irreversible trends)", "units": "years"},
+      "aᵢ, bⱼ, cⱼ, d₁, d₂": {"description": "Regression coefficients fitted to historical data", "units": "varies"}
+    },
+    "applicability": "Standard statistical model for concrete dam behavior. Fit to 5–10+ years of historical data. Prediction residuals (measured - modeled) flagged when exceeding ±2–3 standard deviations. Used worldwide (EDF, USBR, USACE).",
+    "source": "Willm & Beaujoint (1967), ICOLD"
+  },
+  {
+    "id": "water-infra.dam-safety.eq-003",
+    "title": "Uplift Pressure — Measured vs. Design",
+    "equation": "U_measured = γ_w × h_piezometer;  Safety check: U_measured ≤ U_design",
+    "variables": {
+      "U_measured": {"description": "Measured uplift pressure at foundation piezometer", "units": "kPa"},
+      "h_piezometer": {"description": "Piezometric head at measurement point", "units": "m"},
+      "U_design": {"description": "Design uplift assumption (e.g., USBR: P_drain = Pd + 1/3(Pu-Pd) with functional drains)", "units": "kPa"}
+    },
+    "applicability": "Compare measured uplift to design assumptions at each piezometer location. If measured exceeds design, stability analysis must be revised. Drain effectiveness = 1 - (P_measured - P_downstream)/(P_upstream - P_downstream).",
+    "source": "USBR DS-14, USACE EM 1110-2-2200"
+  },
+  {
+    "id": "water-infra.dam-safety.eq-004",
+    "title": "Settlement Rate Assessment",
+    "equation": "ṡ = Δs/Δt;  Alert if ṡ > ṡ_threshold",
+    "variables": {
+      "ṡ": {"description": "Rate of settlement (crest or embankment surface)", "units": "mm/year"},
+      "Δs": {"description": "Incremental settlement over monitoring period", "units": "mm"},
+      "Δt": {"description": "Time interval", "units": "years"},
+      "ṡ_threshold": {"description": "Site-specific threshold rate (typically alarm if > 10–25 mm/yr for mature embankment dams)", "units": "mm/year"}
+    },
+    "applicability": "During first filling and early life, settlement is expected and may be rapid. After initial consolidation (3–5 years), settlement rate should decrease logarithmically. Accelerating settlement or differential settlement is always an alert condition.",
+    "source": "FEMA, ICOLD Bulletin 68"
+  },
+  {
+    "id": "water-infra.dam-safety.eq-005",
+    "title": "Critical Hydraulic Gradient (Internal Erosion Screening)",
+    "equation": "i_cr = (G_s - 1) / (1 + e) = (γ_sat - γ_w) / γ_w",
+    "variables": {
+      "i_cr": {"description": "Critical hydraulic gradient for heave/piping initiation", "units": "dimensionless"},
+      "G_s": {"description": "Specific gravity of soil particles", "units": "dimensionless"},
+      "e": {"description": "Void ratio", "units": "dimensionless"},
+      "γ_sat": {"description": "Saturated unit weight of soil", "units": "kN/m³"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"}
+    },
+    "applicability": "Typical i_cr ≈ 1.0 for most soils. Measured exit gradient (from piezometer data) should be well below i_cr. Safety factor: FS = i_cr / i_exit ≥ 3–5 (USACE). This is a simplified check — actual internal erosion involves multiple mechanisms beyond simple heave.",
+    "source": "Terzaghi (1922), USACE EM 1110-2-1901"
+  },
+  {
+    "id": "water-infra.dam-safety.eq-006",
+    "title": "Drain Effectiveness",
+    "equation": "E_drain = 1 - (P_m - P_d) / (P_u - P_d)",
+    "variables": {
+      "E_drain": {"description": "Drain effectiveness (0 = no effect, 1 = fully effective)", "units": "dimensionless"},
+      "P_m": {"description": "Measured piezometric pressure at drain line", "units": "m or kPa"},
+      "P_u": {"description": "Upstream (headwater) pressure", "units": "m or kPa"},
+      "P_d": {"description": "Downstream (tailwater) pressure", "units": "m or kPa"}
+    },
+    "applicability": "USBR assumes 2/3 drain effectiveness (E = 0.67) for design. USACE assumes E = 0.50 for design. Measured E should be tracked over time — declining effectiveness indicates drain clogging and requires remedial action. If E drops below design assumption, stability must be re-evaluated.",
+    "source": "USBR DS-14, USACE EM 1110-2-2200"
+  }
+]

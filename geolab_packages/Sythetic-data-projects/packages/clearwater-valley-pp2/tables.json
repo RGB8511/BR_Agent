@@ -1,0 +1,441 @@
+[
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl01",
+    "title": "Boring Summary — PP-2 Geotechnical Investigation (2018)",
+    "type": "site_data",
+    "description": "Summary of all geotechnical borings advanced at the PP-2 site during the 2018 investigation. Boring locations referenced to site survey datum (NAVD88). BH-PP2-03 and BH-PP2-04 include NX rock core below alluvial soils.",
+    "data": {
+      "headers": [
+        "Boring ID",
+        "Northing (ft)",
+        "Easting (ft)",
+        "Ground Surface Elev. (ft NAVD88)",
+        "Total Depth (ft bgs)",
+        "Termination Condition",
+        "Depth to GW (ft bgs)",
+        "GW Stabilization Method",
+        "Depth to Top of Rock (ft bgs)",
+        "Core Start Depth (ft bgs)",
+        "Core End Depth (ft bgs)",
+        "Drill Date"
+      ],
+      "rows": [
+        ["BH-PP2-01", "5012.4", "3241.8", "2861.2", "30.0", "Refusal on fresh rock", "13.8", "Observed during drilling", "23.0", "—", "—", "2018-07-16"],
+        ["BH-PP2-02", "5018.7", "3256.3", "2861.0", "35.0", "5 ft core run into fresh rock", "13.5", "72-hr standpipe piezometer", "22.5", "22.5", "27.5", "2018-07-17"],
+        ["BH-PP2-03", "5032.1", "3243.9", "2860.8", "40.0", "10 ft core run into fresh rock", "14.0", "72-hr standpipe piezometer", "21.8", "21.8", "31.8", "2018-07-18"],
+        ["BH-PP2-04", "5038.5", "3262.7", "2860.5", "38.0", "10 ft core run into fresh rock", "14.2", "Observed during drilling", "20.5", "20.5", "30.5", "2018-07-19"]
+      ]
+    },
+    "source": "WGC Report 2018-GEO-0093, Table 2-1 and Boring Location Plan Figure 2-1"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl02",
+    "title": "SPT N-Values by Depth and Boring — PP-2 Site",
+    "type": "site_data",
+    "description": "Standard Penetration Test (SPT) N-values recorded in Borings BH-PP2-01 through BH-PP2-04. Tests performed per ASTM D1586 using an automatic hammer with calibrated energy ratio of 60% (CE = 0.97–1.05 confirmed by energy measurement). Split-spoon sampler (1.375 in ID, 1.5 in OD). N-values reported as blows per foot (last two 6-inch increments of 18-inch drive). NR = No Recovery (rock encountered); R = Refusal (>50 blows/6 inches on rock). Values in Layer 2 (4–12 ft) reflect stiff to very stiff alluvial clay; Layer 3 (12–23 ft) reflects medium dense to dense alluvial sand.",
+    "data": {
+      "headers": [
+        "Sample Depth (ft bgs)",
+        "Stratigraphic Layer",
+        "BH-PP2-01 N (blows/ft)",
+        "BH-PP2-02 N (blows/ft)",
+        "BH-PP2-03 N (blows/ft)",
+        "BH-PP2-04 N (blows/ft)",
+        "Notes"
+      ],
+      "rows": [
+        ["1.5–3.0", "Layer 1 — Fill/Topsoil", "5", "4", "6", "8", "Disturbed fill; variable"],
+        ["3.0–4.5", "Layer 1 / Layer 2 Transition", "7", "6", "9", "7", "Fill/clay contact; variable"],
+        ["4.5–6.0", "Layer 2 — Alluvial Clay", "9", "10", "11", "9", "Stiff CL; consistent"],
+        ["6.0–7.5", "Layer 2 — Alluvial Clay", "11", "12", "13", "10", "Stiff CL; slight increase"],
+        ["7.5–9.0", "Layer 2 — Alluvial Clay", "13", "14", "15", "12", "Stiff to very stiff"],
+        ["9.0–10.5", "Layer 2 — Alluvial Clay", "15", "16", "16", "14", "Very stiff CL"],
+        ["10.5–12.0", "Layer 2 / Layer 3 Transition", "14", "16", "18", "15", "Clay/sand contact"],
+        ["12.0–13.5", "Layer 3 — Alluvial Sand", "17", "19", "21", "18", "Medium dense SM; below GWT in BH-02,-03,-04"],
+        ["13.5–15.0", "Layer 3 — Alluvial Sand", "19", "21", "23", "20", "Medium dense SM; saturated"],
+        ["15.0–16.5", "Layer 3 — Alluvial Sand", "21", "23", "25", "22", "Medium dense to dense"],
+        ["16.5–18.0", "Layer 3 — Alluvial Sand", "23", "25", "27", "24", "Dense SM"],
+        ["18.0–19.5", "Layer 3 — Alluvial Sand", "25", "27", "28", "26", "Dense SM"],
+        ["19.5–21.0", "Layer 3 / Bedrock Transition", "27", "29", "29", "27", "Dense sand over weathered rock"],
+        ["21.0–22.5", "Layer 4 — Weathered Challis Volcanics", "R/50+", "R/50+", "45", "R/50+", "Refusal in BH-01,-02,-04; BH-03 in weathered rock"],
+        ["22.5–24.0", "Layer 4 — Bedrock Challis Volcanics", "—", "NR/core", "NR/core", "NR/core", "Core samples collected; SPT not performed in fresh rock"]
+      ]
+    },
+    "source": "WGC Report 2018-GEO-0093, Table 3-1 and individual boring logs (Appendix A)"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl03",
+    "title": "Natural Moisture Content Results — PP-2 Laboratory Testing",
+    "type": "lab_results",
+    "description": "Natural moisture content determinations per ASTM D2216 on representative split-spoon and Shelby tube samples. Moisture content expressed as percentage of dry soil weight. Values for Layer 2 (alluvial clay) are near the plastic limit indicating stiff to very stiff consistency. Values for Layer 3 (alluvial sand) increase below the groundwater table (13.5–14.2 ft bgs).",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Boring ID",
+        "Sample Depth (ft bgs)",
+        "Stratigraphic Layer",
+        "Sample Type",
+        "Moisture Content w (%)",
+        "USCS Classification"
+      ],
+      "rows": [
+        ["MC-01", "BH-PP2-01", "2.5", "Layer 1 — Fill", "SS", "12.4", "SM"],
+        ["MC-02", "BH-PP2-01", "5.0", "Layer 2 — Alluvial Clay", "SS", "18.2", "CL"],
+        ["MC-03", "BH-PP2-01", "7.5", "Layer 2 — Alluvial Clay", "ST-1", "20.1", "CL"],
+        ["MC-04", "BH-PP2-01", "10.0", "Layer 2 — Alluvial Clay", "ST-2", "22.8", "CL"],
+        ["MC-05", "BH-PP2-02", "5.0", "Layer 2 — Alluvial Clay", "SS", "18.7", "CL"],
+        ["MC-06", "BH-PP2-02", "7.5", "Layer 2 — Alluvial Clay", "ST-3", "21.3", "CL"],
+        ["MC-07", "BH-PP2-02", "10.0", "Layer 2 — Alluvial Clay", "ST-4", "23.6", "CL"],
+        ["MC-08", "BH-PP2-03", "7.5", "Layer 2 — Alluvial Clay", "ST-5", "19.8", "CL"],
+        ["MC-09", "BH-PP2-03", "11.0", "Layer 2 / Layer 3 Transition", "SS", "17.4", "CL-ML"],
+        ["MC-10", "BH-PP2-03", "13.5", "Layer 3 — Alluvial Sand (above GWT)", "SS", "15.2", "SM"],
+        ["MC-11", "BH-PP2-03", "16.5", "Layer 3 — Alluvial Sand (below GWT)", "SS", "24.3", "SM"],
+        ["MC-12", "BH-PP2-04", "8.0", "Layer 2 — Alluvial Clay", "ST-6", "19.1", "CL"],
+        ["MC-13", "BH-PP2-04", "16.0", "Layer 3 — Alluvial Sand (below GWT)", "SS", "25.9", "SM"]
+      ]
+    },
+    "notes": "SS = Split-spoon sample (ASTM D1586); ST = Shelby tube (thin-wall undisturbed sample, ASTM D1587). ST samples used for consolidation testing; moisture contents from adjacent trimmings. Average Layer 2 moisture content = 20.4%; range 18.2–23.6%.",
+    "source": "WGC Report 2018-GEO-0093, Table 4-1 and laboratory data sheets (Appendix B)"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl04",
+    "title": "Atterberg Limits and USCS Classification — PP-2 Laboratory Testing",
+    "type": "lab_results",
+    "description": "Atterberg limit tests per ASTM D4318 (multi-point fall-cone method for liquid limit; rolled thread method for plastic limit) and USCS classification per ASTM D2487. All samples from Layer 2 alluvial clay. Activity = PI / clay fraction (% < 2 micron by hydrometer). Linear shrinkage measured per AS 1289 Method 3.4.1. All samples plot above A-line on Casagrande plasticity chart confirming CL classification.",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Boring ID",
+        "Depth (ft bgs)",
+        "Liquid Limit LL (%)",
+        "Plastic Limit PL (%)",
+        "Plasticity Index PI (%)",
+        "Linear Shrinkage LS (%)",
+        "Clay Fraction % < 2μm",
+        "Activity A = PI/%Clay",
+        "USCS Symbol",
+        "Soil Description"
+      ],
+      "rows": [
+        ["AL-01", "BH-PP2-01", "5.5", "38", "20", "18", "9.2", "21.4", "0.84", "CL", "Lean Clay with Sand"],
+        ["AL-02", "BH-PP2-01", "8.0", "40", "21", "19", "10.1", "22.8", "0.83", "CL", "Lean Clay with Sand"],
+        ["AL-03", "BH-PP2-01", "10.5", "36", "19", "17", "8.6", "20.6", "0.82", "CL", "Lean Clay with Sand"],
+        ["AL-04", "BH-PP2-02", "6.0", "41", "21", "20", "10.8", "23.1", "0.87", "CL", "Lean Clay with Sand"],
+        ["AL-05", "BH-PP2-02", "9.0", "37", "20", "17", "8.9", "20.0", "0.85", "CL", "Lean Clay with Sand"],
+        ["AL-06", "BH-PP2-03", "7.5", "39", "21", "18", "9.6", "19.4", "0.93", "CL", "Lean Clay with Sand"],
+        ["AL-07", "BH-PP2-04", "8.5", "35", "18", "17", "8.3", "17.9", "0.95", "CL", "Lean Clay with Sand"]
+      ]
+    },
+    "notes": "Average LL = 38.0%; average PI = 18.0%; average Activity = 0.87 (normal activity, consistent with illite–montmorillonite mixed clay mineralogy). All samples plot on or above A-line between CL and CH boundary; none exceed LL = 50 threshold for CH. Activity values < 1.0 indicate inactive to normal clay, consistent with Challis Volcanic weathering products dominated by 2:1 clay minerals.",
+    "source": "WGC Report 2018-GEO-0093, Table 4-2 and laboratory data sheets (Appendix B)"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl05",
+    "title": "One-Dimensional Swell and Consolidation Test Results — PP-2 Alluvial Clay",
+    "type": "lab_results",
+    "description": "One-dimensional swell and consolidation tests per ASTM D4546 (Method B: constant volume swell pressure followed by axial loading) and ASTM D2435 for consolidation parameters. Undisturbed Shelby tube samples from Layer 2 alluvial clay. Swell measured at initial field moisture content under in-situ vertical stress before wetting. OCR computed from ratio of preconsolidation pressure (Casagrande graphical method on e-log p curve) to in-situ effective overburden.",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Boring",
+        "Depth (ft bgs)",
+        "In-Situ σ'v (psf)",
+        "Initial w (%)",
+        "Initial e0",
+        "Free Swell (%)",
+        "Swell Pressure (psf)",
+        "Preconsolidation Pressure σ'p (psf)",
+        "OCR",
+        "Compression Index Cc",
+        "Recompression Index Cr",
+        "Secondary Compression Index Cα"
+      ],
+      "rows": [
+        ["SC-01", "BH-PP2-01", "7.5", "900", "20.1", "0.63", "3.6", "1,420", "4,500", "5.0", "0.13", "0.014", "0.003"],
+        ["SC-02", "BH-PP2-02", "9.0", "1,080", "21.3", "0.68", "2.8", "1,050", "4,340", "4.0", "0.11", "0.012", "0.003"],
+        ["SC-03", "BH-PP2-02", "10.5", "1,260", "23.6", "0.72", "4.1", "1,620", "5,800", "4.6", "0.15", "0.018", "0.004"],
+        ["SC-04", "BH-PP2-03", "8.0", "960", "19.8", "0.61", "3.2", "1,280", "4,800", "5.0", "0.12", "0.013", "0.003"]
+      ]
+    },
+    "notes": "Free swell measured under simulated in-situ overburden stress after flooding specimen with distilled water. Swell pressure measured at constant volume (Method B) then specimen loaded to determine compression curve. e0 = initial void ratio at start of test. OCR = σ'p / σ'v. All specimens show OCR = 4–5, consistent with desiccation overconsolidation in semi-arid climate. Cc and Cr values from e-log p curves in compression range. Cα measured during secondary compression stage at high stress (8,000 psf) to capture long-term creep behavior.",
+    "source": "WGC Report 2018-GEO-0093, Table 4-3 and consolidation data sheets (Appendix B)"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl06",
+    "title": "Corrosion Test Results — PP-2 Alluvial Clay Samples",
+    "type": "lab_results",
+    "description": "Corrosion characterization tests on three alluvial clay samples from Layer 2. Soil electrical resistivity per ASTM G57 (4-electrode Wenner method). Soil pH per ASTM D4972 (pH meter, 1:1 soil:water suspension). Water-soluble sulfate per ASTM C1580 (ICP-OES). Water-soluble chloride per EPA Method 300.0 (ion chromatography). NACE RP-0169 corrosion classification applies to buried metallic structures. ACI 318-19 sulfate exposure class per Table 19.3.3.1.",
+    "data": {
+      "headers": [
+        "Sample ID",
+        "Boring",
+        "Depth (ft bgs)",
+        "Resistivity ρ (Ω·cm)",
+        "NACE Resistivity Class",
+        "Soil pH",
+        "Water-Soluble Sulfate (ppm)",
+        "ACI Sulfate Exposure Class",
+        "Water-Soluble Chloride (ppm)",
+        "Overall NACE Corrosivity",
+        "Recommended Cement Type"
+      ],
+      "rows": [
+        ["CR-01", "BH-PP2-01", "6.0", "5,100", "Moderately Corrosive", "8.1", "280", "S1", "180", "Moderately Corrosive", "Type II (MS)"],
+        ["CR-02", "BH-PP2-02", "7.5", "4,200", "Moderately Corrosive", "7.7", "360", "S1", "250", "Moderately Corrosive", "Type II (MS)"],
+        ["CR-03", "BH-PP2-03", "8.5", "3,800", "Moderately Corrosive", "7.2", "420", "S1", "310", "Moderately Corrosive", "Type II (MS)"]
+      ]
+    },
+    "notes": "NACE RP-0169 resistivity classification: > 10,000 Ω·cm = Mildly Corrosive; 2,000–10,000 Ω·cm = Moderately Corrosive; < 2,000 Ω·cm = Severely Corrosive. ACI 318-19 sulfate exposure: S0 < 150 ppm; S1 = 150–1,500 ppm; S2 = 1,500–10,000 ppm; S3 > 10,000 ppm. Chloride levels (180–310 ppm water-soluble) are below FHWA bridge threshold (500 ppm) but warrant epoxy-coated rebar for elements with direct soil contact. pH 7.2–8.1 indicates slightly alkaline conditions, moderately protective for embedded steel.",
+    "source": "WGC Report 2018-GEO-0093, Table 4-4 and corrosion laboratory reports (Appendix B)"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl07",
+    "title": "Unconfined Compressive Strength (UCS) Test Results — Challis Volcanic Rock Core",
+    "type": "lab_results",
+    "description": "UCS tests per ASTM D7012 Method C on NX-size (54.7 mm diameter) core specimens from BH-PP2-03 and BH-PP2-04. Specimens trimmed to L/D = 2.0–2.5 with flat, parallel ends. Axial strain measured by bonded resistance strain gauges and LVDTs. E50 = tangent modulus at 50% of peak stress. Poisson's ratio from lateral/axial strain ratio at 50% peak. Failure modes: AS = Axial Splitting (brittle); SF = Shear Fracture; MF = Mixed (shear + tensile). All tests at room temperature; specimens tested at lab air-dry moisture content.",
+    "data": {
+      "headers": [
+        "Specimen ID",
+        "Boring",
+        "Sample Depth (ft bgs)",
+        "Core Run",
+        "Diameter (mm)",
+        "Length (mm)",
+        "L/D Ratio",
+        "UCS (psi)",
+        "UCS (MPa)",
+        "E50 (× 10⁶ psi)",
+        "Poisson's Ratio ν",
+        "Failure Mode",
+        "Notes"
+      ],
+      "rows": [
+        ["UCS-01A", "BH-PP2-03", "22.8", "CR-1", "54.6", "113.2", "2.07", "5,180", "35.7", "1.21", "0.26", "SF", "Weathered tuff; pre-existing shear fracture"],
+        ["UCS-01B", "BH-PP2-03", "23.4", "CR-1", "54.7", "114.8", "2.10", "6,420", "44.3", "1.65", "0.24", "AS", "Slightly weathered; good quality"],
+        ["UCS-02A", "BH-PP2-03", "24.5", "CR-2", "54.7", "112.6", "2.06", "7,180", "49.5", "1.98", "0.23", "AS", "Fresh tuff; phenocrysts intact"],
+        ["UCS-02B", "BH-PP2-03", "25.2", "CR-2", "54.8", "115.3", "2.10", "7,640", "52.7", "2.24", "0.22", "AS", "Fresh tuff; high strength"],
+        ["UCS-02C", "BH-PP2-03", "26.1", "CR-2", "54.7", "113.8", "2.08", "6,890", "47.5", "1.87", "0.24", "MF", "Mixed failure; sub-parallel to foliation"],
+        ["UCS-03A", "BH-PP2-03", "27.8", "CR-3", "54.6", "114.0", "2.09", "8,210", "56.6", "2.51", "0.23", "AS", "Excellent quality; devitrified groundmass"],
+        ["UCS-03B", "BH-PP2-03", "28.9", "CR-3", "54.7", "115.5", "2.11", "8,680", "59.8", "2.78", "0.22", "AS", "Highest UCS at site; intact fresh tuff"],
+        ["UCS-04A", "BH-PP2-04", "21.8", "CR-4", "54.7", "113.0", "2.07", "5,450", "37.6", "1.32", "0.27", "SF", "Weathered; oxidized joint surface"],
+        ["UCS-04B", "BH-PP2-04", "22.5", "CR-4", "54.8", "114.7", "2.09", "6,150", "42.4", "1.58", "0.25", "AS", "Slightly weathered"],
+        ["UCS-05A", "BH-PP2-04", "24.0", "CR-5", "54.7", "113.9", "2.08", "7,320", "50.5", "2.02", "0.24", "AS", "Fresh ignimbrite; good core recovery"],
+        ["UCS-05B", "BH-PP2-04", "25.3", "CR-5", "54.6", "114.4", "2.10", "7,850", "54.1", "2.31", "0.23", "AS", "High strength fresh tuff"],
+        ["UCS-06A", "BH-PP2-04", "27.1", "CR-6", "54.7", "115.1", "2.10", "7,540", "52.0", "2.15", "0.23", "MF", "Mixed mode; intact but with micro-crack"]
+      ]
+    },
+    "statistics": {
+      "n": 12,
+      "UCS_min_psi": 5180,
+      "UCS_max_psi": 8680,
+      "UCS_mean_psi": 6638,
+      "UCS_std_dev_psi": 1050,
+      "UCS_mean_MPa": 45.8,
+      "E50_mean_10e6_psi": 1.97,
+      "E50_range": "1.21–2.78 × 10⁶ psi",
+      "nu_mean": 0.236,
+      "ISRM_classification": "Moderately Strong (R3) to Strong (R4) Rock (25–100 MPa range)",
+      "design_UCS_used_psi": 5500,
+      "design_basis_note": "Design UCS = mean - 1σ = 6,638 - 1,050 ≈ 5,588 psi; rounded to 5,500 psi for conservative socket friction design. End-bearing calculation used geometric mean of lower quartile specimens."
+    },
+    "source": "WGC Report 2018-GEO-0093, Table 4-5 and rock testing data sheets (Appendix C)"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl08",
+    "title": "Indirect Tensile Strength (ITS / Brazilian Test) Results — Challis Volcanic Rock Core",
+    "type": "lab_results",
+    "description": "Brazilian indirect tensile strength tests per ASTM D3967 on NX-size core discs. Specimens trimmed to diameter/thickness ratio of approximately 2:1 (L/D ≈ 0.5). Load applied diametrically at constant displacement rate of 0.2 mm/min. ITS = 2P / (π × D × t). Failure mode: STE = Straight Tensile (central crack); DT = Diagonal Tensile (sub-diagonal crack); IR = Irregular. Test temperature 68°F ± 2°F.",
+    "data": {
+      "headers": [
+        "Specimen ID",
+        "Boring",
+        "Sample Depth (ft bgs)",
+        "Core Run",
+        "Diameter D (mm)",
+        "Thickness t (mm)",
+        "D/t Ratio",
+        "Peak Load P (N)",
+        "ITS (psi)",
+        "ITS (MPa)",
+        "Failure Mode",
+        "Notes"
+      ],
+      "rows": [
+        ["ITS-01A", "BH-PP2-03", "22.9", "CR-1", "54.7", "27.1", "2.02", "23,450", "540", "3.72", "STE", "Weathered zone; lower bound"],
+        ["ITS-01B", "BH-PP2-03", "23.2", "CR-1", "54.7", "27.4", "2.00", "25,800", "594", "4.10", "STE", "Slightly weathered"],
+        ["ITS-02A", "BH-PP2-03", "24.3", "CR-2", "54.7", "27.2", "2.01", "30,100", "694", "4.79", "STE", "Fresh tuff"],
+        ["ITS-02B", "BH-PP2-03", "24.8", "CR-2", "54.8", "27.5", "1.99", "32,400", "742", "5.12", "STE", "Fresh tuff; central crack"],
+        ["ITS-02C", "BH-PP2-03", "25.5", "CR-2", "54.7", "27.3", "2.00", "28,700", "661", "4.56", "DT", "Sub-diagonal; foliation influence"],
+        ["ITS-03A", "BH-PP2-03", "27.2", "CR-3", "54.7", "27.1", "2.02", "34,600", "797", "5.50", "STE", "High quality fresh ignimbrite"],
+        ["ITS-03B", "BH-PP2-03", "28.5", "CR-3", "54.8", "27.4", "2.00", "38,700", "890", "6.14", "STE", "Highest ITS at site"],
+        ["ITS-04A", "BH-PP2-04", "22.0", "CR-4", "54.7", "27.2", "2.01", "24,200", "557", "3.84", "DT", "Weathered; diagonal crack"],
+        ["ITS-04B", "BH-PP2-04", "22.8", "CR-4", "54.7", "27.3", "2.00", "26,900", "620", "4.28", "STE", "Slightly weathered"],
+        ["ITS-05A", "BH-PP2-04", "23.8", "CR-5", "54.7", "27.1", "2.02", "31,500", "726", "5.01", "STE", "Fresh tuff"],
+        ["ITS-05B", "BH-PP2-04", "24.9", "CR-5", "54.8", "27.5", "1.99", "33,800", "773", "5.33", "STE", "Good core quality"],
+        ["ITS-05C", "BH-PP2-04", "25.8", "CR-5", "54.7", "27.2", "2.01", "32,100", "740", "5.10", "STE", "Consistent with CR-5 range"],
+        ["ITS-06A", "BH-PP2-04", "27.0", "CR-6", "54.7", "27.3", "2.00", "30,500", "702", "4.84", "STE", "Fresh ignimbrite"],
+        ["ITS-06B", "BH-PP2-04", "27.9", "CR-6", "54.8", "27.4", "2.00", "31,200", "716", "4.94", "IR", "Irregular fracture; minor pre-crack"]
+      ]
+    },
+    "statistics": {
+      "n": 14,
+      "ITS_min_psi": 540,
+      "ITS_max_psi": 890,
+      "ITS_mean_psi": 683,
+      "ITS_std_dev_psi": 98,
+      "ITS_mean_MPa": 4.71,
+      "UCS_to_ITS_mean_ratio": 9.71,
+      "notes": "UCS/ITS ratio of ~9.7 is consistent with brittle volcanic rock (typical range 8–15 for ignimbrite). Tensile strength used in Hoek-Brown criterion as σ_t = ITS_mean in rock mass strength classification."
+    },
+    "source": "WGC Report 2018-GEO-0093, Table 4-6 and rock testing data sheets (Appendix C)"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl09",
+    "title": "Rock Core Recovery and RQD Summary — PP-2 Cored Borings",
+    "type": "lab_results",
+    "description": "Rock core recovery and RQD measurements for all core runs in BH-PP2-03 and BH-PP2-04. Core recovery = (length of recovered core / length of core run) × 100%. RQD = (cumulative length of pieces ≥ 4 inches / core run length) × 100%, per ASTM D6032. NX double-tube core barrel (54.7 mm core diameter). Rock type is Challis Volcanic welded rhyolitic ash-flow tuff. Weathering grades: W-IV = Highly Weathered; W-III = Moderately Weathered; W-II = Slightly Weathered; W-I = Fresh.",
+    "data": {
+      "headers": [
+        "Core Run ID",
+        "Boring",
+        "Run Start Depth (ft bgs)",
+        "Run End Depth (ft bgs)",
+        "Run Length (ft)",
+        "Core Recovered (ft)",
+        "Core Recovery (%)",
+        "RQD Count Length (ft)",
+        "RQD (%)",
+        "Rock Quality (Deere)",
+        "Weathering Grade",
+        "Lithologic Notes"
+      ],
+      "rows": [
+        ["CR-1", "BH-PP2-03", "21.8", "24.8", "3.0", "1.86", "62", "1.35", "45", "Fair", "W-IV to W-III", "Highly to moderately weathered tuff; clay-filled joints; orange-brown oxidation; fragmented near top"],
+        ["CR-2", "BH-PP2-03", "24.8", "29.8", "5.0", "4.25", "85", "3.30", "66", "Good", "W-II", "Slightly weathered; fresh phenocrysts; two sub-vertical joints at 85° dip; thin (1–2 mm) calcite joint fill"],
+        ["CR-3", "BH-PP2-03", "29.8", "31.8", "2.0", "1.82", "91", "1.56", "78", "Good", "W-I", "Fresh to very fresh devitrified tuff; no open joints; excellent core quality; longest pieces 280–340 mm"],
+        ["CR-4", "BH-PP2-04", "20.5", "23.5", "3.0", "1.98", "66", "1.38", "46", "Fair", "W-IV to W-III", "Highly weathered near top-of-rock contact; disintegrating to sand-size at very top; core quality improves with depth"],
+        ["CR-5", "BH-PP2-04", "23.5", "28.5", "5.0", "4.20", "84", "3.20", "64", "Good", "W-II to W-I", "Transition from slightly weathered to fresh; two joint sets identifiable in oriented core; apertures < 0.5 mm"],
+        ["CR-6", "BH-PP2-04", "28.5", "30.5", "2.0", "1.68", "84", "1.40", "70", "Good", "W-I", "Fresh ignimbrite; moderate jointing (RQD 70%); one zone of micro-cracking likely related to stress relief during coring"],
+        ["CR-7", "BH-PP2-04", "30.5", "32.5", "2.0", "1.74", "87", "1.54", "77", "Good", "W-I", "Fresh; highest core quality in BH-PP2-04; thin pyroclastic layer visible at 31.8 ft depth; no significant joints"]
+      ]
+    },
+    "statistics": {
+      "average_core_recovery_pct": 79.9,
+      "average_RQD_pct": 63.7,
+      "RQD_fresh_rock_only_pct": "64–78 (excluding W-IV zones)",
+      "Hoek_GSI_estimated": "50–60 (Fair to Good rock mass, jointed but not highly fractured)",
+      "rock_mass_class_Bieniawski_RMR": "55–65 (Class III to Class II)",
+      "notes": "RQD values in weathered transition zones (CR-1 and CR-4 tops) are reduced by fragmentation and mechanical disturbance during drilling. Design RQD = 45% (lower bound, used conservatively for rock mass classification in socket friction reduction). Average RQD in fresh rock ≈ 70%."
+    },
+    "source": "WGC Report 2018-GEO-0093, Table 4-7 and core logging sheets (Appendix C)"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl10",
+    "title": "Drilled Shaft Installation Summary — PP-2 Pump Bay (March 2019)",
+    "type": "inspection",
+    "description": "Summary of drilled shaft installation observations recorded by WGC geotechnical inspector during construction. All 6 shafts installed on March 14–15, 2019 using Bauer BG 18H rotary drilling rig. 24-inch diameter temporary casing through full alluvial soil depth. Rock socket drilled with tri-cone rock bit and 24-inch core barrel. Concrete placed by pump from ready-mix truck batch loads. Inspector: M. Thornton, WGC; Contractor: Pacific Drill, Inc.",
+    "data": {
+      "headers": [
+        "Shaft ID",
+        "Location",
+        "Ground Surface Elev. (ft NAVD88)",
+        "Top-of-Rock Depth (ft bgs)",
+        "Top-of-Rock Elev. (ft NAVD88)",
+        "Socket Depth into Fresh Rock (ft)",
+        "Total Shaft Depth (ft bgs)",
+        "GW in Shaft at Concrete (ft bgs)",
+        "GW Condition",
+        "Concrete Volume Placed (CY)",
+        "Slump Observed (in)",
+        "f'c Specified (psi)",
+        "Cylinders Taken",
+        "Construction Notes"
+      ],
+      "rows": [
+        ["S-1", "Pump Column 1 (NW)", "2861.2", "21.5", "2839.7", "5.2", "26.7", "Dry", "Dry — no seepage", "3.8", "7.5", "4000", "4", "Good rock; clean base; casing pulled smoothly"],
+        ["S-2", "Pump Column 2 (Center)", "2861.0", "22.2", "2838.8", "5.0", "27.2", "Dry", "Dry — no seepage", "4.1", "7.0", "4000", "4", "Minor weathered zone at top-of-rock; rock quality good below 2 ft into socket"],
+        ["S-3", "Pump Column 3 (NE)", "2860.8", "22.0", "2838.8", "5.5", "27.5", "Dry", "Dry — no seepage", "4.2", "6.5", "4000", "4", "Excellent rock quality in socket; RQD estimated 75%+ at base"],
+        ["S-4", "Cap Beam Corner (SW)", "2861.2", "21.8", "2839.4", "5.8", "27.6", "Minor seepage", "~1 GPM at socket base; judged acceptable for pump-placed concrete", "4.3", "7.5", "4000", "4", "Minor seepage from joint at 26.5 ft; dewatering pump kept at full capacity; tremie standby; not required; concrete placed continuously"],
+        ["S-5", "Cap Beam Corner (SE)", "2861.0", "22.5", "2838.5", "6.0", "28.5", "Dry", "Dry — no seepage", "4.5", "7.0", "4000", "4", "Deepest socket; rock quality excellent in bottom 3 ft"],
+        ["S-6", "Cap Beam Corner (NE)", "2860.8", "20.8", "2840.0", "6.2", "27.0", "Dry", "Dry — no seepage", "4.1", "7.5", "4000", "4", "Shallowest top-of-rock; socket still within fresh rock confirmed by inspector"]
+      ]
+    },
+    "notes": "All 6 shafts accepted by WGC inspector. No re-drilling required. Concrete cylinders to be tested at 7 and 28 days; results confirmed f'c ≥ 4,000 psi in all shafts (28-day results: 4,280–4,840 psi). Shaft casing extraction confirmed by monitoring concrete level during pull — no voids or necking indicated.",
+    "source": "WGC Field Inspection Memo — PP-2 Foundation Excavation, March 22, 2019; Contractor daily reports"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl11",
+    "title": "2024 Annual Facility Assessment — PP-2 Component Condition Ratings",
+    "type": "inspection",
+    "description": "Component condition ratings assigned during CVID 2024 Annual Facility Assessment conducted September 18, 2024. Rating scale: Excellent (no issues), Good (minor issues, routine maintenance), Satisfactory (minor deficiencies, corrective action recommended), Fair (moderate deficiencies, corrective action required within 1–2 years), Poor (significant deficiencies, immediate action required), Unsatisfactory (failure risk, urgent action required). Assessed by CVID O&M Staff + Structural Consultant.",
+    "data": {
+      "headers": [
+        "Component",
+        "System",
+        "Rating",
+        "Observed Condition",
+        "Deficiency Description",
+        "Recommended Action",
+        "Priority"
+      ],
+      "rows": [
+        ["Pump bay concrete walls (exterior)", "Structural / Geotechnical", "Good", "No structural cracking; minor efflorescence at 2 construction joints", "Efflorescence is cosmetic; no active leakage; joint sealant intact", "Monitor; re-seal construction joints at next maintenance cycle", "Low"],
+        ["Pump bay wet well interior", "Structural / Corrosion", "Good", "Coal-tar epoxy coating intact; no blistering or delamination observed; minor surface rust at 2 anchor bolt pockets", "Anchor bolt pocket rust localized; no wall penetration; ≤ 5% surface area affected", "Touch-up epoxy at anchor bolt pockets within 12 months", "Low-Medium"],
+        ["Drilled shaft foundations (pump bay)", "Foundation / Structural", "Good — Inferred", "No measurable settlement or tilt of pump columns; alignment within manufacturer tolerance", "No direct measurement; inferred from structural performance; no load cells installed", "Settlement surveys continue annually; consider load cell installation at next major outage", "Low"],
+        ["MCC building structure and foundation", "Structural / Foundation", "Good", "No structural cracks in masonry cladding or concrete frame; two hairline CMU cracks assessed as shrinkage only", "Hairline cracks < 1/32 inch width in non-structural CMU infill; no differential movement pattern", "Monitor crack widths annually with tell-tales; no structural repair required at this time", "Low"],
+        ["MCC slab-on-grade", "Structural / Geotechnical", "Good", "No cracking, heaving, or settlement of floor slab; level survey confirmed < 0.07 in differential across floor", "No deficiencies noted", "Routine monitoring", "Low"],
+        ["Discharge header vault", "Structural / Mechanical", "Good", "No structural movement or cracking; vault lid functions; corrosion on 3 lid anchor bolts (galvanizing worn)", "Anchor bolt galvanizing worn through on 3 of 12 bolts; active rust surface corrosion", "Replace 3 corroded anchor bolts with stainless steel (316) within 1 year", "Medium"],
+        ["Site grading and perimeter drainage", "Site / Geotechnical", "Good", "Positive drainage maintained; no ponding at structures; perimeter drain outlets flowing clear", "No deficiencies noted", "Annual grading inspection; clear drainage outlets annually", "Low"],
+        ["Swell mitigation void forms", "Geotechnical", "Satisfactory", "Void form clearance measured through access port: 3–4 inches remaining at MCC NW corner; original design void = 4 inches", "Approximately 0–1 inch of void consumed in 5 years; rate suggests adequate life > 10 years; no structural impact", "Measure void at all access ports at 5-year intervals; alert if < 1 inch remains", "Low-Medium"],
+        ["Buried piping corrosion protection", "Mechanical / Corrosion", "Good", "Cathodic protection test station readings: –0.92 V to –1.05 V vs CSE (within NACE protective range –0.85 V minimum)", "No readings outside protective range; sacrifice anode system functioning", "Test annually; replace anodes when < 50% consumed (estimated 8–12 yr service life)", "Low"],
+        ["Piezometer BH-PP2-02", "Geotechnical Monitoring", "Good", "GW readings obtained: 15.8 ft bgs (Oct) and 16.1 ft bgs (Nov 2024); readings consistent with seasonal expectations", "No deficiencies; piezometer functional", "Continue annual readings; record and trend", "Low"],
+        ["Piezometer BH-PP2-03", "Geotechnical Monitoring", "Unsatisfactory", "Piezometer cap missing; standpipe damaged by mowing equipment; pipe crushed at top; not readable", "Complete loss of second GW monitoring point", "Install protective conduit and replacement piezometer cap within 6 months; obtain GW reading to re-establish baseline", "High"]
+      ]
+    },
+    "source": "CVID 2024 Annual Facility Assessment — PP-2, dated October 15, 2024"
+  },
+  {
+    "id": "projects.clearwater-valley.pumping-plant-pp2.tbl12",
+    "title": "TK-2A Surge Tank Preliminary Design Parameters",
+    "type": "design_criteria",
+    "description": "Preliminary geotechnical and structural design parameters for the proposed TK-2A surge tank at PP-2, per CVID Preliminary Design Memo (July 2025). Parameters are preliminary pending supplemental geotechnical investigation. Subject to revision. Foundation type: concrete ringwall per AWWA D100 Section 14. Tank design standard: AWWA D100 (Welded Carbon Steel Tanks for Water Storage).",
+    "data": {
+      "headers": [
+        "Parameter",
+        "Category",
+        "Preliminary Value",
+        "Units",
+        "Basis / Notes"
+      ],
+      "rows": [
+        ["Tank designation", "General", "TK-2A", "—", "Surge Tank, Pumping Plant PP-2"],
+        ["Tank type", "General", "Welded steel, vertical cylinder, open-top with overflow", "—", "AWWA D100"],
+        ["Design capacity", "General", "250,000", "gallons", "Per hydraulic transient analysis; effective surge volume 120,000 gal min"],
+        ["Tank diameter", "Geometry", "40", "ft", "Based on capacity and height constraints"],
+        ["Tank shell height", "Geometry", "28", "ft", "Nominal; subject to freeboard calculation per AWWA D100 Sec 3"],
+        ["Tank location", "Site", "85 ft NE of PP-2 pump bay", "—", "On previously undisturbed alluvial soils; verify setback from underground utilities"],
+        ["Foundation type", "Foundation", "Concrete ringwall", "—", "AWWA D100 Section 14; appropriate for welded steel tanks on soil"],
+        ["Proposed ringwall depth to bearing", "Foundation", "14", "ft bgs", "Below base of expansive alluvial clay (anticipated 5–7 ft at TK-2A location); to be confirmed by supplemental boring"],
+        ["Proposed ringwall width", "Foundation", "3.0", "ft", "Based on preliminary shell bearing calculation; subject to final structural design"],
+        ["Shell bearing pressure (ringwall)", "Loading", "4,500", "psf", "Tank shell dead load + water load / ringwall bearing area"],
+        ["Net allowable bearing pressure", "Geotechnical", "3,000", "psf", "Consistent with PP-2 MCC design; Layer 3 alluvial sand; pending confirmation at TK-2A location"],
+        ["Estimated total settlement (preliminary)", "Geotechnical", "0.8–1.5", "inches", "Elastic settlement; sensitive to clay thickness at TK-2A; to be refined after supplemental investigation"],
+        ["Allowable differential settlement (ring)", "Geotechnical", "0.6 max", "inches", "AWWA D100 limit = tilt ≤ 1/500 of tank diameter = 40×12/500 = 0.96 in; conservative 0.6 in used"],
+        ["Seismic site class", "Seismic", "D", "—", "ASCE 7-16; consistent with PP-2 site classification; pending Vs30 confirmation"],
+        ["Seismic design basis", "Seismic", "Risk Category II", "—", "ASCE 7-16 Table 1.5-1; water storage, non-critical service"],
+        ["Design PGA", "Seismic", "0.15", "g", "Same as PP-2; USGS PSHA 2% / 50 yr"],
+        ["Design SDS", "Seismic", "0.37", "g", "Per ASCE 7-16; same as PP-2"],
+        ["Design SD1", "Seismic", "0.21", "g", "Per ASCE 7-16; same as PP-2"],
+        ["Tank steel material", "Materials", "ASTM A36", "—", "Shell and bottom plate; AWWA D100 Table 2-1"],
+        ["Internal lining", "Materials", "Epoxy per AWWA C210", "—", "AWWA C210 liquid epoxy coating system; 16 mil DFT minimum"],
+        ["Anchor bolt design check", "Structural", "AWWA D100 Section 4.4 overturning check", "—", "Wind + seismic; tank empty governs overturning for annular plate anchor"],
+        ["Empty tank overturning FS", "Structural", "≥ 1.5 minimum", "—", "Per AWWA D100 Eq. (4-14); to be confirmed in final design"],
+        ["Total tank weight (full)", "Loading", "10.5 MN (2,360 kips)", "—", "Water weight 8.8 MN + steel 1.7 MN estimated"],
+        ["Supplemental borings required", "Investigation", "2 borings (BH-TK2A-01 and -02)", "—", "Min 40 ft depth or 15 ft into fresh rock; at diametrically opposite tank footprint points"],
+        ["Supplemental piezometers", "Investigation", "2 standpipe piezometers", "—", "One per boring; read at 48 hr and 7 days"],
+        ["Investigation status", "Status", "Pending — not yet authorized", "—", "Awaiting CVID FY2026 capital budget approval; target Q2 2026 field work"]
+      ]
+    },
+    "source": "CVID Preliminary Design Memo — TK-2A Surge Tank, Pumping Plant PP-2, July 2025; WGC Report 2018-GEO-0093 (geotechnical parameters extrapolated)"
+  }
+]

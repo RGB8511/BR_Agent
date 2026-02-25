@@ -1,0 +1,127 @@
+[
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-001",
+    "title": "Rock Quality Designation (RQD) from Core",
+    "equation": "RQD = (Σ lengths of intact core ≥ 100 mm) / (total core run length) × 100%",
+    "variables": {
+      "RQD": {"description": "Rock Quality Designation", "units": "percent (0–100%)"}
+    },
+    "applicability": "Measured on NX (54.7 mm) or larger diameter core. Double-tube or triple-tube barrel required. Natural fractures only — exclude mechanical breaks (fresh, rough surfaces, fit together). Classification: < 25% very poor, 25–50% poor, 50–75% fair, 75–90% good, 90–100% excellent.",
+    "source": "Deere (1963), ASTM D6032"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-002",
+    "title": "RQD from Volumetric Joint Count",
+    "equation": "RQD = 115 - 3.3 × Jv",
+    "variables": {
+      "RQD": {"description": "Estimated Rock Quality Designation", "units": "percent"},
+      "Jv": {"description": "Volumetric joint count = sum of frequencies of all joint sets", "units": "joints/m³"}
+    },
+    "applicability": "For Jv > 4.5. When Jv ≤ 4.5, RQD = 100%. Jv = Σ(1/Si) where Si = mean spacing of joint set i. Useful when no core is available — estimate from exposure mapping.",
+    "source": "Palmstrom (1982)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-003",
+    "title": "RQD from Mean Discontinuity Frequency",
+    "equation": "RQD = 100 × e^(-0.1λ) × (0.1λ + 1)",
+    "variables": {
+      "RQD": {"description": "Estimated RQD along a given direction", "units": "percent"},
+      "λ": {"description": "Mean discontinuity frequency (all sets) along the measurement direction", "units": "discontinuities per meter"}
+    },
+    "applicability": "Theoretical relationship assuming negative exponential spacing distribution. λ = number of discontinuities per meter along scanline. This is directional RQD — varies with measurement direction.",
+    "source": "Priest & Hudson (1976)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-004",
+    "title": "Q-System Rock Mass Classification",
+    "equation": "Q = (RQD/Jn) × (Jr/Ja) × (Jw/SRF)",
+    "variables": {
+      "Q": {"description": "Rock mass quality index", "units": "dimensionless (0.001–1000)"},
+      "RQD": {"description": "Rock Quality Designation (10–100, use 10 as minimum)", "units": "percent"},
+      "Jn": {"description": "Joint set number (0.5–20)", "units": "dimensionless"},
+      "Jr": {"description": "Joint roughness number (0.5–4)", "units": "dimensionless"},
+      "Ja": {"description": "Joint alteration number (0.75–20)", "units": "dimensionless"},
+      "Jw": {"description": "Joint water reduction factor (0.05–1.0)", "units": "dimensionless"},
+      "SRF": {"description": "Stress Reduction Factor (0.5–400)", "units": "dimensionless"}
+    },
+    "applicability": "Three quotients: RQD/Jn = block size, Jr/Ja = shear strength of critical joint, Jw/SRF = active stress. Classification: Q < 0.01 exceptionally poor, 0.01–0.1 extremely poor, 0.1–1 very poor, 1–4 poor, 4–10 fair, 10–40 good, 40–100 very good, 100–400 extremely good, > 400 exceptionally good.",
+    "source": "Barton, Lien & Lunde (1974)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-005",
+    "title": "RMR — Rock Mass Rating (Bieniawski 1989)",
+    "equation": "RMR = R₁ + R₂ + R₃ + R₄ + R₅ + adjustment",
+    "variables": {
+      "R₁": {"description": "UCS rating (0–15)", "units": "points"},
+      "R₂": {"description": "RQD rating (3–20)", "units": "points"},
+      "R₃": {"description": "Spacing of discontinuities (5–20)", "units": "points"},
+      "R₄": {"description": "Condition of discontinuities (0–30)", "units": "points"},
+      "R₅": {"description": "Groundwater conditions (0–15)", "units": "points"},
+      "adjustment": {"description": "Orientation adjustment (-60 to 0)", "units": "points"}
+    },
+    "applicability": "Total 0–100. Class I: > 80 (very good). II: 61–80 (good). III: 41–60 (fair). IV: 21–40 (poor). V: < 20 (very poor). Correlations: cohesion, friction angle, stand-up time, support requirements.",
+    "source": "Bieniawski (1989)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-006",
+    "title": "Point Load Strength Index",
+    "equation": "Is(50) = P / De² × (De/50)^0.45",
+    "variables": {
+      "Is(50)": {"description": "Point load strength index corrected to 50 mm equivalent diameter", "units": "MPa"},
+      "P": {"description": "Failure load", "units": "kN"},
+      "De": {"description": "Equivalent core diameter: De = D for diametral test; De = √(4WD/π) for irregular", "units": "mm"}
+    },
+    "applicability": "Size correction normalizes to De = 50 mm reference. UCS ≈ K × Is(50), K = 20–25 typical. For anisotropic rocks, test parallel and perpendicular to foliation. Minimum 10 tests recommended; reject lowest and highest, average remainder.",
+    "source": "ASTM D5731, ISRM (1985)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-007",
+    "title": "Schmidt Hammer — UCS Correlation",
+    "equation": "log₁₀(σc) = 0.00088 × γ × R + 1.01",
+    "variables": {
+      "σc": {"description": "Estimated unconfined compressive strength", "units": "MPa"},
+      "γ": {"description": "Unit weight of rock", "units": "kN/m³"},
+      "R": {"description": "Schmidt hammer rebound value (L-type, horizontal)", "units": "dimensionless"}
+    },
+    "applicability": "Miller (1965) correlation for L-type hammer applied horizontally. Apply hammer orientation correction per ISRM for non-horizontal surfaces. Average of top 50% of 20 readings. Alternative correlation: UCS = 6.9 × 10^(0.0087×γ×R+0.16) (Deere & Miller).",
+    "source": "Miller (1965), ASTM D5873"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-008",
+    "title": "Terzaghi Scanline Correction for Orientation Bias",
+    "equation": "λ_true = λ_apparent / cos(δ)",
+    "variables": {
+      "λ_true": {"description": "True frequency of the joint set", "units": "joints/m"},
+      "λ_apparent": {"description": "Measured frequency along scanline", "units": "joints/m"},
+      "δ": {"description": "Angle between scanline direction and normal to joint set", "units": "degrees"}
+    },
+    "applicability": "Corrects for geometric bias — scanline parallel to a joint set records zero intersections. As δ approaches 90°, correction becomes infinite (set is invisible to that scanline). Use multiple scanline orientations to capture all sets. Blind zone: joints with δ > 80° effectively unmeasurable on a single scanline.",
+    "source": "Terzaghi (1965)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-009",
+    "title": "Barton-Bandis Joint Shear Strength (from Field Data)",
+    "equation": "τ = σn × tan[JRC × log₁₀(JCS/σn) + φr]",
+    "variables": {
+      "τ": {"description": "Peak shear strength of the joint", "units": "MPa"},
+      "σn": {"description": "Effective normal stress on joint", "units": "MPa"},
+      "JRC": {"description": "Joint Roughness Coefficient (0–20, measured with profile comb)", "units": "dimensionless"},
+      "JCS": {"description": "Joint wall Compressive Strength (from Schmidt hammer on joint surface)", "units": "MPa"},
+      "φr": {"description": "Residual friction angle (from tilt test or Schmidt hammer on saw-cut surface)", "units": "degrees"}
+    },
+    "applicability": "Scale-dependent: JRC and JCS measured on standard 100 mm laboratory sample. For field scale (meters), reduce JRC and JCS using Barton & Bandis (1982) scale corrections. Non-linear strength criterion — curvature controlled by JRC/log(JCS/σn) term.",
+    "source": "Barton & Choubey (1977), Barton & Bandis (1982)"
+  },
+  {
+    "id": "field-exploration.rock-mass-characterization.eq-010",
+    "title": "Block Size from Joint Spacing",
+    "equation": "Vb = S₁ × S₂ × S₃ / (sinγ₁ × sinγ₂ × sinγ₃)",
+    "variables": {
+      "Vb": {"description": "Block volume", "units": "m³"},
+      "S₁, S₂, S₃": {"description": "Mean spacings of three dominant joint sets", "units": "m"},
+      "γ₁, γ₂, γ₃": {"description": "Angles between joint sets (all three inter-set angles)", "units": "degrees"}
+    },
+    "applicability": "For three joint sets forming a block. If sets are mutually perpendicular (γ = 90°), sin terms = 1 and Vb = S₁ × S₂ × S₃. Equivalent block side length: lb = Vb^(1/3). Used in GSI estimation and for assessing rippability, blasting, and aggregate source assessment.",
+    "source": "Palmstrom (2005)"
+  }
+]

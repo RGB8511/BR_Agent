@@ -1,0 +1,27 @@
+{
+  "id": "water-infra.pipeline-hydraulics",
+  "name": "Pipeline Hydraulics",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.conveyance",
+  "dependencies": [
+    "hydrology.hydraulics.open-channel"
+  ],
+  "tags": ["Darcy-Weisbach", "Hazen-Williams", "Moody", "friction-factor", "minor-losses", "water-hammer", "transient", "surge", "Joukowsky", "system-curve", "HGL", "EGL", "air-valve", "blowoff", "pipeline-profile", "AWWA"],
+  "standards": ["AWWA-M11", "AWWA-M23", "AWWA-C200", "ASCE-MOP-79"],
+  "key_references": [
+    "Larock, Jeppson & Watters (2000) Hydraulics of Pipeline Systems",
+    "Wylie & Streeter (1993) Fluid Transients in Systems",
+    "AWWA M11 — Steel Pipe: A Guide for Design and Installation",
+    "AWWA M23 — PVC Pipe: Design and Installation",
+    "Tullis (1989) Hydraulics of Pipelines"
+  ],
+  "equation_count": 12,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate-graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

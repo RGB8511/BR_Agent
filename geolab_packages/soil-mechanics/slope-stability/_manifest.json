@@ -1,0 +1,27 @@
+{
+  "id": "geotechnical.soil-mechanics.slope-stability",
+  "name": "Slope Stability Analysis",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": [
+    "geotechnical.soil-mechanics.effective-stress",
+    "geotechnical.soil-mechanics.shear-strength"
+  ],
+  "tags": ["limit-equilibrium", "Bishop", "Spencer", "Morgenstern-Price", "infinite-slope", "circular-failure", "FOS", "pore-pressure-ratio", "rapid-drawdown", "seismic-pseudostatic"],
+  "standards": [],
+  "key_references": [
+    "Bishop (1955) The Use of the Slip Circle in the Stability Analysis of Slopes",
+    "Morgenstern & Price (1965) The Analysis of the Stability of General Slip Surfaces",
+    "Spencer (1967) A Method of Analysis of Embankments Assuming Parallel Interslice Forces",
+    "Duncan & Wright (2005) Soil Strength and Slope Stability"
+  ],
+  "equation_count": 10,
+  "concept_count": 16,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json"],
+  "textbook_level": "undergraduate+graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

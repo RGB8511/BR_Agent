@@ -1,0 +1,121 @@
+[
+  {
+    "id": "geotech.construction.ground-improvement.eq-001",
+    "title": "Radial Consolidation with Vertical Drains (Hansbo)",
+    "equation": "Ūr = 1 - exp(-8Th / F(n))",
+    "variables": {
+      "Ūr": {"description": "Average degree of radial consolidation", "units": "dimensionless (0–1)"},
+      "Th": {"description": "Time factor for horizontal drainage = ch×t/de²", "units": "dimensionless"},
+      "ch": {"description": "Coefficient of horizontal consolidation", "units": "m²/s"},
+      "de": {"description": "Equivalent diameter of influence zone", "units": "m"},
+      "F(n)": {"description": "Drain spacing function = ln(n) - 0.75 + Fs + Fr", "units": "dimensionless"},
+      "n": {"description": "Spacing ratio = de/dw (de = influence dia, dw = drain dia)", "units": "dimensionless"}
+    },
+    "source": "Hansbo (1981)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-002",
+    "title": "Equivalent Drain Influence Diameter",
+    "equation": "de = 1.05s (triangular) or de = 1.13s (square pattern)",
+    "variables": {
+      "de": {"description": "Equivalent diameter of influence zone", "units": "m"},
+      "s": {"description": "Center-to-center drain spacing", "units": "m"}
+    },
+    "source": "Hansbo (1981)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-003",
+    "title": "Combined Vertical and Radial Consolidation",
+    "equation": "Ū = 1 - (1 - Ūv)(1 - Ūr)",
+    "variables": {
+      "Ū": {"description": "Overall average degree of consolidation", "units": "dimensionless"},
+      "Ūv": {"description": "Degree of vertical consolidation (Terzaghi)", "units": "dimensionless"},
+      "Ūr": {"description": "Degree of radial consolidation (Hansbo)", "units": "dimensionless"}
+    },
+    "source": "Carrillo (1942)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-004",
+    "title": "Dynamic Compaction — Depth of Influence",
+    "equation": "D = n × √(W × H)",
+    "variables": {
+      "D": {"description": "Effective depth of improvement", "units": "m"},
+      "n": {"description": "Empirical factor (0.3–0.7, typically 0.5 for granular)", "units": "dimensionless"},
+      "W": {"description": "Tamper weight", "units": "tonnes"},
+      "H": {"description": "Drop height", "units": "m"}
+    },
+    "applicability": "Ménard & Broise (1975). n varies: 0.5 for granular soils, 0.3–0.4 for mixed/fine soils. Verify by post-treatment testing.",
+    "source": "Ménard & Broise (1975), Lukas (1995)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-005",
+    "title": "Stone Column — Area Replacement Ratio",
+    "equation": "as = Ac / A = (π/4 × dc²) / A_tributary",
+    "variables": {
+      "as": {"description": "Area replacement ratio", "units": "dimensionless"},
+      "Ac": {"description": "Area of stone column", "units": "m²"},
+      "dc": {"description": "Column diameter", "units": "m"},
+      "A_tributary": {"description": "Tributary area per column", "units": "m²"}
+    },
+    "applicability": "Typical as = 0.10–0.35. Triangular pattern: A_trib = 0.866s². Square: A_trib = s².",
+    "source": "Priebe (1995), Barksdale & Bachus (1983)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-006",
+    "title": "Stone Column — Settlement Improvement Factor (Priebe)",
+    "equation": "n0 = 1 + as × [(Ac/A_col) × (1/(Ka_c)) - 1]",
+    "alt_form": "Simplified: β = 1/n0 (settlement reduction factor). Improved settlement = original settlement × β.",
+    "variables": {
+      "n0": {"description": "Basic improvement factor", "units": "dimensionless"},
+      "as": {"description": "Area replacement ratio", "units": "dimensionless"},
+      "Ka_c": {"description": "Active earth pressure coefficient of column material", "units": "dimensionless"}
+    },
+    "applicability": "Priebe (1995) method. Typical n0 = 1.5–4 for stone columns. Higher for larger as and stiffer columns.",
+    "source": "Priebe (1995)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-007",
+    "title": "Stress Concentration Ratio (Stone Column / Soft Soil)",
+    "equation": "n = σc / σs",
+    "variables": {
+      "n": {"description": "Stress concentration ratio", "units": "dimensionless"},
+      "σc": {"description": "Stress on column", "units": "kPa"},
+      "σs": {"description": "Stress on surrounding soil", "units": "kPa"}
+    },
+    "applicability": "Typical n = 2–5 for stone columns, 5–10 for rigid inclusions. Equilibrium: as×σc + (1-as)×σs = σ_applied.",
+    "source": "Barksdale & Bachus (1983)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-008",
+    "title": "Lime/Cement Stabilization — Minimum Binder Content (Eades & Grim)",
+    "equation": "ICL determined by Eades & Grim pH test: minimum binder % to achieve pH 12.4",
+    "applicability": "Initial Consumption of Lime (ICL) test per ASTM D6276. Add increments of lime to soil-water mixtures, measure pH after 1 hour. Minimum lime content = amount needed to reach pH 12.4.",
+    "source": "Eades & Grim (1966), ASTM D6276"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-009",
+    "title": "Deep Soil Mixing — Binder Dosage",
+    "equation": "α_w = W_binder / V_soil  or  aw = W_binder / W_soil(dry)",
+    "variables": {
+      "α_w": {"description": "Binder factor (by volume)", "units": "kg/m³"},
+      "aw": {"description": "Binder ratio (by dry weight)", "units": "kg/kg or %"},
+      "W_binder": {"description": "Dry weight of binder (cement/lime)", "units": "kg"},
+      "V_soil": {"description": "Volume of treated soil", "units": "m³"}
+    },
+    "applicability": "Typical cement dosage: 100–400 kg/m³ depending on target UCS and soil type. Lab mix testing required to establish design dosage.",
+    "source": "Kitazume & Terashi (2013), FHWA-HRT-13-046"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.eq-010",
+    "title": "Geosynthetic Reinforcement — Required Tensile Strength (Basal Reinforcement)",
+    "equation": "T_required = FS × (M_driving - M_resisting) / R",
+    "variables": {
+      "T_required": {"description": "Required reinforcement tensile strength", "units": "kN/m"},
+      "FS": {"description": "Factor of safety (typically 1.3–1.5)", "units": "dimensionless"},
+      "M_driving": {"description": "Driving moment from embankment loading", "units": "kN·m/m"},
+      "M_resisting": {"description": "Resisting moment from soil strength (without reinforcement)", "units": "kN·m/m"},
+      "R": {"description": "Moment arm of reinforcement force about failure circle center", "units": "m"}
+    },
+    "source": "Bonaparte & Christopher (1987), FHWA-NHI-07-092"
+  }
+]

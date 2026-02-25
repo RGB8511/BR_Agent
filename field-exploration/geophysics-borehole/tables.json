@@ -1,0 +1,99 @@
+[
+  {
+    "id": "field-exploration.geophysics-borehole.tbl-001",
+    "title": "Borehole Geophysical Log Selection Guide",
+    "type": "classification",
+    "data": {
+      "headers": ["Log Type", "Property Measured", "Primary Application", "Borehole Requirements", "Through Casing?"],
+      "rows": [
+        ["Natural gamma", "Natural radioactivity (K, U, Th)", "Lithology — clay vs. sand discrimination", "Any condition", "Yes (PVC and steel)"],
+        ["Caliper (mechanical)", "Borehole diameter", "Borehole condition, fracture zones, grout volume", "Open hole", "No"],
+        ["Spontaneous potential (SP)", "Natural electrical potential", "Permeable zone ID, water salinity", "Uncased, fluid-filled", "No"],
+        ["Normal resistivity (16/64 in)", "Formation resistivity", "Porosity, lithology, water quality", "Uncased, fluid-filled", "No"],
+        ["Focused resistivity (laterolog)", "Formation resistivity (thin beds)", "Thin-bed resolution, fracture zones", "Uncased, fluid-filled", "No"],
+        ["EM induction resistivity", "Formation conductivity", "Lithology, water quality", "PVC-cased or open, can be dry", "Yes (PVC only)"],
+        ["Optical televiewer (OTV)", "360° borehole wall photograph", "Fracture orientation, lithology, core correlation", "Open hole, clear water or dry", "No"],
+        ["Acoustic televiewer (ATV)", "Ultrasonic reflection amplitude/time", "Fracture orientation, aperture, borehole shape", "Open hole, fluid-filled (turbid OK)", "No"],
+        ["Full-waveform sonic", "Vp, Vs, Stoneley wave", "Dynamic moduli, rock quality, permeability indicators", "Fluid-filled, open or PVC", "Partial (PVC)"],
+        ["Downhole seismic", "S-wave and P-wave velocity", "Vs profile, site classification", "Open or PVC-cased, fluid-filled", "Yes (PVC)"],
+        ["Neutron porosity", "Hydrogen content (porosity)", "Porosity profiling", "Any (calibration varies)", "Yes"],
+        ["Gamma-gamma density", "Bulk density", "Density profiling, void detection", "Open or PVC", "Yes (PVC)"],
+        ["Flowmeter (spinner/heat-pulse)", "Vertical flow velocity in borehole", "Identify producing zones, flow contributions", "Open or screened, fluid-filled", "No"],
+        ["Fluid temperature/conductivity", "Temperature and EC of borehole fluid", "Groundwater inflow, aquifer boundaries", "Fluid-filled", "Yes (PVC)"]
+      ]
+    },
+    "source": "Keys (1990), USACE EM 1110-1-1802, FHWA GEC-5"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.tbl-002",
+    "title": "Downhole vs. Crosshole vs. Suspension Logging Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Boreholes Required", "Depth Capability", "Resolution", "Measures", "Advantages", "Limitations"],
+      "rows": [
+        ["Downhole (ASTM D7400)", "1", "Any (typically < 100 m)", "1–2 m intervals", "Vs, Vp (vertical travel)", "Simplest, single borehole, standard", "Inclined ray path; averages over interval; source coupling issues at depth"],
+        ["Crosshole (ASTM D4428)", "2–3 (3 preferred)", "Any (typically < 60 m)", "1 m intervals", "Vs, Vp (horizontal travel)", "Direct horizontal measurement; anisotropy", "Expensive (multiple boreholes); deviation survey required; casing/grouting critical"],
+        ["Suspension PS logging", "1", "Deep (> 200 m possible)", "1 m intervals", "Vs, Vp", "Very high resolution; deep; single borehole", "Fluid-filled borehole required; sensitive to borehole condition; specialized equipment"]
+      ]
+    },
+    "source": "ASTM D7400, ASTM D4428, Ohya et al. (1984)"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.tbl-003",
+    "title": "Typical Natural Gamma Values by Lithology",
+    "type": "reference",
+    "data": {
+      "headers": ["Lithology", "Gamma (API units)", "Notes"],
+      "rows": [
+        ["Clean sand/gravel", "15–40", "Low — no clay minerals"],
+        ["Silty sand", "40–80", "Moderate — some fines"],
+        ["Sandy clay / clayey sand", "60–120", "Transitional"],
+        ["Clay / shale", "80–200+", "High — K in illite, Th in kaolinite"],
+        ["Organic clay / black shale", "150–300+", "Very high — U concentrated in organics"],
+        ["Limestone (clean)", "10–30", "Very low — CaCO3 has minimal K/U/Th"],
+        ["Dolomite", "10–30", "Similar to clean limestone"],
+        ["Sandstone (clean)", "20–50", "Low if quartz-dominated"],
+        ["Sandstone (arkosic/feldspathic)", "50–120", "K-feldspar contributes K-40"],
+        ["Granite", "100–200+", "K-feldspar, mica, accessory minerals"],
+        ["Basalt", "20–60", "Generally low gamma"]
+      ]
+    },
+    "source": "Rider (2002), Keys (1990), general compilations"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.tbl-004",
+    "title": "Fracture Classification from Televiewer Data",
+    "type": "classification",
+    "data": {
+      "headers": ["Feature", "OTV Appearance", "ATV Appearance", "Significance"],
+      "rows": [
+        ["Open fracture (wide)", "Dark line/band, may see depth into fracture", "Low amplitude sinusoid, travel time anomaly (enlarged)", "Permeable pathway; may need grouting; reduce rock mass strength"],
+        ["Open fracture (tight)", "Hairline dark trace", "Subtle low amplitude, minimal travel time change", "Less hydraulic significance; still affects strength"],
+        ["Sealed/healed fracture", "Mineral-filled line (white calcite, dark chlorite)", "Variable amplitude — may be same as host rock", "No hydraulic significance; may be structural weakness depending on infill"],
+        ["Bedding plane", "Consistent sinusoid, parallel traces", "Subtle amplitude contrast between beds", "Structural: may be weakness plane if clay-filled"],
+        ["Foliation", "Systematic parallel fabric", "Subtle amplitude variation", "Anisotropy indicator; may control slope failure"],
+        ["Cavity / vugs", "Dark holes or recesses in image", "Travel time anomalies (large diameter increase), low amplitude", "Significant permeability; grouting concern"],
+        ["Breakout (stress-induced)", "Symmetrical enlargements at 180° apart (aligned with σ_Hmin)", "Travel time elongation at two azimuths", "In-situ stress orientation indicator (σ_Hmax perpendicular to breakout)"]
+      ]
+    },
+    "source": "Williams & Johnson (2004), Barton (2007), ISRM"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.tbl-005",
+    "title": "Borehole Log Suites by Investigation Objective",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Investigation Objective", "Essential Logs", "Recommended Additional Logs", "Notes"],
+      "rows": [
+        ["Basic stratigraphy / lithology", "Natural gamma, caliper", "SP, resistivity", "Minimum suite for any geotechnical borehole"],
+        ["Rock fracture characterization", "OTV + ATV, caliper", "Full-waveform sonic, natural gamma", "OTV in clear water; ATV in turbid. Both for best results"],
+        ["Vs profiling / seismic site class", "Downhole seismic OR suspension PS", "Full-waveform sonic", "Downhole standard for Vs30; suspension for deep profiles"],
+        ["Hydrogeological characterization", "Natural gamma, resistivity, caliper, flowmeter", "Fluid T/EC, neutron porosity, SP", "Flow zones, permeability, water quality profiling"],
+        ["Dam/grouting investigation", "OTV + ATV, caliper, natural gamma", "Flowmeter, fluid T/EC, full-waveform sonic", "Fracture orientation for grout curtain design; flow zones for target treatment"],
+        ["Foundation design (rock)", "Natural gamma, OTV/ATV, caliper, full-waveform sonic", "Downhole seismic", "Rock quality, modulus, fracture orientation"],
+        ["In-situ stress assessment", "ATV (breakout analysis)", "OTV, caliper, full-waveform sonic (anisotropy)", "Breakout orientation → σ_Hmax direction; magnitude requires other methods"]
+      ]
+    },
+    "source": "USACE EM 1110-1-1802, FHWA GEC-5, general practice"
+  }
+]

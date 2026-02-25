@@ -1,0 +1,84 @@
+[
+  {
+    "id": "geotechnical.foundations.soil-classification.eq-001",
+    "title": "Coefficient of Uniformity",
+    "equation": "C_u = D_60 / D_10",
+    "variables": {
+      "C_u": {"description": "Coefficient of uniformity", "units": "dimensionless"},
+      "D_60": {"description": "Grain diameter at 60% passing", "units": "mm"},
+      "D_10": {"description": "Grain diameter at 10% passing (effective size)", "units": "mm"}
+    },
+    "applicability": "Coarse-grained soils — USCS gradation classification",
+    "criteria": {
+      "well_graded_gravel": "C_u >= 4 AND 1 <= C_c <= 3",
+      "well_graded_sand": "C_u >= 6 AND 1 <= C_c <= 3"
+    },
+    "source": "ASTM D2487",
+    "chunk_type": "equation"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.eq-002",
+    "title": "Coefficient of Curvature",
+    "equation": "C_c = (D_30)^2 / (D_10 × D_60)",
+    "variables": {
+      "C_c": {"description": "Coefficient of curvature (coefficient of gradation)", "units": "dimensionless"},
+      "D_30": {"description": "Grain diameter at 30% passing", "units": "mm"},
+      "D_10": {"description": "Grain diameter at 10% passing", "units": "mm"},
+      "D_60": {"description": "Grain diameter at 60% passing", "units": "mm"}
+    },
+    "applicability": "Coarse-grained soils — must satisfy 1 ≤ C_c ≤ 3 for well-graded classification",
+    "source": "ASTM D2487",
+    "chunk_type": "equation"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.eq-003",
+    "title": "Casagrande A-Line",
+    "equation": "PI = 0.73 × (LL - 20)",
+    "variables": {
+      "PI": {"description": "Plasticity index", "units": "%"},
+      "LL": {"description": "Liquid limit", "units": "%"}
+    },
+    "applicability": "Plasticity chart boundary separating clay (above) from silt (below). Valid for LL > 20.",
+    "source": "Casagrande (1948), ASTM D2487",
+    "chunk_type": "equation"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.eq-004",
+    "title": "U-Line (Upper Bound)",
+    "equation": "PI = 0.9 × (LL - 8)",
+    "variables": {
+      "PI": {"description": "Plasticity index", "units": "%"},
+      "LL": {"description": "Liquid limit", "units": "%"}
+    },
+    "applicability": "Approximate upper bound for natural soils on plasticity chart. Soils plotting above U-line should be rechecked for testing errors.",
+    "source": "Casagrande (1948)",
+    "chunk_type": "equation"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.eq-005",
+    "title": "Plasticity Index",
+    "equation": "PI = LL - PL",
+    "variables": {
+      "PI": {"description": "Plasticity index", "units": "%"},
+      "LL": {"description": "Liquid limit", "units": "%"},
+      "PL": {"description": "Plastic limit", "units": "%"}
+    },
+    "applicability": "Fundamental index property. PI = 0 for non-plastic soils.",
+    "source": "ASTM D4318",
+    "chunk_type": "equation"
+  },
+  {
+    "id": "geotechnical.foundations.soil-classification.eq-006",
+    "title": "AASHTO Group Index",
+    "equation": "GI = (F_200 - 35)[0.2 + 0.005(LL - 40)] + 0.01(F_200 - 15)(PI - 10)",
+    "variables": {
+      "GI": {"description": "Group index (report as whole number, min = 0)", "units": "dimensionless"},
+      "F_200": {"description": "Percent passing No. 200 sieve", "units": "%"},
+      "LL": {"description": "Liquid limit", "units": "%"},
+      "PI": {"description": "Plasticity index", "units": "%"}
+    },
+    "applicability": "AASHTO subgrade quality rating. For A-2-6 and A-2-7, use only the second term. Negative partial values set to 0.",
+    "source": "AASHTO M 145",
+    "chunk_type": "equation"
+  }
+]

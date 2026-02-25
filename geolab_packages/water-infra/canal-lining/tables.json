@@ -1,0 +1,95 @@
+[
+  {
+    "id": "water-infra.canal-lining.tbl-001",
+    "title": "Canal Lining Types — Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Lining Type", "Thickness", "Seepage Rate (L/m²/day)", "Relative Cost", "Design Life (yr)", "Best Application"],
+      "rows": [
+        ["Unreinforced concrete", "50–150 mm", "0.5–2.0", "Medium-High", "40–60+", "Standard for USBR/large canals"],
+        ["Reinforced concrete", "100–200 mm", "0.3–1.0", "High", "50–75", "Settlement, frost, uplift areas"],
+        ["Shotcrete", "50–100 mm", "0.5–2.0", "Medium", "30–50", "Rehabilitation, irregular shapes"],
+        ["HDPE geomembrane", "1.0–2.0 mm", "0.01–0.1", "Medium", "30–50", "Maximum seepage control"],
+        ["PVC geomembrane", "0.5–1.5 mm", "0.01–0.1", "Low-Medium", "20–40", "Moderate duty, lower cost membrane"],
+        ["Geomembrane + concrete", "Membrane + 75 mm", "0.01–0.1", "High", "50–75", "Critical water supply, high value"],
+        ["Compacted clay (300 mm)", "300 mm", "2–10", "Low", "20–40", "Where good clay available locally"],
+        ["Soil-cement", "100–150 mm", "1–5", "Low-Medium", "20–30", "Semi-arid, moderate performance"],
+        ["Compacted earth", "300–600 mm", "5–30", "Very Low", "15–30", "Low-cost improvement to unlined"],
+        ["Unlined (sandy soil)", "N/A", "20–200", "—", "—", "Baseline comparison"]
+      ]
+    },
+    "source": "USBR, Aisenbrey et al. (1978), general practice"
+  },
+  {
+    "id": "water-infra.canal-lining.tbl-002",
+    "title": "Manning's n for Lined Canals",
+    "type": "reference",
+    "data": {
+      "headers": ["Lining Material", "Manning's n (new)", "Manning's n (aged/maintained)", "Notes"],
+      "rows": [
+        ["Concrete (trowel finish)", "0.012–0.013", "0.014–0.016", "Aging, joint deterioration, algae"],
+        ["Concrete (float finish)", "0.013–0.015", "0.015–0.018", ""],
+        ["Shotcrete (smooth)", "0.016–0.019", "0.018–0.022", "Rougher surface than formed concrete"],
+        ["Geomembrane (exposed)", "0.010–0.013", "0.012–0.015", "Very smooth, some wrinkling"],
+        ["Geomembrane (soil cover)", "0.020–0.025", "0.022–0.030", "Same as earth lining"],
+        ["Compacted clay", "0.020–0.025", "0.025–0.030", "Vegetation growth increases n"],
+        ["Soil-cement", "0.015–0.018", "0.018–0.022", ""],
+        ["Riprap (grouted)", "0.025–0.030", "0.028–0.035", ""],
+        ["Unlined earth (clean)", "0.020–0.025", "0.025–0.035", "Vegetation and irregularities"]
+      ]
+    },
+    "source": "Chow (1959), USBR, USACE"
+  },
+  {
+    "id": "water-infra.canal-lining.tbl-003",
+    "title": "Geomembrane Selection for Canal Lining",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Property", "HDPE", "LLDPE", "PVC", "EPDM"],
+      "rows": [
+        ["Typical thickness (mm)", "1.0–2.0", "0.75–1.5", "0.5–1.5", "1.0–1.5"],
+        ["Tensile strength", "High", "Moderate", "Moderate", "Moderate"],
+        ["Flexibility / elongation", "Low", "High", "High", "Very high"],
+        ["UV resistance", "Good (with carbon black)", "Good", "Requires UV stabilizer", "Excellent"],
+        ["Chemical resistance", "Excellent", "Good", "Good", "Good"],
+        ["Seaming method", "Thermal wedge/extrusion", "Thermal wedge", "Solvent/thermal", "Adhesive/thermal"],
+        ["Seam reliability", "Excellent", "Good", "Good", "Fair-Good"],
+        ["Cost (relative)", "Medium", "Low-Medium", "Low", "High"],
+        ["Best canal application", "Exposed or covered, long-term", "Covered, conformable", "Covered, short-medium term", "Complex shapes, exposed"]
+      ]
+    },
+    "source": "Koerner (2012), GRI standards, manufacturer data"
+  },
+  {
+    "id": "water-infra.canal-lining.tbl-004",
+    "title": "Concrete Lining Joint Design",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Joint Type", "Spacing", "Width", "Sealant / Waterstop", "Purpose"],
+      "rows": [
+        ["Transverse contraction", "3.0–5.0 m", "6–12 mm saw-cut", "Polysulfide or PU sealant", "Control thermal/shrinkage cracking"],
+        ["Longitudinal contraction", "At slope/invert junction", "6–12 mm", "Sealant", "Differential movement between slope and invert"],
+        ["Expansion joint", "30–60 m or at structures", "12–25 mm", "Compressible filler + sealant + PVC waterstop", "Allow thermal expansion"],
+        ["Construction joint", "End of each pour", "Formed or saw-cut", "Sealant or waterstop", "Between successive placements"],
+        ["Structure interface", "At each structure", "12–25 mm", "Waterstop + sealant", "Differential settlement between canal and structure"]
+      ]
+    },
+    "source": "USBR, ACI 350, Aisenbrey et al. (1978)"
+  },
+  {
+    "id": "water-infra.canal-lining.tbl-005",
+    "title": "Subdrainage Requirements for Canal Linings",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Groundwater Condition", "Drainage Requirement", "Drain Type", "Design Consideration"],
+      "rows": [
+        ["GWT always below canal invert", "None for uplift", "None required", "Monitor GWT — may change seasonally"],
+        ["GWT seasonally near invert", "Moderate", "Gravel blanket (75–150 mm) under lining", "Provide weep holes at low points"],
+        ["GWT at or above invert (canal empty)", "Critical", "Continuous gravel blanket + perforated pipe drains", "Analyze uplift FS; relief valves required"],
+        ["High GWT + artesian pressure", "Critical + monitoring", "Pressure relief wells or continuous pump-back drains", "May require permanent dewatering system"],
+        ["Expansive soil subgrade", "Moderate", "Granular cushion layer", "Isolate lining from swelling pressure"]
+      ]
+    },
+    "source": "USBR, general geotechnical practice"
+  }
+]

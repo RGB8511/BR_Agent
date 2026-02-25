@@ -1,0 +1,23 @@
+{
+  "id": "geotechnical.foundations.rock-classification",
+  "name": "Rock Classification & Identification",
+  "level": 0,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.foundations",
+  "dependencies": [],
+  "tags": ["igneous", "sedimentary", "metamorphic", "weathering", "RQD", "point-load", "rock-type", "geological-origin"],
+  "standards": ["D5878", "D6032", "D5731", "D2113"],
+  "key_references": [
+    "ISRM (1981) Rock Characterization, Testing and Monitoring — Suggested Methods",
+    "Goodman (1989) Introduction to Rock Mechanics",
+    "Deere (1963) Technical Description of Rock Cores"
+  ],
+  "equation_count": 5,
+  "concept_count": 20,
+  "table_count": 6,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

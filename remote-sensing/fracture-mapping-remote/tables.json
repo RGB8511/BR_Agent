@@ -1,0 +1,92 @@
+[
+  {
+    "id": "remote-sensing.fracture-mapping.tbl-001",
+    "title": "Remote Sensing Methods for Rock Discontinuity Mapping — Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Point Spacing at Face", "Typical Range", "Orientation Accuracy", "Roughness Capability", "Best For"],
+      "rows": [
+        ["TLS (long-range scanner)", "2–20 mm at 50–300 m", "50–800 m", "±1–3°", "Large-scale (cm) roughness", "Quarry faces, road cuts, high slopes, tunnels"],
+        ["TLS (close-range / phase-shift)", "< 1–5 mm at 2–50 m", "2–80 m", "±1–2°", "Small-scale (mm) roughness", "Core logging, small outcrops, lab-scale JRC"],
+        ["UAS photogrammetry (SfM)", "5–30 mm (altitude-dependent)", "10–100 m flight", "±2–5°", "Moderate (cm) roughness", "Large inaccessible faces, cliff tops, open pits"],
+        ["Handheld photogrammetry", "1–10 mm", "0.5–10 m standoff", "±2–5°", "Good (mm-cm) roughness", "Small outcrops, tunnel faces, detailed studies"],
+        ["Stereo photography (traditional)", "5–50 mm", "5–200 m", "±3–5°", "Limited", "Quick reconnaissance; being replaced by SfM"],
+        ["Satellite imagery / InSAR", "0.5–5 m pixel", "Orbital", "N/A — displacement only", "None", "Regional lineament mapping, not individual joints"]
+      ]
+    },
+    "source": "Sturzenegger & Stead (2009), Lato et al. (2009), general practice"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.tbl-002",
+    "title": "Software for Discontinuity Extraction from Point Clouds",
+    "type": "reference",
+    "data": {
+      "headers": ["Software", "Type", "Key Features", "Output"],
+      "rows": [
+        ["CloudCompare + Facets plugin", "Open-source", "Kd-tree facet extraction, normal computation, stereonet plot, Terzaghi correction", "Dip/DD CSV, stereonet, colored facets"],
+        ["DSE (Discontinuity Set Extractor)", "Open-source (Matlab/standalone)", "Automatic joint set identification via kernel density on normals, spacing calculation", "Set orientations, spacing statistics, stereonet"],
+        ["Dips (Rocscience)", "Commercial", "Stereonet analysis, kinematic analysis, set statistics, Terzaghi correction", "Stereonets, rosettes, set statistics"],
+        ["3DEC / UDEC (Itasca)", "Commercial", "DFN (Discrete Fracture Network) generation from mapped orientations for numerical modeling", "DFN model, stress/deformation analysis"],
+        ["ShapeMetriX / JointMetriX", "Commercial", "Photogrammetric discontinuity mapping, automated segmentation, ISRM-compliant output", "Dip/DD, spacing, persistence, roughness"],
+        ["Split-FX / Split Engineering", "Commercial", "Automatic facet detection, mesh-based analysis, fragmentation analysis", "Discontinuity sets, fragment size distribution"],
+        ["Maptek PointStudio", "Commercial", "Mining-oriented point cloud analysis, structural mapping, geotechnical modules", "Discontinuity mapping, stability domains"],
+        ["QGIS + plugins", "Open-source", "2D trace mapping on orthophotos, orientation from traces + DEM", "Trace maps, orientation estimates"]
+      ]
+    },
+    "source": "Software documentation, published literature"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.tbl-003",
+    "title": "Recommended Point Cloud Parameters for Discontinuity Mapping",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Min Point Density (pts/m²)", "Position Accuracy Needed", "Recommended Method", "Notes"],
+      "rows": [
+        ["Regional joint set identification", "100–1000", "±20 mm", "TLS at 100–300 m or UAS", "Adequate for orientation; not roughness"],
+        ["Detailed spacing & persistence", "1000–10000", "±10 mm", "TLS at 20–100 m", "Requires sufficient density to resolve individual joints"],
+        ["JRC / roughness profiling", "10000–100000+", "±1–3 mm", "Close-range TLS or structured light", "Sub-mm accuracy needed for small-scale roughness"],
+        ["Rock slope kinematic assessment", "500–5000", "±10–20 mm", "TLS or UAS-SfM", "Combined with surveyed slope orientation"],
+        ["Tunnel face mapping", "5000–50000", "±5 mm", "TLS at 5–20 m", "Rapid acquisition between advance cycles"],
+        ["Core / hand sample", "50000+", "±0.5 mm", "Structured light / close-range photogrammetry", "Lab conditions; highest resolution"]
+      ]
+    },
+    "source": "Lato et al. (2009), ISRM, general practice"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.tbl-004",
+    "title": "Orientation Bias Blind Zones by Method",
+    "type": "reference",
+    "data": {
+      "headers": ["Mapping Method", "Blind Zone (δ > ~80°)", "Mitigation Strategy"],
+      "rows": [
+        ["Traditional scanline (horizontal)", "Vertical joints parallel to scanline", "Multiple scanline orientations; window mapping"],
+        ["TLS from single position", "Discontinuities sub-parallel to line of sight (± ~10°)", "Scan from 2–3 positions separated by ≥ 30°"],
+        ["UAS nadir photography", "Vertical and steeply dipping joints", "Oblique camera angles; combine with TLS"],
+        ["UAS oblique photography", "Joints parallel to camera axis", "Multiple flight lines with different oblique angles"],
+        ["Borehole televiewer (vertical hole)", "Horizontal joints (low intersection angle)", "Inclined boreholes; surface mapping supplement"]
+      ]
+    },
+    "source": "Sturzenegger & Stead (2009), Lato & Vöge (2012)"
+  },
+  {
+    "id": "remote-sensing.fracture-mapping.tbl-005",
+    "title": "Comparison: Traditional vs Remote Discontinuity Mapping",
+    "type": "reference",
+    "data": {
+      "headers": ["Parameter", "Traditional (Scanline/Window)", "Remote (TLS/UAS Point Cloud)"],
+      "rows": [
+        ["Safety", "Direct face access required; rockfall/fall hazard", "Remote acquisition from safe distance"],
+        ["Coverage", "Limited to accessible portions (typically < 50% of face)", "Full face coverage from multiple views"],
+        ["Speed", "50–200 measurements per day per mapper", "Millions of points in minutes; processing time for extraction"],
+        ["Orientation accuracy", "±2–5° (compass/clinometer)", "±1–5° (depends on registration, facet size)"],
+        ["Spacing accuracy", "Apparent spacing; requires correction", "True spacing directly from plane equations"],
+        ["Persistence", "Limited by accessibility; censoring common", "Better coverage but still censored by face extent"],
+        ["Roughness (JRC)", "Direct comparison to standard profiles", "Computed from profiles; resolution-dependent"],
+        ["Repeatability", "Operator-dependent", "Highly repeatable (same dataset, same algorithm)"],
+        ["Cost", "Low equipment; high personnel time", "High equipment; low per-site marginal cost"],
+        ["Subsurface information", "None (surface features only)", "None (surface features only) — same limitation"]
+      ]
+    },
+    "source": "Sturzenegger & Stead (2009), general practice"
+  }
+]

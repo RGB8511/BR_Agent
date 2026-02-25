@@ -1,0 +1,24 @@
+{
+  "id": "field-exploration.construction-testing",
+  "name": "Construction Support Testing — Subgrade & Foundation Verification",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.construction-qa",
+  "dependencies": ["field-exploration.field-density-testing"],
+  "tags": ["proof-roll", "plate-load-test", "DCP", "dynamic-cone-penetrometer", "Clegg-hammer", "CIV", "LWD", "light-weight-deflectometer", "FWD", "falling-weight-deflectometer", "CBR", "field-CBR", "subgrade-modulus", "modulus-of-subgrade-reaction", "k-value", "pile-integrity", "PIT"],
+  "standards": ["ASTM-D1196", "ASTM-D6951", "ASTM-D5874", "ASTM-D1883", "AASHTO-T222"],
+  "key_references": [
+    "FHWA NHI-05-037 Geotechnical Aspects of Pavements",
+    "ASTM D1196 — Nonrepetitive Static Plate Load Tests",
+    "ASTM D6951 — Standard Test Method for Use of the DCP",
+    "NAVFAC DM-7.01"
+  ],
+  "equation_count": 8,
+  "concept_count": 15,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

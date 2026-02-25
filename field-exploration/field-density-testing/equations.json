@@ -1,0 +1,104 @@
+[
+  {
+    "id": "field-exploration.field-density-testing.eq-001",
+    "title": "Dry Density from Wet Density and Moisture Content",
+    "equation": "γ_d = γ_wet / (1 + w)",
+    "variables": {
+      "γ_d": {"description": "Dry unit weight (dry density)", "units": "kN/m³ or pcf"},
+      "γ_wet": {"description": "Wet (total) unit weight as measured", "units": "kN/m³ or pcf"},
+      "w": {"description": "Water content (decimal, not percent)", "units": "dimensionless"}
+    },
+    "applicability": "Fundamental relationship. γ_wet can come from NDG direct read, sand cone (W_soil/V_hole), or drive cylinder. w from oven-drying (ASTM D2216) or NDG moisture reading. Always verify NDG moisture against oven-dried samples periodically.",
+    "source": "Fundamental — all density test standards"
+  },
+  {
+    "id": "field-exploration.field-density-testing.eq-002",
+    "title": "Relative Compaction (Percent Compaction)",
+    "equation": "RC (%) = (γ_d_field / γ_d_max) × 100",
+    "variables": {
+      "RC": {"description": "Relative compaction", "units": "%"},
+      "γ_d_field": {"description": "Field dry density from density test", "units": "kN/m³"},
+      "γ_d_max": {"description": "Maximum dry density from Proctor test (D698 or D1557)", "units": "kN/m³"}
+    },
+    "applicability": "Compare against specification requirement. Critical: the reference test (standard vs. modified Proctor) must match the specification. 95% of modified Proctor ≈ 100% of standard Proctor for many soils.",
+    "source": "ASTM D698, D1557, construction specifications"
+  },
+  {
+    "id": "field-exploration.field-density-testing.eq-003",
+    "title": "Sand Cone — Volume of Test Hole",
+    "equation": "V_hole = (W_sand_total - W_sand_cone) / γ_sand",
+    "variables": {
+      "V_hole": {"description": "Volume of excavated test hole", "units": "cm³ or ft³"},
+      "W_sand_total": {"description": "Total weight of sand used (initial - remaining in jar)", "units": "g or lb"},
+      "W_sand_cone": {"description": "Weight of sand filling the cone and base plate (determined by calibration)", "units": "g or lb"},
+      "γ_sand": {"description": "Calibrated bulk density of Ottawa sand", "units": "g/cm³ or pcf"}
+    },
+    "applicability": "Sand density calibration: fill a container of known volume 3 times; average. Use same sand (graded Ottawa sand C778, 20-30 mesh). Sand must be dry. Recalibrate if sand is replaced or moisture changes.",
+    "source": "ASTM D1556"
+  },
+  {
+    "id": "field-exploration.field-density-testing.eq-004",
+    "title": "Sand Cone — Field Wet Density",
+    "equation": "γ_wet = W_soil / V_hole",
+    "variables": {
+      "W_soil": {"description": "Total weight of soil excavated from test hole", "units": "g or lb"},
+      "V_hole": {"description": "Volume of test hole (from sand replacement)", "units": "cm³ or ft³"}
+    },
+    "source": "ASTM D1556"
+  },
+  {
+    "id": "field-exploration.field-density-testing.eq-005",
+    "title": "Zero Air Voids (ZAV) Curve",
+    "equation": "γ_d_ZAV = γ_w × G_s / (1 + w × G_s)",
+    "variables": {
+      "γ_d_ZAV": {"description": "Dry density at zero air voids (100% saturation)", "units": "kN/m³"},
+      "γ_w": {"description": "Unit weight of water (9.81 kN/m³)", "units": "kN/m³"},
+      "G_s": {"description": "Specific gravity of soil solids", "units": "dimensionless"},
+      "w": {"description": "Water content (decimal)", "units": "dimensionless"}
+    },
+    "applicability": "The ZAV line is the theoretical upper bound — no soil can be compacted above this line (would require negative air voids). The Proctor curve approaches but never reaches the ZAV line. Used as a quality check: any test point above ZAV is erroneous.",
+    "source": "Holtz, Kovacs & Sheahan (2011)"
+  },
+  {
+    "id": "field-exploration.field-density-testing.eq-006",
+    "title": "Degree of Saturation from Density Test Results",
+    "equation": "S = w × G_s / e;  where e = (G_s × γ_w / γ_d) - 1",
+    "variables": {
+      "S": {"description": "Degree of saturation", "units": "decimal (0 to 1)"},
+      "w": {"description": "Water content (decimal)", "units": "dimensionless"},
+      "G_s": {"description": "Specific gravity of solids", "units": "dimensionless"},
+      "e": {"description": "Void ratio", "units": "dimensionless"},
+      "γ_d": {"description": "Dry unit weight", "units": "kN/m³"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"}
+    },
+    "applicability": "S > 1.0 is impossible — indicates error in measurement (density too high, moisture too high, or wrong G_s). At optimum moisture content from Proctor, S typically ≈ 75–85%.",
+    "source": "Phase relationships — fundamental"
+  },
+  {
+    "id": "field-exploration.field-density-testing.eq-007",
+    "title": "Relative Density (Granular Soils)",
+    "equation": "Dr (%) = [(e_max - e) / (e_max - e_min)] × 100",
+    "alt_form": "Dr (%) = [(γ_d - γ_d_min) / (γ_d_max - γ_d_min)] × [γ_d_max / γ_d] × 100",
+    "variables": {
+      "Dr": {"description": "Relative density", "units": "%"},
+      "e_max": {"description": "Maximum void ratio (loosest state, ASTM D4254)", "units": "dimensionless"},
+      "e_min": {"description": "Minimum void ratio (densest state, ASTM D4253)", "units": "dimensionless"},
+      "e": {"description": "In-situ void ratio", "units": "dimensionless"}
+    },
+    "applicability": "Used for clean granular soils (< 12% fines) where Proctor compaction curve is meaningless. Dr < 35%: loose. 35–65%: medium dense. 65–85%: dense. > 85%: very dense. Note: relative density tests have significant variability (±10–15%).",
+    "source": "ASTM D4253, D4254"
+  },
+  {
+    "id": "field-exploration.field-density-testing.eq-008",
+    "title": "NDG Moisture Correction (Oven-Dry Verification)",
+    "equation": "w_corrected = w_NDG + (w_oven - w_NDG_check) = w_NDG + offset",
+    "variables": {
+      "w_corrected": {"description": "Corrected moisture content", "units": "%"},
+      "w_NDG": {"description": "Nuclear gauge moisture reading for the test", "units": "%"},
+      "w_oven": {"description": "Oven-dried moisture content of verification sample", "units": "%"},
+      "w_NDG_check": {"description": "NDG moisture reading on the verification sample", "units": "%"}
+    },
+    "applicability": "NDG moisture is approximate — affected by bound water, chemical composition, and organic content. Good practice: take oven-dry samples every 10th test (or per specification) and apply systematic offset correction if bias is found. Some specifications require all moisture by oven-drying.",
+    "source": "ASTM D6938, general QA practice"
+  }
+]

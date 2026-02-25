@@ -1,0 +1,139 @@
+[
+  {
+    "id": "water-infra.gates-valves.eq-001",
+    "title": "Orifice Discharge — Free Flow Under Gate",
+    "equation": "Q = Cd × b × d × √(2g × H)",
+    "variables": {
+      "Q": {"description": "Discharge through gate opening", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (0.55–0.72 depending on gate type)", "units": "dimensionless"},
+      "b": {"description": "Width of gate opening", "units": "m"},
+      "d": {"description": "Gate opening height", "units": "m"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"},
+      "H": {"description": "Effective upstream head above center of opening", "units": "m"}
+    },
+    "applicability": "For free (unsubmerged) discharge where downstream water level is below the gate opening. When tailwater submerges the opening, use submerged orifice equation.",
+    "source": "General hydraulics, USACE EM 1110-2-1603"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-002",
+    "title": "Submerged Orifice Discharge",
+    "equation": "Q = Cd × A × √(2g × ΔH)",
+    "variables": {
+      "Q": {"description": "Discharge", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (slightly lower than free flow)", "units": "dimensionless"},
+      "A": {"description": "Gate opening area = b × d", "units": "m²"},
+      "ΔH": {"description": "Differential head = H_upstream - H_downstream", "units": "m"}
+    },
+    "applicability": "When tailwater submerges the gate opening. Applicable to slide gates, radial gates operating under submerged conditions, and conduit gates.",
+    "source": "USACE EM 1110-2-1602"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-003",
+    "title": "Hydrostatic Force on Flat Gate",
+    "equation": "F = γ × h_c × A",
+    "variables": {
+      "F": {"description": "Total hydrostatic force on gate face", "units": "kN"},
+      "γ": {"description": "Specific weight of water (9.81 kN/m³)", "units": "kN/m³"},
+      "h_c": {"description": "Depth from water surface to centroid of gate", "units": "m"},
+      "A": {"description": "Wetted area of gate", "units": "m²"}
+    },
+    "applicability": "For vertical flat gates. Center of pressure: y_cp = y_c + I_c/(y_c × A), where I_c = second moment of area about centroidal axis. For rectangular gate: y_cp = y_c + d²/12 / y_c.",
+    "source": "Fundamental fluid statics"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-004",
+    "title": "Radial (Tainter) Gate — Resultant Hydrostatic Force",
+    "equation": "F_R = √(F_H² + F_V²), directed through trunnion",
+    "variables": {
+      "F_H": {"description": "Horizontal component = γ × h_c × A_projected_vertical", "units": "kN"},
+      "F_V": {"description": "Vertical component = γ × Volume of water above curved surface", "units": "kN"},
+      "F_R": {"description": "Resultant force — passes through trunnion center for circular arc", "units": "kN"}
+    },
+    "applicability": "For a circular arc gate, the resultant of all hydrostatic pressure forces passes through the center of the arc (trunnion). This means hoist force only needs to overcome gate weight, seal friction, and trunnion friction — NOT hydrostatic load.",
+    "source": "Lewin (2001), USACE EM 1110-2-1603"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-005",
+    "title": "Slide Gate Hoist Force",
+    "equation": "F_hoist = W × sin(θ) + μ_seal × F_seal + μ_guide × F_guide + F_downpull",
+    "variables": {
+      "F_hoist": {"description": "Required hoist force to open gate", "units": "kN"},
+      "W": {"description": "Gate weight", "units": "kN"},
+      "θ": {"description": "Gate inclination from horizontal (90° for vertical)", "units": "degrees"},
+      "μ_seal": {"description": "Friction coefficient of seals (0.10–0.50)", "units": "dimensionless"},
+      "F_seal": {"description": "Normal force on seals from hydrostatic pressure", "units": "kN"},
+      "μ_guide": {"description": "Friction coefficient of guide system (0.15–0.30)", "units": "dimensionless"},
+      "F_guide": {"description": "Normal force on guides", "units": "kN"},
+      "F_downpull": {"description": "Hydrodynamic downpull from flow over/under gate", "units": "kN"}
+    },
+    "applicability": "Hoist capacity: F_design = 1.5 × F_hoist (USACE). Downpull can be significant for high-head gates — requires hydraulic model or CFD analysis. Gate closing force: W × sin(θ) must exceed friction and uplift (or add closing weight).",
+    "source": "USACE EM 1110-2-1602, Sagar (1977)"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-006",
+    "title": "Radial Gate Discharge Coefficient (Toch Correlation)",
+    "equation": "Cd = Cc × 1/√(1 - (Cc × d/H₁)²)",
+    "variables": {
+      "Cd": {"description": "Discharge coefficient for radial gate underflow", "units": "dimensionless"},
+      "Cc": {"description": "Contraction coefficient (function of gate angle and opening ratio)", "units": "dimensionless"},
+      "d": {"description": "Gate opening", "units": "m"},
+      "H₁": {"description": "Upstream head above gate sill", "units": "m"}
+    },
+    "applicability": "Cc depends on the angle of the gate lip with the flow direction. Typical Cd range: 0.60–0.72. More detailed: Cd = f(d/H₁, θ_lip) from USACE HDC charts or Toch (1955) relationships.",
+    "source": "Toch (1955), USACE Hydraulic Design Charts"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-007",
+    "title": "Cavitation Index for Gate/Valve",
+    "equation": "σ = (P_d + P_atm - P_v) / (ρV_ref²/2)",
+    "variables": {
+      "σ": {"description": "Cavitation index (sigma)", "units": "dimensionless"},
+      "P_d": {"description": "Downstream pressure (gauge) at reference point", "units": "Pa"},
+      "P_atm": {"description": "Atmospheric pressure", "units": "Pa"},
+      "P_v": {"description": "Vapor pressure of water", "units": "Pa"},
+      "V_ref": {"description": "Reference velocity (typically mean velocity in conduit upstream of gate)", "units": "m/s"}
+    },
+    "applicability": "Compare σ to σ_incipient for the specific gate type. If σ < σ_incipient → cavitation occurs. σ_incipient values: slide gate 0.5–2.0, radial gate 0.2–0.8, butterfly valve 0.2–1.5 (varies with opening).",
+    "source": "Tullis (1989), Ball (1959), USBR EM-42"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-008",
+    "title": "Valve Flow Coefficient (Cv)",
+    "equation": "Q = Cv × √(ΔP / SG)",
+    "variables": {
+      "Q": {"description": "Flow rate", "units": "US gpm"},
+      "Cv": {"description": "Valve flow coefficient (valve-specific, from manufacturer)", "units": "gpm/(psi)^0.5"},
+      "ΔP": {"description": "Pressure drop across valve", "units": "psi"},
+      "SG": {"description": "Specific gravity of fluid (1.0 for water)", "units": "dimensionless"}
+    },
+    "applicability": "Standard valve sizing method. Cv is a function of valve type, size, and percent open. Relates to K (loss coefficient) by: K = 890 × d⁴ / Cv² (d in inches). SI equivalent: Kv = 0.865 × Cv.",
+    "source": "ISA-75.01, Crane TP-410"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-009",
+    "title": "Air Demand Behind High-Head Gate",
+    "equation": "β = Qa/Qw ≈ 0.04 × (Fr - 1)^0.85",
+    "variables": {
+      "β": {"description": "Air demand ratio (air flow / water flow)", "units": "dimensionless"},
+      "Qa": {"description": "Required air flow rate", "units": "m³/s"},
+      "Qw": {"description": "Water flow rate through gate", "units": "m³/s"},
+      "Fr": {"description": "Froude number of flow downstream of gate", "units": "dimensionless"}
+    },
+    "applicability": "For conduit gates discharging as free jets. Air supply must be provided through air vents to prevent negative pressure in conduit downstream of gate. Vent pipe sized for β with velocity ≤ 45 m/s in air vent.",
+    "source": "USACE EM 1110-2-1602, Sharma (1976)"
+  },
+  {
+    "id": "water-infra.gates-valves.eq-010",
+    "title": "Spillway Gate — Regulated Discharge",
+    "equation": "Q = (2/3) × Cd × b × √(2g) × (H₁^1.5 - H₂^1.5)",
+    "variables": {
+      "Q": {"description": "Discharge through partially opened spillway gate", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient for gated spillway (0.65–0.80)", "units": "dimensionless"},
+      "b": {"description": "Gate (bay) width", "units": "m"},
+      "H₁": {"description": "Upstream head above gate sill", "units": "m"},
+      "H₂": {"description": "Head at bottom of gate (H₁ - gate opening)", "units": "m"}
+    },
+    "applicability": "For partially opened radial or vertical-lift gates on spillway crests. When gate is fully open, reverts to standard weir equation. Cd varies with gate opening ratio and gate geometry — use USACE HDC charts for specific configurations.",
+    "source": "USACE EM 1110-2-1603, USACE HDC"
+  }
+]

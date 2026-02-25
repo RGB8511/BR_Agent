@@ -1,0 +1,106 @@
+[
+  {
+    "id": "water-infra.reservoir-design.eq-001",
+    "title": "Storage-Elevation (Trapezoidal Integration)",
+    "equation": "S(h) = Σ[(Ai + Ai+1)/2 × Δhi]",
+    "variables": {
+      "S(h)": {"description": "Cumulative storage volume at elevation h", "units": "m³ or acre-ft"},
+      "Ai": {"description": "Reservoir surface area at elevation i", "units": "m² or acres"},
+      "Δhi": {"description": "Elevation increment between contours", "units": "m or ft"}
+    },
+    "applicability": "Prismoidal formula (more accurate): S = (Δh/3)(A1 + 4Am + A2) where Am = area at mid-elevation. Computed from topographic survey or DEM.",
+    "source": "General surveying — USBR Design of Small Dams"
+  },
+  {
+    "id": "water-infra.reservoir-design.eq-002",
+    "title": "Rippl Mass Curve — Required Storage",
+    "equation": "S_required = max[Σ(Di - Ii)] for continuous periods where D > I",
+    "variables": {
+      "S_required": {"description": "Minimum active storage to meet demand through critical drought", "units": "m³ or acre-ft"},
+      "Di": {"description": "Demand (release) in period i", "units": "m³ or acre-ft"},
+      "Ii": {"description": "Inflow in period i (adjusted for evaporation and seepage losses)", "units": "m³ or acre-ft"}
+    },
+    "applicability": "Apply to longest available streamflow record. Must include worst known drought. For short records, extend with stochastic hydrology.",
+    "source": "Rippl (1883), Linsley et al. (1992)"
+  },
+  {
+    "id": "water-infra.reservoir-design.eq-003",
+    "title": "Sequent Peak Algorithm",
+    "equation": "St = max(0, St-1 + Dt - It)",
+    "variables": {
+      "St": {"description": "Required storage at end of period t", "units": "m³"},
+      "Dt": {"description": "Total demand plus losses in period t", "units": "m³"},
+      "It": {"description": "Inflow in period t", "units": "m³"}
+    },
+    "applicability": "S_required = max(St) over entire simulation. Initialize S0 = 0. Run through record twice to capture droughts spanning the end/start boundary. More robust than graphical mass curve for computer implementation.",
+    "source": "Thomas & Burden (1963)"
+  },
+  {
+    "id": "water-infra.reservoir-design.eq-004",
+    "title": "Brune Trap Efficiency (Median Curve)",
+    "equation": "TE ≈ 100 × [1 - (1 / (1 + Δ × C/I))]  where Δ ≈ 0.0021 (empirical fit)",
+    "alt_form": "Read directly from Brune's (1953) graph: C/I = 0.01 → TE ≈ 60%; C/I = 0.10 → TE ≈ 87%; C/I = 1.0 → TE ≈ 97%",
+    "variables": {
+      "TE": {"description": "Trap efficiency (% of incoming sediment retained)", "units": "%"},
+      "C": {"description": "Reservoir capacity (total)", "units": "m³ or acre-ft"},
+      "I": {"description": "Mean annual inflow volume", "units": "m³ or acre-ft"}
+    },
+    "source": "Brune (1953)"
+  },
+  {
+    "id": "water-infra.reservoir-design.eq-005",
+    "title": "Dead Storage for Sedimentation",
+    "equation": "V_dead = (Qs × T_design) / (TE/100 × γ_d)",
+    "variables": {
+      "V_dead": {"description": "Required dead storage volume", "units": "m³"},
+      "Qs": {"description": "Average annual sediment inflow (mass)", "units": "tonnes/year"},
+      "T_design": {"description": "Design sedimentation life", "units": "years (typically 50–100)"},
+      "TE": {"description": "Trap efficiency", "units": "%"},
+      "γ_d": {"description": "Dry bulk density of deposited sediment (1.0–1.5 t/m³ typical)", "units": "t/m³"}
+    },
+    "source": "USBR, USACE EM 1110-2-4000"
+  },
+  {
+    "id": "water-infra.reservoir-design.eq-006",
+    "title": "Net Evaporation Loss",
+    "equation": "E_loss = (E_gross - P_res) × A_res",
+    "variables": {
+      "E_loss": {"description": "Net evaporation volume loss from reservoir", "units": "m³/month"},
+      "E_gross": {"description": "Gross evaporation depth (pan × Kp)", "units": "m/month"},
+      "P_res": {"description": "Precipitation directly on reservoir surface", "units": "m/month"},
+      "A_res": {"description": "Reservoir surface area at current pool level", "units": "m²"},
+      "Kp": {"description": "Pan coefficient (typically 0.70–0.80)", "units": "dimensionless"}
+    },
+    "source": "General — Penman, USBR"
+  },
+  {
+    "id": "water-infra.reservoir-design.eq-007",
+    "title": "Reservoir Water Balance",
+    "equation": "ΔS = I + P_res - O - E_gross×A - Seepage",
+    "variables": {
+      "ΔS": {"description": "Change in reservoir storage over time step", "units": "m³"},
+      "I": {"description": "Total inflow (streamflow + return flow)", "units": "m³"},
+      "P_res": {"description": "Precipitation on reservoir surface", "units": "m³"},
+      "O": {"description": "Total outflow (releases + spillway + seepage)", "units": "m³"},
+      "E_gross": {"description": "Gross evaporation rate", "units": "m"},
+      "A": {"description": "Average reservoir surface area during period", "units": "m²"}
+    },
+    "applicability": "Fundamental accounting equation. Seepage is often computed as residual after measuring all other terms. Solved on monthly or daily time step.",
+    "source": "General hydrology"
+  },
+  {
+    "id": "water-infra.reservoir-design.eq-008",
+    "title": "Wind-Generated Wave Height (Significant Wave, SMB Method)",
+    "equation": "Hs = 0.0016 × √(F) × U²/g  (simplified SMB for restricted fetch)",
+    "alt_form": "Hs = 0.283 × (U²/g) × tanh[0.530(gd/U²)^0.75] × tanh[0.00565(gF/U²)^0.5 / tanh[0.530(gd/U²)^0.75]]",
+    "variables": {
+      "Hs": {"description": "Significant wave height", "units": "m"},
+      "F": {"description": "Fetch (effective wind distance across reservoir)", "units": "m"},
+      "U": {"description": "Wind speed over water (sustained, adjusted to over-water)", "units": "m/s"},
+      "d": {"description": "Average depth along fetch", "units": "m"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"}
+    },
+    "applicability": "Used for freeboard determination and riprap sizing. Fetch limited by reservoir geometry. USACE Shore Protection Manual (now CEM) or USBR method.",
+    "source": "Sverdrup-Munk-Bretschneider (SMB), USBR DS-13 Ch6"
+  }
+]

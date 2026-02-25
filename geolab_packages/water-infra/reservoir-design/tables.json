@@ -1,0 +1,70 @@
+[
+  {
+    "id": "water-infra.reservoir-design.tbl-001",
+    "title": "Reservoir Pool Zones and Typical Elevations",
+    "type": "classification",
+    "data": {
+      "headers": ["Zone", "Bottom Boundary", "Top Boundary", "Purpose", "Controlled By"],
+      "rows": [
+        ["Dead storage", "Reservoir bottom", "Lowest outlet invert", "Sediment accumulation, minimum pool", "Outlet invert elevation"],
+        ["Active (conservation) storage", "Lowest outlet invert", "Normal max pool (spillway crest or top of gates)", "Water supply, irrigation, power, recreation", "Yield analysis (Rippl/sequent peak)"],
+        ["Joint use pool", "Top of dedicated conservation", "Top of joint use", "Shared flood control / conservation (seasonal)", "Water control plan rule curves"],
+        ["Flood control pool", "Top of conservation", "Top of flood control", "Flood peak attenuation", "Routing analysis, downstream channel capacity"],
+        ["Surcharge", "Top of flood control", "Maximum pool during IDF", "Temporary flood storage during extreme events", "Spillway capacity, IDF routing"],
+        ["Freeboard", "Maximum pool (IDF)", "Dam crest", "Safety margin for waves, wind setup, settlement", "Wave analysis, agency criteria"]
+      ]
+    },
+    "source": "USACE EM 1110-2-3600, USBR Design of Small Dams"
+  },
+  {
+    "id": "water-infra.reservoir-design.tbl-002",
+    "title": "Freeboard Requirements for Embankment Dams",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Component", "Value / Method", "Source"],
+      "rows": [
+        ["Normal freeboard (above normal max pool)", "≥ 1.5 m (5 ft) minimum for small dams", "USBR Design of Small Dams"],
+        ["Minimum freeboard above max pool during IDF", "≥ 0.9 m (3 ft) for embankment dams", "USBR, USACE"],
+        ["Wave runup", "1.5 × Hs on smooth slopes; 0.5 × Hs on riprap", "USBR DS-13 Ch6"],
+        ["Wind setup (water surface tilt)", "S = U²F/(62,000d) (ft; U in mph, F in miles)", "Zuider Zee formula, USBR"],
+        ["Settlement allowance", "1–3% of dam height for embankment dams at end of construction", "USBR, experience"],
+        ["Total freeboard", "Sum of wave runup + wind setup + settlement + safety margin", "USBR DS-13 Ch6"]
+      ]
+    },
+    "source": "USBR DS-13 Chapter 6, USACE EM 1110-2-2300"
+  },
+  {
+    "id": "water-infra.reservoir-design.tbl-003",
+    "title": "Deposited Sediment Bulk Density",
+    "type": "reference",
+    "data": {
+      "headers": ["Sediment Type", "Initial Dry Density (t/m³)", "After 50 years (t/m³)", "Reservoir Operation"],
+      "rows": [
+        ["Clay (always submerged)", "0.42–0.64", "0.72–0.96", "Normally ponded"],
+        ["Silt (always submerged)", "0.88–1.12", "1.04–1.28", "Normally ponded"],
+        ["Sand", "1.20–1.55", "1.20–1.55", "Constant (no consolidation)"],
+        ["Gravel", "1.50–1.85", "1.50–1.85", "Constant"],
+        ["Clay (moderate drawdown)", "0.56–0.80", "0.88–1.12", "Moderate fluctuation"],
+        ["Clay (major drawdown/empty)", "0.64–0.96", "1.04–1.36", "Reservoir normally empty"]
+      ]
+    },
+    "source": "Lane & Koelzer (1943), USBR, USACE EM 1110-2-4000"
+  },
+  {
+    "id": "water-infra.reservoir-design.tbl-004",
+    "title": "Typical Design Sedimentation Life by Dam Purpose",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Dam Purpose / Type", "Design Sed Life (years)", "Dead Storage Allocation", "Notes"],
+      "rows": [
+        ["Municipal water supply", "100", "Full sediment volume for design life", "Conservative — long-term public investment"],
+        ["Irrigation", "50–100", "Full sediment volume", "Depends on project economics"],
+        ["Flood control", "50–100", "Sediment not in flood pool", "Sedimentation reduces flood storage over time"],
+        ["Hydropower", "50–100", "Protect intake, maintain head", "Intake elevation above expected sediment level"],
+        ["Recreation / environmental", "50", "Maintain minimum pool depth", "Sedimentation reduces usable pool"],
+        ["Debris basin", "10–25", "Designed for periodic cleanout", "Smaller, maintenance-intensive"]
+      ]
+    },
+    "source": "USBR, USACE, general practice"
+  }
+]

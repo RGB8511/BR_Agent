@@ -1,0 +1,134 @@
+[
+  {
+    "id": "water-infra.hydropower.eq-001",
+    "title": "Hydraulic Power Available",
+    "equation": "P = ρ × g × Q × H",
+    "variables": {
+      "P": {"description": "Hydraulic power", "units": "watts (W)"},
+      "ρ": {"description": "Water density (998 kg/m³)", "units": "kg/m³"},
+      "g": {"description": "Gravitational acceleration (9.81 m/s²)", "units": "m/s²"},
+      "Q": {"description": "Flow rate", "units": "m³/s"},
+      "H": {"description": "Head (gross or net depending on context)", "units": "m"}
+    },
+    "applicability": "Fundamental power equation. P(kW) = 9.81 × Q × H. Quick estimate: ~10 kW per m³/s per m of head. Use H_net for power at turbine; H_gross for total potential.",
+    "source": "Fundamental physics"
+  },
+  {
+    "id": "water-infra.hydropower.eq-002",
+    "title": "Generator Output Power",
+    "equation": "P_gen = ρ × g × Q × H_net × η_t × η_g",
+    "variables": {
+      "P_gen": {"description": "Electrical power output at generator terminals", "units": "kW"},
+      "H_net": {"description": "Net head = H_gross - Σ(head losses)", "units": "m"},
+      "η_t": {"description": "Turbine efficiency (0.85–0.94 typical)", "units": "dimensionless"},
+      "η_g": {"description": "Generator efficiency (0.95–0.98)", "units": "dimensionless"}
+    },
+    "applicability": "P_gen(kW) = 9.81 × Q × H_net × η_t × η_g. Net head deductions: penstock friction, trashrack, intake, bends, valves (typically 3–10% of gross head). Transformer losses and auxiliary power reduce further to net plant output.",
+    "source": "General hydropower engineering"
+  },
+  {
+    "id": "water-infra.hydropower.eq-003",
+    "title": "Specific Speed (Turbine)",
+    "equation": "Ns = N × √P / H^(5/4)",
+    "variables": {
+      "Ns": {"description": "Specific speed (US customary)", "units": "rpm-hp^0.5/ft^1.25"},
+      "N": {"description": "Turbine rotational speed", "units": "rpm"},
+      "P": {"description": "Power at BEP per runner", "units": "hp (US) or kW (metric)"},
+      "H": {"description": "Net head at BEP", "units": "ft (US) or m (metric)"}
+    },
+    "applicability": "Ns(US) ranges: Pelton 4–60, Francis 60–400, Kaplan/propeller 300–900+. Metric form: ns = N√P(kW)/H(m)^1.25 where ns ≈ Ns/4.45. Determines optimal turbine type and geometry.",
+    "source": "Standard turbomachinery — Creager & Justin"
+  },
+  {
+    "id": "water-infra.hydropower.eq-004",
+    "title": "Annual Energy Production",
+    "equation": "E = P_rated × CF × 8760",
+    "variables": {
+      "E": {"description": "Annual energy production", "units": "kWh/year"},
+      "P_rated": {"description": "Installed capacity (rated power)", "units": "kW"},
+      "CF": {"description": "Capacity factor (0.30–0.60 typical for hydro)", "units": "dimensionless"},
+      "8760": {"description": "Hours per year", "units": "hours"}
+    },
+    "applicability": "Capacity factor depends on hydrology and plant type. Run-of-river: 0.30–0.50. Storage: 0.25–0.55 (lower CF because used for peaking). More precise: E = Σ(P_i × Δt_i) using flow duration curve with efficiency at each flow.",
+    "source": "General energy engineering"
+  },
+  {
+    "id": "water-infra.hydropower.eq-005",
+    "title": "Synchronous Speed (Generator)",
+    "equation": "N_s = (120 × f) / p",
+    "variables": {
+      "N_s": {"description": "Synchronous speed of generator", "units": "rpm"},
+      "f": {"description": "Grid frequency (60 Hz in Americas, 50 Hz elsewhere)", "units": "Hz"},
+      "p": {"description": "Number of poles on generator", "units": "dimensionless"}
+    },
+    "applicability": "Generator must rotate at synchronous speed to produce correct frequency. Turbine speed must match (or be geared to) synchronous speed. More poles → lower speed → larger, more expensive generator but better suited to low-head turbines.",
+    "source": "Electrical engineering fundamentals"
+  },
+  {
+    "id": "water-infra.hydropower.eq-006",
+    "title": "Thoma Cavitation Coefficient (Turbine Setting)",
+    "equation": "σ = (P_atm/(ρg) - P_v/(ρg) - H_s) / H_net",
+    "variables": {
+      "σ": {"description": "Plant sigma — available cavitation coefficient", "units": "dimensionless"},
+      "P_atm": {"description": "Atmospheric pressure at plant elevation", "units": "Pa"},
+      "P_v": {"description": "Vapor pressure of water", "units": "Pa"},
+      "H_s": {"description": "Turbine setting height above tailwater (positive = above)", "units": "m"},
+      "H_net": {"description": "Net head on turbine", "units": "m"}
+    },
+    "applicability": "Requirement: σ_plant ≥ σ_critical (from model test, typically 0.01–0.10 for Francis, 0.2–0.8 for Kaplan). Determines maximum elevation of turbine runner above tailwater. At altitude, reduced P_atm requires lower turbine setting. Francis turbines at high head often set below tailwater.",
+    "source": "Thoma (1906), IEC 60193"
+  },
+  {
+    "id": "water-infra.hydropower.eq-007",
+    "title": "Pelton Jet Velocity and Bucket Speed",
+    "equation": "V_jet = Cv × √(2g × H_net);  U_optimal = V_jet / 2",
+    "variables": {
+      "V_jet": {"description": "Jet velocity at nozzle exit", "units": "m/s"},
+      "Cv": {"description": "Velocity coefficient of nozzle (0.97–0.99)", "units": "dimensionless"},
+      "H_net": {"description": "Net head at nozzle", "units": "m"},
+      "U_optimal": {"description": "Optimal bucket peripheral speed for maximum efficiency", "units": "m/s"}
+    },
+    "applicability": "At U/V_jet = 0.5, maximum energy transfer occurs (all kinetic energy extracted from jet in the runner reference frame). Runner diameter: D = 60 × U / (π × N). Jet diameter: d_jet = √(4Q/(n_jets × π × V_jet)).",
+    "source": "Euler turbomachinery, Dixon & Hall (2014)"
+  },
+  {
+    "id": "water-infra.hydropower.eq-008",
+    "title": "Economic Penstock Diameter",
+    "equation": "D_econ ≈ 0.72 × (Q / H^0.25)^0.5  [approximate, SI]",
+    "variables": {
+      "D_econ": {"description": "Economic penstock diameter (approximate)", "units": "m"},
+      "Q": {"description": "Design flow rate", "units": "m³/s"},
+      "H": {"description": "Gross head", "units": "m"}
+    },
+    "applicability": "Very approximate. True economic diameter from life-cycle cost analysis: minimize (annual capital cost of steel + annual energy loss). Rule of thumb: head loss in penstock ≤ 4–8% of gross head. Higher energy values → larger economic diameter.",
+    "source": "ESHA (2004), Fahlbusch (1982)"
+  },
+  {
+    "id": "water-infra.hydropower.eq-009",
+    "title": "Pumped Storage Round-Trip Efficiency",
+    "equation": "η_RT = η_pump × η_motor × η_turbine × η_generator × (1 - f_loss)",
+    "variables": {
+      "η_RT": {"description": "Round-trip efficiency (energy out / energy in)", "units": "dimensionless"},
+      "η_pump": {"description": "Pump mode efficiency (0.85–0.92)", "units": "dimensionless"},
+      "η_motor": {"description": "Motor/generator efficiency in pumping mode (0.96–0.98)", "units": "dimensionless"},
+      "η_turbine": {"description": "Turbine mode efficiency (0.88–0.94)", "units": "dimensionless"},
+      "η_generator": {"description": "Generator efficiency (0.96–0.98)", "units": "dimensionless"},
+      "f_loss": {"description": "Hydraulic (penstock) and evaporation losses (0.02–0.05)", "units": "dimensionless"}
+    },
+    "applicability": "Typical round-trip: 70–85%. Modern variable-speed units: 78–82%. Pumped storage is economically justified by time-of-use electricity price differential.",
+    "source": "EPRI, general hydropower practice"
+  },
+  {
+    "id": "water-infra.hydropower.eq-010",
+    "title": "Flow Duration — Power at Exceedance Percentile",
+    "equation": "P_x = 9.81 × Q_x × H_net × η_overall",
+    "variables": {
+      "P_x": {"description": "Power available at exceedance percentile x%", "units": "kW"},
+      "Q_x": {"description": "Flow equalled or exceeded x% of the time (from flow duration curve)", "units": "m³/s"},
+      "H_net": {"description": "Net head at Q_x (may vary with tailwater)", "units": "m"},
+      "η_overall": {"description": "Overall efficiency at Q_x (varies with flow)", "units": "dimensionless"}
+    },
+    "applicability": "Key percentiles: Q30 for installed capacity (firm power design), Q90–Q95 for firm energy (minimum reliable flow). Energy = integral of power curve over 8760 hours. Discretize flow duration into intervals and sum.",
+    "source": "Standard hydropower assessment methodology"
+  }
+]

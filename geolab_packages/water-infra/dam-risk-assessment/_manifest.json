@@ -1,0 +1,21 @@
+{
+  "id": "water-infra.dam-risk-assessment",
+  "name": "Dam Risk Assessment & Potential Failure Modes",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.dam-safety",
+  "dependencies": [
+    "water-infra.dam-safety-surveillance",
+    "water-infra.dam-hydrology"
+  ],
+  "tags": ["risk-assessment", "PFMA", "potential-failure-mode", "RIDM", "risk-informed-decision-making", "tolerable-risk", "annualized-failure-probability", "consequence", "f-N-curve", "event-tree", "fault-tree", "SQRA", "semi-quantitative", "life-loss-estimation", "breach", "inundation", "internal-erosion", "overtopping", "seismic", "foundation-failure"],
+  "standards": ["FERC-Ch1", "USBR-DS-11", "USACE-ER-1110-2-1156", "FEMA-P-1025", "ICOLD-Bulletin-130"],
+  "equation_count": 8,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

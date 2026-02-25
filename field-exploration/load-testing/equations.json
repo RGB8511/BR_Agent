@@ -1,0 +1,134 @@
+[
+  {
+    "id": "field-exploration.load-testing.eq-001",
+    "title": "Davisson Offset Limit — Pile Failure Criterion",
+    "equation": "s_failure = PL/(AE) + 3.8 + D/120  [mm]",
+    "variables": {
+      "s_failure": {"description": "Settlement at which pile is considered to have reached ultimate capacity", "units": "mm"},
+      "P": {"description": "Applied axial load", "units": "kN"},
+      "L": {"description": "Pile length", "units": "mm"},
+      "A": {"description": "Cross-sectional area of pile", "units": "mm²"},
+      "E": {"description": "Elastic modulus of pile material", "units": "kN/mm² (GPa)"},
+      "D": {"description": "Pile diameter or width", "units": "mm"}
+    },
+    "applicability": "Most widely used in North America for driven piles. Plot the offset line on the load-settlement curve starting at s = 3.8 + D/120 with slope 1/(AE/L). Capacity = load at intersection with measured curve. Not recommended for large-diameter drilled shafts — use 5% D criterion instead.",
+    "source": "Davisson (1972)"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-002",
+    "title": "Chin-Kondner Hyperbolic Extrapolation",
+    "equation": "Q_ult = 1 / slope of (Δ/Q vs. Δ) linear portion",
+    "variables": {
+      "Q_ult": {"description": "Extrapolated ultimate pile capacity", "units": "kN"},
+      "Δ": {"description": "Settlement at pile head", "units": "mm"},
+      "Q": {"description": "Applied load", "units": "kN"}
+    },
+    "applicability": "Plot Δ/Q on y-axis vs. Δ on x-axis. After initial nonlinear zone, data falls on a straight line with slope m. Q_ult = 1/m. Typically overpredicts capacity by 20–40% — apply correction factor of 0.80. Useful when test not taken to full failure.",
+    "source": "Chin (1970), Kondner (1963)"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-003",
+    "title": "FHWA 5% Diameter Criterion (Drilled Shafts)",
+    "equation": "Q_ult = load at settlement of 0.05 × D",
+    "variables": {
+      "Q_ult": {"description": "Ultimate capacity", "units": "kN"},
+      "D": {"description": "Shaft diameter", "units": "m"}
+    },
+    "applicability": "For drilled shafts and large-diameter piles where Davisson criterion is too conservative (Davisson offset becomes very large, requiring excessive settlement to reach). A 1.0 m shaft: failure at 50 mm settlement. Simple and rational for large-diameter elements.",
+    "source": "FHWA GEC-10 (O'Neill & Reese, 1999)"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-004",
+    "title": "Pile Elastic Compression",
+    "equation": "Δ_elastic = PL / (AE)",
+    "variables": {
+      "Δ_elastic": {"description": "Elastic shortening of pile under load P", "units": "mm"},
+      "P": {"description": "Applied axial load", "units": "kN"},
+      "L": {"description": "Pile length (or effective length considering load transfer)", "units": "mm"},
+      "A": {"description": "Cross-sectional area", "units": "mm²"},
+      "E": {"description": "Elastic modulus (steel: 200 GPa, concrete: 25–35 GPa, timber: 10–14 GPa)", "units": "GPa"}
+    },
+    "applicability": "For uniform pile with load applied at top and resisted at toe. In reality, shaft friction reduces load progressively — effective length for elastic compression is < L. Approximate: use L/2 if shaft friction dominant, L if end bearing dominant.",
+    "source": "General mechanics"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-005",
+    "title": "CASE Method — Dynamic Capacity (Simplified)",
+    "equation": "R_total = ½[(F₁ + Z×V₁) + (F₂ - Z×V₂)]",
+    "variables": {
+      "R_total": {"description": "Total soil resistance (static + dynamic)", "units": "kN"},
+      "F₁, V₁": {"description": "Force and velocity at pile head at time of impact peak (t₁)", "units": "kN, m/s"},
+      "F₂, V₂": {"description": "Force and velocity at time t₂ = t₁ + 2L/c", "units": "kN, m/s"},
+      "Z": {"description": "Pile impedance = EA/c", "units": "kN·s/m"},
+      "c": {"description": "Wave speed in pile (5120 m/s steel, 3000–4000 m/s concrete)", "units": "m/s"}
+    },
+    "applicability": "Simplified dynamic capacity. Static capacity: R_static = R_total - J_c × (F₁ + Z×V₁ - R_total) where J_c = CASE damping factor (0.1–0.9 depending on soil type). CAPWAP signal matching provides more refined result.",
+    "source": "Goble, Rausche & Likins (1970), ASTM D4945"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-006",
+    "title": "Pile Impedance",
+    "equation": "Z = E × A / c",
+    "variables": {
+      "Z": {"description": "Pile impedance (relates force to velocity in wave propagation)", "units": "kN·s/m"},
+      "E": {"description": "Elastic modulus of pile", "units": "kPa"},
+      "A": {"description": "Cross-sectional area", "units": "m²"},
+      "c": {"description": "Stress wave speed = √(E/ρ)", "units": "m/s"}
+    },
+    "applicability": "Fundamental parameter for dynamic pile testing. For a uniform pile: F = Z × V for a downward traveling wave. Changes in impedance (cross-section change, crack, soil inclusion) cause wave reflections used in integrity testing.",
+    "source": "Wave mechanics, ASTM D4945"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-007",
+    "title": "Anchor Elastic Elongation (Expected Free Length Verification)",
+    "equation": "Δ_elastic = P × L_free / (A_t × E_s)",
+    "variables": {
+      "Δ_elastic": {"description": "Theoretical elastic elongation of the unbonded (free) length", "units": "mm"},
+      "P": {"description": "Applied test load", "units": "kN"},
+      "L_free": {"description": "Unbonded (free) length of tendon", "units": "mm"},
+      "A_t": {"description": "Cross-sectional area of tendon (total strand area)", "units": "mm²"},
+      "E_s": {"description": "Modulus of elasticity of tendon (195 GPa for strand, 200 GPa for bar)", "units": "GPa"}
+    },
+    "applicability": "Measured elastic movement must be ≥ 80% of theoretical for L_free and ≤ theoretical for L_free + L_bond (full tendon length). This verification ensures the bond zone is holding and the free length is unbonded. If measured elongation < 80% of theoretical free length: possible short free length, bond zone too close to wall, or anchor debonding.",
+    "source": "PTI DC35.1, FHWA-SA-99-015"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-008",
+    "title": "Creep Rate for Anchor Acceptance",
+    "equation": "creep_rate = (Δ₂ - Δ₁) / log₁₀(t₂/t₁)",
+    "variables": {
+      "creep_rate": {"description": "Creep rate (movement per log cycle of time)", "units": "mm/log cycle"},
+      "Δ₁, Δ₂": {"description": "Anchor head movements at times t₁ and t₂", "units": "mm"},
+      "t₁, t₂": {"description": "Start and end times of observation (typically 1 min and 10 min)", "units": "minutes"}
+    },
+    "applicability": "At maximum test load hold: creep rate must be < 2 mm/log cycle for most soil anchors, < 1 mm for rock anchors (varies by specification). If exceeded: extend hold time. If still exceeded: anchor may need regrouting, redesign, or replacement.",
+    "source": "PTI DC35.1, FHWA-SA-99-015"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-009",
+    "title": "Modulus of Subgrade Reaction from Plate Load Test",
+    "equation": "k_s = q / s",
+    "variables": {
+      "k_s": {"description": "Modulus of subgrade reaction", "units": "kN/m³"},
+      "q": {"description": "Applied bearing pressure = P / A_plate", "units": "kPa"},
+      "s": {"description": "Settlement at the applied pressure", "units": "m"}
+    },
+    "applicability": "Typically reported at s = 1.27 mm (0.05 in) for pavement design. k_s is stress-dependent (nonlinear) — report at the design stress level. Size correction for footing design: k_footing = k_plate × (B_plate / B_footing) for granular soils; k_footing ≈ k_plate for clays.",
+    "source": "ASTM D1196, Terzaghi (1955)"
+  },
+  {
+    "id": "field-exploration.load-testing.eq-010",
+    "title": "Statnamic Unloading Point Method",
+    "equation": "F_static = F_statnamic - m×a - c×v",
+    "variables": {
+      "F_static": {"description": "Derived static resistance", "units": "kN"},
+      "F_statnamic": {"description": "Measured Statnamic force on pile", "units": "kN"},
+      "m": {"description": "Mass of pile", "units": "kg"},
+      "a": {"description": "Measured acceleration of pile", "units": "m/s²"},
+      "c": {"description": "Radiation damping coefficient", "units": "kN·s/m"},
+      "v": {"description": "Measured velocity of pile", "units": "m/s"}
+    },
+    "applicability": "At the unloading point (v = 0, a ≈ 0 at maximum displacement), F_static ≈ F_statnamic directly. For the full curve, the damping term c×v must be estimated. Method assumes rate-dependent resistance is viscous. Correction factors (0.90–0.95) may apply for clay soils.",
+    "source": "Middendorp et al. (1992), ASTM D7383"
+  }
+]

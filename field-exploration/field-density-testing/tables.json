@@ -1,0 +1,92 @@
+[
+  {
+    "id": "field-exploration.field-density-testing.tbl-001",
+    "title": "Field Density Test Method Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "ASTM", "Test Time", "Accuracy", "Advantages", "Limitations"],
+      "rows": [
+        ["Nuclear density gauge (direct transmission)", "D6938", "1–4 min", "±1.0 pcf (±0.16 kN/m³)", "Fast, non-destructive, simultaneous ρ and w", "NRC license, radiation safety, chemical sensitivity"],
+        ["Nuclear density gauge (backscatter)", "D6938", "1–4 min", "±2.0 pcf (±0.32 kN/m³)", "No hole drilling required", "Less accurate, shallow measurement (100 mm)"],
+        ["Sand cone", "D1556", "30–45 min", "±1.5 pcf (±0.24 kN/m³)", "No radioactive source, direct measurement, standard reference", "Slow, destructive, sensitive to vibration"],
+        ["Rubber balloon", "D2167", "20–30 min", "±2.0 pcf (±0.32 kN/m³)", "Reusable water, faster than sand cone", "Irregular surfaces, less common"],
+        ["Drive cylinder", "D2937", "10–15 min", "±2.0 pcf (±0.32 kN/m³)", "Simple, fast", "Cohesive soils only; sample disturbance in granular"],
+        ["Electrical density gauge (EDG)", "D7698", "2–5 min", "±1.5–2.5 pcf", "No radioactive source, fast", "Limited track record, soil-specific calibration"],
+        ["GeoGauge (stiffness)", "D6758", "1–2 min", "Stiffness, not density", "Very fast, modulus-based", "Does NOT measure density directly; correlation required"]
+      ]
+    },
+    "source": "Various ASTM standards"
+  },
+  {
+    "id": "field-exploration.field-density-testing.tbl-002",
+    "title": "Typical Compaction Specifications",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Minimum RC (%)", "Reference Test", "Moisture Requirement", "Notes"],
+      "rows": [
+        ["Structural fill (buildings)", "95", "Modified Proctor (D1557)", "w_opt -2% to w_opt +2%", "Tight moisture control; critical for settlement"],
+        ["Embankment dam (impervious zone)", "95", "Standard Proctor (D698)", "w_opt to w_opt +3%", "Wet of optimum for low permeability"],
+        ["Embankment dam (shell/filter)", "95–98", "Modified Proctor (D1557) or max/min density", "As specified", "Relative density may be specified for granular zones"],
+        ["Highway subgrade", "95", "Modified Proctor (D1557)", "w_opt -2% to w_opt +2%", "Per agency specs (AASHTO, state DOT)"],
+        ["Highway base course", "98–100", "Modified Proctor (D1557)", "w_opt ±2%", "High density for pavement support"],
+        ["Trench backfill (above pipe)", "90", "Standard Proctor (D698)", "w_opt ±3%", "Lower requirement acceptable"],
+        ["Pipe bedding / haunch zone", "90–95", "Standard or Modified", "Near optimum", "Critical for pipe support"],
+        ["General fill", "90", "Standard Proctor (D698)", "w_opt ±3%", "Non-critical areas"],
+        ["Controlled low-strength material (CLSM)", "N/A", "N/A", "N/A", "Flowable fill — no compaction needed"]
+      ]
+    },
+    "source": "Typical specifications — varies by agency and project"
+  },
+  {
+    "id": "field-exploration.field-density-testing.tbl-003",
+    "title": "Nuclear Gauge Troubleshooting — Common Issues",
+    "type": "reference",
+    "data": {
+      "headers": ["Issue", "Symptom", "Cause", "Solution"],
+      "rows": [
+        ["Density too high (above ZAV)", "RC > 105%, S > 100%", "Surface water, dense mineral (iron ore), hydrogen-poor material", "Verify with sand cone; check material composition"],
+        ["Density too low", "Failing tests despite good compaction effort", "Air gap under gauge (rough surface), oversized particles, NDG not seated flat", "Prepare level surface; sand seat if needed; use sand cone"],
+        ["Moisture reading differs from oven-dry", "Consistent bias ± several percent", "Chemical water (gypsum, cement-treated), organic matter, saline water", "Apply correction factor from oven-dry comparison"],
+        ["Erratic readings", "Test-to-test variation > ±3 pcf on same spot", "Source rod not seated in bottom, gauge tilting, loose surface, equipment malfunction", "Reseat, check rod hole, retake; standard count check"],
+        ["Standard count drift", "Standard count outside ±1% of reference", "Source decay (normal), temperature effect, electronics", "Update standard count; if excessive, send for calibration"]
+      ]
+    },
+    "source": "General field practice, manufacturer guidance"
+  },
+  {
+    "id": "field-exploration.field-density-testing.tbl-004",
+    "title": "Minimum Testing Frequency — Typical Specifications",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Minimum Test Frequency", "Notes"],
+      "rows": [
+        ["Embankment dam", "1 test per 200–500 m³ per lift", "More frequent in critical zones (core, filters)"],
+        ["Highway embankment", "1 test per 500–1000 m² per lift", "Per lane-width per 150–300 m of roadway"],
+        ["Structural fill", "1 test per 200–500 m³", "More at critical locations (under footings)"],
+        ["Trench backfill", "1 test per 30–60 m of trench per lift", "Or per agency specification"],
+        ["Building pad", "1 test per 200 m² per lift", "More near edges and utilities"],
+        ["Proctor reference curves", "1 per soil type; new curve if material changes", "Check material visually each day; retest if different"]
+      ]
+    },
+    "source": "Typical specifications — varies by agency"
+  },
+  {
+    "id": "field-exploration.field-density-testing.tbl-005",
+    "title": "Proctor Test Comparison — Standard vs. Modified",
+    "type": "reference",
+    "data": {
+      "headers": ["Parameter", "Standard Proctor (D698)", "Modified Proctor (D1557)", "Notes"],
+      "rows": [
+        ["Hammer weight", "5.5 lb (2.5 kg)", "10 lb (4.54 kg)", ""],
+        ["Drop height", "12 in (305 mm)", "18 in (457 mm)", ""],
+        ["Layers", "3", "5", ""],
+        ["Blows per layer", "25", "25", "For 4-inch mold; 56 for 6-inch mold"],
+        ["Compactive energy", "600 kN·m/m³ (12,400 ft·lbf/ft³)", "2700 kN·m/m³ (56,000 ft·lbf/ft³)", "Modified = 4.5× standard energy"],
+        ["Typical γ_d_max increase", "Baseline", "5–10% higher than standard", "Depends on soil type"],
+        ["Typical w_opt shift", "Baseline", "2–4% lower than standard", "Higher energy → lower optimum moisture"],
+        ["Common use", "General fill, low-energy compaction", "Highway, structural fill, high-performance", "Specification must state which reference"]
+      ]
+    },
+    "source": "ASTM D698, D1557"
+  }
+]

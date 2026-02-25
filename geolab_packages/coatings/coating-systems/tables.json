@@ -1,0 +1,110 @@
+[
+  {
+    "id": "coatings.protection.coating-systems.tbl-001",
+    "title": "Common Industrial Coating Systems",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["System", "Primer", "Intermediate", "Topcoat", "Total DFT (μm)", "Service"],
+      "rows": [
+        ["C5-M Marine/offshore", "IOZ 75μm", "Epoxy 125μm", "Aliphatic PU 50μm", "250", "Marine atmospheric, offshore"],
+        ["C5-I Industrial severe", "IOZ 75μm", "Epoxy 100μm", "Aliphatic PU 50μm", "225", "Heavy industrial, chemical"],
+        ["C4 High atmospheric", "Zinc-rich epoxy 75μm", "Epoxy 100μm", "Aliphatic PU 50μm", "225", "Coastal, industrial"],
+        ["C3 Medium atmospheric", "Epoxy primer 75μm", "—", "Aliphatic PU 75μm", "150", "Urban, mild industrial"],
+        ["Immersion (freshwater)", "Epoxy 150μm", "Epoxy 150μm", "—", "300", "Water tanks, pipelines"],
+        ["Immersion (chemical)", "Novolac epoxy 200μm", "Novolac epoxy 200μm", "—", "400+", "Chemical tanks, FGD"],
+        ["Thermal spray", "TSA 200μm", "Sealer", "Optional PU 50μm", "250", "Extreme marine, 25+ years"]
+      ]
+    },
+    "source": "ISO 12944-5, SSPC painting guides, general industry practice"
+  },
+  {
+    "id": "coatings.protection.coating-systems.tbl-002",
+    "title": "Coating Generic Types — Properties Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Type", "Components", "VOC Range", "Chemical Resist.", "UV Resist.", "Typical DFT/coat (μm)"],
+      "rows": [
+        ["Inorganic zinc", "2 (or moisture cure)", "< 340 g/L", "Excellent", "Excellent", "50–100"],
+        ["Organic zinc (epoxy)", "2", "< 340 g/L", "Good", "Poor", "50–100"],
+        ["Amine-cured epoxy", "2", "< 250 g/L", "Good-excellent", "Poor (chalks)", "75–200"],
+        ["Polyamide epoxy", "2", "< 250 g/L", "Good", "Poor", "75–200"],
+        ["Novolac epoxy", "2", "< 250 g/L", "Excellent", "Poor", "100–300"],
+        ["Aliphatic polyurethane", "2", "< 250 g/L", "Good", "Excellent", "25–75"],
+        ["Polysiloxane", "2", "< 100 g/L", "Excellent", "Excellent", "50–125"],
+        ["Fluoropolymer (FEVE)", "2", "< 250 g/L", "Excellent", "Outstanding", "25–50"],
+        ["Alkyd", "1", "250–400 g/L", "Fair", "Fair", "25–50"],
+        ["Acrylic latex", "1", "< 100 g/L", "Fair", "Good", "25–75"]
+      ]
+    },
+    "source": "SSPC Painting Manual Vol 1, various manufacturer data"
+  },
+  {
+    "id": "coatings.protection.coating-systems.tbl-003",
+    "title": "Surface Preparation Standards (SSPC/NACE)",
+    "type": "classification",
+    "data": {
+      "headers": ["SSPC", "NACE", "Description", "Typical Use"],
+      "rows": [
+        ["SP 1", "—", "Solvent cleaning (remove oil, grease)", "Always first — before any blast"],
+        ["SP 2", "—", "Hand tool cleaning", "Minimal — maintenance painting"],
+        ["SP 3", "—", "Power tool cleaning", "Moderate — maintenance"],
+        ["SP 6", "No. 3", "Commercial blast (≥ 67% clean)", "Epoxy primers, moderate service"],
+        ["SP 7", "No. 4", "Brush-off blast (remove loose)", "Recoating of intact existing paint"],
+        ["SP 10", "No. 2", "Near-white blast (≥ 95% clean)", "Standard for most high-performance coatings"],
+        ["SP 11", "—", "Power tool to bare metal", "Where blasting is impractical"],
+        ["SP 5", "No. 1", "White metal blast (100% clean)", "IOZ, immersion, maximum protection"],
+        ["SP 12", "No. 5", "High-pressure water jetting", "Maintenance, offshore, wet environments"],
+        ["SP 16", "—", "Brush-off blast of coated/uncoated galv.", "Preparation of galvanized surfaces"]
+      ]
+    },
+    "source": "SSPC/NACE joint standards"
+  },
+  {
+    "id": "coatings.protection.coating-systems.tbl-004",
+    "title": "Abrasive Blast Profile Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Coating Type", "Anchor Profile (μm)", "Surface Prep Min."],
+      "rows": [
+        ["Inorganic zinc", "50–100 (2–4 mils)", "SP 5 (white metal)"],
+        ["Organic zinc (epoxy)", "37–75 (1.5–3 mils)", "SP 10 (near-white)"],
+        ["Epoxy primer", "37–75 (1.5–3 mils)", "SP 6 or SP 10"],
+        ["Polyurethane (direct)", "25–50 (1–2 mils)", "SP 6 or SP 10"],
+        ["Thermal spray (TSA/TSZ)", "75–125 (3–5 mils)", "SP 5 (angular profile)"]
+      ]
+    },
+    "source": "SSPC-PA 17, manufacturer TDS, ISO 12944-4"
+  },
+  {
+    "id": "coatings.protection.coating-systems.tbl-005",
+    "title": "Adhesion Test Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Test Method", "ASTM/SSPC", "Acceptance Criteria", "Notes"],
+      "rows": [
+        ["Pull-off adhesion", "D4541 / SSPC-PA Bulletin", "≥ 3.5–5.0 MPa (500–725 psi)", "Record failure mode (adhesive/cohesive/glue)"],
+        ["X-cut tape", "D3359 Method A", "≥ 4A (trace peeling only)", "Qualitative field screening"],
+        ["Cross-hatch tape", "D3359 Method B", "≥ 4B (< 5% removed)", "For thin films (< 125 μm)"],
+        ["Knife adhesion", "D6677", "Rating 1–10 (10 = best)", "Qualitative — used for maintenance"]
+      ]
+    },
+    "source": "ASTM D4541, D3359, SSPC"
+  },
+  {
+    "id": "coatings.protection.coating-systems.tbl-006",
+    "title": "ISO 12944 Corrosivity Categories",
+    "type": "classification",
+    "data": {
+      "headers": ["Category", "Environment", "Steel Loss (μm/yr)", "Examples"],
+      "rows": [
+        ["C1 Very low", "Heated interiors, dry", "≤ 1.3", "Offices, schools, shops"],
+        ["C2 Low", "Unheated interiors, rural atmosphere", "1.3–25", "Warehouses, sports halls, rural exterior"],
+        ["C3 Medium", "Urban/mild industrial atmospheric", "25–50", "Production rooms, urban/coastal exterior"],
+        ["C4 High", "Industrial or moderate marine", "50–80", "Chemical plants, coastal areas"],
+        ["C5 Very high", "Aggressive industrial or marine", "80–200", "Offshore, heavy industrial, tropical coast"],
+        ["CX Extreme", "Offshore with high salinity/immersion", "> 200", "Splash zones, aggressive immersion"]
+      ]
+    },
+    "source": "ISO 12944-2:2017"
+  }
+]

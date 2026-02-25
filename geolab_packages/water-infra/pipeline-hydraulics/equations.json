@@ -1,0 +1,157 @@
+[
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-001",
+    "title": "Darcy-Weisbach Equation",
+    "equation": "hf = f × (L/D) × V²/(2g)",
+    "variables": {
+      "hf": {"description": "Friction head loss", "units": "m"},
+      "f": {"description": "Darcy-Weisbach friction factor (from Moody diagram or Colebrook-White)", "units": "dimensionless"},
+      "L": {"description": "Pipe length", "units": "m"},
+      "D": {"description": "Internal pipe diameter", "units": "m"},
+      "V": {"description": "Mean flow velocity", "units": "m/s"},
+      "g": {"description": "Gravitational acceleration (9.81 m/s²)", "units": "m/s²"}
+    },
+    "applicability": "Universal — valid for all fluids, all flow regimes. Preferred over Hazen-Williams for precision work.",
+    "source": "Darcy (1857), Weisbach (1845)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-002",
+    "title": "Colebrook-White Equation (Friction Factor)",
+    "equation": "1/√f = -2.0 × log₁₀[(ε/D)/3.7 + 2.51/(Re × √f)]",
+    "variables": {
+      "f": {"description": "Darcy-Weisbach friction factor", "units": "dimensionless"},
+      "ε": {"description": "Absolute roughness of pipe interior", "units": "m"},
+      "D": {"description": "Internal diameter", "units": "m"},
+      "Re": {"description": "Reynolds number = VD/ν", "units": "dimensionless"}
+    },
+    "applicability": "Implicit — requires iteration. Valid for turbulent flow (Re > 4000). For explicit approximation, use Swamee-Jain.",
+    "source": "Colebrook (1939)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-003",
+    "title": "Swamee-Jain Explicit Friction Factor",
+    "equation": "f = 0.25 / [log₁₀(ε/(3.7D) + 5.74/Re^0.9)]²",
+    "variables": {
+      "f": {"description": "Darcy-Weisbach friction factor (explicit approximation)", "units": "dimensionless"}
+    },
+    "applicability": "Explicit approximation of Colebrook-White. Accurate to ±1% for 10⁻⁶ < ε/D < 10⁻² and 5000 < Re < 10⁸.",
+    "source": "Swamee & Jain (1976)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-004",
+    "title": "Hazen-Williams Equation",
+    "equation": "hf = (10.67 × Q^1.852) / (C^1.852 × D^4.87) × L",
+    "variables": {
+      "hf": {"description": "Friction head loss", "units": "m"},
+      "Q": {"description": "Flow rate", "units": "m³/s"},
+      "C": {"description": "Hazen-Williams roughness coefficient", "units": "dimensionless"},
+      "D": {"description": "Internal diameter", "units": "m"},
+      "L": {"description": "Pipe length", "units": "m"}
+    },
+    "applicability": "Empirical — only for water near 15°C, turbulent flow. US customary form: hf = (4.73 × L × Q^1.852) / (C^1.852 × D^4.87) with Q in cfs, D in ft.",
+    "source": "Williams & Hazen (1914)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-005",
+    "title": "Minor (Local) Loss",
+    "equation": "hm = K × V²/(2g)",
+    "variables": {
+      "K": {"description": "Loss coefficient (specific to fitting type)", "units": "dimensionless"},
+      "V": {"description": "Mean velocity (typically downstream of fitting)", "units": "m/s"}
+    },
+    "applicability": "K values from tables/handbooks. For transitions between different diameters, use the higher velocity. Total minor loss = Σ(Ki × Vi²/(2g)).",
+    "source": "General hydraulics — Miller (1978), Idelchik (1966)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-006",
+    "title": "Joukowsky Water Hammer Pressure",
+    "equation": "ΔH = (a × ΔV) / g",
+    "variables": {
+      "ΔH": {"description": "Pressure surge head (above or below steady-state HGL)", "units": "m"},
+      "a": {"description": "Wave speed (celerity) in pipeline", "units": "m/s"},
+      "ΔV": {"description": "Change in velocity (positive for closure, negative for opening)", "units": "m/s"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"}
+    },
+    "applicability": "For instantaneous or rapid closure (tc < 2L/a). ΔP = ρ × a × ΔV (in pressure units). Example: a = 1000 m/s, ΔV = 2 m/s → ΔH = 204 m (2000 kPa surge).",
+    "source": "Joukowsky (1898)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-007",
+    "title": "Wave Speed in Elastic Pipe",
+    "equation": "a = √(K/ρ) / √(1 + (K × D)/(E × t) × c₁)",
+    "variables": {
+      "a": {"description": "Pressure wave celerity", "units": "m/s"},
+      "K": {"description": "Bulk modulus of water (2.2 GPa at 20°C)", "units": "Pa"},
+      "ρ": {"description": "Water density (998 kg/m³)", "units": "kg/m³"},
+      "D": {"description": "Internal pipe diameter", "units": "m"},
+      "E": {"description": "Modulus of elasticity of pipe material", "units": "Pa"},
+      "t": {"description": "Pipe wall thickness", "units": "m"},
+      "c₁": {"description": "Pipe restraint factor (1.0 thin-wall anchored, 1-ν² thick-wall)", "units": "dimensionless"}
+    },
+    "source": "Wylie & Streeter (1993)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-008",
+    "title": "Critical Period (Wave Reflection Time)",
+    "equation": "Tcr = 2L/a",
+    "variables": {
+      "Tcr": {"description": "Critical time — round-trip wave travel time", "units": "seconds"},
+      "L": {"description": "Pipeline length (valve to reservoir)", "units": "m"},
+      "a": {"description": "Wave speed", "units": "m/s"}
+    },
+    "applicability": "Valve closure in time < Tcr produces full Joukowsky pressure. Closure time > 5×Tcr considered slow (significant attenuation).",
+    "source": "Wylie & Streeter (1993)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-009",
+    "title": "System Head Curve (Pumped System)",
+    "equation": "H_system = H_static + hf(Q) + hm(Q) = H_static + [f×L/(D×2g) + ΣK/(2g)] × (Q/A)²",
+    "variables": {
+      "H_system": {"description": "Total dynamic head required at flow Q", "units": "m"},
+      "H_static": {"description": "Static lift (discharge elevation - suction elevation)", "units": "m"},
+      "hf": {"description": "Friction head loss (function of Q²)", "units": "m"},
+      "hm": {"description": "Minor losses (function of Q²)", "units": "m"}
+    },
+    "applicability": "Operating point = intersection of system curve and pump curve. For gravity systems, available head = H_static and flow is where friction + minor losses = H_static.",
+    "source": "General hydraulics"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-010",
+    "title": "Economic Pipe Diameter (Bresse Formula)",
+    "equation": "D_econ = K_b × √Q",
+    "variables": {
+      "D_econ": {"description": "Economic pipe diameter", "units": "m"},
+      "K_b": {"description": "Bresse coefficient (1.0–1.5 depending on cost assumptions)", "units": "m^0.5/s^0.5"},
+      "Q": {"description": "Design flow rate", "units": "m³/s"}
+    },
+    "applicability": "Quick estimate. Results in velocity ≈ 0.9–1.5 m/s for K_b = 1.0–1.3. True economic diameter requires life-cycle cost analysis comparing capital cost vs. pumping energy cost.",
+    "source": "Bresse (1860), adapted"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-011",
+    "title": "Reynolds Number",
+    "equation": "Re = V × D / ν",
+    "variables": {
+      "Re": {"description": "Reynolds number", "units": "dimensionless"},
+      "V": {"description": "Mean velocity", "units": "m/s"},
+      "D": {"description": "Internal diameter", "units": "m"},
+      "ν": {"description": "Kinematic viscosity of water (1.0×10⁻⁶ m²/s at 20°C)", "units": "m²/s"}
+    },
+    "applicability": "Re < 2000: laminar. 2000–4000: transitional. > 4000: turbulent. Most water pipelines: Re > 10⁵ (fully turbulent).",
+    "source": "Reynolds (1883)"
+  },
+  {
+    "id": "water-infra.pipeline-hydraulics.eq-012",
+    "title": "Surge Tank Oscillation Period",
+    "equation": "T = 2π × √(L × As / (g × At))",
+    "variables": {
+      "T": {"description": "Period of mass oscillation in surge tank", "units": "seconds"},
+      "L": {"description": "Length of pipeline between reservoir and surge tank", "units": "m"},
+      "As": {"description": "Cross-sectional area of surge tank", "units": "m²"},
+      "At": {"description": "Cross-sectional area of pipeline (tunnel)", "units": "m²"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"}
+    },
+    "applicability": "Simple surge tank (no throttling). Maximum upsurge: Z_max ≈ V₀ × √(L×At/(g×As)) where V₀ = initial steady-state velocity. Thoma criterion for stability: As_min = f×L×At/(2g×H_net) where H_net = net head.",
+    "source": "Wylie & Streeter (1993), Chaudhry (2014)"
+  }
+]

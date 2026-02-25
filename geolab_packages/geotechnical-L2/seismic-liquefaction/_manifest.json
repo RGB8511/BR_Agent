@@ -1,0 +1,28 @@
+{
+  "id": "geotechnical.seismic.liquefaction",
+  "name": "Seismic Hazards & Liquefaction",
+  "level": 2,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.seismic",
+  "dependencies": [
+    "geotechnical.soil-mechanics.effective-stress",
+    "geotechnical.soil-mechanics.shear-strength",
+    "geotechnical.site-investigation.in-situ-testing"
+  ],
+  "tags": ["liquefaction", "cyclic-stress-ratio", "CRR", "CSR", "SPT-liquefaction", "CPT-liquefaction", "lateral-spread", "settlement", "Seed-Idriss", "Boulanger-Idriss", "Newmark"],
+  "standards": [],
+  "key_references": [
+    "Seed & Idriss (1971) Simplified Procedure for Evaluating Soil Liquefaction Potential",
+    "Youd et al. (2001) Liquefaction Resistance of Soils — NCEER/NSF Workshop",
+    "Boulanger & Idriss (2014) CPT and SPT Based Liquefaction Triggering Procedures",
+    "Idriss & Boulanger (2008) Soil Liquefaction During Earthquakes"
+  ],
+  "equation_count": 12,
+  "concept_count": 16,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json"],
+  "textbook_level": "graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

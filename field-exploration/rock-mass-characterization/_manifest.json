@@ -1,0 +1,29 @@
+{
+  "id": "field-exploration.rock-mass-characterization",
+  "name": "Rock Mass Characterization — Field Methods",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.rock",
+  "dependencies": [
+    "field-exploration.rock-coring",
+    "rock-mechanics.rock-mass-classification"
+  ],
+  "tags": ["RMR", "Q-system", "GSI", "RQD", "scanline", "window-mapping", "discontinuity", "joint-survey", "Schmidt-hammer", "point-load", "ISRM", "stereonet", "kinematic-analysis", "joint-roughness", "JRC", "JCS", "weathering-grade", "core-logging"],
+  "standards": ["ISRM-suggested-methods", "ASTM-D5878", "ASTM-D5731", "ASTM-D5873"],
+  "key_references": [
+    "ISRM (1978, 1981, 2007) Suggested Methods",
+    "Bieniawski (1989) Engineering Rock Mass Classifications",
+    "Barton, Lien & Lunde (1974) Engineering Classification of Rock Masses — Q System",
+    "Hoek & Brown (1997) Practical Estimates of Rock Mass Strength",
+    "Palmstrom (2005) Measurements of and Correlations between Block Size and RQD",
+    "Priest (1993) Discontinuity Analysis for Rock Engineering"
+  ],
+  "equation_count": 10,
+  "concept_count": 22,
+  "table_count": 6,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

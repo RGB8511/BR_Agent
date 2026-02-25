@@ -1,0 +1,25 @@
+{
+  "id": "field-exploration.exploration-planning",
+  "name": "Exploration Planning & Investigation Programs",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.planning",
+  "dependencies": [],
+  "tags": ["investigation", "boring-spacing", "scope", "desktop-study", "preliminary", "detailed", "phased", "boring-log", "USCS", "logging", "site-reconnaissance", "utility-clearance", "risk-based", "budget"],
+  "standards": ["ASTM-D420", "ASTM-D2488", "ASTM-D2487", "AASHTO-R13", "USACE-EM-1110-1-1804", "FHWA-NHI-01-031"],
+  "key_references": [
+    "Mayne et al. (2002) FHWA NHI-01-031 Subsurface Investigations",
+    "FHWA GEC 5 — Geotechnical Site Characterization (2017)",
+    "USACE EM 1110-1-1804 Geotechnical Investigations",
+    "Clayton et al. (1995) Site Investigation",
+    "Eurocode 7 Part 2 — Ground Investigation and Testing"
+  ],
+  "equation_count": 4,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "water-infra.dam-safety-surveillance",
+  "name": "Dam Safety & Surveillance",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.safety",
+  "dependencies": [
+    "water-infra.concrete-gravity-dams",
+    "geotechnical.embankment-dam-design",
+    "water-infra.reservoir-design"
+  ],
+  "tags": ["dam-safety", "surveillance", "instrumentation", "monitoring", "piezometer", "inclinometer", "settlement", "seepage", "crack", "deformation", "EAP", "emergency-action-plan", "inspection", "PFMA", "potential-failure-mode", "ICOLD", "FEMA", "FERC", "NID"],
+  "standards": ["FEMA-93", "FEMA-145", "FERC-Ch14", "USACE-ER-1110-2-1156", "ICOLD-Bulletin-68", "ICOLD-Bulletin-118"],
+  "key_references": [
+    "FEMA 93 — Federal Guidelines for Dam Safety",
+    "USACE ER 1110-2-1156 — Safety of Dams",
+    "FERC Chapter 14 — Dam Safety Surveillance Monitoring Plan",
+    "ICOLD Bulletin 118 — Assessment of Dam Safety",
+    "Dunnicliff (1993) Geotechnical Instrumentation for Monitoring Field Performance"
+  ],
+  "equation_count": 6,
+  "concept_count": 24,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

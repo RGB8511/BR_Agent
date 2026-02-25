@@ -1,0 +1,77 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.tbl-001",
+    "title": "Limit Equilibrium Method Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Method", "Equilibrium Satisfied", "Interslice Assumption", "Accuracy", "Surface Type"],
+      "rows": [
+        ["Ordinary (Fellenius)", "Moment only", "No interslice forces", "Poor (underestimates 10-15%)", "Circular"],
+        ["Bishop Simplified", "Moment only", "X = 0 (no interslice shear)", "Excellent for circular (±1-2%)", "Circular"],
+        ["Janbu Simplified", "Force only", "X = 0", "Fair (may need correction)", "Any"],
+        ["Janbu Generalized", "Force only", "Assumed point of thrust line", "Good", "Any"],
+        ["Spencer", "Force + Moment", "Parallel interslice forces", "Excellent", "Any"],
+        ["Morgenstern-Price", "Force + Moment", "Variable f(x) function", "Rigorous — reference standard", "Any"],
+        ["GLE (Fredlund)", "Force + Moment", "General λ and f(x)", "Rigorous", "Any"],
+        ["Sarma", "Force + Moment", "Critical acceleration", "Rigorous — good for seismic", "Any"]
+      ]
+    },
+    "source": "Duncan & Wright (2005)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.tbl-002",
+    "title": "Required Factors of Safety for Slopes",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Loading Condition", "Minimum FS"],
+      "rows": [
+        ["Dam — upstream slope", "End of construction", "1.3"],
+        ["Dam — upstream slope", "Rapid drawdown", "1.1–1.3"],
+        ["Dam — upstream slope", "Steady seepage", "1.5"],
+        ["Dam — downstream slope", "Steady seepage (normal pool)", "1.5"],
+        ["Dam — downstream slope", "Steady seepage + seismic (pseudostatic)", "1.0–1.1"],
+        ["Highway embankment", "Long-term (drained)", "1.3–1.5"],
+        ["Highway cut slope", "Long-term", "1.3–1.5"],
+        ["Temporary excavation", "Short-term", "1.25"],
+        ["Levee", "High water steady seepage", "1.4–1.5"],
+        ["Levee", "Rapid drawdown", "1.1–1.2"],
+        ["Natural slope remediation", "Long-term", "1.3–1.5"]
+      ]
+    },
+    "source": "USACE EM 1110-2-1902, USBR DS-13 Ch. 4, FHWA"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.tbl-003",
+    "title": "Analysis Type Selection",
+    "type": "procedure",
+    "data": {
+      "headers": ["Condition", "Drainage", "Strength Parameters", "Pore Pressure"],
+      "rows": [
+        ["End of construction (clay)", "Undrained", "s_u (UU or CU total stress)", "Not needed (total stress)"],
+        ["Long-term (drained)", "Drained", "c', φ' (CD or CU effective stress)", "From WT/seepage analysis"],
+        ["Rapid drawdown", "Undrained (clay), drained (sand)", "Mixed: s_u for clay, c'/φ' for sand", "Three-stage analysis"],
+        ["Staged construction", "Partially drained", "s_u increasing with consolidation", "Consolidation analysis"],
+        ["Earthquake (pseudostatic)", "Undrained (clay)", "s_u (reduced 80% per Hynes-Griffin)", "Not needed"],
+        ["Earthquake (drained material)", "Drained", "c', φ'", "From steady-state + seismic"]
+      ]
+    },
+    "source": "USACE EM 1110-2-1902, Duncan & Wright (2005)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.slope-stability.tbl-004",
+    "title": "Pseudostatic Seismic Coefficients",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Seismic Zone / PGA", "k_h", "Notes"],
+      "rows": [
+        ["Low (PGA < 0.1g)", "0.05", "Seismic usually not critical"],
+        ["Moderate (PGA 0.1–0.2g)", "0.10–0.15", ""],
+        ["High (PGA 0.2–0.4g)", "0.15–0.20", ""],
+        ["Very high (PGA > 0.4g)", "0.20–0.25", "Consider Newmark displacement analysis"],
+        ["Hynes-Griffin & Franklin approach", "0.5 × PGA/g", "With 80% s_u; FS ≥ 1.0 acceptable"],
+        ["FEMA 65 (dams)", "2/3 × PGA/g", "For critical structures"]
+      ]
+    },
+    "source": "Hynes-Griffin & Franklin (1984), FEMA 65, USACE"
+  }
+]

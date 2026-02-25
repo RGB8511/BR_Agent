@@ -1,0 +1,85 @@
+[
+  {
+    "id": "field-exploration.instrumentation.tbl-001",
+    "title": "Piezometer Type Selection",
+    "type": "classification",
+    "data": {
+      "headers": ["Type", "Response Time", "Accuracy", "Long-Term Stability", "Remote Reading", "Best Application"],
+      "rows": [
+        ["Standpipe (open)", "Slow in clay (days–weeks); fast in sand", "±5 mm water head", "Excellent — self-calibrating", "With added transducer", "Sand/gravel aquifers; simple projects; verification instrument"],
+        ["Vibrating wire (VWP)", "Near-instantaneous (tiny volume change)", "±0.025–0.1% FS", "Very good (±0.05% FS/year)", "Yes — standard", "Most applications; dams, embankments, excavations, tunnels"],
+        ["Pneumatic", "Fast (seconds)", "±0.5 kPa", "Good", "Yes — tubing to panel", "Where electronics undesirable; offshore; zones with EM interference"],
+        ["Fiber optic (FBG)", "Near-instantaneous", "±0.1–0.5 kPa", "Excellent", "Yes — fiber to interrogator", "Long strings; distributed sensing; EM-immune environments"],
+        ["Drive-in (push-in piezometer)", "Fast in soft soils", "±0.1% FS (VW type)", "Good", "Yes", "Soft clay/silt; install by pushing — no borehole needed"]
+      ]
+    },
+    "source": "Dunnicliff (1993), FHWA NHI-15-005"
+  },
+  {
+    "id": "field-exploration.instrumentation.tbl-002",
+    "title": "Inclinometer System Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["System", "Accuracy", "Max Depth", "Real-Time?", "Cost", "Best Use"],
+      "rows": [
+        ["Manual traversing probe", "±2 mm per 25 m", "100+ m", "No — periodic readings", "Low (one probe, many casings)", "Routine monitoring; many boreholes; cost-effective"],
+        ["In-place inclinometer (IPI)", "±0.5 mm per sensor", "Any (discrete points)", "Yes — continuous", "Moderate per borehole", "Critical zones needing real-time alert; limited to sensor locations"],
+        ["Shape Accel Array (SAA)", "±1.5 mm per 32 m", "100 m", "Yes — continuous profile", "High per installation", "Critical applications; full profile real-time; automated alerts"],
+        ["TDR (time-domain reflectometry)", "Locates shear zone ±0.3 m", "200+ m", "Yes", "Moderate", "Identifying shear plane location; not displacement magnitude"],
+        ["Fiber optic (distributed strain)", "±0.1 mm/m strain", "km scale", "Yes", "High", "Very long slopes; distributed sensing along tunnels/pipelines"]
+      ]
+    },
+    "source": "Slope Indicator, Measurand, Geokon literature; Mikkelsen (2003)"
+  },
+  {
+    "id": "field-exploration.instrumentation.tbl-003",
+    "title": "Settlement Monitoring Methods",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Accuracy", "Application", "Advantages", "Limitations"],
+      "rows": [
+        ["Settlement plate + survey", "±1–3 mm", "Under embankment fills", "Simple, reliable, inexpensive", "Only surface settlement; riser must extend through fill"],
+        ["Hydraulic settlement gauge", "±3–5 mm", "Under fills; inaccessible locations", "Remote reading; no survey needed", "Temperature-sensitive; tubing can be damaged"],
+        ["Magnetic extensometer (Sondex)", "±3–5 mm per spider", "Compression profile with depth", "Multi-depth settlement in one hole", "Borehole installation; magnets can shift"],
+        ["Precise leveling (survey)", "±0.3–1.0 mm", "Structures, pavements, dams", "Highest accuracy; independent measurement", "Labor-intensive; access required; weather dependent"],
+        ["AMTS (robotic total station)", "±1–3 mm", "Structures, retaining walls, tunnels", "Real-time 3D; automated; multiple targets", "Line-of-sight required; weather affects (rain, fog)"],
+        ["Satellite InSAR", "±2–5 mm vertical", "Regional subsidence; dam crests", "Large area; no ground access needed; historic data", "Temporal resolution limited; atmospheric effects"],
+        ["Horizontal inclinometer", "±2–3 mm per 25 m", "Under embankments", "Settlement profile along horizontal length", "Complex installation; prone to damage during construction"]
+      ]
+    },
+    "source": "Dunnicliff (1993), FHWA NHI-15-005, general practice"
+  },
+  {
+    "id": "field-exploration.instrumentation.tbl-004",
+    "title": "Typical Trigger Levels for Dam Instrumentation (Example Framework)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Level", "Color", "Condition", "Response Action"],
+      "rows": [
+        ["Normal", "Green", "All readings within expected range; design performing as predicted", "Routine monitoring frequency; data review per schedule"],
+        ["Awareness", "Yellow", "Readings trending or approaching design limits; unexpected behavior", "Increase monitoring frequency; notify project engineer; review data trends; assess cause"],
+        ["Alert", "Orange", "Readings exceed design values or show accelerating trends", "Continuous monitoring if possible; mobilize engineer to site; implement pre-planned contingency actions; notify dam safety officer"],
+        ["Action", "Red", "Readings indicate imminent failure or unsafe condition", "Execute emergency action plan; evacuate downstream if warranted; mobilize emergency resources; continuous monitoring"]
+      ]
+    },
+    "source": "USBR DS-13 Ch11, USACE EM 1110-2-1908, FEMA guidelines. Note: specific trigger values must be established for each dam/project based on design analysis."
+  },
+  {
+    "id": "field-exploration.instrumentation.tbl-005",
+    "title": "Instrument Survival Rates and Common Failure Modes",
+    "type": "reference",
+    "data": {
+      "headers": ["Instrument", "Typical Survival (5 yr)", "Common Failure Modes", "Mitigation"],
+      "rows": [
+        ["Vibrating wire piezometer", "85–95%", "Cable damage during construction; corrosion of wire; lightning", "Armor cables; install in conduit; lightning protection; redundancy"],
+        ["Standpipe piezometer", "80–95%", "Casing damage; clogging of tip; surface seal failure", "Robust protective casing; proper development; maintenance"],
+        ["Inclinometer casing (manual)", "90–95%", "Casing sheared by landslide (one-time reading of max displacement); grout separation", "Accept limited life in active slides; install in pairs"],
+        ["Settlement plate", "70–90%", "Riser damaged by construction equipment; tilted during fill placement", "Strong protection; frequent survey during fill; redundancy"],
+        ["Earth pressure cell", "70–85%", "Stress concentration/arching around cell; cable damage; zero drift", "Proper installation (match cell stiffness to soil); cable protection; paired cells"],
+        ["Strain gauge (VW)", "80–90%", "Cable damage; zero drift; debonding from concrete/steel", "Protect cables; use redundant gauges; thermal compensation"],
+        ["AMTS / robotic total station", "95%+", "Power failure; prism damage; weather interference", "UPS backup; robust prisms; redundant reference points"]
+      ]
+    },
+    "source": "Dunnicliff (1993), industry experience, DiBiagio (2000)"
+  }
+]

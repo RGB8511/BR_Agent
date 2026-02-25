@@ -1,0 +1,68 @@
+[
+  {
+    "id": "concrete.foundations.cement-hydration.eq-001",
+    "title": "Bogue Calculation — C₃S",
+    "equation": "C₃S = 4.071(CaO) - 7.600(SiO₂) - 6.718(Al₂O₃) - 1.430(Fe₂O₃) - 2.852(SO₃)",
+    "variables": {
+      "CaO, SiO₂, etc.": {"description": "Oxide percentages by mass from chemical analysis", "units": "%"}
+    },
+    "source": "Bogue (1929), ASTM C150"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.eq-002",
+    "title": "Bogue Calculation — C₂S",
+    "equation": "C₂S = 2.867(SiO₂) - 0.7544(C₃S)",
+    "source": "Bogue (1929)"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.eq-003",
+    "title": "Bogue Calculation — C₃A",
+    "equation": "C₃A = 2.650(Al₂O₃) - 1.692(Fe₂O₃)",
+    "source": "Bogue (1929)"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.eq-004",
+    "title": "Bogue Calculation — C₄AF",
+    "equation": "C₄AF = 3.043(Fe₂O₃)",
+    "source": "Bogue (1929)"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.eq-005",
+    "title": "Heat of Hydration (Estimated from Compound Composition)",
+    "equation": "H = 500(%C₃S) + 250(%C₂S) + 870(%C₃A) + 420(%C₄AF) J/g at full hydration",
+    "applicability": "Ultimate heat. At 7 days: ~50–60% of ultimate. At 28 days: ~70–80%.",
+    "source": "Lea (1970), approximate values"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.eq-006",
+    "title": "Degree of Hydration (Powers Model)",
+    "equation": "α = 1 - (V_unhydrated / V_cement,initial)",
+    "alt_form": "α(t) ≈ α_u × [1 - exp(-a(t/τ)^b)] (exponential model)",
+    "variables": {
+      "α": {"description": "Degree of hydration (0–1)", "units": "dimensionless"},
+      "α_u": {"description": "Ultimate degree of hydration (limited by w/c)", "units": "dimensionless"}
+    },
+    "applicability": "For w/c > 0.36: α_u can approach 1.0. For w/c < 0.36: α_u < 1.0 (insufficient water for complete hydration).",
+    "source": "Powers & Brownyard (1947)"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.eq-007",
+    "title": "Minimum Water for Full Hydration",
+    "equation": "w/c ≥ 0.42 for chemically bound water; w/c ≥ 0.36 for gel water + bound",
+    "applicability": "Below w/c = 0.36–0.42, self-desiccation occurs and hydration cannot reach completion without external water supply.",
+    "source": "Powers & Brownyard (1947)"
+  },
+  {
+    "id": "concrete.foundations.cement-hydration.eq-008",
+    "title": "Maturity Method (Nurse-Saul)",
+    "equation": "M = Σ(T - T₀) × Δt",
+    "variables": {
+      "M": {"description": "Maturity index", "units": "°C-hours or °C-days"},
+      "T": {"description": "Average concrete temperature during interval", "units": "°C"},
+      "T₀": {"description": "Datum temperature (typically -10°C)", "units": "°C"},
+      "Δt": {"description": "Time interval", "units": "hours or days"}
+    },
+    "applicability": "Relates strength gain to temperature-time history. Useful for cold weather concreting and form stripping decisions.",
+    "source": "Nurse (1949), Saul (1951), ASTM C1074"
+  }
+]

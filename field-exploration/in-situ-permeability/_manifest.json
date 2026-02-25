@@ -1,0 +1,27 @@
+{
+  "id": "field-exploration.in-situ-permeability",
+  "name": "In-Situ Permeability & Hydraulic Conductivity Testing",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.in-situ-testing",
+  "dependencies": [
+    "water-infra.in-situ-permeability"
+  ],
+  "tags": ["Lugeon", "packer-test", "slug-test", "Hvorslev", "Bouwer-Rice", "pump-test", "Theis", "Cooper-Jacob", "falling-head", "rising-head", "hydraulic-conductivity", "permeability", "transmissivity", "storativity", "aquifer", "grouting-criterion", "water-pressure-test"],
+  "standards": ["ASTM-D4044", "ASTM-D4050", "ASTM-D4630", "ASTM-D4631", "ASTM-D5269", "USBR-7310"],
+  "key_references": [
+    "USBR Earth Manual (Part 2, 3rd ed.) — Designation 7310",
+    "Hvorslev (1951) Time Lag and Soil Permeability in Groundwater Observations",
+    "Bouwer & Rice (1976) Slug test for determining hydraulic conductivity",
+    "Houlsby (1976) Routine Interpretation of the Lugeon Water-Test",
+    "Quiñones-Rozo (2010) Lugeon Test Interpretation Revisited"
+  ],
+  "equation_count": 10,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "geotechnical.foundations.phase-relationships.tbl-001",
+    "title": "Typical Specific Gravity Values",
+    "type": "reference",
+    "data": {
+      "headers": ["Mineral/Soil Type", "G_s Range", "Typical Value"],
+      "rows": [
+        ["Quartz", "2.65", "2.65"],
+        ["Feldspar", "2.55–2.70", "2.62"],
+        ["Kaolinite", "2.60–2.68", "2.64"],
+        ["Illite", "2.60–2.86", "2.70"],
+        ["Montmorillonite", "2.74–2.78", "2.76"],
+        ["Chlorite", "2.60–2.96", "2.80"],
+        ["Muscovite/Biotite", "2.76–3.20", "2.85"],
+        ["Calcite", "2.71", "2.71"],
+        ["Iron minerals (hematite, magnetite)", "3.2–5.2", "varies"],
+        ["Organic soils", "1.0–2.5", "< 2.0"],
+        ["Most inorganic soils", "2.60–2.80", "2.65–2.70"]
+      ]
+    },
+    "source": "Various — Mitchell & Soga (2005), Holtz et al. (2011)"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.tbl-002",
+    "title": "Typical Void Ratio and Unit Weight Ranges",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "Void Ratio Range", "Dry Unit Weight (kN/m³)", "Saturated Unit Weight (kN/m³)"],
+      "rows": [
+        ["Dense well-graded sand", "0.40–0.55", "17–19", "20–22"],
+        ["Loose uniform sand", "0.65–0.85", "14–16", "18–20"],
+        ["Soft clay", "0.90–2.5", "8–14", "14–18"],
+        ["Stiff clay", "0.50–0.80", "16–19", "19–21"],
+        ["Glacial till", "0.25–0.50", "18–22", "21–24"],
+        ["Organic silt", "1.5–4.0", "5–10", "12–16"],
+        ["Peat", "5–15+", "1–5", "10–12"],
+        ["Rock fill", "0.3–0.6", "17–21", "20–23"],
+        ["Loess", "0.6–1.2", "12–16", "16–19"]
+      ]
+    },
+    "source": "Various — Holtz et al. (2011), NAVFAC DM-7"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.tbl-003",
+    "title": "Relative Density Classification",
+    "type": "classification",
+    "data": {
+      "headers": ["D_r (%)", "Description"],
+      "rows": [
+        ["0–15", "Very loose"],
+        ["15–35", "Loose"],
+        ["35–65", "Medium dense"],
+        ["65–85", "Dense"],
+        ["85–100", "Very dense"]
+      ]
+    },
+    "source": "Lambe & Whitman (1969)"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.tbl-004",
+    "title": "Consistency of Fine-Grained Soils by Liquidity Index",
+    "type": "classification",
+    "data": {
+      "headers": ["LI Range", "Consistency", "Approximate s_u (kPa)"],
+      "rows": [
+        ["< 0", "Hard to very stiff (desiccated)", "> 150"],
+        ["0", "Very stiff (at plastic limit)", "~100–150"],
+        ["0–0.5", "Stiff to firm", "50–100"],
+        ["0.5–1.0", "Soft", "10–50"],
+        ["1.0", "Very soft (at liquid limit)", "~1–2"],
+        ["> 1.0", "Liquid/disturbed (sensitive clays possible)", "< 1"]
+      ]
+    },
+    "source": "After Holtz et al. (2011)"
+  }
+]

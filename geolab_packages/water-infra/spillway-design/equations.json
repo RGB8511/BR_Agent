@@ -1,0 +1,158 @@
+[
+  {
+    "id": "water-infra.spillway-design.eq-001",
+    "title": "Ogee Spillway Discharge",
+    "equation": "Q = C₀ × Leff × He^1.5",
+    "variables": {
+      "Q": {"description": "Spillway discharge", "units": "m³/s"},
+      "C₀": {"description": "Discharge coefficient (≈2.18 m^0.5/s at design head for WES profile)", "units": "m^0.5/s"},
+      "Leff": {"description": "Effective crest length = L - 2(N×Kp + Ka)×He", "units": "m"},
+      "He": {"description": "Total energy head on crest = h + Va²/(2g)", "units": "m"}
+    },
+    "applicability": "C₀ varies with He/Hd (0.6–1.06×C₀_design), P/Hd (approach depth effect), and downstream submergence. US customary: C₀ ≈ 3.95 ft^0.5/s at design head.",
+    "source": "USBR Design of Small Dams (1987), USACE HDC 111-1 to 111-9"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-002",
+    "title": "WES Ogee Crest Profile (Downstream)",
+    "equation": "y/Hd = -K × (x/Hd)^n",
+    "variables": {
+      "x": {"description": "Horizontal distance downstream from crest apex (positive downstream)", "units": "m"},
+      "y": {"description": "Vertical distance below crest apex (negative = below crest)", "units": "m"},
+      "Hd": {"description": "Design head (head at which crest shape is designed)", "units": "m"},
+      "K": {"description": "Coefficient: 0.50 for vertical upstream face", "units": "dimensionless"},
+      "n": {"description": "Exponent: 1.85 for vertical upstream face", "units": "dimensionless"}
+    },
+    "applicability": "Profile follows the lower nappe of a sharp-crested weir at Hd. Upstream face uses circular arcs tangent to the upstream dam face.",
+    "source": "USBR Design of Small Dams, USACE HDC 111-2"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-003",
+    "title": "Effective Crest Length (Pier and Abutment Correction)",
+    "equation": "Leff = L - 2(N × Kp + Ka) × He",
+    "variables": {
+      "L": {"description": "Net crest length between abutments", "units": "m"},
+      "N": {"description": "Number of piers", "units": "count"},
+      "Kp": {"description": "Pier contraction coefficient (0.01 rounded, 0.02 square-nosed)", "units": "dimensionless"},
+      "Ka": {"description": "Abutment contraction coefficient (0.10 rounded, 0.20 square)", "units": "dimensionless"},
+      "He": {"description": "Total energy head", "units": "m"}
+    },
+    "source": "USBR Design of Small Dams, USACE HDC 111-5"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-004",
+    "title": "Cavitation Index",
+    "equation": "σ = (P₀ - Pv) / (½ρV²)",
+    "variables": {
+      "σ": {"description": "Cavitation number", "units": "dimensionless"},
+      "P₀": {"description": "Local absolute pressure", "units": "Pa"},
+      "Pv": {"description": "Vapor pressure of water (≈2.3 kPa at 20°C)", "units": "Pa"},
+      "ρ": {"description": "Water density", "units": "kg/m³"},
+      "V": {"description": "Local flow velocity", "units": "m/s"}
+    },
+    "applicability": "σ < 0.2: cavitation damage likely. σ < 0.1: severe damage. Cavitation concern begins at V > 12 m/s (40 ft/s). Surface offsets > 6 mm can trigger cavitation at high velocities.",
+    "source": "Falvey (1990) Cavitation in Chutes and Spillways — USBR EM 42"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-005",
+    "title": "Hydraulic Jump Sequent Depth (Stilling Basin)",
+    "equation": "y₂ = (y₁/2) × [-1 + √(1 + 8Fr₁²)]",
+    "variables": {
+      "y₁": {"description": "Supercritical depth entering basin", "units": "m"},
+      "y₂": {"description": "Subcritical (sequent) depth after jump", "units": "m"},
+      "Fr₁": {"description": "Froude number at entrance: V₁/√(gy₁)", "units": "dimensionless"}
+    },
+    "applicability": "For rectangular basins. Tailwater depth must equal or slightly exceed y₂ to hold the jump in the basin. If TW < y₂: jump sweeps out. If TW >> y₂: submerged jump (less efficient).",
+    "source": "Bélanger equation — USBR EM 25"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-006",
+    "title": "Stilling Basin Length (Empirical)",
+    "equation": "L_basin ≈ K × y₂",
+    "variables": {
+      "L_basin": {"description": "Length of stilling basin floor", "units": "m"},
+      "K": {"description": "Length coefficient: 4.5–6.0 (USBR Type I), 3.0–4.0 (Types II/III)", "units": "dimensionless"},
+      "y₂": {"description": "Sequent depth of hydraulic jump", "units": "m"}
+    },
+    "source": "USBR EM 25 — Hydraulic Design of Stilling Basins"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-007",
+    "title": "Flip Bucket (Ski Jump) Trajectory",
+    "equation": "X = (V²/g) × sin(2θ);  Y = X × tan(θ) - (gX²)/(2V²cos²(θ))",
+    "variables": {
+      "X": {"description": "Horizontal throw distance from lip", "units": "m"},
+      "Y": {"description": "Vertical distance (positive up) from lip", "units": "m"},
+      "V": {"description": "Velocity at flip bucket lip", "units": "m/s"},
+      "θ": {"description": "Flip bucket lip angle above horizontal", "units": "degrees"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"}
+    },
+    "applicability": "Projectile equations. Actual throw is less than theoretical due to air resistance and jet breakup. Typical lip angles: 20°–45°.",
+    "source": "General hydraulics — USBR Design of Small Dams"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-008",
+    "title": "Scour Depth Below Flip Bucket (Mason & Arumugam)",
+    "equation": "Ds = 3.27 × (q^0.60 × H^0.05) / (d_particle^0.10 × g^0.30)",
+    "variables": {
+      "Ds": {"description": "Scour depth below tailwater level", "units": "m"},
+      "q": {"description": "Unit discharge", "units": "m²/s"},
+      "H": {"description": "Head difference (reservoir to tailwater)", "units": "m"},
+      "d_particle": {"description": "Mean rock block size in plunge pool", "units": "m"}
+    },
+    "applicability": "Empirical. Multiple formulas exist (Veronese, Mason, Bollaert). Results vary widely — use multiple methods and engineering judgment.",
+    "source": "Mason & Arumugam (1985)"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-009",
+    "title": "Labyrinth Weir Discharge",
+    "equation": "Q = Cd(Ht/P) × (2/3) × √(2g) × L × Ht^1.5",
+    "variables": {
+      "Q": {"description": "Total discharge over labyrinth", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (function of Ht/P, L/W, sidewall angle, crest shape)", "units": "dimensionless"},
+      "L": {"description": "Total developed crest length (sum of all weir segments)", "units": "m"},
+      "Ht": {"description": "Total head on crest", "units": "m"},
+      "P": {"description": "Weir height", "units": "m"}
+    },
+    "applicability": "At low Ht/P (<0.3): Cd approaches flat plate weir value (~0.60). At high Ht/P (>0.7): efficiency drops as adjacent nappes interfere. Design typically for Ht/P ≤ 0.6–0.8.",
+    "source": "Tullis et al. (1995), Crookston & Tullis (2013)"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-010",
+    "title": "Stepped Spillway Energy Dissipation",
+    "equation": "ΔE/E₀ = 1 - [(f_friction/(8sinα)) × (1 + (f_friction/(8sinα)×(2/cos³α)))]^(-1)",
+    "alt_form": "Simplified: Residual energy fraction ≈ 1 - 0.6 to 0.85 of total head (depending on dam height and unit discharge)",
+    "variables": {
+      "ΔE/E₀": {"description": "Fraction of total energy dissipated on steps", "units": "dimensionless"},
+      "f_friction": {"description": "Darcy-Weisbach friction factor on steps (0.1–0.2 for skimming flow)", "units": "dimensionless"},
+      "α": {"description": "Chute slope angle", "units": "degrees"}
+    },
+    "applicability": "For skimming flow regime. Energy dissipation increases with number of steps (dam height) and decreases with increasing unit discharge.",
+    "source": "Chanson (2002), Boes & Hager (2003)"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-011",
+    "title": "Air Entrainment Bulking Factor",
+    "equation": "y_bulked = y_clear / (1 - C_air)",
+    "variables": {
+      "y_bulked": {"description": "Bulked (aerated) flow depth", "units": "m"},
+      "y_clear": {"description": "Clear-water (non-aerated) flow depth", "units": "m"},
+      "C_air": {"description": "Average air concentration in flow (0.20–0.40 typical on steep chutes)", "units": "dimensionless"}
+    },
+    "applicability": "Self-aeration begins when turbulent boundary layer reaches the free surface. For chute wall and freeboard design, use bulked depth. C_air depends on slope, velocity, and roughness.",
+    "source": "Falvey (1990), Chanson (1997)"
+  },
+  {
+    "id": "water-infra.spillway-design.eq-012",
+    "title": "Morning Glory (Shaft) Spillway — Crest-Controlled Discharge",
+    "equation": "Q = C₀ × π × D × H^1.5  (crest-controlled, unsubmerged)",
+    "variables": {
+      "Q": {"description": "Discharge", "units": "m³/s"},
+      "C₀": {"description": "Discharge coefficient (similar to ogee, ≈2.0–2.2 m^0.5/s)", "units": "m^0.5/s"},
+      "D": {"description": "Diameter of circular crest", "units": "m"},
+      "H": {"description": "Head on crest", "units": "m"}
+    },
+    "applicability": "Three flow regimes: crest-controlled (free weir flow, low H), tube-controlled (orifice flow, moderate H), and pipe-controlled (full conduit, high H). Transitions between regimes create unstable discharge characteristics — careful design required.",
+    "source": "USBR Design of Small Dams, Wagner (1956)"
+  }
+]

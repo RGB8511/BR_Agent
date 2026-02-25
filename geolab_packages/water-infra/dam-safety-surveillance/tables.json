@@ -1,0 +1,99 @@
+[
+  {
+    "id": "water-infra.dam-safety.tbl-001",
+    "title": "Dam Instrumentation Types and Applications",
+    "type": "classification",
+    "data": {
+      "headers": ["Instrument", "What It Measures", "Applicable Dam Type", "Typical Locations"],
+      "rows": [
+        ["Standpipe piezometer", "Phreatic level / pore pressure", "Embankment, foundation", "Core, shells, foundation, abutments"],
+        ["Vibrating wire piezometer", "Pore water pressure (point)", "All types", "Foundation, core, galleries, abutments"],
+        ["Observation well", "Groundwater level", "All types", "Downstream toe, abutments"],
+        ["Weir / flume", "Seepage flow rate", "All types", "Drain galleries, toe drains, abutment seeps"],
+        ["Survey monument", "3D surface displacement", "All types", "Crest, downstream face, abutments"],
+        ["Plumbline (pendulum)", "Horizontal displacement of dam body", "Concrete dams", "Gallery, from crest to foundation"],
+        ["Extensometer / jointmeter", "Crack or joint opening", "Concrete dams", "Contraction joints, structural cracks"],
+        ["Inclinometer (in-place or probe)", "Lateral deformation profile", "Embankment, foundation", "Downstream shell, abutment slopes"],
+        ["Settlement plate / point", "Vertical compression", "Embankment dams", "Within embankment during construction"],
+        ["Thermistor / thermocouple", "Temperature", "Concrete dams", "Mass concrete interior, gallery, seepage"],
+        ["Strong motion accelerograph", "Earthquake shaking", "All in seismic zones", "Crest, toe, gallery, free-field"],
+        ["Crack gauge (Demec points)", "Surface crack width change", "Concrete dams", "Across known cracks"],
+        ["Strain gauge", "Structural strain", "Concrete dams", "Reinforcement, post-tensioning"]
+      ]
+    },
+    "source": "Dunnicliff (1993), FERC Ch. 14, USACE EM 1110-2-1908"
+  },
+  {
+    "id": "water-infra.dam-safety.tbl-002",
+    "title": "Inspection Frequency by Hazard Classification",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Activity", "High Hazard", "Significant Hazard", "Low Hazard"],
+      "rows": [
+        ["Routine visual inspection", "Monthly to quarterly", "Quarterly to semi-annual", "Annual"],
+        ["Formal engineering inspection", "Annual", "Every 2–3 years", "Every 5 years"],
+        ["Independent review (FERC Part 12D or equivalent)", "Every 5 years", "Every 5 years", "Not required (varies by state)"],
+        ["Instrumentation reading", "Weekly to monthly", "Monthly to quarterly", "Quarterly to semi-annual"],
+        ["EAP update", "Annually", "Every 2–3 years", "Not typically required"],
+        ["EAP exercise", "Annually (tabletop)", "Every 2–3 years", "Not typically required"],
+        ["Underwater inspection", "Every 5 years", "Every 5–10 years", "As needed"],
+        ["PFMA update", "Every 5–10 years", "Every 10 years", "As needed"]
+      ]
+    },
+    "source": "FEMA 93, FERC Engineering Guidelines, State dam safety programs (typical — varies by jurisdiction)"
+  },
+  {
+    "id": "water-infra.dam-safety.tbl-003",
+    "title": "Common Potential Failure Modes by Dam Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Failure Mode", "Embankment Dam", "Concrete Gravity", "Concrete Arch", "Notes"],
+      "rows": [
+        ["Overtopping", "HIGH — #1 failure cause for embankment dams", "Moderate", "Moderate", "Spillway capacity, gate failure, debris blockage"],
+        ["Internal erosion (piping)", "HIGH — #2 failure cause", "Low (foundation)", "Low (foundation/abutment)", "Backward erosion, concentrated leak, suffusion"],
+        ["Slope instability", "HIGH — #3 failure cause", "Low", "N/A", "Upstream during drawdown, downstream during flood"],
+        ["Foundation sliding", "Moderate", "HIGH", "Moderate", "Weak foundation planes, excessive uplift"],
+        ["Overturning", "N/A", "Moderate", "Low", "Excessive uplift, reservoir loading"],
+        ["Abutment instability", "Low", "Low", "HIGH", "Critical for arch dams — thrust into abutments"],
+        ["Earthquake (liquefaction)", "Moderate–High", "Low", "Low", "Loose saturated foundation or embankment fill"],
+        ["Earthquake (structural)", "Low", "Low–Moderate", "Moderate", "Concrete cracking, joint opening"],
+        ["Gate/valve malfunction", "Moderate", "Moderate", "Moderate", "Inability to pass floods or draw down reservoir"],
+        ["Concrete deterioration (AAR, freeze-thaw)", "N/A", "Moderate", "Moderate", "Long-term degradation of concrete strength"]
+      ]
+    },
+    "source": "FEMA, ICOLD, USBR/USACE PFMA practice"
+  },
+  {
+    "id": "water-infra.dam-safety.tbl-004",
+    "title": "Monitoring Threshold Levels (Typical Framework)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Level", "Color", "Meaning", "Action Required"],
+      "rows": [
+        ["Normal", "Green", "Readings within expected range for current loading", "Continue routine monitoring per schedule"],
+        ["Alert", "Yellow", "Readings trending toward or approaching design assumptions", "Increase monitoring frequency; investigate cause; notify dam safety engineer"],
+        ["Warning", "Orange", "Readings exceed design assumptions or show anomalous acceleration", "Continuous monitoring; mobilize investigation team; prepare for potential EAP activation"],
+        ["Action / Emergency", "Red", "Readings indicate potential failure development", "Activate EAP; implement emergency measures (drawdown, etc.); notify emergency management"]
+      ]
+    },
+    "source": "FERC Ch. 14, USACE, general dam safety practice"
+  },
+  {
+    "id": "water-infra.dam-safety.tbl-005",
+    "title": "Historical Causes of Dam Failures (US Statistics)",
+    "type": "reference",
+    "data": {
+      "headers": ["Cause", "% of Failures (Embankment)", "% of Failures (Concrete)", "Key Lesson"],
+      "rows": [
+        ["Overtopping", "34", "12", "Adequate spillway capacity is paramount"],
+        ["Internal erosion / piping", "30", "5", "Proper filters, transitions, and seepage control"],
+        ["Foundation defects", "20", "40", "Thorough foundation investigation and treatment"],
+        ["Slope instability", "10", "—", "Adequate slope design, pore pressure control"],
+        ["Earthquake", "2", "5", "Seismic design, liquefaction assessment"],
+        ["Structural (concrete)", "—", "25", "Quality construction, thermal control, maintenance"],
+        ["Other (operational, unknown)", "4", "13", "EAP, training, surveillance"]
+      ]
+    },
+    "source": "ASCE/FEMA statistics, ICOLD Bulletin 99, Stanford Dam Failure Database (approximate)"
+  }
+]

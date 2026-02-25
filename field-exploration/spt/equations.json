@@ -1,0 +1,101 @@
+[
+  {
+    "id": "field-exploration.spt.eq-001",
+    "title": "Energy-Corrected SPT N-Value (N₆₀)",
+    "equation": "N₆₀ = N_field × (ER / 60)",
+    "variables": {
+      "N₆₀": {"description": "SPT N-value corrected to 60% energy ratio", "units": "blows/300mm"},
+      "N_field": {"description": "Raw field blow count (last 300 mm of drive)", "units": "blows/300mm"},
+      "ER": {"description": "Energy ratio of hammer system (%)", "units": "%"}
+    },
+    "applicability": "All modern correlations reference N₆₀. If using automatic hammer with ER = 85%, then N₆₀ = N_field × (85/60) = N_field × 1.42. Critical to know hammer energy ratio.",
+    "source": "Skempton (1986)"
+  },
+  {
+    "id": "field-exploration.spt.eq-002",
+    "title": "Fully Corrected SPT — (N₁)₆₀",
+    "equation": "(N₁)₆₀ = N_field × CE × CB × CS × CR × CN",
+    "variables": {
+      "CE": {"description": "Energy correction = ER/60", "units": "dimensionless"},
+      "CB": {"description": "Borehole diameter correction (1.0 for 65–115 mm; 1.05 for 150 mm; 1.15 for 200 mm)", "units": "dimensionless"},
+      "CS": {"description": "Sampler correction (1.0 with liner; 1.1–1.3 without liner when designed for one)", "units": "dimensionless"},
+      "CR": {"description": "Rod length correction (0.75 for 3–4 m; 0.85 for 4–6 m; 0.95 for 6–10 m; 1.0 for >10 m)", "units": "dimensionless"},
+      "CN": {"description": "Overburden pressure correction", "units": "dimensionless"}
+    },
+    "applicability": "Required for liquefaction analysis and density-based correlations. For simple bearing capacity/settlement correlations, N₆₀ alone is often sufficient.",
+    "source": "Youd et al. (2001), Skempton (1986)"
+  },
+  {
+    "id": "field-exploration.spt.eq-003",
+    "title": "Overburden Correction Factor — Liao & Whitman",
+    "equation": "CN = (Pa / σ'v)^0.5 ≤ 1.7",
+    "variables": {
+      "CN": {"description": "Overburden correction factor", "units": "dimensionless"},
+      "Pa": {"description": "Atmospheric pressure (≈ 100 kPa or 1 tsf)", "units": "kPa"},
+      "σ'v": {"description": "Vertical effective stress at test depth", "units": "kPa"}
+    },
+    "applicability": "Most widely used form. Cap at 1.7 prevents over-correction at shallow depths. Kayen et al. (1992) form: CN = 2.2/(1.2 + σ'v/Pa). Boulanger & Idriss (2014): CN = (Pa/σ'v)^m where m varies with Dr.",
+    "source": "Liao & Whitman (1986)"
+  },
+  {
+    "id": "field-exploration.spt.eq-004",
+    "title": "Friction Angle from SPT — Hatanaka & Uchida",
+    "equation": "φ' = √(20 × (N₁)₆₀) + 20  [degrees]",
+    "variables": {
+      "φ'": {"description": "Effective friction angle of sand", "units": "degrees"},
+      "(N₁)₆₀": {"description": "Corrected SPT blow count", "units": "blows/300mm"}
+    },
+    "applicability": "For clean sands. Based on high-quality frozen sand samples. Range: (N₁)₆₀ = 5 → φ' ≈ 30°; 20 → 40°; 40 → 48°. Upper bound for well-graded sands; lower bound for uniform fine sands.",
+    "source": "Hatanaka & Uchida (1996)"
+  },
+  {
+    "id": "field-exploration.spt.eq-005",
+    "title": "Undrained Shear Strength from SPT (Clays)",
+    "equation": "Su ≈ f₁ × N₆₀  [kPa]",
+    "variables": {
+      "Su": {"description": "Undrained shear strength", "units": "kPa"},
+      "f₁": {"description": "Empirical factor (4–6 kPa per blow, varies with plasticity)", "units": "kPa/blow"},
+      "N₆₀": {"description": "Energy-corrected blow count", "units": "blows/300mm"}
+    },
+    "applicability": "Very approximate. Stroud (1975): f₁ = 4.4 for PI ≈ 15; f₁ = 6.0 for PI ≈ 50. SPT is unreliable in soft clays (N < 5) — use vane shear or CPT instead. More reliable in stiff-hard clays where other tests are difficult.",
+    "source": "Stroud (1975), Terzaghi & Peck (1967)"
+  },
+  {
+    "id": "field-exploration.spt.eq-006",
+    "title": "Relative Density from SPT — Cubrinovski & Ishihara",
+    "equation": "Dr² = (N₁)₆₀ / Cd",
+    "variables": {
+      "Dr": {"description": "Relative density (decimal)", "units": "dimensionless"},
+      "Cd": {"description": "Empirical coefficient (varies 35–55 depending on fines, gradation, mineralogy)", "units": "dimensionless"},
+      "(N₁)₆₀": {"description": "Fully corrected blow count", "units": "blows/300mm"}
+    },
+    "applicability": "Cd ≈ 41 for clean sand (D₅₀ ≈ 0.2–2.0 mm). Cd higher for fine/silty sands, lower for coarse/gravelly sands. Approximate relationship — significant scatter. Example: (N₁)₆₀ = 25, Cd = 41 → Dr ≈ 78%.",
+    "source": "Cubrinovski & Ishihara (1999)"
+  },
+  {
+    "id": "field-exploration.spt.eq-007",
+    "title": "Young's Modulus from SPT (Sands)",
+    "equation": "E ≈ α × N₆₀  [MPa]",
+    "variables": {
+      "E": {"description": "Drained Young's modulus (secant at working stress level)", "units": "MPa"},
+      "α": {"description": "Empirical multiplier (varies 0.5–1.5 MPa/blow depending on soil type and strain level)", "units": "MPa/blow"},
+      "N₆₀": {"description": "Energy-corrected blow count", "units": "blows/300mm"}
+    },
+    "applicability": "Very approximate. Webb (1969): E ≈ 0.5(N₆₀+15) for sand. Bowles: E ≈ 7×√N₆₀ for OC sand. Denver & Skov (1988): E ≈ 40+N₆₀ for NC sand. Wide scatter — use CPT-based methods for better stiffness estimates.",
+    "source": "Various — Kulhawy & Mayne (1990)"
+  },
+  {
+    "id": "field-exploration.spt.eq-008",
+    "title": "SPT Energy Measurement (Force × Velocity Method)",
+    "equation": "E_delivered = ∫₀^(2L/c) F(t) × v(t) dt",
+    "variables": {
+      "E_delivered": {"description": "Energy delivered to drill rod at measurement point", "units": "J"},
+      "F(t)": {"description": "Force measured by load cell vs time", "units": "kN"},
+      "v(t)": {"description": "Velocity measured by accelerometer vs time", "units": "m/s"},
+      "L": {"description": "Length of drill rod from hammer to measurement point", "units": "m"},
+      "c": {"description": "Stress wave velocity in steel rod (~5120 m/s)", "units": "m/s"}
+    },
+    "applicability": "Integration over first 2L/c captures the direct blow energy before reflections. Energy ratio ER = E_delivered / (474 J) × 100%. Per ASTM D4633 (SPT Energy Measurement). Recommended practice: measure energy for every project to calibrate correlations.",
+    "source": "ASTM D4633, Sy & Campanella (1991)"
+  }
+]

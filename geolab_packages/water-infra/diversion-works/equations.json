@@ -1,0 +1,109 @@
+[
+  {
+    "id": "water-infra.diversion-works.eq-001",
+    "title": "Cofferdam Overtopping Risk — Flood Frequency",
+    "equation": "P_exceedance = 1 - (1 - 1/T)^n",
+    "variables": {
+      "P_exceedance": {"description": "Probability of the design flood being exceeded during construction", "units": "dimensionless"},
+      "T": {"description": "Return period of diversion design flood", "units": "years"},
+      "n": {"description": "Construction period duration", "units": "years"}
+    },
+    "applicability": "Example: 25-yr flood with 3-yr construction → P = 1-(1-1/25)³ = 11.5% chance of overtopping. USBR/USACE typically use 10–50 yr return period depending on consequences of overtopping.",
+    "source": "General probability, USBR/USACE practice"
+  },
+  {
+    "id": "water-infra.diversion-works.eq-002",
+    "title": "Diversion Tunnel/Conduit — Discharge Capacity",
+    "equation": "Q = Cd × A × √(2g × H)",
+    "variables": {
+      "Q": {"description": "Diversion capacity", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (0.60–0.90 depending on intake shape and flow regime)", "units": "dimensionless"},
+      "A": {"description": "Cross-sectional area of tunnel/conduit", "units": "m²"},
+      "H": {"description": "Head on diversion (headwater elevation - tailwater or centerline)", "units": "m"}
+    },
+    "applicability": "For submerged flow (inlet control or full-flow). For free-surface flow in tunnel, use Manning's equation with appropriate slope. Transition from free-surface to pressurized flow must be carefully analyzed.",
+    "source": "USBR, USACE EM 1110-2-1602"
+  },
+  {
+    "id": "water-infra.diversion-works.eq-003",
+    "title": "Cofferdam Height Design",
+    "equation": "H_cofferdam = h_design_flood + h_wave + h_freeboard + h_settlement",
+    "variables": {
+      "H_cofferdam": {"description": "Total cofferdam height above streambed", "units": "m"},
+      "h_design_flood": {"description": "Headwater elevation at diversion design flood (from routing)", "units": "m"},
+      "h_wave": {"description": "Wind wave runup (typically 0.3–1.0 m)", "units": "m"},
+      "h_freeboard": {"description": "Additional freeboard (0.6–1.5 m)", "units": "m"},
+      "h_settlement": {"description": "Anticipated cofferdam settlement (0.3–1.0 m for earth coffers)", "units": "m"}
+    },
+    "applicability": "Headwater elevation determined by routing the diversion flood through the tunnel/conduit system with cofferdam in place. Higher headwater allows more flow through smaller diversion — trade-off between cofferdam height and tunnel size.",
+    "source": "USBR, USACE EM 1110-2-2607"
+  },
+  {
+    "id": "water-infra.diversion-works.eq-004",
+    "title": "Diversion Tunnel Manning's Equation (Free Surface)",
+    "equation": "Q = (1/n) × A × R^(2/3) × S^(1/2)",
+    "variables": {
+      "Q": {"description": "Flow capacity", "units": "m³/s"},
+      "n": {"description": "Manning's roughness (0.012–0.016 for concrete-lined, 0.025–0.040 for unlined rock)", "units": "dimensionless"},
+      "A": {"description": "Flow cross-sectional area", "units": "m²"},
+      "R": {"description": "Hydraulic radius = A/P", "units": "m"},
+      "S": {"description": "Tunnel slope (invert gradient)", "units": "m/m"}
+    },
+    "applicability": "For free-surface flow regime in diversion tunnel. Check that flow depth < 75% of tunnel diameter (otherwise transition to pressurized flow). Air demand becomes critical as depth approaches crown.",
+    "source": "General hydraulics, Manning (1891)"
+  },
+  {
+    "id": "water-infra.diversion-works.eq-005",
+    "title": "Stage-Discharge for Diversion System (Head-Discharge Curve)",
+    "equation": "Q_total(H) = Q_tunnel(H) + Q_overtopping(H)",
+    "variables": {
+      "Q_total": {"description": "Total flow past dam site at headwater H", "units": "m³/s"},
+      "Q_tunnel": {"description": "Flow through diversion tunnel/conduit at headwater H", "units": "m³/s"},
+      "Q_overtopping": {"description": "Flow over cofferdam if headwater exceeds crest (weir equation)", "units": "m³/s"},
+      "H": {"description": "Headwater elevation upstream of cofferdam", "units": "m"}
+    },
+    "applicability": "Combined stage-discharge used for routing the diversion design flood. Tunnel transitions from free-surface to pressurized as headwater rises. Cofferdam overtopping adds capacity but may cause damage.",
+    "source": "USBR, general flood routing"
+  },
+  {
+    "id": "water-infra.diversion-works.eq-006",
+    "title": "Cofferdam Seepage — Darcy's Law (Sheet Pile or Earth)",
+    "equation": "q = k × H × L_seepage_path⁻¹ × P_perimeter",
+    "variables": {
+      "q": {"description": "Seepage flow rate", "units": "m³/s per m of cofferdam"},
+      "k": {"description": "Hydraulic conductivity of foundation or cofferdam material", "units": "m/s"},
+      "H": {"description": "Head differential across cofferdam", "units": "m"},
+      "L_seepage_path": {"description": "Length of seepage path (sheet pile depth, cofferdam base width)", "units": "m"}
+    },
+    "applicability": "For earth cofferdams, use flow net analysis. For sheet pile cofferdams, seepage occurs under the sheet piles — longer pile reduces seepage. Dewatering pumps must handle seepage + direct precipitation.",
+    "source": "General seepage analysis, Cedergren (1989)"
+  },
+  {
+    "id": "water-infra.diversion-works.eq-007",
+    "title": "River Closure — Required Rock Size (Riprap Stability)",
+    "equation": "D_50 = (V²) / (2g × Δ × C_stability)",
+    "variables": {
+      "D_50": {"description": "Median rock size for river closure", "units": "m"},
+      "V": {"description": "Velocity through the gap during closure", "units": "m/s"},
+      "Δ": {"description": "Relative buoyant density of rock = (ρ_s/ρ_w - 1) ≈ 1.65", "units": "dimensionless"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"},
+      "C_stability": {"description": "Stability coefficient (0.7–1.2 depending on placement method)", "units": "dimensionless"}
+    },
+    "applicability": "During end-dumping closure, velocity through the narrowing gap increases. Rock size must increase as gap narrows. Critical phase is the final closure when velocity peaks. Pre-staged closure with multiple dumping points reduces peak velocity.",
+    "source": "USACE, general river engineering"
+  },
+  {
+    "id": "water-infra.diversion-works.eq-008",
+    "title": "Dewatering Pump Capacity",
+    "equation": "Q_pump = Q_seepage + Q_rainfall + Q_groundwater + Q_margin",
+    "variables": {
+      "Q_pump": {"description": "Total required dewatering pump capacity", "units": "m³/hr"},
+      "Q_seepage": {"description": "Seepage through/under cofferdam", "units": "m³/hr"},
+      "Q_rainfall": {"description": "Direct rainfall runoff into work area", "units": "m³/hr"},
+      "Q_groundwater": {"description": "Groundwater inflow from foundation", "units": "m³/hr"},
+      "Q_margin": {"description": "Safety margin (typically 25–50% of sum)", "units": "m³/hr"}
+    },
+    "applicability": "Redundant pumping capacity required. Typically N+1 pump arrangement. Sump sizing for intermittent pumping. Emergency power backup essential.",
+    "source": "General construction practice"
+  }
+]

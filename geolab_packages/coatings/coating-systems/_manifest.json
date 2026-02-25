@@ -1,0 +1,18 @@
+{
+  "id": "coatings.protection.coating-systems",
+  "name": "Protective Coating Systems",
+  "level": 1,
+  "discipline": "coatings",
+  "parent": "coatings.protection",
+  "dependencies": ["coatings.foundations.corrosion"],
+  "tags": ["epoxy", "polyurethane", "zinc", "alkyd", "fluoropolymer", "primer", "intermediate", "topcoat", "DFT", "WFT", "adhesion", "holiday-testing", "VOC", "coating-selection"],
+  "standards": ["SSPC-PA2", "SSPC-SP1-SP16", "ASTM-D4541", "ASTM-D3359", "NACE-SP0188"],
+  "equation_count": 6,
+  "concept_count": 20,
+  "table_count": 6,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practitioner",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

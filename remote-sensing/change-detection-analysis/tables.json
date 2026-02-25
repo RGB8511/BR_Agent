@@ -1,0 +1,94 @@
+[
+  {
+    "id": "remote-sensing.change-detection.tbl-001",
+    "title": "Change Detection Method Selection",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Input Data", "Output", "Strengths", "Limitations"],
+      "rows": [
+        ["DEM of Difference (DoD)", "Gridded DEMs (any source)", "Raster of ΔZ + volume", "Simple, widely understood, volume calculation direct", "Vertical only; interpolation artifacts; grid resolution limits detail"],
+        ["M3C2 (Cloud-to-Cloud)", "Raw point clouds", "Signed distance + confidence per point", "No gridding; statistical LOD; handles rough surfaces", "Computationally intensive; requires good normal estimation"],
+        ["C2C (nearest neighbor)", "Raw point clouds", "Unsigned distance per point", "Fast; simple; good for screening", "No sign (erosion vs deposition); sensitive to density variation"],
+        ["Image correlation (PIV/DIC)", "Ortho-imagery", "2D horizontal displacement vectors", "Full-field displacement; high spatial resolution", "No vertical component; needs good texture; illumination-sensitive"],
+        ["ICP-based rigid body", "Point cloud subsets", "3D translation + rotation vectors", "Full 6-DOF movement of rigid objects (blocks, structures)", "Assumes rigid body; needs identifiable segments"],
+        ["Feature tracking", "Multi-epoch imagery or clouds", "Discrete displacement vectors at features", "Tracks specific objects/points; intuitive", "Sparse measurement; feature identification needed"]
+      ]
+    },
+    "source": "Lague et al. (2013), Wheaton et al. (2010), general practice"
+  },
+  {
+    "id": "remote-sensing.change-detection.tbl-002",
+    "title": "Achievable Change Detection Precision by Platform/Method",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Platform", "Method", "Typical LOD (m)", "Volume Accuracy", "Notes"],
+      "rows": [
+        ["Terrestrial LiDAR (TLS)", "M3C2 or DoD", "0.002–0.010", "±1–3%", "Best precision; limited range/coverage"],
+        ["UAS photogrammetry (RTK)", "DoD", "0.015–0.050", "±2–5%", "Good balance of coverage and precision"],
+        ["UAS LiDAR", "DoD or M3C2", "0.010–0.030", "±2–4%", "Better in vegetation than photogrammetry"],
+        ["Airborne LiDAR", "DoD", "0.050–0.150", "±5–10%", "Large area; lower precision per point"],
+        ["Satellite stereo (Pléiades, WV)", "DoD", "0.30–1.0", "±10–20%", "Very large area; low precision"],
+        ["InSAR (PS-InSAR)", "Time series displacement", "0.001–0.003 (LOS)", "N/A (1D displacement)", "Best for slow, mm-scale movements"],
+        ["Ground-based InSAR", "Displacement map", "0.001–0.010 (LOS)", "N/A", "High temporal frequency; range-dependent"]
+      ]
+    },
+    "source": "Various — Lague (2013), Wheaton (2010), Crosetto (2016)"
+  },
+  {
+    "id": "remote-sensing.change-detection.tbl-003",
+    "title": "Common Error Sources in Multi-Epoch Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Error Source", "Magnitude", "Mitigation"],
+      "rows": [
+        ["Registration/alignment error", "1–50 mm (TLS), 20–100 mm (UAS)", "Permanent ground control; stable reference surfaces; ICP on unchanged areas"],
+        ["Coordinate system/datum mismatch", "Centimeters to meters", "Use same datum, geoid model, and projection for all epochs"],
+        ["Point density variation", "Increases noise in sparse areas", "Set minimum density threshold; increase LOD in sparse zones"],
+        ["Vegetation/temporal change", "0.01–5 m", "Classify and remove vegetation; use ground-only points; bare-earth filter"],
+        ["Wet/dry surface (photogrammetry)", "5–20 mm apparent change", "Consistent surface conditions or LiDAR (not affected)"],
+        ["Shadow/illumination (photogrammetry)", "5–50 mm noise increase", "Consistent lighting; avoid harsh shadows; overcast preferred"],
+        ["Interpolation artifacts (DoD)", "Depends on grid size", "Use grid size ≤ 2× mean point spacing; triangulate rather than grid when possible"],
+        ["Systematic tilt/drift", "mm to cm across site", "Check-point analysis; detrend stable areas; robust GCP network"]
+      ]
+    },
+    "source": "General best practice, Lague et al. (2013), James & Robson (2014)"
+  },
+  {
+    "id": "remote-sensing.change-detection.tbl-004",
+    "title": "Software Tools for Change Detection and Volumetrics",
+    "type": "reference",
+    "data": {
+      "headers": ["Software", "Type", "Key Capabilities", "Cost"],
+      "rows": [
+        ["CloudCompare", "Open source", "M3C2, C2C, DoD, segmentation, registration, classification", "Free"],
+        ["QGIS + Sketcher", "Open source", "Raster DoD, volume from DEM, GIS analysis", "Free"],
+        ["GCD (Geomorphic Change Detection)", "Open source (QGIS/ArcGIS plugin)", "DoD with probabilistic thresholding, spatially variable LOD, budget segregation", "Free"],
+        ["Agisoft Metashape", "Commercial", "DEM generation + basic DoD, volume calculation", "$200–3,500"],
+        ["3DReshaper (Hexagon)", "Commercial", "Point cloud comparison, inspection, volumetrics", "$$"],
+        ["Trimble RealWorks", "Commercial", "TLS processing, surface comparison, volumetrics", "$$"],
+        ["RIEGL RiSCAN PRO", "Commercial", "TLS processing, multi-epoch comparison, M3C2 plugin", "$$"],
+        ["Pix4D", "Commercial", "UAS photogrammetry, volume calculation, change maps", "$300/mo"]
+      ]
+    },
+    "source": "Software documentation, general practice"
+  },
+  {
+    "id": "remote-sensing.change-detection.tbl-005",
+    "title": "Recommended Survey Intervals by Application",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Displacement Rate", "Survey Interval", "Platform", "Notes"],
+      "rows": [
+        ["Active landslide (crisis)", "> 10 mm/day", "Daily to weekly", "UAS or TLS", "Rapid response; may need automated"],
+        ["Slow landslide monitoring", "1–50 mm/year", "Quarterly to annual", "UAS, TLS, or InSAR", "InSAR provides continuous coverage between surveys"],
+        ["Dam/embankment settlement", "1–10 mm/year", "Semi-annual to annual", "TLS, GNSS, InSAR", "Supplement with geodetic survey"],
+        ["Excavation progress", "Daily changes", "Daily to weekly", "UAS", "Production tracking; safety compliance"],
+        ["Stockpile inventory", "Continuous change", "Weekly to monthly", "UAS", "Reconciliation with truck counts"],
+        ["River bank erosion", "0.1–5 m/year", "Semi-annual to annual", "UAS or TLS", "Capture before/after flood season"],
+        ["Coastal cliff retreat", "0.1–10 m/year", "Annual", "UAS or airborne LiDAR", "Post-storm surveys capture events"],
+        ["Structural deformation", "0.5–5 mm/year", "Quarterly", "TLS", "Highest precision needed; stable reference critical"]
+      ]
+    },
+    "source": "General best practice"
+  }
+]

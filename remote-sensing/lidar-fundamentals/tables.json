@@ -1,0 +1,93 @@
+[
+  {
+    "id": "remote-sensing.lidar-fundamentals.tbl-001",
+    "title": "LiDAR Platform Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Platform", "Range", "Point Density", "Accuracy (typical)", "Coverage Rate", "Best For"],
+      "rows": [
+        ["Static TLS (phase-shift)", "1–100 m", "10,000–100,000 pts/m²", "1–3 mm", "Single scene per setup", "Structural detail, crack mapping, monitoring"],
+        ["Static TLS (time-of-flight)", "100–6000 m", "100–5,000 pts/m²", "5–20 mm at 100m", "Large scene per setup", "Rock slopes, quarries, large structures"],
+        ["ALS (manned aircraft)", "500–5000 m AGL", "2–100 pts/m²", "5–15 cm RMSE_z", "100–500 km²/day", "Large-area topography, corridor mapping"],
+        ["UAS LiDAR", "30–120 m AGL", "50–500 pts/m²", "2–5 cm RMSE_z", "2–20 km²/day", "Detailed site survey, vegetation penetration"],
+        ["MLS (vehicle-mounted)", "1–100 m", "500–10,000 pts/m² (near)", "1–3 cm", "50–300 km/day", "Corridors, roads, tunnels, bridges"],
+        ["Backpack MLS (SLAM)", "0.5–50 m", "1,000–50,000 pts/m²", "2–5 cm", "0.5–5 km²/day", "Indoor, confined spaces, forests, slopes"]
+      ]
+    },
+    "source": "Manufacturer specifications, general practice"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.tbl-002",
+    "title": "ASPRS LAS Classification Codes (v1.4)",
+    "type": "reference",
+    "data": {
+      "headers": ["Code", "Classification", "Description"],
+      "rows": [
+        ["0", "Created, Never Classified", "Default — point has not been processed"],
+        ["1", "Unclassified", "Processed but not assigned to a category"],
+        ["2", "Ground", "Bare-earth surface — basis for DTM"],
+        ["3", "Low Vegetation", "0–0.5 m above ground"],
+        ["4", "Medium Vegetation", "0.5–2 m above ground"],
+        ["5", "High Vegetation", "> 2 m above ground (trees)"],
+        ["6", "Building", "Roof surfaces"],
+        ["7", "Low Point (Noise)", "Below-surface noise, birds, multipath"],
+        ["8", "Model Key-point", "Critical points retained in thinned dataset"],
+        ["9", "Water", "Water surface"],
+        ["10", "Rail", "Railway tracks"],
+        ["11", "Road Surface", "Paved roads"],
+        ["17", "Bridge Deck", "Bridge surfaces"],
+        ["18", "High Noise", "Above-surface noise (birds, aircraft)"],
+        ["64–255", "User Defined", "Project-specific classifications"]
+      ]
+    },
+    "source": "ASPRS LAS Specification v1.4 R15"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.tbl-003",
+    "title": "USGS Lidar Base Specification Quality Levels",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Quality Level", "NPS (pts/m²)", "RMSE_z NVA (cm)", "RMSE_z VVA (cm)", "Typical Application"],
+      "rows": [
+        ["QL0", "≥ 8", "≤ 5.0", "≤ 7.5", "High-accuracy engineering, flood mapping, critical infrastructure"],
+        ["QL1", "≥ 8", "≤ 10.0", "≤ 15.0", "Standard mapping, FEMA floodplain, regional planning"],
+        ["QL2", "≥ 2", "≤ 10.0", "≤ 15.0", "County/state-wide mapping, general topography"],
+        ["QL3 (legacy)", "≥ 1", "≤ 20.0", "≤ 30.0", "Reconnaissance, large-area coverage (being phased out)"]
+      ]
+    },
+    "source": "USGS Lidar Base Specification v2.1 (2023). NPS = Nominal Pulse Spacing. NVA = Non-Vegetated Vertical Accuracy. VVA = Vegetated Vertical Accuracy."
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.tbl-004",
+    "title": "Common TLS Systems for Geotechnical Applications",
+    "type": "reference",
+    "data": {
+      "headers": ["System", "Type", "Range (m)", "Speed (pts/s)", "Accuracy", "Typical Use"],
+      "rows": [
+        ["Leica RTC360", "Phase-shift", "130", "2,000,000", "1.0 mm + 10 ppm", "General survey, structural monitoring, BIM"],
+        ["Leica P50", "ToF + Phase", "1000", "1,000,000", "1.2 mm + 10 ppm", "Tunnels, mines, medium-range structures"],
+        ["FARO Focus Premium", "Phase-shift", "350", "2,000,000", "±1 mm at 25 m", "Indoor, structural detail, forensics"],
+        ["Riegl VZ-6000", "ToF", "6000", "222,000", "15 mm at 150 m", "Long-range: quarries, rock slopes, open pit"],
+        ["Riegl VZ-2000i", "ToF", "2500", "1,200,000", "5 mm at 100 m", "Mining, rock mechanics, topography"],
+        ["Trimble X7", "Phase-shift", "80", "500,000", "2.4 mm at 20 m", "Site survey, auto-registration, construction"],
+        ["Leica BLK360", "Phase-shift", "60", "360,000", "4 mm at 10 m", "Lightweight, rapid documentation, scouting"]
+      ]
+    },
+    "source": "Manufacturer specifications (approximate — subject to update)"
+  },
+  {
+    "id": "remote-sensing.lidar-fundamentals.tbl-005",
+    "title": "LiDAR Wavelengths and Target Interaction",
+    "type": "reference",
+    "data": {
+      "headers": ["Wavelength (nm)", "Band", "Eye Safety", "Target Interaction", "Typical Use"],
+      "rows": [
+        ["532", "Green (visible)", "Class 3B/4 — hazardous", "Penetrates water; reflects from seabed", "Bathymetric LiDAR (ALB)"],
+        ["905", "Near-IR", "Class 1M — generally safe", "Good reflectance from terrain/vegetation; absorbed by water", "Most automotive LiDAR, some TLS"],
+        ["1064", "Near-IR", "Class 3B — eye hazard", "High reflectance from most surfaces; penetrates canopy gaps", "ALS topographic, some TLS"],
+        ["1550", "Short-wave IR", "Class 1 — eye-safe", "Eye-safe at higher power; good in atmosphere; absorbed by water", "Most modern TLS, MLS, UAS LiDAR"]
+      ]
+    },
+    "source": "Shan & Toth (2018), manufacturer specifications"
+  }
+]

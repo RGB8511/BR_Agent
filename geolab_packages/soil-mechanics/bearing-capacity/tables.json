@@ -1,0 +1,80 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.tbl-001",
+    "title": "Bearing Capacity Factors",
+    "type": "reference",
+    "data": {
+      "headers": ["φ' (°)", "N_c", "N_q", "N_γ (Vesic)", "N_γ (Hansen)", "N_γ (Meyerhof)"],
+      "rows": [
+        ["0", "5.14", "1.00", "0.00", "0.00", "0.00"],
+        ["5", "6.49", "1.57", "0.45", "0.07", "0.07"],
+        ["10", "8.35", "2.47", "1.22", "0.39", "0.37"],
+        ["15", "10.98", "3.94", "2.65", "1.18", "1.13"],
+        ["20", "14.83", "6.40", "5.39", "2.95", "2.87"],
+        ["25", "20.72", "10.66", "10.88", "6.76", "6.77"],
+        ["28", "25.80", "14.72", "16.72", "10.90", "11.19"],
+        ["30", "30.14", "18.40", "22.40", "15.07", "15.67"],
+        ["32", "35.49", "23.18", "30.22", "20.79", "22.02"],
+        ["34", "42.16", "29.44", "41.06", "28.77", "31.15"],
+        ["36", "50.59", "37.75", "56.31", "40.05", "44.43"],
+        ["38", "61.35", "48.93", "78.03", "56.17", "63.63"],
+        ["40", "75.31", "64.20", "109.41", "79.54", "91.96"],
+        ["45", "133.88", "134.88", "271.76", "200.81", "262.74"]
+      ]
+    },
+    "source": "Computed from standard formulas. N_c and N_q are exact (Prandtl/Reissner)."
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.tbl-002",
+    "title": "Typical Allowable Bearing Pressures (Presumptive Values)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Soil/Rock Type", "Allowable Pressure (kPa)", "Notes"],
+      "rows": [
+        ["Sound hard rock (granite, gneiss)", "600–1000+", "Governed by rock quality, not intact strength"],
+        ["Medium hard rock (sandstone, limestone)", "200–600", "Check for solution features in limestone"],
+        ["Soft rock (shale, weathered)", "100–300", "Check slaking, weathering susceptibility"],
+        ["Hardpan / cemented gravel", "200–400", ""],
+        ["Dense gravel / GW, GP", "200–400", "Settlement usually controls"],
+        ["Dense sand / SW, SP", "100–300", "Settlement usually controls"],
+        ["Medium dense sand", "75–150", ""],
+        ["Loose sand", "50–75", "Compaction recommended"],
+        ["Stiff clay", "100–200", "Long-term settlement may govern"],
+        ["Medium clay", "50–100", ""],
+        ["Soft clay", "25–50", "Consolidation settlement critical"],
+        ["Fill (engineered)", "50–150", "Depends on compaction control"]
+      ]
+    },
+    "source": "Various building codes and engineering references. These are presumptive values for preliminary design only."
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.tbl-003",
+    "title": "Failure Mode vs. Soil Condition",
+    "type": "classification",
+    "data": {
+      "headers": ["Failure Mode", "Soil Condition", "D_r or Consistency", "Load-Settlement Behavior"],
+      "rows": [
+        ["General shear", "Dense sand, stiff clay", "D_r > 70%, stiff-hard", "Clear peak, sudden failure"],
+        ["Local shear", "Medium sand, medium clay", "D_r 30–70%, medium", "Gradual failure, no clear peak"],
+        ["Punching shear", "Very loose sand, very soft clay", "D_r < 30%, very soft", "Foundation sinks, no surface rupture"]
+      ]
+    },
+    "source": "Vesic (1973)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.bearing-capacity.tbl-004",
+    "title": "Typical FS Values for Bearing Capacity",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Loading Condition", "Minimum FS"],
+      "rows": [
+        ["Dead + sustained live load", "3.0"],
+        ["Dead + maximum live (including transient)", "2.5"],
+        ["Dead + live + wind or seismic", "2.0"],
+        ["Temporary structures", "2.0"],
+        ["Mat foundations (well-understood soil)", "2.0–2.5"]
+      ]
+    },
+    "source": "Standard US practice"
+  }
+]

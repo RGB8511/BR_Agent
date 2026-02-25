@@ -1,0 +1,125 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-001",
+    "title": "Terzaghi's Effective Stress Principle",
+    "equation": "σ' = σ - u",
+    "variables": {
+      "σ'": {"description": "Effective stress", "units": "kPa"},
+      "σ": {"description": "Total stress", "units": "kPa"},
+      "u": {"description": "Pore water pressure", "units": "kPa"}
+    },
+    "applicability": "Universal for saturated soils. All soil mechanical behavior governed by effective stress.",
+    "source": "Terzaghi (1925, 1943)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-002",
+    "title": "Total Vertical Stress",
+    "equation": "σ_v = Σ(γ_i × h_i)",
+    "variables": {
+      "σ_v": {"description": "Total vertical stress at depth", "units": "kPa"},
+      "γ_i": {"description": "Unit weight of layer i", "units": "kN/m³"},
+      "h_i": {"description": "Thickness of layer i", "units": "m"}
+    },
+    "source": "Fundamental — equilibrium of vertical forces"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-003",
+    "title": "Hydrostatic Pore Water Pressure",
+    "equation": "u = γ_w × h_w",
+    "variables": {
+      "u": {"description": "Pore water pressure", "units": "kPa"},
+      "γ_w": {"description": "Unit weight of water (9.81 kN/m³)", "units": "kN/m³"},
+      "h_w": {"description": "Depth below water table (or piezometric head)", "units": "m"}
+    },
+    "applicability": "Hydrostatic conditions (no flow). For flowing water, use piezometric head from piezometer data.",
+    "source": "Fundamental"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-004",
+    "title": "K₀ for Normally Consolidated Soils (Jaky)",
+    "equation": "K₀ = 1 - sinφ'",
+    "variables": {
+      "K₀": {"description": "Coefficient of lateral earth pressure at rest", "units": "dimensionless"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"}
+    },
+    "applicability": "NC soils only. Most reliable and widely used K₀ relationship.",
+    "source": "Jaky (1944)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-005",
+    "title": "K₀ for Overconsolidated Soils (Mayne & Kulhawy)",
+    "equation": "K₀(OC) = (1 - sinφ') × OCR^sinφ'",
+    "variables": {
+      "K₀(OC)": {"description": "K₀ for overconsolidated soil", "units": "dimensionless"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"},
+      "OCR": {"description": "Overconsolidation ratio", "units": "dimensionless"}
+    },
+    "applicability": "K₀ can exceed 1.0 for heavily OC soils. Limit: K₀ ≤ K_p (passive) for very high OCR.",
+    "source": "Mayne & Kulhawy (1982)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-006",
+    "title": "Skempton's Pore Pressure Equation",
+    "equation": "Δu = B[Δσ₃ + A(Δσ₁ - Δσ₃)]",
+    "variables": {
+      "Δu": {"description": "Change in pore pressure (undrained)", "units": "kPa"},
+      "B": {"description": "Pore pressure parameter B (= 1.0 for saturated soil)", "units": "dimensionless"},
+      "A": {"description": "Pore pressure parameter A", "units": "dimensionless"},
+      "Δσ₁": {"description": "Change in major principal total stress", "units": "kPa"},
+      "Δσ₃": {"description": "Change in minor principal total stress", "units": "kPa"}
+    },
+    "source": "Skempton (1954)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-007",
+    "title": "Overconsolidation Ratio",
+    "equation": "OCR = σ'_p / σ'_v0",
+    "variables": {
+      "OCR": {"description": "Overconsolidation ratio", "units": "dimensionless"},
+      "σ'_p": {"description": "Preconsolidation pressure (maximum past effective stress)", "units": "kPa"},
+      "σ'_v0": {"description": "Current in-situ vertical effective stress", "units": "kPa"}
+    },
+    "applicability": "OCR = 1: normally consolidated. OCR > 1: overconsolidated. OCR < 1: underconsolidated (rare, active consolidation).",
+    "source": "Casagrande (1936)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-008",
+    "title": "Vertical Effective Stress Below Water Table",
+    "equation": "σ'_v = γ_m × z_1 + γ' × z_2",
+    "alt_form": "σ'_v = γ_m × z_1 + (γ_sat - γ_w) × z_2",
+    "variables": {
+      "σ'_v": {"description": "Vertical effective stress", "units": "kPa"},
+      "γ_m": {"description": "Moist unit weight above WT", "units": "kN/m³"},
+      "z_1": {"description": "Depth from surface to water table", "units": "m"},
+      "γ'": {"description": "Submerged unit weight below WT", "units": "kN/m³"},
+      "z_2": {"description": "Depth below water table", "units": "m"}
+    },
+    "applicability": "Quick computation for uniform soil with single WT. For layered profiles, sum each layer separately.",
+    "source": "Derived from Terzaghi's principle"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-009",
+    "title": "Capillary Rise Height (Approximate)",
+    "equation": "h_c ≈ C / (e × D₁₀)",
+    "variables": {
+      "h_c": {"description": "Height of capillary rise", "units": "m"},
+      "C": {"description": "Empirical constant (0.01–0.05 m²)", "units": "m²"},
+      "e": {"description": "Void ratio", "units": "dimensionless"},
+      "D₁₀": {"description": "Effective grain size", "units": "m"}
+    },
+    "applicability": "Order-of-magnitude estimate. Gravels: ~cm. Sands: ~0.1–1 m. Silts: ~1–10 m. Clays: ~10–30+ m.",
+    "source": "Terzaghi (1943)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.eq-010",
+    "title": "Capillary Suction (Theoretical)",
+    "equation": "u_c = -2T_s cosα / r",
+    "variables": {
+      "u_c": {"description": "Capillary pore pressure (negative = suction)", "units": "Pa"},
+      "T_s": {"description": "Surface tension of water (~0.073 N/m at 20°C)", "units": "N/m"},
+      "α": {"description": "Contact angle (≈ 0° for clean mineral surfaces)", "units": "degrees"},
+      "r": {"description": "Effective pore radius", "units": "m"}
+    },
+    "source": "Young-Laplace equation"
+  }
+]

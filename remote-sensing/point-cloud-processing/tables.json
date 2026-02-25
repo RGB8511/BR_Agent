@@ -1,0 +1,90 @@
+[
+  {
+    "id": "remote-sensing.point-cloud-processing.tbl-001",
+    "title": "Point Cloud File Formats Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Format", "Extension", "Binary/Text", "Compression", "Attributes", "Best For"],
+      "rows": [
+        ["LAS", ".las", "Binary", "None", "XYZ, intensity, return, class, time, color", "ALS/TLS interchange; industry standard"],
+        ["LAZ", ".laz", "Binary", "Lossless (~5-10×)", "Same as LAS", "Storage/transfer of LAS data"],
+        ["COPC", ".copc.laz", "Binary", "Lossless + spatial index", "Same as LAS", "Cloud-native streaming visualization"],
+        ["E57", ".e57", "Binary+XML", "Optional", "XYZ, intensity, color, normals, images", "TLS data exchange; structured scans"],
+        ["PLY", ".ply", "Binary or ASCII", "None", "Flexible (XYZ, color, normals, custom)", "Meshes, academic, 3D printing"],
+        ["PCD", ".pcd", "Binary or ASCII", "None", "Flexible", "PCL library, robotics"],
+        ["XYZ/TXT", ".xyz/.txt", "ASCII", "None", "XYZ + optional columns", "Simple interchange; slow for large files"],
+        ["RCP/RCS", ".rcp/.rcs", "Binary", "Proprietary", "Full Autodesk attribute set", "Autodesk ReCap ecosystem"]
+      ]
+    },
+    "source": "ASPRS, ASTM E2807, software documentation"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.tbl-002",
+    "title": "Ground Filtering Algorithms Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Algorithm", "Approach", "Strengths", "Weaknesses", "Software"],
+      "rows": [
+        ["Cloth Simulation (CSF)", "Physics simulation of cloth on inverted cloud", "Simple parameters, robust, good for varied terrain", "Struggles with steep slopes, bridges", "CloudCompare, LAStools, PDAL"],
+        ["Progressive Morphological", "Mathematical morphology with growing windows", "Well-studied, handles buildings well", "Needs tuning for terrain type", "LAStools, PDAL"],
+        ["TIN Refinement", "Iterative densification from seed ground points", "Good in urban areas, handles large non-ground objects", "Can fail on steep continuous slopes", "TerraScan, LAStools"],
+        ["Slope-Based", "Classifies based on local slope thresholds", "Fast, simple", "Poor in rough/steep terrain", "Various"],
+        ["Deep Learning (e.g., RandLA-Net)", "Neural network classification", "Handles complex scenes, learns from examples", "Requires training data, GPU, expertise", "Research; emerging in production"]
+      ]
+    },
+    "source": "Sithole & Vosselman (2004) comparison, recent literature"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.tbl-003",
+    "title": "Registration Methods and Expected Accuracy",
+    "type": "reference",
+    "data": {
+      "headers": ["Method", "Requires", "Expected RMS", "Speed", "Best For"],
+      "rows": [
+        ["Target-based (spheres/checkerboards)", "3+ common targets per pair", "0.5–3 mm", "Fast", "Highest precision; monitoring; control"],
+        ["Cloud-to-cloud ICP (fine)", "Good initial alignment, 30%+ overlap", "1–5 mm", "Moderate", "Refining coarse alignment"],
+        ["Feature-based (automatic)", "Geometric features in scene", "2–10 mm", "Fast", "Large datasets; automated workflows"],
+        ["GNSS direct georeferencing", "GNSS receiver on scanner", "5–30 mm", "Instant", "Rapid deployment; when targets impractical"],
+        ["SLAM (real-time)", "IMU + continuous scanning", "10–50 mm", "Real-time", "Mobile/backpack scanning"]
+      ]
+    },
+    "source": "General practice"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.tbl-004",
+    "title": "Processing Software for Geotechnical Point Clouds",
+    "type": "reference",
+    "data": {
+      "headers": ["Software", "License", "Key Capabilities", "Typical Geotech Use"],
+      "rows": [
+        ["CloudCompare", "Open source", "C2C/M3C2, segmentation, RANSAC, plugins, scripting", "Deformation monitoring, change detection, fracture mapping"],
+        ["PDAL", "Open source (CLI)", "Pipeline-based filtering, classification, format conversion", "Batch processing, automation, ground filtering"],
+        ["LAStools", "Proprietary (free academic)", "Fast classification, tiling, thinning, QC", "LiDAR QC, ground filtering, tiling large datasets"],
+        ["3DEC/Maptek PointStudio", "Commercial", "Geological mapping, discontinuity extraction, stereonets", "Rock face mapping, structural geology"],
+        ["Leica Cyclone / 3DR", "Commercial", "Registration, inspection, surface comparison", "TLS workflows, as-built, structural monitoring"],
+        ["Trimble RealWorks", "Commercial", "Registration, modeling, inspection, cross-sections", "Survey, construction, tunnel profiling"],
+        ["Bentley Descartes", "Commercial", "Point cloud in CAD/BIM context, classification", "Infrastructure design integration"],
+        ["Split-FX / SplitCloud", "Commercial", "Automated discontinuity detection from point clouds", "Rock mechanics, fracture characterization"]
+      ]
+    },
+    "source": "Software vendors, industry practice"
+  },
+  {
+    "id": "remote-sensing.point-cloud-processing.tbl-005",
+    "title": "Recommended Processing Parameters by Application",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Min Point Density", "Subsampling", "Noise Filter", "Key Algorithm"],
+      "rows": [
+        ["Structural deformation (mm-level)", "5000+ pts/m²", "None or 2 mm voxel", "SOR (k=12, 1.5σ)", "M3C2 distance"],
+        ["Rock face fracture mapping", "1000+ pts/m²", "5–10 mm voxel", "SOR (k=8, 2σ)", "RANSAC plane, region growing"],
+        ["Concrete crack detection", "10000+ pts/m²", "1–2 mm voxel", "SOR (k=10, 1.5σ)", "Curvature/intensity analysis"],
+        ["Terrain DEM generation", "2+ pts/m²", "25–100 cm grid", "CSF ground filter", "TIN interpolation"],
+        ["Volumetric calculation", "10+ pts/m²", "10–50 cm grid", "SOR + manual review", "DEM differencing, surface mesh"],
+        ["Tunnel convergence", "2000+ pts/m²", "5 mm voxel", "SOR", "Cross-section extraction, C2C"],
+        ["Slope monitoring", "100+ pts/m²", "10–50 mm voxel", "SOR + temporal filter", "M3C2, DoD (DEM of Difference)"]
+      ]
+    },
+    "source": "General practice, literature"
+  }
+]

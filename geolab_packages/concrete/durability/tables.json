@@ -1,0 +1,82 @@
+[
+  {
+    "id": "concrete.durability.tbl-001",
+    "title": "Degradation Mechanisms Summary",
+    "type": "classification",
+    "data": {
+      "headers": ["Mechanism", "Cause", "Visible Signs", "Key Prevention", "Test Method"],
+      "rows": [
+        ["ASR", "Alkali + reactive silica + moisture", "Map cracking, gel exudation, expansion", "Low-alkali cement, SCMs, non-reactive agg", "C1260, C1293"],
+        ["DEF", "High early curing temp (>65°C)", "Expansion, cracking (precast)", "Limit curing temperature", "Petrography C856"],
+        ["Sulfate attack", "External sulfate + C₃A", "Expansion, surface erosion, paste softening", "Type V cement, low w/cm, SCMs", "C1012"],
+        ["Carbonation", "CO₂ diffusion, pH reduction", "Phenolphthalein test (colorless = carbonated)", "Adequate cover, low w/cm, good curing", "Phenolphthalein indicator"],
+        ["Chloride corrosion", "Cl⁻ ingress past threshold", "Rust staining, cracking, spalling, delamination", "Cover depth, low w/cm, SCMs, epoxy rebar", "C1202, C1556"],
+        ["Freeze-thaw", "Water expansion in saturated pores", "Surface scaling, D-cracking, popouts", "Air entrainment (L̄ ≤ 0.20 mm)", "C666, C672"],
+        ["Abrasion", "Traffic, hydraulic action", "Surface wear, aggregate exposure", "High strength, hard aggregate, good curing", "C779, C944"]
+      ]
+    },
+    "source": "Various — Mehta & Monteiro (2014), ACI 201.2R"
+  },
+  {
+    "id": "concrete.durability.tbl-002",
+    "title": "RCPT Chloride Permeability Classification",
+    "type": "classification",
+    "data": {
+      "headers": ["Charge Passed (coulombs)", "Rating", "Typical Concrete"],
+      "rows": [
+        ["> 4000", "High", "High w/cm (> 0.60) OPC concrete"],
+        ["2000–4000", "Moderate", "Moderate w/cm (0.45–0.55) OPC"],
+        ["1000–2000", "Low", "Low w/cm (0.40) or with SCMs"],
+        ["100–1000", "Very low", "SCM concrete (slag, silica fume)"],
+        ["< 100", "Negligible", "Latex-modified, polymer concrete"]
+      ]
+    },
+    "source": "ASTM C1202"
+  },
+  {
+    "id": "concrete.durability.tbl-003",
+    "title": "SCM Effectiveness for Durability",
+    "type": "reference",
+    "data": {
+      "headers": ["SCM", "Replacement %", "ASR", "Sulfate", "Chloride Permeability", "Carbonation"],
+      "rows": [
+        ["Class F fly ash", "25–35%", "Excellent", "Good-excellent", "Good", "Slightly worse early"],
+        ["GGBFS", "50–70%", "Excellent", "Excellent", "Excellent", "Slightly worse early"],
+        ["Silica fume", "7–10%", "Good", "Good", "Excellent", "Neutral-slightly worse"],
+        ["Ternary (SF+FA or SF+slag)", "Combined", "Excellent", "Excellent", "Excellent", "Better than binary"],
+        ["Metakaolin", "8–12%", "Good", "Good", "Good-excellent", "Better than silica fume"]
+      ]
+    },
+    "source": "ACI 232.2R, ACI 233R, ACI 234R, Thomas et al. (2012)"
+  },
+  {
+    "id": "concrete.durability.tbl-004",
+    "title": "Typical Chloride Diffusion Coefficients",
+    "type": "reference",
+    "data": {
+      "headers": ["Concrete Type", "w/cm", "D_28 (×10⁻¹² m²/s)", "Aging Factor m"],
+      "rows": [
+        ["OPC, no SCMs", "0.50", "15–30", "0.20–0.30"],
+        ["OPC, no SCMs", "0.40", "8–15", "0.20–0.30"],
+        ["25% fly ash", "0.45", "8–15", "0.40–0.55"],
+        ["50% slag", "0.45", "5–12", "0.50–0.70"],
+        ["8% silica fume", "0.40", "3–8", "0.30–0.50"],
+        ["Ternary (SF+FA)", "0.38", "2–5", "0.50–0.70"]
+      ]
+    },
+    "source": "Life-365 v2.2, fib Model Code, Thomas & Bentz (2002)"
+  },
+  {
+    "id": "concrete.durability.tbl-005",
+    "title": "ACI 318 Minimum Cover Requirements (mm)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Exposure", "Cast-against-ground", "Exposed to weather (#19+)", "Exposed to weather (#16−)", "Not exposed"],
+      "rows": [
+        ["Concrete cover (mm)", "75", "50", "40", "20–40"],
+        ["Notes", "Permanent ground contact", "Bars ≥ #19", "Bars ≤ #16, W5", "Interior, dry"]
+      ]
+    },
+    "source": "ACI 318-19 Table 20.6.1.3.1"
+  }
+]

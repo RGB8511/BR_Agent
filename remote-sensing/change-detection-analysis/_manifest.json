@@ -1,0 +1,15 @@
+{
+  "id": "remote-sensing.change-detection-analysis",
+  "name": "Change Detection & Volumetric Analysis",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.applications",
+  "dependencies": ["remote-sensing.point-cloud-processing", "remote-sensing.uas-photogrammetry"],
+  "tags": ["DoD", "DEM-of-Difference", "erosion", "deposition", "cut-fill", "volumetric", "as-built", "design-comparison", "multi-temporal", "threshold", "propagated-error", "geomorphic-change"],
+  "equation_count": 8,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

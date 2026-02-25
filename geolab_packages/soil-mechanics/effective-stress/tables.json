@@ -1,0 +1,53 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.tbl-001",
+    "title": "Typical K₀ Values",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "OCR", "K₀ Range", "Typical"],
+      "rows": [
+        ["NC clay", "1", "0.45–0.65", "0.55"],
+        ["NC sand", "1", "0.35–0.50", "0.45"],
+        ["Lightly OC clay", "2–5", "0.6–1.0", "0.7–0.8"],
+        ["Heavily OC clay", "5–20+", "1.0–3.0", "1.5–2.5"],
+        ["Compacted clay fill", "–", "0.5–1.5", "0.7–1.0"],
+        ["Sensitive clay (NC)", "1", "0.45–0.55", "0.50"]
+      ]
+    },
+    "source": "Various — Mayne & Kulhawy (1982), Holtz et al. (2011)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.tbl-002",
+    "title": "Skempton A_f Values at Failure",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type / Condition", "A_f Range"],
+      "rows": [
+        ["Highly sensitive clay", "0.75–1.5"],
+        ["NC clay (normally consolidated)", "0.5–1.0"],
+        ["Lightly OC clay", "0.0–0.5"],
+        ["Heavily OC clay", "-0.5–0.0"],
+        ["Very loose sand", "2–3"],
+        ["Medium dense sand", "0–1"],
+        ["Dense sand", "-0.3–0"]
+      ]
+    },
+    "source": "Skempton (1954), Holtz et al. (2011)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.effective-stress.tbl-003",
+    "title": "Approximate Capillary Rise by Soil Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "Capillary Rise Range"],
+      "rows": [
+        ["Coarse gravel", "< 0.02 m"],
+        ["Coarse sand", "0.03–0.15 m"],
+        ["Fine sand", "0.3–1.0 m"],
+        ["Silt", "1–10 m"],
+        ["Clay", "10–30+ m"]
+      ]
+    },
+    "source": "Terzaghi & Peck (1967)"
+  }
+]

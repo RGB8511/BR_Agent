@@ -1,0 +1,133 @@
+[
+  {
+    "id": "water-infra.arch-dams.eq-001",
+    "title": "Thin Cylinder Formula — Arch Stress",
+    "equation": "σ = P × R / t",
+    "variables": {
+      "σ": {"description": "Compressive stress in arch ring", "units": "kPa or MPa"},
+      "P": {"description": "Hydrostatic pressure at the elevation = γw × h", "units": "kPa"},
+      "R": {"description": "Radius of arch ring at the elevation", "units": "m"},
+      "t": {"description": "Arch thickness at the elevation", "units": "m"}
+    },
+    "applicability": "First approximation for proportioning. Assumes uniform radial load, circular arch, pin-ended at abutments. Underestimates stress where cantilever action is significant. For initial sizing: t = P × R / σ_allow.",
+    "source": "Classical mechanics, USBR Design of Arch Dams"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-002",
+    "title": "Optimal Central Angle for Minimum Volume",
+    "equation": "2α_opt ≈ 133.56°",
+    "variables": {
+      "2α_opt": {"description": "Optimal total central angle of arch ring", "units": "degrees"}
+    },
+    "applicability": "Theoretical optimum for minimum concrete volume under uniform radial load. Practical range: 100–150°. Angles < 100° are too flat (high thrust, poor efficiency). Angles > 150° create unfavorable thrust direction at abutments.",
+    "source": "USBR Design of Arch Dams, theoretical derivation"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-003",
+    "title": "Arch Thrust at Abutment",
+    "equation": "T = P × R / (2 × sin(α)) × (per unit height)",
+    "variables": {
+      "T": {"description": "Thrust force per unit height at abutment", "units": "kN/m"},
+      "P": {"description": "Hydrostatic pressure", "units": "kPa"},
+      "R": {"description": "Arch radius", "units": "m"},
+      "α": {"description": "Half central angle of arch", "units": "radians"}
+    },
+    "applicability": "For circular arch under uniform radial load. Thrust is directed along the tangent to the arch at the abutment. Thrust direction relative to abutment rock surface is critical for sliding analysis.",
+    "source": "USBR Design of Arch Dams"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-004",
+    "title": "Arch Ring — Crown Deflection (Elastic)",
+    "equation": "δ_crown = (P × R⁴) / (E × I) × f(α)",
+    "variables": {
+      "δ_crown": {"description": "Radial deflection at arch crown", "units": "m"},
+      "P": {"description": "Uniform radial pressure", "units": "kPa"},
+      "R": {"description": "Arch radius", "units": "m"},
+      "E": {"description": "Modulus of elasticity of concrete (25–35 GPa)", "units": "kPa"},
+      "I": {"description": "Moment of inertia of arch ring = t³/12 (per unit height)", "units": "m³"},
+      "f(α)": {"description": "Function of half central angle — from structural tables", "units": "dimensionless"}
+    },
+    "applicability": "Used in trial load method to compute arch deflection for compatibility with cantilever deflection. Foundation flexibility adds additional deflection at abutments.",
+    "source": "USBR Trial Load Method"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-005",
+    "title": "Cantilever Deflection at Crown",
+    "equation": "δ_cant = (w × z⁴) / (8 × E × I_cant) (simplified — uniform load, fixed base)",
+    "variables": {
+      "δ_cant": {"description": "Radial deflection of cantilever at the crown elevation", "units": "m"},
+      "w": {"description": "Cantilever portion of water load (distributed radial load per unit height)", "units": "kN/m²"},
+      "z": {"description": "Height of cantilever element above base", "units": "m"},
+      "E": {"description": "Concrete modulus", "units": "kPa"},
+      "I_cant": {"description": "Moment of inertia of cantilever cross-section", "units": "m⁴/m"}
+    },
+    "applicability": "Simplified — actual cantilever analysis includes variable thickness, inclined upstream face, foundation flexibility. In trial load method, cantilever load is the residual after arch carries its share.",
+    "source": "USBR Trial Load Method"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-006",
+    "title": "Thermal Stress in Arch Ring",
+    "equation": "σ_thermal = E × α_T × ΔT / (1 - ν)  (restrained arch)",
+    "variables": {
+      "σ_thermal": {"description": "Thermal stress (tension for cooling, compression for heating)", "units": "MPa"},
+      "E": {"description": "Concrete modulus of elasticity", "units": "MPa"},
+      "α_T": {"description": "Coefficient of thermal expansion (9–12 × 10⁻⁶ /°C for concrete)", "units": "/°C"},
+      "ΔT": {"description": "Temperature change from closure (grouting) temperature", "units": "°C"},
+      "ν": {"description": "Poisson's ratio (0.15–0.20 for concrete)", "units": "dimensionless"}
+    },
+    "applicability": "Arch dams are sensitive to temperature — a 10°C cooling below closure temperature can induce 2–4 MPa tension. Closure (grouting) temperature selected to minimize stress range over annual temperature cycle. Typical closure temperature = mean annual temperature of reservoir ± adjustment.",
+    "source": "USBR, ACI 207.1R"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-007",
+    "title": "Abutment Sliding Stability — 3D Wedge Analysis",
+    "equation": "FS = (ΣN × tanφ + c × A_contact) / ΣS",
+    "variables": {
+      "FS": {"description": "Factor of safety against sliding", "units": "dimensionless"},
+      "ΣN": {"description": "Sum of forces normal to sliding surface (including weight, arch thrust component, uplift)", "units": "kN"},
+      "φ": {"description": "Friction angle of sliding surface", "units": "degrees"},
+      "c": {"description": "Cohesion of sliding surface", "units": "kPa"},
+      "A_contact": {"description": "Area of sliding surface in contact", "units": "m²"},
+      "ΣS": {"description": "Sum of forces parallel to sliding surface (driving forces)", "units": "kN"}
+    },
+    "applicability": "3D wedge analysis on identified potential sliding planes (faults, joints, shear zones). Multiple sliding planes may form composite wedge. Direction of arch thrust relative to sliding surface is critical. FS requirements: ≥ 2.0 usual, ≥ 1.5 unusual, > 1.0 extreme (FERC).",
+    "source": "USBR, FERC Engineering Guidelines Ch 11"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-008",
+    "title": "Crest Length to Height Ratio",
+    "equation": "L/H = crest length / structural height",
+    "variables": {
+      "L": {"description": "Crest length (measured along the crest)", "units": "m"},
+      "H": {"description": "Structural height (foundation to crest)", "units": "m"}
+    },
+    "applicability": "Key index for arch dam feasibility: L/H < 3: ideal for thin arch. L/H 3–5: thick arch or arch-gravity. L/H > 5–6: gravity dam usually more economical. Actual threshold depends on site geology and economics.",
+    "source": "USBR, ICOLD, general practice"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-009",
+    "title": "Base Pressure — Thick Arch (Combined Arch and Cantilever)",
+    "equation": "σ = N/A ± M×y/I",
+    "variables": {
+      "σ": {"description": "Normal stress at a point on the cross-section", "units": "MPa"},
+      "N": {"description": "Axial thrust in the arch or cantilever", "units": "kN"},
+      "A": {"description": "Cross-sectional area", "units": "m²"},
+      "M": {"description": "Bending moment", "units": "kN·m"},
+      "y": {"description": "Distance from neutral axis to point of interest", "units": "m"},
+      "I": {"description": "Moment of inertia", "units": "m⁴"}
+    },
+    "applicability": "For arch rings: N is the arch thrust, M is the arch bending moment (from non-uniform loading, fixed abutments). For cantilevers: N is the vertical weight, M is from the portion of hydrostatic load carried by cantilever action. Stresses checked at upstream face, downstream face, and abutment contacts.",
+    "source": "General structural mechanics, USBR Trial Load Method"
+  },
+  {
+    "id": "water-infra.arch-dams.eq-010",
+    "title": "Foundation Modulus Ratio",
+    "equation": "Ef/Ec = (rock mass modulus) / (concrete modulus)",
+    "variables": {
+      "Ef": {"description": "Foundation (rock mass) deformation modulus", "units": "GPa"},
+      "Ec": {"description": "Concrete modulus of elasticity", "units": "GPa"}
+    },
+    "applicability": "Ef/Ec ratio strongly affects load distribution. Ef/Ec > 1: stiff foundation, more load carried by arches. Ef/Ec < 1: flexible foundation, more load to cantilevers, higher deflections. Ef/Ec < 0.25 generally problematic for arch dams — excessive deformation. Rock mass modulus typically 30–70% of intact rock modulus depending on jointing.",
+    "source": "USBR, ICOLD Bulletin 155"
+  }
+]

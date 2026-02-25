@@ -1,0 +1,160 @@
+[
+  {
+    "id": "field-exploration.cpt-cptu.eq-001",
+    "title": "Corrected Cone Tip Resistance (qt)",
+    "equation": "qt = qc + u2 × (1 - a)",
+    "variables": {
+      "qt": {"description": "Corrected total cone tip resistance", "units": "MPa"},
+      "qc": {"description": "Measured cone tip resistance", "units": "MPa"},
+      "u2": {"description": "Pore pressure measured at shoulder (u2 position)", "units": "MPa"},
+      "a": {"description": "Net area ratio of cone (typically 0.70–0.85, cone-specific)", "units": "dimensionless"}
+    },
+    "applicability": "Essential correction for piezocone (CPTU) data. In clays, u2 can be large → significant correction. In sands, u2 ≈ 0 → qt ≈ qc. Always use qt for interpretation, never raw qc.",
+    "source": "Lunne et al. (1997), ASTM D5778"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-002",
+    "title": "Normalized Cone Parameters (Robertson 2009)",
+    "equation": "Qtn = [(qt - σv0) / Pa] × (Pa / σ'v0)^n;  Fr = [fs / (qt - σv0)] × 100%;  Bq = (u2 - u0) / (qt - σv0)",
+    "variables": {
+      "Qtn": {"description": "Normalized cone resistance (stress-exponent adjusted)", "units": "dimensionless"},
+      "Fr": {"description": "Normalized friction ratio", "units": "%"},
+      "Bq": {"description": "Pore pressure ratio", "units": "dimensionless"},
+      "σv0": {"description": "Total vertical stress at test depth", "units": "kPa"},
+      "σ'v0": {"description": "Effective vertical stress at test depth", "units": "kPa"},
+      "Pa": {"description": "Atmospheric pressure (100 kPa)", "units": "kPa"},
+      "n": {"description": "Stress exponent (0.5 for clean sands, 1.0 for clays; iterate via Ic)", "units": "dimensionless"},
+      "fs": {"description": "Measured sleeve friction", "units": "kPa"},
+      "u0": {"description": "Equilibrium (hydrostatic) pore pressure", "units": "kPa"}
+    },
+    "applicability": "Used for Robertson SBTn soil behavior type classification. n varies with soil type — Robertson (2009) provides iterative procedure using Ic to determine n.",
+    "source": "Robertson (2009), Robertson & Cabal (2015)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-003",
+    "title": "Soil Behavior Type Index (Ic)",
+    "equation": "Ic = √[(3.47 - log Qtn)² + (1.22 + log Fr)²]",
+    "variables": {
+      "Ic": {"description": "Soil Behavior Type Index", "units": "dimensionless"},
+      "Qtn": {"description": "Normalized cone resistance", "units": "dimensionless"},
+      "Fr": {"description": "Normalized friction ratio", "units": "%"}
+    },
+    "applicability": "Ic < 1.31: gravelly sand to dense sand. 1.31–2.05: clean sand to silty sand. 2.05–2.60: silty sand to sandy silt. 2.60–2.95: clayey silt to silty clay. 2.95–3.60: silty clay to clay. > 3.60: organic soils/sensitive clays. Ic = 2.6 is approximate boundary between sand-like and clay-like behavior.",
+    "source": "Robertson (2009)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-004",
+    "title": "Undrained Shear Strength from CPT (Clays)",
+    "equation": "Su = (qt - σv0) / Nkt",
+    "variables": {
+      "Su": {"description": "Undrained shear strength", "units": "kPa"},
+      "qt": {"description": "Corrected cone tip resistance", "units": "kPa"},
+      "σv0": {"description": "Total vertical overburden stress", "units": "kPa"},
+      "Nkt": {"description": "Cone bearing factor (10–20; typically 12–15 for most clays)", "units": "dimensionless"}
+    },
+    "applicability": "Site-specific Nkt calibrated against lab vane or triaxial tests preferred. General: Nkt = 14 ± 4. Also: Su = (qt - σv0) / NΔu × (u2-u0) using excess pore pressure approach (NΔu typically 5–10).",
+    "source": "Lunne et al. (1997), Mayne (2007)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-005",
+    "title": "Effective Friction Angle from CPT (Sands)",
+    "equation": "φ' = 17.6 + 11.0 × log(Qtn)  [Robertson & Campanella]",
+    "alt_form": "φ' = arctan[0.1 + 0.38 × log(qt/σ'v0)]  [Kulhawy & Mayne 1990]",
+    "variables": {
+      "φ'": {"description": "Effective friction angle", "units": "degrees"},
+      "Qtn": {"description": "Normalized cone resistance", "units": "dimensionless"},
+      "qt": {"description": "Corrected cone resistance", "units": "kPa"},
+      "σ'v0": {"description": "Effective overburden stress", "units": "kPa"}
+    },
+    "applicability": "For clean to silty sands (Ic < 2.6). Multiple correlations exist; Kulhawy & Mayne widely used. Typical range: φ' = 28–45° corresponding to qt/σ'v0 = 20–400.",
+    "source": "Robertson & Campanella (1983), Kulhawy & Mayne (1990)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-006",
+    "title": "Relative Density from CPT (Sands)",
+    "equation": "Dr (%) = 100 × √[Qtn / (305 × Qc)]  [Jamiolkowski et al.]",
+    "alt_form": "Dr = -98 + 66 × log₁₀(qc1N)  [Kulhawy & Mayne 1990, modified]",
+    "variables": {
+      "Dr": {"description": "Relative density", "units": "%"},
+      "Qtn": {"description": "Normalized cone resistance", "units": "dimensionless"},
+      "Qc": {"description": "Compressibility factor (0.91 for high compress., 1.0 for moderate, 1.09 for low)", "units": "dimensionless"}
+    },
+    "applicability": "Approximate — sensitive to sand compressibility, mineralogy, and cementation. Use with caution; Dr is not a fundamental parameter.",
+    "source": "Jamiolkowski et al. (2003), Kulhawy & Mayne (1990)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-007",
+    "title": "Constrained Modulus from CPT",
+    "equation": "M = αM × (qt - σv0)",
+    "variables": {
+      "M": {"description": "Constrained (1-D) modulus", "units": "MPa"},
+      "αM": {"description": "Modulus factor (varies with Ic and Qt)", "units": "dimensionless"},
+      "qt": {"description": "Corrected cone resistance", "units": "MPa"},
+      "σv0": {"description": "Total overburden stress", "units": "MPa"}
+    },
+    "applicability": "Robertson (2009): αM = 14 for Ic < 2.1 (sands); αM varies 2–14 for 2.1 < Ic < 2.6; αM = Qtn when Qtn < 14 for clays. Alternative: M = 1/mv from consolidation tests for calibration.",
+    "source": "Robertson (2009)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-008",
+    "title": "Coefficient of Consolidation from Dissipation Test",
+    "equation": "ch = (T* × r²) / t50",
+    "variables": {
+      "ch": {"description": "Horizontal coefficient of consolidation", "units": "m²/s"},
+      "T*": {"description": "Time factor at 50% dissipation (T50* ≈ 0.245 for u2 position, Teh & Houlsby)", "units": "dimensionless"},
+      "r": {"description": "Cone radius (standard 10-cm² cone: r = 17.8 mm)", "units": "m"},
+      "t50": {"description": "Time for 50% pore pressure dissipation", "units": "seconds"}
+    },
+    "applicability": "From monotonic dissipation tests. t50 from plot of u2 vs. log(time). ch relates to cv by ch = cv × (kh/kv). Typical t50: seconds (sand) to hours (fat clay).",
+    "source": "Teh & Houlsby (1991), Robertson et al. (1992)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-009",
+    "title": "OCR from CPT (Clays)",
+    "equation": "OCR = k × (qt - σv0) / σ'v0",
+    "variables": {
+      "OCR": {"description": "Overconsolidation ratio", "units": "dimensionless"},
+      "k": {"description": "Empirical constant (0.2–0.5; typically 0.33 for general use)", "units": "dimensionless"},
+      "qt": {"description": "Corrected cone resistance", "units": "kPa"},
+      "σv0": {"description": "Total overburden stress", "units": "kPa"},
+      "σ'v0": {"description": "Effective overburden stress", "units": "kPa"}
+    },
+    "applicability": "For intact clays. k is site-specific — calibrate against oedometer results. Mayne (2007): OCR = 0.33 × (qt - σv0)/σ'v0 is a reasonable first estimate. Also: OCR from Bq or Δu approaches.",
+    "source": "Mayne (2007), Kulhawy & Mayne (1990)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-010",
+    "title": "Liquefaction Screening — CRR from CPT",
+    "equation": "If qc1Ncs < 50: CRR7.5 = exp[(qc1Ncs/540) + (qc1Ncs/67)² - (qc1Ncs/80)³ + (qc1Ncs/114)⁴ - 3]",
+    "variables": {
+      "CRR7.5": {"description": "Cyclic Resistance Ratio for M=7.5 earthquake", "units": "dimensionless"},
+      "qc1Ncs": {"description": "Clean-sand equivalent normalized cone resistance", "units": "dimensionless"}
+    },
+    "applicability": "Robertson & Wride (1998) / Youd et al. (2001) method, updated by Boulanger & Idriss (2014). qc1Ncs accounts for fines content via Ic-based correction. Compare CRR to CSR (from seismic loading) for FS against liquefaction. FS < 1.0 = potentially liquefiable.",
+    "source": "Boulanger & Idriss (2014), Robertson & Wride (1998)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-011",
+    "title": "Small-Strain Shear Modulus from Seismic CPT",
+    "equation": "G0 = ρ × Vs²",
+    "variables": {
+      "G0": {"description": "Small-strain (maximum) shear modulus", "units": "kPa"},
+      "ρ": {"description": "Mass density of soil", "units": "kg/m³ or Mg/m³"},
+      "Vs": {"description": "Shear wave velocity (measured by SCPT)", "units": "m/s"}
+    },
+    "applicability": "SCPT measures Vs at 1-m intervals during CPT advance. G0 is the fundamental stiffness parameter for dynamic and small-strain problems. G/G0 degradation curves then applied for design strain levels.",
+    "source": "General elasticity, Robertson et al. (1986)"
+  },
+  {
+    "id": "field-exploration.cpt-cptu.eq-012",
+    "title": "Hydraulic Conductivity Estimate from CPT",
+    "equation": "log(k) ≈ 1.0 - Ic when 1.0 < Ic < 3.27;  log(k) ≈ -5.0 when Ic > 3.27  [k in m/s]",
+    "alt_form": "k = 10^(0.952 - 3.04×Ic)  for 1.0 < Ic < 3.27  [Robertson & Cabal 2015]",
+    "variables": {
+      "k": {"description": "Estimated hydraulic conductivity", "units": "m/s"},
+      "Ic": {"description": "Soil Behavior Type Index", "units": "dimensionless"}
+    },
+    "applicability": "Very approximate screening estimate only. Varies over orders of magnitude. Dissipation tests provide better estimates of ch. Use for preliminary seepage assessment and identifying permeable vs. impermeable layers.",
+    "source": "Robertson (2010), Robertson & Cabal (2015)"
+  }
+]

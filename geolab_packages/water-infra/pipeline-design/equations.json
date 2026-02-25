@@ -1,0 +1,131 @@
+[
+  {
+    "id": "water-infra.pipeline-design.eq-001",
+    "title": "Barlow Formula — Internal Pressure Wall Thickness",
+    "equation": "t = (P × D_o) / (2 × σ_allow)",
+    "variables": {
+      "t": {"description": "Required wall thickness", "units": "mm or inches"},
+      "P": {"description": "Design internal pressure", "units": "kPa or psi"},
+      "D_o": {"description": "Outside diameter of pipe", "units": "mm or inches"},
+      "σ_allow": {"description": "Allowable hoop stress = σ_y / FS", "units": "kPa or psi"}
+    },
+    "applicability": "For thin-walled cylinders (D/t > 10). Steel pipe: FS = 2.0 for working pressure (σ_allow = 0.50σy). AWWA M11 allows 0.75σy for combined working + transient.",
+    "source": "AWWA M11, Barlow (1836)"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-002",
+    "title": "Minimum Wall Thickness — Steel Pipe (Handling)",
+    "equation": "t_min = D/288 + 1.27 mm",
+    "variables": {
+      "t_min": {"description": "Minimum wall thickness for handling and installation", "units": "mm"},
+      "D": {"description": "Nominal pipe diameter", "units": "mm"}
+    },
+    "applicability": "AWWA M11 requirement regardless of pressure. Ensures pipe can withstand handling, transportation, and installation loads without damage.",
+    "source": "AWWA M11"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-003",
+    "title": "Thrust Force at Bend",
+    "equation": "T = 2 × P × A × sin(θ/2)",
+    "variables": {
+      "T": {"description": "Resultant thrust force", "units": "kN"},
+      "P": {"description": "Internal pressure (design pressure including surge)", "units": "kPa"},
+      "A": {"description": "Internal cross-sectional area of pipe = π/4 × Di²", "units": "m²"},
+      "θ": {"description": "Deflection angle of bend", "units": "radians or degrees"}
+    },
+    "applicability": "Force acts along the bisector of the bend angle, directed outward. For dead ends: T = P × A. For tees: T = P × A (on branch). For reducers: T = P × (A_large - A_small).",
+    "source": "AWWA M11, AWWA C600"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-004",
+    "title": "Thrust Block Bearing Area",
+    "equation": "A_block = T / q_allow",
+    "variables": {
+      "A_block": {"description": "Required bearing area of thrust block against soil", "units": "m²"},
+      "T": {"description": "Thrust force at fitting", "units": "kN"},
+      "q_allow": {"description": "Allowable soil bearing pressure (passive resistance of undisturbed soil)", "units": "kPa"}
+    },
+    "applicability": "Bearing pressure depends on soil type: 50–100 kPa for soft clay, 100–200 for stiff clay, 150–250 for sand, 200–400 for gravel. Block must bear against undisturbed soil (not fill). Block sized for test pressure, not just working pressure.",
+    "source": "AWWA M11, AWWA C600"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-005",
+    "title": "Length of Restrained Pipe at Bend",
+    "equation": "L_r = T / (π × D × f_s × γ × H_c)",
+    "variables": {
+      "L_r": {"description": "Length of restrained pipe on each side of fitting", "units": "m"},
+      "T": {"description": "Thrust force", "units": "kN"},
+      "D": {"description": "Outside pipe diameter", "units": "m"},
+      "f_s": {"description": "Coefficient of friction between pipe and soil (0.25–0.50)", "units": "dimensionless"},
+      "γ": {"description": "Unit weight of soil backfill", "units": "kN/m³"},
+      "H_c": {"description": "Depth of cover to pipe centerline", "units": "m"}
+    },
+    "applicability": "Simplified approach — assumes friction on pipe exterior mobilizes soil resistance. Some methods also include passive pressure on the pipe bell. Conservative for shallow burial.",
+    "source": "AWWA M41, Ductile Iron Pipe Research Association (DIPRA)"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-006",
+    "title": "DIP Pressure Class — Design Thickness",
+    "equation": "t_net = (P_i × D_o) / (2 × S_y) + e_s",
+    "variables": {
+      "t_net": {"description": "Net thickness (no corrosion allowance yet)", "units": "inches"},
+      "P_i": {"description": "Internal pressure (working + surge)", "units": "psi"},
+      "D_o": {"description": "Outside diameter", "units": "inches"},
+      "S_y": {"description": "Minimum yield strength of ductile iron (42,000 psi)", "units": "psi"},
+      "e_s": {"description": "Service allowance (0.08 in for all sizes per AWWA C150)", "units": "inches"}
+    },
+    "applicability": "Per AWWA C150. Separate calculations for internal pressure and external load (Marston-Spangler + live load). Governing thickness = maximum of all requirements + casting tolerance.",
+    "source": "AWWA C150/C151"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-007",
+    "title": "HDPE Pressure Rating (DR Method)",
+    "equation": "P_r = (2 × S) / (DR - 1)",
+    "variables": {
+      "P_r": {"description": "Pressure rating at 73°F (23°C)", "units": "psi"},
+      "S": {"description": "Hydrostatic Design Basis (HDB) stress (1600 psi for PE4710)", "units": "psi"},
+      "DR": {"description": "Dimension Ratio = D_o / t", "units": "dimensionless"}
+    },
+    "applicability": "DR is the inverse of SDR. Lower DR = thicker wall = higher pressure. Common water DRs: 7, 9, 11, 13.5, 17, 21. Derate for temperature > 73°F and for surge.",
+    "source": "AWWA C906, AWWA M55, PPI TR-9"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-008",
+    "title": "External Collapse Resistance (Steel — Critical Buckling)",
+    "equation": "P_cr = (2E / (1-ν²)) × (t/D)³",
+    "variables": {
+      "P_cr": {"description": "Critical external buckling pressure", "units": "kPa"},
+      "E": {"description": "Modulus of elasticity of pipe (200 GPa for steel)", "units": "kPa"},
+      "ν": {"description": "Poisson's ratio (0.30 for steel)", "units": "dimensionless"},
+      "t": {"description": "Wall thickness", "units": "m"},
+      "D": {"description": "Pipe diameter", "units": "m"}
+    },
+    "applicability": "For unsupported circular ring. Safety factor ≥ 2.0 for vacuum resistance. With soil support (buried pipe), actual collapse resistance is significantly higher — use more detailed analysis per AWWA M11.",
+    "source": "Timoshenko (1936), AWWA M11"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-009",
+    "title": "Hoop Stress Check (Combined Loading)",
+    "equation": "σ_total = σ_hoop + σ_thermal + σ_Poisson ≤ σ_allow",
+    "variables": {
+      "σ_hoop": {"description": "PD/(2t) from internal pressure", "units": "MPa"},
+      "σ_thermal": {"description": "E × α × ΔT (if restrained from expansion)", "units": "MPa"},
+      "σ_Poisson": {"description": "ν × σ_longitudinal (Poisson effect from longitudinal loads)", "units": "MPa"},
+      "σ_allow": {"description": "Allowable combined stress", "units": "MPa"}
+    },
+    "applicability": "For exposed/above-ground or rigidly restrained pipe. Buried pipe with flexible joints generally not subject to combined stress check. ASCE MOP 79 addresses combined loading for penstocks.",
+    "source": "AWWA M11, ASCE MOP 79"
+  },
+  {
+    "id": "water-infra.pipeline-design.eq-010",
+    "title": "Corrosion Allowance — Service Life",
+    "equation": "t_corrosion = r_corrosion × T_design",
+    "variables": {
+      "t_corrosion": {"description": "Additional wall thickness for corrosion", "units": "mm"},
+      "r_corrosion": {"description": "Corrosion rate (0.01–0.05 mm/yr for protected steel, 0.05–0.15 for unprotected)", "units": "mm/year"},
+      "T_design": {"description": "Design service life", "units": "years"}
+    },
+    "applicability": "Apply when cathodic protection or coating may be compromised. Not needed for PVC, HDPE, or well-protected (CML + coating + CP) steel. AWWA M11 generally does not add corrosion allowance if full protection system is provided.",
+    "source": "AWWA M11, general practice"
+  }
+]

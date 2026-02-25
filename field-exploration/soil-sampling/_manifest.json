@@ -1,0 +1,26 @@
+{
+  "id": "field-exploration.soil-sampling",
+  "name": "Soil Sampling Methods & Sample Quality",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.subsurface",
+  "dependencies": [
+    "field-exploration.drilling-methods"
+  ],
+  "tags": ["split-spoon", "Shelby-tube", "thin-wall", "piston-sampler", "Osterberg", "Denison", "pitcher", "block-sample", "sample-quality", "Lunne", "area-ratio", "cutting-ratio", "sample-disturbance", "preservation", "wax-seal", "extruding"],
+  "standards": ["ASTM-D1586", "ASTM-D1587", "ASTM-D3550", "ASTM-D4220", "ASTM-D6519"],
+  "key_references": [
+    "Hvorslev (1949) Subsurface Exploration and Sampling of Soils for Civil Engineering Purposes",
+    "Ladd & DeGroot (2003) Recommended Practice for Soft Ground Site Characterization",
+    "Lunne et al. (1997) Sample Disturbance — NGI Publication 204",
+    "FHWA NHI-01-031 — Subsurface Investigations"
+  ],
+  "equation_count": 6,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

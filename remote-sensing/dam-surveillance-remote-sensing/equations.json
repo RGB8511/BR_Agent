@@ -1,0 +1,78 @@
+[
+  {
+    "id": "remote-sensing.dam-surveillance.eq-001",
+    "title": "NDVI — Normalized Difference Vegetation Index",
+    "equation": "NDVI = (NIR - Red) / (NIR + Red)",
+    "variables": {
+      "NDVI": {"description": "Vegetation index (-1 to +1; >0.3 = vegetation; >0.6 = dense/healthy vegetation)", "units": "dimensionless"},
+      "NIR": {"description": "Near-infrared reflectance (750–900 nm typical)", "units": "dimensionless"},
+      "Red": {"description": "Red band reflectance (620–700 nm typical)", "units": "dimensionless"}
+    },
+    "applicability": "Anomalous NDVI on dam/levee surfaces indicates moisture concentration from seepage. Compare to baseline seasonal pattern. Threshold: NDVI > 0.15–0.20 on surfaces expected to be bare/dry suggests seepage influence.",
+    "source": "Rouse et al. (1974), general remote sensing"
+  },
+  {
+    "id": "remote-sensing.dam-surveillance.eq-002",
+    "title": "Stefan-Boltzmann Law — Radiant Exitance",
+    "equation": "M = ε × σ × T⁴",
+    "variables": {
+      "M": {"description": "Radiant exitance (thermal radiation power per area)", "units": "W/m²"},
+      "ε": {"description": "Surface emissivity (0.90–0.98 for soil, water, concrete, vegetation)", "units": "dimensionless"},
+      "σ": {"description": "Stefan-Boltzmann constant (5.67 × 10⁻⁸ W/m²/K⁴)", "units": "W/m²/K⁴"},
+      "T": {"description": "Surface temperature", "units": "K"}
+    },
+    "applicability": "Thermal cameras measure radiant exitance and convert to apparent temperature. Emissivity correction essential — water ε ≈ 0.96, dry soil ε ≈ 0.92–0.96, concrete ε ≈ 0.90–0.95, vegetation ε ≈ 0.95–0.98. At 20°C, 1°C change ≈ 5 W/m² change in exitance.",
+    "source": "General physics, thermal remote sensing"
+  },
+  {
+    "id": "remote-sensing.dam-surveillance.eq-003",
+    "title": "Thermal Contrast for Seepage Detection",
+    "equation": "ΔT = T_seepage - T_dry",
+    "variables": {
+      "ΔT": {"description": "Temperature difference between seepage zone and dry surface", "units": "°C"},
+      "T_seepage": {"description": "Surface temperature at seepage zone (influenced by reservoir temperature)", "units": "°C"},
+      "T_dry": {"description": "Surface temperature of dry (non-seepage) adjacent area", "units": "°C"}
+    },
+    "applicability": "ΔT typically 2–10°C in optimal conditions (pre-dawn, cool season). Minimum detectable ΔT: 0.1°C (cooled sensors) to 0.5°C (uncooled). Best in winter/spring when reservoir water is warmer than ambient. Summer: contrast may reverse or diminish.",
+    "source": "Darilek et al. (2005), USBR experience"
+  },
+  {
+    "id": "remote-sensing.dam-surveillance.eq-004",
+    "title": "GB-InSAR Displacement Precision",
+    "equation": "σ_d = λ / (4π × SNR)",
+    "variables": {
+      "σ_d": {"description": "Displacement precision per pixel", "units": "m"},
+      "λ": {"description": "Radar wavelength (Ku-band: 0.017 m typical)", "units": "m"},
+      "SNR": {"description": "Signal-to-noise ratio (typically 20–40 dB for dam surfaces)", "units": "dimensionless (power ratio)"}
+    },
+    "applicability": "Practical precision: 0.1–0.5 mm for individual measurements at typical dam ranges (100–2000 m). Atmospheric correction critical — path length errors of 1–10 mm common. Differential measurement relative to stable reference reflectors mitigates atmospheric effects.",
+    "source": "Monserrat et al. (2014), IDS GeoRadar"
+  },
+  {
+    "id": "remote-sensing.dam-surveillance.eq-005",
+    "title": "Corner Reflector Radar Cross Section (RCS)",
+    "equation": "RCS = (4π × a⁴) / (3 × λ²)  (triangular trihedral)",
+    "variables": {
+      "RCS": {"description": "Radar cross section", "units": "m²"},
+      "a": {"description": "Inner edge length of triangular corner reflector", "units": "m"},
+      "λ": {"description": "Radar wavelength", "units": "m"}
+    },
+    "applicability": "RCS scales as a⁴ — doubling edge length increases RCS by 16×. For C-band satellite InSAR (λ=0.056 m): a=0.7 m gives RCS ≈ 34 dBm², sufficient for reliable PS identification. Multiple corner reflectors on dam crest/face create known reference points.",
+    "source": "Ferretti et al. (2007)"
+  },
+  {
+    "id": "remote-sensing.dam-surveillance.eq-006",
+    "title": "Seepage Velocity from Thermal Profile (Bredehoeft & Papadopulos)",
+    "equation": "T(z) = T_s + (T_d - T_s) × [exp(v_z × z / κ) - 1] / [exp(v_z × L / κ) - 1]",
+    "variables": {
+      "T(z)": {"description": "Temperature at depth z", "units": "°C"},
+      "T_s": {"description": "Surface temperature", "units": "°C"},
+      "T_d": {"description": "Temperature at depth L", "units": "°C"},
+      "v_z": {"description": "Vertical seepage velocity (Darcy velocity)", "units": "m/s"},
+      "κ": {"description": "Thermal diffusivity of saturated soil (~0.5–1.0 × 10⁻⁶ m²/s)", "units": "m²/s"},
+      "L": {"description": "Depth of temperature profile", "units": "m"}
+    },
+    "applicability": "1D steady-state conduction-advection model. Deviation of temperature profile from linear (conduction-only) indicates vertical groundwater flow. Concave-up profile = downward flow; convex-up = upward flow. Applied using DTS (Distributed Temperature Sensing) in monitoring boreholes.",
+    "source": "Bredehoeft & Papadopulos (1965)"
+  }
+]

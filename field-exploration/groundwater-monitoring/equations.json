@@ -1,0 +1,88 @@
+[
+  {
+    "id": "field-exploration.groundwater-monitoring.eq-001",
+    "title": "Groundwater Elevation from Depth-to-Water",
+    "equation": "GW_elev = RP_elev - DTW",
+    "variables": {
+      "GW_elev": {"description": "Groundwater elevation", "units": "m or ft (NAVD88 or local datum)"},
+      "RP_elev": {"description": "Reference point elevation (surveyed top of casing or mark)", "units": "m or ft"},
+      "DTW": {"description": "Depth to water measured from reference point", "units": "m or ft"}
+    },
+    "applicability": "For artesian (flowing) wells, DTW is negative (water above reference point) and GW_elev > RP_elev. Always record measurement point, date, time, and method.",
+    "source": "Standard practice — ASTM D4750"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.eq-002",
+    "title": "Hydraulic Gradient from Well Pairs",
+    "equation": "i = (h₁ - h₂) / L",
+    "variables": {
+      "i": {"description": "Hydraulic gradient (dimensionless)", "units": "m/m"},
+      "h₁": {"description": "Hydraulic head at upgradient well", "units": "m"},
+      "h₂": {"description": "Hydraulic head at downgradient well", "units": "m"},
+      "L": {"description": "Horizontal distance between wells", "units": "m"}
+    },
+    "applicability": "Requires minimum 3 wells (triangle method) to determine gradient magnitude and direction. Two wells give gradient along the line between them only. Wells must be screened in the same aquifer zone.",
+    "source": "Darcy's Law — standard hydrogeology"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.eq-003",
+    "title": "Casing Volume (for Development)",
+    "equation": "V_casing = π/4 × D² × L_water",
+    "variables": {
+      "V_casing": {"description": "Volume of water standing in casing", "units": "L or gallons"},
+      "D": {"description": "Internal diameter of well casing", "units": "m or ft"},
+      "L_water": {"description": "Length of water column in casing (total depth - depth to water)", "units": "m or ft"}
+    },
+    "applicability": "Development requires removal of 3–5 casing volumes minimum. 50 mm (2 in) well: ~1.6 L/m (0.16 gal/ft). 100 mm (4 in) well: ~6.5 L/m (0.65 gal/ft). Also include filter pack annular volume for thorough development.",
+    "source": "Standard practice"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.eq-004",
+    "title": "Filter Pack Grain Size Selection",
+    "equation": "D50_filter = (4 to 6) × D50_formation",
+    "variables": {
+      "D50_filter": {"description": "Median grain size of filter pack sand", "units": "mm"},
+      "D50_formation": {"description": "Median grain size of aquifer formation", "units": "mm"}
+    },
+    "applicability": "For uniform formations (Cu < 3). For well-graded formations (Cu > 6): D50_filter = 6–9 × D30_formation. Screen slot size ≈ D10 of filter pack (retains 90% of pack). If formation is unknown, use commercial filter sand (1–2 mm).",
+    "source": "Driscoll (1986) Groundwater and Wells, ASTM D5092"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.eq-005",
+    "title": "Barometric Efficiency",
+    "equation": "BE = -ΔWL / (ΔBP / ρg)",
+    "variables": {
+      "BE": {"description": "Barometric efficiency (0 to 1.0)", "units": "dimensionless"},
+      "ΔWL": {"description": "Change in water level (positive = rise)", "units": "m"},
+      "ΔBP": {"description": "Change in barometric pressure (positive = increase)", "units": "kPa"},
+      "ρg": {"description": "Specific weight of water (9.81 kN/m³)", "units": "kN/m³"}
+    },
+    "applicability": "Confined aquifers: BE = 0.2–0.8 (water level responds inversely to barometric changes). Unconfined: BE ≈ 0 (atmospheric pressure transmitted directly to water table). Must correct non-vented transducer data for barometric effects.",
+    "source": "Freeze & Cherry (1979), Todd & Mays (2005)"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.eq-006",
+    "title": "Three-Point Method — Gradient Direction",
+    "equation": "Gradient direction determined by: (1) interpolate head at point on line between highest and lowest wells equal to intermediate well head, (2) gradient is perpendicular to this line, pointing from high to low",
+    "variables": {
+      "h_A, h_B, h_C": {"description": "Hydraulic heads at three wells", "units": "m"},
+      "x_A, y_A, etc.": {"description": "Well coordinates", "units": "m"}
+    },
+    "applicability": "Minimum 3 non-collinear wells in same aquifer. For more than 3 wells, use contouring (kriging) or plane-fitting. Gradient direction = flow direction in isotropic aquifer. In anisotropic aquifer, flow direction deviates from gradient direction.",
+    "source": "Standard hydrogeology — Fetter (2001)"
+  },
+  {
+    "id": "field-exploration.groundwater-monitoring.eq-007",
+    "title": "Annular Grout Volume",
+    "equation": "V_grout = π/4 × (D_bore² - D_casing²) × L_grout × F_waste",
+    "variables": {
+      "V_grout": {"description": "Volume of grout required", "units": "m³ or liters"},
+      "D_bore": {"description": "Borehole diameter", "units": "m"},
+      "D_casing": {"description": "Outside diameter of well casing", "units": "m"},
+      "L_grout": {"description": "Length of grouted interval", "units": "m"},
+      "F_waste": {"description": "Waste/loss factor (1.15–1.30 typical)", "units": "dimensionless"}
+    },
+    "applicability": "Grout must be tremied from bottom-up to prevent bridging. Cement-bentonite grout: 1 bag (94 lb) Portland cement + 3–5% bentonite by weight of water + 6–7 gal water ≈ 1.2 ft³ of grout.",
+    "source": "ASTM D5092, state well construction standards"
+  }
+]

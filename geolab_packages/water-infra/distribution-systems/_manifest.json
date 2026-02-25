@@ -1,0 +1,30 @@
+{
+  "id": "water-infra.distribution-systems",
+  "name": "Water Distribution System Design",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.distribution",
+  "dependencies": [
+    "water-infra.pipeline-hydraulics",
+    "water-infra.pipeline-design",
+    "water-infra.pump-hydraulics",
+    "water-infra.water-storage-tanks"
+  ],
+  "tags": ["distribution", "network", "pressure-zone", "PRV", "fire-flow", "water-age", "demand", "peaking-factor", "looped", "dead-end", "water-model", "EPANET", "C-factor", "fire-hydrant", "service-connection", "master-plan"],
+  "standards": ["AWWA-M31", "10-States-Standards", "NFPA-24", "AWWA-C500-series"],
+  "key_references": [
+    "AWWA M31 — Distribution System Requirements for Fire Protection",
+    "Walski et al. (2003) Advanced Water Distribution Modeling and Management",
+    "AWWA M32 — Computer Modeling of Water Distribution Systems",
+    "10 States Standards (GLUMRB)",
+    "EPA EPANET Users Manual"
+  ],
+  "equation_count": 8,
+  "concept_count": 18,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

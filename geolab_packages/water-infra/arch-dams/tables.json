@@ -1,0 +1,86 @@
+[
+  {
+    "id": "water-infra.arch-dams.tbl-001",
+    "title": "Arch Dam Type Selection by Valley Geometry",
+    "type": "classification",
+    "data": {
+      "headers": ["Valley Shape", "L/H Ratio", "Recommended Dam Type", "Structural Behavior", "Examples"],
+      "rows": [
+        ["Narrow V-shape", "< 2", "Thin double-curvature arch", "Predominantly arch action, shell behavior", "Morrow Point (142m), Pacoima (113m)"],
+        ["Moderate V or U", "2–3.5", "Medium-thick arch", "Arch + cantilever, trial load or FEM analysis", "Glen Canyon (216m), Hoover (221m)"],
+        ["Wide U-shape", "3.5–5", "Thick arch or arch-gravity", "Significant cantilever action, gravity assists", "Shasta (183m — curved gravity)"],
+        ["Asymmetric valley", "Variable", "Variable-radius arch, thrust block on weak side", "Asymmetric load distribution", "Requires 3D FEM"],
+        ["Very wide", "> 5–6", "Gravity dam preferred", "Arch not economical", "Consider RCC gravity or embankment"]
+      ]
+    },
+    "source": "USBR, ICOLD, general practice"
+  },
+  {
+    "id": "water-infra.arch-dams.tbl-002",
+    "title": "Allowable Stresses for Arch Dam Concrete (FERC Guidelines)",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Loading Condition", "Max Compressive Stress", "Allowable Tensile Stress", "Notes"],
+      "rows": [
+        ["Usual (normal operation)", "≤ 0.30 × f'c", "Zero or very low", "Full reservoir, normal temperature, self-weight"],
+        ["Unusual (flood, temperature extreme, OBE)", "≤ 0.40 × f'c", "≤ 0.06 × f'c (~1.5 MPa for 25 MPa concrete)", "Limited tension acceptable"],
+        ["Extreme (MCE seismic, PMF)", "≤ 0.60 × f'c", "≤ 0.09 × f'c (~2.25 MPa)", "Temporary overstress, no structural failure"],
+        ["Foundation contact", "Per rock bearing capacity", "Zero (usual), limited (unusual)", "Rock strength governs"]
+      ]
+    },
+    "source": "FERC Engineering Guidelines Ch 11. Note: USBR criteria similar but expressed differently. Compressive strength f'c for arch dams typically 20–35 MPa (3000–5000 psi) at 365 days."
+  },
+  {
+    "id": "water-infra.arch-dams.tbl-003",
+    "title": "Foundation Rock Requirements for Arch Dams",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Minimum (Marginal)", "Desirable", "Notes"],
+      "rows": [
+        ["Rock mass deformation modulus Ef", "> 5 GPa", "> 15 GPa", "Ef/Ec > 0.25 minimum; > 0.5 preferred"],
+        ["Uniaxial compressive strength (intact)", "> 10 MPa", "> 50 MPa", "Governs local bearing capacity"],
+        ["RQD", "> 50%", "> 75%", "Measure of rock mass quality"],
+        ["Rock mass friction angle", "> 35°", "> 45°", "For abutment sliding analysis"],
+        ["Rock mass cohesion", "> 0.1 MPa", "> 0.5 MPa", "For abutment sliding analysis"],
+        ["Permeability (Lugeon)", "< 10 Lu (after treatment)", "< 3 Lu", "Grout curtain effectiveness"],
+        ["Geological structure", "No major through-going faults at abutments", "Massive to blocky rock", "Faults require special treatment or avoidance"]
+      ]
+    },
+    "source": "USBR, ICOLD, FERC"
+  },
+  {
+    "id": "water-infra.arch-dams.tbl-004",
+    "title": "Arch Dam Analysis Methods — Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Method", "Complexity", "Loads Considered", "When to Use", "Limitations"],
+      "rows": [
+        ["Thin cylinder formula", "Very simple", "Hydrostatic only", "Initial proportioning, screening", "No cantilever, no thermal, no foundation flexibility"],
+        ["Independent arch", "Simple", "Hydrostatic on arches", "Preliminary design, thin arches", "Ignores cantilever action, unconservative for thick arches"],
+        ["Trial load (USBR)", "Moderate", "Hydrostatic, temperature, dead load", "Traditional USBR designs, well-understood method", "2D approximation, limited nonlinear capability"],
+        ["3D FEM (linear)", "High", "All loads including seismic", "Standard for modern arch dam analysis", "Linear assumption — joints don't open"],
+        ["3D FEM (nonlinear)", "Very high", "All loads, joint opening, cracking", "Seismic evaluation, safety assessment", "Computationally intensive, requires expert judgment"]
+      ]
+    },
+    "source": "USBR, FERC, ICOLD Bulletin 155"
+  },
+  {
+    "id": "water-infra.arch-dams.tbl-005",
+    "title": "Contraction Joint Grouting — Design Parameters",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Typical Value", "Notes"],
+      "rows": [
+        ["Monolith width", "9–18 m (30–60 ft)", "Depends on dam height and construction schedule"],
+        ["Closure temperature", "Mean annual reservoir temperature ±5°C", "Selected to minimize thermal stress range"],
+        ["Grouting pressure", "< 0.4 × hydrostatic head at joint", "Avoid opening joints or lifting monoliths"],
+        ["Grout mix w:c ratio", "0.7:1 to 1:1 (by weight)", "Stable, non-bleeding grout"],
+        ["Joint opening at grouting", "> 0.3 mm (0.012 in) minimum", "Joint must be open enough for grout penetration"],
+        ["Waterstop", "PVC or copper at upstream face", "Prevents reservoir water from entering joint"],
+        ["Shear keys", "Interlocking grooves cast into joint faces", "Transfer shear between monoliths after grouting"],
+        ["Grouting sequence", "Bottom to top, center outward", "Prevent premature closure trapping ungrouted zones"]
+      ]
+    },
+    "source": "USBR, USACE EM 1110-2-2201"
+  }
+]

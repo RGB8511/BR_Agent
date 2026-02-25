@@ -1,0 +1,27 @@
+{
+  "id": "geotechnical.soil-mechanics.bearing-capacity",
+  "name": "Bearing Capacity",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": [
+    "geotechnical.soil-mechanics.effective-stress",
+    "geotechnical.soil-mechanics.shear-strength"
+  ],
+  "tags": ["Terzaghi", "Meyerhof", "Hansen", "Vesic", "bearing-capacity", "shape-factors", "depth-factors", "inclination", "eccentric-loading", "shallow-foundation"],
+  "standards": [],
+  "key_references": [
+    "Terzaghi (1943) Theoretical Soil Mechanics",
+    "Meyerhof (1963) Some Recent Research on the Bearing Capacity of Foundations",
+    "Hansen (1970) A Revised and Extended Formula for Bearing Capacity",
+    "Vesic (1973) Analysis of Ultimate Loads of Shallow Foundations"
+  ],
+  "equation_count": 12,
+  "concept_count": 14,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

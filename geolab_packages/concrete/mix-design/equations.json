@@ -1,0 +1,84 @@
+[
+  {
+    "id": "concrete.design.mix-design.eq-001",
+    "title": "Abrams' Law",
+    "equation": "f'c = A / B^(w/c)",
+    "variables": {
+      "f'c": {"description": "Compressive strength", "units": "MPa"},
+      "w/c": {"description": "Water-to-cement ratio by mass", "units": "dimensionless"},
+      "A, B": {"description": "Empirical constants (A ≈ 97 MPa, B ≈ 8 for Type I at 28 days)", "units": "varies"}
+    },
+    "source": "Abrams (1918)"
+  },
+  {
+    "id": "concrete.design.mix-design.eq-002",
+    "title": "Cement Content",
+    "equation": "C = W / (w/cm)",
+    "variables": {
+      "C": {"description": "Cement (+ SCM) content", "units": "kg/m³"},
+      "W": {"description": "Water content", "units": "kg/m³"},
+      "w/cm": {"description": "Water-to-cementitious materials ratio", "units": "dimensionless"}
+    },
+    "source": "ACI 211.1"
+  },
+  {
+    "id": "concrete.design.mix-design.eq-003",
+    "title": "Absolute Volume Method",
+    "equation": "V_FA = 1.0 - V_cement - V_water - V_CA - V_air - V_SCM",
+    "variables": {
+      "V": {"description": "Volume of each component (m³ per m³ of concrete)", "units": "m³/m³"},
+      "V_material": {"description": "= Mass / (SG × 1000 kg/m³)", "units": "m³"}
+    },
+    "source": "ACI 211.1"
+  },
+  {
+    "id": "concrete.design.mix-design.eq-004",
+    "title": "Required Average Strength (with data)",
+    "equation": "f'cr = max(f'c + 1.34s, f'c + 2.33s - 3.45) for f'c ≤ 35 MPa",
+    "variables": {
+      "f'cr": {"description": "Required average compressive strength", "units": "MPa"},
+      "f'c": {"description": "Specified compressive strength", "units": "MPa"},
+      "s": {"description": "Standard deviation of test results (≥ 30 tests)", "units": "MPa"}
+    },
+    "source": "ACI 318, ACI 301"
+  },
+  {
+    "id": "concrete.design.mix-design.eq-005",
+    "title": "Aggregate Moisture Correction",
+    "equation": "W_adjusted = W_design - Σ[M_agg × (MC - Abs)]",
+    "variables": {
+      "W_adjusted": {"description": "Adjusted batch water", "units": "kg/m³"},
+      "W_design": {"description": "Design water content", "units": "kg/m³"},
+      "M_agg": {"description": "Mass of aggregate", "units": "kg/m³"},
+      "MC": {"description": "Total moisture content of aggregate", "units": "decimal"},
+      "Abs": {"description": "Absorption capacity of aggregate", "units": "decimal"}
+    },
+    "applicability": "If MC > Abs: aggregate adds free water (reduce batch water). If MC < Abs: aggregate absorbs water (increase batch water).",
+    "source": "ACI 211.1"
+  },
+  {
+    "id": "concrete.design.mix-design.eq-006",
+    "title": "Unit Weight of Fresh Concrete (Theoretical)",
+    "equation": "γ_c = C + W + CA + FA + (SCM) per m³",
+    "applicability": "Sum of all material masses per m³. Typical: 2240–2400 kg/m³ for normal weight. Verify against measured unit weight (ASTM C138).",
+    "source": "ACI 211.1"
+  },
+  {
+    "id": "concrete.design.mix-design.eq-007",
+    "title": "Yield",
+    "equation": "Y = (total batch mass) / γ_c(measured)",
+    "variables": {
+      "Y": {"description": "Volume of concrete produced by batch", "units": "m³"},
+      "γ_c": {"description": "Measured unit weight of fresh concrete", "units": "kg/m³"}
+    },
+    "applicability": "If Y < expected: concrete overweight (too little air or aggregate error). Adjust.",
+    "source": "ASTM C138"
+  },
+  {
+    "id": "concrete.design.mix-design.eq-008",
+    "title": "Air Content Effect on Strength (Rule of Thumb)",
+    "equation": "Δf'c ≈ -5% per 1% air increase (for constant w/c)",
+    "applicability": "Approximate. Actual varies 2–6% per 1% air. Air-entrained mixes need lower w/c to match non-AE strength.",
+    "source": "PCA EB001, Neville (2011)"
+  }
+]

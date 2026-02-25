@@ -1,0 +1,83 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.compaction.tbl-001",
+    "title": "Standard vs. Modified Proctor Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Parameter", "Standard Proctor (D698)", "Modified Proctor (D1557)"],
+      "rows": [
+        ["Hammer weight", "5.5 lb (2.49 kg)", "10 lb (4.54 kg)"],
+        ["Drop height", "12 in (305 mm)", "18 in (457 mm)"],
+        ["Number of layers", "3", "5"],
+        ["Blows per layer (4-in mold)", "25", "25"],
+        ["Blows per layer (6-in mold)", "56", "56"],
+        ["Compactive effort", "12,400 ft·lb/ft³ (600 kN·m/m³)", "56,000 ft·lb/ft³ (2,700 kN·m/m³)"],
+        ["4-in mold volume", "1/30 ft³ (944 cm³)", "1/30 ft³ (944 cm³)"],
+        ["6-in mold volume", "1/13.33 ft³ (2,124 cm³)", "1/13.33 ft³ (2,124 cm³)"],
+        ["Use 6-in mold when", "> 20% retained on No. 4", "> 20% retained on No. 4"],
+        ["Maximum particle size", "3/4 in (No. 4 for 4-in mold)", "3/4 in (No. 4 for 4-in mold)"]
+      ]
+    },
+    "source": "ASTM D698, D1557"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.compaction.tbl-002",
+    "title": "Typical Compaction Characteristics by Soil Type",
+    "type": "reference",
+    "data": {
+      "headers": ["USCS Group", "γ_d,max Std. (kN/m³)", "w_opt Std. (%)", "γ_d,max Mod. (kN/m³)", "w_opt Mod. (%)"],
+      "rows": [
+        ["GW", "20.4–22.0", "6–10", "21.2–23.1", "4–8"],
+        ["GP", "18.1–20.4", "8–12", "19.6–21.7", "6–10"],
+        ["GM", "19.6–21.2", "8–12", "20.7–22.4", "6–10"],
+        ["GC", "18.9–20.7", "8–14", "20.1–22.0", "5–11"],
+        ["SW", "17.3–20.4", "8–13", "18.5–21.7", "6–11"],
+        ["SP", "16.5–19.6", "9–15", "17.7–20.7", "7–12"],
+        ["SM", "17.3–19.6", "10–16", "18.5–20.7", "8–14"],
+        ["SC", "16.5–19.6", "10–18", "17.7–20.7", "8–15"],
+        ["ML", "14.9–18.5", "12–22", "16.5–20.1", "10–18"],
+        ["CL", "15.7–18.9", "12–22", "16.5–20.4", "10–18"],
+        ["MH", "12.6–15.7", "18–30", "13.4–17.3", "15–25"],
+        ["CH", "13.4–16.5", "16–28", "14.1–17.7", "14–24"]
+      ]
+    },
+    "source": "After NAVFAC DM-7, Holtz et al. (2011)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.compaction.tbl-003",
+    "title": "Typical Compaction Specifications",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Min RC (%)", "Reference Test", "Moisture Range"],
+      "rows": [
+        ["Dam core (impervious zone)", "≥ 95", "Standard Proctor", "w_opt to w_opt + 3%"],
+        ["Dam shell (pervious zone)", "≥ 95–98", "Modified Proctor", "Near w_opt"],
+        ["Highway subgrade", "≥ 95", "Standard or Modified", "w_opt ± 2%"],
+        ["Highway base course", "≥ 98–100", "Modified Proctor", "w_opt ± 2%"],
+        ["Structural fill (buildings)", "≥ 95", "Modified Proctor", "w_opt ± 2%"],
+        ["Retaining wall backfill", "≥ 90–95", "Standard Proctor", "w_opt ± 2–4%"],
+        ["Pipe trench backfill", "≥ 90", "Standard Proctor", "w_opt ± 3%"],
+        ["Clay liner (landfill)", "≥ 95", "Standard Proctor", "w_opt to w_opt + 4%"],
+        ["General landscaping fill", "≥ 85–90", "Standard Proctor", "Not strict"]
+      ]
+    },
+    "source": "Various agencies — USACE, USBR, state DOTs"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.compaction.tbl-004",
+    "title": "Field Compaction Equipment Selection",
+    "type": "reference",
+    "data": {
+      "headers": ["Equipment Type", "Best Soil Types", "Typical Lift (mm)", "Notes"],
+      "rows": [
+        ["Smooth drum (static)", "Gravel, sand, crushed stone", "200–300", "Proof-rolling, finishing"],
+        ["Smooth drum (vibratory)", "Gravel, sand, silt", "200–450", "Most effective for granular"],
+        ["Sheepsfoot / padfoot", "Clay, silty clay", "150–250", "Kneading action, bonds lifts"],
+        ["Pneumatic (rubber-tired)", "All soil types", "200–300", "Versatile, kneading + pressure"],
+        ["Impact / rammer", "All types (small area)", "100–200", "Trench backfill, confined spaces"],
+        ["Grid roller", "Weathered rock, gravelly soils", "200–300", "Breaks down oversize particles"]
+      ]
+    },
+    "source": "Holtz et al. (2011), NAVFAC DM-7"
+  }
+]

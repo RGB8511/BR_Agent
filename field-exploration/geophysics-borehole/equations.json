@@ -1,0 +1,107 @@
+[
+  {
+    "id": "field-exploration.geophysics-borehole.eq-001",
+    "title": "Downhole Seismic — Interval Velocity",
+    "equation": "Vs = Δz / Δt = (z₂ - z₁) / (t₂ - t₁)",
+    "variables": {
+      "Vs": {"description": "Interval shear wave velocity between two measurement depths", "units": "m/s"},
+      "z₁, z₂": {"description": "Depths of adjacent geophone positions", "units": "m"},
+      "t₁, t₂": {"description": "S-wave travel times to each depth", "units": "seconds"}
+    },
+    "applicability": "For offset source, correct ray path: Vs = √[(z₂-z₁)² + x²] - √[(z₁-z₁)² + x²]) ... use slant-path correction. Typically compute Vs in 1–2 m intervals. First-arrival picking is critical — use reversed-polarity S-wave source for clear identification.",
+    "source": "ASTM D7400"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.eq-002",
+    "title": "Crosshole Seismic — Direct Velocity",
+    "equation": "V = d / t",
+    "variables": {
+      "V": {"description": "P-wave or S-wave velocity between boreholes", "units": "m/s"},
+      "d": {"description": "True distance between source and receiver (from deviation surveys)", "units": "m"},
+      "t": {"description": "Direct arrival travel time", "units": "seconds"}
+    },
+    "applicability": "Requires deviation survey of all boreholes (inclinometer). True distance at each depth may differ from surface separation. Three-borehole setup allows straight-ray velocity calculation without assumptions about borehole positions.",
+    "source": "ASTM D4428"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.eq-003",
+    "title": "Dynamic Elastic Moduli from Vp and Vs",
+    "equation": "E_dyn = ρ × Vs² × (3Vp² - 4Vs²) / (Vp² - Vs²)",
+    "alt_forms": "G_dyn = ρ × Vs²;  ν_dyn = (Vp² - 2Vs²) / (2(Vp² - Vs²));  K_dyn = ρ × (Vp² - 4Vs²/3)",
+    "variables": {
+      "E_dyn": {"description": "Dynamic Young's modulus", "units": "GPa"},
+      "G_dyn": {"description": "Dynamic shear modulus", "units": "GPa"},
+      "ν_dyn": {"description": "Dynamic Poisson's ratio", "units": "dimensionless"},
+      "K_dyn": {"description": "Dynamic bulk modulus", "units": "GPa"},
+      "ρ": {"description": "Bulk density of formation", "units": "kg/m³"},
+      "Vp": {"description": "P-wave velocity", "units": "m/s"},
+      "Vs": {"description": "S-wave velocity", "units": "m/s"}
+    },
+    "applicability": "Dynamic moduli are measured at very small strains (~10⁻⁶) and are higher than static moduli. Ratio E_static/E_dynamic typically 0.3–0.8 for rock. Poisson's ratio: ν < 0.5; if Vp/Vs → ∞ (saturated soft soil), ν → 0.5.",
+    "source": "Mavko et al. (2009) Rock Physics Handbook"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.eq-004",
+    "title": "Fracture Dip from Televiewer Sinusoid",
+    "equation": "α = arctan(A / D)",
+    "variables": {
+      "α": {"description": "True dip angle of fracture/discontinuity", "units": "degrees"},
+      "A": {"description": "Peak-to-trough amplitude of sinusoid on unwrapped image", "units": "m"},
+      "D": {"description": "Borehole diameter", "units": "m"}
+    },
+    "applicability": "On unwrapped 360° image, a planar feature intersecting a circular borehole appears as a sinusoid. The azimuth of the lowest point of the sinusoid = dip direction (for vertical borehole). For inclined boreholes, correct for borehole orientation to get true dip/dip direction.",
+    "source": "ISRM (2007), Zemanek et al. (1970)"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.eq-005",
+    "title": "Archie's Law — Formation Resistivity",
+    "equation": "ρ_formation = a × ρ_w × φ^(-m) × S_w^(-n)",
+    "variables": {
+      "ρ_formation": {"description": "Bulk formation resistivity", "units": "Ω·m"},
+      "ρ_w": {"description": "Pore water resistivity", "units": "Ω·m"},
+      "φ": {"description": "Porosity (fraction)", "units": "dimensionless"},
+      "S_w": {"description": "Water saturation (fraction)", "units": "dimensionless"},
+      "a": {"description": "Tortuosity factor (0.5–2.5, often ~1.0)", "units": "dimensionless"},
+      "m": {"description": "Cementation exponent (1.3–2.5)", "units": "dimensionless"},
+      "n": {"description": "Saturation exponent (~2.0)", "units": "dimensionless"}
+    },
+    "applicability": "For clean (non-clay) formations. Clay adds surface conduction that Archie's law does not account for — use Waxman-Smits or dual-water models for shaly formations. Primary petrophysical equation linking resistivity to porosity and saturation.",
+    "source": "Archie (1942)"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.eq-006",
+    "title": "Natural Gamma — Clay Content Estimation (Gamma Ray Index)",
+    "equation": "I_GR = (GR - GR_min) / (GR_max - GR_min)",
+    "variables": {
+      "I_GR": {"description": "Gamma ray index (0 = clean sand, 1 = pure clay/shale)", "units": "dimensionless"},
+      "GR": {"description": "Measured gamma ray value at depth", "units": "API or cps"},
+      "GR_min": {"description": "Minimum gamma (clean sand/gravel baseline)", "units": "API or cps"},
+      "GR_max": {"description": "Maximum gamma (pure clay/shale baseline)", "units": "API or cps"}
+    },
+    "applicability": "Linear clay volume estimate: V_clay ≈ I_GR. Non-linear corrections (Larionov, Clavier) exist. Potassium feldspar and micas can give false high gamma without clay. Spectral gamma (K, U, Th) helps distinguish clay from non-clay gamma sources.",
+    "source": "Schlumberger (1989), Ellis & Singer (2007)"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.eq-007",
+    "title": "Vp/Vs Ratio — Lithology and Saturation Indicator",
+    "equation": "Vp/Vs = √((2-2ν)/(1-2ν)) = √((K/G + 4/3))",
+    "variables": {
+      "Vp/Vs": {"description": "Ratio of P-wave to S-wave velocity", "units": "dimensionless"},
+      "ν": {"description": "Poisson's ratio", "units": "dimensionless"}
+    },
+    "applicability": "Typical values: Saturated soft clay: 5–15+ (ν → 0.48–0.50). Saturated sand: 2.0–4.0. Dry sand: 1.5–1.8. Rock: 1.5–2.0. Limestone: 1.8–2.0. Water: Vp/Vs → ∞ (no shear). High Vp/Vs indicates saturation or soft clay; low values indicate dry or stiff material.",
+    "source": "Mavko et al. (2009)"
+  },
+  {
+    "id": "field-exploration.geophysics-borehole.eq-008",
+    "title": "Stoneley Wave Permeability Indicator",
+    "equation": "Attenuation ∝ √(k × φ / η)",
+    "variables": {
+      "k": {"description": "Formation permeability", "units": "m²"},
+      "φ": {"description": "Porosity", "units": "dimensionless"},
+      "η": {"description": "Fluid viscosity", "units": "Pa·s"}
+    },
+    "applicability": "Stoneley (tube) waves in full-waveform sonic logs are attenuated at permeable zones and open fractures. Qualitative indicator — increased Stoneley attenuation correlates with higher permeability and open fractures. Quantitative permeability estimation requires careful modeling.",
+    "source": "Cheng et al. (1987), Tang & Cheng (2004)"
+  }
+]

@@ -1,0 +1,155 @@
+[
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-001",
+    "title": "SPT Energy Correction",
+    "equation": "N₆₀ = N × C_E × C_B × C_S × C_R",
+    "variables": {
+      "N₆₀": {"description": "N-value corrected to 60% energy", "units": "blows/300mm"},
+      "N": {"description": "Measured blow count", "units": "blows/300mm"},
+      "C_E": {"description": "Energy ratio correction", "units": "dimensionless"},
+      "C_B": {"description": "Borehole diameter correction", "units": "dimensionless"},
+      "C_S": {"description": "Sampler correction (1.0 standard; 1.2 without liner)", "units": "dimensionless"},
+      "C_R": {"description": "Rod length correction", "units": "dimensionless"}
+    },
+    "source": "Skempton (1986)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-002",
+    "title": "SPT Overburden Correction",
+    "equation": "(N₁)₆₀ = N₆₀ × C_N where C_N = (P_a/σ'_v0)^0.5",
+    "variables": {
+      "(N₁)₆₀": {"description": "Corrected N-value normalized to 1 atm", "units": "blows/300mm"},
+      "C_N": {"description": "Overburden correction factor (≤ 2.0)", "units": "dimensionless"},
+      "P_a": {"description": "Atmospheric pressure (≈100 kPa)", "units": "kPa"},
+      "σ'_v0": {"description": "In-situ vertical effective stress", "units": "kPa"}
+    },
+    "source": "Liao & Whitman (1986)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-003",
+    "title": "SPT → Friction Angle (Sand)",
+    "equation": "φ' = √(20 × (N₁)₆₀) + 20",
+    "applicability": "Clean to silty sands. Approximate. Better than older Peck chart.",
+    "source": "Hatanaka & Uchida (1996)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-004",
+    "title": "SPT → Relative Density",
+    "equation": "D_r = [(N₁)₆₀ / (60 × OCR^0.18)]^0.5",
+    "applicability": "NC to lightly OC sands. D_r in decimal.",
+    "source": "After Skempton (1986), Kulhawy & Mayne (1990)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-005",
+    "title": "CPT Corrected Tip Resistance",
+    "equation": "q_t = q_c + u₂(1 - a)",
+    "variables": {
+      "q_t": {"description": "Corrected total cone resistance", "units": "MPa"},
+      "q_c": {"description": "Measured cone resistance", "units": "MPa"},
+      "u₂": {"description": "Pore pressure measured behind cone (u₂ position)", "units": "MPa"},
+      "a": {"description": "Net area ratio of cone (0.70–0.85)", "units": "dimensionless"}
+    },
+    "source": "Campanella et al. (1982)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-006",
+    "title": "CPT Normalized Parameters",
+    "equation": "Q_tn = [(q_t - σ_v0)/P_a] × (P_a/σ'_v0)^n; F_r = f_s/(q_t - σ_v0) × 100%; B_q = (u₂ - u₀)/(q_t - σ_v0)",
+    "variables": {
+      "Q_tn": {"description": "Normalized cone resistance", "units": "dimensionless"},
+      "F_r": {"description": "Normalized friction ratio", "units": "%"},
+      "B_q": {"description": "Pore pressure ratio", "units": "dimensionless"},
+      "n": {"description": "Stress exponent (0.5 sands, 1.0 clays)", "units": "dimensionless"}
+    },
+    "source": "Robertson (2009)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-007",
+    "title": "CPT → Undrained Shear Strength",
+    "equation": "s_u = (q_t - σ_v0) / N_kt",
+    "variables": {
+      "s_u": {"description": "Undrained shear strength", "units": "kPa"},
+      "q_t": {"description": "Corrected cone resistance", "units": "kPa"},
+      "σ_v0": {"description": "Total overburden stress", "units": "kPa"},
+      "N_kt": {"description": "Cone factor (10–18, typically ~14)", "units": "dimensionless"}
+    },
+    "applicability": "Clays and silts. N_kt should be site-calibrated against triaxial or vane data.",
+    "source": "Lunne, Robertson & Powell (1997)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-008",
+    "title": "CPT → Friction Angle (Sand)",
+    "equation": "φ' = arctan[0.1 + 0.38 × log(q_t/σ'_v0)]",
+    "applicability": "Uncemented, unaged, quartz-dominated sands.",
+    "source": "Robertson & Campanella (1983)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-009",
+    "title": "CPT → Constrained Modulus",
+    "equation": "M = α_M × (q_t - σ_v0)",
+    "variables": {
+      "M": {"description": "Constrained (1-D) modulus", "units": "MPa"},
+      "α_M": {"description": "Modulus factor (varies: 2–8 clays, 3–10 sands)", "units": "dimensionless"}
+    },
+    "applicability": "α_M is a function of soil type (I_c) and stress level. Robertson (2009) provides detailed relationships.",
+    "source": "Robertson (2009)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-010",
+    "title": "CPT Soil Behavior Type Index",
+    "equation": "I_c = √[(3.47 - logQ_tn)² + (logF_r + 1.22)²]",
+    "variables": {
+      "I_c": {"description": "Soil behavior type index", "units": "dimensionless"}
+    },
+    "applicability": "I_c < 1.31: gravelly sand. 1.31–2.05: sand. 2.05–2.60: silt mix. 2.60–2.95: clay. > 2.95: organic/sensitive.",
+    "source": "Robertson (2009)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-011",
+    "title": "CPT → OCR (Clay)",
+    "equation": "OCR = k × (q_t - σ_v0) / σ'_v0",
+    "variables": {
+      "k": {"description": "Empirical constant (0.2–0.5, typically 0.33)", "units": "dimensionless"}
+    },
+    "source": "Kulhawy & Mayne (1990)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-012",
+    "title": "SPT-CPT Correlation",
+    "equation": "q_c/P_a ≈ 4.25 × (N₆₀)^0.89 (all soils, Robertson 2012)",
+    "alt_form": "q_c/N₆₀ ≈ 3.5–8.5 depending on D₅₀ (Jefferies & Davies 1993)",
+    "source": "Robertson (2012)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-013",
+    "title": "DMT Material Index",
+    "equation": "I_D = (p₁ - p₀) / (p₀ - u₀)",
+    "variables": {
+      "I_D": {"description": "Material index", "units": "dimensionless"},
+      "p₀": {"description": "Corrected A-pressure (lift-off)", "units": "kPa"},
+      "p₁": {"description": "Corrected B-pressure (1.1mm expansion)", "units": "kPa"},
+      "u₀": {"description": "Equilibrium pore water pressure", "units": "kPa"}
+    },
+    "applicability": "I_D < 0.6: clay. 0.6–1.8: silt. > 1.8: sand.",
+    "source": "Marchetti (1980)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-014",
+    "title": "DMT Horizontal Stress Index",
+    "equation": "K_D = (p₀ - u₀) / σ'_v0",
+    "applicability": "K_D = 2 for NC soil. K_D > 2 indicates OC or cemented.",
+    "source": "Marchetti (1980)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-015",
+    "title": "DMT → K₀",
+    "equation": "K₀ = (K_D/1.5)^0.47 - 0.6",
+    "source": "Marchetti (1980)"
+  },
+  {
+    "id": "geotechnical.site-investigation.in-situ-testing.eq-016",
+    "title": "DMT → OCR",
+    "equation": "OCR = (0.5 × K_D)^1.56",
+    "source": "Marchetti (1980)"
+  }
+]

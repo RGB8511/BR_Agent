@@ -1,0 +1,24 @@
+{
+  "id": "field-exploration.field-density-testing",
+  "name": "Field Density Testing — Compaction Verification",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.construction-qa",
+  "dependencies": [],
+  "tags": ["nuclear-gauge", "sand-cone", "rubber-balloon", "drive-cylinder", "relative-compaction", "percent-compaction", "Proctor", "density", "moisture", "field-density", "QA-QC", "compaction-control", "one-point-Proctor", "NDG"],
+  "standards": ["ASTM-D6938", "ASTM-D1556", "ASTM-D2167", "ASTM-D2937", "ASTM-D698", "ASTM-D1557", "AASHTO-T310", "AASHTO-T191"],
+  "key_references": [
+    "ASTM D6938 — In-Place Density by Nuclear Methods",
+    "ASTM D1556 — Sand-Cone Method",
+    "ASTM D2167 — Rubber Balloon Method",
+    "Holtz, Kovacs & Sheahan (2011) An Introduction to Geotechnical Engineering"
+  ],
+  "equation_count": 8,
+  "concept_count": 15,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

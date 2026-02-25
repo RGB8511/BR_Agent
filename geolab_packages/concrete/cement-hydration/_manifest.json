@@ -1,0 +1,23 @@
+{
+  "id": "concrete.foundations.cement-hydration",
+  "name": "Cement Chemistry & Hydration",
+  "level": 0,
+  "discipline": "concrete",
+  "parent": "concrete.foundations",
+  "dependencies": [],
+  "tags": ["portland-cement", "hydration", "C3S", "C2S", "C3A", "C4AF", "Bogue", "heat-of-hydration", "setting", "fineness", "SCMs", "fly-ash", "slag", "silica-fume", "pozzolan"],
+  "standards": ["C150", "C595", "C618", "C989"],
+  "key_references": [
+    "Mindess, Young & Darwin (2003) Concrete",
+    "Neville (2011) Properties of Concrete",
+    "Mehta & Monteiro (2014) Concrete: Microstructure, Properties, and Materials"
+  ],
+  "equation_count": 8,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

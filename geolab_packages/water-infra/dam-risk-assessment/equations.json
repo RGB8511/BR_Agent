@@ -1,0 +1,97 @@
+[
+  {
+    "id": "water-infra.dam-risk-assessment.eq-001",
+    "title": "Risk Definition",
+    "equation": "Risk = Σ [P(load) × P(adverse response | load) × Consequences]",
+    "variables": {
+      "P(load)": {"description": "Annual probability of the loading event (flood, earthquake)", "units": "per year"},
+      "P(adverse response)": {"description": "Conditional probability of dam failure given the load", "units": "dimensionless"},
+      "Consequences": {"description": "Expected consequences if failure occurs (life loss, economic damage)", "units": "lives or $"}
+    },
+    "applicability": "Summation over all load levels and all failure modes. For a single PFM: Risk = P(failure) × C(failure). Annualized risk = sum across all PFMs.",
+    "source": "ICOLD, USBR, USACE"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.eq-002",
+    "title": "Annualized Failure Probability (AFP)",
+    "equation": "AFP = Σᵢ [P(load_i) × P(failure | load_i)]",
+    "variables": {
+      "AFP": {"description": "Total annual probability of dam failure from all load categories", "units": "per year"},
+      "P(load_i)": {"description": "Annual probability of load level i", "units": "per year"},
+      "P(failure|load_i)": {"description": "Conditional probability of failure given load level i (system response probability)", "units": "dimensionless"}
+    },
+    "applicability": "Integrate over all load levels: flood (IDF to PMF), seismic (OBE to MCE), and normal (sunny-day failures). Compare AFP to tolerable risk thresholds (USBR/USACE: 10⁻⁴/yr).",
+    "source": "USBR Dam Safety Risk Analysis Best Practices"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.eq-003",
+    "title": "Annualized Life Loss",
+    "equation": "ALL = Σ [P(failure_j) × LL_j]",
+    "variables": {
+      "ALL": {"description": "Average expected life loss per year from dam failure", "units": "lives/year"},
+      "P(failure_j)": {"description": "Annual probability of failure mode j", "units": "per year"},
+      "LL_j": {"description": "Expected life loss if failure mode j occurs", "units": "lives"}
+    },
+    "applicability": "ALL integrates over all failure modes and load levels. USACE guideline: if ALL > 0.001 lives/year, risk reduction measures should be considered. USBR uses f-N charts plotting AFP vs. expected life loss.",
+    "source": "USACE, USBR"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.eq-004",
+    "title": "Life Loss Estimation (RCEM Simplified)",
+    "equation": "LL = PAR × FR",
+    "variables": {
+      "LL": {"description": "Estimated life loss", "units": "lives"},
+      "PAR": {"description": "Population at risk in the inundation zone", "units": "persons"},
+      "FR": {"description": "Fatality rate (function of flood severity, warning time, understanding)", "units": "dimensionless (0–1)"}
+    },
+    "applicability": "RCEM (Reclamation Consequence Estimating Methodology) provides fatality rate curves. Key inputs: DV product (depth × velocity), flood depth, warning time, time of day, understanding of threat. Typical FR: 0.01 (good warning, low severity) to 0.50+ (no warning, high severity).",
+    "source": "USBR RCEM (2014), Bowles et al."
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.eq-005",
+    "title": "Flood Severity Index — DV Product",
+    "equation": "DV = d × v",
+    "variables": {
+      "DV": {"description": "Depth-velocity product", "units": "m²/s"},
+      "d": {"description": "Flood depth", "units": "m"},
+      "v": {"description": "Flood velocity", "units": "m/s"}
+    },
+    "applicability": "DV < 0.5 m²/s: low severity (wading possible). DV 0.5–2: moderate (vehicles swept). DV 2–7: high severity (structural damage). DV > 7: extreme (complete destruction). Used with RCEM fatality rate tables and dam breach inundation modeling.",
+    "source": "RCEM, various flood severity studies"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.eq-006",
+    "title": "Critical Gradient for Internal Erosion Initiation",
+    "equation": "i_cr = (G_s - 1) × (1 - n)  (Terzaghi heaving criterion)",
+    "variables": {
+      "i_cr": {"description": "Critical hydraulic gradient for piping initiation (upward flow)", "units": "dimensionless"},
+      "G_s": {"description": "Specific gravity of soil particles (2.65 typical)", "units": "dimensionless"},
+      "n": {"description": "Porosity of the soil", "units": "dimensionless"}
+    },
+    "applicability": "For upward seepage (heaving/boiling at downstream toe). i_cr ≈ 1.0 for typical soils. For horizontal BEP: Sellmeijer equation gives critical gradient considering grain size, thickness, and aquifer permeability. FS against piping = i_cr / i_actual ≥ 2.0–3.0 depending on agency.",
+    "source": "Terzaghi (1922), Sellmeijer (1988)"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.eq-007",
+    "title": "Event Tree Probability — Sequential Events",
+    "equation": "P(path) = P(event₁) × P(event₂|event₁) × P(event₃|event₁∩event₂) × ...",
+    "variables": {
+      "P(path)": {"description": "Probability of a specific failure path", "units": "dimensionless"},
+      "P(eventₙ)": {"description": "Conditional probability of each event in the chain", "units": "dimensionless"}
+    },
+    "applicability": "Event tree for internal erosion: P(initiation) × P(continuation) × P(progression) × P(unsuccessful detection/intervention) × P(breach). Each node estimated by expert elicitation, analysis, or historical data. Sum of all paths = total failure probability for that PFM.",
+    "source": "USBR Best Practices in Dam Safety Risk Analysis"
+  },
+  {
+    "id": "water-infra.dam-risk-assessment.eq-008",
+    "title": "Adjusted Cost per Statistical Life Saved (ACSLS)",
+    "equation": "ACSLS = (Annualized cost of risk reduction) / (Reduction in ALL)",
+    "variables": {
+      "ACSLS": {"description": "Cost per statistical life saved — measure of cost-effectiveness", "units": "$/life"},
+      "Annualized cost": {"description": "Annual equivalent cost of the dam modification (capital + O&M)", "units": "$/year"},
+      "Reduction in ALL": {"description": "Decrease in Annualized Life Loss from the modification", "units": "lives/year"}
+    },
+    "applicability": "Used to evaluate whether a risk reduction measure is cost-effective. USACE guideline: modifications with ACSLS < $7–15 million/life are generally justifiable (comparable to other life-safety investments). Higher ACSLS may still be justified in ALARP zone.",
+    "source": "USACE, USBR"
+  }
+]

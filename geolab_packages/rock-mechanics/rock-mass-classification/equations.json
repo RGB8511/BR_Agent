@@ -1,0 +1,91 @@
+[
+  {
+    "id": "geotechnical.rock-mechanics.rock-mass-classification.eq-001",
+    "title": "RMR (Basic)",
+    "equation": "RMR = A1 + A2 + A3 + A4 + A5 + B",
+    "variables": {
+      "A1": {"description": "UCS rating (0–15)", "units": "points"},
+      "A2": {"description": "RQD rating (3–20)", "units": "points"},
+      "A3": {"description": "Joint spacing rating (5–20)", "units": "points"},
+      "A4": {"description": "Joint condition rating (0–30)", "units": "points"},
+      "A5": {"description": "Groundwater rating (0–15)", "units": "points"},
+      "B": {"description": "Orientation adjustment (-60 to 0)", "units": "points"}
+    },
+    "source": "Bieniawski (1989)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-mass-classification.eq-002",
+    "title": "Q-System Rating",
+    "equation": "Q = (RQD/J_n) × (J_r/J_a) × (J_w/SRF)",
+    "variables": {
+      "RQD": {"description": "Rock quality designation (10–100)", "units": "%"},
+      "J_n": {"description": "Joint set number (0.5–20)", "units": "dimensionless"},
+      "J_r": {"description": "Joint roughness number (0.5–4)", "units": "dimensionless"},
+      "J_a": {"description": "Joint alteration number (0.75–18)", "units": "dimensionless"},
+      "J_w": {"description": "Joint water reduction factor (0.05–1.0)", "units": "dimensionless"},
+      "SRF": {"description": "Stress reduction factor (0.5–20+)", "units": "dimensionless"}
+    },
+    "applicability": "Q ranges 0.001–1000. Use minimum RQD = 10 if measured = 0.",
+    "source": "Barton, Lien & Lunde (1974)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-mass-classification.eq-003",
+    "title": "Equivalent Dimension",
+    "equation": "D_e = Span or Height / ESR",
+    "variables": {
+      "D_e": {"description": "Equivalent dimension for support design", "units": "m"},
+      "ESR": {"description": "Excavation support ratio (0.5–5)", "units": "dimensionless"}
+    },
+    "source": "Barton et al. (1974)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-mass-classification.eq-004",
+    "title": "RMR-Q Correlation",
+    "equation": "RMR₈₉ ≈ 9 × lnQ + 44",
+    "alt_form": "Q ≈ exp[(RMR - 44) / 9]",
+    "applicability": "Approximate. Significant scatter. Use with caution.",
+    "source": "Bieniawski (1989)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-mass-classification.eq-005",
+    "title": "GSI from RMR",
+    "equation": "GSI ≈ RMR₈₉ - 5",
+    "applicability": "For RMR > 23 (using 1989 version with groundwater = dry, no orientation adjustment). Not valid for very poor rock.",
+    "source": "Hoek, Kaiser & Bawden (1995)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-mass-classification.eq-006",
+    "title": "Stand-Up Time (Bieniawski)",
+    "equation": "log(t) = 1.28 × RMR - 0.67 × log(S) - 1.58",
+    "variables": {
+      "t": {"description": "Stand-up time", "units": "hours"},
+      "RMR": {"description": "Rock mass rating", "units": "dimensionless"},
+      "S": {"description": "Unsupported span", "units": "m"}
+    },
+    "applicability": "Empirical. For tunnel arches. Conservative lower bound.",
+    "source": "Bieniawski (1989)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-mass-classification.eq-007",
+    "title": "Maximum Unsupported Span",
+    "equation": "Span_max = 2 × ESR × Q^0.4",
+    "variables": {
+      "Span_max": {"description": "Maximum unsupported span", "units": "m"},
+      "ESR": {"description": "Excavation support ratio", "units": "dimensionless"},
+      "Q": {"description": "Q-system rating", "units": "dimensionless"}
+    },
+    "source": "Barton et al. (1974)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.rock-mass-classification.eq-008",
+    "title": "Bolt Length from Q",
+    "equation": "L_bolt = 2 + 0.15 × B / ESR",
+    "variables": {
+      "L_bolt": {"description": "Bolt length", "units": "m"},
+      "B": {"description": "Excavation span or height", "units": "m"},
+      "ESR": {"description": "Excavation support ratio", "units": "dimensionless"}
+    },
+    "applicability": "For tunnel roof bolts. Wall bolts: use height instead of span.",
+    "source": "Barton (2002)"
+  }
+]

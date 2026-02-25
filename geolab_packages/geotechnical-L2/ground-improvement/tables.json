@@ -1,0 +1,101 @@
+[
+  {
+    "id": "geotech.construction.ground-improvement.tbl-001",
+    "title": "Ground Improvement Method Selection by Soil Type",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Gravel", "Sand", "Silt", "Clay", "Organic", "Max Depth (m)"],
+      "rows": [
+        ["Vibro-compaction", "✓", "✓ (FC<15%)", "✗", "✗", "✗", "20"],
+        ["Dynamic compaction", "✓", "✓", "Limited", "✗", "Limited", "10"],
+        ["Stone columns", "—", "✓", "✓", "✓ (su>15kPa)", "✗", "20"],
+        ["Aggregate piers", "—", "✓", "✓", "✓", "Limited", "8"],
+        ["Preloading + PVDs", "—", "—", "✓", "✓", "✓", "30+"],
+        ["Vacuum preloading", "—", "—", "✓", "✓", "✓", "30+"],
+        ["Compaction grouting", "✓", "✓", "✓", "✓", "Limited", "20+"],
+        ["Permeation grouting", "✓", "✓ (coarse)", "✗", "✗", "✗", "Variable"],
+        ["Jet grouting", "✓", "✓", "✓", "✓", "Limited", "30+"],
+        ["Deep soil mixing", "Limited", "✓", "✓", "✓", "✓", "30+"],
+        ["Cement stabilization", "—", "✓", "✓", "✓ (low PI)", "✗", "Surface (0.3m)"],
+        ["Lime stabilization", "—", "—", "Limited", "✓ (PI>10)", "✗", "Surface (0.3m)"]
+      ]
+    },
+    "source": "FHWA NHI-16-027, Moseley & Kirsch (2004)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.tbl-002",
+    "title": "Typical Improvement Achieved by Method",
+    "type": "reference",
+    "data": {
+      "headers": ["Method", "Strength Increase", "Settlement Reduction", "Typical Cost (relative)"],
+      "rows": [
+        ["Vibro-compaction", "Dr from 40% to 70–80%", "50–70%", "Low"],
+        ["Dynamic compaction", "Dr increase 15–30%", "40–60%", "Low-Medium"],
+        ["Stone columns", "su increase 50–100%", "40–60%", "Medium"],
+        ["Aggregate piers", "Bearing increase 2–4×", "50–70%", "Medium-High"],
+        ["Preloading (no drains)", "su increase per consolidation", "Target 90–95% primary", "Low (time cost)"],
+        ["Preloading + PVDs", "Same, accelerated", "Same, faster", "Medium"],
+        ["Deep soil mixing", "UCS 0.5–5+ MPa", "70–90%", "High"],
+        ["Jet grouting", "UCS 1–10+ MPa", "Column-dependent", "High"],
+        ["Compaction grouting", "Variable", "Can arrest/reverse settlement", "Medium-High"]
+      ]
+    },
+    "source": "FHWA NHI-16-027, general practice"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.tbl-003",
+    "title": "PVD (Wick Drain) Design Parameters",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Typical Range", "Notes"],
+      "rows": [
+        ["Drain width × thickness", "100 mm × 4 mm", "Standard band drain"],
+        ["Equivalent drain diameter (dw)", "50–70 mm", "dw = 2(a+b)/π"],
+        ["Spacing (triangular)", "1.0–2.5 m", "Closer = faster consolidation"],
+        ["Smear zone ratio (ds/dm)", "2–5 × mandrel diameter", "Disturbed zone around drain"],
+        ["Smear zone permeability", "kh/ks = 2–5", "Reduced permeability in smear zone"],
+        ["ch/cv ratio", "1.5–5 (typical 2–3)", "Horizontal consolidation faster"],
+        ["Target consolidation", "90–95%", "Before surcharge removal"],
+        ["Mandrel cross-section", "60 × 120 mm (typical)", "Smaller = less disturbance"]
+      ]
+    },
+    "source": "Holtz et al. (1991), Hansbo (1981)"
+  },
+  {
+    "id": "geotech.construction.ground-improvement.tbl-004",
+    "title": "Deep Soil Mixing — Typical UCS by Soil Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Soil Type", "Binder (kg/m³)", "UCS Lab (kPa)", "UCS Field (kPa)", "Field/Lab Ratio"],
+      "rows": [
+        ["Soft clay (w > 80%)", "150–300", "500–2000", "200–800", "0.3–0.5"],
+        ["Medium clay (w 40–80%)", "100–250", "1000–4000", "400–2000", "0.3–0.5"],
+        ["Stiff clay (w < 40%)", "100–200", "2000–6000", "800–3000", "0.3–0.5"],
+        ["Silt", "100–250", "500–3000", "200–1500", "0.3–0.5"],
+        ["Sand", "100–200", "1000–5000", "500–2500", "0.3–0.5"],
+        ["Organic soil (Oc < 10%)", "150–400", "200–1000", "100–500", "0.3–0.5"],
+        ["Peat", "200–500", "100–500", "50–200", "0.3–0.5"]
+      ]
+    },
+    "source": "Kitazume & Terashi (2013), FHWA-HRT-13-046. Field UCS typically 30–50% of lab UCS."
+  },
+  {
+    "id": "geotech.construction.ground-improvement.tbl-005",
+    "title": "Quality Control Testing for Ground Improvement",
+    "type": "reference",
+    "data": {
+      "headers": ["Method", "QC Test", "Acceptance Criteria"],
+      "rows": [
+        ["Vibro-compaction", "Post-CPT or SPT at midpoint between probes", "(N1)60 ≥ target or qc1N ≥ target"],
+        ["Dynamic compaction", "Post-CPT, SPT, or PMT on grid", "Meet target relative density or N-value"],
+        ["Stone columns", "Zone load test, post-CPT between columns", "Settlement < allowable, bearing ≥ required"],
+        ["Preloading", "Settlement monitoring, piezometers", "Settlement rate < threshold, Ū ≥ target"],
+        ["Deep soil mixing", "Wet grab samples UCS, core samples", "UCS ≥ design value (statistical approach)"],
+        ["Jet grouting", "Core samples UCS, integrity testing", "UCS ≥ design, column diameter verified"],
+        ["Compaction grouting", "Volume/pressure records, post-SPT/CPT", "Grout take within expected range"],
+        ["Lime/cement stabilization", "UCS on field-molded specimens", "UCS ≥ design at target cure age"]
+      ]
+    },
+    "source": "FHWA NHI-16-027, general practice"
+  }
+]

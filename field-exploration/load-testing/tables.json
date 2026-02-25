@@ -1,0 +1,88 @@
+[
+  {
+    "id": "field-exploration.load-testing.tbl-001",
+    "title": "Static Pile Load Test Methods — Comparison",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "ASTM", "Duration", "Reaction Required", "Max Load Practical", "Determines Failure?", "Best For"],
+      "rows": [
+        ["Slow Maintained Load (SM)", "D1143 Proc. A", "24–72+ hr", "Yes (kentledge or reaction piles)", "20 MN practical", "If test goes to failure", "Contract verification to 200% DL"],
+        ["Quick Maintained Load (QM)", "D1143 Proc. B", "3–8 hr", "Yes", "20 MN", "Yes — designed to reach failure", "Research; determining ultimate capacity"],
+        ["Constant Rate of Penetration", "D1143 Proc. C", "1–3 hr", "Yes", "10 MN", "Yes — defines capacity at given rate", "Research; soft soils"],
+        ["Osterberg Cell (O-cell)", "D1143 Annex", "12–36 hr", "No — self-reacting", "200+ MN", "Component failure (side or base)", "Large drilled shafts; deep foundations; high loads"],
+        ["Statnamic", "D7383", "Minutes", "No — inertial reaction", "30 MN+", "Yes — with analysis", "Production verification; moderate to high loads"],
+        ["PDA / Dynamic (CAPWAP)", "D4945", "During driving", "No — hammer is load", "Unlimited", "Estimated from wave matching", "Every driven pile (restrike for setup)"],
+        ["Lateral Load Test", "D3966", "6–24 hr", "Reaction pile or deadman", "5 MN", "Deflection-based", "p-y curve validation; lateral design"]
+      ]
+    },
+    "source": "ASTM standards, FHWA GEC-12, general practice"
+  },
+  {
+    "id": "field-exploration.load-testing.tbl-002",
+    "title": "Pile Failure Criteria — Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Criterion", "Definition", "Applicability", "Notes"],
+      "rows": [
+        ["Davisson Offset Limit", "PL/AE + 3.8 + D/120 mm", "Driven piles (< 600 mm)", "Most common in North America; conservative for large diameter"],
+        ["5% Diameter", "Settlement = 0.05 × D", "Drilled shafts, large piles", "FHWA GEC-10; simple, rational for large D"],
+        ["Chin-Kondner", "1/slope of Δ/Q vs Δ linear portion", "All pile types", "Overpredicts by 20–40%; apply 0.80 factor"],
+        ["De Beer (log-log)", "Break point on log(Q) vs log(Δ)", "All pile types", "Subjective — break not always clear"],
+        ["Butler-Hoy", "Intersection of tangent to initial and final portions", "Driven piles", "Common for timber and H-piles"],
+        ["AASHTO (10th percentile)", "Load at net settlement of D/30 or B/30", "Drilled shafts per AASHTO", "Serviceability-based"],
+        ["Brinch Hansen 80%", "Load at settlement double that at 80% of load", "European practice", "Well-defined if plunging failure occurs"],
+        ["Maximum test load", "200% of design load sustained without failure", "Contract acceptance", "Does not determine ultimate — only verifies adequacy"]
+      ]
+    },
+    "source": "Fellenius (2020), FHWA GEC-12"
+  },
+  {
+    "id": "field-exploration.load-testing.tbl-003",
+    "title": "Anchor / Tieback Test Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Test Type", "Max Test Load", "Hold / Creep Measurement", "Required On", "Purpose"],
+      "rows": [
+        ["Performance test", "133% DL (1.33 × Design Load)", "10 min hold at each increment; creep at max load", "First 1–2 anchors + 5% of production (minimum)", "Verify load-deformation and creep behavior; validate design assumptions"],
+        ["Proof test", "133% DL", "10 min hold at max test load; measure creep", "Every production anchor (100%)", "Verify each anchor meets capacity and creep criteria"],
+        ["Extended creep test", "133% DL", "24–72 hr hold at max test load (soil); 8 hr (rock)", "When specified for creep-susceptible soils", "Verify long-term creep acceptability"],
+        ["Verification (sacrificial) test", "150–200% DL", "Load to failure or max jack capacity", "Pre-production (1–3 test anchors)", "Determine bond capacity; validate design; not used as production"],
+        ["Lift-off test", "DL (lock-off load)", "Single load cycle to check retained load", "As needed during service life", "Verify anchor load after lock-off; detect load loss"]
+      ]
+    },
+    "source": "PTI DC35.1, FHWA-SA-99-015, AASHTO"
+  },
+  {
+    "id": "field-exploration.load-testing.tbl-004",
+    "title": "Pile Integrity Test Methods",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Principle", "Detects", "Access Required", "Limitations"],
+      "rows": [
+        ["Cross-hole Sonic Logging (CSL)", "Ultrasonic pulse between access tubes", "Voids, inclusions, necking, cracks between tubes", "Steel or PVC tubes cast in shaft (1 per 300 mm dia)", "Only tests between tube pairs — not outside tube cage"],
+        ["Low-Strain Impact (PIT)", "Stress wave reflection from impedance changes", "Major necking, breaks, length verification", "Pile head access only (no tubes)", "Cannot detect minor defects; qualitative; depth limited by damping"],
+        ["Thermal Integrity Profiling (TIP)", "Concrete hydration heat measurement", "Cross-section variations, inclusions, cage misalignment", "Thermal wires or probes in access tubes", "Must be performed during curing (12–48 hr after pour)"],
+        ["Gamma-gamma logging", "Nuclear density between access tubes", "Density variations (voids, low-strength concrete)", "Access tubes (similar to CSL)", "Radioactive source — licensing required; slow"],
+        ["Crosshole Tomography", "Multiple CSL measurements with tomographic inversion", "3D imaging of shaft cross-section", "Same as CSL (multiple tube pairs)", "Expensive; specialized processing; for critical projects"]
+      ]
+    },
+    "source": "ASTM D6760 (CSL), ASTM D5882 (PIT), Brown et al. (2010) FHWA GEC-10"
+  },
+  {
+    "id": "field-exploration.load-testing.tbl-005",
+    "title": "Plate Load Test Types and Applications",
+    "type": "reference",
+    "data": {
+      "headers": ["Test", "ASTM", "Plate Size", "Application", "Key Output"],
+      "rows": [
+        ["Static Plate Load (surface)", "D1196", "300–750 mm dia", "Pavement subgrade, shallow foundation bearing", "Modulus of subgrade reaction k at 1.27 mm settlement"],
+        ["Plate Load in pit (at depth)", "D4394", "300–750 mm dia", "Bearing capacity at foundation elevation", "Bearing pressure-settlement curve; ultimate bearing capacity"],
+        ["Plate Load in borehole", "D4395", "≤ borehole dia", "Deep bearing verification; rock modulus", "Deformation modulus at depth"],
+        ["Plate Jacking Test (rock)", "ISRM", "200–600 mm dia", "Rock mass deformability in tunnels/adits", "Rock mass modulus (loading + unloading); Em/Ei ratio"],
+        ["Flat Jack Test", "ISRM", "Thin slot cut in rock", "In-situ stress measurement; rock deformability", "In-situ stress (normal to slot); deformation modulus"],
+        ["K-Plate (vertical plate)", "—", "Various", "Horizontal subgrade reaction for laterally loaded piles", "Horizontal k for p-y curve development"]
+      ]
+    },
+    "source": "ASTM standards, ISRM Suggested Methods, FHWA"
+  }
+]

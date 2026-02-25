@@ -1,0 +1,23 @@
+{
+  "id": "field-exploration.cpt-cptu",
+  "name": "Cone Penetration Test (CPT/CPTu)",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.in-situ-testing",
+  "dependencies": [],
+  "tags": ["CPT", "CPTu", "piezocone", "cone-resistance", "sleeve-friction", "pore-pressure", "Robertson", "SBTn", "dissipation", "seismic-CPT", "SCPT", "Ic", "soil-classification", "correlations", "liquefaction"],
+  "standards": ["ASTM-D5778", "ISO-22476-1"],
+  "key_references": [
+    "Robertson (2009) Interpretation of CPT — A Unified Approach — CGJ 46(11)",
+    "Lunne, Robertson & Powell (1997) Cone Penetration Testing in Geotechnical Practice",
+    "Mayne (2014) Interpretation of Geotechnical Parameters from Seismic Piezocone Tests — ISSMGE TC304",
+    "Boulanger & Idriss (2014) CPT-Based Liquefaction Triggering Procedures"
+  ],
+  "equation_count": 10,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

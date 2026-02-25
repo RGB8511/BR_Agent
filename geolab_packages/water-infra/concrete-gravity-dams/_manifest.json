@@ -1,0 +1,31 @@
+{
+  "id": "water-infra.concrete-gravity-dams",
+  "name": "Concrete Gravity Dam Design",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.dams",
+  "dependencies": [
+    "water-infra.dam-hydrology",
+    "water-infra.spillway-design",
+    "concrete.mix-design",
+    "concrete.durability",
+    "rock-mechanics.rock-mass-classification"
+  ],
+  "tags": ["gravity-dam", "stability", "sliding", "overturning", "uplift", "stress-analysis", "gravity-method", "RCC", "roller-compacted-concrete", "thermal", "contraction-joints", "foundation", "shear-friction", "drain", "grout-curtain", "USBR", "USACE", "FERC"],
+  "standards": ["USBR-DS14-Ch1", "USACE-EM-1110-2-2200", "FERC-Ch3"],
+  "key_references": [
+    "USBR Design Standards No. 14, Chapter 1 — New Concrete Dams",
+    "USACE EM 1110-2-2200 — Gravity Dam Design",
+    "FERC Engineering Guidelines, Chapter 3 — Gravity Dams",
+    "USBR Design of Small Dams (1987) — Chapter 8",
+    "Novak et al. (2007) Hydraulic Structures"
+  ],
+  "equation_count": 10,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

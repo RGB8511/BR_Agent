@@ -1,0 +1,91 @@
+[
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.tbl-001",
+    "title": "Clay Mineral Properties Comparison",
+    "type": "reference",
+    "data": {
+      "headers": ["Property", "Kaolinite", "Illite", "Montmorillonite (Na)", "Chlorite"],
+      "rows": [
+        ["Structure", "1:1 (TO)", "2:1 (TOT)", "2:1 (TOT)", "2:1:1 (TOT-O)"],
+        ["Basal spacing (Å)", "7.2 (fixed)", "10 (fixed)", "9.6–21+ (variable)", "14 (fixed)"],
+        ["CEC (meq/100g)", "3–15", "10–40", "80–150", "10–40"],
+        ["Specific surface (m²/g)", "10–20", "65–100", "600–800", "20–40"],
+        ["Interlayer bonding", "H-bonds (strong)", "K⁺ ions (strong)", "van der Waals (weak)", "Brucite sheet"],
+        ["Swelling potential", "Low", "Low–moderate", "Very high", "Low–moderate"],
+        ["Typical LL (%)", "30–75", "60–120", "100–900", "44–47"],
+        ["Typical PI (%)", "10–40", "30–60", "50–600", "10–20"],
+        ["Activity", "0.3–0.5", "0.5–1.0", "1.5–7.0+", "0.5–1.2"],
+        ["Particle shape", "Hexagonal plates", "Flaky, irregular", "Very thin flakes", "Flaky"]
+      ]
+    },
+    "source": "Mitchell & Soga (2005)"
+  },
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.tbl-002",
+    "title": "Sensitivity Classification",
+    "type": "classification",
+    "data": {
+      "headers": ["S_t Range", "Classification"],
+      "rows": [
+        ["1", "Insensitive"],
+        ["1–2", "Slightly sensitive"],
+        ["2–4", "Medium sensitive"],
+        ["4–8", "Sensitive"],
+        ["8–16", "Extra sensitive"],
+        ["> 16", "Quick"]
+      ]
+    },
+    "source": "Skempton & Northey (1952), Rosenqvist (1953)"
+  },
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.tbl-003",
+    "title": "Swelling Potential Classification",
+    "type": "classification",
+    "data": {
+      "headers": ["PI (%)", "% Clay (< 2 μm)", "Activity", "Swell Potential", "Typical Swell Pressure (kPa)"],
+      "rows": [
+        ["< 15", "< 15", "< 0.75", "Low", "< 50"],
+        ["15–25", "15–25", "0.75–1.25", "Medium", "50–150"],
+        ["25–35", "25–50", "1.25–2.0", "High", "150–300"],
+        ["> 35", "> 50", "> 2.0", "Very high", "> 300"]
+      ]
+    },
+    "source": "After Chen (1988), Holtz & Gibbs (1956)"
+  },
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.tbl-004",
+    "title": "Dispersive Soil Identification — Pinhole Test Classification",
+    "type": "classification",
+    "data": {
+      "headers": ["Class", "Head (mm)", "Flow Rate", "Hole Condition", "Interpretation"],
+      "rows": [
+        ["D1", "50", "Rapid, dark", "Enlarged", "Highly dispersive"],
+        ["D2", "50–180", "Moderate, dark to moderate", "Enlarged", "Dispersive"],
+        ["ND4", "180", "Slow, slightly dark", "Slight enlargement", "Intermediate (slightly dispersive)"],
+        ["ND3", "360", "Slow, clear to slightly dark", "No change", "Intermediate (non-dispersive)"],
+        ["ND2", "1020", "Moderate, clear", "No change", "Non-dispersive"],
+        ["ND1", "1020", "Moderate–rapid, clear", "No change", "Non-dispersive"]
+      ]
+    },
+    "source": "ASTM D4647, Sherard et al. (1976)"
+  },
+  {
+    "id": "geotechnical.foundations.mineralogy-clay.tbl-005",
+    "title": "CEC Ranges for Soil Components",
+    "type": "reference",
+    "data": {
+      "headers": ["Component", "CEC (meq/100g)"],
+      "rows": [
+        ["Kaolinite", "3–15"],
+        ["Halloysite", "5–10"],
+        ["Illite", "10–40"],
+        ["Chlorite", "10–40"],
+        ["Vermiculite", "100–150"],
+        ["Montmorillonite", "80–150"],
+        ["Organic matter (humus)", "200–400"],
+        ["Allophane", "25–70"]
+      ]
+    },
+    "source": "Mitchell & Soga (2005)"
+  }
+]

@@ -1,0 +1,165 @@
+[
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-001",
+    "title": "Mohr-Coulomb Failure Criterion (Effective Stress)",
+    "equation": "τ_f = c' + σ'_n × tanφ'",
+    "variables": {
+      "τ_f": {"description": "Shear strength on failure plane", "units": "kPa"},
+      "c'": {"description": "Effective cohesion intercept", "units": "kPa"},
+      "σ'_n": {"description": "Effective normal stress on failure plane", "units": "kPa"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"}
+    },
+    "source": "Coulomb (1776), Mohr (1900)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-002",
+    "title": "Mohr-Coulomb Failure Criterion (Total Stress, Undrained)",
+    "equation": "τ_f = s_u = c_u (when φ_u = 0)",
+    "variables": {
+      "s_u": {"description": "Undrained shear strength", "units": "kPa"},
+      "c_u": {"description": "Undrained cohesion", "units": "kPa"}
+    },
+    "applicability": "Saturated clay under undrained loading. φ_u = 0 condition.",
+    "source": "Skempton (1948)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-003",
+    "title": "Principal Stress Relationship at Failure",
+    "equation": "σ'₁f = σ'₃f × tan²(45° + φ'/2) + 2c' × tan(45° + φ'/2)",
+    "alt_form": "σ'₁f = σ'₃f × N_φ + 2c'√N_φ where N_φ = tan²(45° + φ'/2)",
+    "variables": {
+      "σ'₁f": {"description": "Major principal effective stress at failure", "units": "kPa"},
+      "σ'₃f": {"description": "Minor principal effective stress at failure", "units": "kPa"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"},
+      "c'": {"description": "Effective cohesion", "units": "kPa"}
+    },
+    "source": "Derived from Mohr circle tangent to failure envelope"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-004",
+    "title": "Failure Plane Orientation",
+    "equation": "θ_f = 45° + φ'/2",
+    "variables": {
+      "θ_f": {"description": "Angle of failure plane from horizontal (from σ'₃ direction)", "units": "degrees"},
+      "φ'": {"description": "Effective friction angle", "units": "degrees"}
+    },
+    "source": "Mohr-Coulomb theory"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-005",
+    "title": "Residual Strength",
+    "equation": "τ_r = σ'_n × tanφ'_r",
+    "variables": {
+      "τ_r": {"description": "Residual shear strength (c'_r = 0)", "units": "kPa"},
+      "σ'_n": {"description": "Effective normal stress", "units": "kPa"},
+      "φ'_r": {"description": "Residual friction angle", "units": "degrees"}
+    },
+    "applicability": "Large displacement surfaces. Pre-existing shear planes, reactivated landslides.",
+    "source": "Skempton (1964)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-006",
+    "title": "SHANSEP Undrained Strength",
+    "equation": "s_u / σ'_v0 = S × OCR^m",
+    "variables": {
+      "s_u": {"description": "Undrained shear strength", "units": "kPa"},
+      "σ'_v0": {"description": "In-situ vertical effective stress", "units": "kPa"},
+      "S": {"description": "Normalized strength ratio for NC clay", "units": "dimensionless"},
+      "OCR": {"description": "Overconsolidation ratio", "units": "dimensionless"},
+      "m": {"description": "Strength increase exponent (≈ 0.8)", "units": "dimensionless"}
+    },
+    "applicability": "Determined from CK₀U triaxial tests at various OCRs. S typically 0.20–0.30.",
+    "source": "Ladd & Foott (1974)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-007",
+    "title": "su/σ'v Correlation with PI (NC Clays)",
+    "equation": "s_u / σ'_v0 = 0.11 + 0.0037 × PI",
+    "variables": {
+      "s_u": {"description": "Undrained shear strength", "units": "kPa"},
+      "σ'_v0": {"description": "Vertical effective stress", "units": "kPa"},
+      "PI": {"description": "Plasticity index", "units": "%"}
+    },
+    "applicability": "NC clays only. Rough estimate. Alternative: s_u/σ'_v0 ≈ 0.22 (Mesri 1975, average for NC clays).",
+    "source": "Skempton (1957)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-008",
+    "title": "Bjerrum Vane Correction Factor",
+    "equation": "s_u(design) = μ × s_u(vane)",
+    "variables": {
+      "s_u(design)": {"description": "Corrected undrained shear strength", "units": "kPa"},
+      "μ": {"description": "Correction factor = f(PI)", "units": "dimensionless"},
+      "s_u(vane)": {"description": "Field vane shear strength", "units": "kPa"}
+    },
+    "applicability": "μ ≈ 1.0 for PI = 20, μ ≈ 0.8 for PI = 50, μ ≈ 0.65 for PI = 100. Accounts for rate effects and anisotropy.",
+    "source": "Bjerrum (1972)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-009",
+    "title": "Vane Shear Strength from Torque",
+    "equation": "s_u = T / [π × D² × (H/2 + D/6)]",
+    "variables": {
+      "s_u": {"description": "Undrained shear strength", "units": "kPa"},
+      "T": {"description": "Maximum torque at failure", "units": "kN·m"},
+      "D": {"description": "Vane diameter", "units": "m"},
+      "H": {"description": "Vane height", "units": "m"}
+    },
+    "applicability": "Standard H/D = 2. Assumes uniform s_u on cylindrical surface and top/bottom.",
+    "source": "ASTM D2573"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-010",
+    "title": "q-p' Failure Envelope",
+    "equation": "q_f = a + p'_f × tanα",
+    "variables": {
+      "q": {"description": "(σ'₁ - σ'₃)/2", "units": "kPa"},
+      "p'": {"description": "(σ'₁ + σ'₃)/2", "units": "kPa"},
+      "a": {"description": "c' × cosφ'", "units": "kPa"},
+      "tanα": {"description": "sinφ'", "units": "dimensionless"}
+    },
+    "applicability": "Convert between Mohr-Coulomb and MIT stress path parameters.",
+    "source": "Lambe (1967)"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-011",
+    "title": "Conversion: q-p' to c'-φ'",
+    "equation": "sinφ' = tanα; c' = a / cosφ'",
+    "variables": {
+      "φ'": {"description": "Effective friction angle", "units": "degrees"},
+      "c'": {"description": "Effective cohesion", "units": "kPa"},
+      "α": {"description": "Slope of K_f line in q-p' space", "units": "degrees"},
+      "a": {"description": "Intercept of K_f line in q-p' space", "units": "kPa"}
+    },
+    "source": "Geometric relationship"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-012",
+    "title": "Direct Shear: Peak and Residual from Test Data",
+    "equation": "φ' = arctan(τ_f / σ'_n) for c' = 0",
+    "applicability": "When plotting τ vs. σ'_n from multiple normal stresses. If line passes through origin, c' = 0.",
+    "source": "ASTM D3080"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-013",
+    "title": "Unconfined Compressive Strength to su",
+    "equation": "s_u = q_u / 2",
+    "variables": {
+      "s_u": {"description": "Undrained shear strength", "units": "kPa"},
+      "q_u": {"description": "Unconfined compressive strength", "units": "kPa"}
+    },
+    "applicability": "σ₃ = 0 in UCS test. For saturated clay with φ_u = 0, Mohr circle gives s_u = q_u/2.",
+    "source": "ASTM D2166"
+  },
+  {
+    "id": "geotechnical.soil-mechanics.shear-strength.eq-014",
+    "title": "Residual φ'_r from PI (Correlation)",
+    "equation": "φ'_r ≈ 45 - 12.8 × log(PI) for PI > 10",
+    "variables": {
+      "φ'_r": {"description": "Residual friction angle (degrees)", "units": "degrees"},
+      "PI": {"description": "Plasticity index", "units": "%"}
+    },
+    "applicability": "Approximate. Large scatter. Voight (1973) and others. Use ring shear for design.",
+    "source": "After Voight (1973), Stark & Eid (1994) provide better correlations accounting for σ'_n"
+  }
+]

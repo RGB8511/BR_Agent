@@ -1,0 +1,27 @@
+{
+  "id": "field-exploration.rock-coring",
+  "name": "Rock Coring Methods & Core Logging",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.subsurface",
+  "dependencies": [
+    "field-exploration.drilling-methods"
+  ],
+  "tags": ["rock-core", "NQ", "HQ", "PQ", "wireline", "diamond-core", "RQD", "TCR", "SCR", "core-recovery", "core-orientation", "triple-tube", "core-logging", "core-box", "ISRM", "rock-quality"],
+  "standards": ["ASTM-D2113", "ASTM-D6032", "ISRM-suggested-methods"],
+  "key_references": [
+    "ISRM (2007) The Complete ISRM Suggested Methods for Rock Characterization",
+    "Deere & Deere (1989) Rock Quality Designation (RQD) After Twenty Years — USACE Tech Report GL-89-1",
+    "FHWA NHI-01-031 — Subsurface Investigations",
+    "Kulhawy & Goodman (1987) Foundations in Rock",
+    "Marinos et al. (2005) GSI — Geological Strength Index"
+  ],
+  "equation_count": 6,
+  "concept_count": 20,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

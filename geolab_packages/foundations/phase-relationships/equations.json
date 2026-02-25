@@ -1,0 +1,228 @@
+[
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-001",
+    "title": "Void Ratio",
+    "equation": "e = V_v / V_s",
+    "variables": {
+      "e": {"description": "Void ratio", "units": "dimensionless"},
+      "V_v": {"description": "Volume of voids", "units": "m³"},
+      "V_s": {"description": "Volume of solids", "units": "m³"}
+    },
+    "source": "Fundamental definition"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-002",
+    "title": "Porosity",
+    "equation": "n = V_v / V = e / (1 + e)",
+    "variables": {
+      "n": {"description": "Porosity", "units": "dimensionless (0 to 1)"},
+      "V_v": {"description": "Volume of voids", "units": "m³"},
+      "V": {"description": "Total volume", "units": "m³"},
+      "e": {"description": "Void ratio", "units": "dimensionless"}
+    },
+    "source": "Fundamental definition"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-003",
+    "title": "Degree of Saturation",
+    "equation": "S = V_w / V_v",
+    "variables": {
+      "S": {"description": "Degree of saturation", "units": "dimensionless (0 to 1)"},
+      "V_w": {"description": "Volume of water", "units": "m³"},
+      "V_v": {"description": "Volume of voids", "units": "m³"}
+    },
+    "source": "Fundamental definition"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-004",
+    "title": "Moisture (Water) Content",
+    "equation": "w = M_w / M_s",
+    "variables": {
+      "w": {"description": "Gravimetric moisture content", "units": "dimensionless (express as %)"},
+      "M_w": {"description": "Mass of water", "units": "g or kg"},
+      "M_s": {"description": "Mass of dry solids", "units": "g or kg"}
+    },
+    "source": "ASTM D2216"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-005",
+    "title": "Specific Gravity of Soil Solids",
+    "equation": "G_s = ρ_s / ρ_w = M_s / (V_s × ρ_w)",
+    "variables": {
+      "G_s": {"description": "Specific gravity of soil solids", "units": "dimensionless"},
+      "ρ_s": {"description": "Density of soil solids", "units": "kg/m³"},
+      "ρ_w": {"description": "Density of water (998 kg/m³ at 20°C)", "units": "kg/m³"}
+    },
+    "source": "ASTM D854"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-006",
+    "title": "Phase Relationship Identity",
+    "equation": "Se = wG_s",
+    "variables": {
+      "S": {"description": "Degree of saturation", "units": "dimensionless"},
+      "e": {"description": "Void ratio", "units": "dimensionless"},
+      "w": {"description": "Moisture content", "units": "dimensionless (decimal)"},
+      "G_s": {"description": "Specific gravity of solids", "units": "dimensionless"}
+    },
+    "applicability": "Universal relationship connecting all phase quantities. Given any two of (S, e, w, G_s), compute the others.",
+    "source": "Derived from phase diagram"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-007",
+    "title": "Total (Bulk) Unit Weight",
+    "equation": "γ = (G_s + Se)γ_w / (1 + e)",
+    "alt_form": "γ = γ_d(1 + w)",
+    "variables": {
+      "γ": {"description": "Total unit weight", "units": "kN/m³ or lb/ft³"},
+      "G_s": {"description": "Specific gravity of solids", "units": "dimensionless"},
+      "S": {"description": "Degree of saturation", "units": "dimensionless"},
+      "e": {"description": "Void ratio", "units": "dimensionless"},
+      "γ_w": {"description": "Unit weight of water (9.81 kN/m³)", "units": "kN/m³"},
+      "γ_d": {"description": "Dry unit weight", "units": "kN/m³"},
+      "w": {"description": "Moisture content", "units": "dimensionless (decimal)"}
+    },
+    "source": "Derived from phase diagram"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-008",
+    "title": "Dry Unit Weight",
+    "equation": "γ_d = G_s × γ_w / (1 + e)",
+    "alt_form": "γ_d = γ / (1 + w)",
+    "variables": {
+      "γ_d": {"description": "Dry unit weight", "units": "kN/m³ or lb/ft³"},
+      "G_s": {"description": "Specific gravity of solids", "units": "dimensionless"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"},
+      "e": {"description": "Void ratio", "units": "dimensionless"}
+    },
+    "source": "Derived from phase diagram"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-009",
+    "title": "Saturated Unit Weight",
+    "equation": "γ_sat = (G_s + e)γ_w / (1 + e)",
+    "variables": {
+      "γ_sat": {"description": "Saturated unit weight (S = 1.0)", "units": "kN/m³"},
+      "G_s": {"description": "Specific gravity of solids", "units": "dimensionless"},
+      "e": {"description": "Void ratio", "units": "dimensionless"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"}
+    },
+    "source": "Derived from phase diagram, setting S = 1"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-010",
+    "title": "Submerged (Buoyant) Unit Weight",
+    "equation": "γ' = γ_sat - γ_w = (G_s - 1)γ_w / (1 + e)",
+    "variables": {
+      "γ'": {"description": "Submerged unit weight", "units": "kN/m³"},
+      "γ_sat": {"description": "Saturated unit weight", "units": "kN/m³"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"}
+    },
+    "applicability": "Used for effective stress calculations below the water table",
+    "source": "Archimedes' principle applied to soil"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-011",
+    "title": "Zero Air Voids Dry Unit Weight",
+    "equation": "γ_zav = G_s × γ_w / (1 + wG_s)",
+    "variables": {
+      "γ_zav": {"description": "Zero air voids dry unit weight", "units": "kN/m³"},
+      "G_s": {"description": "Specific gravity of solids", "units": "dimensionless"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"},
+      "w": {"description": "Moisture content", "units": "dimensionless (decimal)"}
+    },
+    "applicability": "Upper theoretical bound on compaction curve. S = 100%. No field soil achieves this.",
+    "source": "Derived from γ_d with S = 1"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-012",
+    "title": "Relative Density (Void Ratio Form)",
+    "equation": "D_r = (e_max - e) / (e_max - e_min)",
+    "variables": {
+      "D_r": {"description": "Relative density", "units": "dimensionless (express as %)"},
+      "e_max": {"description": "Maximum void ratio (loosest state)", "units": "dimensionless"},
+      "e_min": {"description": "Minimum void ratio (densest state)", "units": "dimensionless"},
+      "e": {"description": "In-situ void ratio", "units": "dimensionless"}
+    },
+    "applicability": "Cohesionless soils with < ~15% fines. Not meaningful for clays.",
+    "source": "ASTM D4253, D4254"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-013",
+    "title": "Relative Density (Unit Weight Form)",
+    "equation": "D_r = [(γ_d - γ_d,min) / (γ_d,max - γ_d,min)] × [γ_d,max / γ_d]",
+    "variables": {
+      "D_r": {"description": "Relative density", "units": "dimensionless"},
+      "γ_d": {"description": "In-situ dry unit weight", "units": "kN/m³"},
+      "γ_d,max": {"description": "Maximum dry unit weight (densest, ASTM D4253)", "units": "kN/m³"},
+      "γ_d,min": {"description": "Minimum dry unit weight (loosest, ASTM D4254)", "units": "kN/m³"}
+    },
+    "source": "ASTM D4253, D4254"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-014",
+    "title": "Volumetric Water Content",
+    "equation": "θ = V_w / V = wγ_d / γ_w = nS",
+    "variables": {
+      "θ": {"description": "Volumetric water content", "units": "dimensionless"},
+      "V_w": {"description": "Volume of water", "units": "m³"},
+      "V": {"description": "Total volume", "units": "m³"},
+      "n": {"description": "Porosity", "units": "dimensionless"},
+      "S": {"description": "Degree of saturation", "units": "dimensionless"}
+    },
+    "applicability": "Used in unsaturated soil mechanics and SWCC characterization",
+    "source": "Fundamental definition"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-015",
+    "title": "Density to Unit Weight Conversion",
+    "equation": "γ = ρ × g",
+    "variables": {
+      "γ": {"description": "Unit weight", "units": "kN/m³ or N/m³"},
+      "ρ": {"description": "Mass density", "units": "kg/m³"},
+      "g": {"description": "Gravitational acceleration (9.81 m/s²)", "units": "m/s²"}
+    },
+    "source": "Physics — Newton's second law"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-016",
+    "title": "Liquidity Index",
+    "equation": "LI = (w - PL) / (LL - PL) = (w - PL) / PI",
+    "variables": {
+      "LI": {"description": "Liquidity index", "units": "dimensionless"},
+      "w": {"description": "Natural moisture content", "units": "%"},
+      "PL": {"description": "Plastic limit", "units": "%"},
+      "LL": {"description": "Liquid limit", "units": "%"},
+      "PI": {"description": "Plasticity index", "units": "%"}
+    },
+    "applicability": "LI < 0: stiff/hard. LI = 0–1: plastic range. LI > 1: liquid/sensitive.",
+    "source": "Atterberg (1911)"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-017",
+    "title": "Activity",
+    "equation": "A = PI / (% clay fraction)",
+    "variables": {
+      "A": {"description": "Activity of clay", "units": "dimensionless"},
+      "PI": {"description": "Plasticity index", "units": "%"},
+      "% clay fraction": {"description": "Percent finer than 2 μm (0.002 mm)", "units": "%"}
+    },
+    "applicability": "A < 0.75: inactive (kaolinite). 0.75–1.25: normal (illite). > 1.25: active (montmorillonite). Indicates clay mineral type and swelling potential.",
+    "source": "Skempton (1953)"
+  },
+  {
+    "id": "geotechnical.foundations.phase-relationships.eq-018",
+    "title": "Shrinkage Limit",
+    "equation": "SL = w - [(V - V_d) / M_s] × ρ_w",
+    "variables": {
+      "SL": {"description": "Shrinkage limit", "units": "%"},
+      "w": {"description": "Initial moisture content", "units": "decimal"},
+      "V": {"description": "Initial volume of specimen", "units": "cm³"},
+      "V_d": {"description": "Dry volume of specimen", "units": "cm³"},
+      "M_s": {"description": "Mass of dry specimen", "units": "g"},
+      "ρ_w": {"description": "Density of water", "units": "g/cm³"}
+    },
+    "applicability": "Moisture content below which no further volume change occurs on drying. ASTM D4943.",
+    "source": "ASTM D4943"
+  }
+]

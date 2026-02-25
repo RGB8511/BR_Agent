@@ -1,0 +1,25 @@
+{
+  "id": "remote-sensing.lidar-fundamentals",
+  "name": "LiDAR Fundamentals — Terrestrial, Airborne & Mobile",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.acquisition",
+  "dependencies": [],
+  "tags": ["LiDAR", "TLS", "ALS", "MLS", "point-cloud", "time-of-flight", "phase-shift", "pulse-rate", "scan-rate", "accuracy", "registration", "georeferencing", "classification", "intensity", "return-number", "Leica", "Riegl", "FARO", "Trimble", "Velodyne"],
+  "standards": ["ASPRS-LAS", "USGS-LBS", "ASPRS-Positional-Accuracy"],
+  "key_references": [
+    "Vosselman & Maas (2010) Airborne and Terrestrial Laser Scanning",
+    "ASPRS LAS Specification v1.4",
+    "USGS Lidar Base Specification v2.1",
+    "Shan & Toth (2018) Topographic Laser Ranging and Scanning",
+    "Jaboyedoff et al. (2012) LiDAR in geosciences"
+  ],
+  "equation_count": 10,
+  "concept_count": 22,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

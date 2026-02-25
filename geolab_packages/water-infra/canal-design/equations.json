@@ -1,0 +1,131 @@
+[
+  {
+    "id": "water-infra.canal-design.eq-001",
+    "title": "Manning's Equation (Open Channel)",
+    "equation": "Q = (1/n) × A × R^(2/3) × S^(1/2)",
+    "variables": {
+      "Q": {"description": "Design flow rate", "units": "m³/s"},
+      "n": {"description": "Manning's roughness coefficient", "units": "s/m^(1/3)"},
+      "A": {"description": "Cross-sectional flow area", "units": "m²"},
+      "R": {"description": "Hydraulic radius = A/P (P = wetted perimeter)", "units": "m"},
+      "S": {"description": "Bed slope (energy gradient for uniform flow)", "units": "m/m"}
+    },
+    "applicability": "Primary design equation for canals. Uniform flow assumed. For trapezoidal section: A = (b + z×y) × y, P = b + 2y√(1+z²), where b = bottom width, y = depth, z = side slope (H:V).",
+    "source": "Manning (1891), Chow (1959)"
+  },
+  {
+    "id": "water-infra.canal-design.eq-002",
+    "title": "Tractive Force — Boundary Shear Stress",
+    "equation": "τ₀ = γ × R × S",
+    "variables": {
+      "τ₀": {"description": "Average boundary shear stress on bed", "units": "Pa (N/m²)"},
+      "γ": {"description": "Specific weight of water (9810 N/m³)", "units": "N/m³"},
+      "R": {"description": "Hydraulic radius", "units": "m"},
+      "S": {"description": "Energy slope", "units": "m/m"}
+    },
+    "applicability": "For stable channel design: τ₀ ≤ τ_cr (critical tractive stress of boundary material). Bank shear ≈ 0.75 × τ₀ for trapezoidal channels. Side slope stability also requires τ_bank ≤ τ_cr × K where K = tractive force ratio = √(1 - sin²φ_s/sin²φ), φ_s = side slope angle, φ = repose angle.",
+    "source": "USBR, Lane (1955), USACE EM 1110-2-1601"
+  },
+  {
+    "id": "water-infra.canal-design.eq-003",
+    "title": "Lacey Regime — Wetted Perimeter",
+    "equation": "P = 4.75 × √Q",
+    "variables": {
+      "P": {"description": "Regime wetted perimeter", "units": "m"},
+      "Q": {"description": "Design discharge", "units": "m³/s"}
+    },
+    "applicability": "For alluvial canals carrying sediment-laden water. Developed from Indian subcontinent canal data. Used with other Lacey equations (R, S, V) to establish regime dimensions.",
+    "source": "Lacey (1930)"
+  },
+  {
+    "id": "water-infra.canal-design.eq-004",
+    "title": "Lacey Regime — Hydraulic Radius and Slope",
+    "equation": "R = 0.47 × (Q/f)^(1/3);  S = 0.0003 × f^(5/3) / Q^(1/6)",
+    "variables": {
+      "R": {"description": "Regime hydraulic radius", "units": "m"},
+      "S": {"description": "Regime bed slope", "units": "m/m"},
+      "Q": {"description": "Discharge", "units": "m³/s"},
+      "f": {"description": "Lacey silt factor: f = 1.76 × √(d_m), d_m = median particle size in mm", "units": "dimensionless"}
+    },
+    "applicability": "f values: 0.4 (very fine silt), 0.7 (fine silt), 1.0 (medium sand ~0.32 mm), 1.5 (coarse sand), 2.0 (gravel). Only valid for alluvial channels in regime.",
+    "source": "Lacey (1930, 1934)"
+  },
+  {
+    "id": "water-infra.canal-design.eq-005",
+    "title": "Kennedy's Critical Velocity",
+    "equation": "V₀ = 0.55 × m × y^0.64",
+    "variables": {
+      "V₀": {"description": "Critical (non-silting, non-scouring) velocity", "units": "m/s"},
+      "m": {"description": "Critical velocity ratio (CVR): 1.0 for standard silt, 0.7–0.9 for fine, 1.1–1.3 for coarse", "units": "dimensionless"},
+      "y": {"description": "Depth of flow", "units": "m"}
+    },
+    "applicability": "Empirical — developed for Upper Bari Doab Canal system (Punjab). Used in conjunction with Manning's equation to solve for b and y. Does not give channel shape — must assume b/y ratio.",
+    "source": "Kennedy (1895)"
+  },
+  {
+    "id": "water-infra.canal-design.eq-006",
+    "title": "Best Hydraulic Section — Trapezoidal",
+    "equation": "b = 2y × (√(1+z²) - z);  R = y/2",
+    "variables": {
+      "b": {"description": "Bottom width for best hydraulic section", "units": "m"},
+      "y": {"description": "Flow depth", "units": "m"},
+      "z": {"description": "Side slope (H:V)", "units": "dimensionless"},
+      "R": {"description": "Hydraulic radius = y/2 for all best sections", "units": "m"}
+    },
+    "applicability": "Optimal z = 1/√3 ≈ 0.577 (60° from horizontal) gives half-hexagon. In practice, z is constrained by soil stability. Given a fixed z, the best b/y ratio minimizes wetted perimeter for a given area.",
+    "source": "Chow (1959)"
+  },
+  {
+    "id": "water-infra.canal-design.eq-007",
+    "title": "Seepage Loss — Moritz Empirical Formula",
+    "equation": "q_s = 0.0375 × C_s × √(Q/V)",
+    "variables": {
+      "q_s": {"description": "Seepage loss per unit length of canal", "units": "m³/s per km"},
+      "C_s": {"description": "Soil coefficient: 0.5 (clay), 1.0 (clay loam), 1.5 (sandy loam), 2.0 (sandy-gravelly)", "units": "dimensionless"},
+      "Q": {"description": "Canal flow rate", "units": "m³/s"},
+      "V": {"description": "Mean flow velocity", "units": "m/s"}
+    },
+    "applicability": "Quick estimate. Actual seepage depends on groundwater depth, soil permeability, canal geometry, and wetted perimeter. More rigorous analysis uses Darcy's law with seepage path geometry.",
+    "source": "Moritz (USBR)"
+  },
+  {
+    "id": "water-infra.canal-design.eq-008",
+    "title": "Superelevation in Canal Curves",
+    "equation": "Δy = V² × T / (g × r_c)",
+    "variables": {
+      "Δy": {"description": "Superelevation — difference in water surface between outer and inner banks", "units": "m"},
+      "V": {"description": "Mean velocity", "units": "m/s"},
+      "T": {"description": "Top width of water surface", "units": "m"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"},
+      "r_c": {"description": "Radius of curvature of canal centerline", "units": "m"}
+    },
+    "applicability": "Add Δy to freeboard on the outer bank. Minimum radius of curvature: USBR recommends r_c ≥ 3 × T for lined canals, r_c ≥ 5 × T for unlined.",
+    "source": "USBR Design of Small Canal Structures"
+  },
+  {
+    "id": "water-infra.canal-design.eq-009",
+    "title": "Transition Energy Loss",
+    "equation": "hL = C_t × |V₂²/(2g) - V₁²/(2g)|",
+    "variables": {
+      "hL": {"description": "Head loss through transition", "units": "m"},
+      "C_t": {"description": "Transition loss coefficient: 0.10 contraction (converging), 0.30 expansion (diverging) — USBR values", "units": "dimensionless"},
+      "V₁": {"description": "Upstream velocity", "units": "m/s"},
+      "V₂": {"description": "Downstream velocity", "units": "m/s"}
+    },
+    "applicability": "For gradual (well-designed) transitions. Abrupt transitions: C_t = 0.3 (contraction), 0.5–1.0 (expansion). Transition length: L = (T₁-T₂)/(2×tanα), where α = wall deflection angle (typically 12.5°–25°).",
+    "source": "USBR Design Standards No. 3"
+  },
+  {
+    "id": "water-infra.canal-design.eq-010",
+    "title": "Canal Capacity with Conveyance Losses",
+    "equation": "Q_head = Q_delivery / (1 - f_loss × L)",
+    "variables": {
+      "Q_head": {"description": "Required headworks diversion capacity", "units": "m³/s"},
+      "Q_delivery": {"description": "Required delivery at downstream end", "units": "m³/s"},
+      "f_loss": {"description": "Fractional loss rate per km (seepage + evaporation)", "units": "per km"},
+      "L": {"description": "Canal length", "units": "km"}
+    },
+    "applicability": "Typical losses: unlined 2–8% per km in pervious soils; lined 0.5–2% per km. Evaporation loss usually small (0.1–0.3% per km) compared to seepage.",
+    "source": "USBR, general irrigation engineering practice"
+  }
+]

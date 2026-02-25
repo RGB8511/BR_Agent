@@ -1,0 +1,32 @@
+{
+  "id": "projects.elk-basin.dam-safety",
+  "name": "Elk Basin Dam — Safety Investigation, Monitoring & Remediation",
+  "level": 2,
+  "discipline": "projects",
+  "parent": "projects.elk-basin",
+  "dependencies": [
+    "water-infra.arch-dams",
+    "water-infra.dam-safety-surveillance",
+    "water-infra.dam-risk-assessment",
+    "water-infra.embankment-dam-design",
+    "geotechnical.rock-mechanics.hoek-brown",
+    "geotechnical.rock-mechanics.rock-mass-classification",
+    "concrete.durability.mechanisms"
+  ],
+  "tags": ["arch-dam", "ASR", "alkali-silica-reaction", "seepage", "grouting", "embankment", "glacial-till", "creep", "displacement", "inclinometer", "piezometer", "granodiorite", "FERC", "dam-safety", "petrographic-analysis", "instrumentation", "remediation", "Idaho"],
+  "standards": ["18 CFR Part 12D", "FERC Engineering Guidelines Ch.11", "ASTM C42", "ASTM C150", "ASTM C496", "ASTM C856", "ASTM D3967", "ASTM D4767", "ASTM D7012"],
+  "key_references": [
+    "CDSC FERC Part 12D Inspection Report (October 2020)",
+    "MWDE PFR Geotechnical Investigation Report (November 2025)",
+    "EBID Instrumentation and Monitoring Summary 2015-2025 (October 2025)",
+    "MWDE Remediation Alternatives Evaluation (November 2025)"
+  ],
+  "equation_count": 8,
+  "concept_count": 20,
+  "table_count": 14,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

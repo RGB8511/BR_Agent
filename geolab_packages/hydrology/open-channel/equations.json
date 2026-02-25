@@ -1,0 +1,115 @@
+[
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-001",
+    "title": "Manning's Equation",
+    "equation": "Q = (k/n) × A × R^(2/3) × S^(1/2)",
+    "variables": {
+      "Q": {"description": "Discharge", "units": "m³/s (SI) or ft³/s (US)"},
+      "k": {"description": "Unit conversion: 1.0 (SI) or 1.486 (US)", "units": ""},
+      "n": {"description": "Manning's roughness coefficient", "units": "dimensionless"},
+      "A": {"description": "Cross-sectional flow area", "units": "m² or ft²"},
+      "R": {"description": "Hydraulic radius = A/P", "units": "m or ft"},
+      "S": {"description": "Energy slope (= bed slope for uniform flow)", "units": "m/m or ft/ft"}
+    },
+    "source": "Manning (1891)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-002",
+    "title": "Froude Number",
+    "equation": "Fr = V / √(g × D)",
+    "variables": {
+      "Fr": {"description": "Froude number", "units": "dimensionless"},
+      "V": {"description": "Mean flow velocity", "units": "m/s"},
+      "g": {"description": "Gravitational acceleration (9.81 m/s²)", "units": "m/s²"},
+      "D": {"description": "Hydraulic depth = A/T", "units": "m"}
+    },
+    "source": "Fundamental — Chow (1959)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-003",
+    "title": "Specific Energy",
+    "equation": "E = y + V²/(2g) = y + Q²/(2gA²)",
+    "variables": {
+      "E": {"description": "Specific energy (head above channel bed)", "units": "m or ft"},
+      "y": {"description": "Flow depth", "units": "m or ft"}
+    },
+    "source": "Bakhmeteff (1932)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-004",
+    "title": "Critical Depth — Rectangular Channel",
+    "equation": "yc = (q²/g)^(1/3)",
+    "variables": {
+      "yc": {"description": "Critical depth", "units": "m or ft"},
+      "q": {"description": "Discharge per unit width = Q/b", "units": "m²/s or ft²/s"},
+      "g": {"description": "Gravitational acceleration", "units": "m/s²"}
+    },
+    "source": "Fundamental"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-005",
+    "title": "Critical Flow Condition (General)",
+    "equation": "Q²T / (gA³) = 1",
+    "variables": {
+      "T": {"description": "Top width of flow", "units": "m or ft"},
+      "A": {"description": "Flow area at critical depth", "units": "m² or ft²"}
+    },
+    "applicability": "Solved iteratively for non-rectangular sections. Equivalent to Fr = 1.",
+    "source": "Chow (1959)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-006",
+    "title": "Hydraulic Jump — Conjugate Depths (Rectangular)",
+    "equation": "y2/y1 = 0.5 × [-1 + √(1 + 8Fr1²)]",
+    "variables": {
+      "y1": {"description": "Upstream (supercritical) depth", "units": "m"},
+      "y2": {"description": "Downstream (subcritical) sequent depth", "units": "m"},
+      "Fr1": {"description": "Froude number at upstream depth", "units": "dimensionless"}
+    },
+    "source": "Bélanger (1828)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-007",
+    "title": "Hydraulic Jump — Energy Loss",
+    "equation": "ΔE = (y2 - y1)³ / (4 × y1 × y2)",
+    "variables": {
+      "ΔE": {"description": "Energy dissipated in jump", "units": "m or ft"}
+    },
+    "source": "Chow (1959)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-008",
+    "title": "Gradually Varied Flow Equation",
+    "equation": "dy/dx = (S0 - Sf) / (1 - Fr²)",
+    "variables": {
+      "dy/dx": {"description": "Rate of change of water depth along channel", "units": "m/m"},
+      "S0": {"description": "Channel bed slope", "units": "m/m"},
+      "Sf": {"description": "Friction slope (from Manning's at local depth)", "units": "m/m"}
+    },
+    "applicability": "Solved numerically by standard-step or direct-step method. Basis of HEC-RAS steady-state profiles.",
+    "source": "Saint-Venant (1871), Chow (1959)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-009",
+    "title": "Rectangular Weir Discharge",
+    "equation": "Q = Cd × (2/3) × √(2g) × L × H^(3/2)",
+    "variables": {
+      "Q": {"description": "Discharge over weir", "units": "m³/s"},
+      "Cd": {"description": "Discharge coefficient (typically 0.60–0.65 sharp-crested)", "units": "dimensionless"},
+      "L": {"description": "Effective crest length", "units": "m"},
+      "H": {"description": "Head above crest (upstream water surface - crest elevation)", "units": "m"}
+    },
+    "source": "Kindsvater & Carter (1957)"
+  },
+  {
+    "id": "hydrology.hydraulics.open-channel.eq-010",
+    "title": "V-Notch (Triangular) Weir Discharge",
+    "equation": "Q = Cd × (8/15) × √(2g) × tan(θ/2) × H^(5/2)",
+    "variables": {
+      "θ": {"description": "Notch angle", "units": "degrees (commonly 90°)"},
+      "Cd": {"description": "Discharge coefficient (≈ 0.58 for 90° V-notch)", "units": "dimensionless"},
+      "H": {"description": "Head above notch vertex", "units": "m"}
+    },
+    "source": "ISO 1438"
+  }
+]

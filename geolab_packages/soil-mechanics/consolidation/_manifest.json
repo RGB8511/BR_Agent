@@ -1,0 +1,26 @@
+{
+  "id": "geotechnical.soil-mechanics.consolidation",
+  "name": "Consolidation Theory & Settlement",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.soil-mechanics",
+  "dependencies": [
+    "geotechnical.foundations.phase-relationships",
+    "geotechnical.soil-mechanics.effective-stress"
+  ],
+  "tags": ["consolidation", "settlement", "Terzaghi", "Cc", "Cr", "Cv", "OCR", "preconsolidation", "secondary-compression", "CRS", "oedometer", "Casagrande", "time-rate"],
+  "standards": ["D2435", "D4186"],
+  "key_references": [
+    "Terzaghi (1925) Erdbaumechanik",
+    "Casagrande (1936) Determination of Preconsolidation Load",
+    "Mesri & Godlewski (1977) Time and Stress Compressibility"
+  ],
+  "equation_count": 18,
+  "concept_count": 18,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate+graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

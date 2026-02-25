@@ -1,0 +1,120 @@
+[
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.tbl-001",
+    "title": "Intact Rock Constant m_i by Rock Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Rock Type", "m_i Range", "Suggested m_i"],
+      "rows": [
+        ["Granite", "29–35", "32"],
+        ["Granodiorite", "27–31", "29"],
+        ["Diorite", "25–31", "28"],
+        ["Gabbro", "25–29", "27"],
+        ["Basalt", "22–27", "25"],
+        ["Andesite", "19–27", "25"],
+        ["Rhyolite", "20–28", "25"],
+        ["Tuff (lithified)", "13–19", "15"],
+        ["Conglomerate", "20–23", "21"],
+        ["Sandstone", "15–20", "17"],
+        ["Siltstone", "7–10", "9"],
+        ["Mudstone", "4–8", "5"],
+        ["Shale", "4–8", "6"],
+        ["Limestone (crystalline)", "10–14", "12"],
+        ["Limestone (micritic)", "8–10", "9"],
+        ["Dolostone", "9–13", "11"],
+        ["Gneiss", "28–33", "30"],
+        ["Quartzite", "20–24", "22"],
+        ["Marble", "7–10", "9"],
+        ["Schist", "8–14", "12"],
+        ["Phyllite", "7–10", "9"],
+        ["Slate", "7–11", "9"],
+        ["Hornfels", "17–21", "19"]
+      ]
+    },
+    "source": "Hoek (2007), Marinos & Hoek (2000)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.tbl-002",
+    "title": "GSI Estimation Guide (Simplified)",
+    "type": "classification",
+    "data": {
+      "headers": ["Structure", "Surface Condition: Very Good", "Good", "Fair", "Poor", "Very Poor"],
+      "rows": [
+        ["Intact or Massive", "85–100", "75–90", "65–80", "55–70", "45–60"],
+        ["Blocky", "70–85", "60–75", "50–65", "40–55", "30–45"],
+        ["Very Blocky", "55–70", "45–60", "35–50", "25–40", "15–30"],
+        ["Blocky/Disturbed/Seamy", "40–55", "30–45", "20–35", "10–25", "5–15"],
+        ["Disintegrated", "25–40", "15–30", "10–20", "5–15", "< 10"],
+        ["Laminated/Sheared", "15–25", "10–20", "5–15", "< 10", "< 5"]
+      ]
+    },
+    "source": "After Hoek & Marinos (2000). Surface: Very Good = fresh unweathered; Good = slightly weathered; Fair = moderately weathered, some coating; Poor = slickensided or clay-filled; Very Poor = thick clay fillings or crushed."
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.tbl-003",
+    "title": "Disturbance Factor D Guidelines",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Excavation Method / Condition", "D"],
+      "rows": [
+        ["Excellent quality controlled blasting or TBM boring", "0"],
+        ["Mechanical excavation (roadheader, backhoe) with minimal disturbance", "0"],
+        ["Good quality blasting, perimeter control", "0.5"],
+        ["Typical open pit production blasting", "0.7"],
+        ["Poor blasting, no perimeter control, significant overbreak", "0.8"],
+        ["Very poor blasting in soft/weak rock", "1.0"],
+        ["Small-scale open pit (controlled)", "0.7"],
+        ["Large open pit (production)", "1.0"],
+        ["Caverns/tunnels — average conditions", "0.5"],
+        ["NOTE: Apply D only to damaged zone (1–3m), not entire mass", "—"]
+      ]
+    },
+    "source": "Hoek, Carranza-Torres & Corkum (2002)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.tbl-004",
+    "title": "Modulus Ratio (MR = E_i/σ_ci)",
+    "type": "reference",
+    "data": {
+      "headers": ["Rock Type", "MR Range", "Suggested MR"],
+      "rows": [
+        ["Granite, granodiorite", "350–500", "425"],
+        ["Basalt", "250–500", "350"],
+        ["Gabbro, diorite", "300–450", "375"],
+        ["Sandstone (hard)", "200–350", "275"],
+        ["Sandstone (soft)", "150–250", "200"],
+        ["Siltstone", "200–400", "300"],
+        ["Mudstone/shale", "150–300", "200"],
+        ["Limestone", "300–500", "400"],
+        ["Dolostone", "350–500", "400"],
+        ["Gneiss", "300–500", "400"],
+        ["Quartzite", "300–450", "375"],
+        ["Marble", "400–600", "500"],
+        ["Schist", "200–400", "300"],
+        ["Slate/phyllite", "300–500", "400"]
+      ]
+    },
+    "source": "Deere (1968), Hoek & Diederichs (2006)"
+  },
+  {
+    "id": "geotechnical.rock-mechanics.hoek-brown.tbl-005",
+    "title": "Example HB Parameter Calculation (Granite, GSI=60, D=0)",
+    "type": "worked_example",
+    "data": {
+      "headers": ["Parameter", "Equation", "Value"],
+      "rows": [
+        ["σ_ci", "Given", "150 MPa"],
+        ["m_i", "Table (granite)", "32"],
+        ["GSI", "Field estimate", "60"],
+        ["D", "TBM excavation", "0"],
+        ["m_b", "32 × exp[(60-100)/(28-0)]", "7.55"],
+        ["s", "exp[(60-100)/(9-0)]", "0.0117"],
+        ["a", "0.5 + (1/6)[exp(-60/15) - exp(-20/3)]", "0.503"],
+        ["σ_cm", "150 × 0.0117^0.503", "15.9 MPa"],
+        ["σ_t", "-0.0117 × 150 / 7.55", "-0.23 MPa"],
+        ["E_rm (HD)", "50 × (0.02 + 1/[1+exp((60-60)/11)])", "25.5 GPa (with E_i=50 GPa)"]
+      ]
+    },
+    "source": "Computed from standard equations"
+  }
+]

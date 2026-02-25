@@ -1,0 +1,26 @@
+{
+  "id": "water-infra.diversion-works",
+  "name": "Diversion Works & Construction Hydraulics",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.construction",
+  "dependencies": [
+    "water-infra.dam-hydrology",
+    "water-infra.spillway-design"
+  ],
+  "tags": ["diversion", "cofferdam", "tunnel", "culvert", "river-diversion", "construction-flood", "staged-construction", "closure", "notch", "overtopping-risk", "schedule", "USBR", "USACE"],
+  "standards": ["USBR-DS13-Ch10", "USACE-EM-1110-2-1602", "USACE-EM-1110-2-2902"],
+  "key_references": [
+    "USBR DS-13 Chapter 10 — Diversion",
+    "Schreiber (1977) Hydraulics of Large River Diversion",
+    "USACE EM 1110-2-2902 — Conduits, Culverts, and Pipes"
+  ],
+  "equation_count": 8,
+  "concept_count": 16,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

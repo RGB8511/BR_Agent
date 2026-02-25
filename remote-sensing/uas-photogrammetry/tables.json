@@ -1,0 +1,91 @@
+[
+  {
+    "id": "remote-sensing.uas-photogrammetry.tbl-001",
+    "title": "GSD and Accuracy Targets by Application",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Application", "Target GSD (cm)", "Expected H Accuracy (cm)", "Expected V Accuracy (cm)", "Notes"],
+      "rows": [
+        ["Structural crack detection", "0.3–1.0", "0.5–2", "1–3", "Oblique imaging; detect cracks ≥ 0.3 mm with 0.5 mm GSD"],
+        ["Concrete surface inspection", "0.5–2.0", "1–3", "2–5", "Close-range; nadir + oblique"],
+        ["Topographic site survey", "2–5", "2–5", "3–8", "Standard mapping; GCPs or RTK required"],
+        ["Volumetric (stockpiles, excavation)", "2–5", "2–5", "3–8", "Accuracy drives volume error; stable check surfaces recommended"],
+        ["Corridor mapping (pipeline/road)", "3–5", "3–5", "5–10", "Long linear sites; terrain-following helpful"],
+        ["Landslide monitoring", "2–5", "3–5", "5–10", "Repeat surveys; consistent GCP network critical"],
+        ["Rock slope mapping", "1–3", "2–5", "3–8", "Oblique for face; extract discontinuity orientation"],
+        ["Large-area reconnaissance", "5–10", "5–10", "10–20", "Planning-level surveys"]
+      ]
+    },
+    "source": "General practice, ASPRS guidelines"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.tbl-002",
+    "title": "Common UAS Mapping Platforms",
+    "type": "reference",
+    "data": {
+      "headers": ["Platform", "Type", "Sensor", "Flight Time (min)", "Typical GSD at 100m", "GNSS"],
+      "rows": [
+        ["DJI Matrice 350 RTK", "Multirotor", "Zenmuse P1 (45 MP FF)", "41", "1.3 cm", "RTK/PPK"],
+        ["DJI Mavic 3 Enterprise RTK", "Multirotor", "4/3 CMOS 20 MP", "40", "2.7 cm", "RTK"],
+        ["senseFly eBee X", "Fixed-wing", "S.O.D.A. 3D (20 MP)", "59", "2.4 cm", "RTK/PPK"],
+        ["WingtraOne Gen II", "VTOL fixed-wing", "Sony RX1R II (42 MP FF)", "59", "0.9 cm", "PPK"],
+        ["DJI Phantom 4 RTK", "Multirotor", "1-inch CMOS 20 MP", "27", "2.4 cm", "RTK"],
+        ["Autel EVO II Pro RTK", "Multirotor", "1-inch CMOS 20 MP", "36", "2.4 cm", "RTK"]
+      ]
+    },
+    "source": "Manufacturer specifications (approximate, subject to update)"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.tbl-003",
+    "title": "Minimum GCP Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Survey Method", "GCP Count", "Check Points", "Expected Accuracy", "Notes"],
+      "rows": [
+        ["No GCPs, no RTK", "0", "—", "1–5 m", "Only consumer GNSS; not suitable for engineering"],
+        ["RTK/PPK only (no GCPs)", "0", "5+ recommended", "2–5 cm H, 3–8 cm V", "Direct georeferencing; check points verify quality"],
+        ["GCPs only (no RTK)", "5–10", "3–5", "1–3× GSD", "GCPs constrain bundle adjustment"],
+        ["RTK/PPK + GCPs", "3–5", "5+", "1–2× GSD", "Best practice; RTK provides initial, GCPs refine"],
+        ["Dense GCP network", "10–20+", "5–10", "0.5–1× GSD", "High-accuracy engineering; diminishing returns above ~15 GCPs"]
+      ]
+    },
+    "source": "Pix4D, Agisoft recommendations, ASPRS guidelines"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.tbl-004",
+    "title": "Common Photogrammetric Processing Software",
+    "type": "reference",
+    "data": {
+      "headers": ["Software", "License", "Strengths", "Typical Use"],
+      "rows": [
+        ["Agisoft Metashape", "Commercial ($180–$3500)", "Flexible, Python API, multispectral, deep learning classification", "Research, engineering, versatile"],
+        ["Pix4Dmapper", "Commercial (subscription)", "Automated QA reports, GCP management, index generation", "Survey/mapping, agriculture, construction"],
+        ["DroneDeploy", "SaaS (subscription)", "Cloud processing, field app, progress tracking", "Construction, solar, quick turnaround"],
+        ["RealityCapture", "Commercial", "Fastest processing, excellent mesh quality, laser+photo fusion", "Detailed 3D modeling, BIM, heritage"],
+        ["OpenDroneMap (ODM)", "Open source (free)", "Self-hosted, Docker, WebODM interface", "Budget projects, research, customization"],
+        ["ContextCapture (Bentley)", "Commercial", "City-scale, tiled output, integration with Bentley suite", "Large-area 3D city models, infrastructure"],
+        ["PIX4Dmatic", "Commercial", "Large projects, GPU-accelerated, direct tie to PIX4Dsurvey", "Large-scale mapping, corridors"]
+      ]
+    },
+    "source": "Software vendors, general practice"
+  },
+  {
+    "id": "remote-sensing.uas-photogrammetry.tbl-005",
+    "title": "Flight Parameter Quick Reference",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Parameter", "Recommended Value", "Effect of Deviation"],
+      "rows": [
+        ["Forward overlap", "80% (minimum 75%)", "Lower: gaps, poor matching in uniform areas; Higher: more images, better reconstruction"],
+        ["Side overlap", "70% (minimum 65%)", "Lower: strips poorly connected; Higher: better cross-strip consistency"],
+        ["Flight speed", "4–10 m/s typical", "Faster: potential blur; Slower: longer mission, more battery"],
+        ["Sun angle", "> 30° above horizon", "Low sun: long shadows, low contrast, glare on water"],
+        ["Wind", "< 10 m/s sustained", "Higher: unstable images, drift, reduced endurance"],
+        ["Cloud cover", "Overcast preferred for mapping", "Even lighting eliminates harsh shadows; but lower contrast"],
+        ["Cross-flight pattern", "Perpendicular to main grid", "Improves bundle adjustment, reduces bowling/doming effect"],
+        ["Oblique capture angle", "30–45° off nadir", "Critical for vertical surfaces (walls, slopes, structures)"]
+      ]
+    },
+    "source": "Pix4D support documentation, general practice"
+  }
+]

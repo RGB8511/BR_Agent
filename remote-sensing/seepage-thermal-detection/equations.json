@@ -1,0 +1,115 @@
+[
+  {
+    "id": "remote-sensing.seepage-thermal.eq-001",
+    "title": "Stefan-Boltzmann Radiant Exitance",
+    "equation": "M = ε × σ × T⁴",
+    "variables": {
+      "M": {"description": "Radiant exitance (power emitted per unit area)", "units": "W/m²"},
+      "ε": {"description": "Surface emissivity (0–1; soil ≈ 0.92–0.96, water ≈ 0.95–0.98, concrete ≈ 0.90–0.95)", "units": "dimensionless"},
+      "σ": {"description": "Stefan-Boltzmann constant (5.67 × 10⁻⁸ W/m²K⁴)", "units": "W/(m²·K⁴)"},
+      "T": {"description": "Surface temperature (absolute)", "units": "K"}
+    },
+    "applicability": "Governs the total IR radiation measured by the thermal camera. Emissivity errors directly affect temperature measurement: 5% emissivity error ≈ 2–3°C temperature error at ambient temperatures. Critical to use correct emissivity for the surface material.",
+    "source": "General physics — Planck, Stefan-Boltzmann"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.eq-002",
+    "title": "Thermal Contrast — Seepage Detection Threshold",
+    "equation": "ΔT = T_seepage - T_background ≥ NETD × SNR_min",
+    "variables": {
+      "ΔT": {"description": "Temperature difference between seepage zone and surrounding surface", "units": "°C"},
+      "T_seepage": {"description": "Surface temperature at seepage location", "units": "°C"},
+      "T_background": {"description": "Ambient surface temperature of dry ground", "units": "°C"},
+      "NETD": {"description": "Noise Equivalent Temperature Difference of camera", "units": "°C"},
+      "SNR_min": {"description": "Minimum signal-to-noise ratio for detection (typically 3–5)", "units": "dimensionless"}
+    },
+    "applicability": "For camera with NETD = 0.05°C and SNR = 5: minimum detectable ΔT ≈ 0.25°C. Practical minimum considering environmental noise (wind, clouds): ΔT ≥ 0.5–1.0°C for reliable field detection.",
+    "source": "Maldague (2001), general thermography"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.eq-003",
+    "title": "Ground Resolution — Thermal Camera from UAS",
+    "equation": "GSD_thermal = (pixel_pitch × H) / f",
+    "variables": {
+      "GSD_thermal": {"description": "Thermal ground sample distance", "units": "m/pixel"},
+      "pixel_pitch": {"description": "Thermal detector pixel size (typically 12–17 μm)", "units": "m"},
+      "H": {"description": "Flight altitude above ground", "units": "m"},
+      "f": {"description": "Thermal lens focal length (typically 9–25 mm)", "units": "m"}
+    },
+    "applicability": "Example: 12 μm pixel, 13 mm lens, 30 m altitude → GSD = (12e-6 × 30)/0.013 = 0.028 m = 28 mm/pixel. Much coarser than RGB GSD from same altitude. Seepage zone must span multiple thermal pixels for reliable detection — minimum detectable feature ≈ 3–5 × GSD_thermal.",
+    "source": "General optics"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.eq-004",
+    "title": "Groundwater Temperature Approximation",
+    "equation": "T_gw ≈ MAAT + G × d",
+    "variables": {
+      "T_gw": {"description": "Groundwater temperature at depth d", "units": "°C"},
+      "MAAT": {"description": "Mean annual air temperature at the site", "units": "°C"},
+      "G": {"description": "Geothermal gradient (typically 25–30°C/km in stable continental crust)", "units": "°C/m"},
+      "d": {"description": "Depth below ground surface", "units": "m"}
+    },
+    "applicability": "For shallow seepage through dams/levees (d < 50 m), geothermal contribution is negligible (< 1.5°C). T_gw ≈ MAAT ± 2°C. Seasonal variation dampens with depth: at ~10 m depth, temperature is essentially constant year-round. This constant temperature creates the contrast used for detection.",
+    "source": "Anderson (2005) Heat as a Ground Water Tracer"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.eq-005",
+    "title": "Seepage Velocity from Temperature Profile (Heat Tracer)",
+    "equation": "v_s = (κ / d) × ln(ΔT_up / ΔT_down)",
+    "variables": {
+      "v_s": {"description": "Vertical seepage velocity (simplified 1D)", "units": "m/s"},
+      "κ": {"description": "Thermal diffusivity of saturated soil (≈ 0.5–1.0 × 10⁻⁶ m²/s)", "units": "m²/s"},
+      "d": {"description": "Depth interval between temperature measurements", "units": "m"},
+      "ΔT_up": {"description": "Temperature amplitude at upper measurement point", "units": "°C"},
+      "ΔT_down": {"description": "Temperature amplitude at lower measurement point", "units": "°C"}
+    },
+    "applicability": "Quantitative seepage estimation using distributed temperature sensing (DTS) or point temperature loggers. More commonly done with fiber-optic DTS cables buried along levee/dam toes. Surface thermal IR provides qualitative detection; subsurface temperature profiling provides quantitative flow estimation.",
+    "source": "Stallman (1965), Anderson (2005)"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.eq-006",
+    "title": "Evaporative Cooling Effect",
+    "equation": "ΔT_evap ≈ (L_v × E) / (ρ_a × c_p × h_c)",
+    "variables": {
+      "ΔT_evap": {"description": "Temperature depression due to evaporation", "units": "°C"},
+      "L_v": {"description": "Latent heat of vaporization (2.45 × 10⁶ J/kg)", "units": "J/kg"},
+      "E": {"description": "Evaporation rate", "units": "kg/(m²·s)"},
+      "ρ_a": {"description": "Air density (1.2 kg/m³)", "units": "kg/m³"},
+      "c_p": {"description": "Specific heat of air (1005 J/(kg·K))", "units": "J/(kg·K)"},
+      "h_c": {"description": "Convective heat transfer coefficient", "units": "W/(m²·K)"}
+    },
+    "applicability": "In warm, dry conditions, seepage zones may appear cooler than surrounding dry surfaces due to evaporative cooling (opposite of the warm-in-winter signal). This dual behavior means seepage may appear warm or cool depending on season and conditions — interpretation requires understanding of the thermal regime.",
+    "source": "General thermodynamics"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.eq-007",
+    "title": "Fiber-Optic DTS Temperature Resolution",
+    "equation": "δT = δT_base × √(t_ref / t_meas) × √(L_ref / L_sample)",
+    "variables": {
+      "δT": {"description": "Achievable temperature resolution", "units": "°C"},
+      "δT_base": {"description": "Base temperature resolution at reference conditions (0.01–0.1°C)", "units": "°C"},
+      "t_ref": {"description": "Reference integration time", "units": "seconds"},
+      "t_meas": {"description": "Actual measurement integration time", "units": "seconds"},
+      "L_ref": {"description": "Reference spatial resolution", "units": "m"},
+      "L_sample": {"description": "Actual spatial sampling interval", "units": "m"}
+    },
+    "applicability": "DTS measures temperature continuously along fiber-optic cables (up to 30 km length). Typical resolution: 0.1°C at 1 m spatial, 60 s integration. Used for continuous seepage monitoring in dam/levee toes. Raman-based (temperature only) or Brillouin-based (temperature + strain).",
+    "source": "Selker et al. (2006), Henault et al. (2010)"
+  },
+  {
+    "id": "remote-sensing.seepage-thermal.eq-008",
+    "title": "Minimum Seepage Flow for Thermal Detection",
+    "equation": "Q_min ≈ (k_soil × A_pixel × ΔT_min) / (ρ_w × c_w × ΔT_seepage)",
+    "variables": {
+      "Q_min": {"description": "Minimum seepage flow rate detectable at one thermal pixel", "units": "m³/s"},
+      "k_soil": {"description": "Thermal conductivity of soil (1–2 W/(m·K))", "units": "W/(m·K)"},
+      "A_pixel": {"description": "Area of one thermal pixel on the ground", "units": "m²"},
+      "ΔT_min": {"description": "Minimum detectable surface temperature anomaly", "units": "°C"},
+      "ρ_w": {"description": "Water density", "units": "kg/m³"},
+      "c_w": {"description": "Specific heat of water (4186 J/(kg·K))", "units": "J/(kg·K)"},
+      "ΔT_seepage": {"description": "Temperature difference between seepage water and ground", "units": "°C"}
+    },
+    "applicability": "Order-of-magnitude estimate. Detection depends heavily on seepage concentration (focused flow more detectable than diffuse), surface conditions, and thermal pixel size. Very diffuse seepage (< 10⁻⁷ m/s Darcy velocity) may not produce detectable surface anomalies.",
+    "source": "Theoretical, simplified energy balance"
+  }
+]

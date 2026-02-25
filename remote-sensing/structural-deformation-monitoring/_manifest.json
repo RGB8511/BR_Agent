@@ -1,0 +1,15 @@
+{
+  "id": "remote-sensing.structural-deformation-monitoring",
+  "name": "Structural Deformation Monitoring from Point Clouds",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.applications",
+  "dependencies": ["remote-sensing.lidar-fundamentals", "remote-sensing.point-cloud-processing"],
+  "tags": ["deformation", "settlement", "displacement", "tilt", "convergence", "M3C2", "C2C", "time-series", "epoch", "monitoring", "dam", "retaining-wall", "tunnel", "bridge"],
+  "equation_count": 8,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

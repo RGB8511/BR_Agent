@@ -1,0 +1,35 @@
+{
+  "id": "remote-sensing.dam-surveillance-remote-sensing",
+  "name": "Dam & Levee Surveillance Using Remote Sensing",
+  "level": 2,
+  "discipline": "remote-sensing",
+  "parent": "remote-sensing.applications",
+  "dependencies": [
+    "remote-sensing.lidar-fundamentals",
+    "remote-sensing.insar-satellite",
+    "remote-sensing.seepage-thermal-detection"
+  ],
+  "tags": [
+    "dam-monitoring",
+    "crest-deformation",
+    "seepage-detection",
+    "thermal-anomaly",
+    "InSAR-dam",
+    "LiDAR-dam",
+    "embankment",
+    "concrete-dam",
+    "levee",
+    "instrumentation-integration"
+  ],
+  "equation_count": 6,
+  "table_count": 5,
+  "content_files": [
+    "theory.md",
+    "equations.json",
+    "tables.json",
+    "standards.md"
+  ],
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

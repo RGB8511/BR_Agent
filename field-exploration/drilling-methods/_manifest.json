@@ -1,0 +1,25 @@
+{
+  "id": "field-exploration.drilling-methods",
+  "name": "Drilling Methods for Geotechnical Investigation",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.subsurface",
+  "dependencies": [],
+  "tags": ["drilling", "hollow-stem-auger", "HSA", "mud-rotary", "air-rotary", "sonic", "cable-tool", "direct-push", "Geoprobe", "casing-advancement", "wash-boring", "CFA", "solid-stem", "DTH", "hammer", "drill-rig", "borehole", "exploration"],
+  "standards": ["ASTM-D1452", "ASTM-D6151", "ASTM-D6286", "ASTM-D6914", "AASHTO-R22"],
+  "key_references": [
+    "Mayne et al. (2002) Geotechnical Site Characterization — FHWA NHI-01-031",
+    "Clayton et al. (1995) Site Investigation",
+    "Hunt (2005) Geotechnical Engineering Investigation Handbook",
+    "FHWA GEC-5 (2002) Evaluation of Soil and Rock Properties",
+    "Hvorslev (1949) Subsurface Exploration and Sampling of Soils"
+  ],
+  "equation_count": 6,
+  "concept_count": 25,
+  "table_count": 5,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "field-exploration.vane-shear",
+  "name": "Field Vane Shear Test",
+  "level": 2,
+  "discipline": "field-exploration",
+  "parent": "field-exploration.in-situ-testing",
+  "dependencies": [],
+  "tags": ["vane-shear", "field-vane", "undrained-shear-strength", "Bjerrum-correction", "sensitivity", "remolded", "soft-clay", "Su", "peak", "residual", "rotation-rate", "mini-vane", "Nilcon", "Geonor"],
+  "standards": ["ASTM-D2573", "ASTM-D4648", "BS-EN-ISO-22476-9"],
+  "key_references": [
+    "Bjerrum (1972) Embankments on soft ground — Correction factors",
+    "Chandler (1988) The in-situ measurement of undrained shear strength",
+    "FHWA GEC-5 Evaluation of Soil and Rock Properties",
+    "Aas et al. (1986) Use of in-situ tests for foundation design in clay"
+  ],
+  "equation_count": 6,
+  "concept_count": 12,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-25"
+}

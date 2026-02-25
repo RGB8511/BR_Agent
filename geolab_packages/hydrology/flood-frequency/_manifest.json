@@ -1,0 +1,24 @@
+{
+  "id": "hydrology.analysis.flood-frequency",
+  "name": "Flood Frequency Analysis",
+  "level": 1,
+  "discipline": "hydrology",
+  "parent": "hydrology.analysis",
+  "dependencies": ["hydrology.foundations.fundamentals"],
+  "tags": ["frequency-analysis", "Log-Pearson-III", "Gumbel", "GEV", "annual-maximum", "partial-duration", "regional", "Bulletin-17C", "skew", "confidence-interval", "plotting-position", "ungauged"],
+  "standards": ["USGS-B17C", "FEMA", "USACE-EM1110-2-1415"],
+  "key_references": [
+    "USGS Bulletin 17C (2019) Guidelines for Determining Flood Flow Frequency",
+    "Stedinger, Vogel & Foufoula-Georgiou (1993) Frequency Analysis of Extreme Events",
+    "Hosking & Wallis (1997) Regional Frequency Analysis",
+    "Rao & Hamed (2000) Flood Frequency Analysis"
+  ],
+  "equation_count": 8,
+  "concept_count": 14,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "undergraduate-graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "field-exploration.exploration-planning.tbl-001",
+    "title": "Boring Spacing Guidelines by Project Type",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Project Type", "Boring Spacing (m)", "Boring Spacing (ft)", "Minimum Borings", "Notes"],
+      "rows": [
+        ["Buildings (low-rise, uniform)", "15–30", "50–100", "1 per column line, min 4 corners + center", "More in variable conditions"],
+        ["Buildings (high-rise, heavy)", "10–20", "30–65", "1 per major foundation element", "At every shear wall, elevator pit, heavily loaded column"],
+        ["Bridges (per substructure unit)", "—", "—", "1–2 per abutment, 1 per pier", "Minimum; more for wide piers, complex conditions"],
+        ["Retaining walls", "15–30", "50–100", "Minimum 3 along wall length", "Additional at changes in height, subsurface conditions"],
+        ["Highway/roadway (cut sections)", "60–150", "200–500", "As needed to define profile", "Closer spacing in variable terrain; stagger left-right"],
+        ["Highway/roadway (fill sections)", "60–300", "200–1000", "Define subgrade along alignment", "Closer where soft soils expected"],
+        ["Embankment dams", "15–60", "50–200", "Along axis + cross sections", "Much closer at abutments, spillway; deep borings at max section"],
+        ["Concrete dams", "7–30", "25–100", "Along axis + downstream", "Very detailed characterization of foundation rock; oriented core"],
+        ["Tunnels", "30–150", "100–500", "Along alignment + portals", "Closer in variable rock; supplemented by geophysics"],
+        ["Pipelines", "60–300", "200–1000", "Along alignment", "At crossings, pump stations, and grade changes"],
+        ["Slopes/landslides", "15–30", "50–100", "Cross-sections through slide mass", "Define failure surface; include borings upslope and downslope of slide"]
+      ]
+    },
+    "source": "FHWA GEC 5, USACE EM 1110-1-1804, AASHTO, general practice"
+  },
+  {
+    "id": "field-exploration.exploration-planning.tbl-002",
+    "title": "Boring Depth Guidelines by Structure Type",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Structure", "Minimum Depth Below Foundation", "Termination Criterion", "Notes"],
+      "rows": [
+        ["Spread footing", "2× foundation width", "Or to competent material confirmed for 3 m", "Deeper if compressible soils at depth"],
+        ["Mat foundation", "2× mat width (to max practical)", "Or to competent material confirmed for 6 m", "Zone of influence very deep for large mats"],
+        ["Driven piles", "6 m (20 ft) below tip; 2× group width", "Confirm bearing stratum continuity", "Must penetrate any soft layers below tip"],
+        ["Drilled shafts (soil)", "6 m below tip; 2× group width", "Same as driven piles", ""],
+        ["Drilled shafts (rock socket)", "3× socket diameter below tip; min 3 m in rock", "Core to verify rock quality; no voids", "In karst: extend until verified competent rock"],
+        ["Embankment/fill (< 10 m high)", "1.5–2× fill height below OG", "Or to firm stratum", "Include stability analysis zone"],
+        ["Embankment dam", "To sound rock or impervious stratum", "Often 30–100+ m", "Deeper at abutments; define seepage path"],
+        ["Retaining wall", "1.5× exposed wall height below base", "Or to competent material", "Address global stability"],
+        ["Tunnel", "1–2× tunnel diameter below invert", "Characterize rock mass around full perimeter", "Include borings from surface and within tunnel"],
+        ["Cut slope", "Below toe: 1× slope height or to stable material", "—", "Characterize weak layers; groundwater"]
+      ]
+    },
+    "source": "FHWA GEC 5, AASHTO, USACE EM 1110-1-1804"
+  },
+  {
+    "id": "field-exploration.exploration-planning.tbl-003",
+    "title": "Investigation Phase — Typical Scope and Deliverables",
+    "type": "classification",
+    "data": {
+      "headers": ["Phase", "Purpose", "Typical Activities", "Deliverable"],
+      "rows": [
+        ["Desktop study", "Compile existing data; identify hazards", "Literature review, maps, aerial photos, database searches", "Desktop report with geologic summary and hazard identification"],
+        ["Reconnaissance", "Visual assessment; confirm desktop findings", "Site walk, photography, observations, interviews", "Reconnaissance memo or addendum to desktop report"],
+        ["Preliminary investigation", "General subsurface characterization; feasibility support", "3–6 borings, SPT, basic lab tests, preliminary GW levels", "Preliminary geotech report with feasibility recommendations"],
+        ["Detailed investigation", "Complete characterization for final design", "Comprehensive boring/CPT program, advanced lab tests, in-situ tests, instrumentation", "Design-level geotechnical report with parameters and recommendations"],
+        ["Construction verification", "Verify conditions; QA/QC", "Proof drilling, foundation inspection, field testing, monitoring", "Construction observation reports; as-built records"]
+      ]
+    },
+    "source": "FHWA GEC 5, Eurocode 7, general practice"
+  },
+  {
+    "id": "field-exploration.exploration-planning.tbl-004",
+    "title": "USCS Soil Classification Summary (ASTM D2487)",
+    "type": "reference",
+    "data": {
+      "headers": ["Group Symbol", "Soil Type", "Criteria"],
+      "rows": [
+        ["GW", "Well-graded gravel", "> 50% retained on #4; Cu ≥ 4, 1 ≤ Cc ≤ 3; < 5% fines"],
+        ["GP", "Poorly-graded gravel", "> 50% retained on #4; fails GW criteria; < 5% fines"],
+        ["GM", "Silty gravel", "> 50% retained on #4; 12%+ fines; fines plot below A-line or PI < 4"],
+        ["GC", "Clayey gravel", "> 50% retained on #4; 12%+ fines; fines plot above A-line and PI ≥ 7"],
+        ["SW", "Well-graded sand", "≤ 50% retained on #4; Cu ≥ 6, 1 ≤ Cc ≤ 3; < 5% fines"],
+        ["SP", "Poorly-graded sand", "≤ 50% retained on #4; fails SW criteria; < 5% fines"],
+        ["SM", "Silty sand", "≤ 50% retained on #4; 12%+ fines; fines plot below A-line or PI < 4"],
+        ["SC", "Clayey sand", "≤ 50% retained on #4; 12%+ fines; fines plot above A-line and PI ≥ 7"],
+        ["ML", "Low-plasticity silt", "50%+ passing #200; LL < 50; below A-line or PI < 4"],
+        ["CL", "Low-plasticity clay", "50%+ passing #200; LL < 50; above A-line and PI ≥ 7"],
+        ["OL", "Organic silt/clay (low LL)", "50%+ passing #200; LL < 50; oven-dried LL / natural LL < 0.75"],
+        ["MH", "High-plasticity silt", "50%+ passing #200; LL ≥ 50; below A-line"],
+        ["CH", "High-plasticity clay", "50%+ passing #200; LL ≥ 50; above A-line"],
+        ["OH", "Organic clay (high LL)", "50%+ passing #200; LL ≥ 50; oven-dried LL / natural LL < 0.75"],
+        ["Pt", "Peat", "Primarily organic matter; dark color; organic odor; fibrous texture"]
+      ]
+    },
+    "source": "ASTM D2487"
+  },
+  {
+    "id": "field-exploration.exploration-planning.tbl-005",
+    "title": "Pre-Field Checklist for Geotechnical Investigation",
+    "type": "reference",
+    "data": {
+      "headers": ["Category", "Items", "Status Required"],
+      "rows": [
+        ["Utility clearance", "811/One-Call notification (72 hr advance); private utility locates; GPR if critical", "Mandatory before any subsurface work"],
+        ["Permits & access", "Right-of-entry agreements; drilling permits; environmental permits (wetlands, ESA); traffic control", "Before mobilization"],
+        ["Health & safety", "Site-specific HASP; JSA/JHA; PPE requirements; contamination screening; OSHA 1926 compliance", "Before mobilization"],
+        ["Scope definition", "Boring/CPT locations (coordinates); depths; sampling requirements; in-situ tests; lab testing program", "Documented in work plan or boring location plan"],
+        ["Equipment selection", "Drill rig type appropriate for conditions and access; CPT truck access; support equipment", "Confirmed with driller/subcontractor"],
+        ["Surveying", "Boring locations staked or GPS-located; ground surface elevations surveyed (or LIDAR-derived)", "Before or concurrent with drilling"],
+        ["Environmental", "Investigation-derived waste (IDW) management plan; decontamination procedures; well permits", "Before field work"],
+        ["Quality assurance", "Qualified field logger; calibrated equipment; chain of custody for samples; daily field reports", "Throughout field program"]
+      ]
+    },
+    "source": "General practice, FHWA GEC 5, company SOPs"
+  }
+]

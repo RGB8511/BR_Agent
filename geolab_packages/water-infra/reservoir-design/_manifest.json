@@ -1,0 +1,27 @@
+{
+  "id": "water-infra.reservoir-design",
+  "name": "Reservoir Planning & Design",
+  "level": 2,
+  "discipline": "water-infra",
+  "parent": "water-infra.dams",
+  "dependencies": [
+    "water-infra.dam-hydrology",
+    "hydrology.foundations.fundamentals"
+  ],
+  "tags": ["reservoir", "storage", "area-capacity", "dead-storage", "active-storage", "flood-pool", "surcharge", "sedimentation", "yield", "firm-yield", "mass-curve", "Rippl", "elevation-storage-area", "evaporation", "seepage-loss", "water-supply", "reservoir-operations"],
+  "standards": ["USBR-DS13-Ch2", "USACE-EM-1110-2-3600", "USACE-ER-1110-2-1941"],
+  "key_references": [
+    "USBR Design of Small Dams (1987) — Chapter 2",
+    "USACE EM 1110-2-3600 — Management of Water Control Systems",
+    "Linsley, Franzini & Freyberg (1992) Water Resources Engineering",
+    "McMahon & Mein (1986) River and Reservoir Yield"
+  ],
+  "equation_count": 8,
+  "concept_count": 16,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

@@ -1,0 +1,97 @@
+[
+  {
+    "id": "field-exploration.drilling-methods.tbl-001",
+    "title": "Drilling Method Selection Guide",
+    "type": "classification",
+    "data": {
+      "headers": ["Method", "Best Suited For", "Max Depth (typical)", "Soil Sampling?", "Rock Coring?", "Relative Cost"],
+      "rows": [
+        ["Hollow-stem auger", "Soft-medium soil, above/below WT", "30 m (100 ft)", "Excellent — SPT, Shelby through stem", "No", "Low-Medium"],
+        ["Mud rotary", "All soils, soft rock, deep holes, difficult ground", "100+ m", "Good — SPT, Shelby (stop circulation)", "Yes (switch to coring)", "Medium"],
+        ["Air rotary / DTH", "Hard rock exploration", "100+ m", "No (cuttings only in soil)", "Cuttings/chips only", "Medium"],
+        ["Sonic / vibratory", "All soils, weathered rock, continuous profiling", "60 m (200 ft)", "Continuous core (disturbed)", "Weathered rock only", "High"],
+        ["Cable tool", "Boulders, cobbles, hard till, water wells", "60+ m", "Bailer samples (disturbed)", "No", "Medium-High"],
+        ["Direct push (Geoprobe)", "Soft-medium soil, shallow investigation", "30 m (100 ft) max", "Push tube (small diameter)", "No", "Low"],
+        ["Casing advancement", "Cobbles, boulders, rubble fill, colluvium", "30–60 m", "Through casing — SPT, Shelby", "Switch to coring below casing", "High"],
+        ["Wash boring", "Soft-medium soil, limited access", "30 m", "SPT, Shelby (interrupt wash)", "No", "Low"]
+      ]
+    },
+    "source": "FHWA NHI-01-031, Clayton et al. (1995), general practice"
+  },
+  {
+    "id": "field-exploration.drilling-methods.tbl-002",
+    "title": "Typical Drilling Production Rates",
+    "type": "reference",
+    "data": {
+      "headers": ["Method", "Ground Condition", "Advance Rate (m/hr)", "Notes"],
+      "rows": [
+        ["HSA", "Soft clay/silt", "6–12", "Without sampling; with SPT every 1.5 m: 3–5 m/hr overall"],
+        ["HSA", "Medium dense sand", "3–8", "Slower below WT due to heave management"],
+        ["HSA", "Stiff clay / dense sand", "2–5", "Approaching refusal in very dense/hard materials"],
+        ["Mud rotary (soil)", "Soft-medium soil", "6–15", "Fast when not sampling"],
+        ["Mud rotary (rock)", "Soft rock", "2–6", "With tricone bit; for cuttings only"],
+        ["HQ rock coring", "Moderate-hard rock", "1–3", "Including rod trips, core handling"],
+        ["HQ rock coring", "Very hard rock (granite, quartzite)", "0.5–1.5", "Slow bit advance"],
+        ["Air rotary / DTH", "Hard rock", "3–10", "Much faster than coring; cuttings only"],
+        ["Sonic", "Alluvial soil", "10–30", "Fastest advance; continuous core"],
+        ["Direct push", "Soft-medium soil", "15–30", "Very fast; depth-limited"]
+      ]
+    },
+    "source": "Industry experience, general practice"
+  },
+  {
+    "id": "field-exploration.drilling-methods.tbl-003",
+    "title": "Common Drill Rod and Casing Sizes",
+    "type": "reference",
+    "data": {
+      "headers": ["Designation", "OD (mm)", "ID (mm)", "Use"],
+      "rows": [
+        ["AW drill rod", "44.4", "31.8", "Small diameter drilling/wash boring"],
+        ["BW drill rod", "54.0", "42.9", "Medium drilling"],
+        ["NW drill rod", "66.7", "57.2", "Standard rotary drilling in soil"],
+        ["HW drill rod", "88.9", "76.2", "Large rotary drilling"],
+        ["HSA 3.25 in ID", "Various OD", "82.6", "Standard HSA — fits SPT sampler"],
+        ["HSA 4.25 in ID", "Various OD", "108.0", "Large HSA — fits 3-in Shelby tube"],
+        ["HW casing", "114.3", "101.6", "Rock coring casing — NQ core fits inside"],
+        ["NW casing", "88.9", "76.2", "Smaller rock coring casing"],
+        ["PW casing", "139.7", "127.0", "Large casing — HQ core fits inside"]
+      ]
+    },
+    "source": "DCDMA standards, manufacturers"
+  },
+  {
+    "id": "field-exploration.drilling-methods.tbl-004",
+    "title": "Drilling Fluid (Mud) Properties for Geotechnical Work",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Property", "Typical Range", "Test Method", "Notes"],
+      "rows": [
+        ["Mud weight", "1.03–1.15 sg (8.6–9.6 ppg)", "Mud balance", "Heavier for deep holes or artesian conditions"],
+        ["Marsh funnel viscosity", "32–50 sec/qt", "Marsh funnel", "Higher viscosity for cuttings transport; lower for sampling"],
+        ["Bentonite content", "3–8% by weight", "Mixing ratio", "Wyoming sodium bentonite; premix 24 hr for full hydration"],
+        ["Sand content", "< 2%", "Sand screen", "High sand content wears pump, contaminates samples"],
+        ["pH", "8.5–10.0", "pH strips", "Add soda ash if pH drops; acidic water degrades bentonite"],
+        ["Polymer mud", "As per product", "—", "Biodegradable alternative; easier disposal; less sample contamination"]
+      ]
+    },
+    "source": "Drilling practice, bentonite manufacturers"
+  },
+  {
+    "id": "field-exploration.drilling-methods.tbl-005",
+    "title": "Access and Equipment Requirements by Rig Type",
+    "type": "reference",
+    "data": {
+      "headers": ["Rig Type", "Typical Weight (kg)", "Access Width (m)", "Terrain Capability", "Max Depth"],
+      "rows": [
+        ["Truck-mounted (on-road)", "15000–25000", "3.0+", "Paved/gravel roads only", "60–150 m"],
+        ["Truck-mounted (all-terrain)", "10000–20000", "3.0+", "Improved roads, firm ground", "60–100 m"],
+        ["Track-mounted (rubber)", "5000–15000", "2.0–3.0", "Soft ground, moderate slopes (≤30%)", "30–100 m"],
+        ["Track-mounted (steel)", "5000–12000", "2.0–3.0", "Rough terrain, steep slopes (≤45%)", "30–80 m"],
+        ["Skid-mounted / portable", "500–3000", "1.0–2.0", "Helicopter access, remote sites", "15–60 m"],
+        ["Barge-mounted", "Variable", "—", "Over-water drilling", "60+ m"],
+        ["Direct push (Geoprobe)", "2000–5000", "2.0", "Limited access, soft ground", "30 m"]
+      ]
+    },
+    "source": "Manufacturer specs, general practice"
+  }
+]

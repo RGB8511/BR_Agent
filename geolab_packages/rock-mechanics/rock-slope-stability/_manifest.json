@@ -1,0 +1,26 @@
+{
+  "id": "geotechnical.rock-mechanics.rock-slope-stability",
+  "name": "Rock Slope Stability",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.rock-mechanics",
+  "dependencies": [
+    "geotechnical.foundations.rock-classification",
+    "geotechnical.rock-mechanics.discontinuity-shear-strength"
+  ],
+  "tags": ["kinematic-analysis", "planar-failure", "wedge-failure", "toppling", "circular-failure", "stereographic-projection", "Markland-test", "rock-slope"],
+  "standards": [],
+  "key_references": [
+    "Hoek & Bray (1981) Rock Slope Engineering",
+    "Wyllie & Mah (2004) Rock Slope Engineering",
+    "Goodman (1989) Introduction to Rock Mechanics"
+  ],
+  "equation_count": 8,
+  "concept_count": 16,
+  "table_count": 3,
+  "content_files": ["theory.md", "equations.json", "tables.json"],
+  "textbook_level": "graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

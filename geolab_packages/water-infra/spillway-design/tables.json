@@ -1,0 +1,89 @@
+[
+  {
+    "id": "water-infra.spillway-design.tbl-001",
+    "title": "Spillway Type Selection Guide",
+    "type": "classification",
+    "data": {
+      "headers": ["Spillway Type", "Best Application", "Capacity Range", "Advantages", "Limitations"],
+      "rows": [
+        ["Ogee (overflow)", "Concrete gravity and arch dams", "Any — no practical limit", "Highest discharge efficiency, well-understood design", "Requires concrete dam or massive structure"],
+        ["Chute", "Embankment dams (most common)", "Any — very large possible", "Adapts to any topography, located off dam axis", "Long structure, requires energy dissipator"],
+        ["Labyrinth/Piano Key", "Retrofitting existing dams for increased capacity", "High per unit width", "3–5× capacity of straight crest in same width", "Complex construction, debris accumulation"],
+        ["Stepped", "RCC dams and embankment overlays", "Moderate (q ≤ 15–30 m²/s)", "Dissipates 40–70% energy on face, reduces basin size", "Limited unit discharge, cavitation at high q"],
+        ["Morning glory (shaft)", "Narrow canyons, limited space", "Moderate (limited by tunnel)", "Small footprint, good for arch dam sites", "Unstable rating curve, clogging risk, limit ≈50 m³/s"],
+        ["Side channel", "Where direct overflow not possible", "Moderate to high", "Crest parallel to dam, flexible layout", "Complex hydraulics, higher cost"],
+        ["Tunnel", "Mountain sites, abutment tunnels", "Moderate to high", "No surface footprint, reuse diversion tunnel", "Expensive, cavitation control critical"],
+        ["Fuse plug", "Emergency auxiliary", "Designed to erode at set elevation", "Passive, no mechanical parts, last resort", "Single use, must be rebuilt after activation"]
+      ]
+    },
+    "source": "USBR Design of Small Dams, ICOLD Bulletin 58"
+  },
+  {
+    "id": "water-infra.spillway-design.tbl-002",
+    "title": "USBR Stilling Basin Types",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Basin Type", "Froude Number", "Velocity Limit", "q Limit", "Features", "Basin Length (×y₂)"],
+      "rows": [
+        ["Type I", "Any (basic)", "No limit", "No limit", "Flat floor, no appurtenances", "5–6"],
+        ["Type II", "Fr > 4.5", "V > 15 m/s OK", "No limit", "Chute blocks + dentated end sill", "3.3–4.0"],
+        ["Type III", "Fr > 4.5", "V < 15 m/s", "q < 18.5 m²/s", "Chute blocks + baffle piers + solid end sill", "2.7–3.3"],
+        ["Type IV", "2.5 < Fr < 4.5", "No limit", "No limit", "Large chute blocks, optional baffles", "6.0+ (difficult range)"],
+        ["SAF", "1.7 < Fr < 17", "—", "Small structures", "Floor blocks + end sill (USDA)", "Varies"]
+      ]
+    },
+    "source": "USBR EM 25 — Hydraulic Design of Stilling Basins"
+  },
+  {
+    "id": "water-infra.spillway-design.tbl-003",
+    "title": "Ogee Spillway Discharge Coefficient C₀ vs. He/Hd",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["He/Hd", "C₀ (m^0.5/s)", "C₀ (ft^0.5/s)", "Crest Pressure", "Notes"],
+      "rows": [
+        ["0.50", "1.90", "3.44", "Positive (above atm)", "Reduced capacity"],
+        ["0.75", "2.07", "3.75", "Positive", "Normal operating range"],
+        ["1.00", "2.18", "3.95", "Atmospheric (design point)", "Maximum efficiency at design head"],
+        ["1.10", "2.22", "4.02", "Slightly sub-atmospheric", "Acceptable"],
+        ["1.20", "2.26", "4.09", "Sub-atmospheric", "Monitor for cavitation"],
+        ["1.33", "2.30", "4.17", "Significantly sub-atmospheric", "Practical upper limit without aeration"],
+        ["1.50", "2.32", "4.20", "Strongly sub-atmospheric", "Cavitation risk — requires aeration or accept limited use"]
+      ]
+    },
+    "source": "USBR Design of Small Dams, USACE HDC 111-3. Values for P/Hd > 1.0 (high crest). Lower P/Hd reduces C₀."
+  },
+  {
+    "id": "water-infra.spillway-design.tbl-004",
+    "title": "Chute Spillway Freeboard Requirements",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Condition", "Freeboard Above Water Surface", "Basis"],
+      "rows": [
+        ["Non-aerated flow (V < 12 m/s)", "0.6 m (2 ft) minimum", "Waves, splash, uncertainty"],
+        ["Self-aerated flow (V > 12 m/s)", "Bulked depth + 0.6 m", "Air entrainment increases depth 20–40%"],
+        ["Curved alignment", "Additional superelevation: Δy = V²B/(gR)", "Centrifugal force on curved sections"],
+        ["Adjacent to embankment dam", "Walls above embankment crest or separated by berm", "Prevent flow onto dam in overtopping scenario"],
+        ["Training walls at stilling basin", "Height = y₂ + 0.10 × y₂ minimum", "Hydraulic jump spray and turbulence"]
+      ]
+    },
+    "source": "USBR Design of Small Dams, USACE EM 1110-2-1603"
+  },
+  {
+    "id": "water-infra.spillway-design.tbl-005",
+    "title": "Cavitation Thresholds for Spillway Surfaces",
+    "type": "design_criteria",
+    "data": {
+      "headers": ["Surface Condition / Irregularity", "Velocity Threshold for Cavitation (approx)", "σ_incipient"],
+      "rows": [
+        ["Smooth concrete (offset < 3 mm)", "> 30–35 m/s", "0.1–0.15"],
+        ["Offset into flow (6 mm)", "> 20 m/s", "0.2–0.3"],
+        ["Offset into flow (12 mm)", "> 15 m/s", "0.4–0.6"],
+        ["Offset into flow (25 mm)", "> 10 m/s", "0.7–1.0"],
+        ["Groove or open joint", "> 12–15 m/s", "0.2–0.5"],
+        ["Rounded offset (chamfered)", "Higher than sharp offset", "0.1–0.2"],
+        ["With aeration (air concentration > 7%)", "Cavitation effectively suppressed", "N/A"]
+      ]
+    },
+    "source": "Falvey (1990) USBR EM 42, Ball (1976), Arndt (1981)"
+  }
+]

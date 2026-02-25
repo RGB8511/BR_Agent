@@ -1,0 +1,112 @@
+[
+  {
+    "id": "water-infra.water-storage-tanks.eq-001",
+    "title": "Fire Storage Volume",
+    "equation": "V_fire = Q_fire × T_fire × 60",
+    "variables": {
+      "V_fire": {"description": "Required fire storage volume", "units": "liters or gallons"},
+      "Q_fire": {"description": "Required fire flow rate", "units": "L/min or gpm"},
+      "T_fire": {"description": "Fire flow duration", "units": "minutes"}
+    },
+    "applicability": "Q_fire from ISO Fire Suppression Rating Schedule or local fire code. Typical residential: 1000–3000 gpm for 2–4 hours. Commercial: 3000–8000 gpm for 4–8 hours. Example: 3000 gpm × 3 hr × 60 = 540,000 gal.",
+    "source": "ISO FSRS, AWWA M31, local fire codes"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.eq-002",
+    "title": "Equalization Storage (Mass Balance Method)",
+    "equation": "V_eq = max[Σ(Q_supply - Q_demand) × Δt] - min[Σ(Q_supply - Q_demand) × Δt]",
+    "variables": {
+      "V_eq": {"description": "Equalization storage required", "units": "m³ or gallons"},
+      "Q_supply": {"description": "Supply rate to tank (constant or scheduled)", "units": "m³/hr"},
+      "Q_demand": {"description": "Hourly system demand (from diurnal curve)", "units": "m³/hr"},
+      "Δt": {"description": "Time step (typically 1 hour)", "units": "hr"}
+    },
+    "applicability": "Plot cumulative supply and cumulative demand over 24 hours. Maximum vertical distance between curves = required equalization volume. Rule of thumb: 25% of max day demand. More accurate with actual demand data.",
+    "source": "General water system engineering, AWWA M32"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.eq-003",
+    "title": "Total Storage Volume",
+    "equation": "V_total = V_eq + V_fire + V_emergency + V_dead",
+    "variables": {
+      "V_eq": {"description": "Equalization storage", "units": "m³"},
+      "V_fire": {"description": "Fire storage", "units": "m³"},
+      "V_emergency": {"description": "Emergency reserve", "units": "m³"},
+      "V_dead": {"description": "Dead storage (below minimum operating level)", "units": "m³"}
+    },
+    "applicability": "Some utilities allow partial overlap of fire and equalization storage (fire is short duration, equalization is cyclical). Dead storage typically 5–10% of total. Emergency storage varies: 12 hr to 3 days of average demand.",
+    "source": "AWWA M42, 10 States Standards"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.eq-004",
+    "title": "Tank Turnover Time",
+    "equation": "T_turnover = V_active / Q_avg_daily",
+    "variables": {
+      "T_turnover": {"description": "Time to exchange active tank volume", "units": "days"},
+      "V_active": {"description": "Active storage volume (total minus dead storage)", "units": "m³"},
+      "Q_avg_daily": {"description": "Average daily throughflow", "units": "m³/day"}
+    },
+    "applicability": "Target: T_turnover ≤ 3–5 days for chlorinated systems. If turnover exceeds 5 days, water quality degradation likely (chlorine residual below 0.2 mg/L). Solutions: reduce tank volume, increase throughflow, add mixing.",
+    "source": "AWWA M42, EPA guidance on distribution system water quality"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.eq-005",
+    "title": "Elevated Tank — Pressure at Ground Level",
+    "equation": "P_ground = γ_w × (z_overflow - z_ground)",
+    "variables": {
+      "P_ground": {"description": "Static pressure at ground level below tank", "units": "kPa or psi"},
+      "γ_w": {"description": "Specific weight of water (9.81 kN/m³)", "units": "kN/m³"},
+      "z_overflow": {"description": "Overflow elevation of tank", "units": "m"},
+      "z_ground": {"description": "Ground elevation at point of interest", "units": "m"}
+    },
+    "applicability": "For every meter of elevation difference, pressure increases 9.81 kPa (4.33 psi/10 ft). System design pressure target: 275–550 kPa (40–80 psi) at street level. Minimum: 140 kPa (20 psi) under fire flow conditions.",
+    "source": "General hydraulics, 10 States Standards"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.eq-006",
+    "title": "Sloshing Wave Height (Seismic — AWWA D100)",
+    "equation": "d_s = 0.42 × D × (S_a1 / g) × I / (T_s²)",
+    "variables": {
+      "d_s": {"description": "Maximum sloshing wave height above static water level", "units": "m"},
+      "D": {"description": "Tank diameter", "units": "m"},
+      "S_a1": {"description": "Design spectral response acceleration at 1-second period", "units": "g"},
+      "I": {"description": "Importance factor (1.5 for essential facilities)", "units": "dimensionless"},
+      "T_s": {"description": "Fundamental period of sloshing = 2π√(D/(3.68g×tanh(3.68h/D)))", "units": "seconds"}
+    },
+    "applicability": "Simplified form. Full calculation per AWWA D100 Appendix E. Sloshing wave determines required freeboard and shell height above max operating level. Sloshing periods are typically 3–10 seconds (much longer than impulsive response).",
+    "source": "AWWA D100, simplified from Housner (1963)"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.eq-007",
+    "title": "Steel Tank Shell Thickness (Hoop Stress)",
+    "equation": "t_shell = γ_w × h × D / (2 × σ_allow × E_joint) + CA",
+    "variables": {
+      "t_shell": {"description": "Shell plate thickness at depth h", "units": "mm"},
+      "γ_w": {"description": "Specific weight of water", "units": "kN/m³"},
+      "h": {"description": "Depth of water above the point (design liquid level to bottom of course)", "units": "m"},
+      "D": {"description": "Tank diameter", "units": "m"},
+      "σ_allow": {"description": "Allowable stress for tank steel (typically 0.40–0.46 × Fy per AWWA D100)", "units": "kPa"},
+      "E_joint": {"description": "Joint efficiency (0.85 for single-butt, 1.0 for double-butt radiographed)", "units": "dimensionless"},
+      "CA": {"description": "Corrosion allowance (typically 1.5 mm for interior per AWWA D100)", "units": "mm"}
+    },
+    "applicability": "Shell courses are thicker at the bottom (higher hydrostatic pressure) and thinner at the top. AWWA D100 specifies minimum thickness of 4.76 mm (3/16 in). Each course designed for the hydrostatic pressure at its bottom.",
+    "source": "AWWA D100"
+  },
+  {
+    "id": "water-infra.water-storage-tanks.eq-008",
+    "title": "Ring Wall Foundation — Bearing Pressure",
+    "equation": "q = (W_shell + W_roof + W_water) / (π × D × b_ring) + M_seismic / S_ring",
+    "variables": {
+      "q": {"description": "Maximum bearing pressure under ring wall", "units": "kPa"},
+      "W_shell": {"description": "Weight of tank shell per unit circumference", "units": "kN/m"},
+      "W_roof": {"description": "Weight of roof structure per unit circumference", "units": "kN/m"},
+      "W_water": {"description": "Weight of water per unit circumference", "units": "kN/m"},
+      "D": {"description": "Tank diameter", "units": "m"},
+      "b_ring": {"description": "Width of ring wall foundation", "units": "m"},
+      "M_seismic": {"description": "Seismic overturning moment", "units": "kN·m"},
+      "S_ring": {"description": "Section modulus of ring foundation = π/4 × D² × b_ring", "units": "m³"}
+    },
+    "applicability": "For flat-bottom welded steel tanks. Ring wall supports shell and transfers loads to foundation soil. Bearing pressure must not exceed allowable soil bearing capacity. Seismic overturning adds non-uniform pressure distribution.",
+    "source": "AWWA D100, general foundation engineering"
+  }
+]

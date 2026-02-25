@@ -1,0 +1,111 @@
+[
+  {
+    "id": "water-infra.pumping-plant-design.eq-001",
+    "title": "Wet Well Volume — Minimum Cycle Time",
+    "equation": "V = Q_pump × T_cycle / 4",
+    "variables": {
+      "V": {"description": "Minimum effective wet well volume (between start and stop levels)", "units": "m³"},
+      "Q_pump": {"description": "Pump flow rate (for single pump; for multiple, use the pump that cycles)", "units": "m³/min"},
+      "T_cycle": {"description": "Minimum cycle time between starts", "units": "minutes"}
+    },
+    "applicability": "T_cycle typically 6–15 min for motors < 150 kW, 15–30 min for larger. Maximum cycling frequency ≈ 6–10 starts/hour for standard motors. VFD-driven pumps have no cycling limit.",
+    "source": "Sanks (1998), Hydraulic Institute"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.eq-002",
+    "title": "Minimum Submergence (HI 9.8)",
+    "equation": "S = D_bell × (1 + 2.3 × Fr_D)",
+    "variables": {
+      "S": {"description": "Minimum submergence above bell entrance rim", "units": "m"},
+      "D_bell": {"description": "Diameter of pump suction bell", "units": "m"},
+      "Fr_D": {"description": "Froude number at bell entrance = V_bell / √(g × D_bell)", "units": "dimensionless"}
+    },
+    "applicability": "V_bell = Q/(π/4 × D_bell²). Target V_bell ≤ 1.7 m/s. Inadequate submergence causes surface vortices and air entrainment. For approach flow with swirl or non-uniformity, increase S by 25–50%.",
+    "source": "Hydraulic Institute HI 9.8"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.eq-003",
+    "title": "Standby Generator Sizing",
+    "equation": "P_gen = (Σ P_motor_running / η_motor + P_starting) × 1.25",
+    "variables": {
+      "P_gen": {"description": "Required generator output", "units": "kW"},
+      "P_motor_running": {"description": "Running power of each motor operating simultaneously", "units": "kW"},
+      "η_motor": {"description": "Motor efficiency", "units": "dimensionless"},
+      "P_starting": {"description": "Additional power for starting the largest motor (6× FLA for across-the-line)", "units": "kW"},
+      "1.25": {"description": "Derating factor for altitude, temperature, and margin", "units": "dimensionless"}
+    },
+    "applicability": "Generator must handle the running load PLUS the starting surge of the next motor to start. Soft starts or VFDs reduce starting power significantly. Include station auxiliary loads (lighting, HVAC, controls).",
+    "source": "NFPA 110, general electrical practice"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.eq-004",
+    "title": "Buoyancy Check — Below-Grade Structure",
+    "equation": "FS_buoyancy = (W_structure + F_friction) / (γ_w × V_displaced)",
+    "variables": {
+      "FS_buoyancy": {"description": "Factor of safety against flotation (≥ 1.1 minimum)", "units": "dimensionless"},
+      "W_structure": {"description": "Total weight of structure (concrete, equipment, permanent fill)", "units": "kN"},
+      "F_friction": {"description": "Side friction resistance (conservative or omitted)", "units": "kN"},
+      "γ_w": {"description": "Unit weight of water", "units": "kN/m³"},
+      "V_displaced": {"description": "Volume of structure below maximum groundwater level", "units": "m³"}
+    },
+    "applicability": "Check for empty station condition (no water in wet well, no equipment). If FS < 1.1, add weight (thicker base slab) or install permanent dewatering/anchor system.",
+    "source": "General structural engineering"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.eq-005",
+    "title": "Ventilation Rate for Pump Room",
+    "equation": "Q_vent = V_room × ACH / 60",
+    "variables": {
+      "Q_vent": {"description": "Required ventilation airflow", "units": "m³/min"},
+      "V_room": {"description": "Room volume", "units": "m³"},
+      "ACH": {"description": "Air changes per hour (12–20 for pump rooms, 30+ for confined/below-grade)", "units": "1/hr"}
+    },
+    "applicability": "Heat dissipation from motors is the primary driver for dry-pit pump rooms. Check: Q_vent × ρ_air × c_p × ΔT ≥ motor heat rejection. Supplemental cooling needed if ΔT > 10°C.",
+    "source": "ASHRAE, NFPA 820, 10 States Standards"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.eq-006",
+    "title": "Crane Capacity for Pump Removal",
+    "equation": "C_crane = max(W_pump, W_motor, W_pipe_section) × FS_crane",
+    "variables": {
+      "C_crane": {"description": "Required crane rated capacity", "units": "kN or tonnes"},
+      "W_pump": {"description": "Weight of heaviest pump assembly", "units": "kN"},
+      "W_motor": {"description": "Weight of heaviest motor", "units": "kN"},
+      "W_pipe_section": {"description": "Weight of heaviest pipe/valve section to be removed", "units": "kN"},
+      "FS_crane": {"description": "Crane safety factor (minimum 1.25 on rated load)", "units": "dimensionless"}
+    },
+    "applicability": "Overhead bridge crane or monorail. Clear height above equipment for rigging (typically 1.5–2.5 m above highest component). Hook reach must cover all equipment positions and the equipment hatch/door.",
+    "source": "General mechanical design"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.eq-007",
+    "title": "Annual Energy Cost",
+    "equation": "C_energy = P_brake × H_annual / (η_motor × η_VFD) × r_elec",
+    "variables": {
+      "C_energy": {"description": "Annual electrical energy cost", "units": "$/year"},
+      "P_brake": {"description": "Average brake power at operating point", "units": "kW"},
+      "H_annual": {"description": "Annual operating hours", "units": "hours/year"},
+      "η_motor": {"description": "Motor efficiency", "units": "dimensionless"},
+      "η_VFD": {"description": "VFD efficiency (1.0 if no VFD)", "units": "dimensionless"},
+      "r_elec": {"description": "Electricity rate", "units": "$/kWh"}
+    },
+    "applicability": "For variable-demand stations, calculate weighted average of flow/head conditions. Include demand charges ($/kW) based on peak power. Energy cost typically 50–80% of total life-cycle cost.",
+    "source": "DOE PSAT, general practice"
+  },
+  {
+    "id": "water-infra.pumping-plant-design.eq-008",
+    "title": "Present Worth Life-Cycle Cost",
+    "equation": "PW = C_capital + C_energy_annual × [(1+i)^n - 1] / [i(1+i)^n] + C_maintenance_annual × PWF",
+    "variables": {
+      "PW": {"description": "Total present worth cost", "units": "$"},
+      "C_capital": {"description": "Initial capital cost", "units": "$"},
+      "C_energy_annual": {"description": "Annual energy cost (escalated if needed)", "units": "$/yr"},
+      "C_maintenance_annual": {"description": "Annual maintenance cost", "units": "$/yr"},
+      "i": {"description": "Discount rate (real, inflation-adjusted)", "units": "dimensionless"},
+      "n": {"description": "Analysis period", "units": "years"},
+      "PWF": {"description": "Present worth factor = [(1+i)^n - 1] / [i(1+i)^n]", "units": "dimensionless"}
+    },
+    "applicability": "Compare alternatives (e.g., larger pipe + smaller pump vs. smaller pipe + larger pump) on present-worth basis. Typical analysis period: 20–50 years. Include major equipment replacement at mid-life.",
+    "source": "General engineering economics, AWWA M1"
+  }
+]

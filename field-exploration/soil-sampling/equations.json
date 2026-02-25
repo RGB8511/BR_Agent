@@ -1,0 +1,74 @@
+[
+  {
+    "id": "field-exploration.soil-sampling.eq-001",
+    "title": "Area Ratio (Sampler Disturbance Index)",
+    "equation": "Ca = (D_o² - D_i²) / D_i² × 100%",
+    "variables": {
+      "Ca": {"description": "Area ratio — measure of soil displacement by sampler wall", "units": "%"},
+      "D_o": {"description": "Outside diameter of sampler cutting edge", "units": "mm"},
+      "D_i": {"description": "Inside diameter of sampler cutting edge", "units": "mm"}
+    },
+    "applicability": "Lower Ca = less disturbance. Target Ca ≤ 10% for undisturbed sampling. Shelby tube: ~10–13%. Split-spoon: ~112%. Fixed-piston: ~10%. Hvorslev recommended Ca ≤ 10% for satisfactory undisturbed samples.",
+    "source": "Hvorslev (1949)"
+  },
+  {
+    "id": "field-exploration.soil-sampling.eq-002",
+    "title": "Inside Clearance Ratio",
+    "equation": "Ci = (D_s - D_i) / D_i × 100%",
+    "variables": {
+      "Ci": {"description": "Inside clearance ratio", "units": "%"},
+      "D_s": {"description": "Inside diameter of sampling tube (above cutting edge)", "units": "mm"},
+      "D_i": {"description": "Inside diameter at cutting edge", "units": "mm"}
+    },
+    "applicability": "Small inside clearance (0.5–1.5%) allows sample to expand slightly, reducing wall friction during push. Excessive clearance (>3%) allows remolding. Zero clearance grips sample — difficult to extract and increases disturbance during extraction.",
+    "source": "Hvorslev (1949)"
+  },
+  {
+    "id": "field-exploration.soil-sampling.eq-003",
+    "title": "Recovery Ratio",
+    "equation": "R = L_sample / L_push × 100%",
+    "variables": {
+      "R": {"description": "Recovery ratio", "units": "%"},
+      "L_sample": {"description": "Length of sample recovered in tube", "units": "mm"},
+      "L_push": {"description": "Length of tube pushed into soil", "units": "mm"}
+    },
+    "applicability": "R = 100%: ideal full recovery. R < 100%: sample compression (disturbance), loss from bottom, or obstruction. R > 100%: sample swelling or suction drawing extra soil into tube. Acceptable range: 95–105%.",
+    "source": "ASTM D1587"
+  },
+  {
+    "id": "field-exploration.soil-sampling.eq-004",
+    "title": "Lunne Sample Quality Criterion (Δe/e₀)",
+    "equation": "SQD = Δe/e₀ = (e₀ - e_recon) / e₀",
+    "variables": {
+      "SQD": {"description": "Sample Quality Designation (volumetric disturbance index)", "units": "dimensionless"},
+      "e₀": {"description": "Initial void ratio of sample (before reconsolidation)", "units": "dimensionless"},
+      "e_recon": {"description": "Void ratio after reconsolidation to estimated in-situ vertical effective stress", "units": "dimensionless"}
+    },
+    "applicability": "For OCR 1–2: Δe/e₀ < 0.04 = very good to excellent; 0.04–0.07 = good to fair; 0.07–0.14 = poor; > 0.14 = very poor. For OCR 2–4: limits shift (less strict). Evaluated from oedometer test results.",
+    "source": "Lunne et al. (1997, 2006)"
+  },
+  {
+    "id": "field-exploration.soil-sampling.eq-005",
+    "title": "Sample Length to Diameter Ratio",
+    "equation": "L/D ratio = L_sample / D_i",
+    "variables": {
+      "L_sample": {"description": "Length of recovered sample", "units": "mm"},
+      "D_i": {"description": "Inside diameter of sampler", "units": "mm"}
+    },
+    "applicability": "Recommended L/D ≤ 10 for push samplers to limit cumulative wall friction disturbance. For Shelby tube: 610 mm push / 73 mm ID ≈ L/D = 8.4 (acceptable). Longer samples increase disturbance at top due to wall friction during push.",
+    "source": "Hvorslev (1949), Ladd & DeGroot (2003)"
+  },
+  {
+    "id": "field-exploration.soil-sampling.eq-006",
+    "title": "Outside Cutting Edge Taper Angle",
+    "equation": "β = arctan[(D_w - D_o) / (2 × L_taper)]",
+    "variables": {
+      "β": {"description": "Outside cutting edge angle", "units": "degrees"},
+      "D_w": {"description": "Outside diameter of tube wall", "units": "mm"},
+      "D_o": {"description": "Outside diameter at cutting edge (may be slightly smaller)", "units": "mm"},
+      "L_taper": {"description": "Length of tapered section at cutting edge", "units": "mm"}
+    },
+    "applicability": "Sharp cutting edge (small β, ≤ 5–9°) reduces disturbance. ASTM D1587 specifies cutting edge angle requirements. Dulled or damaged edges dramatically increase disturbance — inspect before every use.",
+    "source": "Hvorslev (1949), ASTM D1587"
+  }
+]

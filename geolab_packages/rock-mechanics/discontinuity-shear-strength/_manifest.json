@@ -1,0 +1,23 @@
+{
+  "id": "geotechnical.rock-mechanics.discontinuity-shear-strength",
+  "name": "Discontinuity Shear Strength",
+  "level": 1,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.rock-mechanics",
+  "dependencies": ["geotechnical.foundations.rock-classification"],
+  "tags": ["Barton-Bandis", "JRC", "JCS", "basic-friction", "Patton", "roughness", "dilation", "infilled-joints"],
+  "standards": ["D5607"],
+  "key_references": [
+    "Barton (1973) Review of a New Shear Strength Criterion for Rock Joints",
+    "Barton & Choubey (1977) The Shear Strength of Rock Joints in Theory and Practice",
+    "Patton (1966) Multiple Modes of Shear Failure in Rock"
+  ],
+  "equation_count": 8,
+  "concept_count": 14,
+  "table_count": 4,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}

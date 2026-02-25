@@ -1,0 +1,29 @@
+{
+  "id": "geotechnical.embankment-dams.design",
+  "name": "Embankment Dam Design",
+  "level": 2,
+  "discipline": "geotechnical",
+  "parent": "geotechnical.embankment-dams",
+  "dependencies": [
+    "geotechnical.soil-mechanics.compaction",
+    "geotechnical.soil-mechanics.permeability-seepage",
+    "geotechnical.soil-mechanics.shear-strength",
+    "geotechnical.soil-mechanics.slope-stability"
+  ],
+  "tags": ["embankment-dam", "zoning", "filters", "drains", "internal-erosion", "piping", "seepage", "instrumentation", "USBR", "USACE", "FEMA"],
+  "standards": ["USBR-DS13", "USACE-EM-1110-2-1901", "FEMA-484"],
+  "key_references": [
+    "USBR Design Standards No. 13 — Embankment Dams",
+    "USACE EM 1110-2-1901 Seepage Analysis and Control",
+    "Fell et al. (2015) Geotechnical Engineering of Dams",
+    "FEMA 484 (2005) Technical Manual: Conduits through Embankment Dams"
+  ],
+  "equation_count": 10,
+  "concept_count": 24,
+  "table_count": 6,
+  "content_files": ["theory.md", "equations.json", "tables.json", "standards.md"],
+  "textbook_level": "graduate+practice",
+  "enabled": true,
+  "version": "1.0",
+  "last_updated": "2026-02-24"
+}
