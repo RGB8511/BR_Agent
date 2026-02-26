@@ -15,6 +15,7 @@ def query_chunks(
     top_k: int = 5,
     chunk_type: str | None = None,
     discipline: str | None = None,
+    min_score: float = 0.35,
 ) -> list[dict]:
     """Embed query and perform cosine similarity search.
 
@@ -50,7 +51,7 @@ def query_chunks(
     with get_session(engine) as session:
         rows = session.execute(sql, params).fetchall()
 
-    return [
+    results = [
         {
             "id": row.id,
             "title": row.title,
@@ -62,3 +63,6 @@ def query_chunks(
         }
         for row in rows
     ]
+    if min_score > 0:
+        results = [r for r in results if r["score"] >= min_score]
+    return results

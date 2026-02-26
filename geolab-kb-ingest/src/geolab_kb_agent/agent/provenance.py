@@ -13,6 +13,7 @@ class Citation:
     record_id: str
     field_name: str | None = None
     value: str | None = None
+    snippet: str | None = None
 
     def to_dict(self) -> dict:
         d: dict = {"source_table": self.source_table, "record_id": self.record_id}
@@ -20,6 +21,8 @@ class Citation:
             d["field_name"] = self.field_name
         if self.value is not None:
             d["value"] = self.value
+        if self.snippet is not None:
+            d["snippet"] = self.snippet
         return d
 
 
@@ -35,6 +38,7 @@ class ProvenanceCollector:
         record_id: str,
         field_name: str | None = None,
         value: str | None = None,
+        snippet: str | None = None,
     ) -> None:
         self.citations.append(
             Citation(
@@ -42,17 +46,21 @@ class ProvenanceCollector:
                 record_id=record_id,
                 field_name=field_name,
                 value=value,
+                snippet=snippet,
             )
         )
 
     def add_kb_results(self, results: list[dict]) -> None:
         """Add a citation for each KB search result."""
         for row in results:
+            content = str(row.get("content", ""))
+            snippet = content[:200].rstrip() + ("..." if len(content) > 200 else "")
             self.add(
                 source_table="kb_chunks",
                 record_id=str(row.get("id", "unknown")),
                 field_name="title",
                 value=str(row.get("title", "")),
+                snippet=snippet,
             )
 
     def to_list(self) -> list[dict]:

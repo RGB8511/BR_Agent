@@ -140,6 +140,12 @@ class KBAgent:
                 ]
                 final_text = "\n".join(text_parts)
 
+                if tool_calls_made == 0:
+                    final_text = (
+                        "> **Note:** This response was generated without searching the "
+                        "knowledge base and may not be accurate.\n\n" + final_text
+                    )
+
                 # Append assistant reply to history for multi-turn
                 messages.append({"role": "assistant", "content": final_text})
 
@@ -234,6 +240,17 @@ class KBAgent:
                 )
             }
             return
+
+        # --- Inject disclaimer if no tools were called ---
+        if tool_calls_made == 0:
+            messages.append({
+                "role": "user",
+                "content": (
+                    "[System: You did not search the knowledge base. Remind the user "
+                    "that this answer is from general knowledge, not the KB. Preface "
+                    "your response with a disclaimer.]"
+                ),
+            })
 
         # --- Re-issue as streaming call ---
         try:
