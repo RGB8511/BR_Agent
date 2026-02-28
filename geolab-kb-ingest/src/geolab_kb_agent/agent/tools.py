@@ -6,9 +6,11 @@ TOOLS: list[dict] = [
     {
         "name": "search_kb",
         "description": (
-            "Semantic search across all knowledge-base chunks (theory, equations, "
-            "tables, standards, manifests). Use this as the primary search tool "
-            "for any geotechnical question."
+            "Semantic search across knowledge-base chunks (theory, equations, "
+            "tables, standards, manifests) AND project documents (narratives, "
+            "tables, CSV data). Use this as the primary search tool for any "
+            "geotechnical question, whether about reference material or "
+            "project-specific data."
         ),
         "input_schema": {
             "type": "object",
@@ -19,14 +21,36 @@ TOOLS: list[dict] = [
                 },
                 "chunk_type": {
                     "type": "string",
-                    "enum": ["theory", "equation", "table", "standard", "manifest"],
-                    "description": "Optional filter to a specific chunk type.",
+                    "enum": [
+                        "theory", "equation", "table", "standard",
+                        "manifest", "narrative", "csv_data",
+                    ],
+                    "description": (
+                        "Optional filter to a specific chunk type. Use 'narrative' "
+                        "or 'table' for project documents, 'csv_data' for ingested "
+                        "CSV data files."
+                    ),
                 },
                 "discipline": {
                     "type": "string",
                     "description": (
                         "Optional filter by discipline (e.g. 'geotechnical', "
                         "'concrete', 'rock-mechanics', 'soil-mechanics')."
+                    ),
+                },
+                "source": {
+                    "type": "string",
+                    "enum": ["kb", "project"],
+                    "description": (
+                        "Filter to knowledge base packages ('kb') or project "
+                        "documents ('project'). Omit to search all."
+                    ),
+                },
+                "project": {
+                    "type": "string",
+                    "description": (
+                        "Filter to a specific project (e.g. 'Juniper Canyon Dam'). "
+                        "Only applies when source='project'."
                     ),
                 },
                 "top_k": {

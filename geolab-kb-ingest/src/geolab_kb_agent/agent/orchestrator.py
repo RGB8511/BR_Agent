@@ -34,23 +34,39 @@ class AgentResponse:
 
 @dataclass
 class KBAgent:
-    """Orchestrates the Claude tool-use loop against the KB."""
+    """Orchestrates the Claude tool-use loop against the KB.
+
+    Supports injecting extra tools (e.g. project database queries) via
+    ``extra_tools`` / ``extra_handlers`` so the host application can extend
+    the agent's capabilities without modifying this package.
+    """
 
     api_key: str
     model: str
     engine: Engine
     embedder: Embedder
     mode: str = "educational"
+    extra_tools: list[dict] = field(default_factory=list)
+    extra_handlers: dict[str, HandlerFn] = field(default_factory=dict)
     _client: anthropic.AsyncAnthropic = field(init=False, repr=False)
     _handlers: dict[str, HandlerFn] = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         self._client = anthropic.AsyncAnthropic(api_key=self.api_key)
         self._handlers = make_tool_handlers(self.engine, self.embedder)
+        # Merge any extra handlers provided by the host application
+        if self.extra_handlers:
+            self._handlers.update(self.extra_handlers)
 
     # ------------------------------------------------------------------
     # Shared helpers
     # ------------------------------------------------------------------
+
+    def _all_tools(self) -> list[dict]:
+        """Return merged KB tools + any extra tools."""
+        if self.extra_tools:
+            return TOOLS + self.extra_tools
+        return TOOLS
 
     def _log_usage(self, response: anthropic.types.Message) -> None:
         """Log token usage including cache metrics."""
@@ -75,6 +91,11 @@ class KBAgent:
         count = 0
         for block in tool_use_blocks:
             count += 1
+            logger.info(
+                "Tool call: %s | args=%s",
+                block.name,
+                json.dumps(block.input, default=str)[:500],
+            )
             handler = self._handlers.get(block.name)
             if handler is None:
                 result_content = json.dumps(
@@ -84,6 +105,14 @@ class KBAgent:
                 try:
                     result = await handler(block.input, provenance)
                     result_content = json.dumps(result, default=str)
+                    # Log result summary for debugging
+                    result_count = result.get("count", "?") if isinstance(result, dict) else "?"
+                    logger.info(
+                        "Tool result: %s | count=%s | size=%d chars",
+                        block.name,
+                        result_count,
+                        len(result_content),
+                    )
                 except Exception as exc:
                     logger.exception("Tool %s failed", block.name)
                     result_content = json.dumps(
@@ -113,16 +142,19 @@ class KBAgent:
         if messages is None:
             messages = []
         messages.append({"role": "user", "content": user_message})
+        logger.info("Agent chat: %s", user_message[:200])
 
         tool_calls_made = 0
         system = get_system_prompt(self.mode)
+        all_tools = self._all_tools()
 
         for _iteration in range(MAX_ITERATIONS):
             response = await self._client.messages.create(
                 model=self.model,
                 max_tokens=4096,
+                temperature=0.0,
                 system=system,
-                tools=TOOLS,
+                tools=all_tools,
                 messages=messages,
             )
             self._log_usage(response)
@@ -148,6 +180,13 @@ class KBAgent:
 
                 # Append assistant reply to history for multi-turn
                 messages.append({"role": "assistant", "content": final_text})
+
+                logger.info(
+                    "Agent response: %d chars, %d tool calls, %d sources",
+                    len(final_text),
+                    tool_calls_made,
+                    len(provenance.to_list()),
+                )
 
                 return AgentResponse(
                     text=final_text,
@@ -199,9 +238,11 @@ class KBAgent:
         if messages is None:
             messages = []
         messages.append({"role": "user", "content": user_message})
+        logger.info("Agent chat_stream: %s", user_message[:200])
 
         tool_calls_made = 0
         system = get_system_prompt(self.mode)
+        all_tools = self._all_tools()
 
         # --- Tool-use loop (non-streaming) ---
         final_found = False
@@ -209,8 +250,9 @@ class KBAgent:
             response = await self._client.messages.create(
                 model=self.model,
                 max_tokens=4096,
+                temperature=0.0,
                 system=system,
-                tools=TOOLS,
+                tools=all_tools,
                 messages=messages,
             )
             self._log_usage(response)
@@ -257,8 +299,9 @@ class KBAgent:
             async with self._client.messages.stream(
                 model=self.model,
                 max_tokens=4096,
+                temperature=0.0,
                 system=system,
-                tools=TOOLS,
+                tools=all_tools,
                 messages=messages,
             ) as stream:
                 full_text_parts: list[str] = []
@@ -273,6 +316,13 @@ class KBAgent:
 
             # Append to conversation history for multi-turn
             messages.append({"role": "assistant", "content": final_text})
+
+            logger.info(
+                "Stream response: %d chars, %d tool calls, %d sources",
+                len(final_text),
+                tool_calls_made,
+                len(provenance.to_list()),
+            )
 
             yield {
                 "done": True,

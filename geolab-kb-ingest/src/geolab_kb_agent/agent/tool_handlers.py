@@ -31,6 +31,26 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
         chunk_type = args.get("chunk_type")
         discipline = args.get("discipline")
         top_k = min(args.get("top_k", 5), 20)
+        source = args.get("source")
+        project = args.get("project")
+
+        # Build package_id filters from source / project params
+        package_id: str | None = None
+        package_id_prefix: str | None = None
+        package_id_exclude_prefix: str | None = None
+
+        if source == "project":
+            package_id_prefix = "project:"
+            if project:
+                # Convert project name to package_id slug
+                import re
+                slug = project.lower().strip()
+                slug = re.sub(r"[^\w\s-]", "", slug)
+                slug = re.sub(r"[\s_]+", "-", slug)
+                package_id = f"project:{slug.strip('-')}"
+                package_id_prefix = None  # exact match takes precedence
+        elif source == "kb":
+            package_id_exclude_prefix = "project:"
 
         results = await asyncio.to_thread(
             query_chunks,
@@ -40,6 +60,9 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
             top_k=top_k,
             chunk_type=chunk_type,
             discipline=discipline,
+            package_id=package_id,
+            package_id_prefix=package_id_prefix,
+            package_id_exclude_prefix=package_id_exclude_prefix,
         )
 
         provenance.add_kb_results(results)

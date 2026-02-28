@@ -28,18 +28,36 @@ def _count_tokens(text: str) -> int:
 # PDF extraction
 # ---------------------------------------------------------------------------
 
+_HEADING_RE = re.compile(
+    r"^(?:"
+    r"(?:Section\s+)?\d+(?:\.\d+)*\s*[-–—:]\s*.+"  # "4.2 — Lab Testing"
+    r"|[A-Z][A-Z\s]{4,}$"                           # "LABORATORY TEST RESULTS"
+    r"|(?:Table|Figure|Appendix)\s+[\w.-]+\s*[-–—:]\s*.+"  # "Table 4-1 — UCS Results"
+    r")",
+    re.MULTILINE,
+)
+
+
 def extract_pdf_pages(file_path: Path) -> list[dict]:
     """Extract text from a PDF using pdfplumber, marking table regions.
 
-    Returns list of dicts: {page: int, text: str}
-    Table regions are wrapped in [TABLE]...[/TABLE] markers.
+    Returns list of dicts: {page: int, text: str, section: str | None}
+    Table regions are wrapped in [TABLE:section]...[/TABLE] markers so
+    downstream chunking can prepend section context.
     """
     import pdfplumber
 
     pages: list[dict] = []
+    last_section: str | None = None
+
     with pdfplumber.open(file_path) as pdf:
         for i, page in enumerate(pdf.pages):
             page_text = page.extract_text() or ""
+
+            # Track last heading/section title seen on this page
+            for m in _HEADING_RE.finditer(page_text):
+                last_section = m.group(0).strip()
+
             tables = page.extract_tables()
             table_text = ""
             for table in tables:
@@ -48,13 +66,23 @@ def extract_pdf_pages(file_path: Path) -> list[dict]:
                     for row in table:
                         cleaned = [str(cell) if cell else "" for cell in row]
                         rows_text.append(" | ".join(cleaned))
-                    table_text += "\n[TABLE]\n" + "\n".join(rows_text) + "\n[/TABLE]\n"
+                    # Encode current section into the marker for chunk_document
+                    section_tag = last_section or ""
+                    table_text += (
+                        f"\n[TABLE:{section_tag}]\n"
+                        + "\n".join(rows_text)
+                        + "\n[/TABLE]\n"
+                    )
 
             combined = page_text
             if table_text:
                 combined += table_text
 
-            pages.append({"page": i + 1, "text": combined})
+            pages.append({
+                "page": i + 1,
+                "text": combined,
+                "section": last_section,
+            })
 
     return pages
 
@@ -130,24 +158,28 @@ def extract_doc_metadata(text: str, filename: str) -> dict:
 # Document chunking
 # ---------------------------------------------------------------------------
 
-def _split_table_and_narrative(text: str) -> list[tuple[str, str]]:
-    """Split text into alternating (type, content) segments.
+def _split_table_and_narrative(text: str) -> list[tuple[str, str, str | None]]:
+    """Split text into alternating (type, content, section) segments.
 
-    Returns list of ("narrative", text) and ("table", text) tuples.
+    Returns list of ("narrative", text, None) and ("table", text, section) tuples.
+    The section is extracted from [TABLE:section]...[/TABLE] markers.
     """
-    segments: list[tuple[str, str]] = []
-    parts = re.split(r"(\[TABLE\].*?\[/TABLE\])", text, flags=re.DOTALL)
+    segments: list[tuple[str, str, str | None]] = []
+    # Match [TABLE:optional_section]...[/TABLE]
+    parts = re.split(r"(\[TABLE:.*?\].*?\[/TABLE\])", text, flags=re.DOTALL)
 
     for part in parts:
         part = part.strip()
         if not part:
             continue
-        if part.startswith("[TABLE]") and part.endswith("[/TABLE]"):
-            # Strip markers
-            table_content = part[7:-8].strip()
-            segments.append(("table", table_content))
+        # Match [TABLE:section_text]...[/TABLE]
+        m = re.match(r"\[TABLE:(.*?)\](.*)\[/TABLE\]$", part, re.DOTALL)
+        if m:
+            section = m.group(1).strip() or None
+            table_content = m.group(2).strip()
+            segments.append(("table", table_content, section))
         else:
-            segments.append(("narrative", part))
+            segments.append(("narrative", part, None))
 
     return segments
 
@@ -244,17 +276,29 @@ def chunk_document(
 
     # Split into table and narrative segments
     segments = _split_table_and_narrative(text)
+    source_prefix = f"[Source: {filename}, {title}]\n"
 
-    for seg_type, seg_text in segments:
+    for seg_type, seg_text, seg_section in segments:
         if seg_type == "table":
+            # Prepend section context to table chunks for embedding
+            context_parts: list[str] = []
+            if seg_section:
+                context_parts.append(f"[Section: {seg_section}]")
+            context_parts.append(f"[Source: {filename}]")
+            context_line = " ".join(context_parts)
+            enriched_content = f"{context_line}\n{seg_text}"
+
             chunk_id = f"{package_id}.{_slugify(filename)}.tbl-{chunk_idx}"
+            chunk_meta = {**doc_meta}
+            if seg_section:
+                chunk_meta["section"] = seg_section
             chunks.append(Chunk(
                 id=chunk_id,
                 package_id=package_id,
                 chunk_type="table",
                 title=f"{title} (Table)",
-                content=seg_text,
-                metadata=doc_meta,
+                content=enriched_content,
+                metadata=chunk_meta,
                 tags=chunk_tags,
             ))
             chunk_idx += 1
@@ -263,14 +307,19 @@ def chunk_document(
             sub_chunks = _chunk_narrative_by_tokens(
                 seg_text, max_tokens, overlap_tokens,
             )
-            for sub_text in sub_chunks:
+            for i, sub_text in enumerate(sub_chunks):
+                # Prepend source to the first narrative chunk of the document
+                content = sub_text
+                if chunk_idx == 0 and i == 0:
+                    content = f"{source_prefix}{sub_text}"
+
                 chunk_id = f"{package_id}.{_slugify(filename)}.{chunk_idx}"
                 chunks.append(Chunk(
                     id=chunk_id,
                     package_id=package_id,
                     chunk_type="narrative",
                     title=title,
-                    content=sub_text,
+                    content=content,
                     metadata=doc_meta,
                     tags=chunk_tags,
                 ))

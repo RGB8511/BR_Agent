@@ -32,6 +32,35 @@ def _slugify_project(name: str) -> str:
     return f"project:{slug.strip('-')}"
 
 
+# ---------------------------------------------------------------------------
+# Document type classification
+# ---------------------------------------------------------------------------
+# Maps known Juniper Canyon Dam filenames to doc_type categories.
+# Unknown filenames fall back to "general".
+_DOC_TYPE_MAP: dict[str, str] = {
+    "doc01_wsrb_1963_construction_report.pdf": "construction_report",
+    "doc02_wsrb_1959_boring_logs.pdf": "boring_logs",
+    "doc03_wsrb_1964_first_filling.pdf": "first_filling",
+    "doc04_sdwr_1995_safety_inspection.pdf": "safety_inspection",
+    "doc05_fhsc_2022_part12d.pdf": "part_12d",
+    "doc06_idse_2025_geotech_gravity.pdf": "geotechnical",
+    "doc07_idse_2025_geotech_embankments.pdf": "geotechnical",
+    "doc08_idse_2025_boring_logs.pdf": "boring_logs",
+    "doc09_idse_2025_lab_testing_summary.pdf": "geotechnical",
+    "doc10_idse_2025_instrumentation.pdf": "instrumentation",
+    "doc11_idse_2025_concrete_assessment.pdf": "concrete",
+    "doc12_idse_2025_drain_evaluation.pdf": "drain_evaluation",
+    "doc13_idse_2025_gravity_stability.pdf": "stability",
+    "doc14_idse_2025_embankment_stability.pdf": "stability",
+    "doc15_idse_2025_seepage_analysis.pdf": "seepage",
+    "doc16_idse_2025_seismic_memo.pdf": "seismic",
+    "doc17_idse_2025_remediation.pdf": "remediation",
+    "doc18_idse_2025_mix_design_review.pdf": "mix_design",
+    "doc19_idse_2025_corrosion_assessment.pdf": "corrosion",
+    "doc20_jbid_2025_eap_update.pdf": "eap",
+}
+
+
 def _chunk_to_db(chunk: Chunk, embedding: list[float]) -> KBChunk:
     """Convert a Chunk dataclass + embedding vector to a KBChunk ORM object."""
     return KBChunk(
@@ -104,12 +133,17 @@ def ingest_documents(
             ext = file_path.suffix.lower()
 
             try:
+                doc_type = _DOC_TYPE_MAP.get(file_path.name, "general")
+                file_tags = tags + [doc_type]
+
                 if ext == ".pdf":
                     pages = extract_pdf_pages(file_path)
                     full_text = "\n\n".join(p["text"] for p in pages)
                     doc_meta = extract_doc_metadata(full_text, file_path.name)
                     doc_meta["pages"] = len(pages)
                     doc_meta["project"] = project_name
+                    doc_meta["doc_type"] = doc_type
+                    doc_meta["page_range"] = f"1-{len(pages)}"
 
                     chunks = chunk_document(
                         full_text,
@@ -117,22 +151,22 @@ def ingest_documents(
                         package_id,
                         max_tokens=max_tokens,
                         overlap_tokens=overlap_tokens,
-                        tags=tags,
+                        tags=file_tags,
                     )
 
                 elif ext == ".csv":
-                    text = extract_csv_text(file_path)
                     doc_meta = {
                         "filename": file_path.name,
                         "title": file_path.stem.replace("_", " ").title(),
                         "project": project_name,
+                        "doc_type": doc_type,
                     }
 
                     chunks = chunk_document(
-                        text,
-                        doc_meta,
-                        package_id,
-                        tags=tags,
+                        text=extract_csv_text(file_path),
+                        doc_meta=doc_meta,
+                        package_id=package_id,
+                        tags=file_tags,
                         is_csv=True,
                     )
                 else:
