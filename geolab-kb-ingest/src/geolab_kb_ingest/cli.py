@@ -14,6 +14,7 @@ from sqlalchemy import func, text
 from .config import get_settings
 from .db import KBChunk, get_engine, get_session, init_db
 from .embedder import Embedder
+from .doc_ingestor import ingest_documents
 from .ingestor import ingest_all, ingest_package
 from .query import query_chunks
 from .validator import validate_all, validate_package
@@ -187,6 +188,27 @@ def stats(package: str | None):
             for pid, count in pkg_rows:
                 table.add_row(pid, str(count))
             console.print(table)
+
+
+@cli.command("ingest-docs")
+@click.argument("path", type=click.Path(exists=True, path_type=Path))
+@click.option("--project", default="Juniper Canyon Dam", help="Project name for metadata tagging.")
+@click.option("--max-tokens", default=512, help="Max tokens per narrative chunk.")
+@click.option("--overlap", default=50, help="Token overlap between chunks.")
+def ingest_docs_cmd(path: Path, project: str, max_tokens: int, overlap: int):
+    """Ingest raw PDF/CSV documents from a directory."""
+    engine, settings = _make_engine()
+    embedder = _make_embedder(settings)
+    count = ingest_documents(
+        path,
+        engine,
+        embedder,
+        console,
+        project_name=project,
+        max_tokens=max_tokens,
+        overlap_tokens=overlap,
+    )
+    console.print(f"\n[bold green]Done — {count} chunks ingested from documents.[/bold green]")
 
 
 @cli.command()
