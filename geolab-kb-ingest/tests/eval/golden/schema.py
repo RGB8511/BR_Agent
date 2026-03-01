@@ -57,8 +57,8 @@ class EvalDataset(BaseModel):
     """The full golden evaluation dataset."""
 
     version: str = "1.0"
-    project: str = "Juniper Canyon Dam"
-    package_id: str = "project:juniper-canyon-dam"
+    project: str = "GeoLab KB"
+    package_id: str = "all"
     questions: list[EvalQuestion] = Field(default_factory=list)
 
 
