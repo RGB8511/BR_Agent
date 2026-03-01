@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import logging
+import os
 
 from sqlalchemy import Engine, text
 
 from .db import get_session
 from .embedder import Embedder
+from .reranker import Reranker
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +30,8 @@ def query_chunks(
     package_id_exclude_prefix: str | None = None,
     tags: list[str] | None = None,
     min_score: float = 0.35,
+    expand: bool = False,
+    reranker: Reranker | None = None,
 ) -> list[dict]:
     """Embed query and perform cosine similarity search.
 
@@ -39,13 +43,31 @@ def query_chunks(
         package_id_prefix: LIKE prefix match (e.g. 'project:' to match all projects).
         package_id_exclude_prefix: Exclude packages matching this prefix.
         tags: PostgreSQL array containment — chunk must have ALL listed tags.
+        expand: If True and ANTHROPIC_API_KEY is set, expand query with
+            domain-specific synonyms via Claude Haiku before embedding.
+        reranker: If provided, rerank the top-k results using Voyage
+            cross-encoder before returning. Retrieves 3x top_k candidates
+            for the reranker to choose from.
     """
+    if expand:
+        anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
+        if anthropic_key:
+            from .query_expansion import expand_query
+
+            query_text = expand_query(query_text, anthropic_key)
+            logger.debug("Expanded query: %s", query_text)
+
     embeddings = embedder.embed_texts([query_text], input_type="query")
     query_vec = embeddings[0]
 
+    # When reranking, retrieve more candidates for the cross-encoder.
+    # 4x gives the reranker a wide enough pool to find the best matches
+    # while keeping API cost low (reranker cost scales with candidate count).
+    retrieval_k = top_k * 4 if reranker else top_k
+
     # Build SQL with pgvector cosine distance operator
     where_clauses = []
-    params: dict = {"vec": str(query_vec), "k": top_k}
+    params: dict = {"vec": str(query_vec), "k": retrieval_k}
 
     if chunk_type:
         where_clauses.append("chunk_type = :chunk_type")
@@ -107,5 +129,19 @@ def query_chunks(
             len(rows),
             MIN_SIMILARITY_SCORE,
         )
+
+    # Rerank if a reranker is provided
+    if reranker and results:
+        documents = [r["content"] for r in results]
+        reranked = reranker.rerank(
+            query=query_text, documents=documents, top_k=top_k,
+        )
+        # Rebuild results in reranked order, replacing score with relevance
+        reranked_results = []
+        for item in reranked:
+            r = results[item["index"]].copy()
+            r["score"] = item["relevance_score"]
+            reranked_results.append(r)
+        return reranked_results
 
     return results

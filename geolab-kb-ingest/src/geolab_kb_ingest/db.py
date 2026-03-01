@@ -41,6 +41,7 @@ class KBChunk(Base):
     chunk_type: Mapped[str] = mapped_column(Text, index=True)
     title: Mapped[str] = mapped_column(Text)
     content: Mapped[str] = mapped_column(Text)
+    embedding_text: Mapped[str | None] = mapped_column(Text, nullable=True)
     embedding = mapped_column(Vector(1024))
     metadata_: Mapped[dict] = mapped_column("metadata", JSONB, default=dict)
     tags: Mapped[list[str]] = mapped_column(ARRAY(Text), default=list)

@@ -1,0 +1,2567 @@
+{
+  "version": "1.0",
+  "project": "Juniper Canyon Dam",
+  "package_id": "project:juniper-canyon-dam",
+  "questions": [
+    {
+      "id": "Q001",
+      "question": "What is the maximum height of Juniper Canyon Dam from foundation to crest?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.0",
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.1",
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.0",
+      "expected_answer": "185 feet from foundation to crest",
+      "answer_keywords": [
+        "185",
+        "ft"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "construction",
+        "dimensions"
+      ]
+    },
+    {
+      "id": "Q002",
+      "question": "What is the total storage capacity of Juniper Canyon Reservoir at normal pool?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.0",
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.1",
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.0",
+      "expected_answer": "32,000 acre-feet",
+      "answer_keywords": [
+        "32,000",
+        "acre-foot"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "reservoir",
+        "capacity"
+      ]
+    },
+    {
+      "id": "Q003",
+      "question": "What was the cement alkali content (Na2O equivalent) in the original concrete mix design for Juniper Canyon Dam?",
+      "category": "technical_detail",
+      "difficulty": "medium",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.4",
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.6",
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.tbl-8"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.6",
+      "expected_answer": "0.68% Na2O equivalent",
+      "answer_keywords": [
+        "0.68",
+        "NanO"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "concrete",
+        "mix_design",
+        "ASR"
+      ]
+    },
+    {
+      "id": "Q004",
+      "question": "What was the mean 28-day compressive strength of concrete placed in the Juniper Canyon Dam gravity section?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.9",
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.tbl-19"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.9",
+      "expected_answer": "5,180 psi mean 28-day compressive strength",
+      "answer_keywords": [
+        "5,180",
+        "psi"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "concrete",
+        "strength",
+        "quality_control"
+      ]
+    },
+    {
+      "id": "Q005",
+      "question": "How many sacks of cement were injected into the shear zone during grout curtain construction, and what percentage of total grout consumption did this represent?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.14"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.14",
+      "expected_answer": "3,200 sacks of cement in the shear zone, representing 18 percent of total grout consumption",
+      "answer_keywords": [
+        "3,200",
+        "sacks",
+        "18",
+        "percent"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "grouting",
+        "shear_zone",
+        "foundation_treatment"
+      ]
+    },
+    {
+      "id": "Q006",
+      "question": "What is the width and dip angle of the shear zone identified in the Juniper Canyon Dam foundation?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.5",
+      "expected_answer": "2-4 feet wide, dipping approximately 35 degrees downstream (southeast)",
+      "answer_keywords": [
+        "2-4",
+        "feet",
+        "35",
+        "degrees",
+        "downstream"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "shear_zone",
+        "geology",
+        "foundation"
+      ]
+    },
+    {
+      "id": "Q007",
+      "question": "What was the unconfined compressive strength range of the densely welded rhyolite tuff at the Juniper Canyon Dam site?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.3",
+      "expected_answer": "12,200 to 17,800 psi",
+      "answer_keywords": [
+        "12,200",
+        "17,800",
+        "psi"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "rock_strength",
+        "welded_tuff",
+        "geotechnical"
+      ]
+    },
+    {
+      "id": "Q008",
+      "question": "How many foundation drain holes were drilled in the drainage gallery of Juniper Canyon Dam, and what is their spacing?",
+      "category": "instrumentation",
+      "difficulty": "easy",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.14"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.14",
+      "expected_answer": "42 foundation drain holes at 10-foot spacing",
+      "answer_keywords": [
+        "42",
+        "10-foot",
+        "spacing"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "drains",
+        "gallery",
+        "instrumentation"
+      ]
+    },
+    {
+      "id": "Q009",
+      "question": "What was the downstream deflection measured at Monolith 8 by the inverted pendulum at first full pool, and how did it compare to the predicted value?",
+      "category": "instrumentation",
+      "difficulty": "medium",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.20",
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.tbl-22"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.tbl-22",
+      "expected_answer": "Measured +0.35 inches downstream, predicted +0.32 inches, within 10% of prediction",
+      "answer_keywords": [
+        "0.35",
+        "0.32",
+        "10%"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "pendulum",
+        "deflection",
+        "structural_behavior"
+      ]
+    },
+    {
+      "id": "Q010",
+      "question": "What was the total seepage measured at Juniper Canyon Dam during first filling at full pool, and what were the individual contributions from left abutment, right abutment, and gallery drains?",
+      "category": "numerical_data",
+      "difficulty": "hard",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.18"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.18",
+      "expected_answer": "Total 133 gpm: left abutment 8 gpm, right abutment 5 gpm, gallery drains 120 gpm",
+      "answer_keywords": [
+        "133",
+        "gpm",
+        "8",
+        "5",
+        "120"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "seepage",
+        "first_filling",
+        "performance"
+      ]
+    },
+    {
+      "id": "Q011",
+      "question": "What was the post-grouting permeability reduction achieved in the shear zone, measured in Lugeon values?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.14"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.14",
+      "expected_answer": "Reduced from approximately 35 Lugeon to 3 Lugeon, a 92 percent reduction",
+      "answer_keywords": [
+        "35",
+        "Lugeon",
+        "3",
+        "Lugeon",
+        "92",
+        "percent"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "grouting",
+        "permeability",
+        "shear_zone"
+      ]
+    },
+    {
+      "id": "Q012",
+      "question": "At what depth was the shear zone identified in BH-3, and what are the properties of the clay gouge including liquid limit and plasticity index?",
+      "category": "geotechnical",
+      "difficulty": "hard",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.5",
+        "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.4"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.5",
+      "expected_answer": "Shear zone identified in BH-3 at 42 feet depth, 2-4 feet wide, clay gouge CH classification, liquid limit 52, plasticity index 28, slickensided",
+      "answer_keywords": [
+        "42",
+        "gouge",
+        "CH",
+        "52",
+        "28",
+        "slickensided"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "shear_zone",
+        "clay_gouge",
+        "geology"
+      ]
+    },
+    {
+      "id": "Q013",
+      "question": "What was the total depth and ground elevation of the WSRB design investigation boring BH-1 drilled at the left abutment canyon rim in October 1958?",
+      "category": "factual_lookup",
+      "difficulty": "medium",
+      "source_doc": "doc02_wsrb_1959_boring_logs.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.0"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.0",
+      "expected_answer": "Total depth 60 ft, ground elevation 5210 ft, at the left abutment canyon rim",
+      "answer_keywords": [
+        "60",
+        "ft",
+        "5210"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "boring_log",
+        "BH-1",
+        "exploration"
+      ]
+    },
+    {
+      "id": "Q014",
+      "question": "What was the UCS range of the basalt encountered in boring BH-3 at the valley floor?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc02_wsrb_1959_boring_logs.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.4"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.4",
+      "expected_answer": "UCS of 28,500 to 33,800 psi for massive olivine basalt in BH-3",
+      "answer_keywords": [
+        "28,500",
+        "33,800",
+        "psi",
+        "basalt"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "basalt",
+        "rock_strength",
+        "boring_log"
+      ]
+    },
+    {
+      "id": "Q015",
+      "question": "At what depth was the shear zone confirmed in boring BH-4, and what is the dip angle established from the BH-3 and BH-4 correlation?",
+      "category": "geotechnical",
+      "difficulty": "hard",
+      "source_doc": "doc01_wsrb_1963_construction_report.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.5",
+        "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.7"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc01-wsrb-1963-construction-report.5",
+      "expected_answer": "Shear zone confirmed in BH-4 at 28 feet depth, establishing 2-4 feet wide zone dipping approximately 35 degrees downstream",
+      "answer_keywords": [
+        "28",
+        "BH-4",
+        "35",
+        "degrees"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "shear_zone",
+        "correlation",
+        "geology"
+      ]
+    },
+    {
+      "id": "Q016",
+      "question": "What was the UCS range of the olivine basalt encountered in boring BH-5 on the right canyon wall?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc02_wsrb_1959_boring_logs.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.9"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.9",
+      "expected_answer": "UCS of 30,200 to 32,400 psi for massive olivine basalt in BH-5",
+      "answer_keywords": [
+        "30,200",
+        "32,400",
+        "psi",
+        "basalt"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "basalt",
+        "rock_strength",
+        "boring_log"
+      ]
+    },
+    {
+      "id": "Q017",
+      "question": "What was the groundwater depth at boring BH-6 on the right abutment canyon rim?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc02_wsrb_1959_boring_logs.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.11"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc02-wsrb-1959-boring-logs.11",
+      "expected_answer": "Groundwater at 25.0 ft below ground surface in BH-6",
+      "answer_keywords": [
+        "25.0",
+        "ft"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "groundwater",
+        "boring_log",
+        "BH-6"
+      ]
+    },
+    {
+      "id": "Q018",
+      "question": "On what date did the Juniper Canyon Reservoir first reach normal pool elevation during the initial filling?",
+      "category": "temporal",
+      "difficulty": "easy",
+      "source_doc": "doc03_wsrb_1964_first_filling.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.0",
+        "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.tbl-2",
+      "expected_answer": "June 8, 1964, at El. 5195 ft (100% capacity)",
+      "answer_keywords": [
+        "1964",
+        "5195",
+        "normal pool"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "first_filling",
+        "reservoir",
+        "timeline"
+      ]
+    },
+    {
+      "id": "Q019",
+      "question": "What was the total seepage flow at pool elevation 5,150 ft during the first filling of Juniper Canyon Dam?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc03_wsrb_1964_first_filling.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.1",
+        "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.tbl-3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.tbl-3",
+      "expected_answer": "Total seepage of 79.0 gpm at pool elevation 5,150 ft (left abt. 4.5, right abt. 2.5, gallery drains 72 gpm)",
+      "answer_keywords": [
+        "79.0",
+        "gpm",
+        "5,150"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "seepage",
+        "table_data",
+        "first_filling"
+      ]
+    },
+    {
+      "id": "Q020",
+      "question": "What was the maximum rate of reservoir rise during the first filling of Juniper Canyon Dam?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc03_wsrb_1964_first_filling.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.0"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.0",
+      "expected_answer": "1.2 feet per day during the April-May snowmelt period",
+      "answer_keywords": [
+        "1.2",
+        "feet",
+        "per",
+        "day"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "first_filling",
+        "reservoir",
+        "rate"
+      ]
+    },
+    {
+      "id": "Q021",
+      "question": "What was the predicted versus measured downstream deflection at Crest monument M-4 during the first full pool?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc03_wsrb_1964_first_filling.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.4",
+        "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.tbl-5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc03-wsrb-1964-first-filling.tbl-5",
+      "expected_answer": "Measured +0.28 inches downstream, predicted +0.30 inches, rated Acceptable",
+      "answer_keywords": [
+        "0.28",
+        "0.30",
+        "Acceptable"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "structural_behavior",
+        "monument",
+        "deflection"
+      ]
+    },
+    {
+      "id": "Q022",
+      "question": "What was the gallery drain flow at the 30-year inspection (1995) and how much had it declined from first filling?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc04_sdwr_1995_safety_inspection.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.1",
+        "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.tbl-2",
+      "expected_answer": "Gallery drain flow was 85 gpm in 1995, a decline of 35 gpm (29 percent) from the 120 gpm at first filling in 1964",
+      "answer_keywords": [
+        "85",
+        "gpm",
+        "35",
+        "29"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "drain_flow",
+        "decline",
+        "30_year"
+      ]
+    },
+    {
+      "id": "Q023",
+      "question": "What condition was observed on Spillway Gate 2 during the 1995 safety inspection?",
+      "category": "safety",
+      "difficulty": "easy",
+      "source_doc": "doc04_sdwr_1995_safety_inspection.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.0"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.0",
+      "expected_answer": "Gate 2 required additional hydraulic pressure to initiate movement and showed visible surface corrosion on the downstream skin plate; trunnion pin bearings require frequent greasing",
+      "answer_keywords": [
+        "corrosion",
+        "downstream",
+        "skin plate",
+        "trunnion"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "spillway",
+        "gate",
+        "corrosion"
+      ]
+    },
+    {
+      "id": "Q024",
+      "question": "What was the overall dam rating given in the 1995 30-year safety inspection, and what were the two primary concerns identified?",
+      "category": "safety",
+      "difficulty": "medium",
+      "source_doc": "doc04_sdwr_1995_safety_inspection.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.5",
+      "expected_answer": "Overall Dam Rating: SATISFACTORY. Primary concerns were (1) gradual decline in foundation drain efficiency increasing uplift pressures and redirecting seepage, and (2) onset of corrosion on Spillway Gate 2",
+      "answer_keywords": [
+        "SATISFACTORY",
+        "drain",
+        "efficiency",
+        "corrosion",
+        "Gate 2"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "safety_rating",
+        "assessment",
+        "recommendations"
+      ]
+    },
+    {
+      "id": "Q025",
+      "question": "What condition rating was assigned to the foundation drains in the 1995 inspection, and what action was recommended?",
+      "category": "table_query",
+      "difficulty": "easy",
+      "source_doc": "doc04_sdwr_1995_safety_inspection.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.5",
+        "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.tbl-6"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc04-sdwr-1995-safety-inspection.tbl-6",
+      "expected_answer": "Foundation drains rated FAIR with declining flow trend; recommended mechanical cleaning within 5 years",
+      "answer_keywords": [
+        "FAIR",
+        "Declining",
+        "Mechanical",
+        "cleaning",
+        "5",
+        "years"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "condition_rating",
+        "drains",
+        "maintenance"
+      ]
+    },
+    {
+      "id": "Q026",
+      "question": "What is the estimated downstream population at risk from Juniper Canyon Dam, and what is its FHSC hazard classification?",
+      "category": "safety",
+      "difficulty": "easy",
+      "source_doc": "doc05_fhsc_2022_part12d.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.0"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.0",
+      "expected_answer": "Approximately 2,400 persons at risk in the Grandview area; classified as High Hazard (Category I)",
+      "answer_keywords": [
+        "2,400",
+        "High Hazard",
+        "Category I"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "hazard_classification",
+        "population_at_risk"
+      ]
+    },
+    {
+      "id": "Q027",
+      "question": "What was the drain efficiency at the 2022 Part 12D inspection, and how does it compare to the FHSC minimum?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc05_fhsc_2022_part12d.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.3",
+        "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.tbl-5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.3",
+      "expected_answer": "Drain efficiency was 56 percent in 2022, below the 66 percent FHSC guideline minimum",
+      "answer_keywords": [
+        "56",
+        "percent",
+        "66",
+        "percent",
+        "below"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "drain_efficiency",
+        "FHSC",
+        "safety"
+      ]
+    },
+    {
+      "id": "Q028",
+      "question": "How many foundation drains were found fully clogged with no visible flow during the 2022 Part 12D inspection?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc05_fhsc_2022_part12d.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.4"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.4",
+      "expected_answer": "6 drains with no visible flow (presumed fully clogged) and 14 drains with significantly reduced flow",
+      "answer_keywords": [
+        "6",
+        "drains",
+        "no visible flow",
+        "14",
+        "reduced"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "drain_clogging",
+        "inspection_findings"
+      ]
+    },
+    {
+      "id": "Q029",
+      "question": "What is the updated Peak Ground Acceleration for the 2,475-year return period at the Juniper Canyon Dam site, and how does it compare to the original design value?",
+      "category": "technical_detail",
+      "difficulty": "hard",
+      "source_doc": "doc05_fhsc_2022_part12d.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.10"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.10",
+      "expected_answer": "Updated PGA is 0.18g for the 2,475-year return period, an 80 percent increase from the original 1958 design value of 0.10g. MCE PGA for the site is 0.22g.",
+      "answer_keywords": [
+        "0.18g",
+        "80",
+        "percent",
+        "0.10g",
+        "0.22g"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "seismic",
+        "PGA",
+        "hazard_update"
+      ]
+    },
+    {
+      "id": "Q030",
+      "question": "What was the overall dam safety classification assigned in the 2022 Part 12D inspection, and how did it change from the 2017 inspection?",
+      "category": "safety",
+      "difficulty": "medium",
+      "source_doc": "doc05_fhsc_2022_part12d.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.13"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.13",
+      "expected_answer": "CONDITIONALLY ACCEPTABLE, downgraded from ACCEPTABLE in the 2017 inspection, driven by drain efficiency falling below 66% minimum and progression of concrete deterioration",
+      "answer_keywords": [
+        "CONDITIONALLY ACCEPTABLE",
+        "ACCEPTABLE",
+        "downgrade"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "safety_classification",
+        "Part12D",
+        "downgrade"
+      ]
+    },
+    {
+      "id": "Q031",
+      "question": "What is the estimated cost of the PSR investigation recommended in the 2022 Part 12D report?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc05_fhsc_2022_part12d.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.16"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.16",
+      "expected_answer": "$350,000 to $450,000 estimated cost for the PSR investigation",
+      "answer_keywords": [
+        "350,000",
+        "450,000"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "cost",
+        "PSR",
+        "investigation"
+      ]
+    },
+    {
+      "id": "Q032",
+      "question": "What was the measured skin plate section loss on Spillway Gate 2 documented during the 2018 annual inspection?",
+      "category": "technical_detail",
+      "difficulty": "hard",
+      "source_doc": "doc05_fhsc_2022_part12d.pdf",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.9"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc05-fhsc-2022-part12d.9",
+      "expected_answer": "Up to 15 percent section loss of the original 3/8-inch skin plate (0.375 inches original, 0.319 inches minimum measured)",
+      "answer_keywords": [
+        "15",
+        "percent",
+        "0.375",
+        "0.319"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "spillway",
+        "gate_corrosion",
+        "section_loss"
+      ]
+    },
+    {
+      "id": "Q033",
+      "question": "What is the IDSE project number for the Juniper Canyon Dam Periodic Safety Review geotechnical investigation?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.0"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.0",
+      "expected_answer": "The IDSE project number is 2025-DSE-0041.",
+      "answer_keywords": [
+        "2025-DSE-0041"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "factual_lookup",
+        "project_identification"
+      ]
+    },
+    {
+      "id": "Q034",
+      "question": "What was the total depth drilled for boring BH-GS-01 in the gravity section gallery, and what drilling method was used?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.1",
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.1",
+      "expected_answer": "BH-GS-01 was drilled to a total depth of 85 feet using NX diamond core (continuous) method.",
+      "answer_keywords": [
+        "85",
+        "NX diamond core",
+        "continuous"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "numerical_data",
+        "geotechnical",
+        "boring_program"
+      ]
+    },
+    {
+      "id": "Q035",
+      "question": "According to the petrographic analysis in doc06, what is the carbonation depth measured at the exposed gallery surface of the gravity section concrete?",
+      "category": "technical_detail",
+      "difficulty": "medium",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.12",
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.tbl-14"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.12",
+      "expected_answer": "The carbonation depth was measured at 1.2 inches from the exposed gallery surface.",
+      "answer_keywords": [
+        "1.2",
+        "inches"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "technical_detail",
+        "geotechnical",
+        "concrete_condition"
+      ]
+    },
+    {
+      "id": "Q036",
+      "question": "What are the residual shear strength parameters (c'r and phi'r) of the shear zone clay gouge measured by ring shear testing?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.19"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.19",
+      "expected_answer": "The residual shear strength parameters are c'r = 50 psf and phi'r = 12 degrees.",
+      "answer_keywords": [
+        "50 psf",
+        "12"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "geotechnical",
+        "numerical_data",
+        "shear_strength"
+      ]
+    },
+    {
+      "id": "Q037",
+      "question": "What is the sliding factor of safety for Monolith 8 under normal pool conditions with current drains, and how does it compare to the FHSC minimum?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.20",
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.tbl-22"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.20",
+      "expected_answer": "The sliding factor of safety under normal pool with current drains is 1.52, compared to the FHSC minimum of 1.50. It is rated as 'barely adequate.'",
+      "answer_keywords": [
+        "1.52",
+        "1.50",
+        "Barely adequate"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "table_query",
+        "geotechnical",
+        "stability_analysis"
+      ]
+    },
+    {
+      "id": "Q038",
+      "question": "What is the mean UCS of the olivine basalt interbed and what is its unit weight according to the foundation rock properties in doc06?",
+      "category": "table_query",
+      "difficulty": "easy",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.17",
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.tbl-18"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.tbl-18",
+      "expected_answer": "The mean UCS of the olivine basalt interbed is 30,480 psi and its unit weight is 172 pcf.",
+      "answer_keywords": [
+        "30,480",
+        "172"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "table_query",
+        "geotechnical",
+        "rock_properties"
+      ]
+    },
+    {
+      "id": "Q039",
+      "question": "What size shotcrete overlay does IDSE recommend for the upstream face of the gravity section, and what area would it cover?",
+      "category": "technical_detail",
+      "difficulty": "hard",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.23"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.23",
+      "expected_answer": "IDSE recommends a 4-inch fiber-reinforced shotcrete overlay on the upstream face from El. 5,160 to 5,185, covering approximately 5,400 square feet.",
+      "answer_keywords": [
+        "4-inch",
+        "fiber-reinforced shotcrete",
+        "5,400 square feet"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "technical_detail",
+        "procedural",
+        "remediation"
+      ]
+    },
+    {
+      "id": "Q040",
+      "question": "Who prepared the embankment geotechnical investigation report and what is their PE license number?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.0"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.0",
+      "expected_answer": "The report was prepared by L. M. Vasquez, P.E., Geotechnical Engineer, Idaho PE-15102.",
+      "answer_keywords": [
+        "L. M. Vasquez",
+        "PE-15102"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "factual_lookup",
+        "personnel"
+      ]
+    },
+    {
+      "id": "Q041",
+      "question": "How much has the left abutment seepage increased from first filling in 1964 to 2025, and how has the seepage distribution changed?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc10",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.4",
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.3",
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.0"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.4",
+      "expected_answer": "The left abutment seepage increased from 8 gpm at first filling in 1964 to 35 gpm in 2025. The seepage is being redistributed from the controlled drain pathway to the uncontrolled abutment pathway as drains clog.",
+      "answer_keywords": [
+        "8",
+        "35",
+        "gpm"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "numerical_data",
+        "instrumentation",
+        "seepage"
+      ]
+    },
+    {
+      "id": "Q042",
+      "question": "What drilling methods were used for BH-LE-01 in the left embankment, and what instruments were installed?",
+      "category": "technical_detail",
+      "difficulty": "medium",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.1",
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.tbl-3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.1",
+      "expected_answer": "BH-LE-01 used hollow-stem auger (HSA) to 48 ft and HQ diamond core from 48-80 ft. A VW piezometer was installed at 65 ft depth and an inclinometer casing was grouted to 75 ft depth.",
+      "answer_keywords": [
+        "HSA",
+        "48",
+        "HQ core",
+        "VW piezometer",
+        "65",
+        "inclinometer",
+        "75"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "technical_detail",
+        "instrumentation",
+        "boring_program"
+      ]
+    },
+    {
+      "id": "Q043",
+      "question": "What was the initial piezometer reading from the VW piezometer installed in BH-LE-01 at 65 feet depth in the left embankment foundation?",
+      "category": "instrumentation",
+      "difficulty": "medium",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.6",
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.6",
+      "expected_answer": "The initial piezometer reading indicated a pressure head of 42 feet, corresponding to a piezometric elevation of approximately El. 5,160.",
+      "answer_keywords": [
+        "42 feet",
+        "5,160"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "instrumentation",
+        "numerical_data",
+        "piezometer"
+      ]
+    },
+    {
+      "id": "Q044",
+      "question": "What is the filter compatibility ratio (D15/d85) for the Zone 2 filter material with the Zone 1 core, and does it meet the USBR criteria?",
+      "category": "geotechnical",
+      "difficulty": "hard",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.13"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.13",
+      "expected_answer": "The D15 of the filter (0.45 mm) divided by the d85 of the core (0.15 mm) equals 3.0, which is less than the 4.0 limit for cohesive base soils and meets the USBR filter criteria.",
+      "answer_keywords": [
+        "0.45",
+        "0.15",
+        "3.0",
+        "4.0"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "geotechnical",
+        "technical_detail",
+        "filter_design"
+      ]
+    },
+    {
+      "id": "Q045",
+      "question": "What is the static factor of safety for the left embankment under current conditions, and what is the FHSC minimum requirement?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.20",
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.tbl-23"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.20",
+      "expected_answer": "The static factor of safety for the left embankment under current conditions is 1.38, which is below the FHSC minimum of 1.50 and rated as INADEQUATE.",
+      "answer_keywords": [
+        "1.38",
+        "1.50",
+        "INADEQUATE"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "table_query",
+        "geotechnical",
+        "stability_analysis"
+      ]
+    },
+    {
+      "id": "Q046",
+      "question": "What is the mean computed permanent displacement from the Newmark sliding block analysis for the remediated left embankment under MCE loading?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.27",
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.tbl-29"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.27",
+      "expected_answer": "The mean computed permanent displacement is 2.8 inches, with a range of 2.5 to 4.1 inches across seven earthquake records. This is below the 6-inch threshold.",
+      "answer_keywords": [
+        "2.8 inches",
+        "2.5",
+        "4.1",
+        "6-inch"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "numerical_data",
+        "geotechnical",
+        "seismic_analysis"
+      ]
+    },
+    {
+      "id": "Q047",
+      "question": "What is the static factor of safety for the right embankment under current conditions?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.28",
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.tbl-30"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.28",
+      "expected_answer": "The static factor of safety for the right embankment is 1.68, which exceeds the FHSC minimum of 1.50 and is rated as Adequate.",
+      "answer_keywords": [
+        "1.68",
+        "1.50",
+        "Adequate"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "table_query",
+        "geotechnical",
+        "stability_analysis"
+      ]
+    },
+    {
+      "id": "Q048",
+      "question": "What is the length of the recommended supplemental grout curtain for the left abutment foundation, and to what depth should it be drilled?",
+      "category": "procedural",
+      "difficulty": "hard",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.31"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.31",
+      "expected_answer": "The recommended supplemental grout curtain is 120 feet long (Sta. 4+00 to 5+20), at 5-foot hole spacing, drilled to 80 feet depth (20 feet below the shear zone), using microfine cement grout in the shear zone interval.",
+      "answer_keywords": [
+        "120 feet",
+        "5-foot",
+        "80 feet",
+        "microfine cement"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "procedural",
+        "geotechnical",
+        "remediation"
+      ]
+    },
+    {
+      "id": "Q049",
+      "question": "What was the ground elevation and total depth of boring BH-GS-01 in the gravity section gallery, and what was its primary purpose?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.1",
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.1",
+      "expected_answer": "BH-GS-01 was drilled at a ground elevation of 5032.0 ft to a total depth of 85 feet. Its purpose was concrete coring plus foundation rock characterization below the gravity section.",
+      "answer_keywords": [
+        "5032.0",
+        "85",
+        "concrete coring"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "factual_lookup",
+        "boring_program",
+        "gravity_section"
+      ]
+    },
+    {
+      "id": "Q050",
+      "question": "At what depth was the shear zone encountered in BH-GS-02 at the downstream toe, and how does this confirm the shear zone dip from BH-GS-01?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.6",
+        "project:juniper-canyon-dam.doc08-idse-2025-boring-logs.3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.6",
+      "expected_answer": "The shear zone was encountered at 35 to 38 feet depth in BH-GS-02, which is consistent with the 35 degree dip projected from the 48 to 52 foot depth in BH-GS-01, confirming the continuous planar geometry.",
+      "answer_keywords": [
+        "35",
+        "38",
+        "35",
+        "48",
+        "52"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "geotechnical",
+        "technical_detail",
+        "shear_zone"
+      ]
+    },
+    {
+      "id": "Q051",
+      "question": "What was the total depth of boring BH-RE-01 at the right embankment, and what was the key finding about the foundation rock compared to the left embankment?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.8",
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.9"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.8",
+      "expected_answer": "BH-RE-01 was drilled to a total depth of 60 feet from the right embankment crest. No elevated water levels or increased water inflow were encountered during drilling at any depth, and the welded tuff foundation is competent with RQD 82 percent and no evidence of the shear zone.",
+      "answer_keywords": [
+        "60",
+        "no elevated water",
+        "RQD 82",
+        "no evidence"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "factual_lookup",
+        "boring_program",
+        "right_embankment"
+      ]
+    },
+    {
+      "id": "Q052",
+      "question": "What UCS range was measured for the basalt interbed in boring BH-GS-03 at the spillway area?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc08",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc08-idse-2025-boring-logs.5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc08-idse-2025-boring-logs.5",
+      "expected_answer": "The UCS range for the basalt interbed in BH-GS-03 was 26,500 to 32,400 psi.",
+      "answer_keywords": [
+        "26,500",
+        "32,400"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "numerical_data",
+        "geotechnical",
+        "rock_testing"
+      ]
+    },
+    {
+      "id": "Q053",
+      "question": "What was the RQD and UCS of the tuffaceous siltstone interbed encountered below the basalt in BH-GS-03 at the spillway area?",
+      "category": "technical_detail",
+      "difficulty": "hard",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.7",
+        "project:juniper-canyon-dam.doc08-idse-2025-boring-logs.5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.7",
+      "expected_answer": "The tuffaceous siltstone interbed in BH-GS-03 at 35-37 feet had an RQD of 18 percent and was described as weak, greenish-gray with UCS of 600 to 1,200 psi. It is discontinuous and does not constitute a through-going weak plane.",
+      "answer_keywords": [
+        "18",
+        "greenish-gray",
+        "600",
+        "1,200"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "technical_detail",
+        "geotechnical",
+        "tuffaceous_siltstone"
+      ]
+    },
+    {
+      "id": "Q054",
+      "question": "How many concrete compressive strength cores and splitting tensile strength cores were tested in the lab testing program?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc09",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.1",
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.1",
+      "expected_answer": "10 concrete compressive strength cores and 10 splitting tensile strength cores were tested.",
+      "answer_keywords": [
+        "10 cores"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "numerical_data",
+        "factual_lookup",
+        "lab_testing"
+      ]
+    },
+    {
+      "id": "Q055",
+      "question": "What was the compressive strength of concrete core CC-10 at 24-28 feet depth, and what was its ASR condition?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc09",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.4",
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-6"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-6",
+      "expected_answer": "Core CC-10 at 24-28 feet had a compressive strength of 6,050 psi with no ASR and no freeze-thaw damage.",
+      "answer_keywords": [
+        "6,050",
+        "None"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "table_query",
+        "concrete_testing",
+        "lab_testing"
+      ]
+    },
+    {
+      "id": "Q056",
+      "question": "What splitting tensile strength was measured for core CT-01 at 0-2 feet depth, and what was its condition?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc09",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.4",
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-7"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-7",
+      "expected_answer": "Core CT-01 at 0-2 feet had a splitting tensile strength of 245 psi and was in Severe ASR + F/T condition.",
+      "answer_keywords": [
+        "245",
+        "Severe ASR"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "table_query",
+        "concrete_testing",
+        "lab_testing"
+      ]
+    },
+    {
+      "id": "Q057",
+      "question": "What is the UCS range of the densely welded tuff encountered in BH-GS-01 below the concrete section, as documented in the gravity section geotechnical investigation?",
+      "category": "table_query",
+      "difficulty": "hard",
+      "source_doc": "doc06",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.tbl-5",
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.11"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc06-idse-2025-geotech-gravity.tbl-5",
+      "expected_answer": "The densely welded tuff in BH-GS-01 at 28-38 feet depth had a UCS range of 14,200 to 17,100 psi with an RQD of 85 percent. It is described as competent, salmon-pink to gray with eutaxitic texture and tight joints.",
+      "answer_keywords": [
+        "14,200",
+        "17,100",
+        "85"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "table_query",
+        "geotechnical",
+        "rock_testing"
+      ]
+    },
+    {
+      "id": "Q058",
+      "question": "What is the moisture content of the shear zone clay gouge according to the lab testing summary?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc09",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.25",
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-29"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.25",
+      "expected_answer": "The moisture content of the shear zone clay gouge is 35.2 percent.",
+      "answer_keywords": [
+        "35.2"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "numerical_data",
+        "geotechnical",
+        "shear_zone"
+      ]
+    },
+    {
+      "id": "Q059",
+      "question": "What are the recommended design parameters for sound concrete versus degraded concrete in terms of UCS and elastic modulus?",
+      "category": "table_query",
+      "difficulty": "hard",
+      "source_doc": "doc09",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.30",
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-31"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-31",
+      "expected_answer": "Sound concrete has a recommended UCS of 6,050 psi and elastic modulus of 3,500 ksi. Degraded concrete has a recommended UCS of 3,420 psi and elastic modulus of 1,800 ksi.",
+      "answer_keywords": [
+        "6,050",
+        "3,500",
+        "3,420",
+        "1,800"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "table_query",
+        "technical_detail",
+        "design_parameters"
+      ]
+    },
+    {
+      "id": "Q060",
+      "question": "What are the Standard Proctor maximum dry density and optimum moisture content values for the left embankment composite sample?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc09",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.19",
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-23"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-23",
+      "expected_answer": "The left embankment composite sample (LE01-Proctor) has a maximum dry density of 108.2 pcf and an optimum moisture content of 17.5 percent.",
+      "answer_keywords": [
+        "108.2",
+        "17.5"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "table_query",
+        "geotechnical",
+        "compaction"
+      ]
+    },
+    {
+      "id": "Q061",
+      "question": "What clay fraction percentage was measured for the shear zone gouge, and what dominant clay mineral was identified?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc09",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.25",
+        "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-29"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc09-idse-2025-lab-testing-summary.tbl-29",
+      "expected_answer": "The clay fraction of the shear zone gouge is 62 percent. The dominant clay mineral is montmorillonite (smectite group).",
+      "answer_keywords": [
+        "62%",
+        "montmorillonite"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "geotechnical",
+        "technical_detail",
+        "mineralogy"
+      ]
+    },
+    {
+      "id": "Q062",
+      "question": "What is the current drain efficiency at Juniper Canyon Dam as of 2025, and what was it at first filling in 1964?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc10",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.3",
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.tbl-5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.3",
+      "expected_answer": "The drain efficiency declined from 85 percent at first filling in 1964 to 52 percent in 2025.",
+      "answer_keywords": [
+        "85",
+        "52"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "numerical_data",
+        "instrumentation",
+        "drain_performance"
+      ]
+    },
+    {
+      "id": "Q063",
+      "question": "How many of the original 42 foundation drain weirs are fully clogged producing zero flow as of 2025?",
+      "category": "instrumentation",
+      "difficulty": "medium",
+      "source_doc": "doc10",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.1"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.1",
+      "expected_answer": "8 of the 42 foundation drains are fully clogged and produce zero flow.",
+      "answer_keywords": [
+        "8",
+        "zero flow",
+        "clogged"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "instrumentation",
+        "numerical_data",
+        "drain_condition"
+      ]
+    },
+    {
+      "id": "Q064",
+      "question": "What is the current uplift pressure as a percentage of headwater in 2025, and what was the original design assumption?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc10",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.6",
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.tbl-8"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.6",
+      "expected_answer": "The current uplift pressure in 2025 is 48 percent of headwater, compared to the original design assumption of 33 percent.",
+      "answer_keywords": [
+        "48%",
+        "33%"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "table_query",
+        "instrumentation",
+        "uplift"
+      ]
+    },
+    {
+      "id": "Q065",
+      "question": "What is the maximum downstream deflection measured at Monolith 8 by the inverted pendulum in 2025, and how much has it changed since the 1964 baseline?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc10",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.9",
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.tbl-11"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.9",
+      "expected_answer": "The maximum downstream deflection at Monolith 8 is 0.40 inches in 2025, which has increased by only 0.05 inches from the 1964 baseline of 0.35 inches.",
+      "answer_keywords": [
+        "0.40",
+        "0.05",
+        "0.35"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "table_query",
+        "instrumentation",
+        "structural_monitoring"
+      ]
+    },
+    {
+      "id": "Q066",
+      "question": "What piezometric elevation trend does left embankment piezometer P-L3 show from 2005 to 2025, and what is the rate of rise per year?",
+      "category": "instrumentation",
+      "difficulty": "hard",
+      "source_doc": "doc10",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.16",
+        "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.17"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc10-idse-2025-instrumentation.16",
+      "expected_answer": "Piezometer P-L3 shows a rising trend from El. 5,158 in 2005 to El. 5,165 in 2025 (a 7-foot rise). The rate of pore pressure rise is approximately 0.35 feet per year.",
+      "answer_keywords": [
+        "5,158",
+        "5,165",
+        "7",
+        "0.35"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "instrumentation",
+        "numerical_data",
+        "piezometer_trends"
+      ]
+    },
+    {
+      "id": "Q067",
+      "question": "What condition rating was assigned to Monolith 8 on the upstream face freeze-thaw damage assessment, and what was its scaling depth?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc11",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.0",
+        "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.0",
+      "expected_answer": "Monolith 8 (the maximum height section) received a FAILED rating on the upstream face freeze-thaw assessment. Scaling depth at Monolith 8 reached 2.0 to 3.0 inches, with spalling depth of 3 to 4 inches and 60% exposed aggregate.",
+      "answer_keywords": [
+        "FAILED",
+        "2.0-3.0",
+        "Monolith 8",
+        "60",
+        "scaling"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "concrete",
+        "freeze-thaw",
+        "condition-rating"
+      ]
+    },
+    {
+      "id": "Q068",
+      "question": "What is the compressive strength (f'c) measured in the severely deteriorated outer zone (Zone 1, 0-4 ft depth) of the Juniper Canyon Dam concrete, and what percentage of the original strength does this represent?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc11",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.4",
+        "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.tbl-5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.4",
+      "expected_answer": "The severely deteriorated Zone 1 (0-4 ft depth) has a compressive strength of 3,420 psi, which is 66% of the original design strength. The condition is described as ASR + F/T with section loss and reduced durability.",
+      "answer_keywords": [
+        "3,420",
+        "66%",
+        "ASR",
+        "F/T",
+        "section loss"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "concrete",
+        "strength",
+        "ASR",
+        "deterioration"
+      ]
+    },
+    {
+      "id": "Q069",
+      "question": "What is the recommended concrete repair option for the upstream face of Juniper Canyon Dam, including its scope, design life, and estimated cost?",
+      "category": "technical_detail",
+      "difficulty": "medium",
+      "source_doc": "doc11",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.4",
+        "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.tbl-6"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.4",
+      "expected_answer": "The recommended repair is Option A: a 4-inch fiber-reinforced shotcrete overlay on the upstream face at El. 5160-5185, covering approximately 5,400 SF. The design life is 30-40 years, with an estimated cost of $180K to $260K, rated as 'Best'.",
+      "answer_keywords": [
+        "shotcrete",
+        "4-in",
+        "5,400 SF",
+        "30-40",
+        "$180K",
+        "$260K"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "concrete",
+        "repair",
+        "shotcrete",
+        "recommendation"
+      ]
+    },
+    {
+      "id": "Q070",
+      "question": "On the downstream face ASR mapping, what is the crack width range and gel exudation level for Monolith 8?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc11",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.1",
+        "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.tbl-3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc11-idse-2025-concrete-assessment.1",
+      "expected_answer": "Monolith 8 (max height) has ASR crack widths of 0.5-1.5 mm, with significant gel exudation, heavy white staining, and map cracking spacing of 6-10 inches. The rating is POOR.",
+      "answer_keywords": [
+        "0.5-1.5",
+        "Significant",
+        "Heavy white",
+        "6-10",
+        "POOR"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "ASR",
+        "cracking",
+        "downstream-face"
+      ]
+    },
+    {
+      "id": "Q071",
+      "question": "How many of the 42 foundation drains at Juniper Canyon Dam are fully clogged, and where are they spatially concentrated?",
+      "category": "factual_lookup",
+      "difficulty": "medium",
+      "source_doc": "doc12",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.1",
+        "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.1",
+      "expected_answer": "Eight of the 42 foundation drains are fully clogged with zero visible flow. These 8 drains (Drains 16, 17, 19, 20, 21, and 23) are all located in the shear zone area (Sta. 7+50 to 8+50), where the highest mineral-laden seepage enters the drain bore.",
+      "answer_keywords": [
+        "8",
+        "fully clogged",
+        "shear zone",
+        "7+50",
+        "8+50"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "drains",
+        "clogging",
+        "shear-zone"
+      ]
+    },
+    {
+      "id": "Q072",
+      "question": "What is the current (2025) drain efficiency and total drain flow at Juniper Canyon Dam, and how does it compare to the 1964 baseline?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc12",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.6",
+        "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.tbl-7"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.6",
+      "expected_answer": "The 2025 current drain efficiency is 52% with a total drain flow of 45 gpm and only 16 of 42 drains functional. In 1964, the baseline was 85% efficiency with 120 gpm total flow and all 42 drains functional. The uplift has increased from 28% to 48% of headwater.",
+      "answer_keywords": [
+        "52",
+        "45",
+        "85",
+        "120",
+        "16/42",
+        "42/42"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "drains",
+        "efficiency",
+        "uplift",
+        "temporal"
+      ]
+    },
+    {
+      "id": "Q073",
+      "question": "What is the estimated total cost of the recommended combined drain rehabilitation approach (Alternatives B + D), and how long would it take?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc12",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.8",
+        "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.tbl-10"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.8",
+      "expected_answer": "The recommended approach combines Alternative B (mechanical + chemical cleaning, $150-200K) with Alternative D (supplemental drains in shear zone, $100-150K). Total estimated cost is $280K to $380K with a duration of 4-6 weeks, performed entirely from within the gallery with no reservoir drawdown required.",
+      "answer_keywords": [
+        "$280K",
+        "$380K",
+        "4-6 weeks",
+        "mechanical",
+        "chemical",
+        "supplemental"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "drains",
+        "rehabilitation",
+        "cost"
+      ]
+    },
+    {
+      "id": "Q074",
+      "question": "What drain efficiency action threshold does IDSE recommend, and what is the estimated annual cost of the proactive maintenance program?",
+      "category": "procedural",
+      "difficulty": "medium",
+      "source_doc": "doc12",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.12"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc12-idse-2025-drain-evaluation.12",
+      "expected_answer": "IDSE recommends a drain efficiency action threshold of 70 percent -- if drain efficiency declines to 70 percent at any monitoring event, the 5-year chemical flush should be accelerated. The estimated annual cost of the proactive maintenance program is approximately $13K per year.",
+      "answer_keywords": [
+        "70 percent",
+        "$13K",
+        "5-year",
+        "chemical flush",
+        "accelerated"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "drains",
+        "maintenance",
+        "threshold"
+      ]
+    },
+    {
+      "id": "Q075",
+      "question": "What is the sliding factor of safety for Monolith 8 under normal pool conditions with the current drain state, and what is the FHSC minimum?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc13",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.1",
+        "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.tbl-3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.1",
+      "expected_answer": "Under normal pool with current drains, the sliding factor of safety for Monolith 8 is 1.52, which barely meets the FHSC minimum of 1.50. The driving force is 285 kip/ft and the resisting force is 433 kip/ft.",
+      "answer_keywords": [
+        "1.52",
+        "1.50",
+        "Barely adequate",
+        "285",
+        "433"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "stability",
+        "sliding",
+        "gravity-section"
+      ]
+    },
+    {
+      "id": "Q076",
+      "question": "In the gravity dam sensitivity analysis, which parameter has the highest sensitivity affecting stability, and what is the FS range across its variation?",
+      "category": "technical_detail",
+      "difficulty": "medium",
+      "source_doc": "doc13",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.4",
+        "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.tbl-7"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.4",
+      "expected_answer": "Uplift (% headwater) is the overwhelmingly dominant parameter, rated HIGH sensitivity. Varying it from 28% to 67% changes the factor of safety from 2.65 to 1.18. Friction angle has MODERATE sensitivity, while concrete unit weight, tailwater elevation, and silt depth all have LOW sensitivity.",
+      "answer_keywords": [
+        "Uplift",
+        "HIGH",
+        "dominant",
+        "2.65",
+        "1.18",
+        "28%",
+        "67%"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "sensitivity",
+        "uplift",
+        "stability"
+      ]
+    },
+    {
+      "id": "Q077",
+      "question": "For the overturning check under the drains-failed scenario, is the base resultant within the middle third, and what is the resultant location?",
+      "category": "table_query",
+      "difficulty": "hard",
+      "source_doc": "doc13",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.4",
+        "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.tbl-6"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc13-idse-2025-gravity-stability.4",
+      "expected_answer": "Under the drains-failed scenario, the base resultant is at 62.5 ft (42.2% of base width), which is outside the middle third. This is the only scenario where the resultant falls outside the middle third, indicating potential tensile stress at the upstream heel.",
+      "answer_keywords": [
+        "62.5",
+        "42.2",
+        "NO",
+        "outside M/3",
+        "drains failed"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "overturning",
+        "stability",
+        "resultant"
+      ]
+    },
+    {
+      "id": "Q078",
+      "question": "What are the effective shear strength parameters (cohesion and friction angle) used for the shear zone material in the embankment stability analysis?",
+      "category": "geotechnical",
+      "difficulty": "medium",
+      "source_doc": "doc14",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.1",
+        "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.tbl-3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.1",
+      "expected_answer": "The shear zone material has an effective cohesion (c') of 50 psf and an effective friction angle (phi') of 12 degrees, with a unit weight of 125 pcf and permeability of 5e-05 cm/s. The model uses residual strength parameters.",
+      "answer_keywords": [
+        "50",
+        "12",
+        "125",
+        "residual strength",
+        "shear zone"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "geotechnical",
+        "shear-strength",
+        "embankment"
+      ]
+    },
+    {
+      "id": "Q079",
+      "question": "What is the left embankment static factor of safety under current pore pressures, and how does it compare to the FHSC minimum?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc14",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.1",
+        "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.tbl-4"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.1",
+      "expected_answer": "The left embankment static factor of safety under current pore pressures is 1.38, which is INADEQUATE relative to the FHSC minimum of 1.50. The critical failure surface passes through the embankment core and into the foundation, intersecting the shear zone. The current FS is 8% below the FHSC minimum.",
+      "answer_keywords": [
+        "1.38",
+        "1.50",
+        "INADEQUATE",
+        "8%",
+        "shear zone"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "stability",
+        "embankment",
+        "left-abutment"
+      ]
+    },
+    {
+      "id": "Q080",
+      "question": "What is the mean computed Newmark permanent displacement for the remediated left embankment under the MCE (0.18g PGA), and how does it compare to the 6-inch threshold?",
+      "category": "geotechnical",
+      "difficulty": "hard",
+      "source_doc": "doc07",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.27",
+        "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.2",
+        "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.1"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc07-idse-2025-geotech-embankments.27",
+      "expected_answer": "The mean computed permanent displacement is 2.8 inches, with a range of 2.5 to 4.1 inches across seven earthquake records spectrally matched to the site-specific MCE spectrum. This is below the 6-inch threshold for embankment dams with ductile core materials per USACE EM 1110-2-1902 and is considered acceptable.",
+      "answer_keywords": [
+        "2.8",
+        "inches",
+        "6-inch",
+        "acceptable"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "Newmark",
+        "seismic",
+        "displacement",
+        "embankment"
+      ]
+    },
+    {
+      "id": "Q081",
+      "question": "Does the right embankment at Juniper Canyon Dam meet all FHSC stability criteria under current conditions?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc14",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.5",
+        "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.tbl-6"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc14-idse-2025-embankment-stability.5",
+      "expected_answer": "Yes, the right embankment meets all stability criteria under current conditions: static FS = 1.68 (min 1.50), seismic FS = 1.18 (min 1.10), and rapid drawdown FS = 1.42 (min 1.30). All are rated Adequate. The shear zone does not extend to the right abutment, and no remediation is required.",
+      "answer_keywords": [
+        "1.68",
+        "1.18",
+        "1.42",
+        "Adequate",
+        "no remediation"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "stability",
+        "right-embankment"
+      ]
+    },
+    {
+      "id": "Q082",
+      "question": "What software was used for the SEEP/W seepage model, how many elements does it contain, and what is its calibration R-squared value?",
+      "category": "technical_detail",
+      "difficulty": "medium",
+      "source_doc": "doc15",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc15-idse-2025-seepage-analysis.1",
+        "project:juniper-canyon-dam.doc15-idse-2025-seepage-analysis.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc15-idse-2025-seepage-analysis.1",
+      "expected_answer": "The model uses SEEP/W (GeoStudio 2024) with 12,400 quadrilateral 4-node saturated/unsaturated elements. It was calibrated to 2025 piezometer data at 18 points, achieving an R-squared of 0.94.",
+      "answer_keywords": [
+        "SEEP/W",
+        "GeoStudio 2024",
+        "12,400",
+        "RÃ‚Â² = 0.94",
+        "18 points"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "seepage",
+        "modeling",
+        "calibration"
+      ]
+    },
+    {
+      "id": "Q083",
+      "question": "According to the seepage model, what is the critical hydraulic gradient at the shear zone under the drains-failed scenario, and does it exceed the safe limit?",
+      "category": "numerical_data",
+      "difficulty": "hard",
+      "source_doc": "doc15",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc15-idse-2025-seepage-analysis.4",
+        "project:juniper-canyon-dam.doc15-idse-2025-seepage-analysis.tbl-5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc15-idse-2025-seepage-analysis.4",
+      "expected_answer": "Under the drains-failed scenario, the hydraulic gradient at the shear zone is 0.48, which exceeds the 0.40 critical gradient limit for clay-filled discontinuities. Current conditions show a gradient of 0.35, and the recommended drains + grouting scenario reduces it to 0.15.",
+      "answer_keywords": [
+        "0.48",
+        "0.40",
+        "exceeds",
+        "0.35",
+        "0.15"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "seepage",
+        "gradient",
+        "shear-zone"
+      ]
+    },
+    {
+      "id": "Q084",
+      "question": "What are the design parameters for the recommended supplemental grouting along the left abutment, including length, hole spacing, and estimated grout consumption?",
+      "category": "technical_detail",
+      "difficulty": "hard",
+      "source_doc": "doc15",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc15-idse-2025-seepage-analysis.4"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc15-idse-2025-seepage-analysis.4",
+      "expected_answer": "Supplemental grouting is recommended along a 120-ft length of the left abutment foundation (Sta. 4+00 to 5+20), with a single grout line at 5-ft hole spacing drilled to 80 ft depth (20 ft below the shear zone). Microfine cement grout is recommended for the shear zone interval. Estimated grout consumption is 800-1,200 sacks.",
+      "answer_keywords": [
+        "120",
+        "grout",
+        "curtain",
+        "microfine",
+        "cement"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "grouting",
+        "left-abutment",
+        "design"
+      ]
+    },
+    {
+      "id": "Q085",
+      "question": "What is the distance from the Owyhee Range Front Fault to Juniper Canyon Dam, and what is its maximum magnitude and recurrence interval?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc16",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc16-idse-2025-seismic-memo.1",
+        "project:juniper-canyon-dam.doc16-idse-2025-seismic-memo.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc16-idse-2025-seismic-memo.1",
+      "expected_answer": "The Owyhee Range Front Fault is 18 km from the dam site, with a maximum magnitude of M 7.0, a slip rate of 0.1-0.3 mm/yr, and a recurrence interval of 5,000-15,000 years.",
+      "answer_keywords": [
+        "18",
+        "M 7.0",
+        "0.1-0.3",
+        "5,000-15,000"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "seismic",
+        "fault",
+        "hazard"
+      ]
+    },
+    {
+      "id": "Q086",
+      "question": "What is the PGA, Sa(0.2s), and Sa(1.0s) for the Maximum Credible Earthquake at Juniper Canyon Dam?",
+      "category": "table_query",
+      "difficulty": "medium",
+      "source_doc": "doc16",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc16-idse-2025-seismic-memo.1",
+        "project:juniper-canyon-dam.doc16-idse-2025-seismic-memo.tbl-4"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc16-idse-2025-seismic-memo.1",
+      "expected_answer": "For the Maximum Credible Earthquake (MCE), the PGA is 0.22g, Sa(0.2s) is 0.52g, and Sa(1.0s) is 0.18g. The MCE is determined deterministically and is used for dam safety evaluation.",
+      "answer_keywords": [
+        "0.22",
+        "0.52",
+        "0.18",
+        "Maximum Credible",
+        "deterministic"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "seismic",
+        "MCE",
+        "ground-motion"
+      ]
+    },
+    {
+      "id": "Q087",
+      "question": "What is the total estimated cost range for the three-phase remediation program at Juniper Canyon Dam, and over how many construction seasons?",
+      "category": "numerical_data",
+      "difficulty": "easy",
+      "source_doc": "doc17",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc17-idse-2025-remediation.0",
+        "project:juniper-canyon-dam.doc17-idse-2025-remediation.tbl-9"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc17-idse-2025-remediation.0",
+      "expected_answer": "The total estimated cost is $1.075M to $1.485M over three construction seasons (2026-2028). Phase 1 (Critical, 2026) is $545K-$745K, Phase 2 (High, 2027) is $530K-$740K, and Phase 3 (Contingency, 2028) is $400K-$600K.",
+      "answer_keywords": [
+        "$1.075M",
+        "$1.485M",
+        "three",
+        "2026-2028"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "remediation",
+        "cost",
+        "schedule"
+      ]
+    },
+    {
+      "id": "Q088",
+      "question": "What are the four Phase 1 success criteria that must be met within 6 months of completion for Phase 3 to be deferred?",
+      "category": "procedural",
+      "difficulty": "hard",
+      "source_doc": "doc17",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc17-idse-2025-remediation.12"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc17-idse-2025-remediation.12",
+      "expected_answer": "The four Phase 1 success criteria are: (1) Drain efficiency restored to 80 percent or better, measured by gallery piezometers showing uplift at or below 33 percent of headwater. (2) Left abutment seepage reduced to 15 gpm or less. (3) VW-LE01 pore pressure head reduced by at least 50 percent from the pre-remediation baseline. (4) Inclinometer readings show no cumulative displacement exceeding 0.5 inches.",
+      "answer_keywords": [
+        "80",
+        "33",
+        "drain efficiency",
+        "uplift",
+        "Lugeon"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "remediation",
+        "success-criteria",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "Q089",
+      "question": "What specifications are recommended for the microfine cement grout in the shear zone interval of the left abutment supplemental grouting?",
+      "category": "technical_detail",
+      "difficulty": "hard",
+      "source_doc": "doc17",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc17-idse-2025-remediation.4"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc17-idse-2025-remediation.4",
+      "expected_answer": "Microfine cement grout with Blaine fineness greater than 800 m2/kg and maximum particle size of 15 microns is recommended for the shear zone interval (65 to 75 feet depth). This achieves better penetration into fine fractures and clay gouge. Standard Type I Portland cement grout is used above and below the shear zone. Grouting pressures are limited to 0.5 psi per foot of depth.",
+      "answer_keywords": [
+        "800 m2/kg",
+        "15 microns",
+        "65 to 75 feet",
+        "microfine",
+        "0.5 psi"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "grouting",
+        "microfine",
+        "shear-zone"
+      ]
+    },
+    {
+      "id": "Q090",
+      "question": "What is the preliminary design for post-tensioned rock anchors in Phase 3 if Phase 1 is insufficient?",
+      "category": "technical_detail",
+      "difficulty": "hard",
+      "source_doc": "doc17",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc17-idse-2025-remediation.6"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc17-idse-2025-remediation.6",
+      "expected_answer": "The preliminary anchor design consists of 12 anchors at 28-foot spacing along the crest, each providing 400 kips of vertical force, drilled 50 feet into the foundation rock and grouted with corrosion-protected strand. Estimated cost is $400K to $600K with a duration of 4-6 weeks.",
+      "answer_keywords": [
+        "12 anchors",
+        "28-foot",
+        "400 kips",
+        "50 feet",
+        "corrosion-protected"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "anchors",
+        "post-tensioned",
+        "contingency"
+      ]
+    },
+    {
+      "id": "Q091",
+      "question": "According to the remediation schedule, when is the Phase 1 design expected to start and end, and what is the prerequisite?",
+      "category": "temporal",
+      "difficulty": "medium",
+      "source_doc": "doc17",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc17-idse-2025-remediation.8",
+        "project:juniper-canyon-dam.doc17-idse-2025-remediation.tbl-10"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc17-idse-2025-remediation.8",
+      "expected_answer": "Phase 1 design by IDSE is scheduled from January 2026 to April 2026, with the prerequisite being PSR approval by FHSC. Supplemental drain drilling follows from May to June 2026, and drain rehabilitation (cleaning + chemical) from June to July 2026.",
+      "answer_keywords": [
+        "Jan 2026",
+        "Apr 2026",
+        "PSR approval",
+        "FHSC"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "schedule",
+        "remediation",
+        "timeline"
+      ]
+    },
+    {
+      "id": "Q092",
+      "question": "What are the specifications for the recommended shotcrete repair mix for Juniper Canyon Dam, including cement type, SCM content, and aggregate source?",
+      "category": "technical_detail",
+      "difficulty": "medium",
+      "source_doc": "doc18",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.1",
+        "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.tbl-3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.1",
+      "expected_answer": "The recommended shotcrete repair mix uses Type V cement (high sulfate resistance), 20% Class F fly ash by weight of cement, w/c ratio of 0.42 maximum, air content of 6 +/- 1.5%, imported non-reactive basalt coarse aggregate (3/8 in max, ASTM C1260 verified), macro synthetic fibers at 6 lb/cy, and minimum 28-day f'c of 4,500 psi.",
+      "answer_keywords": [
+        "Type V",
+        "20%",
+        "Class F fly ash",
+        "0.42",
+        "basalt",
+        "6 lb/cy"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 5,
+      "tags": [
+        "mix-design",
+        "shotcrete",
+        "repair"
+      ]
+    },
+    {
+      "id": "Q093",
+      "question": "What were the three deficiencies in the original 1960 concrete mix design that are now recognized by current standards?",
+      "category": "factual_lookup",
+      "difficulty": "medium",
+      "source_doc": "doc18",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.0",
+        "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.0",
+      "expected_answer": "The three deficiencies were: (1) the coarse aggregate (rhyolite welded tuff) would now be classified as alkali-silica reactive per ASTM C1260; (2) the cement alkali content of 0.68% Na2O equivalent exceeds the 0.60% limit per ACI 201; and (3) no supplementary cementitious materials (pozzolan or fly ash) were specified to mitigate ASR.",
+      "answer_keywords": [
+        "alkali-silica reactive",
+        "0.68%",
+        "0.60%",
+        "no supplementary cementitious"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "mix-design",
+        "ASR",
+        "deficiencies"
+      ]
+    },
+    {
+      "id": "Q094",
+      "question": "What freeze-thaw durability requirement is specified for the shotcrete repair mix, and what is the basis?",
+      "category": "technical_detail",
+      "difficulty": "medium",
+      "source_doc": "doc18",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.4",
+        "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.tbl-5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc18-idse-2025-mix-design-review.4",
+      "expected_answer": "The repair mix must achieve greater than 300 freeze-thaw cycles per ASTM C666, Procedure A. The specification basis is ACI 201.2R. The higher air content of 6% versus the original 5% provides improved freeze-thaw resistance for the severe exposure environment with more than 150 freeze-thaw cycles per year at 5,200 ft elevation.",
+      "answer_keywords": [
+        "300 cycles",
+        "ASTM C666",
+        "ACI 201.2R",
+        "6%",
+        "150"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "freeze-thaw",
+        "durability",
+        "mix-design"
+      ]
+    },
+    {
+      "id": "Q095",
+      "question": "What is the overall condition rating for spillway Gate 2, and what specific issues require rehabilitation?",
+      "category": "factual_lookup",
+      "difficulty": "easy",
+      "source_doc": "doc19",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.0",
+        "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.tbl-1"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.0",
+      "expected_answer": "Gate 2 (center) is rated POOR overall. Its specific issues include: coating 90% failed with heavy rust pitting to 1/16 inch, skin plate thickness at 82-88% (15% maximum section loss), worn trunnion bearings with excessive play of 0.08 inches, leaking side seals at 2 gpm at normal pool, and hydraulic cylinder slow to initiate.",
+      "answer_keywords": [
+        "POOR",
+        "90% failed",
+        "15%",
+        "0.08",
+        "2 gpm",
+        "leaking"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "corrosion",
+        "spillway-gate",
+        "condition"
+      ]
+    },
+    {
+      "id": "Q096",
+      "question": "What is the estimated cost for Gate 2 skin plate replacement, and what are the specifications for the replacement steel?",
+      "category": "numerical_data",
+      "difficulty": "medium",
+      "source_doc": "doc19",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.2",
+        "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.tbl-5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.2",
+      "expected_answer": "The Gate 2 skin plate replacement involves replacing the downstream half of the skin plate (330 square feet of 3/8-inch A572 Grade 50 steel) at an estimated cost of $120K to $160K, rated HIGH priority for 2027.",
+      "answer_keywords": [
+        "330 SF",
+        "3/8-in",
+        "A572",
+        "Grade 50",
+        "$120K",
+        "$160K"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "corrosion",
+        "gate-repair",
+        "cost"
+      ]
+    },
+    {
+      "id": "Q097",
+      "question": "What condition was found for the 60-inch steel outlet conduits, and when were they last lined?",
+      "category": "factual_lookup",
+      "difficulty": "medium",
+      "source_doc": "doc19",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.2",
+        "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.tbl-4"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc19-idse-2025-corrosion-assessment.2",
+      "expected_answer": "The two 60-inch steel conduits are rated GOOD. The interior coating is intact (lined in 2008) with no section loss detected by UT spot checks at 8 locations.",
+      "answer_keywords": [
+        "GOOD",
+        "2008",
+        "intact",
+        "no section loss",
+        "8 locations"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "outlet-works",
+        "conduit",
+        "condition"
+      ]
+    },
+    {
+      "id": "Q098",
+      "question": "What is the hazard classification of Juniper Canyon Dam, the population at risk, and the dam-break flood arrival time at Grandview?",
+      "category": "safety",
+      "difficulty": "easy",
+      "source_doc": "doc20",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.0",
+        "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.tbl-2"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.0",
+      "expected_answer": "Juniper Canyon Dam is classified as HIGH HAZARD (Category I) with approximately 2,400 persons at risk in the Grandview area. The dam-break flood arrival time at Grandview (32 miles downstream) is 4.5 hours, with a warning time available of 2.0 hours minimum and maximum flood depth of 8.5 feet at Grandview.",
+      "answer_keywords": [
+        "HIGH HAZARD",
+        "2,400",
+        "4.5 hours",
+        "32 miles",
+        "8.5 feet"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "EAP",
+        "hazard",
+        "dam-break"
+      ]
+    },
+    {
+      "id": "Q099",
+      "question": "What are the Emergency Level thresholds for uplift, left abutment seepage, and drain efficiency in the interim monitoring plan?",
+      "category": "safety",
+      "difficulty": "medium",
+      "source_doc": "doc20",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.4",
+        "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.tbl-5"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.4",
+      "expected_answer": "Emergency Level thresholds are: uplift greater than 60% of headwater, left abutment seepage greater than 60 gpm or turbid, and drain efficiency less than 40%. At Emergency Level, the response is to implement the EAP notification flowchart, begin controlled drawdown, and notify all downstream parties.",
+      "answer_keywords": [
+        "60%",
+        "60 gpm",
+        "turbid",
+        "40%",
+        "controlled drawdown"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "EAP",
+        "monitoring",
+        "thresholds",
+        "emergency"
+      ]
+    },
+    {
+      "id": "Q100",
+      "question": "How did the post-PSR risk level change for the sliding of the gravity section failure mode (FM-1)?",
+      "category": "safety",
+      "difficulty": "medium",
+      "source_doc": "doc20",
+      "expected_chunk_ids": [
+        "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.0",
+        "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.tbl-3"
+      ],
+      "expected_chunk_id_primary": "project:juniper-canyon-dam.doc20-jbid-2025-eap-update.tbl-3",
+      "expected_answer": "FM-1 (Sliding of gravity section due to uplift) was upgraded from LOW risk (pre-PSR) to MODERATE risk (post-PSR). The key change is that uplift has increased to 48% of headwater, and the factor of safety is barely adequate at 1.52.",
+      "answer_keywords": [
+        "LOW",
+        "MODERA",
+        "48%",
+        "1.52",
+        "barely adequate"
+      ],
+      "expected_top_k": 5,
+      "min_acceptable_rank": 3,
+      "tags": [
+        "EAP",
+        "failure-mode",
+        "risk-assessment"
+      ]
+    }
+  ]
+}
