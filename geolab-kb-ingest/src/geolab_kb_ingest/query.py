@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 
 from sqlalchemy import Engine, text
 
@@ -32,6 +33,7 @@ def query_chunks(
     min_score: float = 0.35,
     expand: bool = False,
     reranker: Reranker | None = None,
+    content_years: list[int] | None = None,
 ) -> list[dict]:
     """Embed query and perform cosine similarity search.
 
@@ -48,6 +50,9 @@ def query_chunks(
         reranker: If provided, rerank the top-k results using Voyage
             cross-encoder before returning. Retrieves 3x top_k candidates
             for the reranker to choose from.
+        content_years: If provided, post-filter results to only include chunks
+            whose content contains at least one of the specified years.
+            Retrieves extra candidates to compensate for filtering.
     """
     if expand:
         anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -60,10 +65,13 @@ def query_chunks(
     embeddings = embedder.embed_texts([query_text], input_type="query")
     query_vec = embeddings[0]
 
-    # When reranking, retrieve more candidates for the cross-encoder.
-    # 4x gives the reranker a wide enough pool to find the best matches
-    # while keeping API cost low (reranker cost scales with candidate count).
-    retrieval_k = top_k * 4 if reranker else top_k
+    # When reranking or year-filtering, retrieve more candidates.
+    # 4x gives the reranker/filter a wide enough pool to find the best matches.
+    retrieval_k = top_k
+    if reranker:
+        retrieval_k = top_k * 4
+    if content_years:
+        retrieval_k = max(retrieval_k, top_k * 4)
 
     # Build SQL with pgvector cosine distance operator
     where_clauses = []
@@ -129,6 +137,23 @@ def query_chunks(
             len(rows),
             MIN_SIMILARITY_SCORE,
         )
+
+    # Year-based content filtering
+    if content_years and results:
+        year_strs = [str(y) for y in content_years]
+        before_count = len(results)
+        results = [
+            r for r in results
+            if any(ys in r["content"] for ys in year_strs)
+        ]
+        year_filtered = before_count - len(results)
+        if year_filtered > 0:
+            logger.debug(
+                "Year filter: kept %d/%d chunks matching years %s",
+                len(results),
+                before_count,
+                year_strs,
+            )
 
     # Rerank if a reranker is provided
     if reranker and results:

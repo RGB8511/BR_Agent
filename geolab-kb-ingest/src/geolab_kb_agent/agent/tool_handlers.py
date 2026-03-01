@@ -33,6 +33,8 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
         top_k = min(args.get("top_k", 5), 20)
         source = args.get("source")
         project = args.get("project")
+        year_min = args.get("year_min")
+        year_max = args.get("year_max")
 
         # Build package_id filters from source / project params
         package_id: str | None = None
@@ -52,6 +54,13 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
         elif source == "kb":
             package_id_exclude_prefix = "project:"
 
+        # Build content_years list from year_min/year_max
+        content_years: list[int] | None = None
+        if year_min is not None or year_max is not None:
+            y_lo = year_min or 1900
+            y_hi = year_max or 2099
+            content_years = list(range(y_lo, y_hi + 1))
+
         results = await asyncio.to_thread(
             query_chunks,
             engine=engine,
@@ -63,6 +72,7 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
             package_id=package_id,
             package_id_prefix=package_id_prefix,
             package_id_exclude_prefix=package_id_exclude_prefix,
+            content_years=content_years,
         )
 
         provenance.add_kb_results(results)

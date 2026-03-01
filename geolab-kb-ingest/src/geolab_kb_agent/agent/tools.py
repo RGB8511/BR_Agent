@@ -57,6 +57,20 @@ TOOLS: list[dict] = [
                     "type": "integer",
                     "description": "Number of results to return (default 5, max 20).",
                 },
+                "year_min": {
+                    "type": "integer",
+                    "description": (
+                        "Filter results to chunks containing years >= this value. "
+                        "Use for temporal queries like 'what happened after 2010'."
+                    ),
+                },
+                "year_max": {
+                    "type": "integer",
+                    "description": (
+                        "Filter results to chunks containing years <= this value. "
+                        "Use for temporal queries like 'data before 2020'."
+                    ),
+                },
             },
             "required": ["query"],
         },

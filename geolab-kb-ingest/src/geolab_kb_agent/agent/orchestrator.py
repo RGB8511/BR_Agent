@@ -17,6 +17,7 @@ from geolab_kb_agent.confidence import ConfidenceLevel, ConfidenceScore, compute
 
 from .provenance import ProvenanceCollector
 from .system_prompt import get_system_prompt
+from .temporal import TemporalIntent, detect_temporal_intent
 from .tool_handlers import HandlerFn, make_tool_handlers
 from .tools import TOOLS
 
@@ -98,6 +99,22 @@ class KBAgent:
             )
         return ""
 
+    @staticmethod
+    def _temporal_hint(user_message: str) -> str | None:
+        """Detect temporal intent and return a hint string, or None."""
+        tq = detect_temporal_intent(user_message)
+        if not tq.is_temporal:
+            return None
+
+        parts = [f"[Temporal context: intent={tq.intent.value}"]
+        if tq.year_range:
+            parts.append(f"year_range={tq.year_range[0]}-{tq.year_range[1]}")
+        elif tq.years:
+            parts.append(f"years={','.join(str(y) for y in tq.years)}")
+        parts_str = ", ".join(parts) + ". Use year_min/year_max filters in search_kb.]"
+        logger.info("Temporal query detected: %s", parts_str)
+        return parts_str
+
     def _log_usage(self, response: anthropic.types.Message) -> None:
         """Log token usage including cache metrics."""
         u = response.usage
@@ -171,7 +188,16 @@ class KBAgent:
 
         if messages is None:
             messages = []
-        messages.append({"role": "user", "content": user_message})
+
+        # Detect temporal intent and augment the user message
+        temporal_hint = self._temporal_hint(user_message)
+        if temporal_hint:
+            messages.append({
+                "role": "user",
+                "content": f"{user_message}\n\n{temporal_hint}",
+            })
+        else:
+            messages.append({"role": "user", "content": user_message})
         logger.info("Agent chat: %s", user_message[:200])
 
         tool_calls_made = 0
@@ -272,7 +298,16 @@ class KBAgent:
 
         if messages is None:
             messages = []
-        messages.append({"role": "user", "content": user_message})
+
+        # Detect temporal intent and augment the user message
+        temporal_hint = self._temporal_hint(user_message)
+        if temporal_hint:
+            messages.append({
+                "role": "user",
+                "content": f"{user_message}\n\n{temporal_hint}",
+            })
+        else:
+            messages.append({"role": "user", "content": user_message})
         logger.info("Agent chat_stream: %s", user_message[:200])
 
         tool_calls_made = 0
