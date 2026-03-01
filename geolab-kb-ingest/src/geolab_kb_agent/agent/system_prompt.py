@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from .projects import get_all_boring_prefixes, get_projects_prompt_section
+
 SYSTEM_PROMPT = """\
 You are a geotechnical data assistant for GeoLab, a laboratory management \
 platform. You have access to TWO distinct data sources:
@@ -103,10 +105,9 @@ When the user asks about a specific project or dam:
 treat these as primary data, not reference material.
 4. Always cite the source document filename from chunk metadata.
 
-Available projects:
-- **Juniper Canyon Dam** — 20 documents (1959-2025): construction, boring logs, \
-first filling, inspections, 2025 PSR assessments (geotechnical, concrete, drains, \
-stability, seepage, instrumentation, seismic, remediation, corrosion, EAP)
+{projects_section}
+
+{cross_project_section}
 
 ## Temporal & Trend Queries
 
@@ -275,13 +276,43 @@ suggest: "For step-by-step working, switch to Calculation mode."
 }
 
 
+def _build_cross_project_section() -> str:
+    """Build the cross-project routing guidance from the registry."""
+    prefixes = get_all_boring_prefixes()
+    # Group prefixes by project
+    project_prefixes: dict[str, list[str]] = {}
+    for prefix, proj_name in prefixes.items():
+        project_prefixes.setdefault(proj_name, []).append(prefix)
+
+    prefix_lines = "\n".join(
+        f"   {', '.join(sorted(plist))} \u2192 {proj}"
+        for proj, plist in project_prefixes.items()
+    )
+
+    return f"""\
+## Cross-Project Queries
+
+When handling queries that may span multiple projects:
+1. If the user names a specific project \u2192 scope with the `project` parameter
+2. If the user asks to compare \u2192 separate search_kb calls per project, present side by side
+3. If the query contains a boring ID prefix \u2192 infer the project:
+{prefix_lines}
+4. If ambiguous \u2192 use list_projects and ask the user to clarify
+5. Always state which project each value comes from"""
+
+
 def get_system_prompt(mode: str = "educational") -> list[dict]:
     """Return the system prompt as content blocks with cache_control."""
     modifier = MODE_INSTRUCTIONS.get(mode, MODE_INSTRUCTIONS["educational"])
+    prompt_text = SYSTEM_PROMPT.replace(
+        "{projects_section}", get_projects_prompt_section()
+    ).replace(
+        "{cross_project_section}", _build_cross_project_section()
+    )
     return [
         {
             "type": "text",
-            "text": SYSTEM_PROMPT + modifier,
+            "text": prompt_text + modifier,
             "cache_control": {"type": "ephemeral"},
         }
     ]

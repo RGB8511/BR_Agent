@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from .projects import get_project_names
+
 TOOLS: list[dict] = [
     {
         "name": "search_kb",
@@ -49,8 +51,9 @@ TOOLS: list[dict] = [
                 "project": {
                     "type": "string",
                     "description": (
-                        "Filter to a specific project (e.g. 'Juniper Canyon Dam'). "
-                        "Only applies when source='project'."
+                        "Filter to a specific project. Available: "
+                        + ", ".join(f"'{n}'" for n in get_project_names())
+                        + ". Only applies when source='project'."
                     ),
                 },
                 "top_k": {
@@ -148,5 +151,18 @@ TOOLS: list[dict] = [
             "required": [],
         },
         "cache_control": {"type": "ephemeral"},
+    },
+    {
+        "name": "list_projects",
+        "description": (
+            "List all available projects with metadata (dam type, location, key "
+            "issues, document counts). Use when the user asks about available "
+            "projects or to disambiguate which project a query refers to."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": [],
+        },
     },
 ]

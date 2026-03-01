@@ -13,6 +13,7 @@ from geolab_kb_ingest.db import KBChunk, get_session
 from geolab_kb_ingest.embedder import Embedder
 from geolab_kb_ingest.query import query_chunks
 
+from .projects import PROJECT_REGISTRY
 from .provenance import ProvenanceCollector
 
 logger = logging.getLogger(__name__)
@@ -198,6 +199,14 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
                 for m in manifests
             ]
 
+    async def handle_list_projects(
+        args: dict[str, Any], provenance: ProvenanceCollector
+    ) -> dict[str, Any]:
+        return {
+            "projects": [p.to_dict() for p in PROJECT_REGISTRY],
+            "count": len(PROJECT_REGISTRY),
+        }
+
     def _chunk_to_dict(chunk: KBChunk) -> dict:
         """Convert a KBChunk ORM object to a plain dict."""
         return {
@@ -216,4 +225,5 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
         "lookup_equation": handle_lookup_equation,
         "lookup_table": handle_lookup_table,
         "get_package_info": handle_get_package_info,
+        "list_projects": handle_list_projects,
     }
