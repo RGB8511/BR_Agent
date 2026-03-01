@@ -73,8 +73,11 @@ def eval_reranker() -> Reranker | None:
 
 
 @pytest.fixture(scope="session")
-def eval_agent(eval_engine: Engine, eval_embedder: Embedder):
-    """KBAgent in concise mode for cheaper evaluation.
+def eval_agent_factory(eval_engine: Engine, eval_embedder: Embedder):
+    """Factory that creates a KBAgent inside an async context.
+
+    Returns a callable so the KBAgent (and its AsyncAnthropic client) can be
+    created inside ``asyncio.run()``, avoiding event-loop mismatch on Windows.
 
     Requires ANTHROPIC_API_KEY env var.
     """
@@ -84,13 +87,16 @@ def eval_agent(eval_engine: Engine, eval_embedder: Embedder):
 
     from geolab_kb_agent.agent.orchestrator import KBAgent
 
-    return KBAgent(
-        api_key=api_key,
-        model=os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-5-20250929"),
-        engine=eval_engine,
-        embedder=eval_embedder,
-        mode="concise",
-    )
+    def _create() -> KBAgent:
+        return KBAgent(
+            api_key=api_key,
+            model=os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-5-20250929"),
+            engine=eval_engine,
+            embedder=eval_embedder,
+            mode="concise",
+        )
+
+    return _create
 
 
 @pytest.fixture(scope="session")
