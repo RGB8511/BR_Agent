@@ -3,17 +3,23 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Any
 
 
 @dataclass
 class Citation:
-    """A single data-provenance citation."""
+    """A single data-provenance citation with full chunk metadata."""
 
     source_table: str
     record_id: str
     field_name: str | None = None
     value: str | None = None
     snippet: str | None = None
+    score: float | None = None
+    chunk_type: str | None = None
+    package_id: str | None = None
+    discipline: str | None = None
+    metadata: dict[str, Any] | None = None
 
     def to_dict(self) -> dict:
         d: dict = {"source_table": self.source_table, "record_id": self.record_id}
@@ -23,7 +29,48 @@ class Citation:
             d["value"] = self.value
         if self.snippet is not None:
             d["snippet"] = self.snippet
+        if self.score is not None:
+            d["score"] = self.score
+        if self.chunk_type is not None:
+            d["chunk_type"] = self.chunk_type
+        if self.package_id is not None:
+            d["package_id"] = self.package_id
+        if self.discipline is not None:
+            d["discipline"] = self.discipline
+        if self.metadata is not None:
+            d["metadata"] = self.metadata
         return d
+
+    def to_retrieved_chunk(self, source_number: int) -> dict:
+        """Convert to RetrievedChunk-compatible dict for API response."""
+        # Extract document_name from package_id or metadata
+        doc_name = ""
+        section = None
+        page_number = None
+
+        if self.metadata:
+            doc_name = self.metadata.get("source_file", "")
+            section = self.metadata.get("section")
+            page_number = self.metadata.get("page_number")
+            if page_number is not None:
+                try:
+                    page_number = int(page_number)
+                except (ValueError, TypeError):
+                    page_number = None
+
+        if not doc_name and self.package_id:
+            doc_name = self.package_id
+
+        return {
+            "chunk_id": self.record_id,
+            "document_name": doc_name,
+            "section": section or self.value,
+            "page_number": page_number,
+            "chunk_text": self.snippet or "",
+            "similarity_score": self.score or 0.0,
+            "chunk_type": self.chunk_type,
+            "metadata": self.metadata,
+        }
 
 
 @dataclass
@@ -39,6 +86,11 @@ class ProvenanceCollector:
         field_name: str | None = None,
         value: str | None = None,
         snippet: str | None = None,
+        score: float | None = None,
+        chunk_type: str | None = None,
+        package_id: str | None = None,
+        discipline: str | None = None,
+        metadata: dict[str, Any] | None = None,
     ) -> None:
         self.citations.append(
             Citation(
@@ -47,6 +99,11 @@ class ProvenanceCollector:
                 field_name=field_name,
                 value=value,
                 snippet=snippet,
+                score=score,
+                chunk_type=chunk_type,
+                package_id=package_id,
+                discipline=discipline,
+                metadata=metadata,
             )
         )
 
@@ -61,10 +118,15 @@ class ProvenanceCollector:
                 field_name="title",
                 value=str(row.get("title", "")),
                 snippet=snippet,
+                score=row.get("score"),
+                chunk_type=row.get("chunk_type"),
+                package_id=row.get("package_id"),
+                discipline=row.get("discipline"),
+                metadata=row.get("metadata"),
             )
 
     def to_list(self) -> list[dict]:
-        # De-duplicate by (source_table, record_id)
+        """Return deduplicated citations as dicts (legacy format)."""
         seen: set[tuple[str, str]] = set()
         unique: list[dict] = []
         for c in self.citations:
@@ -72,4 +134,17 @@ class ProvenanceCollector:
             if key not in seen:
                 seen.add(key)
                 unique.append(c.to_dict())
+        return unique
+
+    def to_retrieved_chunks(self) -> list[dict]:
+        """Return deduplicated citations as RetrievedChunk-compatible dicts."""
+        seen: set[tuple[str, str]] = set()
+        unique: list[dict] = []
+        n = 0
+        for c in self.citations:
+            key = (c.source_table, c.record_id)
+            if key not in seen:
+                seen.add(key)
+                n += 1
+                unique.append(c.to_retrieved_chunk(n))
         return unique

@@ -13,6 +13,8 @@ from sqlalchemy import Engine
 
 from geolab_kb_ingest.embedder import Embedder
 
+from geolab_kb_agent.confidence import ConfidenceLevel, ConfidenceScore, compute_confidence
+
 from .provenance import ProvenanceCollector
 from .system_prompt import get_system_prompt
 from .tool_handlers import HandlerFn, make_tool_handlers
@@ -30,6 +32,7 @@ class AgentResponse:
     text: str
     sources: list[dict]
     tool_calls_made: int = 0
+    confidence: ConfidenceScore | None = None
 
 
 @dataclass
@@ -67,6 +70,33 @@ class KBAgent:
         if self.extra_tools:
             return TOOLS + self.extra_tools
         return TOOLS
+
+    @staticmethod
+    def _compute_confidence(provenance: ProvenanceCollector) -> ConfidenceScore:
+        """Compute confidence from provenance similarity scores."""
+        scores = [
+            c.score for c in provenance.citations if c.score is not None
+        ]
+        return compute_confidence(scores)
+
+    @staticmethod
+    def _uncertainty_prefix(confidence: ConfidenceScore) -> str:
+        """Return an uncertainty instruction to inject before the final LLM call."""
+        if confidence.level == ConfidenceLevel.MEDIUM:
+            return (
+                "IMPORTANT: Your confidence in this retrieval is moderate. "
+                "Multiple sources scored similarly. Preface your answer with a brief note "
+                "that you found relevant information but the user should verify critical values "
+                "against the source documents.\n\n"
+            )
+        if confidence.level == ConfidenceLevel.LOW:
+            return (
+                "IMPORTANT: Your confidence in this retrieval is low. The sources may not "
+                "directly address the question. Preface your answer with a clear statement "
+                "that you have low confidence and recommend consulting source documents directly. "
+                "Share what you found but flag uncertainty explicitly.\n\n"
+            )
+        return ""
 
     def _log_usage(self, response: anthropic.types.Message) -> None:
         """Log token usage including cache metrics."""
@@ -181,17 +211,21 @@ class KBAgent:
                 # Append assistant reply to history for multi-turn
                 messages.append({"role": "assistant", "content": final_text})
 
+                sources = provenance.to_retrieved_chunks()
+                confidence = self._compute_confidence(provenance)
                 logger.info(
-                    "Agent response: %d chars, %d tool calls, %d sources",
+                    "Agent response: %d chars, %d tool calls, %d sources, confidence=%s",
                     len(final_text),
                     tool_calls_made,
-                    len(provenance.to_list()),
+                    len(sources),
+                    confidence.level.value,
                 )
 
                 return AgentResponse(
                     text=final_text,
-                    sources=provenance.to_list(),
+                    sources=sources,
                     tool_calls_made=tool_calls_made,
+                    confidence=confidence,
                 )
 
             # Append assistant message with tool_use blocks
@@ -212,8 +246,9 @@ class KBAgent:
         messages.append({"role": "assistant", "content": fallback})
         return AgentResponse(
             text=fallback,
-            sources=provenance.to_list(),
+            sources=provenance.to_retrieved_chunks(),
             tool_calls_made=tool_calls_made,
+            confidence=self._compute_confidence(provenance),
         )
 
     # ------------------------------------------------------------------
@@ -283,6 +318,9 @@ class KBAgent:
             }
             return
 
+        # --- Compute confidence from retrieval scores ---
+        confidence = self._compute_confidence(provenance)
+
         # --- Inject disclaimer if no tools were called ---
         if tool_calls_made == 0:
             messages.append({
@@ -293,6 +331,14 @@ class KBAgent:
                     "your response with a disclaimer.]"
                 ),
             })
+        else:
+            # Inject uncertainty prefix for MEDIUM/LOW confidence
+            prefix = self._uncertainty_prefix(confidence)
+            if prefix:
+                messages.append({
+                    "role": "user",
+                    "content": f"[System: {prefix}]",
+                })
 
         # --- Re-issue as streaming call ---
         try:
@@ -317,16 +363,19 @@ class KBAgent:
             # Append to conversation history for multi-turn
             messages.append({"role": "assistant", "content": final_text})
 
+            sources = provenance.to_retrieved_chunks()
             logger.info(
-                "Stream response: %d chars, %d tool calls, %d sources",
+                "Stream response: %d chars, %d tool calls, %d sources, confidence=%s",
                 len(final_text),
                 tool_calls_made,
-                len(provenance.to_list()),
+                len(sources),
+                confidence.level.value,
             )
 
             yield {
                 "done": True,
-                "sources": provenance.to_list(),
+                "sources": sources,
+                "confidence": confidence.model_dump(),
                 "tool_calls_made": tool_calls_made,
             }
 

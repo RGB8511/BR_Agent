@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing import Any, Generic, Literal, TypeVar
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
+from geolab_kb_agent.confidence import ConfidenceScore
 
 T = TypeVar("T")
 
@@ -15,9 +17,23 @@ class ChatRequest(BaseModel):
     mode: Literal["concise", "educational", "report", "calculation", "review", "field"] | None = None
 
 
+class RetrievedChunk(BaseModel):
+    """A single chunk returned by the retrieval pipeline with provenance."""
+
+    chunk_id: str
+    document_name: str
+    section: str | None = None
+    page_number: int | None = None
+    chunk_text: str
+    similarity_score: float
+    chunk_type: str | None = None
+    metadata: dict[str, Any] | None = None
+
+
 class ChatResponse(BaseModel):
     response: str
-    sources: list[dict[str, Any]]
+    sources: list[RetrievedChunk] = Field(default_factory=list)
+    confidence: ConfidenceScore | None = None
     conversation_id: str
 
 

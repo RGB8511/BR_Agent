@@ -200,27 +200,130 @@
   }
   .message-bubble strong { color: #93c5fd; }
 
-  /* Sources */
-  .sources {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+  /* Sources panel */
+  .sources-panel {
     margin-top: 10px;
-    padding-top: 8px;
     border-top: 1px solid var(--border);
+    padding-top: 8px;
   }
-  .source-badge {
-    padding: 3px 8px;
-    background: var(--surface2);
+  .sources-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 0;
+    font-family: inherit;
+  }
+  .sources-toggle:hover { color: var(--text); }
+  .sources-toggle .arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 10px;
+  }
+  .sources-toggle.open .arrow { transform: rotate(90deg); }
+  .sources-list {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .sources-list.open { display: flex; }
+  .source-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .source-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .source-num {
+    background: var(--accent);
+    color: white;
+    padding: 1px 7px;
     border-radius: 4px;
     font-size: 11px;
-    color: var(--text-muted);
-    max-width: 250px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-weight: 600;
     white-space: nowrap;
   }
-  .source-badge .src-id { color: var(--accent); }
+  .source-doc {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .source-section {
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+  .source-score {
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 500;
+    margin-left: auto;
+  }
+  .score-high { background: #166534; color: #86efac; }
+  .score-mid { background: #854d0e; color: #fde68a; }
+  .score-low { background: #991b1b; color: #fca5a5; }
+  .source-text {
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .source-expand {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 11px;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 2px;
+    font-family: inherit;
+  }
+  .source-expand:hover { text-decoration: underline; }
+
+  /* Confidence badge */
+  .confidence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    cursor: default;
+  }
+  .confidence-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .confidence-high {
+    background: #052e16;
+    color: #86efac;
+  }
+  .confidence-high .dot { background: #22c55e; }
+  .confidence-medium {
+    background: #451a03;
+    color: #fde68a;
+  }
+  .confidence-medium .dot { background: #f59e0b; }
+  .confidence-low {
+    background: #450a0a;
+    color: #fca5a5;
+  }
+  .confidence-low .dot { background: #ef4444; }
 
   /* Typing indicator */
   .typing {
@@ -389,29 +492,110 @@ function sendStarter(btn) {
   send();
 }
 
+function appendConfidence(bubble, confidence) {
+  if (!confidence || !confidence.level) return;
+  const labels = { high: 'High confidence', medium: 'Moderate confidence', low: 'Low confidence' };
+  const badge = document.createElement('div');
+  badge.className = `confidence-badge confidence-${confidence.level}`;
+  badge.title = confidence.reasoning || '';
+  badge.innerHTML = `<span class="dot"></span>${labels[confidence.level] || confidence.level}`;
+  // Insert at the top of the bubble, before rendered content
+  bubble.insertBefore(badge, bubble.firstChild);
+}
+
 function appendSources(bubble, sources) {
   if (!sources || sources.length === 0) return;
-  const srcDiv = document.createElement('div');
-  srcDiv.className = 'sources';
-  const shown = sources.slice(0, 8);
-  shown.forEach(src => {
-    const badge = document.createElement('span');
-    badge.className = 'source-badge';
-    if (src.value) {
-      badge.innerHTML = `${escapeHtml(src.value)}`;
-      badge.title = src.record_id;
-    } else {
-      badge.innerHTML = `<span class="src-id">${escapeHtml(src.record_id || 'chunk')}</span>`;
-    }
-    srcDiv.appendChild(badge);
+
+  const panel = document.createElement('div');
+  panel.className = 'sources-panel';
+
+  // Toggle button
+  const toggle = document.createElement('button');
+  toggle.className = 'sources-toggle';
+  toggle.innerHTML = `<span class="arrow">&#9654;</span> Sources (${sources.length})`;
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    list.classList.toggle('open');
   });
-  if (sources.length > 8) {
-    const more = document.createElement('span');
-    more.className = 'source-badge';
-    more.textContent = `+${sources.length - 8} more`;
-    srcDiv.appendChild(more);
-  }
-  bubble.appendChild(srcDiv);
+  panel.appendChild(toggle);
+
+  // Source list (collapsed by default)
+  const list = document.createElement('div');
+  list.className = 'sources-list';
+
+  sources.forEach((src, i) => {
+    const item = document.createElement('div');
+    item.className = 'source-item';
+
+    // Header row: [Source N] badge + doc name + section + score pill
+    const header = document.createElement('div');
+    header.className = 'source-header';
+
+    const numBadge = document.createElement('span');
+    numBadge.className = 'source-num';
+    numBadge.textContent = `Source ${i + 1}`;
+    header.appendChild(numBadge);
+
+    // Document name — use document_name or chunk_id as fallback
+    const docName = src.document_name || src.chunk_id || src.record_id || 'Unknown';
+    const docEl = document.createElement('span');
+    docEl.className = 'source-doc';
+    docEl.textContent = docName;
+    docEl.title = src.chunk_id || src.record_id || '';
+    header.appendChild(docEl);
+
+    // Section (if present)
+    const section = src.section || src.value;
+    if (section) {
+      const secEl = document.createElement('span');
+      secEl.className = 'source-section';
+      secEl.textContent = `— ${section}`;
+      header.appendChild(secEl);
+    }
+
+    // Score pill
+    const score = src.similarity_score ?? src.score;
+    if (score != null) {
+      const scoreEl = document.createElement('span');
+      const scoreVal = parseFloat(score);
+      const scoreClass = scoreVal >= 0.6 ? 'score-high' : scoreVal >= 0.45 ? 'score-mid' : 'score-low';
+      scoreEl.className = `source-score ${scoreClass}`;
+      scoreEl.textContent = scoreVal.toFixed(3);
+      header.appendChild(scoreEl);
+    }
+
+    item.appendChild(header);
+
+    // Chunk text (truncated to 200 chars with expand)
+    const fullText = src.chunk_text || src.snippet || '';
+    if (fullText) {
+      const textEl = document.createElement('div');
+      textEl.className = 'source-text';
+      const truncated = fullText.length > 200;
+      textEl.textContent = truncated ? fullText.slice(0, 200) + '...' : fullText;
+
+      if (truncated) {
+        const expandBtn = document.createElement('button');
+        expandBtn.className = 'source-expand';
+        expandBtn.textContent = 'Show more';
+        let expanded = false;
+        expandBtn.addEventListener('click', () => {
+          expanded = !expanded;
+          textEl.textContent = expanded ? fullText : fullText.slice(0, 200) + '...';
+          expandBtn.textContent = expanded ? 'Show less' : 'Show more';
+          textEl.appendChild(expandBtn);
+        });
+        textEl.appendChild(expandBtn);
+      }
+
+      item.appendChild(textEl);
+    }
+
+    list.appendChild(item);
+  });
+
+  panel.appendChild(list);
+  bubble.appendChild(panel);
 }
 
 function escapeHtml(str) {
@@ -527,6 +711,7 @@ async function send() {
         if (event.done) {
           // Final render
           renderContent(bubble, fullText);
+          appendConfidence(bubble, event.confidence);
           appendSources(bubble, event.sources);
           chatEl.scrollTop = chatEl.scrollHeight;
 
