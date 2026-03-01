@@ -27,3 +27,6 @@ Thumbs.db
 # Generated
 eval_results.json
 *.partial.json
+
+# Database dumps
+*.dump
