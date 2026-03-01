@@ -12,7 +12,8 @@ from fastapi.responses import StreamingResponse
 from geolab_kb_agent.agent.orchestrator import KBAgent
 from geolab_kb_agent.config import get_settings
 from geolab_kb_agent.memory import ConversationStore
-from geolab_kb_agent.schemas import ChatRequest, ChatResponse, Envelope, RetrievedChunk
+from geolab_kb_agent.schemas import ChatRequest, ChatResponse, Envelope, FeedbackRequest, RetrievedChunk
+from geolab_kb_ingest.db import ChatFeedback
 
 logger = logging.getLogger(__name__)
 
@@ -123,6 +124,30 @@ async def chat_stream(
             "X-Accel-Buffering": "no",
         },
     )
+
+
+@router.post("/feedback")
+async def submit_feedback(body: FeedbackRequest, request: Request) -> dict:
+    engine = request.app.state.engine
+    feedback = ChatFeedback(
+        conversation_id=body.conversation_id,
+        message_index=body.message_index,
+        sentiment=body.sentiment,
+    )
+    from sqlalchemy.orm import sessionmaker
+
+    factory = sessionmaker(bind=engine)
+    session = factory()
+    try:
+        session.add(feedback)
+        session.commit()
+    except Exception:
+        session.rollback()
+        logger.exception("Failed to store feedback")
+        raise HTTPException(status_code=500, detail="Failed to store feedback")
+    finally:
+        session.close()
+    return {"status": "ok"}
 
 
 def _sse(data: dict) -> str:

@@ -407,15 +407,144 @@
     color: var(--text-muted);
   }
 
+  /* Header button (export) */
+  .header-btn {
+    padding: 6px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .header-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  /* Export dropdown */
+  .export-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 100;
+    min-width: 180px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .export-dropdown.open { display: block; }
+  .export-option {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .export-option:hover { background: var(--surface2); }
+
+  /* Feedback controls */
+  .feedback-controls {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+    justify-content: flex-end;
+  }
+  .feedback-btn {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-size: 14px;
+    width: 32px;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    padding: 0;
+  }
+  .feedback-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .feedback-btn.selected {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+  }
+  .feedback-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
   /* KaTeX overrides */
   .katex { font-size: 1em; }
   .katex-display { margin: 10px 0; overflow-x: auto; }
+
+  /* Print styles */
+  @media print {
+    .header, .input-area, .mode-toggle, .typing,
+    .confidence-badge, .export-dropdown, .feedback-controls { display: none !important; }
+    body {
+      background: white;
+      color: black;
+      font-size: 12pt;
+    }
+    .chat-container {
+      padding: 0;
+      overflow: visible;
+    }
+    .message { max-width: 100%; }
+    .message-bubble {
+      background: white !important;
+      border: none !important;
+      color: black !important;
+      padding: 8px 0;
+    }
+    .message.user .message-bubble {
+      background: #f0f0f0 !important;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+    .message-bubble strong { color: black; }
+    .message-bubble code { background: #eee; }
+    .message-bubble pre { background: #f5f5f5; border: 1px solid #ddd; }
+    .sources-panel { border-top-color: #ccc; }
+    .sources-list { display: flex !important; }
+    .source-item {
+      background: #fafafa;
+      border-color: #ddd;
+    }
+    .source-score { background: #eee !important; color: #333 !important; }
+    .source-doc, .source-section, .source-text { color: #333; }
+  }
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1><span>GeoLab</span> KB Agent</h1>
+  <div style="position:relative; display:inline-block;">
+    <button id="exportBtn" class="header-btn" title="Export conversation">Export</button>
+    <div class="export-dropdown" id="exportDropdown">
+      <button class="export-option" onclick="exportMarkdown()">Download Markdown</button>
+      <button class="export-option" onclick="exportPDF()">Print to PDF</button>
+    </div>
+  </div>
   <div class="mode-toggle">
     <button class="mode-btn" data-mode="concise">Concise</button>
     <button class="mode-btn active" data-mode="educational">Educational</button>
@@ -460,6 +589,7 @@ const welcomeEl = document.getElementById('welcome');
 let currentMode = 'educational';
 let conversationId = null;
 let isLoading = false;
+let agentMessageIndex = 0;
 
 // Configure marked
 marked.setOptions({ breaks: true, gfm: true });
@@ -713,6 +843,16 @@ async function send() {
           renderContent(bubble, fullText);
           appendConfidence(bubble, event.confidence);
           appendSources(bubble, event.sources);
+
+          // Store raw data for export
+          bubble.dataset.raw = fullText;
+          if (event.confidence) bubble.dataset.confidence = JSON.stringify(event.confidence);
+          if (event.sources) bubble.dataset.sources = JSON.stringify(event.sources);
+
+          // Add feedback buttons
+          appendFeedback(bubble, agentMessageIndex);
+          agentMessageIndex++;
+
           chatEl.scrollTop = chatEl.scrollHeight;
 
           // Show meta
@@ -745,6 +885,7 @@ function addUserMessage(text) {
   const bubble = document.createElement('div');
   bubble.className = 'message-bubble';
   bubble.textContent = text;
+  bubble.dataset.raw = text;
   msgEl.appendChild(bubble);
   chatEl.appendChild(msgEl);
   chatEl.scrollTop = chatEl.scrollHeight;
@@ -760,6 +901,116 @@ function createAgentBubble() {
   chatEl.appendChild(msgEl);
   chatEl.scrollTop = chatEl.scrollHeight;
   return { msgEl, bubble };
+}
+
+// --- Export dropdown ---
+const exportBtn = document.getElementById('exportBtn');
+const exportDropdown = document.getElementById('exportDropdown');
+
+exportBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  exportDropdown.classList.toggle('open');
+});
+document.addEventListener('click', () => {
+  exportDropdown.classList.remove('open');
+});
+
+function exportMarkdown() {
+  exportDropdown.classList.remove('open');
+  const messages = chatEl.querySelectorAll('.message');
+  if (messages.length === 0) return;
+
+  const date = new Date().toISOString().slice(0, 10);
+  let md = `# GeoLab KB Agent \u2014 Conversation Export\nDate: ${date} | Mode: ${currentMode} | Conversation: ${conversationId || 'N/A'}\n\n---\n`;
+
+  messages.forEach(msg => {
+    const bubble = msg.querySelector('.message-bubble');
+    if (!bubble) return;
+    const raw = bubble.dataset.raw || bubble.textContent;
+
+    if (msg.classList.contains('user')) {
+      md += `\n**User:** ${raw}\n`;
+    } else if (msg.classList.contains('agent')) {
+      let header = '\n**Agent:**';
+      const conf = bubble.dataset.confidence;
+      if (conf) {
+        try {
+          const c = JSON.parse(conf);
+          if (c.level) header += ` [confidence: ${c.level}]`;
+        } catch {}
+      }
+      md += `${header}\n${raw}\n`;
+
+      const srcs = bubble.dataset.sources;
+      if (srcs) {
+        try {
+          const sources = JSON.parse(srcs);
+          if (sources.length) {
+            md += '\nSources:\n';
+            sources.forEach((s, i) => {
+              const doc = s.document_name || s.chunk_id || 'Unknown';
+              const score = s.similarity_score != null ? ` (${parseFloat(s.similarity_score).toFixed(3)})` : '';
+              const section = s.section ? `.${s.section}` : '';
+              md += `- [Source ${i + 1}] ${doc}${section}${score}\n`;
+            });
+          }
+        } catch {}
+      }
+    }
+    md += '\n---\n';
+  });
+
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `geolab-chat-${date}.md`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function exportPDF() {
+  exportDropdown.classList.remove('open');
+  window.print();
+}
+
+// --- Feedback ---
+function appendFeedback(bubble, messageIdx) {
+  const controls = document.createElement('div');
+  controls.className = 'feedback-controls';
+
+  ['up', 'down'].forEach(sentiment => {
+    const btn = document.createElement('button');
+    btn.className = 'feedback-btn';
+    btn.dataset.sentiment = sentiment;
+    btn.title = sentiment === 'up' ? 'Helpful' : 'Not helpful';
+    btn.textContent = sentiment === 'up' ? '\u25B2' : '\u25BC';
+    btn.addEventListener('click', () => submitFeedback(controls, sentiment, messageIdx));
+    controls.appendChild(btn);
+  });
+
+  bubble.appendChild(controls);
+}
+
+async function submitFeedback(controls, sentiment, messageIdx) {
+  const buttons = controls.querySelectorAll('.feedback-btn');
+  buttons.forEach(b => {
+    b.disabled = true;
+    if (b.dataset.sentiment === sentiment) b.classList.add('selected');
+  });
+
+  try {
+    await fetch('/api/v1/chat/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        conversation_id: conversationId,
+        message_index: messageIdx,
+        sentiment: sentiment,
+      }),
+    });
+  } catch (err) {
+    console.error('Feedback submit failed:', err);
+  }
 }
 </script>
 </body>

@@ -33,6 +33,19 @@ class Base(DeclarativeBase):
     pass
 
 
+class ChatFeedback(Base):
+    __tablename__ = "chat_feedback"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    conversation_id: Mapped[str] = mapped_column(Text, index=True)
+    message_index: Mapped[int] = mapped_column(Integer)
+    sentiment: Mapped[str] = mapped_column(Text)  # "up" | "down"
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+    )
+
+
 class KBChunk(Base):
     __tablename__ = "kb_chunks"
 

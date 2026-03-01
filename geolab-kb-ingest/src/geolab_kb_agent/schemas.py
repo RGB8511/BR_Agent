@@ -37,6 +37,12 @@ class ChatResponse(BaseModel):
     conversation_id: str
 
 
+class FeedbackRequest(BaseModel):
+    conversation_id: str
+    message_index: int
+    sentiment: Literal["up", "down"]
+
+
 class Envelope(BaseModel, Generic[T]):
     data: T
     meta: dict[str, Any] = {}
