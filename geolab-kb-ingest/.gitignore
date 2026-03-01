@@ -1,0 +1,29 @@
+# Environment
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+nul
+Thumbs.db
+.DS_Store
+
+# Generated
+eval_results.json
+*.partial.json
