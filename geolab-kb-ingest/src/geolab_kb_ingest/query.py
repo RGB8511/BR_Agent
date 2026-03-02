@@ -121,6 +121,7 @@ def query_chunks(
             "chunk_type": row.chunk_type,
             "package_id": row.package_id,
             "discipline": row.discipline,
+            "metadata": row.metadata or {},
             "score": float(row.score),
             "metadata": row.metadata,
         }

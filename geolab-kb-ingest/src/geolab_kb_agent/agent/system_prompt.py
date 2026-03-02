@@ -160,6 +160,11 @@ year_min=2025, year_max=2025)
 - **Bold** for key values and classifications
 - **Headers** (`###`, `####`) to organize multi-section responses
 - **Code spans** for chunk IDs and package names: `soil-mechanics.consolidation`
+
+## References
+
+A references section is automatically appended to your response. You do NOT need to \
+add one yourself. Just use `[N]` inline citations as instructed above.
 """
 
 

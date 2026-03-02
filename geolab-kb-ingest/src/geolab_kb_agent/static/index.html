@@ -877,6 +877,11 @@ async function send() {
           scheduleRender();
         }
 
+        if (event.rewrite) {
+          fullText = event.rewrite;
+          scheduleRender();
+        }
+
         if (event.error) {
           fullText += `\n\n**Error:** ${event.error}`;
           renderContent(bubble, fullText);

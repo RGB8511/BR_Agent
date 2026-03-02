@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
 from typing import Any
@@ -128,6 +129,161 @@ class KBAgent:
             cache_read,
         )
 
+    @staticmethod
+    def _build_references(
+        text: str, provenance: ProvenanceCollector,
+    ) -> tuple[str, str]:
+        """Rewrite inline citations and build a grouped references section.
+
+        Returns (rewritten_text, references_block).
+        - Chunks from the same document share a number: [1a], [1b], …
+        - Single-chunk documents use plain [1].
+        """
+
+        def _clean(val: str) -> str:
+            return " ".join(val.split()) if val else ""
+
+        # Accept both [Source N] and [N] from the model
+        cited = sorted(
+            set(int(m) for m in re.findall(r"\[(?:Source\s+)?(\d+)\]", text))
+        )
+        if not cited:
+            return text, ""
+
+        # Deduplicate provenance into ordered list (1-based index = source N)
+        seen: set[tuple[str, str]] = set()
+        ordered: list = []
+        for c in provenance.citations:
+            key = (c.source_table, c.record_id)
+            if key not in seen:
+                seen.add(key)
+                ordered.append(c)
+
+        # --- Group cited chunks by document ---
+        # Preserves first-seen order of documents.
+        from collections import OrderedDict
+
+        # doc_key -> list of (old_source_num, citation)
+        doc_chunks: OrderedDict[str, list[tuple[int, Any]]] = OrderedDict()
+        for n in cited:
+            idx = n - 1
+            if idx < 0 or idx >= len(ordered):
+                continue
+            c = ordered[idx]
+            meta = c.metadata or {}
+            filename = meta.get("filename", meta.get("source_file", ""))
+            doc_key = filename if filename else f"{c.package_id}|{_clean(c.value or '')}"
+            doc_chunks.setdefault(doc_key, []).append((n, c))
+
+        if not doc_chunks:
+            return text, ""
+
+        # --- Assign new labels ---
+        # old_num -> new_label  (e.g. 3 -> "1b")
+        label_map: dict[int, str] = {}
+        # For building the references section
+        doc_entries: list[tuple[str, Any, list[tuple[str, Any]]]] = []
+
+        doc_num = 0
+        for _doc_key, chunk_list in doc_chunks.items():
+            doc_num += 1
+            multi = len(chunk_list) > 1
+            sub_items: list[tuple[str, Any]] = []
+            for i, (old_num, c) in enumerate(chunk_list):
+                if multi:
+                    letter = chr(ord("a") + i) if i < 26 else str(i + 1)
+                    new_label = f"{doc_num}{letter}"
+                else:
+                    new_label = str(doc_num)
+                label_map[old_num] = new_label
+                sub_items.append((new_label, c))
+            # Use the first citation's metadata for the document-level entry
+            doc_entries.append((str(doc_num), chunk_list[0][1], sub_items))
+
+        # --- Rewrite inline citations in text ---
+        def _replace_cite(m: re.Match) -> str:
+            n = int(m.group(1))
+            new = label_map.get(n)
+            return f"[{new}]" if new else m.group(0)
+
+        rewritten = re.sub(r"\[(?:Source\s+)?(\d+)\]", _replace_cite, text)
+
+        # --- Build references block ---
+        lines = ["\n\n---\n\n## References\n"]
+        for doc_label, rep_citation, sub_items in doc_entries:
+            meta = rep_citation.metadata or {}
+
+            if rep_citation.package_id and rep_citation.package_id.startswith("project:"):
+                author = _clean(meta.get("author", ""))
+                title = _clean(meta.get("title", rep_citation.value or ""))
+                project = _clean(meta.get("project", ""))
+                date = _clean(meta.get("date", ""))
+                pages = _clean(meta.get("page_range", ""))
+                filename = _clean(meta.get("filename", ""))
+
+                parts = []
+                if author:
+                    parts.append(f"{author},")
+                if title:
+                    parts.append(f'"{title},"')
+                if project:
+                    parts.append(f"{project},")
+                if date:
+                    parts.append(f"{date}.")
+                if pages:
+                    parts.append(f"pp. {pages}.")
+                if filename:
+                    parts.append(f"({filename})")
+                ref_text = " ".join(parts) if parts else rep_citation.record_id
+            else:
+                title = _clean(rep_citation.value or "")
+                pkg = rep_citation.package_id or ""
+                disc = rep_citation.discipline or ""
+                ctype = rep_citation.chunk_type or ""
+                parts = []
+                if title:
+                    parts.append(f'"{title},"')
+                if pkg:
+                    parts.append(f"*{pkg}*,")
+                if disc:
+                    parts.append(f"{disc.capitalize()}.")
+                if ctype:
+                    parts.append(f"({ctype}: `{rep_citation.record_id}`)")
+                ref_text = " ".join(parts) if parts else rep_citation.record_id
+
+            lines.append(f"**[{doc_label}]** {ref_text}")
+
+            # Sub-items (only when multiple chunks from same doc)
+            if len(sub_items) > 1:
+                for sub_label, sc in sub_items:
+                    sm = sc.metadata or {}
+                    chunk_title = _clean(sc.value or "")
+                    section = _clean(sm.get("section", ""))
+                    ctype = sc.chunk_type or ""
+                    doc_title = _clean(meta.get("title", ""))
+
+                    # Build a concise sub-description
+                    desc = ""
+                    if ctype == "table" and section:
+                        desc = f"Table: {section}"
+                    elif ctype == "table":
+                        desc = f"Table ({chunk_title})" if chunk_title != doc_title else "Table"
+                    elif ctype == "equation" and section:
+                        desc = f"Eq: {section}"
+                    elif section:
+                        desc = section
+                    elif chunk_title and chunk_title != doc_title:
+                        desc = chunk_title
+                    else:
+                        # Use first ~80 chars of snippet as fallback
+                        snippet = _clean(sc.snippet or "")[:80]
+                        desc = f'"{snippet}..."' if snippet else ctype or "section"
+                    lines.append(f"  - [{sub_label}] {desc}")
+
+            lines.append("")  # blank line between entries
+
+        return rewritten, "\n".join(lines)
+
     async def _execute_tools(
         self,
         tool_use_blocks: list,
@@ -233,6 +389,10 @@ class KBAgent:
                         "> **Note:** This response was generated without searching the "
                         "knowledge base and may not be accurate.\n\n" + final_text
                     )
+
+                # Rewrite citations and append references section
+                final_text, refs = self._build_references(final_text, provenance)
+                final_text += refs
 
                 # Append assistant reply to history for multi-turn
                 messages.append({"role": "assistant", "content": final_text})
@@ -393,7 +553,19 @@ class KBAgent:
                 final_message = await stream.get_final_message()
                 self._log_usage(final_message)
 
-            final_text = "".join(full_text_parts)
+            raw_text = "".join(full_text_parts)
+
+            # Rewrite citations and build references section
+            final_text, refs = self._build_references(raw_text, provenance)
+
+            # Emit the rewritten text as a replacement + refs
+            # Since we already streamed the original text, emit a
+            # special event with the full rewritten text + refs so
+            # the frontend can replace the content.
+            if final_text != raw_text or refs:
+                yield {"rewrite": final_text + refs}
+
+            final_text += refs
 
             # Append to conversation history for multi-turn
             messages.append({"role": "assistant", "content": final_text})
