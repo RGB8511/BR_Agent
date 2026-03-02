@@ -35,9 +35,10 @@ def _slugify_project(name: str) -> str:
 # ---------------------------------------------------------------------------
 # Document type classification
 # ---------------------------------------------------------------------------
-# Maps known Juniper Canyon Dam filenames to doc_type categories.
+# Maps known project document filenames to doc_type categories.
 # Unknown filenames fall back to "general".
 _DOC_TYPE_MAP: dict[str, str] = {
+    # --- Juniper Canyon Dam ---
     "doc01_wsrb_1963_construction_report.pdf": "construction_report",
     "doc02_wsrb_1959_boring_logs.pdf": "boring_logs",
     "doc03_wsrb_1964_first_filling.pdf": "first_filling",
@@ -58,6 +59,27 @@ _DOC_TYPE_MAP: dict[str, str] = {
     "doc18_idse_2025_mix_design_review.pdf": "mix_design",
     "doc19_idse_2025_corrosion_assessment.pdf": "corrosion",
     "doc20_jbid_2025_eap_update.pdf": "eap",
+    # --- Rimrock Diversion Dam ---
+    "doc01_wsrb_1959_construction_report.pdf": "construction_report",
+    "doc02_wsrb_1955_boring_logs.pdf": "boring_logs",
+    "doc03_wsrb_1959_first_filling.pdf": "first_filling",
+    "doc04_sdwr_1993_safety_inspection.pdf": "safety_inspection",
+    "doc05_fhsc_2023_part12d.pdf": "part_12d",
+    "doc06_idse_2025_geotech_arch.pdf": "geotechnical",
+    "doc07_idse_2025_geotech_abutments.pdf": "geotechnical",
+    "doc12_idse_2025_abutment_drain_eval.pdf": "drain_evaluation",
+    "doc13_idse_2025_arch_stability.pdf": "stability",
+    "doc14_idse_2025_abutment_stability.pdf": "stability",
+    "doc19_idse_2025_spillway_erosion.pdf": "spillway_erosion",
+    "doc20_rvic_2025_eap_update.pdf": "eap",
+    # --- Rimrock CSVs ---
+    "data_I1_UCS_dacite_tuff.csv": "geotechnical",
+    "data_I2_UCS_lacustrine_claystone.csv": "geotechnical",
+    "data_I3_ITS_dacite_tuff.csv": "geotechnical",
+    "data_I4_ITS_lacustrine_claystone.csv": "geotechnical",
+    "data_I5_gradation_hydrometer_RA01.csv": "geotechnical",
+    "data_I6_atterberg_limits_RA01.csv": "geotechnical",
+    "data_I7_specific_gravity_RA01.csv": "geotechnical",
 }
 
 
