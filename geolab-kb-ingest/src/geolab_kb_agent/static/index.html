@@ -907,7 +907,7 @@ async function send() {
     }
 
     // If stream ended without a done event, do a final render
-    if (fullText && !bubble.querySelector('.sources')) {
+    if (fullText && !bubble.querySelector('.sources-panel')) {
       renderContent(bubble, fullText);
     }
 
