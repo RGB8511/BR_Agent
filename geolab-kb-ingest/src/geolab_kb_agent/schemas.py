@@ -17,6 +17,29 @@ class ChatRequest(BaseModel):
     mode: Literal["concise", "educational", "report", "calculation", "review", "field"] | None = None
 
 
+class SubRef(BaseModel):
+    """A single chunk sub-reference within a grouped document."""
+
+    letter: str
+    chunk_id: str
+    section: str | None = None
+    page_number: int | None = None
+    chunk_text: str = ""
+    similarity_score: float = 0.0
+    chunk_type: str | None = None
+    metadata: dict[str, Any] | None = None
+
+
+class GroupedSource(BaseModel):
+    """Citations grouped by source document."""
+
+    doc_number: int
+    document_name: str
+    project: str | None = None
+    sub_refs: list[SubRef] = Field(default_factory=list)
+
+
+# Keep the old model for backwards compatibility if needed
 class RetrievedChunk(BaseModel):
     """A single chunk returned by the retrieval pipeline with provenance."""
 
@@ -32,7 +55,7 @@ class RetrievedChunk(BaseModel):
 
 class ChatResponse(BaseModel):
     response: str
-    sources: list[RetrievedChunk] = Field(default_factory=list)
+    sources: list[GroupedSource] = Field(default_factory=list)
     confidence: ConfidenceScore | None = None
     conversation_id: str
 

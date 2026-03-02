@@ -636,13 +636,16 @@ function appendConfidence(bubble, confidence) {
 function appendSources(bubble, sources) {
   if (!sources || sources.length === 0) return;
 
+  // Count total sub-references across all document groups
+  const totalRefs = sources.reduce((sum, grp) => sum + (grp.sub_refs ? grp.sub_refs.length : 1), 0);
+
   const panel = document.createElement('div');
   panel.className = 'sources-panel';
 
   // Toggle button
   const toggle = document.createElement('button');
   toggle.className = 'sources-toggle';
-  toggle.innerHTML = `<span class="arrow">&#9654;</span> Sources (${sources.length})`;
+  toggle.innerHTML = `<span class="arrow">&#9654;</span> Sources (${sources.length} documents, ${totalRefs} references)`;
   toggle.addEventListener('click', () => {
     toggle.classList.toggle('open');
     list.classList.toggle('open');
@@ -653,75 +656,110 @@ function appendSources(bubble, sources) {
   const list = document.createElement('div');
   list.className = 'sources-list';
 
-  sources.forEach((src, i) => {
-    const item = document.createElement('div');
-    item.className = 'source-item';
+  sources.forEach((grp) => {
+    const docNum = grp.doc_number;
+    const docName = grp.document_name || 'Unknown';
+    const project = grp.project;
+    const subRefs = grp.sub_refs || [];
 
-    // Header row: [Source N] badge + doc name + section + score pill
-    const header = document.createElement('div');
-    header.className = 'source-header';
+    // Document-level container
+    const docItem = document.createElement('div');
+    docItem.className = 'source-item';
+
+    // Document header: [N] filename — Project
+    const docHeader = document.createElement('div');
+    docHeader.className = 'source-header';
 
     const numBadge = document.createElement('span');
     numBadge.className = 'source-num';
-    numBadge.textContent = `Source ${i + 1}`;
-    header.appendChild(numBadge);
+    numBadge.textContent = String(docNum);
+    docHeader.appendChild(numBadge);
 
-    // Document name — use document_name or chunk_id as fallback
-    const docName = src.document_name || src.chunk_id || src.record_id || 'Unknown';
     const docEl = document.createElement('span');
     docEl.className = 'source-doc';
     docEl.textContent = docName;
-    docEl.title = src.chunk_id || src.record_id || '';
-    header.appendChild(docEl);
+    docHeader.appendChild(docEl);
 
-    // Section (if present)
-    const section = src.section || src.value;
-    if (section) {
-      const secEl = document.createElement('span');
-      secEl.className = 'source-section';
-      secEl.textContent = `— ${section}`;
-      header.appendChild(secEl);
+    if (project) {
+      const projEl = document.createElement('span');
+      projEl.className = 'source-section';
+      projEl.textContent = `— ${project}`;
+      docHeader.appendChild(projEl);
     }
 
-    // Score pill
-    const score = src.similarity_score ?? src.score;
-    if (score != null) {
-      const scoreEl = document.createElement('span');
-      const scoreVal = parseFloat(score);
-      const scoreClass = scoreVal >= 0.6 ? 'score-high' : scoreVal >= 0.45 ? 'score-mid' : 'score-low';
-      scoreEl.className = `source-score ${scoreClass}`;
-      scoreEl.textContent = scoreVal.toFixed(3);
-      header.appendChild(scoreEl);
-    }
+    docItem.appendChild(docHeader);
 
-    item.appendChild(header);
+    // Sub-references
+    subRefs.forEach((ref) => {
+      const refDiv = document.createElement('div');
+      refDiv.style.marginLeft = '16px';
+      refDiv.style.marginTop = '6px';
+      refDiv.style.paddingTop = '6px';
+      refDiv.style.borderTop = '1px solid var(--border)';
 
-    // Chunk text (truncated to 200 chars with expand)
-    const fullText = src.chunk_text || src.snippet || '';
-    if (fullText) {
-      const textEl = document.createElement('div');
-      textEl.className = 'source-text';
-      const truncated = fullText.length > 200;
-      textEl.textContent = truncated ? fullText.slice(0, 200) + '...' : fullText;
+      const refHeader = document.createElement('div');
+      refHeader.className = 'source-header';
 
-      if (truncated) {
-        const expandBtn = document.createElement('button');
-        expandBtn.className = 'source-expand';
-        expandBtn.textContent = 'Show more';
-        let expanded = false;
-        expandBtn.addEventListener('click', () => {
-          expanded = !expanded;
-          textEl.textContent = expanded ? fullText : fullText.slice(0, 200) + '...';
-          expandBtn.textContent = expanded ? 'Show less' : 'Show more';
-          textEl.appendChild(expandBtn);
-        });
-        textEl.appendChild(expandBtn);
+      const refBadge = document.createElement('span');
+      refBadge.className = 'source-num';
+      refBadge.style.fontSize = '10px';
+      refBadge.style.padding = '1px 5px';
+      refBadge.textContent = `${docNum}${ref.letter}`;
+      refHeader.appendChild(refBadge);
+
+      // Section + page
+      const sectionParts = [];
+      if (ref.section) sectionParts.push(ref.section);
+      if (ref.page_number != null) sectionParts.push(`p. ${ref.page_number}`);
+      if (sectionParts.length) {
+        const secEl = document.createElement('span');
+        secEl.className = 'source-section';
+        secEl.textContent = sectionParts.join(' — ');
+        refHeader.appendChild(secEl);
       }
 
-      item.appendChild(textEl);
-    }
+      // Score pill
+      const score = ref.similarity_score;
+      if (score != null) {
+        const scoreEl = document.createElement('span');
+        const scoreVal = parseFloat(score);
+        const scoreClass = scoreVal >= 0.6 ? 'score-high' : scoreVal >= 0.45 ? 'score-mid' : 'score-low';
+        scoreEl.className = `source-score ${scoreClass}`;
+        scoreEl.textContent = scoreVal.toFixed(3);
+        refHeader.appendChild(scoreEl);
+      }
 
-    list.appendChild(item);
+      refDiv.appendChild(refHeader);
+
+      // Chunk text (truncated to 200 chars with expand)
+      const fullText = ref.chunk_text || '';
+      if (fullText) {
+        const textEl = document.createElement('div');
+        textEl.className = 'source-text';
+        const truncated = fullText.length > 200;
+        textEl.textContent = truncated ? fullText.slice(0, 200) + '...' : fullText;
+
+        if (truncated) {
+          const expandBtn = document.createElement('button');
+          expandBtn.className = 'source-expand';
+          expandBtn.textContent = 'Show more';
+          let expanded = false;
+          expandBtn.addEventListener('click', () => {
+            expanded = !expanded;
+            textEl.textContent = expanded ? fullText : fullText.slice(0, 200) + '...';
+            expandBtn.textContent = expanded ? 'Show less' : 'Show more';
+            textEl.appendChild(expandBtn);
+          });
+          textEl.appendChild(expandBtn);
+        }
+
+        refDiv.appendChild(textEl);
+      }
+
+      docItem.appendChild(refDiv);
+    });
+
+    list.appendChild(docItem);
   });
 
   panel.appendChild(list);
@@ -859,7 +897,10 @@ async function send() {
           const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
           const parts = [`${elapsed}s`];
           if (event.tool_calls_made) parts.push(`${event.tool_calls_made} tool calls`);
-          if (event.sources?.length) parts.push(`${event.sources.length} sources`);
+          if (event.sources?.length) {
+            const refCount = event.sources.reduce((s, g) => s + (g.sub_refs ? g.sub_refs.length : 1), 0);
+            parts.push(`${event.sources.length} docs / ${refCount} refs`);
+          }
           metaEl.textContent = parts.join(' \u00b7 ');
         }
       }
@@ -947,11 +988,16 @@ function exportMarkdown() {
           const sources = JSON.parse(srcs);
           if (sources.length) {
             md += '\nSources:\n';
-            sources.forEach((s, i) => {
-              const doc = s.document_name || s.chunk_id || 'Unknown';
-              const score = s.similarity_score != null ? ` (${parseFloat(s.similarity_score).toFixed(3)})` : '';
-              const section = s.section ? `.${s.section}` : '';
-              md += `- [Source ${i + 1}] ${doc}${section}${score}\n`;
+            sources.forEach((grp) => {
+              const doc = grp.document_name || 'Unknown';
+              const proj = grp.project ? ` — ${grp.project}` : '';
+              md += `- [${grp.doc_number}] ${doc}${proj}\n`;
+              (grp.sub_refs || []).forEach((ref) => {
+                const score = ref.similarity_score != null ? ` (${parseFloat(ref.similarity_score).toFixed(3)})` : '';
+                const sec = ref.section ? ` ${ref.section}` : '';
+                const pg = ref.page_number != null ? ` p.${ref.page_number}` : '';
+                md += `  - [${grp.doc_number}${ref.letter}]${sec}${pg}${score}\n`;
+              });
             });
           }
         } catch {}

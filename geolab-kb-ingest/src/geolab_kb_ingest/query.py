@@ -102,7 +102,7 @@ def query_chunks(
         where_sql = "WHERE " + " AND ".join(where_clauses)
 
     sql = text(f"""
-        SELECT id, title, content, chunk_type, package_id, discipline,
+        SELECT id, title, content, chunk_type, package_id, discipline, metadata,
                1 - (embedding <=> CAST(:vec AS vector)) AS score
         FROM kb_chunks
         {where_sql}
@@ -122,6 +122,7 @@ def query_chunks(
             "package_id": row.package_id,
             "discipline": row.discipline,
             "score": float(row.score),
+            "metadata": row.metadata,
         }
         for row in rows
         if float(row.score) >= MIN_SIMILARITY_SCORE

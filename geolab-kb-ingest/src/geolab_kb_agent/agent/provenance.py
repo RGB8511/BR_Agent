@@ -148,3 +148,73 @@ class ProvenanceCollector:
                 n += 1
                 unique.append(c.to_retrieved_chunk(n))
         return unique
+
+    def to_grouped_chunks(self) -> list[dict]:
+        """Return citations grouped by source document.
+
+        Each group: {
+            "doc_number": 1,
+            "document_name": "doc06_idse_2025_geotech_arch.pdf",
+            "project": "Rimrock Diversion Dam",
+            "sub_refs": [
+                {"letter": "a", "section": "...", "page_number": 3, ...},
+                {"letter": "b", ...},
+            ]
+        }
+        """
+        seen: set[tuple[str, str]] = set()
+        doc_groups: dict[str, dict] = {}   # keyed by document_name
+        doc_order: list[str] = []          # preserves first-appearance order
+
+        for c in self.citations:
+            key = (c.source_table, c.record_id)
+            if key in seen:
+                continue
+            seen.add(key)
+
+            doc_name = ""
+            section = None
+            page_number = None
+            project = None
+            if c.metadata:
+                doc_name = c.metadata.get("filename", "")
+                section = c.metadata.get("section")
+                page_number = c.metadata.get("page_number")
+                project = c.metadata.get("project")
+            if not doc_name:
+                doc_name = c.package_id or c.record_id
+
+            if doc_name not in doc_groups:
+                doc_order.append(doc_name)
+                doc_groups[doc_name] = {
+                    "document_name": doc_name,
+                    "project": project,
+                    "sub_refs": [],
+                }
+
+            idx = len(doc_groups[doc_name]["sub_refs"])
+            letter = chr(ord("a") + idx) if idx < 26 else str(idx + 1)
+
+            if page_number is not None:
+                try:
+                    page_number = int(page_number)
+                except (ValueError, TypeError):
+                    page_number = None
+
+            doc_groups[doc_name]["sub_refs"].append({
+                "letter": letter,
+                "chunk_id": c.record_id,
+                "section": section or c.value,
+                "page_number": page_number,
+                "chunk_text": c.snippet or "",
+                "similarity_score": c.score or 0.0,
+                "chunk_type": c.chunk_type,
+                "metadata": c.metadata,
+            })
+
+        result = []
+        for i, doc_name in enumerate(doc_order):
+            group = doc_groups[doc_name]
+            group["doc_number"] = i + 1
+            result.append(group)
+        return result

@@ -12,7 +12,7 @@ from fastapi.responses import StreamingResponse
 from geolab_kb_agent.agent.orchestrator import KBAgent
 from geolab_kb_agent.config import get_settings
 from geolab_kb_agent.memory import ConversationStore
-from geolab_kb_agent.schemas import ChatRequest, ChatResponse, Envelope, FeedbackRequest, RetrievedChunk
+from geolab_kb_agent.schemas import ChatRequest, ChatResponse, Envelope, FeedbackRequest, GroupedSource
 from geolab_kb_ingest.db import ChatFeedback
 
 logger = logging.getLogger(__name__)
@@ -74,7 +74,7 @@ async def chat_completions(
         logger.exception("Agent chat failed")
         raise HTTPException(status_code=500, detail="Agent processing failed.")
 
-    sources = [RetrievedChunk(**s) for s in result.sources]
+    sources = [GroupedSource(**s) for s in result.sources]
     return {
         "data": ChatResponse(
             response=result.text,

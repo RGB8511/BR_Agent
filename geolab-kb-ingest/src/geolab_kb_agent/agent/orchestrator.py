@@ -237,7 +237,7 @@ class KBAgent:
                 # Append assistant reply to history for multi-turn
                 messages.append({"role": "assistant", "content": final_text})
 
-                sources = provenance.to_retrieved_chunks()
+                sources = provenance.to_grouped_chunks()
                 confidence = self._compute_confidence(provenance)
                 logger.info(
                     "Agent response: %d chars, %d tool calls, %d sources, confidence=%s",
@@ -272,7 +272,7 @@ class KBAgent:
         messages.append({"role": "assistant", "content": fallback})
         return AgentResponse(
             text=fallback,
-            sources=provenance.to_retrieved_chunks(),
+            sources=provenance.to_grouped_chunks(),
             tool_calls_made=tool_calls_made,
             confidence=self._compute_confidence(provenance),
         )
@@ -398,7 +398,7 @@ class KBAgent:
             # Append to conversation history for multi-turn
             messages.append({"role": "assistant", "content": final_text})
 
-            sources = provenance.to_retrieved_chunks()
+            sources = provenance.to_grouped_chunks()
             logger.info(
                 "Stream response: %d chars, %d tool calls, %d sources, confidence=%s",
                 len(final_text),
