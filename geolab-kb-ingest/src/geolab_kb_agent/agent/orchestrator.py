@@ -143,6 +143,94 @@ class KBAgent:
         def _clean(val: str) -> str:
             return " ".join(val.split()) if val else ""
 
+        # Filename format: doc{NN}_{author}_{year}_{desc}.pdf
+        _FILENAME_RE = re.compile(
+            r"^doc\d+_([a-z]+)_(\d{4})_(.+)\.pdf$", re.IGNORECASE,
+        )
+
+        # Author abbreviations found in filenames
+        _AUTHOR_MAP: dict[str, str] = {
+            "wsrb": "Western States Reclamation Bureau",
+            "idse": "Intermountain Dam Safety Engineers, LLC",
+            "fhsc": "Cascade Dam Safety Consultants",
+            "sdwr": "State Division of Water Resources",
+            "jbid": "Juniper Basin Irrigation District",
+        }
+
+        def _parse_filename(fn: str) -> tuple[str, str, str]:
+            """Extract (author, year, title) from a structured filename.
+
+            Returns empty strings for any field that cannot be parsed.
+            """
+            m = _FILENAME_RE.match(fn)
+            if not m:
+                return "", "", ""
+            abbrev, year, desc = m.group(1), m.group(2), m.group(3)
+            author = _AUTHOR_MAP.get(abbrev.lower(), "")
+            title = desc.replace("_", " ").title()
+            return author, year, title
+
+        def _is_garbled(val: str) -> bool:
+            """Heuristic: detect garbled interleaved-text titles."""
+            if not val:
+                return False
+            # Only examine alphabetic characters to avoid dilution
+            # from spaces, commas, digits etc.
+            alpha = [c for c in val if c.isalpha()]
+            if len(alpha) < 6:
+                return False
+            switches = sum(
+                1 for a, b in zip(alpha, alpha[1:])
+                if (a.isupper() and b.islower()) or (a.islower() and b.isupper())
+            )
+            ratio = switches / max(len(alpha) - 1, 1)
+            return ratio > 0.3
+
+        def _is_bad_date(val: str) -> bool:
+            """Detect non-date values like 'Idaho 8362' or 'Clear\\n5195'."""
+            if not val:
+                return True
+            # Good dates contain month names or just a year
+            val_lower = val.lower()
+            if re.match(r"^\d{4}$", val.strip()):
+                return False
+            months = {
+                "jan", "feb", "mar", "apr", "may", "jun",
+                "jul", "aug", "sep", "oct", "nov", "dec",
+            }
+            return not any(m in val_lower for m in months)
+
+        def _project_citation(meta: dict, fallback_title: str) -> str:
+            """Build a clean citation string for a project document."""
+            filename = _clean(meta.get("filename", ""))
+            fn_author, fn_year, fn_title = _parse_filename(filename)
+
+            raw_title = _clean(meta.get("title", fallback_title))
+            raw_author = _clean(meta.get("author", ""))
+            raw_date = _clean(meta.get("date", ""))
+            project = _clean(meta.get("project", ""))
+            pages = _clean(meta.get("page_range", ""))
+
+            # Use filename-derived values when metadata is garbled
+            title = fn_title if _is_garbled(raw_title) else raw_title
+            author = raw_author if raw_author else fn_author
+            date = raw_date if not _is_bad_date(raw_date) else fn_year
+
+            parts: list[str] = []
+            if author:
+                parts.append(f"{author},")
+            if title:
+                parts.append(f'"{title},"')
+            if project:
+                parts.append(f"{project},")
+            if date:
+                parts.append(f"{date}.")
+            if pages:
+                parts.append(f"pp. {pages}.")
+            if filename:
+                parts.append(f"({filename})")
+            return " ".join(parts) if parts else filename or "Unknown source"
+
         # Accept both [Source N] and [N] from the model
         cited = sorted(
             set(int(m) for m in re.findall(r"\[(?:Source\s+)?(\d+)\]", text))
@@ -214,27 +302,7 @@ class KBAgent:
             meta = rep_citation.metadata or {}
 
             if rep_citation.package_id and rep_citation.package_id.startswith("project:"):
-                author = _clean(meta.get("author", ""))
-                title = _clean(meta.get("title", rep_citation.value or ""))
-                project = _clean(meta.get("project", ""))
-                date = _clean(meta.get("date", ""))
-                pages = _clean(meta.get("page_range", ""))
-                filename = _clean(meta.get("filename", ""))
-
-                parts = []
-                if author:
-                    parts.append(f"{author},")
-                if title:
-                    parts.append(f'"{title},"')
-                if project:
-                    parts.append(f"{project},")
-                if date:
-                    parts.append(f"{date}.")
-                if pages:
-                    parts.append(f"pp. {pages}.")
-                if filename:
-                    parts.append(f"({filename})")
-                ref_text = " ".join(parts) if parts else rep_citation.record_id
+                ref_text = _project_citation(meta, rep_citation.value or "")
             else:
                 title = _clean(rep_citation.value or "")
                 pkg = rep_citation.package_id or ""
@@ -264,20 +332,26 @@ class KBAgent:
 
                     # Build a concise sub-description
                     desc = ""
-                    if ctype == "table" and section:
+                    if ctype == "table" and section and not _is_garbled(section):
                         desc = f"Table: {section}"
                     elif ctype == "table":
-                        desc = f"Table ({chunk_title})" if chunk_title != doc_title else "Table"
+                        desc = "Table"
                     elif ctype == "equation" and section:
                         desc = f"Eq: {section}"
-                    elif section:
+                    elif section and not _is_garbled(section):
                         desc = section
-                    elif chunk_title and chunk_title != doc_title:
+                    elif chunk_title and chunk_title != doc_title and not _is_garbled(chunk_title):
                         desc = chunk_title
                     else:
-                        # Use first ~80 chars of snippet as fallback
+                        # Use first ~80 chars of snippet as fallback, but
+                        # only if it's not garbled
                         snippet = _clean(sc.snippet or "")[:80]
-                        desc = f'"{snippet}..."' if snippet else ctype or "section"
+                        if snippet and not _is_garbled(snippet):
+                            desc = f'"{snippet}..."'
+                        else:
+                            # Fall back to chunk type + index from chunk ID
+                            chunk_suffix = sc.record_id.rsplit(".", 1)[-1] if sc.record_id else ""
+                            desc = f"{ctype or 'section'} {chunk_suffix}".strip()
                     lines.append(f"  - [{sub_label}] {desc}")
 
             lines.append("")  # blank line between entries
