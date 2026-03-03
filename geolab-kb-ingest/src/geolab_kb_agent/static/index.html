@@ -659,6 +659,7 @@ function appendSources(bubble, sources) {
   sources.forEach((grp) => {
     const docNum = grp.doc_number;
     const docName = grp.document_name || 'Unknown';
+    const citation = grp.display_citation || '';
     const project = grp.project;
     const subRefs = grp.sub_refs || [];
 
@@ -666,7 +667,7 @@ function appendSources(bubble, sources) {
     const docItem = document.createElement('div');
     docItem.className = 'source-item';
 
-    // Document header: [N] filename — Project
+    // Document header: [N] citation (or filename fallback)
     const docHeader = document.createElement('div');
     docHeader.className = 'source-header';
 
@@ -677,10 +678,15 @@ function appendSources(bubble, sources) {
 
     const docEl = document.createElement('span');
     docEl.className = 'source-doc';
-    docEl.textContent = docName;
+    docEl.textContent = citation || docName;
+    // Show raw filename on hover for audit
+    if (citation) {
+      docEl.title = docName;
+    }
     docHeader.appendChild(docEl);
 
-    if (project) {
+    // Only show separate project line when no citation (fallback)
+    if (!citation && project) {
       const projEl = document.createElement('span');
       projEl.className = 'source-section';
       projEl.textContent = `— ${project}`;
@@ -989,8 +995,8 @@ function exportMarkdown() {
           if (sources.length) {
             md += '\nSources:\n';
             sources.forEach((grp) => {
-              const doc = grp.document_name || 'Unknown';
-              const proj = grp.project ? ` — ${grp.project}` : '';
+              const doc = grp.display_citation || grp.document_name || 'Unknown';
+              const proj = (!grp.display_citation && grp.project) ? ` — ${grp.project}` : '';
               md += `- [${grp.doc_number}] ${doc}${proj}\n`;
               (grp.sub_refs || []).forEach((ref) => {
                 const score = ref.similarity_score != null ? ` (${parseFloat(ref.similarity_score).toFixed(3)})` : '';

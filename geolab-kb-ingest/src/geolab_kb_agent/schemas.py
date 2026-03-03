@@ -36,6 +36,7 @@ class GroupedSource(BaseModel):
     doc_number: int
     document_name: str
     project: str | None = None
+    display_citation: str = ""
     sub_refs: list[SubRef] = Field(default_factory=list)
 
 

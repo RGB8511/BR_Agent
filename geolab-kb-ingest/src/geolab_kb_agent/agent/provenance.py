@@ -2,8 +2,182 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Any
+
+# ---------------------------------------------------------------------------
+# Citation formatting helpers
+# ---------------------------------------------------------------------------
+
+# 4-digit year in a date metadata field (1900-2099)
+_DATE_YEAR_RE = re.compile(r"\b(19|20)\d{2}\b")
+
+# Year from filename pattern: docNN_abbr_YYYY_...
+_FILENAME_YEAR_RE = re.compile(r"^doc\d+_[a-z]+_(\d{4})_")
+
+# Firm abbreviation from filename: docNN_ABBR_...
+_FILENAME_FIRM_RE = re.compile(r"^doc\d+_([a-z]+)_")
+
+# Maps abbreviations to full firm / agency names
+_FIRM_ABBR: dict[str, str] = {
+    "idse": "Intermountain Dam Safety Engineers, LLC",
+    "wsrb": "Washington State Reclamation Board",
+    "fhsc": "FH Stoltze Consulting",
+    "sdwr": "State Division of Water Resources",
+    "jbid": "Joint Board of Irrigation Districts",
+    "rvic": "Rimrock Valley Irrigation Company",
+}
+
+
+def _extract_year(meta: dict[str, Any]) -> str | None:
+    """Try date field for a valid year, then filename pattern, else None."""
+    date_val = meta.get("date", "")
+    if date_val:
+        m = _DATE_YEAR_RE.search(str(date_val))
+        if m:
+            return m.group(0)
+    filename = meta.get("filename", "")
+    if filename:
+        m = _FILENAME_YEAR_RE.match(filename.lower())
+        if m:
+            return m.group(1)
+    return None
+
+
+def _extract_author(meta: dict[str, Any]) -> str | None:
+    """Try author field, then firm abbreviation lookup, else None."""
+    author = meta.get("author", "")
+    if author and author.strip():
+        return author.strip()
+    filename = meta.get("filename", "")
+    if filename:
+        m = _FILENAME_FIRM_RE.match(filename.lower())
+        if m:
+            return _FIRM_ABBR.get(m.group(1))
+    return None
+
+
+def _title_case(text: str) -> str:
+    """Convert ALL-CAPS OCR text to title case; leave mixed-case alone."""
+    if text.isupper():
+        return text.title()
+    return text
+
+
+def _clean_csv_title(title: str) -> str:
+    """Normalise CSV-derived titles.
+
+    Example: "Data I1 Ucs Dacite Tuff" -> "UCS Test Data — Dacite Tuff"
+    """
+    if not title:
+        return title
+    # Strip leading "Data XX " prefix
+    cleaned = re.sub(r"^Data\s+[A-Za-z0-9]+\s+", "", title, flags=re.IGNORECASE)
+    # Uppercase known acronyms
+    acronyms = {"ucs", "pls", "bts", "xrd", "xrf", "spt", "cpt", "uscs"}
+    words = cleaned.split()
+    normalised = []
+    for w in words:
+        if w.lower() in acronyms:
+            normalised.append(w.upper())
+        else:
+            normalised.append(_title_case(w))
+    cleaned = " ".join(normalised)
+    # If the first word is an acronym, append " Test Data"
+    if normalised and normalised[0].isupper() and normalised[0].lower() in acronyms:
+        first = normalised[0]
+        rest = " ".join(normalised[1:])
+        cleaned = f"{first} Test Data" + (f" \u2014 {rest}" if rest else "")
+    return cleaned
+
+
+# --- Per-type formatters ---------------------------------------------------
+
+def _format_pdf_citation(
+    meta: dict[str, Any], package_id: str | None, title: str | None,
+) -> str:
+    author = _extract_author(meta)
+    year = _extract_year(meta)
+    doc_title = title or meta.get("title", "")
+    if doc_title:
+        doc_title = _title_case(doc_title)
+    project = meta.get("project", "")
+    discipline = meta.get("discipline", "")
+
+    parts: list[str] = []
+    # Author (Year).
+    if author and year:
+        parts.append(f"{author} ({year}).")
+    elif author:
+        parts.append(f"{author} (n.d.).")
+    elif year:
+        parts.append(f"({year}).")
+
+    # Title.
+    if doc_title:
+        parts.append(f"{doc_title}.")
+
+    # Project.
+    if project:
+        parts.append(f"{project}.")
+
+    # [Discipline] tag
+    if discipline:
+        parts.append(f"[{_title_case(discipline)}]")
+
+    return " ".join(parts) if parts else ""
+
+
+def _format_csv_citation(
+    meta: dict[str, Any], package_id: str | None, title: str | None,
+) -> str:
+    raw_title = title or meta.get("title", "")
+    cleaned = _clean_csv_title(raw_title) if raw_title else ""
+    project = meta.get("project", "")
+
+    parts: list[str] = []
+    if cleaned:
+        parts.append(f"{cleaned}.")
+    if project:
+        parts.append(f"{project}.")
+    parts.append("[Laboratory Data]")
+    return " ".join(parts)
+
+
+def _format_kb_citation(
+    meta: dict[str, Any], package_id: str | None, title: str | None,
+) -> str:
+    doc_title = title or meta.get("title", "")
+    if doc_title:
+        doc_title = _title_case(doc_title)
+    standard = meta.get("standard", "")
+
+    parts: list[str] = []
+    if doc_title:
+        parts.append(f"{doc_title}.")
+    if standard:
+        parts.append(f"{standard}.")
+    parts.append("[Reference KB]")
+    return " ".join(parts)
+
+
+def format_citation(
+    metadata: dict[str, Any] | None,
+    chunk_type: str | None,
+    package_id: str | None,
+    title: str | None,
+) -> str:
+    """Build a scientific-style citation string from chunk metadata."""
+    meta = metadata or {}
+    ct = (chunk_type or "").lower()
+
+    if ct == "csv" or ct == "lab":
+        return _format_csv_citation(meta, package_id, title)
+    if ct in ("kb", "reference", "knowledge_base"):
+        return _format_kb_citation(meta, package_id, title)
+    # Default: PDF / project document
+    return _format_pdf_citation(meta, package_id, title)
 
 
 @dataclass
@@ -186,9 +360,16 @@ class ProvenanceCollector:
 
             if doc_name not in doc_groups:
                 doc_order.append(doc_name)
+                citation = format_citation(
+                    metadata=c.metadata,
+                    chunk_type=c.chunk_type,
+                    package_id=c.package_id,
+                    title=c.value,
+                )
                 doc_groups[doc_name] = {
                     "document_name": doc_name,
                     "project": project,
+                    "display_citation": citation,
                     "sub_refs": [],
                 }
 
