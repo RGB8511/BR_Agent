@@ -9,6 +9,10 @@ __pycache__/
 build/
 dist/
 .venv/
+venv/
+
+# Node
+node_modules/
 
 # Testing
 .pytest_cache/

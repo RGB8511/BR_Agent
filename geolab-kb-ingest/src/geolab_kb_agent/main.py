@@ -14,7 +14,7 @@ from geolab_kb_ingest.db import get_engine, init_db
 from geolab_kb_ingest.embedder import Embedder
 
 from .config import get_settings
-from .routers import chat
+from .routers import chat, kb
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -82,6 +82,7 @@ def create_app() -> FastAPI:
 
     # Routers
     app.include_router(chat.router)
+    app.include_router(kb.router)
 
     # Health
     @app.get("/health")

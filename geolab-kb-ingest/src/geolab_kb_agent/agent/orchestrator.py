@@ -404,6 +404,25 @@ class KBAgent:
             )
         return tool_results, count
 
+    @staticmethod
+    def _summarize_tool_result(tool_name: str, result: dict) -> list[dict]:
+        """Extract chunk summaries from a tool result for SSE events."""
+        if tool_name != "search_kb" or not isinstance(result, dict):
+            return []
+        chunks = result.get("results", [])
+        return [
+            {
+                "id": c.get("id", ""),
+                "title": c.get("title", ""),
+                "package_id": c.get("package_id", ""),
+                "discipline": c.get("discipline", ""),
+                "chunk_type": c.get("chunk_type", ""),
+                "score": round(c.get("score", 0), 4),
+                "snippet": (c.get("content", "") or "")[:150],
+            }
+            for c in chunks[:10]
+        ]
+
     # ------------------------------------------------------------------
     # Non-streaming chat (backwards compatible)
     # ------------------------------------------------------------------
@@ -548,6 +567,8 @@ class KBAgent:
         system = get_system_prompt(self.mode)
         all_tools = self._all_tools()
 
+        yield {"type": "routing_started"}
+
         # --- Tool-use loop (non-streaming) ---
         final_found = False
         for _iteration in range(MAX_ITERATIONS):
@@ -570,20 +591,48 @@ class KBAgent:
                 final_found = True
                 break
 
-            # Append assistant + tool results for next iteration
+            # Append assistant message
             messages.append({"role": "assistant", "content": response.content})
-            tool_results, count = await self._execute_tools(
-                tool_use_blocks, provenance
-            )
-            tool_calls_made += count
+
+            # Execute tools inline with events (instead of _execute_tools)
+            tool_results = []
+            for block in tool_use_blocks:
+                tool_calls_made += 1
+                yield {
+                    "type": "tool_call",
+                    "tool_name": block.name,
+                    "arguments": block.input,
+                }
+
+                handler = self._handlers.get(block.name)
+                if handler is None:
+                    result_content = json.dumps({"error": f"Unknown tool: {block.name}"})
+                    yield {"type": "tool_result", "tool_name": block.name, "chunks": []}
+                else:
+                    try:
+                        result = await handler(block.input, provenance)
+                        result_content = json.dumps(result, default=str)
+                        chunks = self._summarize_tool_result(block.name, result)
+                        yield {"type": "tool_result", "tool_name": block.name, "chunks": chunks}
+                    except Exception as exc:
+                        logger.exception("Tool %s failed", block.name)
+                        result_content = json.dumps({"error": f"Tool execution failed: {exc}"})
+                        yield {"type": "tool_result", "tool_name": block.name, "chunks": [], "error": str(exc)}
+
+                tool_results.append({
+                    "type": "tool_result",
+                    "tool_use_id": block.id,
+                    "content": result_content,
+                })
             messages.append({"role": "user", "content": tool_results})
 
         if not final_found:
             yield {
+                "type": "error",
                 "error": (
                     "Unable to complete within allowed steps. "
                     "Try a more specific question."
-                )
+                ),
             }
             return
 
@@ -610,6 +659,8 @@ class KBAgent:
                 })
 
         # --- Re-issue as streaming call ---
+        yield {"type": "synthesis_started", "confidence": confidence.model_dump()}
+
         try:
             async with self._client.messages.stream(
                 model=self.model,
@@ -622,7 +673,7 @@ class KBAgent:
                 full_text_parts: list[str] = []
                 async for text_chunk in stream.text_stream:
                     full_text_parts.append(text_chunk)
-                    yield {"text": text_chunk}
+                    yield {"type": "text", "text": text_chunk}
 
                 final_message = await stream.get_final_message()
                 self._log_usage(final_message)
@@ -637,7 +688,7 @@ class KBAgent:
             # special event with the full rewritten text + refs so
             # the frontend can replace the content.
             if final_text != raw_text or refs:
-                yield {"rewrite": final_text + refs}
+                yield {"type": "rewrite", "rewrite": final_text + refs}
 
             final_text += refs
 
@@ -654,6 +705,7 @@ class KBAgent:
             )
 
             yield {
+                "type": "done",
                 "done": True,
                 "sources": sources,
                 "confidence": confidence.model_dump(),
@@ -662,4 +714,4 @@ class KBAgent:
 
         except Exception as exc:
             logger.exception("Streaming failed")
-            yield {"error": f"Streaming failed: {exc}"}
+            yield {"type": "error", "error": f"Streaming failed: {exc}"}

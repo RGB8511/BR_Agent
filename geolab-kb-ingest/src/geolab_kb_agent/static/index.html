@@ -495,10 +495,340 @@
   .katex { font-size: 1em; }
   .katex-display { margin: 10px 0; overflow-x: auto; }
 
+  /* ═══════════════════════════════════════════════════════════
+     SIDEBAR — Layout wrappers
+     ═══════════════════════════════════════════════════════════ */
+  .app-body {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .main-col {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Sidebar shell */
+  .sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #0b1120;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: width 0.25s ease, border 0.25s ease;
+  }
+  .sidebar.collapsed {
+    width: 0;
+    border-right: none;
+  }
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .sidebar-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .sidebar-toggle {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .sidebar-toggle:hover {
+    background: var(--surface2);
+    color: var(--text);
+  }
+  .sidebar-tree {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+  }
+  .sidebar-loading {
+    color: var(--text-muted);
+    font-size: 12px;
+    padding: 16px 8px;
+    text-align: center;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SIDEBAR — Tree nodes
+     ═══════════════════════════════════════════════════════════ */
+  .tree-node {
+    margin-bottom: 2px;
+  }
+  .tree-node-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .tree-node-header:hover {
+    background: rgba(255,255,255,0.04);
+  }
+  .tree-node-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid var(--node-color, var(--text-muted));
+    background: transparent;
+    flex-shrink: 0;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .tree-node-icon {
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .tree-node-label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .tree-node-count {
+    font-size: 10px;
+    color: var(--text-muted);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+  .tree-node-status {
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-left: auto;
+    color: var(--node-color, var(--text-muted));
+    white-space: nowrap;
+  }
+  /* Root node (depth 0) */
+  .tree-node[data-depth="0"] > .tree-node-header .tree-node-indicator {
+    width: 10px;
+    height: 10px;
+  }
+  .tree-node[data-depth="0"] > .tree-node-header .tree-node-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .tree-children {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    padding-left: 14px;
+  }
+  .tree-node.expanded > .tree-children {
+    max-height: 5000px;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SIDEBAR — Node states
+     ═══════════════════════════════════════════════════════════ */
+  /* idle (default) — no extra styling */
+
+  /* routing — pulse animation */
+  .tree-node.state-routing > .tree-node-header {
+    animation: sidebar-glow-pulse 1.5s infinite;
+  }
+  .tree-node.state-routing > .tree-node-header .tree-node-indicator {
+    border-color: var(--node-color);
+    background: var(--node-color);
+    box-shadow: 0 0 6px var(--node-color);
+  }
+  .tree-node.state-routing > .tree-node-header .tree-node-label {
+    color: var(--text);
+  }
+
+  /* activated — subtle background tint */
+  .tree-node.state-activated > .tree-node-header {
+    background: rgba(255,255,255,0.05);
+  }
+  .tree-node.state-activated > .tree-node-header .tree-node-indicator {
+    border-color: var(--node-color);
+    background: rgba(255,255,255,0.15);
+  }
+  .tree-node.state-activated > .tree-node-header .tree-node-label {
+    color: var(--text);
+  }
+
+  /* retrieving — solid indicator fill */
+  .tree-node.state-retrieving > .tree-node-header .tree-node-indicator {
+    border-color: var(--node-color);
+    background: var(--node-color);
+  }
+  .tree-node.state-retrieving > .tree-node-header .tree-node-label {
+    color: var(--text);
+  }
+  .tree-node.state-retrieving > .tree-node-header {
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* complete — green indicator + checkmark */
+  .tree-node.state-complete > .tree-node-header .tree-node-indicator {
+    border-color: var(--success);
+    background: var(--success);
+  }
+  .tree-node.state-complete > .tree-node-header .tree-node-label {
+    color: var(--text);
+  }
+
+  /* synthesizing — green pulse */
+  .tree-node.state-synthesizing > .tree-node-header {
+    animation: sidebar-glow-pulse 1.5s infinite;
+  }
+  .tree-node.state-synthesizing > .tree-node-header .tree-node-indicator {
+    border-color: var(--success);
+    background: var(--success);
+    box-shadow: 0 0 6px var(--success);
+  }
+  .tree-node.state-synthesizing > .tree-node-header .tree-node-label {
+    color: var(--text);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SIDEBAR — Routing text block
+     ═══════════════════════════════════════════════════════════ */
+  .routing-text {
+    display: none;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    padding: 4px 8px;
+    margin: 2px 0 4px 20px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px;
+    border-left: 2px solid var(--success);
+    line-height: 1.5;
+    max-height: 120px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .routing-text.visible {
+    display: block;
+    animation: sidebar-fade-slide-in 0.25s ease;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SIDEBAR — Chunk cards
+     ═══════════════════════════════════════════════════════════ */
+  .sidebar-chunks-container {
+    padding-left: 20px;
+  }
+  .sidebar-chunk {
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid var(--node-color, var(--accent));
+    border-radius: 0 4px 4px 0;
+    padding: 5px 8px;
+    margin: 3px 0;
+    cursor: pointer;
+    transition: background 0.15s;
+    animation: sidebar-fade-slide-in 0.3s ease;
+  }
+  .sidebar-chunk:hover {
+    background: rgba(255,255,255,0.06);
+  }
+  .sidebar-chunk-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+  }
+  .sidebar-chunk-source {
+    color: #d4879c;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100px;
+  }
+  .sidebar-chunk-score {
+    padding: 0 5px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .sidebar-chunk-score.score-green {
+    background: #052e16;
+    color: #40c057;
+  }
+  .sidebar-chunk-score.score-yellow {
+    background: #451a03;
+    color: #f0c040;
+  }
+  .sidebar-chunk-score.score-orange {
+    background: #431407;
+    color: #e8a838;
+  }
+  .sidebar-chunk-preview {
+    font-size: 10px;
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+  }
+  .sidebar-chunk-full {
+    display: none;
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-top: 4px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .sidebar-chunk.expanded .sidebar-chunk-preview {
+    display: none;
+  }
+  .sidebar-chunk.expanded .sidebar-chunk-full {
+    display: block;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SIDEBAR — Animations
+     ═══════════════════════════════════════════════════════════ */
+  @keyframes sidebar-glow-pulse {
+    0%, 100% { box-shadow: none; }
+    50% { box-shadow: inset 0 0 12px rgba(255,255,255,0.06); }
+  }
+  @keyframes sidebar-fade-slide-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes sidebar-dot-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+  .dot-pulse::after {
+    content: '...';
+    animation: sidebar-dot-pulse 1.2s infinite;
+  }
+
   /* Print styles */
   @media print {
     .header, .input-area, .mode-toggle, .typing,
-    .confidence-badge, .export-dropdown, .feedback-controls { display: none !important; }
+    .confidence-badge, .export-dropdown, .feedback-controls, .sidebar { display: none !important; }
     body {
       background: white;
       color: black;
@@ -555,6 +885,18 @@
   </div>
 </div>
 
+<div class="app-body">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Agent Routing</span>
+      <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">&#9776;</button>
+    </div>
+    <div class="sidebar-tree" id="sidebarTree">
+      <div class="sidebar-loading">Loading topology...</div>
+    </div>
+  </aside>
+  <div class="main-col">
+
 <div class="chat-container" id="chat">
   <div class="welcome" id="welcome">
     <h2>Geotechnical Knowledge Base</h2>
@@ -578,6 +920,9 @@
   <div class="meta-info" id="meta"></div>
 </div>
 
+  </div><!-- /.main-col -->
+</div><!-- /.app-body -->
+
 <script>
 const STREAM_API = '/api/v1/chat/stream';
 const chatEl = document.getElementById('chat');
@@ -590,6 +935,382 @@ let currentMode = 'educational';
 let conversationId = null;
 let isLoading = false;
 let agentMessageIndex = 0;
+
+// ═══════════════════════════════════════════════════════════════
+// SIDEBAR — State & constants
+// ═══════════════════════════════════════════════════════════════
+let topologyTree = null;
+let nodeStates = {};
+let activeChunks = {};
+let routingText = '';
+let activatedNodes = new Set();
+
+const DISCIPLINE_MAP = {
+  'geotechnical':  { icon: '\u{1FAA8}', color: '#9775fa' },
+  'water-infra':   { icon: '\u{1F30A}', color: '#4a9eff' },
+  'concrete':      { icon: '\u{1F9F1}', color: '#e8a838' },
+  'structural':    { icon: '\u{1F3D7}\uFE0F', color: '#40c057' },
+  'environmental': { icon: '\u{1F33F}', color: '#51cf66' },
+  'dam-safety':    { icon: '\u{1F512}', color: '#f06595' },
+  'geology':       { icon: '\u26F0\uFE0F', color: '#cc5de8' },
+};
+
+const sidebarEl = document.getElementById('sidebar');
+const sidebarTreeEl = document.getElementById('sidebarTree');
+const sidebarToggleBtn = document.getElementById('sidebarToggle');
+
+// Toggle sidebar
+sidebarToggleBtn.addEventListener('click', () => {
+  sidebarEl.classList.toggle('collapsed');
+});
+
+// ── Topology fetch ──────────────────────────────────────────
+async function loadTopology() {
+  try {
+    const res = await fetch('/api/v1/kb/topology');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    topologyTree = data.tree;
+    renderTree();
+  } catch (e) {
+    console.warn('Topology load failed:', e);
+    sidebarTreeEl.innerHTML = '<div class="sidebar-loading">Topology unavailable</div>';
+  }
+}
+
+// ── Tree rendering ──────────────────────────────────────────
+function renderTree() {
+  if (!topologyTree) return;
+  sidebarTreeEl.innerHTML = '';
+  const rootEl = buildTreeNode(topologyTree, 0);
+  sidebarTreeEl.appendChild(rootEl);
+}
+
+function buildTreeNode(node, depth) {
+  const el = document.createElement('div');
+  el.className = 'tree-node';
+  el.dataset.nodeId = node.id;
+  el.dataset.depth = depth;
+
+  // Determine color
+  let nodeColor = '#00d4aa'; // router default
+  if (node.discipline) {
+    const dm = DISCIPLINE_MAP[node.discipline];
+    nodeColor = dm ? dm.color : '#9775fa';
+  } else if (node.project_slug || (node.id && node.id.startsWith('project:'))) {
+    nodeColor = '#4a9eff';
+  } else if (node.id && node.id.startsWith('disc:')) {
+    const disc = node.id.replace('disc:', '');
+    const dm = DISCIPLINE_MAP[disc];
+    nodeColor = dm ? dm.color : '#9775fa';
+  }
+  el.style.setProperty('--node-color', nodeColor);
+
+  // Header
+  const header = document.createElement('div');
+  header.className = 'tree-node-header';
+
+  const indicator = document.createElement('div');
+  indicator.className = 'tree-node-indicator';
+  header.appendChild(indicator);
+
+  // Icon
+  const iconEl = document.createElement('span');
+  iconEl.className = 'tree-node-icon';
+  if (node.id === 'router') {
+    iconEl.textContent = '\u{1F916}';
+  } else if (node.discipline) {
+    const dm = DISCIPLINE_MAP[node.discipline];
+    iconEl.textContent = dm ? dm.icon : '\u{1F4E6}';
+  } else if (node.project_slug || (node.id && node.id.startsWith('project:'))) {
+    iconEl.textContent = '\u{1F4CB}';
+  } else if (node.id && node.id.startsWith('disc:')) {
+    const disc = node.id.replace('disc:', '');
+    const dm = DISCIPLINE_MAP[disc];
+    iconEl.textContent = dm ? dm.icon : '\u{1F4D6}';
+  } else {
+    iconEl.textContent = '\u{1F4E6}';
+  }
+  header.appendChild(iconEl);
+
+  const label = document.createElement('span');
+  label.className = 'tree-node-label';
+  label.textContent = node.label || node.id;
+  header.appendChild(label);
+
+  if (node.chunk_count) {
+    const count = document.createElement('span');
+    count.className = 'tree-node-count';
+    count.textContent = node.chunk_count;
+    header.appendChild(count);
+  }
+
+  const status = document.createElement('span');
+  status.className = 'tree-node-status';
+  header.appendChild(status);
+
+  el.appendChild(header);
+
+  // Routing text (only for router)
+  if (node.id === 'router') {
+    const rt = document.createElement('div');
+    rt.className = 'routing-text';
+    rt.id = 'routingTextBlock';
+    el.appendChild(rt);
+  }
+
+  // Chunks container
+  const chunksContainer = document.createElement('div');
+  chunksContainer.className = 'sidebar-chunks-container';
+  el.appendChild(chunksContainer);
+
+  // Children
+  if (node.children && node.children.length > 0) {
+    const childrenWrap = document.createElement('div');
+    childrenWrap.className = 'tree-children';
+    for (const child of node.children) {
+      childrenWrap.appendChild(buildTreeNode(child, depth + 1));
+    }
+    el.appendChild(childrenWrap);
+  }
+
+  // Click to toggle expanded
+  header.addEventListener('click', () => {
+    el.classList.toggle('expanded');
+  });
+
+  // Root starts expanded
+  if (depth === 0) {
+    el.classList.add('expanded');
+  }
+
+  return el;
+}
+
+// ── Tree search helpers ─────────────────────────────────────
+function findTreeNodeEl(nodeId) {
+  return sidebarTreeEl.querySelector(`[data-node-id="${CSS.escape(nodeId)}"]`);
+}
+
+function findTreeData(nodeId, tree) {
+  if (!tree) return null;
+  if (tree.id === nodeId) return tree;
+  if (tree.children) {
+    for (const child of tree.children) {
+      const found = findTreeData(nodeId, child);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+function findParentData(nodeId, tree) {
+  if (!tree || !tree.children) return null;
+  for (const child of tree.children) {
+    if (child.id === nodeId) return tree;
+    const found = findParentData(nodeId, child);
+    if (found) return found;
+  }
+  return null;
+}
+
+// ── State management ────────────────────────────────────────
+function setNodeState(nodeId, state) {
+  const el = findTreeNodeEl(nodeId);
+  if (!el) return;
+
+  // Remove old state classes
+  el.classList.remove('state-idle', 'state-routing', 'state-activated',
+    'state-retrieving', 'state-complete', 'state-synthesizing');
+  el.classList.add('state-' + state);
+  nodeStates[nodeId] = state;
+
+  // Auto-expand node and parent when not idle
+  if (state !== 'idle') {
+    el.classList.add('expanded');
+    // Expand parent too
+    const parentData = findParentData(nodeId, topologyTree);
+    if (parentData) {
+      const parentEl = findTreeNodeEl(parentData.id);
+      if (parentEl) parentEl.classList.add('expanded');
+    }
+  }
+
+  // Update status text
+  const statusEl = el.querySelector(':scope > .tree-node-header .tree-node-status');
+  if (!statusEl) return;
+
+  switch (state) {
+    case 'routing':
+      statusEl.innerHTML = '<span class="dot-pulse"></span>';
+      break;
+    case 'activated':
+      statusEl.textContent = 'Searching\u2026';
+      break;
+    case 'retrieving':
+      statusEl.textContent = 'Retrieving';
+      break;
+    case 'complete':
+      statusEl.textContent = '\u2714';
+      statusEl.style.color = 'var(--success)';
+      break;
+    case 'synthesizing':
+      statusEl.textContent = 'Synthesizing\u2026';
+      break;
+    default:
+      statusEl.textContent = '';
+      statusEl.style.color = '';
+  }
+}
+
+function setRoutingText(text) {
+  routingText = text;
+  const block = document.getElementById('routingTextBlock');
+  if (!block) return;
+  if (text) {
+    block.textContent = text;
+    block.classList.add('visible');
+  } else {
+    block.textContent = '';
+    block.classList.remove('visible');
+  }
+}
+
+function addSidebarChunk(nodeId, chunkData) {
+  const nodeEl = findTreeNodeEl(nodeId);
+  if (!nodeEl) return;
+
+  const container = nodeEl.querySelector(':scope > .sidebar-chunks-container');
+  if (!container) return;
+
+  const card = document.createElement('div');
+  card.className = 'sidebar-chunk';
+
+  const header = document.createElement('div');
+  header.className = 'sidebar-chunk-header';
+
+  // Source badge
+  const sourceBadge = document.createElement('span');
+  sourceBadge.className = 'sidebar-chunk-source';
+  sourceBadge.textContent = chunkData.chunk_type || chunkData.package_id || 'chunk';
+  sourceBadge.title = chunkData.package_id || '';
+  header.appendChild(sourceBadge);
+
+  // Score pill
+  const score = chunkData.score;
+  if (score != null) {
+    const scorePill = document.createElement('span');
+    const scoreClass = score >= 0.9 ? 'score-green' : score >= 0.8 ? 'score-yellow' : 'score-orange';
+    scorePill.className = `sidebar-chunk-score ${scoreClass}`;
+    scorePill.textContent = score.toFixed(3);
+    header.appendChild(scorePill);
+  }
+
+  // Preview snippet
+  const preview = document.createElement('span');
+  preview.className = 'sidebar-chunk-preview';
+  preview.textContent = chunkData.title || chunkData.snippet || '';
+  header.appendChild(preview);
+
+  card.appendChild(header);
+
+  // Full text (expanded)
+  const full = document.createElement('div');
+  full.className = 'sidebar-chunk-full';
+  full.textContent = chunkData.snippet || chunkData.title || '';
+  card.appendChild(full);
+
+  // Click to expand/collapse
+  card.addEventListener('click', () => {
+    card.classList.toggle('expanded');
+  });
+
+  container.appendChild(card);
+
+  // Track chunks
+  if (!activeChunks[nodeId]) activeChunks[nodeId] = [];
+  activeChunks[nodeId].push(chunkData);
+}
+
+function resetSidebarState() {
+  // Clear all state classes
+  sidebarTreeEl.querySelectorAll('.tree-node').forEach(el => {
+    el.classList.remove('state-idle', 'state-routing', 'state-activated',
+      'state-retrieving', 'state-complete', 'state-synthesizing');
+    // Clear status text
+    const statusEl = el.querySelector(':scope > .tree-node-header .tree-node-status');
+    if (statusEl) {
+      statusEl.textContent = '';
+      statusEl.style.color = '';
+    }
+    // Clear chunk containers
+    const chunks = el.querySelector(':scope > .sidebar-chunks-container');
+    if (chunks) chunks.innerHTML = '';
+  });
+
+  // Collapse all except root
+  sidebarTreeEl.querySelectorAll('.tree-node').forEach(el => {
+    if (el.dataset.depth === '0') {
+      el.classList.add('expanded');
+    } else {
+      el.classList.remove('expanded');
+    }
+  });
+
+  // Reset state
+  nodeStates = {};
+  activeChunks = {};
+  activatedNodes = new Set();
+  routingText = '';
+  setRoutingText('');
+}
+
+// ── Map tool arguments to tree node IDs ─────────────────────
+function resolveNodeIdFromToolCall(toolName, args) {
+  if (toolName === 'search_kb') {
+    if (args.source === 'project' && args.project) {
+      const slug = args.project.toLowerCase().replace(/\s+/g, '-');
+      return 'project:' + slug;
+    }
+    if (args.discipline) {
+      return 'disc:' + args.discipline;
+    }
+  }
+  if (toolName === 'lookup_equation' || toolName === 'lookup_table' || toolName === 'get_package_info') {
+    // Try to derive discipline from equation_id, table_id, or package_id
+    const id = args.equation_id || args.table_id || args.package_id || '';
+    if (id) {
+      // package_id format: "discipline.topic..." — first segment is the discipline
+      const disc = id.split('.')[0];
+      // Check if we have a tree node for it
+      if (findTreeNodeEl('disc:' + disc)) {
+        return 'disc:' + disc;
+      }
+    }
+  }
+  return null;
+}
+
+function resolveNodeIdFromChunk(chunk) {
+  // 1. project package
+  if (chunk.package_id && chunk.package_id.startsWith('project:')) {
+    return chunk.package_id;
+  }
+  // 2. KB package — look for exact package node, or fall back to discipline
+  if (chunk.package_id) {
+    if (findTreeNodeEl(chunk.package_id)) {
+      return chunk.package_id;
+    }
+  }
+  if (chunk.discipline) {
+    const discId = 'disc:' + chunk.discipline;
+    if (findTreeNodeEl(discId)) return discId;
+  }
+  return 'router'; // fallback
+}
+
+// ── Load topology on page load ──────────────────────────────
+loadTopology();
 
 // Configure marked
 marked.setOptions({ breaks: true, gfm: true });
@@ -795,6 +1516,9 @@ async function send() {
   const message = inputEl.value.trim();
   if (!message || isLoading) return;
 
+  // Reset sidebar for new query
+  resetSidebarState();
+
   // Hide welcome
   if (welcomeEl) welcomeEl.style.display = 'none';
 
@@ -872,6 +1596,47 @@ async function send() {
           conversationId = event.conversation_id;
         }
 
+        // ── Sidebar routing events ──────────────────
+        if (event.type === 'routing_started') {
+          setNodeState('router', 'routing');
+          setRoutingText('Analyzing query...');
+        }
+
+        if (event.type === 'tool_call') {
+          const tn = event.tool_name;
+          const args = event.arguments || {};
+          // Append to routing text
+          const argsSummary = Object.entries(args)
+            .filter(([k]) => k !== 'query' && k !== 'top_k')
+            .map(([k, v]) => `${k}=${v}`)
+            .join(', ');
+          setRoutingText(routingText + '\n' + tn + (argsSummary ? ` (${argsSummary})` : ''));
+
+          // Activate target nodes
+          const targetId = resolveNodeIdFromToolCall(tn, args);
+          if (targetId) {
+            activatedNodes.add(targetId);
+            setNodeState(targetId, 'activated');
+          }
+        }
+
+        if (event.type === 'tool_result') {
+          const chunks = event.chunks || [];
+          for (const chunk of chunks) {
+            const nodeId = resolveNodeIdFromChunk(chunk);
+            if (nodeId) {
+              setNodeState(nodeId, 'retrieving');
+              activatedNodes.add(nodeId);
+              addSidebarChunk(nodeId, chunk);
+            }
+          }
+        }
+
+        if (event.type === 'synthesis_started') {
+          setNodeState('router', 'synthesizing');
+        }
+        // ── End sidebar routing events ──────────────
+
         if (event.text) {
           fullText += event.text;
           scheduleRender();
@@ -888,6 +1653,12 @@ async function send() {
         }
 
         if (event.done) {
+          // Mark all activated sidebar nodes complete
+          for (const nid of activatedNodes) {
+            setNodeState(nid, 'complete');
+          }
+          setNodeState('router', 'complete');
+
           // Final render
           renderContent(bubble, fullText);
           appendConfidence(bubble, event.confidence);
