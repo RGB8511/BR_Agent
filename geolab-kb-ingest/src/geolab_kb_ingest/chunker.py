@@ -12,9 +12,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-import tiktoken
-
-_ENC = tiktoken.get_encoding("cl100k_base")
+from .db import count_tokens as _count_tokens
 
 
 # ---------------------------------------------------------------------------
@@ -43,9 +41,6 @@ def _slugify(text: str) -> str:
     text = re.sub(r"[\s_]+", "-", text)
     return text.strip("-")
 
-
-def _count_tokens(text: str) -> int:
-    return len(_ENC.encode(text))
 
 
 # ---------------------------------------------------------------------------

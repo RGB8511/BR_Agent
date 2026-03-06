@@ -65,6 +65,10 @@ class FeedbackRequest(BaseModel):
     conversation_id: str
     message_index: int
     sentiment: Literal["up", "down"]
+    query_text: str | None = None
+    chunk_ids: list[str] | None = None
+    scores: list[float] | None = None
+    password: str | None = None
 
 
 class Envelope(BaseModel, Generic[T]):

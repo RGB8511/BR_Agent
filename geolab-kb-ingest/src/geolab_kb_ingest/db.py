@@ -10,6 +10,7 @@ from pgvector.sqlalchemy import Vector
 from sqlalchemy import (
     ARRAY,
     DateTime,
+    Float,
     Integer,
     Text,
     create_engine,
@@ -40,6 +41,19 @@ class ChatFeedback(Base):
     conversation_id: Mapped[str] = mapped_column(Text, index=True)
     message_index: Mapped[int] = mapped_column(Integer)
     sentiment: Mapped[str] = mapped_column(Text)  # "up" | "down"
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+    )
+
+
+class ValidatedRetrieval(Base):
+    __tablename__ = "validated_retrieval"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    query_text: Mapped[str] = mapped_column(Text, index=True)
+    chunk_id: Mapped[str] = mapped_column(Text, index=True)
+    original_score: Mapped[float | None] = mapped_column(Float, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),
@@ -113,3 +127,28 @@ def delete_package_chunks(session: Session, package_id: str) -> int:
 def bulk_insert_chunks(session: Session, chunks: list[KBChunk]) -> None:
     """Bulk-insert a list of KBChunk objects."""
     session.add_all(chunks)
+
+
+# ---------------------------------------------------------------------------
+# Shared utilities
+# ---------------------------------------------------------------------------
+def count_tokens(text: str) -> int:
+    """Count tokens using cl100k_base encoding."""
+    import tiktoken
+
+    _enc = tiktoken.get_encoding("cl100k_base")
+    return len(_enc.encode(text))
+
+
+def chunk_to_dict(chunk: KBChunk) -> dict:
+    """Convert a KBChunk ORM object to a plain dict."""
+    return {
+        "id": chunk.id,
+        "title": chunk.title,
+        "content": chunk.content,
+        "chunk_type": chunk.chunk_type,
+        "package_id": chunk.package_id,
+        "discipline": chunk.discipline,
+        "tags": chunk.tags,
+        "metadata": chunk.metadata_,
+    }

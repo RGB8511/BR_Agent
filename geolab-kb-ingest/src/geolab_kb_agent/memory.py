@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 DEFAULT_TTL = 3600  # 1 hour
+MAX_MESSAGES = 100  # sliding window cap per conversation
 
 
 @dataclass
@@ -16,20 +17,37 @@ class Conversation:
 
     id: str
     messages: list[dict[str, Any]] = field(default_factory=list)
+    max_messages: int = MAX_MESSAGES
     created_at: float = field(default_factory=time.monotonic)
     last_active: float = field(default_factory=time.monotonic)
+
+    def _trim(self) -> None:
+        """Keep only the most recent messages, trimming from the front.
+
+        Ensures the first retained message has role 'user' so the history
+        stays valid for the Anthropic API.
+        """
+        if len(self.messages) <= self.max_messages:
+            return
+        self.messages = self.messages[-self.max_messages :]
+        # Ensure we start on a user message
+        while self.messages and self.messages[0].get("role") != "user":
+            self.messages.pop(0)
 
     def add_user_message(self, content: str) -> None:
         self.messages.append({"role": "user", "content": content})
         self.last_active = time.monotonic()
+        self._trim()
 
     def add_assistant_message(self, content: str) -> None:
         self.messages.append({"role": "assistant", "content": content})
         self.last_active = time.monotonic()
+        self._trim()
 
     def add_tool_results(self, results: list[dict[str, Any]]) -> None:
         self.messages.append({"role": "user", "content": results})
         self.last_active = time.monotonic()
+        self._trim()
 
 
 class ConversationStore:

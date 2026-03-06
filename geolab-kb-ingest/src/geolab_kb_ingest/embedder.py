@@ -6,9 +6,12 @@ Pydantic v1/v2 incompatibility on Python 3.14+.
 
 from __future__ import annotations
 
+import logging
 import time
 
 import requests
+
+logger = logging.getLogger(__name__)
 
 
 class Embedder:
@@ -51,6 +54,7 @@ class Embedder:
             resp.raise_for_status()
             return [item["embedding"] for item in resp.json()["data"]]
         except Exception:
+            logger.warning("Embedding failed, retrying once", exc_info=True)
             time.sleep(2)
             resp = requests.post(self._API_URL, json=payload, headers=headers, timeout=60)
             resp.raise_for_status()

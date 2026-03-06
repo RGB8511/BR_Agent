@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GeoLab KB Agent</title>
+<title>BR Agent</title>
 <!-- Marked for markdown rendering -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <!-- KaTeX for LaTeX math -->
@@ -35,22 +35,6 @@
     display: flex;
     flex-direction: column;
   }
-
-  /* Header */
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-  .header h1 {
-    font-size: 18px;
-    font-weight: 600;
-  }
-  .header h1 span { color: var(--accent); }
 
   /* Mode toggle */
   .mode-toggle {
@@ -314,16 +298,11 @@
     color: #86efac;
   }
   .confidence-high .dot { background: #22c55e; }
-  .confidence-medium {
+  .confidence-medium, .confidence-low {
     background: #451a03;
     color: #fde68a;
   }
-  .confidence-medium .dot { background: #f59e0b; }
-  .confidence-low {
-    background: #450a0a;
-    color: #fca5a5;
-  }
-  .confidence-low .dot { background: #ef4444; }
+  .confidence-medium .dot, .confidence-low .dot { background: #f59e0b; }
 
   /* Typing indicator */
   .typing {
@@ -347,10 +326,18 @@
 
   /* Input area */
   .input-area {
-    padding: 16px 20px;
+    padding: 10px 20px 16px;
     background: var(--surface);
     border-top: 1px solid var(--border);
     flex-shrink: 0;
+  }
+  .input-controls {
+    max-width: 800px;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
   }
   .input-wrapper {
     max-width: 800px;
@@ -429,9 +416,9 @@
   .export-dropdown {
     display: none;
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     right: 0;
-    margin-top: 4px;
+    margin-bottom: 4px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -486,6 +473,29 @@
     background: var(--accent);
     color: white;
   }
+  .validated-badge {
+    display: inline-block;
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  .reset-validations-btn {
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-validations-btn:hover {
+    color: #ef4444;
+    border-color: #ef4444;
+  }
   .feedback-btn:disabled {
     opacity: 0.5;
     cursor: default;
@@ -504,6 +514,7 @@
     flex: 1;
     overflow: hidden;
     min-height: 0;
+    position: relative;
   }
   .main-col {
     display: flex;
@@ -526,6 +537,30 @@
   .sidebar.collapsed {
     width: 0;
     border-right: none;
+  }
+  .sidebar-reopen {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 4px;
+    display: none;
+    transition: background 0.15s;
+  }
+  .sidebar-reopen:hover {
+    background: var(--surface2);
+    color: var(--text);
+  }
+  .sidebar.collapsed ~ .sidebar-reopen {
+    display: block;
   }
   .sidebar-header {
     display: flex;
@@ -659,13 +694,13 @@
     color: var(--text);
   }
 
-  /* activated — subtle background tint */
+  /* activated — fill indicator solid */
   .tree-node.state-activated > .tree-node-header {
     background: rgba(255,255,255,0.05);
   }
   .tree-node.state-activated > .tree-node-header .tree-node-indicator {
     border-color: var(--node-color);
-    background: rgba(255,255,255,0.15);
+    background: var(--node-color);
   }
   .tree-node.state-activated > .tree-node-header .tree-node-label {
     color: var(--text);
@@ -683,23 +718,23 @@
     background: rgba(255,255,255,0.05);
   }
 
-  /* complete — green indicator + checkmark */
+  /* complete — filled indicator + checkmark */
   .tree-node.state-complete > .tree-node-header .tree-node-indicator {
-    border-color: var(--success);
-    background: var(--success);
+    border-color: var(--node-color);
+    background: var(--node-color);
   }
   .tree-node.state-complete > .tree-node-header .tree-node-label {
     color: var(--text);
   }
 
-  /* synthesizing — green pulse */
+  /* synthesizing — pulse in node color */
   .tree-node.state-synthesizing > .tree-node-header {
     animation: sidebar-glow-pulse 1.5s infinite;
   }
   .tree-node.state-synthesizing > .tree-node-header .tree-node-indicator {
-    border-color: var(--success);
-    background: var(--success);
-    box-shadow: 0 0 6px var(--success);
+    border-color: var(--node-color);
+    background: var(--node-color);
+    box-shadow: 0 0 6px var(--node-color);
   }
   .tree-node.state-synthesizing > .tree-node-header .tree-node-label {
     color: var(--text);
@@ -866,55 +901,42 @@
 </head>
 <body>
 
-<div class="header">
-  <h1><span>GeoLab</span> KB Agent</h1>
-  <div style="position:relative; display:inline-block;">
-    <button id="exportBtn" class="header-btn" title="Export conversation">Export</button>
-    <div class="export-dropdown" id="exportDropdown">
-      <button class="export-option" onclick="exportMarkdown()">Download Markdown</button>
-      <button class="export-option" onclick="exportPDF()">Print to PDF</button>
-    </div>
-  </div>
-  <div class="mode-toggle">
-    <button class="mode-btn" data-mode="concise">Concise</button>
-    <button class="mode-btn active" data-mode="educational">Educational</button>
-    <button class="mode-btn" data-mode="report">Report</button>
-    <button class="mode-btn" data-mode="calculation">Calc</button>
-    <button class="mode-btn" data-mode="review">Review</button>
-    <button class="mode-btn" data-mode="field">Field</button>
-  </div>
-</div>
 
 <div class="app-body">
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <span class="sidebar-title">Agent Routing</span>
+      <span class="sidebar-title">Routing Agent</span>
       <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">&#9776;</button>
     </div>
     <div class="sidebar-tree" id="sidebarTree">
       <div class="sidebar-loading">Loading topology...</div>
     </div>
   </aside>
+  <button class="sidebar-reopen" id="sidebarReopen" title="Show routing panel">&#9654;</button>
   <div class="main-col">
 
 <div class="chat-container" id="chat">
-  <div class="welcome" id="welcome">
-    <h2>Geotechnical Knowledge Base</h2>
-    <p>Ask questions about soil mechanics, rock mechanics, foundations, hydrology, concrete engineering, and more. Powered by 3,192 curated knowledge chunks from 117 packages.</p>
-    <div class="starters">
-      <button class="starter-btn" onclick="sendStarter(this)">What is the Mohr-Coulomb failure criterion?</button>
-      <button class="starter-btn" onclick="sendStarter(this)">Show me the bearing capacity equation</button>
-      <button class="starter-btn" onclick="sendStarter(this)">What are the ISRM rock strength classes?</button>
-      <button class="starter-btn" onclick="sendStarter(this)">What topics are in the knowledge base?</button>
-      <button class="starter-btn" onclick="sendStarter(this)">Explain Terzaghi's effective stress principle</button>
-      <button class="starter-btn" onclick="sendStarter(this)">How is the compression index calculated?</button>
-    </div>
-  </div>
 </div>
 
 <div class="input-area">
+  <div class="input-controls">
+    <div class="mode-toggle">
+      <button class="mode-btn" data-mode="concise">Concise</button>
+      <button class="mode-btn active" data-mode="educational">Educational</button>
+      <button class="mode-btn" data-mode="report">Report</button>
+    </div>
+    <div style="position:relative; display:inline-block;">
+      <button id="exportBtn" class="header-btn" title="Export conversation">Export</button>
+      <div class="export-dropdown" id="exportDropdown">
+        <button class="export-option" onclick="exportMarkdown()">Download Markdown</button>
+        <button class="export-option" onclick="exportPDF()">Print to PDF</button>
+      </div>
+    </div>
+    <button class="reset-validations-btn" onclick="startNewChat()" title="Start a new conversation">New Chat</button>
+    <button class="reset-validations-btn" onclick="resetValidations()" title="Clear all validated citations for demo reset">Reset Validations</button>
+  </div>
   <div class="input-wrapper">
-    <textarea id="input" rows="1" placeholder="Ask a geotechnical question..." autofocus></textarea>
+    <textarea id="input" rows="1" placeholder="Ask a question..." autofocus></textarea>
     <button class="send-btn" id="sendBtn" onclick="send()">Send</button>
   </div>
   <div class="meta-info" id="meta"></div>
@@ -945,23 +967,21 @@ let activeChunks = {};
 let routingText = '';
 let activatedNodes = new Set();
 
-const DISCIPLINE_MAP = {
-  'geotechnical':  { icon: '\u{1FAA8}', color: '#9775fa' },
-  'water-infra':   { icon: '\u{1F30A}', color: '#4a9eff' },
-  'concrete':      { icon: '\u{1F9F1}', color: '#e8a838' },
-  'structural':    { icon: '\u{1F3D7}\uFE0F', color: '#40c057' },
-  'environmental': { icon: '\u{1F33F}', color: '#51cf66' },
-  'dam-safety':    { icon: '\u{1F512}', color: '#f06595' },
-  'geology':       { icon: '\u26F0\uFE0F', color: '#cc5de8' },
-};
+// Cascade colors by depth — all nodes are agents
+// Depth 0: router (red) → Depth 1: disciplines/projects → Depth 2: packages (green)
+// (Colors assigned in buildTreeNode via CASCADE_COLORS)
 
 const sidebarEl = document.getElementById('sidebar');
 const sidebarTreeEl = document.getElementById('sidebarTree');
 const sidebarToggleBtn = document.getElementById('sidebarToggle');
 
 // Toggle sidebar
+const sidebarReopenBtn = document.getElementById('sidebarReopen');
 sidebarToggleBtn.addEventListener('click', () => {
   sidebarEl.classList.toggle('collapsed');
+});
+sidebarReopenBtn.addEventListener('click', () => {
+  sidebarEl.classList.remove('collapsed');
 });
 
 // ── Topology fetch ──────────────────────────────────────────
@@ -992,17 +1012,14 @@ function buildTreeNode(node, depth) {
   el.dataset.nodeId = node.id;
   el.dataset.depth = depth;
 
-  // Determine color
-  let nodeColor = '#00d4aa'; // router default
-  if (node.discipline) {
-    const dm = DISCIPLINE_MAP[node.discipline];
-    nodeColor = dm ? dm.color : '#9775fa';
-  } else if (node.project_slug || (node.id && node.id.startsWith('project:'))) {
-    nodeColor = '#4a9eff';
-  } else if (node.id && node.id.startsWith('disc:')) {
-    const disc = node.id.replace('disc:', '');
-    const dm = DISCIPLINE_MAP[disc];
-    nodeColor = dm ? dm.color : '#9775fa';
+  // Determine color by cascade rank
+  // Depth 0: router (red) → Depth 1: disciplines (purple), projects (blue) → Depth 2: packages (green)
+  const CASCADE_COLORS = ['#e03131', '#9775fa', '#22c55e'];
+  let nodeColor;
+  if (node.project_slug || (node.id && node.id.startsWith('project:'))) {
+    nodeColor = '#4a9eff'; // projects always blue
+  } else {
+    nodeColor = CASCADE_COLORS[Math.min(depth, CASCADE_COLORS.length - 1)];
   }
   el.style.setProperty('--node-color', nodeColor);
 
@@ -1014,23 +1031,10 @@ function buildTreeNode(node, depth) {
   indicator.className = 'tree-node-indicator';
   header.appendChild(indicator);
 
-  // Icon
+  // Icon — every node is an agent, use 🤖 for all
   const iconEl = document.createElement('span');
   iconEl.className = 'tree-node-icon';
-  if (node.id === 'router') {
-    iconEl.textContent = '\u{1F916}';
-  } else if (node.discipline) {
-    const dm = DISCIPLINE_MAP[node.discipline];
-    iconEl.textContent = dm ? dm.icon : '\u{1F4E6}';
-  } else if (node.project_slug || (node.id && node.id.startsWith('project:'))) {
-    iconEl.textContent = '\u{1F4CB}';
-  } else if (node.id && node.id.startsWith('disc:')) {
-    const disc = node.id.replace('disc:', '');
-    const dm = DISCIPLINE_MAP[disc];
-    iconEl.textContent = dm ? dm.icon : '\u{1F4D6}';
-  } else {
-    iconEl.textContent = '\u{1F4E6}';
-  }
+  iconEl.textContent = '\u{1F916}';
   header.appendChild(iconEl);
 
   const label = document.createElement('span');
@@ -1125,14 +1129,21 @@ function setNodeState(nodeId, state) {
   el.classList.add('state-' + state);
   nodeStates[nodeId] = state;
 
-  // Auto-expand node and parent when not idle
-  if (state !== 'idle') {
-    el.classList.add('expanded');
-    // Expand parent too
-    const parentData = findParentData(nodeId, topologyTree);
-    if (parentData) {
+  // Auto-expand parent and fill circles along the path
+  if (state !== 'idle' && state !== 'complete') {
+    let currentId = nodeId;
+    while (true) {
+      const parentData = findParentData(currentId, topologyTree);
+      if (!parentData) break;
       const parentEl = findTreeNodeEl(parentData.id);
-      if (parentEl) parentEl.classList.add('expanded');
+      if (!parentEl) break;
+      parentEl.classList.add('expanded');
+      // Fill parent indicator if not already in an active state
+      if (!nodeStates[parentData.id] || nodeStates[parentData.id] === 'idle') {
+        parentEl.classList.add('state-activated');
+        nodeStates[parentData.id] = 'activated';
+      }
+      currentId = parentData.id;
     }
   }
 
@@ -1152,7 +1163,7 @@ function setNodeState(nodeId, state) {
       break;
     case 'complete':
       statusEl.textContent = '\u2714';
-      statusEl.style.color = 'var(--success)';
+      statusEl.style.color = 'var(--node-color)';
       break;
     case 'synthesizing':
       statusEl.textContent = 'Synthesizing\u2026';
@@ -1226,6 +1237,9 @@ function addSidebarChunk(nodeId, chunkData) {
   });
 
   container.appendChild(card);
+
+  // Expand the node to reveal the chunk card
+  nodeEl.classList.add('expanded');
 
   // Track chunks
   if (!activeChunks[nodeId]) activeChunks[nodeId] = [];
@@ -1345,7 +1359,7 @@ function sendStarter(btn) {
 
 function appendConfidence(bubble, confidence) {
   if (!confidence || !confidence.level) return;
-  const labels = { high: 'High confidence', medium: 'Moderate confidence', low: 'Low confidence' };
+  const labels = { high: 'Cited', medium: 'Verify Citations', low: 'Verify Citations' };
   const badge = document.createElement('div');
   badge.className = `confidence-badge confidence-${confidence.level}`;
   badge.title = confidence.reasoning || '';
@@ -1464,7 +1478,8 @@ function appendSources(bubble, sources) {
         const textEl = document.createElement('div');
         textEl.className = 'source-text';
         const truncated = fullText.length > 200;
-        textEl.textContent = truncated ? fullText.slice(0, 200) + '...' : fullText;
+        const textNode = document.createTextNode(truncated ? fullText.slice(0, 200) + '...' : fullText);
+        textEl.appendChild(textNode);
 
         if (truncated) {
           const expandBtn = document.createElement('button');
@@ -1473,9 +1488,8 @@ function appendSources(bubble, sources) {
           let expanded = false;
           expandBtn.addEventListener('click', () => {
             expanded = !expanded;
-            textEl.textContent = expanded ? fullText : fullText.slice(0, 200) + '...';
+            textNode.textContent = expanded ? fullText : fullText.slice(0, 200) + '...';
             expandBtn.textContent = expanded ? 'Show less' : 'Show more';
-            textEl.appendChild(expandBtn);
           });
           textEl.appendChild(expandBtn);
         }
@@ -1560,14 +1574,23 @@ async function send() {
     let fullText = '';
     let renderScheduled = false;
 
+    let renderRAF = null;
     function scheduleRender() {
       if (renderScheduled) return;
       renderScheduled = true;
-      requestAnimationFrame(() => {
+      renderRAF = requestAnimationFrame(() => {
         renderContent(bubble, fullText);
         chatEl.scrollTop = chatEl.scrollHeight;
         renderScheduled = false;
+        renderRAF = null;
       });
+    }
+    function cancelScheduledRender() {
+      if (renderRAF) {
+        cancelAnimationFrame(renderRAF);
+        renderRAF = null;
+        renderScheduled = false;
+      }
     }
 
     while (true) {
@@ -1656,8 +1679,16 @@ async function send() {
           // Mark all activated sidebar nodes complete
           for (const nid of activatedNodes) {
             setNodeState(nid, 'complete');
+            // Only expand nodes that actually have retrieved chunks
+            if (activeChunks[nid] && activeChunks[nid].length > 0) {
+              const nodeEl = findTreeNodeEl(nid);
+              if (nodeEl) nodeEl.classList.add('expanded');
+            }
           }
           setNodeState('router', 'complete');
+
+          // Cancel any pending rAF render so it doesn't wipe appended elements
+          cancelScheduledRender();
 
           // Final render
           renderContent(bubble, fullText);
@@ -1668,6 +1699,21 @@ async function send() {
           bubble.dataset.raw = fullText;
           if (event.confidence) bubble.dataset.confidence = JSON.stringify(event.confidence);
           if (event.sources) bubble.dataset.sources = JSON.stringify(event.sources);
+
+          // Store query text and chunk info for validation feature
+          bubble.dataset.queryText = message;
+          if (event.sources) {
+            const chunkIds = [];
+            const chunkScores = [];
+            event.sources.forEach(grp => {
+              (grp.sub_refs || []).forEach(ref => {
+                chunkIds.push(ref.chunk_id);
+                chunkScores.push(ref.similarity_score || 0);
+              });
+            });
+            bubble.dataset.chunkIds = JSON.stringify(chunkIds);
+            bubble.dataset.chunkScores = JSON.stringify(chunkScores);
+          }
 
           // Add feedback buttons
           appendFeedback(bubble, agentMessageIndex);
@@ -1744,7 +1790,7 @@ function exportMarkdown() {
   if (messages.length === 0) return;
 
   const date = new Date().toISOString().slice(0, 10);
-  let md = `# GeoLab KB Agent \u2014 Conversation Export\nDate: ${date} | Mode: ${currentMode} | Conversation: ${conversationId || 'N/A'}\n\n---\n`;
+  let md = `# BR Agent \u2014 Conversation Export\nDate: ${date} | Mode: ${currentMode} | Conversation: ${conversationId || 'N/A'}\n\n---\n`;
 
   messages.forEach(msg => {
     const bubble = msg.querySelector('.message-bubble');
@@ -1791,7 +1837,7 @@ function exportMarkdown() {
   const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `geolab-chat-${date}.md`;
+  a.download = `br-agent-chat-${date}.md`;
   a.click();
   URL.revokeObjectURL(a.href);
 }
@@ -1811,33 +1857,96 @@ function appendFeedback(bubble, messageIdx) {
     btn.className = 'feedback-btn';
     btn.dataset.sentiment = sentiment;
     btn.title = sentiment === 'up' ? 'Helpful' : 'Not helpful';
-    btn.textContent = sentiment === 'up' ? '\u25B2' : '\u25BC';
-    btn.addEventListener('click', () => submitFeedback(controls, sentiment, messageIdx));
+    btn.textContent = sentiment === 'up' ? '\u2713' : '\u2717';
+    btn.addEventListener('click', () => submitFeedback(controls, sentiment, messageIdx, bubble));
     controls.appendChild(btn);
   });
 
   bubble.appendChild(controls);
 }
 
-async function submitFeedback(controls, sentiment, messageIdx) {
+async function submitFeedback(controls, sentiment, messageIdx, bubble) {
   const buttons = controls.querySelectorAll('.feedback-btn');
   buttons.forEach(b => {
     b.disabled = true;
     if (b.dataset.sentiment === sentiment) b.classList.add('selected');
   });
 
+  // Check if this bubble has chunk context for validation
+  const queryText = bubble?.dataset?.queryText;
+  const chunkIds = bubble?.dataset?.chunkIds ? JSON.parse(bubble.dataset.chunkIds) : null;
+  const chunkScores = bubble?.dataset?.chunkScores ? JSON.parse(bubble.dataset.chunkScores) : null;
+  const hasContext = sentiment === 'up' && queryText && chunkIds && chunkIds.length > 0;
+
+  let password = null;
+  if (hasContext) {
+    password = prompt('Enter validation password to mark this as a verified citation:');
+    if (!password) {
+      // User cancelled — still send regular feedback without validation
+      buttons.forEach(b => { b.disabled = false; b.classList.remove('selected'); });
+      return;
+    }
+  }
+
   try {
-    await fetch('/api/v1/chat/feedback', {
+    const payload = {
+      conversation_id: conversationId,
+      message_index: messageIdx,
+      sentiment: sentiment,
+    };
+    if (hasContext && password) {
+      payload.query_text = queryText;
+      payload.chunk_ids = chunkIds;
+      payload.scores = chunkScores;
+      payload.password = password;
+    }
+
+    const res = await fetch('/api/v1/chat/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        conversation_id: conversationId,
-        message_index: messageIdx,
-        sentiment: sentiment,
-      }),
+      body: JSON.stringify(payload),
     });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      if (res.status === 403) {
+        alert('Invalid validation password.');
+        buttons.forEach(b => { b.disabled = false; b.classList.remove('selected'); });
+        return;
+      }
+      throw new Error(err.detail || 'Feedback failed');
+    }
+
+    const data = await res.json();
+    if (data.validated) {
+      const badge = document.createElement('span');
+      badge.className = 'validated-badge';
+      badge.textContent = '\u2713 Validated';
+      controls.appendChild(badge);
+    }
   } catch (err) {
     console.error('Feedback submit failed:', err);
+  }
+}
+
+function startNewChat() {
+  conversationId = null;
+  agentMessageIndex = 0;
+  chatEl.innerHTML = '';
+  if (welcomeEl) welcomeEl.style.display = '';
+  metaEl.textContent = '';
+  inputEl.focus();
+}
+
+async function resetValidations() {
+  if (!confirm('Clear all validated citations? This is used for demo reset.')) return;
+  try {
+    const res = await fetch('/api/v1/chat/validations', { method: 'DELETE' });
+    const data = await res.json();
+    alert('Validations cleared: ' + (data.deleted || 0) + ' removed.');
+  } catch (err) {
+    console.error('Reset validations failed:', err);
+    alert('Failed to reset validations.');
   }
 }
 </script>

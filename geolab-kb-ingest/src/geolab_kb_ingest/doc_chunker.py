@@ -12,16 +12,8 @@ import io
 import re
 from pathlib import Path
 
-import tiktoken
-
 from .chunker import Chunk
-
-_ENC = tiktoken.get_encoding("cl100k_base")
-
-
-def _count_tokens(text: str) -> int:
-    """Count tokens using cl100k_base encoding."""
-    return len(_ENC.encode(text))
+from .db import count_tokens as _count_tokens
 
 
 # ---------------------------------------------------------------------------

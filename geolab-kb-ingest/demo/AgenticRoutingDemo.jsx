@@ -510,7 +510,7 @@ function renderMath(latex, displayMode) {
     const html = katex.renderToString(latex, {
       displayMode,
       throwOnError: false,
-      trust: true,
+      trust: false,
     });
     return (
       <span

@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     embedding_dims: int = 1024
     host: str = "0.0.0.0"
     port: int = 8100
+    dev_reload: bool = False
+    cors_origins: str = "http://localhost:5173,http://localhost:8100"
+    validation_password: str = "admin"
 
 
 @lru_cache

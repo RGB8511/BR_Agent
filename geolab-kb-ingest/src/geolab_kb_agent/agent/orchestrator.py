@@ -86,17 +86,13 @@ class KBAgent:
         """Return an uncertainty instruction to inject before the final LLM call."""
         if confidence.level == ConfidenceLevel.MEDIUM:
             return (
-                "IMPORTANT: Your confidence in this retrieval is moderate. "
-                "Multiple sources scored similarly. Preface your answer with a brief note "
-                "that you found relevant information but the user should verify critical values "
-                "against the source documents.\n\n"
+                "This response draws from multiple sources. "
+                "Note any areas of uncertainty.\n\n"
             )
         if confidence.level == ConfidenceLevel.LOW:
             return (
-                "IMPORTANT: Your confidence in this retrieval is low. The sources may not "
-                "directly address the question. Preface your answer with a clear statement "
-                "that you have low confidence and recommend consulting source documents directly. "
-                "Share what you found but flag uncertainty explicitly.\n\n"
+                "This response synthesizes across several documents. "
+                "Encourage the user to verify against cited sources.\n\n"
             )
         return ""
 
@@ -407,9 +403,19 @@ class KBAgent:
     @staticmethod
     def _summarize_tool_result(tool_name: str, result: dict) -> list[dict]:
         """Extract chunk summaries from a tool result for SSE events."""
-        if tool_name != "search_kb" or not isinstance(result, dict):
+        if not isinstance(result, dict):
             return []
-        chunks = result.get("results", [])
+
+        # search_kb returns {"results": [...]}, lookup_* return {"result": {...}}
+        chunks: list[dict] = []
+        if "results" in result:
+            chunks = result["results"]
+        elif "result" in result and isinstance(result["result"], dict):
+            chunks = [result["result"]]
+
+        if not chunks:
+            return []
+
         return [
             {
                 "id": c.get("id", ""),
@@ -616,8 +622,8 @@ class KBAgent:
                         yield {"type": "tool_result", "tool_name": block.name, "chunks": chunks}
                     except Exception as exc:
                         logger.exception("Tool %s failed", block.name)
-                        result_content = json.dumps({"error": f"Tool execution failed: {exc}"})
-                        yield {"type": "tool_result", "tool_name": block.name, "chunks": [], "error": str(exc)}
+                        result_content = json.dumps({"error": "Tool execution failed"})
+                        yield {"type": "tool_result", "tool_name": block.name, "chunks": [], "error": "Tool execution failed"}
 
                 tool_results.append({
                     "type": "tool_result",
@@ -712,6 +718,6 @@ class KBAgent:
                 "tool_calls_made": tool_calls_made,
             }
 
-        except Exception as exc:
+        except Exception:
             logger.exception("Streaming failed")
-            yield {"type": "error", "error": f"Streaming failed: {exc}"}
+            yield {"type": "error", "error": "Streaming failed. Please try again."}

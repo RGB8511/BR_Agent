@@ -9,7 +9,7 @@ from typing import Any, Callable, Awaitable
 
 from sqlalchemy import Engine
 
-from geolab_kb_ingest.db import KBChunk, get_session
+from geolab_kb_ingest.db import KBChunk, ValidatedRetrieval, chunk_to_dict, get_session
 from geolab_kb_ingest.embedder import Embedder
 from geolab_kb_ingest.query import query_chunks
 
@@ -74,6 +74,12 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
             package_id_prefix=package_id_prefix,
             package_id_exclude_prefix=package_id_exclude_prefix,
             content_years=content_years,
+        )
+
+        # Apply validation boost: if this exact query was validated,
+        # boost matching chunk scores by +0.15 (capped at 1.0)
+        results = await asyncio.to_thread(
+            _apply_validation_boost, query, results
         )
 
         provenance.add_kb_results(results)
@@ -156,13 +162,51 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
         packages = await asyncio.to_thread(_list_all_packages)
         return {"packages": packages, "count": len(packages)}
 
+    def _apply_validation_boost(
+        query_text: str, results: list[dict]
+    ) -> list[dict]:
+        """Boost the top validated chunk's score.
+
+        Only the single highest-scoring validated chunk gets +0.15,
+        which widens the gap between #1 and #2 and pushes confidence
+        from MEDIUM to HIGH.
+
+        Matches on chunk_id only (ignoring query_text) so the boost
+        works even when the LLM reformulates the user's question.
+        """
+        if not results:
+            return results
+        result_ids = [r.get("id") for r in results if r.get("id")]
+        if not result_ids:
+            return results
+        with get_session(engine) as session:
+            validated = (
+                session.query(ValidatedRetrieval.chunk_id)
+                .filter(ValidatedRetrieval.chunk_id.in_(result_ids))
+                .all()
+            )
+            validated_ids = {row[0] for row in validated}
+        if not validated_ids:
+            return results
+
+        # Find the highest-scoring validated chunk and boost only that one
+        best_idx = None
+        best_score = -1.0
+        for i, r in enumerate(results):
+            if r.get("id") in validated_ids and r.get("score", 0) > best_score:
+                best_score = r.get("score", 0)
+                best_idx = i
+        if best_idx is not None:
+            results[best_idx]["score"] = min(results[best_idx].get("score", 0) + 0.15, 1.0)
+        return results
+
     def _get_chunk_by_id(chunk_id: str) -> dict | None:
         """Direct lookup of a chunk by primary key."""
         with get_session(engine) as session:
             chunk = session.get(KBChunk, chunk_id)
             if chunk is None:
                 return None
-            return _chunk_to_dict(chunk)
+            return chunk_to_dict(chunk)
 
     def _get_package_manifest(package_id: str) -> dict | None:
         """Get the manifest chunk for a package."""
@@ -177,7 +221,7 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
             )
             if chunk is None:
                 return None
-            return _chunk_to_dict(chunk)
+            return chunk_to_dict(chunk)
 
     def _list_all_packages() -> list[dict]:
         """List all distinct packages with summary info."""
@@ -205,19 +249,6 @@ def make_tool_handlers(engine: Engine, embedder: Embedder) -> dict[str, HandlerF
         return {
             "projects": [p.to_dict() for p in PROJECT_REGISTRY],
             "count": len(PROJECT_REGISTRY),
-        }
-
-    def _chunk_to_dict(chunk: KBChunk) -> dict:
-        """Convert a KBChunk ORM object to a plain dict."""
-        return {
-            "id": chunk.id,
-            "title": chunk.title,
-            "content": chunk.content,
-            "chunk_type": chunk.chunk_type,
-            "package_id": chunk.package_id,
-            "discipline": chunk.discipline,
-            "tags": chunk.tags,
-            "metadata": chunk.metadata_,
         }
 
     return {

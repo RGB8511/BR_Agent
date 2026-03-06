@@ -13,7 +13,7 @@ from geolab_kb_agent.agent.orchestrator import KBAgent
 from geolab_kb_agent.config import get_settings
 from geolab_kb_agent.memory import ConversationStore
 from geolab_kb_agent.schemas import ChatRequest, ChatResponse, Envelope, FeedbackRequest, GroupedSource
-from geolab_kb_ingest.db import ChatFeedback
+from geolab_kb_ingest.db import ChatFeedback, ValidatedRetrieval
 
 logger = logging.getLogger(__name__)
 
@@ -112,9 +112,9 @@ async def chat_stream(
                 body.message, messages=conv.messages
             ):
                 yield _sse(event)
-        except Exception as exc:
+        except Exception:
             logger.exception("Stream error")
-            yield _sse({"error": str(exc)})
+            yield _sse({"type": "error", "error": "An internal error occurred. Please try again."})
 
     return StreamingResponse(
         event_generator(),
@@ -141,14 +141,61 @@ async def submit_feedback(body: FeedbackRequest, request: Request) -> dict:
     session = factory()
     try:
         session.add(feedback)
+
+        # If this is a validation request (thumbs-up with password + chunk context)
+        validated = False
+        if (
+            body.sentiment == "up"
+            and body.password
+            and body.query_text
+            and body.chunk_ids
+        ):
+            settings = get_settings()
+            if body.password != settings.validation_password:
+                session.rollback()
+                raise HTTPException(status_code=403, detail="Invalid validation password")
+
+            scores = body.scores or [0.0] * len(body.chunk_ids)
+            for chunk_id, score in zip(body.chunk_ids, scores):
+                session.add(
+                    ValidatedRetrieval(
+                        query_text=body.query_text,
+                        chunk_id=chunk_id,
+                        original_score=score,
+                    )
+                )
+            validated = True
+
         session.commit()
+    except HTTPException:
+        raise
     except Exception:
         session.rollback()
         logger.exception("Failed to store feedback")
         raise HTTPException(status_code=500, detail="Failed to store feedback")
     finally:
         session.close()
-    return {"status": "ok"}
+    return {"status": "ok", "validated": validated}
+
+
+@router.delete("/validations")
+async def clear_validations(request: Request) -> dict:
+    """Clear all validated retrievals — used for demo reset."""
+    engine = request.app.state.engine
+    from sqlalchemy.orm import sessionmaker
+
+    factory = sessionmaker(bind=engine)
+    session = factory()
+    try:
+        count = session.query(ValidatedRetrieval).delete()
+        session.commit()
+    except Exception:
+        session.rollback()
+        logger.exception("Failed to clear validations")
+        raise HTTPException(status_code=500, detail="Failed to clear validations")
+    finally:
+        session.close()
+    return {"status": "ok", "deleted": count}
 
 
 def _sse(data: dict) -> str:

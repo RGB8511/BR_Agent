@@ -46,7 +46,12 @@ async def kb_topology(request: Request) -> dict[str, Any]:
     project_children: list[dict[str, Any]] = []
     discipline_children: list[dict[str, Any]] = []
 
+    # Skip the "projects" discipline (sample/demo KB packages)
+    HIDDEN_DISCIPLINES = {"projects"}
+
     for discipline, packages in sorted(disc_map.items()):
+        if discipline in HIDDEN_DISCIPLINES:
+            continue
         disc_packages: list[dict[str, Any]] = []
         disc_total = 0
 
@@ -92,7 +97,7 @@ async def kb_topology(request: Request) -> dict[str, Any]:
 
     tree = {
         "id": "router",
-        "label": "GeoLab Routing Agent",
+        "label": "Routing Agent",
         "children": children,
     }
 
