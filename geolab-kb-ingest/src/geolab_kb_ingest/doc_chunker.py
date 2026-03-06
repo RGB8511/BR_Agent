@@ -15,7 +15,6 @@ from pathlib import Path
 from .chunker import Chunk
 from .db import count_tokens as _count_tokens
 
-
 # ---------------------------------------------------------------------------
 # PDF extraction
 # ---------------------------------------------------------------------------

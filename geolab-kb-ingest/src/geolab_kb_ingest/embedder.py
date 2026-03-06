@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 class Embedder:
-    _API_URL = "https://api.voyageai.com/v1/embeddings"
+    _DEFAULT_API_URL = "https://api.voyageai.com/v1/embeddings"
 
     def __init__(
         self,
@@ -23,11 +23,13 @@ class Embedder:
         model: str = "voyage-3-large",
         batch_size: int = 128,
         dims: int = 1024,
+        api_url: str | None = None,
     ) -> None:
         self.api_key = api_key
         self.model = model
         self.batch_size = batch_size
         self.dims = dims
+        self._api_url = api_url or self._DEFAULT_API_URL
 
     def embed_texts(self, texts: list[str], input_type: str = "document") -> list[list[float]]:
         """Embed texts in batches. Retry once on failure per batch."""
@@ -50,12 +52,12 @@ class Embedder:
             "input_type": input_type,
         }
         try:
-            resp = requests.post(self._API_URL, json=payload, headers=headers, timeout=60)
+            resp = requests.post(self._api_url, json=payload, headers=headers, timeout=60)
             resp.raise_for_status()
             return [item["embedding"] for item in resp.json()["data"]]
         except Exception:
             logger.warning("Embedding failed, retrying once", exc_info=True)
             time.sleep(2)
-            resp = requests.post(self._API_URL, json=payload, headers=headers, timeout=60)
+            resp = requests.post(self._api_url, json=payload, headers=headers, timeout=60)
             resp.raise_for_status()
             return [item["embedding"] for item in resp.json()["data"]]

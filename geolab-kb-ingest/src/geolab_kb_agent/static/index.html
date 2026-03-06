@@ -12,6 +12,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<!-- Chart.js for inline chart rendering -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script>
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.15)';
+</script>
 <style>
   :root {
     --bg: #0f172a;
@@ -657,6 +663,20 @@
   /* KaTeX overrides */
   .katex { font-size: 1em; }
   .katex-display { margin: 10px 0; overflow-x: auto; }
+
+  /* Chart.js inline charts */
+  .chart-container {
+    max-width: 640px;
+    margin: 16px auto;
+    padding: 16px;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .chart-container canvas {
+    width: 100% !important;
+    max-height: 400px;
+  }
 
   /* ═══════════════════════════════════════════════════════════
      SIDEBAR — Layout wrappers
@@ -2085,6 +2105,25 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+function renderCharts(container) {
+  const codeBlocks = container.querySelectorAll('pre code.language-chart');
+  codeBlocks.forEach(codeEl => {
+    const preEl = codeEl.parentElement;
+    try {
+      const config = JSON.parse(codeEl.textContent);
+      const wrapper = document.createElement('div');
+      wrapper.className = 'chart-container';
+      const canvas = document.createElement('canvas');
+      wrapper.appendChild(canvas);
+      preEl.replaceWith(wrapper);
+      new Chart(canvas, config);
+    } catch (e) {
+      // Malformed JSON — leave the code block as-is
+      console.warn('Chart render failed:', e);
+    }
+  });
+}
+
 function renderContent(bubble, text) {
   bubble.innerHTML = DOMPurify.sanitize(marked.parse(text));
   renderMathInElement(bubble, {
@@ -2096,6 +2135,7 @@ function renderContent(bubble, text) {
     ],
     throwOnError: false,
   });
+  renderCharts(bubble);
 }
 
 async function send() {
@@ -2404,6 +2444,18 @@ function generateReport() {
     } catch {}
   }
 
+  // Convert chart canvases to static <img> tags for the PDF
+  let chartImagesHtml = '';
+  const chartCanvases = bubble.querySelectorAll('.chart-container canvas');
+  chartCanvases.forEach(canvas => {
+    try {
+      const imgSrc = canvas.toDataURL('image/png');
+      chartImagesHtml += `<div style="text-align:center;margin:12pt 0;"><img src="${imgSrc}" style="max-width:100%;"></div>`;
+    } catch (e) {
+      console.warn('Chart export failed:', e);
+    }
+  });
+
   // Render markdown body to HTML
   const bodyHtml = DOMPurify.sanitize(marked.parse(raw));
 
@@ -2428,6 +2480,7 @@ function generateReport() {
   .katex { font-size: 1em; }
 </style></head><body>
 ${bodyHtml}
+${chartImagesHtml}
 ${refsHtml}
 </body>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"><\/script>

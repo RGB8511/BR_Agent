@@ -12,7 +12,13 @@ from fastapi.responses import StreamingResponse
 from geolab_kb_agent.agent.orchestrator import KBAgent
 from geolab_kb_agent.config import get_settings
 from geolab_kb_agent.memory import ConversationStore
-from geolab_kb_agent.schemas import ChatRequest, ChatResponse, Envelope, FeedbackRequest, GroupedSource
+from geolab_kb_agent.schemas import (
+    ChatRequest,
+    ChatResponse,
+    Envelope,
+    FeedbackRequest,
+    GroupedSource,
+)
 from geolab_kb_ingest.db import ChatFeedback, ValidatedRetrieval
 
 logger = logging.getLogger(__name__)

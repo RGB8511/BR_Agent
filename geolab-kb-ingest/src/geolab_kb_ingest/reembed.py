@@ -69,7 +69,7 @@ def reembed(
             title_changes.append(f"  {chunk.id}: '{chunk.title}' -> '{cleaned}'")
 
     # Print pre-embed stats
-    print(f"\nChunk type distribution:")
+    print("\nChunk type distribution:")
     for ct, count in sorted(type_counts.items()):
         print(f"  {ct}: {count}")
 

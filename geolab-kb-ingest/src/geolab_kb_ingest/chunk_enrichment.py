@@ -16,7 +16,6 @@ import re
 
 from .db import KBChunk
 
-
 # ---------------------------------------------------------------------------
 # OCR title overrides
 # ---------------------------------------------------------------------------
@@ -85,8 +84,6 @@ def enrich_table_chunk(chunk: KBChunk) -> str:
     understand the table's topic.
     """
     table_ctx = _build_table_context(chunk)
-    cleaned = _strip_context_lines(chunk.content).strip()
-
     if table_ctx:
         return table_ctx + "\n" + chunk.content
     return chunk.content

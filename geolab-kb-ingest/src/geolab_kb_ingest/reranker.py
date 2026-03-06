@@ -15,15 +15,17 @@ logger = logging.getLogger(__name__)
 
 
 class Reranker:
-    _API_URL = "https://api.voyageai.com/v1/rerank"
+    _DEFAULT_API_URL = "https://api.voyageai.com/v1/rerank"
 
     def __init__(
         self,
         api_key: str,
         model: str = "rerank-2.5",
+        api_url: str | None = None,
     ) -> None:
         self.api_key = api_key
         self.model = model
+        self._api_url = api_url or self._DEFAULT_API_URL
 
     def rerank(
         self,
@@ -60,7 +62,7 @@ class Reranker:
 
         try:
             resp = requests.post(
-                self._API_URL, json=payload, headers=headers, timeout=30,
+                self._api_url, json=payload, headers=headers, timeout=30,
             )
             resp.raise_for_status()
             return resp.json()["data"]
@@ -68,7 +70,7 @@ class Reranker:
             logger.warning("Rerank failed, retrying once", exc_info=True)
             time.sleep(2)
             resp = requests.post(
-                self._API_URL, json=payload, headers=headers, timeout=30,
+                self._api_url, json=payload, headers=headers, timeout=30,
             )
             resp.raise_for_status()
             return resp.json()["data"]

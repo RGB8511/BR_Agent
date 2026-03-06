@@ -14,7 +14,9 @@ T = TypeVar("T")
 class ChatRequest(BaseModel):
     message: str
     conversation_id: str | None = None
-    mode: Literal["concise", "educational", "report", "calculation", "review", "field"] | None = None
+    mode: Literal[
+        "concise", "educational", "report", "calculation", "review", "field"
+    ] | None = None
 
 
 class SubRef(BaseModel):
@@ -73,4 +75,4 @@ class FeedbackRequest(BaseModel):
 
 class Envelope(BaseModel, Generic[T]):
     data: T
-    meta: dict[str, Any] = {}
+    meta: dict[str, Any] = Field(default_factory=dict)

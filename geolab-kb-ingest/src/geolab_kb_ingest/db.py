@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from contextlib import contextmanager
-from datetime import datetime, timezone
-from typing import Iterator
+from datetime import UTC, datetime
 
 from pgvector.sqlalchemy import Vector
 from sqlalchemy import (
     ARRAY,
     DateTime,
+    Engine,
     Float,
     Integer,
     Text,
@@ -24,7 +25,6 @@ from sqlalchemy.orm import (
     mapped_column,
     sessionmaker,
 )
-from sqlalchemy import Engine
 
 
 # ---------------------------------------------------------------------------
@@ -43,7 +43,7 @@ class ChatFeedback(Base):
     sentiment: Mapped[str] = mapped_column(Text)  # "up" | "down"
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc),
+        default=lambda: datetime.now(UTC),
     )
 
 
@@ -56,7 +56,7 @@ class ValidatedRetrieval(Base):
     original_score: Mapped[float | None] = mapped_column(Float, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc),
+        default=lambda: datetime.now(UTC),
     )
 
 
@@ -77,12 +77,12 @@ class KBChunk(Base):
     token_count: Mapped[int] = mapped_column(Integer, default=0)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc),
+        default=lambda: datetime.now(UTC),
     )
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc),
-        onupdate=lambda: datetime.now(timezone.utc),
+        default=lambda: datetime.now(UTC),
+        onupdate=lambda: datetime.now(UTC),
     )
 
 

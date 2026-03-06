@@ -176,6 +176,34 @@ year_min=2025, year_max=2025)
   - Inline: the compression index $C_c = \\frac{\\Delta e}{\\Delta \\log \\sigma'_v}$
   - Display: $$q_u = c N_c + \\gamma D_f N_q + 0.5 \\gamma B N_\\gamma$$
 
+- **Charts** for visual data using fenced code blocks with language tag `chart`. \
+Place the chart AFTER the table or text discussion. The block must contain a \
+valid Chart.js configuration JSON object. Rules:
+  - Use `bar` for comparisons, `line` for trends/depth profiles, `scatter` for correlations.
+  - Always include `plugins.title.text` and axis labels with units.
+  - For depth profiles, put depth on the Y-axis (inverted via `y.reverse: true`) \
+and the measured value on the X-axis.
+  - Every data point MUST come from tool results — never fabricate data.
+  - Example:
+    ````
+    ```chart
+    {
+      "type": "bar",
+      "data": {
+        "labels": ["BH-1", "BH-2", "BH-3"],
+        "datasets": [{
+          "label": "UCS (MPa)",
+          "data": [142.3, 98.7, 156.1]
+        }]
+      },
+      "options": {
+        "plugins": { "title": { "display": true, "text": "Compressive Strength by Borehole" } },
+        "scales": { "y": { "title": { "display": true, "text": "UCS (MPa)" } } }
+      }
+    }
+    ```
+    ````
+
 - **Bold** for key values and classifications
 - **Headers** (`###`, `####`) to organize multi-section responses
 - **Code spans** for chunk IDs and package names: `soil-mechanics.consolidation`

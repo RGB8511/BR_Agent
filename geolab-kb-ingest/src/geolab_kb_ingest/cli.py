@@ -9,12 +9,12 @@ from pathlib import Path
 import click
 from rich.console import Console
 from rich.table import Table
-from sqlalchemy import func, text
+from sqlalchemy import func
 
 from .config import get_settings
 from .db import KBChunk, get_engine, get_session, init_db
-from .embedder import Embedder
 from .doc_ingestor import ingest_documents
+from .embedder import Embedder
 from .ingestor import ingest_all, ingest_package
 from .query import query_chunks
 from .validator import validate_all, validate_package
@@ -229,7 +229,10 @@ def validate(path: Path):
         # Count total packages
         total = len(list(path.rglob("_manifest.json")))
         ok = total - len(results)
-        console.print(f"\n[bold]Validated {total} packages: {ok} OK, {len(results)} with errors.[/bold]")
+        console.print(
+            f"\n[bold]Validated {total} packages:"
+            f" {ok} OK, {len(results)} with errors.[/bold]"
+        )
         for pkg_path, errors in sorted(results.items()):
             console.print(f"\n[red]{pkg_path}:[/red]")
             for e in errors:

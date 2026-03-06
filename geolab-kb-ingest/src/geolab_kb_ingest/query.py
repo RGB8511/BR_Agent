@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 import os
-import re
 
 from sqlalchemy import Engine, text
 
@@ -123,7 +122,6 @@ def query_chunks(
             "discipline": row.discipline,
             "metadata": row.metadata or {},
             "score": float(row.score),
-            "metadata": row.metadata,
         }
         for row in rows
         if float(row.score) >= MIN_SIMILARITY_SCORE

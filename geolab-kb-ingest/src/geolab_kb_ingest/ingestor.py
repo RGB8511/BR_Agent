@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.progress import Progress
 from sqlalchemy import Engine
 
-from .chunker import Chunk, chunk_package, _count_tokens
+from .chunker import Chunk, _count_tokens, chunk_package
 from .db import KBChunk, bulk_insert_chunks, delete_package_chunks, get_session
 from .embedder import Embedder
 

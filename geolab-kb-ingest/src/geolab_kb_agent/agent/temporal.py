@@ -8,10 +8,10 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 
 
-class TemporalIntent(str, Enum):
+class TemporalIntent(StrEnum):
     """Type of temporal query detected."""
 
     TREND = "trend"  # "how has X changed over time"

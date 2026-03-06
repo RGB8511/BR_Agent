@@ -90,11 +90,17 @@ TOOLS: list[dict] = [
             "properties": {
                 "equation_id": {
                     "type": "string",
-                    "description": "Exact chunk ID of the equation (e.g. 'soil-mechanics.consolidation.eq.cc-virgin-compression').",
+                    "description": (
+                        "Exact chunk ID of the equation "
+                        "(e.g. 'soil-mechanics.consolidation.eq.cc-virgin-compression')."
+                    ),
                 },
                 "query": {
                     "type": "string",
-                    "description": "Search query to find equations by content (used when equation_id is not known).",
+                    "description": (
+                        "Search query to find equations by content "
+                        "(used when equation_id is not known)."
+                    ),
                 },
                 "top_k": {
                     "type": "integer",
@@ -116,11 +122,17 @@ TOOLS: list[dict] = [
             "properties": {
                 "table_id": {
                     "type": "string",
-                    "description": "Exact chunk ID of the table (e.g. 'rock-mechanics.ucs-testing.tbl.isrm-strength-classification').",
+                    "description": (
+                        "Exact chunk ID of the table "
+                        "(e.g. 'rock-mechanics.ucs-testing.tbl.isrm-strength-classification')."
+                    ),
                 },
                 "query": {
                     "type": "string",
-                    "description": "Search query to find tables by content (used when table_id is not known).",
+                    "description": (
+                        "Search query to find tables by content "
+                        "(used when table_id is not known)."
+                    ),
                 },
                 "top_k": {
                     "type": "integer",
