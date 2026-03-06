@@ -12,13 +12,12 @@ from typing import Any
 import anthropic
 from sqlalchemy import Engine
 
-from geolab_kb_ingest.embedder import Embedder
-
 from geolab_kb_agent.confidence import ConfidenceLevel, ConfidenceScore, compute_confidence
+from geolab_kb_ingest.embedder import Embedder
 
 from .provenance import ProvenanceCollector
 from .system_prompt import get_system_prompt
-from .temporal import TemporalIntent, detect_temporal_intent
+from .temporal import detect_temporal_intent
 from .tool_handlers import HandlerFn, make_tool_handlers
 from .tools import TOOLS
 
@@ -112,17 +111,26 @@ class KBAgent:
         logger.info("Temporal query detected: %s", parts_str)
         return parts_str
 
+    @staticmethod
+    def _extract_usage(response: anthropic.types.Message) -> dict:
+        """Extract token usage dict from an API response."""
+        u = response.usage
+        return {
+            "input_tokens": u.input_tokens,
+            "output_tokens": u.output_tokens,
+            "cache_creation_input_tokens": getattr(u, "cache_creation_input_tokens", 0) or 0,
+            "cache_read_input_tokens": getattr(u, "cache_read_input_tokens", 0) or 0,
+        }
+
     def _log_usage(self, response: anthropic.types.Message) -> None:
         """Log token usage including cache metrics."""
-        u = response.usage
-        cache_create = getattr(u, "cache_creation_input_tokens", 0) or 0
-        cache_read = getattr(u, "cache_read_input_tokens", 0) or 0
+        u = self._extract_usage(response)
         logger.debug(
             "API usage: in=%d out=%d cache_create=%d cache_read=%d",
-            u.input_tokens,
-            u.output_tokens,
-            cache_create,
-            cache_read,
+            u["input_tokens"],
+            u["output_tokens"],
+            u["cache_creation_input_tokens"],
+            u["cache_read_input_tokens"],
         )
 
     @staticmethod
@@ -386,10 +394,10 @@ class KBAgent:
                         result_count,
                         len(result_content),
                     )
-                except Exception as exc:
+                except Exception:
                     logger.exception("Tool %s failed", block.name)
                     result_content = json.dumps(
-                        {"error": f"Tool execution failed: {exc}"}
+                        {"error": "Tool execution failed"}
                     )
             tool_results.append(
                 {
@@ -572,6 +580,7 @@ class KBAgent:
         tool_calls_made = 0
         system = get_system_prompt(self.mode)
         all_tools = self._all_tools()
+        token_steps: list[dict] = []
 
         yield {"type": "routing_started"}
 
@@ -587,6 +596,9 @@ class KBAgent:
                 messages=messages,
             )
             self._log_usage(response)
+            step_usage = self._extract_usage(response)
+            step_usage["step"] = f"tool_loop_{_iteration + 1}"
+            token_steps.append(step_usage)
 
             tool_use_blocks = [
                 block for block in response.content if block.type == "tool_use"
@@ -620,10 +632,15 @@ class KBAgent:
                         result_content = json.dumps(result, default=str)
                         chunks = self._summarize_tool_result(block.name, result)
                         yield {"type": "tool_result", "tool_name": block.name, "chunks": chunks}
-                    except Exception as exc:
+                    except Exception:
                         logger.exception("Tool %s failed", block.name)
                         result_content = json.dumps({"error": "Tool execution failed"})
-                        yield {"type": "tool_result", "tool_name": block.name, "chunks": [], "error": "Tool execution failed"}
+                        yield {
+                            "type": "tool_result",
+                            "tool_name": block.name,
+                            "chunks": [],
+                            "error": "Tool execution failed",
+                        }
 
                 tool_results.append({
                     "type": "tool_result",
@@ -683,6 +700,9 @@ class KBAgent:
 
                 final_message = await stream.get_final_message()
                 self._log_usage(final_message)
+                synth_usage = self._extract_usage(final_message)
+                synth_usage["step"] = "synthesis"
+                token_steps.append(synth_usage)
 
             raw_text = "".join(full_text_parts)
 
@@ -716,6 +736,10 @@ class KBAgent:
                 "sources": sources,
                 "confidence": confidence.model_dump(),
                 "tool_calls_made": tool_calls_made,
+                "token_usage": {
+                    "steps": token_steps,
+                    "model": self.model,
+                },
             }
 
         except Exception:

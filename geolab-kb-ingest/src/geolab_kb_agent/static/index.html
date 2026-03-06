@@ -6,6 +6,8 @@
 <title>BR Agent</title>
 <!-- Marked for markdown rendering -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- DOMPurify for sanitizing rendered HTML -->
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
 <!-- KaTeX for LaTeX math -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -230,6 +232,42 @@
     margin-bottom: 4px;
     flex-wrap: wrap;
   }
+  .source-doc-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 0;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    flex-wrap: wrap;
+  }
+  .source-doc-toggle:hover { color: var(--accent); }
+  .source-doc-arrow {
+    font-size: 9px;
+    transition: transform 0.2s ease;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+  .source-item.expanded .source-doc-arrow {
+    transform: rotate(90deg);
+  }
+  .source-chunk-count {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-left: auto;
+  }
+  .source-refs-body {
+    display: none;
+  }
+  .source-item.expanded .source-refs-body {
+    display: block;
+  }
   .source-num {
     background: var(--accent);
     color: white;
@@ -258,23 +296,155 @@
   .score-high { background: #166534; color: #86efac; }
   .score-mid { background: #854d0e; color: #fde68a; }
   .score-low { background: #991b1b; color: #fca5a5; }
+  .source-ref {
+    margin-left: 16px;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+  }
+  .source-ref-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 0;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+  }
+  .source-ref-toggle:hover { color: var(--accent); }
+  .source-ref-arrow {
+    font-size: 8px;
+    transition: transform 0.2s ease;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+  .source-ref.expanded .source-ref-arrow {
+    transform: rotate(90deg);
+  }
+  .source-ref .source-text {
+    display: none;
+  }
+  .source-ref.expanded .source-text {
+    display: block;
+  }
   .source-text {
     color: var(--text-muted);
     font-size: 12px;
     line-height: 1.5;
     margin-top: 4px;
   }
-  .source-expand {
+  /* Scoring summary panel */
+  .scoring-panel {
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+    padding-top: 4px;
+  }
+  .scoring-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     background: none;
     border: none;
-    color: var(--accent);
-    font-size: 11px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
     cursor: pointer;
-    padding: 0;
-    margin-top: 2px;
+    padding: 6px 0;
+    width: 100%;
+    text-align: left;
     font-family: inherit;
   }
-  .source-expand:hover { text-decoration: underline; }
+  .scoring-toggle:hover { color: var(--text-primary); }
+  .scoring-toggle .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    font-size: 10px;
+  }
+  .scoring-panel.open .scoring-toggle .arrow {
+    transform: rotate(90deg);
+  }
+  .scoring-body {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 4px 0 8px;
+  }
+  .scoring-panel.open .scoring-body {
+    display: flex;
+  }
+  .scoring-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .scoring-row:last-child { border-bottom: none; }
+  .scoring-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+  .scoring-value {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .scoring-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid var(--text-secondary);
+    font-size: 9px;
+    font-style: italic;
+    color: var(--text-secondary);
+    cursor: help;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .scoring-info .scoring-tip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    padding: 8px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 11px;
+    font-style: normal;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    z-index: 100;
+    pointer-events: none;
+    white-space: normal;
+  }
+  .scoring-info:hover .scoring-tip {
+    display: block;
+  }
+  .scoring-section {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    padding: 8px 0 2px;
+    margin-top: 4px;
+    border-top: 1px solid var(--border);
+  }
 
   /* Confidence badge */
   .confidence-badge {
@@ -385,17 +555,22 @@
     cursor: not-allowed;
   }
 
-  /* Meta info */
-  .meta-info {
+  /* Footer row: meta info + utility links */
+  .input-footer {
     max-width: 800px;
     margin: 0 auto;
     padding-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .meta-info {
     font-size: 11px;
     color: var(--text-muted);
   }
 
-  /* Header button (export) */
-  .header-btn {
+  /* Report button */
+  .report-btn {
     padding: 6px 14px;
     background: var(--surface2);
     border: 1px solid var(--border);
@@ -404,43 +579,17 @@
     font-size: 13px;
     cursor: pointer;
     transition: all 0.2s;
-    position: relative;
+    font-family: inherit;
   }
-  .header-btn:hover {
+  .report-btn:hover {
     background: var(--accent);
     border-color: var(--accent);
     color: white;
   }
-
-  /* Export dropdown */
-  .export-dropdown {
-    display: none;
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    margin-bottom: 4px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 100;
-    min-width: 180px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  .report-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
-  .export-dropdown.open { display: block; }
-  .export-option {
-    display: block;
-    width: 100%;
-    padding: 10px 14px;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 13px;
-    text-align: left;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  .export-option:hover { background: var(--surface2); }
 
   /* Feedback controls */
   .feedback-controls {
@@ -482,20 +631,24 @@
     border-radius: 4px;
     margin-left: 8px;
   }
-  .reset-validations-btn {
-    padding: 5px 12px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: transparent;
+  /* Utility text links (New Chat, Reset) */
+  .util-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .util-link {
+    background: none;
+    border: none;
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: 11px;
     cursor: pointer;
-    transition: all 0.2s;
+    font-family: inherit;
+    padding: 0;
+    transition: color 0.15s;
   }
-  .reset-validations-btn:hover {
-    color: #ef4444;
-    border-color: #ef4444;
-  }
+  .util-link:hover { color: var(--text); }
+  .util-sep { color: var(--border); font-size: 11px; }
   .feedback-btn:disabled {
     opacity: 0.5;
     cursor: default;
@@ -521,6 +674,25 @@
     flex-direction: column;
     flex: 1;
     min-width: 0;
+    transform-origin: top left;
+    overflow: hidden;
+  }
+
+  /* Resize handle between sidebar and main-col */
+  .resize-handle {
+    width: 5px;
+    cursor: col-resize;
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.15s, width 0.15s;
+  }
+  .resize-handle:hover,
+  .resize-handle.active {
+    width: 7px;
+    background: var(--accent);
+  }
+  .sidebar.collapsed ~ .resize-handle {
+    display: none;
   }
 
   /* Sidebar shell */
@@ -676,6 +848,49 @@
     max-height: 5000px;
   }
 
+  /* Virtual group nodes (Disciplines / Projects) */
+  .tree-group > .tree-group-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.15s;
+  }
+  .tree-group > .tree-group-header:hover {
+    background: rgba(255,255,255,0.04);
+  }
+  .tree-group-chevron {
+    font-size: 9px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    color: var(--text-muted);
+  }
+  .tree-group.expanded > .tree-group-header .tree-group-chevron {
+    transform: rotate(90deg);
+  }
+  .tree-group-count {
+    font-size: 10px;
+    opacity: 0.5;
+    margin-left: auto;
+  }
+  .tree-group > .tree-children {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    padding-left: 6px;
+  }
+  .tree-group.expanded > .tree-children {
+    max-height: 5000px;
+  }
+
   /* ═══════════════════════════════════════════════════════════
      SIDEBAR — Node states
      ═══════════════════════════════════════════════════════════ */
@@ -767,8 +982,35 @@
   /* ═══════════════════════════════════════════════════════════
      SIDEBAR — Chunk cards
      ═══════════════════════════════════════════════════════════ */
+  .sidebar-chunks-toggle {
+    display: none;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 9px;
+    cursor: pointer;
+    padding: 2px 4px 2px 20px;
+    font-family: inherit;
+  }
+  .sidebar-chunks-toggle:hover { color: var(--accent); }
+  .sidebar-chunks-toggle .arrow {
+    font-size: 7px;
+    transition: transform 0.2s ease;
+  }
+  .sidebar-chunks-toggle.has-chunks {
+    display: flex;
+  }
   .sidebar-chunks-container {
     padding-left: 20px;
+    display: none;
+  }
+  .sidebar-chunks-container.open {
+    display: block;
+  }
+  .sidebar-chunks-toggle.open .arrow {
+    transform: rotate(90deg);
   }
   .sidebar-chunk {
     background: rgba(255,255,255,0.03);
@@ -863,7 +1105,7 @@
   /* Print styles */
   @media print {
     .header, .input-area, .mode-toggle, .typing,
-    .confidence-badge, .export-dropdown, .feedback-controls, .sidebar { display: none !important; }
+    .confidence-badge, .report-btn, .feedback-controls, .sidebar { display: none !important; }
     body {
       background: white;
       color: black;
@@ -896,6 +1138,13 @@
     }
     .source-score { background: #eee !important; color: #333 !important; }
     .source-doc, .source-section, .source-text { color: #333; }
+    .source-refs-body { display: block !important; }
+    .source-ref .source-text { display: block !important; }
+    .source-ref-arrow, .source-doc-arrow { display: none; }
+    .scoring-body { display: flex !important; }
+    .scoring-info { display: none; }
+    .scoring-panel { border-top-color: #ccc; }
+    .scoring-value { color: #333; }
   }
 </style>
 </head>
@@ -912,6 +1161,7 @@
       <div class="sidebar-loading">Loading topology...</div>
     </div>
   </aside>
+  <div class="resize-handle" id="resizeHandle"></div>
   <button class="sidebar-reopen" id="sidebarReopen" title="Show routing panel">&#9654;</button>
   <div class="main-col">
 
@@ -923,23 +1173,21 @@
     <div class="mode-toggle">
       <button class="mode-btn" data-mode="concise">Concise</button>
       <button class="mode-btn active" data-mode="educational">Educational</button>
-      <button class="mode-btn" data-mode="report">Report</button>
     </div>
-    <div style="position:relative; display:inline-block;">
-      <button id="exportBtn" class="header-btn" title="Export conversation">Export</button>
-      <div class="export-dropdown" id="exportDropdown">
-        <button class="export-option" onclick="exportMarkdown()">Download Markdown</button>
-        <button class="export-option" onclick="exportPDF()">Print to PDF</button>
-      </div>
-    </div>
-    <button class="reset-validations-btn" onclick="startNewChat()" title="Start a new conversation">New Chat</button>
-    <button class="reset-validations-btn" onclick="resetValidations()" title="Clear all validated citations for demo reset">Reset Validations</button>
+    <button class="report-btn" id="reportBtn" title="Export last response as PDF report">Report</button>
   </div>
   <div class="input-wrapper">
     <textarea id="input" rows="1" placeholder="Ask a question..." autofocus></textarea>
     <button class="send-btn" id="sendBtn" onclick="send()">Send</button>
   </div>
-  <div class="meta-info" id="meta"></div>
+  <div class="input-footer">
+    <div class="meta-info" id="meta"></div>
+    <div class="util-links">
+      <button class="util-link" onclick="startNewChat()" title="Start a new conversation">New Chat</button>
+      <span class="util-sep">|</span>
+      <button class="util-link" onclick="resetValidations()" title="Clear all validated citations for demo reset">Reset Validations</button>
+    </div>
+  </div>
 </div>
 
   </div><!-- /.main-col -->
@@ -984,6 +1232,56 @@ sidebarReopenBtn.addEventListener('click', () => {
   sidebarEl.classList.remove('collapsed');
 });
 
+// ── Resize handle drag ─────────────────────────────────────
+const resizeHandle = document.getElementById('resizeHandle');
+let isResizing = false;
+resizeHandle.addEventListener('mousedown', (e) => {
+  isResizing = true;
+  resizeHandle.classList.add('active');
+  document.body.style.cursor = 'col-resize';
+  document.body.style.userSelect = 'none';
+  e.preventDefault();
+});
+document.addEventListener('mousemove', (e) => {
+  if (!isResizing) return;
+  const newWidth = Math.min(500, Math.max(180, e.clientX));
+  sidebarEl.style.width = newWidth + 'px';
+});
+document.addEventListener('mouseup', () => {
+  if (!isResizing) return;
+  isResizing = false;
+  resizeHandle.classList.remove('active');
+  document.body.style.cursor = '';
+  document.body.style.userSelect = '';
+});
+
+// ── Independent zoom on right panel ────────────────────────
+const mainCol = document.querySelector('.main-col');
+let zoomLevel = 1.0;
+function applyZoom() {
+  mainCol.style.transform = `scale(${zoomLevel})`;
+  mainCol.style.width = `${100 / zoomLevel}%`;
+  mainCol.style.height = `${100 / zoomLevel}%`;
+}
+mainCol.addEventListener('wheel', (e) => {
+  if (!e.ctrlKey) return;
+  e.preventDefault();
+  const delta = e.deltaY > 0 ? -0.1 : 0.1;
+  zoomLevel = Math.round(Math.min(2.0, Math.max(0.5, zoomLevel + delta)) * 10) / 10;
+  applyZoom();
+}, { passive: false });
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === '0' && mainCol.matches(':hover')) {
+    e.preventDefault();
+    zoomLevel = 1.0;
+    applyZoom();
+  }
+});
+resizeHandle.addEventListener('dblclick', () => {
+  zoomLevel = 1.0;
+  applyZoom();
+});
+
 // ── Topology fetch ──────────────────────────────────────────
 async function loadTopology() {
   try {
@@ -999,10 +1297,68 @@ async function loadTopology() {
 }
 
 // ── Tree rendering ──────────────────────────────────────────
+function buildGroupNode(label, childNodes, depth) {
+  const el = document.createElement('div');
+  el.className = 'tree-group';
+
+  const header = document.createElement('div');
+  header.className = 'tree-group-header';
+
+  const chevron = document.createElement('span');
+  chevron.className = 'tree-group-chevron';
+  chevron.textContent = '\u25B6';
+  header.appendChild(chevron);
+
+  const labelEl = document.createElement('span');
+  labelEl.textContent = label;
+  header.appendChild(labelEl);
+
+  const count = document.createElement('span');
+  count.className = 'tree-group-count';
+  count.textContent = childNodes.length;
+  header.appendChild(count);
+
+  el.appendChild(header);
+
+  const childrenWrap = document.createElement('div');
+  childrenWrap.className = 'tree-children';
+  for (const child of childNodes) {
+    childrenWrap.appendChild(buildTreeNode(child, depth));
+  }
+  el.appendChild(childrenWrap);
+
+  header.addEventListener('click', () => {
+    el.classList.toggle('expanded');
+  });
+
+  return el;
+}
+
 function renderTree() {
   if (!topologyTree) return;
   sidebarTreeEl.innerHTML = '';
-  const rootEl = buildTreeNode(topologyTree, 0);
+
+  // Build the router root node but intercept its children to split into groups
+  const children = topologyTree.children || [];
+  const disciplines = children.filter(c => !c.project_slug && !(c.id && c.id.startsWith('project:')));
+  const projects = children.filter(c => c.project_slug || (c.id && c.id.startsWith('project:')));
+
+  // Build root without children first, then append groups
+  const rootCopy = { ...topologyTree, children: [] };
+  const rootEl = buildTreeNode(rootCopy, 0);
+
+  // Create a children wrapper for the groups
+  const groupsWrap = document.createElement('div');
+  groupsWrap.className = 'tree-children';
+
+  if (disciplines.length > 0) {
+    groupsWrap.appendChild(buildGroupNode('Disciplines', disciplines, 1));
+  }
+  if (projects.length > 0) {
+    groupsWrap.appendChild(buildGroupNode('Projects', projects, 1));
+  }
+
+  rootEl.appendChild(groupsWrap);
   sidebarTreeEl.appendChild(rootEl);
 }
 
@@ -1063,10 +1419,21 @@ function buildTreeNode(node, depth) {
     el.appendChild(rt);
   }
 
-  // Chunks container
+  // Chunks toggle + container (collapsed by default)
+  const chunksToggle = document.createElement('button');
+  chunksToggle.className = 'sidebar-chunks-toggle';
+  chunksToggle.innerHTML = '<span class="arrow">&#9654;</span> <span class="chunks-label">chunks</span>';
+  el.appendChild(chunksToggle);
+
   const chunksContainer = document.createElement('div');
   chunksContainer.className = 'sidebar-chunks-container';
   el.appendChild(chunksContainer);
+
+  chunksToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    chunksToggle.classList.toggle('open');
+    chunksContainer.classList.toggle('open');
+  });
 
   // Children
   if (node.children && node.children.length > 0) {
@@ -1131,6 +1498,15 @@ function setNodeState(nodeId, state) {
 
   // Auto-expand parent and fill circles along the path
   if (state !== 'idle' && state !== 'complete') {
+    // Expand any virtual group nodes (Disciplines/Projects) in the DOM ancestry
+    let ancestor = el.parentElement;
+    while (ancestor && !ancestor.isSameNode(sidebarTreeEl)) {
+      if (ancestor.classList.contains('tree-group')) {
+        ancestor.classList.add('expanded');
+      }
+      ancestor = ancestor.parentElement;
+    }
+
     let currentId = nodeId;
     while (true) {
       const parentData = findParentData(currentId, topologyTree);
@@ -1207,16 +1583,6 @@ function addSidebarChunk(nodeId, chunkData) {
   sourceBadge.title = chunkData.package_id || '';
   header.appendChild(sourceBadge);
 
-  // Score pill
-  const score = chunkData.score;
-  if (score != null) {
-    const scorePill = document.createElement('span');
-    const scoreClass = score >= 0.9 ? 'score-green' : score >= 0.8 ? 'score-yellow' : 'score-orange';
-    scorePill.className = `sidebar-chunk-score ${scoreClass}`;
-    scorePill.textContent = score.toFixed(3);
-    header.appendChild(scorePill);
-  }
-
   // Preview snippet
   const preview = document.createElement('span');
   preview.className = 'sidebar-chunk-preview';
@@ -1238,7 +1604,16 @@ function addSidebarChunk(nodeId, chunkData) {
 
   container.appendChild(card);
 
-  // Expand the node to reveal the chunk card
+  // Show the chunks toggle and update count
+  const toggle = nodeEl.querySelector(':scope > .sidebar-chunks-toggle');
+  if (toggle) {
+    toggle.classList.add('has-chunks');
+    const count = container.children.length;
+    const label = toggle.querySelector('.chunks-label');
+    if (label) label.textContent = `${count} chunk${count !== 1 ? 's' : ''}`;
+  }
+
+  // Expand the node to reveal the toggle
   nodeEl.classList.add('expanded');
 
   // Track chunks
@@ -1257,9 +1632,11 @@ function resetSidebarState() {
       statusEl.textContent = '';
       statusEl.style.color = '';
     }
-    // Clear chunk containers
+    // Clear chunk containers and reset toggle
     const chunks = el.querySelector(':scope > .sidebar-chunks-container');
-    if (chunks) chunks.innerHTML = '';
+    if (chunks) { chunks.innerHTML = ''; chunks.classList.remove('open'); }
+    const cToggle = el.querySelector(':scope > .sidebar-chunks-toggle');
+    if (cToggle) { cToggle.classList.remove('has-chunks', 'open'); }
   });
 
   // Collapse all except root
@@ -1368,11 +1745,41 @@ function appendConfidence(bubble, confidence) {
   bubble.insertBefore(badge, bubble.firstChild);
 }
 
-function appendSources(bubble, sources) {
+function appendSources(bubble, sources, responseText) {
   if (!sources || sources.length === 0) return;
 
+  // Extract cited references from response text (e.g. [1], [1a], [2b])
+  const citedSet = new Set();
+  if (responseText) {
+    const citePattern = /\[(\d+[a-z]?)\]/g;
+    let m;
+    while ((m = citePattern.exec(responseText)) !== null) {
+      citedSet.add(m[1]);
+    }
+  }
+
+  // Filter sources to only cited docs/chunks
+  const filteredSources = [];
+  sources.forEach(grp => {
+    const docNum = grp.doc_number;
+    const subRefs = grp.sub_refs || [];
+
+    // Check if bare doc number is cited (e.g. [1]) or any sub-ref letter
+    const citedRefs = subRefs.filter(ref => {
+      const key = `${docNum}${ref.letter || ''}`;
+      return citedSet.has(key) || citedSet.has(String(docNum));
+    });
+
+    if (citedRefs.length > 0) {
+      filteredSources.push({ ...grp, sub_refs: citedRefs });
+    }
+  });
+
+  // Fall back to all sources if no citations were detected
+  const displaySources = filteredSources.length > 0 ? filteredSources : sources;
+
   // Count total sub-references across all document groups
-  const totalRefs = sources.reduce((sum, grp) => sum + (grp.sub_refs ? grp.sub_refs.length : 1), 0);
+  const totalRefs = displaySources.reduce((sum, grp) => sum + (grp.sub_refs ? grp.sub_refs.length : 1), 0);
 
   const panel = document.createElement('div');
   panel.className = 'sources-panel';
@@ -1380,7 +1787,7 @@ function appendSources(bubble, sources) {
   // Toggle button
   const toggle = document.createElement('button');
   toggle.className = 'sources-toggle';
-  toggle.innerHTML = `<span class="arrow">&#9654;</span> Sources (${sources.length} documents, ${totalRefs} references)`;
+  toggle.innerHTML = `<span class="arrow">&#9654;</span> Sources (${displaySources.length} document${displaySources.length !== 1 ? 's' : ''}, ${totalRefs} cited)`;
   toggle.addEventListener('click', () => {
     toggle.classList.toggle('open');
     list.classList.toggle('open');
@@ -1391,7 +1798,7 @@ function appendSources(bubble, sources) {
   const list = document.createElement('div');
   list.className = 'sources-list';
 
-  sources.forEach((grp) => {
+  displaySources.forEach((grp) => {
     const docNum = grp.doc_number;
     const docName = grp.document_name || 'Unknown';
     const citation = grp.display_citation || '';
@@ -1402,9 +1809,14 @@ function appendSources(bubble, sources) {
     const docItem = document.createElement('div');
     docItem.className = 'source-item';
 
-    // Document header: [N] citation (or filename fallback)
-    const docHeader = document.createElement('div');
-    docHeader.className = 'source-header';
+    // Document header: clickable toggle to expand/collapse chunks
+    const docHeader = document.createElement('button');
+    docHeader.className = 'source-doc-toggle';
+
+    const docArrow = document.createElement('span');
+    docArrow.className = 'source-doc-arrow';
+    docArrow.innerHTML = '&#9654;';
+    docHeader.appendChild(docArrow);
 
     const numBadge = document.createElement('span');
     numBadge.className = 'source-num';
@@ -1428,18 +1840,32 @@ function appendSources(bubble, sources) {
       docHeader.appendChild(projEl);
     }
 
+    const chunkCount = document.createElement('span');
+    chunkCount.className = 'source-chunk-count';
+    chunkCount.textContent = `${subRefs.length} chunk${subRefs.length !== 1 ? 's' : ''}`;
+    docHeader.appendChild(chunkCount);
+
+    docHeader.addEventListener('click', () => {
+      docItem.classList.toggle('expanded');
+    });
+
     docItem.appendChild(docHeader);
 
-    // Sub-references
+    // Sub-references container (hidden until doc is expanded)
+    const refsContainer = document.createElement('div');
+    refsContainer.className = 'source-refs-body';
+
     subRefs.forEach((ref) => {
       const refDiv = document.createElement('div');
-      refDiv.style.marginLeft = '16px';
-      refDiv.style.marginTop = '6px';
-      refDiv.style.paddingTop = '6px';
-      refDiv.style.borderTop = '1px solid var(--border)';
+      refDiv.className = 'source-ref';
 
-      const refHeader = document.createElement('div');
-      refHeader.className = 'source-header';
+      const refHeader = document.createElement('button');
+      refHeader.className = 'source-ref-toggle';
+
+      const refArrow = document.createElement('span');
+      refArrow.className = 'source-ref-arrow';
+      refArrow.innerHTML = '&#9654;';
+      refHeader.appendChild(refArrow);
 
       const refBadge = document.createElement('span');
       refBadge.className = 'source-num';
@@ -1459,51 +1885,197 @@ function appendSources(bubble, sources) {
         refHeader.appendChild(secEl);
       }
 
-      // Score pill
-      const score = ref.similarity_score;
-      if (score != null) {
-        const scoreEl = document.createElement('span');
-        const scoreVal = parseFloat(score);
-        const scoreClass = scoreVal >= 0.6 ? 'score-high' : scoreVal >= 0.45 ? 'score-mid' : 'score-low';
-        scoreEl.className = `source-score ${scoreClass}`;
-        scoreEl.textContent = scoreVal.toFixed(3);
-        refHeader.appendChild(scoreEl);
-      }
-
       refDiv.appendChild(refHeader);
 
-      // Chunk text (truncated to 200 chars with expand)
+      // Chunk text (collapsed by default)
       const fullText = ref.chunk_text || '';
       if (fullText) {
         const textEl = document.createElement('div');
         textEl.className = 'source-text';
-        const truncated = fullText.length > 200;
-        const textNode = document.createTextNode(truncated ? fullText.slice(0, 200) + '...' : fullText);
-        textEl.appendChild(textNode);
-
-        if (truncated) {
-          const expandBtn = document.createElement('button');
-          expandBtn.className = 'source-expand';
-          expandBtn.textContent = 'Show more';
-          let expanded = false;
-          expandBtn.addEventListener('click', () => {
-            expanded = !expanded;
-            textNode.textContent = expanded ? fullText : fullText.slice(0, 200) + '...';
-            expandBtn.textContent = expanded ? 'Show less' : 'Show more';
-          });
-          textEl.appendChild(expandBtn);
-        }
-
+        textEl.textContent = fullText;
         refDiv.appendChild(textEl);
+
+        refHeader.addEventListener('click', () => {
+          refDiv.classList.toggle('expanded');
+        });
       }
 
-      docItem.appendChild(refDiv);
+      refsContainer.appendChild(refDiv);
     });
+
+    docItem.appendChild(refsContainer);
 
     list.appendChild(docItem);
   });
 
   panel.appendChild(list);
+  bubble.appendChild(panel);
+}
+
+function appendScoringPanel(bubble, sources, confidence, tokenUsage) {
+  if (!sources || !confidence) return;
+
+  // --- Token cost rates (per 1M tokens, enterprise scale) ---
+  // Claude Sonnet 4.5: $3/M input, $15/M output
+  // Claude Sonnet 4: $3/M input, $15/M output
+  // Claude Haiku 3.5: $0.80/M input, $4/M output
+  // Default to Sonnet 4 pricing if model unknown
+  const PRICING = {
+    'claude-sonnet-4-5-20250929': { input: 3.00, output: 15.00, label: 'Sonnet 4.5' },
+    'claude-sonnet-4-20250514':   { input: 3.00, output: 15.00, label: 'Sonnet 4' },
+    'claude-haiku-3-5-20241022':  { input: 0.80, output: 4.00,  label: 'Haiku 3.5' },
+  };
+  const DEFAULT_PRICING = { input: 3.00, output: 15.00, label: 'Claude' };
+
+  // Collect all similarity scores from sub_refs
+  const allScores = [];
+  let totalChunks = 0;
+  sources.forEach(grp => {
+    (grp.sub_refs || []).forEach(ref => {
+      if (ref.similarity_score != null) {
+        allScores.push(parseFloat(ref.similarity_score));
+      }
+      totalChunks++;
+    });
+  });
+
+  const meanScore = allScores.length
+    ? (allScores.reduce((a, b) => a + b, 0) / allScores.length)
+    : null;
+  const scoreSpread = allScores.length
+    ? (Math.max(...allScores) - Math.min(...allScores))
+    : null;
+
+  // Compute token totals from steps
+  let totalInput = 0, totalOutput = 0, totalCacheCreate = 0, totalCacheRead = 0;
+  const steps = (tokenUsage && tokenUsage.steps) || [];
+  steps.forEach(s => {
+    totalInput += s.input_tokens || 0;
+    totalOutput += s.output_tokens || 0;
+    totalCacheCreate += s.cache_creation_input_tokens || 0;
+    totalCacheRead += s.cache_read_input_tokens || 0;
+  });
+  const totalTokens = totalInput + totalOutput;
+
+  // Cost estimate
+  const modelId = (tokenUsage && tokenUsage.model) || '';
+  const pricing = PRICING[modelId] || DEFAULT_PRICING;
+  const costUsd = (totalInput / 1e6) * pricing.input + (totalOutput / 1e6) * pricing.output;
+
+  const metrics = [
+    {
+      label: 'Retrieval Confidence',
+      value: confidence.level || 'N/A',
+      tip: confidence.reasoning || 'Overall confidence in the retrieval quality.'
+    },
+    {
+      label: 'Top Match Score',
+      value: confidence.score != null ? parseFloat(confidence.score).toFixed(3) : 'N/A',
+      tip: 'Similarity between your question and the best-matching content. Above 0.65 is typically relevant for technical queries.'
+    },
+    {
+      label: 'Top-2 Gap',
+      value: confidence.top_gap != null ? parseFloat(confidence.top_gap).toFixed(3) : 'N/A',
+      tip: 'Difference between the #1 and #2 matches. A larger gap (>0.10) means one source clearly stood out as most relevant.'
+    },
+    {
+      label: 'Mean Retrieval Score',
+      value: meanScore != null ? meanScore.toFixed(3) : 'N/A',
+      tip: 'Average similarity across all retrieved chunks. Higher means most results were relevant, not just the top one.'
+    },
+    {
+      label: 'Score Spread',
+      value: scoreSpread != null ? scoreSpread.toFixed(3) : 'N/A',
+      tip: 'Range between highest and lowest scores. Small spread = uniformly relevant results; large spread = mixed quality.'
+    },
+    {
+      label: 'Source Coverage',
+      value: `${sources.length} doc${sources.length !== 1 ? 's' : ''} / ${totalChunks} chunk${totalChunks !== 1 ? 's' : ''}`,
+      tip: 'Number of unique documents and chunks retrieved. More documents means the answer draws from broader evidence.'
+    }
+  ];
+
+  // Token usage metrics
+  if (totalTokens > 0) {
+    metrics.push(
+      { section: 'Token Consumption' },
+      {
+        label: 'Total Tokens',
+        value: totalTokens.toLocaleString(),
+        tip: `Input: ${totalInput.toLocaleString()} + Output: ${totalOutput.toLocaleString()}. Total tokens consumed across all agent steps for this request.`
+      },
+      {
+        label: 'API Calls',
+        value: `${steps.length} step${steps.length !== 1 ? 's' : ''}`,
+        tip: steps.map(s =>
+          `${s.step}: ${(s.input_tokens||0).toLocaleString()} in / ${(s.output_tokens||0).toLocaleString()} out`
+        ).join('\n'),
+      },
+      {
+        label: 'Cache Efficiency',
+        value: totalCacheRead > 0
+          ? `${Math.round(totalCacheRead / (totalInput + totalCacheRead) * 100)}% hit`
+          : 'No cache',
+        tip: `Cache created: ${totalCacheCreate.toLocaleString()} tokens. Cache read: ${totalCacheRead.toLocaleString()} tokens. Prompt caching reduces cost by reusing previously seen content.`
+      },
+      {
+        label: 'Est. Cost',
+        value: costUsd < 0.01 ? `<$0.01` : `$${costUsd.toFixed(3)}`,
+        tip: `Based on ${pricing.label} enterprise pricing: $${pricing.input}/M input, $${pricing.output}/M output tokens. Actual cost may vary with caching discounts and batch usage.`
+      }
+    );
+  }
+
+  const panel = document.createElement('div');
+  panel.className = 'scoring-panel';
+
+  const toggle = document.createElement('button');
+  toggle.className = 'scoring-toggle';
+  toggle.innerHTML = '<span class="arrow">&#9654;</span> Retrieval Scoring Summary';
+  toggle.addEventListener('click', () => {
+    panel.classList.toggle('open');
+  });
+  panel.appendChild(toggle);
+
+  const body = document.createElement('div');
+  body.className = 'scoring-body';
+
+  metrics.forEach(m => {
+    // Section dividers
+    if (m.section) {
+      const divider = document.createElement('div');
+      divider.className = 'scoring-section';
+      divider.textContent = m.section;
+      body.appendChild(divider);
+      return;
+    }
+
+    const row = document.createElement('div');
+    row.className = 'scoring-row';
+
+    const label = document.createElement('span');
+    label.className = 'scoring-label';
+    label.textContent = m.label;
+
+    const info = document.createElement('span');
+    info.className = 'scoring-info';
+    info.textContent = 'i';
+    const tip = document.createElement('span');
+    tip.className = 'scoring-tip';
+    tip.textContent = m.tip;
+    info.appendChild(tip);
+    label.appendChild(info);
+
+    const val = document.createElement('span');
+    val.className = 'scoring-value';
+    val.textContent = m.value;
+
+    row.appendChild(label);
+    row.appendChild(val);
+    body.appendChild(row);
+  });
+
+  panel.appendChild(body);
   bubble.appendChild(panel);
 }
 
@@ -1514,7 +2086,7 @@ function escapeHtml(str) {
 }
 
 function renderContent(bubble, text) {
-  bubble.innerHTML = marked.parse(text);
+  bubble.innerHTML = DOMPurify.sanitize(marked.parse(text));
   renderMathInElement(bubble, {
     delimiters: [
       { left: '$$', right: '$$', display: true },
@@ -1693,7 +2265,8 @@ async function send() {
           // Final render
           renderContent(bubble, fullText);
           appendConfidence(bubble, event.confidence);
-          appendSources(bubble, event.sources);
+          appendSources(bubble, event.sources, fullText);
+          appendScoringPanel(bubble, event.sources, event.confidence, event.token_usage);
 
           // Store raw data for export
           bubble.dataset.raw = fullText;
@@ -1772,79 +2345,108 @@ function createAgentBubble() {
   return { msgEl, bubble };
 }
 
-// --- Export dropdown ---
-const exportBtn = document.getElementById('exportBtn');
-const exportDropdown = document.getElementById('exportDropdown');
+// --- Report PDF generation (ASCE reference style) ---
+document.getElementById('reportBtn').addEventListener('click', generateReport);
 
-exportBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  exportDropdown.classList.toggle('open');
-});
-document.addEventListener('click', () => {
-  exportDropdown.classList.remove('open');
-});
+function generateReport() {
+  // Find the most recent agent bubble
+  const bubbles = chatEl.querySelectorAll('.message.agent .message-bubble');
+  if (bubbles.length === 0) return;
+  const bubble = bubbles[bubbles.length - 1];
+  const raw = bubble.dataset.raw || bubble.textContent;
 
-function exportMarkdown() {
-  exportDropdown.classList.remove('open');
-  const messages = chatEl.querySelectorAll('.message');
-  if (messages.length === 0) return;
-
-  const date = new Date().toISOString().slice(0, 10);
-  let md = `# BR Agent \u2014 Conversation Export\nDate: ${date} | Mode: ${currentMode} | Conversation: ${conversationId || 'N/A'}\n\n---\n`;
-
-  messages.forEach(msg => {
-    const bubble = msg.querySelector('.message-bubble');
-    if (!bubble) return;
-    const raw = bubble.dataset.raw || bubble.textContent;
-
-    if (msg.classList.contains('user')) {
-      md += `\n**User:** ${raw}\n`;
-    } else if (msg.classList.contains('agent')) {
-      let header = '\n**Agent:**';
-      const conf = bubble.dataset.confidence;
-      if (conf) {
-        try {
-          const c = JSON.parse(conf);
-          if (c.level) header += ` [confidence: ${c.level}]`;
-        } catch {}
+  // Build ASCE-style references (only cited sources)
+  let refsHtml = '';
+  const srcs = bubble.dataset.sources;
+  if (srcs) {
+    try {
+      const sources = JSON.parse(srcs);
+      // Extract cited references from response text
+      const citedSet = new Set();
+      const citePattern = /\[(\d+[a-z]?)\]/g;
+      let cm;
+      while ((cm = citePattern.exec(raw)) !== null) {
+        citedSet.add(cm[1]);
       }
-      md += `${header}\n${raw}\n`;
 
-      const srcs = bubble.dataset.sources;
-      if (srcs) {
-        try {
-          const sources = JSON.parse(srcs);
-          if (sources.length) {
-            md += '\nSources:\n';
-            sources.forEach((grp) => {
-              const doc = grp.display_citation || grp.document_name || 'Unknown';
-              const proj = (!grp.display_citation && grp.project) ? ` — ${grp.project}` : '';
-              md += `- [${grp.doc_number}] ${doc}${proj}\n`;
-              (grp.sub_refs || []).forEach((ref) => {
-                const score = ref.similarity_score != null ? ` (${parseFloat(ref.similarity_score).toFixed(3)})` : '';
-                const sec = ref.section ? ` ${ref.section}` : '';
-                const pg = ref.page_number != null ? ` p.${ref.page_number}` : '';
-                md += `  - [${grp.doc_number}${ref.letter}]${sec}${pg}${score}\n`;
-              });
-            });
-          }
-        } catch {}
+      // Filter to only cited docs/chunks
+      const citedSources = [];
+      sources.forEach(grp => {
+        const docNum = grp.doc_number;
+        const subs = grp.sub_refs || [];
+        const citedRefs = subs.filter(ref => {
+          const key = `${docNum}${ref.letter || ''}`;
+          return citedSet.has(key) || citedSet.has(String(docNum));
+        });
+        if (citedRefs.length > 0) {
+          citedSources.push({ ...grp, sub_refs: citedRefs });
+        }
+      });
+      const displaySources = citedSources.length > 0 ? citedSources : sources;
+
+      if (displaySources.length) {
+        refsHtml = '<h2>References</h2><div class="references">';
+        displaySources.forEach((grp) => {
+          const doc = grp.display_citation || grp.document_name || 'Unknown';
+          const proj = grp.project || '';
+          const subRefs = (grp.sub_refs || []).map(ref => {
+            const parts = [];
+            if (ref.section) parts.push(ref.section);
+            if (ref.page_number != null) parts.push(`p. ${ref.page_number}`);
+            return parts.join(', ');
+          }).filter(Boolean);
+          const detail = subRefs.length ? ` (${subRefs.join('; ')})` : '';
+          const projStr = proj ? `, ${proj}` : '';
+          refsHtml += `<p class="ref-entry">[${grp.doc_number}] ${doc}${projStr}${detail}.</p>`;
+        });
+        refsHtml += '</div>';
       }
-    }
-    md += '\n---\n';
+    } catch {}
+  }
+
+  // Render markdown body to HTML
+  const bodyHtml = DOMPurify.sanitize(marked.parse(raw));
+
+  // Build the print document
+  const printDoc = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>BR Agent Report</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<style>
+  @page { size: letter; margin: 1in; }
+  body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.6; color: #000; max-width: 6.5in; margin: 0 auto; }
+  h1 { font-size: 16pt; text-align: center; margin-bottom: 4pt; }
+  h2 { font-size: 13pt; margin-top: 18pt; margin-bottom: 6pt; border-bottom: 1px solid #ccc; padding-bottom: 3pt; }
+  h3 { font-size: 12pt; margin-top: 14pt; }
+  p { text-align: justify; margin: 6pt 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12pt 0; font-size: 11pt; }
+  th, td { border: 1px solid #666; padding: 4pt 8pt; text-align: left; }
+  th { background: #f0f0f0; font-weight: bold; }
+  .references { margin-top: 8pt; }
+  .ref-entry { text-indent: -0.5in; padding-left: 0.5in; font-size: 11pt; margin: 4pt 0; }
+  code { font-family: "Courier New", monospace; font-size: 11pt; }
+  pre { background: #f5f5f5; padding: 8pt; border: 1px solid #ddd; overflow-x: auto; font-size: 10pt; }
+  .katex { font-size: 1em; }
+</style></head><body>
+${bodyHtml}
+${refsHtml}
+</body>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"><\/script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"><\/script>
+<script>
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "$$", right: "$$", display: true},
+      {left: "$", right: "$", display: false},
+      {left: "\\\\(", right: "\\\\)", display: false},
+      {left: "\\\\[", right: "\\\\]", display: true}
+    ]
   });
+  setTimeout(() => window.print(), 300);
+<\/script></html>`;
 
-  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `br-agent-chat-${date}.md`;
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
-function exportPDF() {
-  exportDropdown.classList.remove('open');
-  window.print();
+  const w = window.open('', '_blank');
+  w.document.write(printDoc);
+  w.document.close();
 }
 
 // --- Feedback ---
