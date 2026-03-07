@@ -71,6 +71,15 @@ class ConversationStore:
         self._convos[new_id] = conv
         return conv
 
+    def get(self, conversation_id: str) -> Conversation | None:
+        """Return a conversation by ID, or None if not found / expired."""
+        self._evict()
+        return self._convos.get(conversation_id)
+
+    def delete(self, conversation_id: str) -> bool:
+        """Remove a conversation. Returns True if it existed."""
+        return self._convos.pop(conversation_id, None) is not None
+
     def _evict(self) -> None:
         """Remove conversations that have exceeded the TTL."""
         now = time.monotonic()

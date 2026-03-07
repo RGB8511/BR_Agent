@@ -130,7 +130,11 @@ class TestCORSOriginsParsing:
     def test_split(self):
         settings = Settings()
         origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
-        assert origins == ["http://localhost:5173", "http://localhost:8100"]
+        assert "http://localhost:5173" in origins
+        assert "http://localhost:8100" in origins
+        # Additional dev ports
+        assert "http://localhost:5174" in origins
+        assert "http://localhost:8101" in origins
 
 
 class TestErrorMessageGeneric:

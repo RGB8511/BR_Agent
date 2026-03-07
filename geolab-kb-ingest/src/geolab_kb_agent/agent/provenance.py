@@ -252,6 +252,7 @@ class ProvenanceCollector:
     """Accumulates citations during an agent tool-use cycle."""
 
     citations: list[Citation] = field(default_factory=list)
+    has_validated: bool = False
 
     def add(
         self,
@@ -283,6 +284,8 @@ class ProvenanceCollector:
 
     def add_kb_results(self, results: list[dict]) -> None:
         """Add a citation for each KB search result."""
+        if any(r.get("validation_boosted") for r in results):
+            self.has_validated = True
         for row in results:
             content = str(row.get("content", ""))
             snippet = content[:200].rstrip() + ("..." if len(content) > 200 else "")

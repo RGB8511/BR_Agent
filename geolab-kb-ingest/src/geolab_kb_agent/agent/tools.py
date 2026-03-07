@@ -165,6 +165,57 @@ TOOLS: list[dict] = [
         "cache_control": {"type": "ephemeral"},
     },
     {
+        "name": "export_data",
+        "description": (
+            "Export structured data as a downloadable CSV or Excel file. "
+            "Use AFTER collecting data from search results to create a "
+            "downloadable table. First gather the data using search_kb, then "
+            "organise it into columns and rows, and call this tool to generate "
+            "the file. Include the download link in your response."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "columns": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Column header names for the table.",
+                },
+                "rows": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {},
+                    },
+                    "description": (
+                        "Data rows. Each row is an array of cell values "
+                        "matching the columns in order."
+                    ),
+                },
+                "format": {
+                    "type": "string",
+                    "enum": ["csv", "xlsx"],
+                    "description": "Output file format.",
+                },
+                "filename": {
+                    "type": "string",
+                    "description": (
+                        "Suggested base filename without extension "
+                        "(e.g. 'ucs_test_summary')."
+                    ),
+                },
+                "title": {
+                    "type": "string",
+                    "description": (
+                        "Optional title/header displayed at the top of "
+                        "the spreadsheet."
+                    ),
+                },
+            },
+            "required": ["columns", "rows", "format"],
+        },
+    },
+    {
         "name": "list_projects",
         "description": (
             "List all available projects with metadata (dam type, location, key "

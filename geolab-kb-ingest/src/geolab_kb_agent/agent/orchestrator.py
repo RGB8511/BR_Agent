@@ -78,7 +78,7 @@ class KBAgent:
         scores = [
             c.score for c in provenance.citations if c.score is not None
         ]
-        return compute_confidence(scores)
+        return compute_confidence(scores, has_validated=provenance.has_validated)
 
     @staticmethod
     def _uncertainty_prefix(confidence: ConfidenceScore) -> str:

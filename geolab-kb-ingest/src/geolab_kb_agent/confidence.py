@@ -25,15 +25,31 @@ class ConfidenceScore(BaseModel):
     reasoning: str  # human-readable explanation
 
 
-def compute_confidence(similarity_scores: list[float]) -> ConfidenceScore:
+def compute_confidence(
+    similarity_scores: list[float],
+    has_validated: bool = False,
+) -> ConfidenceScore:
     """Compute confidence from a list of retrieval similarity scores.
 
     Thresholds:
+    - has_validated → HIGH (human-verified citations)
     - top score < 0.65 → LOW regardless of gap
     - gap > 0.10 → HIGH (clear best match)
     - gap > 0.05 → MEDIUM (good match, similar alternatives)
     - gap <= 0.05 → LOW (ambiguous, multiple close results)
     """
+    if has_validated and similarity_scores:
+        top = max(similarity_scores)
+        gap = 0.0
+        if len(similarity_scores) > 1:
+            s = sorted(similarity_scores, reverse=True)
+            gap = s[0] - s[1]
+        return ConfidenceScore(
+            level=ConfidenceLevel.HIGH,
+            score=top,
+            top_gap=gap,
+            reasoning="Citations verified by prior human validation.",
+        )
     if not similarity_scores:
         return ConfidenceScore(
             level=ConfidenceLevel.LOW,

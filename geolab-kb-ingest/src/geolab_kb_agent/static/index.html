@@ -512,7 +512,7 @@
     margin: 0 auto 8px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 8px;
   }
   .input-wrapper {
@@ -595,6 +595,33 @@
   .report-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  /* Download button (rendered from agent export_data links) */
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    margin: 8px 0;
+    background: linear-gradient(135deg, #2F5496, #1a3a6e);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .download-btn:hover {
+    background: linear-gradient(135deg, #3a65b0, #2F5496);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(47, 84, 150, 0.3);
+  }
+  .download-btn .dl-icon {
+    font-size: 15px;
   }
 
   /* Feedback controls */
@@ -1194,7 +1221,8 @@
       <button class="mode-btn" data-mode="concise">Concise</button>
       <button class="mode-btn active" data-mode="educational">Educational</button>
     </div>
-    <button class="report-btn" id="reportBtn" title="Export last response as PDF report">Report</button>
+    <button class="report-btn" id="reportBtn" title="Export last response as PDF report">PDF</button>
+    <button class="report-btn" id="shareBtn" title="Export full conversation as markdown">Markdown</button>
   </div>
   <div class="input-wrapper">
     <textarea id="input" rows="1" placeholder="Ask a question..." autofocus></textarea>
@@ -1205,7 +1233,9 @@
     <div class="util-links">
       <button class="util-link" onclick="startNewChat()" title="Start a new conversation">New Chat</button>
       <span class="util-sep">|</span>
-      <button class="util-link" onclick="resetValidations()" title="Clear all validated citations for demo reset">Reset Validations</button>
+      <button class="util-link" onclick="resetConversation()" title="Reset conversation and clear its validations">Reset &amp; Clear</button>
+      <span class="util-sep">|</span>
+      <button class="util-link" onclick="resetValidations()" title="Clear all validated citations for demo reset">Reset All Validations</button>
     </div>
   </div>
 </div>
@@ -2125,7 +2155,22 @@ function renderCharts(container) {
 }
 
 function renderContent(bubble, text) {
-  bubble.innerHTML = DOMPurify.sanitize(marked.parse(text));
+  bubble.innerHTML = DOMPurify.sanitize(marked.parse(text), {
+    ADD_ATTR: ['download', 'target'],
+  });
+  // Convert download links into styled buttons
+  bubble.querySelectorAll('a[href*="/api/v1/chat/downloads/"]').forEach(a => {
+    a.className = 'download-btn';
+    a.setAttribute('download', '');
+    const fname = a.textContent || 'Download';
+    const icon = fname.endsWith('.xlsx') ? '\u{1F4CA}' : '\u{1F4C4}';
+    a.textContent = '';
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'dl-icon';
+    iconSpan.textContent = icon;
+    a.appendChild(iconSpan);
+    a.appendChild(document.createTextNode(fname));
+  });
   renderMathInElement(bubble, {
     delimiters: [
       { left: '$$', right: '$$', display: true },
@@ -2444,20 +2489,35 @@ function generateReport() {
     } catch {}
   }
 
-  // Convert chart canvases to static <img> tags for the PDF
-  let chartImagesHtml = '';
+  // Capture chart canvases as data URIs before re-rendering
+  const chartDataUris = [];
   const chartCanvases = bubble.querySelectorAll('.chart-container canvas');
   chartCanvases.forEach(canvas => {
     try {
-      const imgSrc = canvas.toDataURL('image/png');
-      chartImagesHtml += `<div style="text-align:center;margin:12pt 0;"><img src="${imgSrc}" style="max-width:100%;"></div>`;
+      chartDataUris.push(canvas.toDataURL('image/png'));
     } catch (e) {
       console.warn('Chart export failed:', e);
     }
   });
 
   // Render markdown body to HTML
-  const bodyHtml = DOMPurify.sanitize(marked.parse(raw));
+  let bodyHtml = DOMPurify.sanitize(marked.parse(raw));
+
+  // Replace chart code blocks with captured chart images inline
+  let chartIdx = 0;
+  bodyHtml = bodyHtml.replace(/<pre><code class="language-chart">[\s\S]*?<\/code><\/pre>/g, () => {
+    if (chartIdx < chartDataUris.length) {
+      const uri = chartDataUris[chartIdx++];
+      return `<div style="text-align:center;margin:12pt 0;"><img src="${uri}" style="max-width:100%;"></div>`;
+    }
+    return '';  // no matching canvas — strip the raw JSON
+  });
+
+  // Any remaining charts not matched inline
+  let chartImagesHtml = '';
+  while (chartIdx < chartDataUris.length) {
+    chartImagesHtml += `<div style="text-align:center;margin:12pt 0;"><img src="${chartDataUris[chartIdx++]}" style="max-width:100%;"></div>`;
+  }
 
   // Build the print document
   const printDoc = `<!DOCTYPE html>
@@ -2470,7 +2530,7 @@ function generateReport() {
   h2 { font-size: 13pt; margin-top: 18pt; margin-bottom: 6pt; border-bottom: 1px solid #ccc; padding-bottom: 3pt; }
   h3 { font-size: 12pt; margin-top: 14pt; }
   p { text-align: justify; margin: 6pt 0; }
-  table { border-collapse: collapse; width: 100%; margin: 12pt 0; font-size: 11pt; }
+  table { border-collapse: collapse; width: 100%; margin: 12pt 0; font-size: 11pt; border: 1px solid #666; }
   th, td { border: 1px solid #666; padding: 4pt 8pt; text-align: left; }
   th { background: #f0f0f0; font-weight: bold; }
   .references { margin-top: 8pt; }
@@ -2578,6 +2638,14 @@ async function submitFeedback(controls, sentiment, messageIdx, bubble) {
       badge.className = 'validated-badge';
       badge.textContent = '\u2713 Validated';
       controls.appendChild(badge);
+
+      // Update confidence badge from "Verify Citations" to "Cited"
+      const confBadge = bubble.querySelector('.confidence-badge');
+      if (confBadge) {
+        confBadge.className = 'confidence-badge confidence-high';
+        confBadge.innerHTML = '<span class="dot"></span>Cited';
+        confBadge.title = 'Citations verified by reviewer';
+      }
     }
   } catch (err) {
     console.error('Feedback submit failed:', err);
@@ -2593,8 +2661,26 @@ function startNewChat() {
   inputEl.focus();
 }
 
+async function resetConversation() {
+  if (!conversationId) {
+    startNewChat();
+    return;
+  }
+  if (!confirm('Reset this conversation and clear its feedback/validations?')) return;
+  try {
+    const res = await fetch(`/api/v1/chat/conversations/${conversationId}`, { method: 'DELETE' });
+    const data = await res.json();
+    const fb = data.deleted_feedback || 0;
+    startNewChat();
+    metaEl.textContent = `Conversation reset${fb ? ` (${fb} feedback entries cleared)` : ''}.`;
+  } catch (err) {
+    console.error('Reset conversation failed:', err);
+    alert('Failed to reset conversation.');
+  }
+}
+
 async function resetValidations() {
-  if (!confirm('Clear all validated citations? This is used for demo reset.')) return;
+  if (!confirm('Clear ALL validated citations across all conversations? This is a full demo reset.')) return;
   try {
     const res = await fetch('/api/v1/chat/validations', { method: 'DELETE' });
     const data = await res.json();
@@ -2603,6 +2689,63 @@ async function resetValidations() {
     console.error('Reset validations failed:', err);
     alert('Failed to reset validations.');
   }
+}
+
+// --- Share / Export conversation ---
+document.getElementById('shareBtn').addEventListener('click', shareConversation);
+
+async function shareConversation() {
+  if (!conversationId) {
+    // No server conversation — build markdown from DOM
+    exportFromDOM();
+    return;
+  }
+  try {
+    const res = await fetch(`/api/v1/chat/conversations/${conversationId}/export`);
+    if (!res.ok) {
+      // Fallback to DOM export if server can't find conversation
+      exportFromDOM();
+      return;
+    }
+    const data = await res.json();
+    downloadMarkdown(data.markdown, conversationId);
+  } catch (err) {
+    console.error('Export failed, falling back to DOM export:', err);
+    exportFromDOM();
+  }
+}
+
+function exportFromDOM() {
+  const messages = chatEl.querySelectorAll('.message');
+  if (messages.length === 0) return;
+
+  const lines = ['# BR Agent Conversation\n'];
+  messages.forEach(msg => {
+    const bubble = msg.querySelector('.message-bubble');
+    if (!bubble) return;
+    const raw = bubble.dataset.raw || bubble.textContent;
+    if (msg.classList.contains('user')) {
+      lines.push(`## Question\n\n${raw}\n`);
+    } else if (msg.classList.contains('agent')) {
+      lines.push(`## Response\n\n${raw}\n`);
+    }
+  });
+  downloadMarkdown(lines.join('\n'), conversationId || 'conversation');
+}
+
+function downloadMarkdown(content, id) {
+  const ts = new Date().toISOString().slice(0, 10);
+  const filename = `br-agent-${ts}-${id.slice(0, 8)}.md`;
+  const blob = new Blob([content], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  metaEl.textContent = `Exported: ${filename}`;
 }
 </script>
 </body>

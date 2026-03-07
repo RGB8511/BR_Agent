@@ -35,7 +35,7 @@ function scoreColor(score) {
 // ════════════════════════════════════════════════════════════════
 // LIVE MODE CONFIG
 // ════════════════════════════════════════════════════════════════
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8100';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8101';
 
 const DISCIPLINE_MAP = {
   'geotechnical':  { icon: '\uD83E\uDEA8', color: '#9775fa' },

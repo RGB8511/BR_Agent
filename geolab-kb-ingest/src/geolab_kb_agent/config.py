@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8100
     dev_reload: bool = False
-    cors_origins: str = "http://localhost:5173,http://localhost:8100"
+    cors_origins: str = "http://localhost:5173,http://localhost:5174,http://localhost:8100,http://localhost:8101"
     validation_password: str = "admin"
 
 
